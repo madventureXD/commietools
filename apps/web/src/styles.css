@@ -121,6 +121,11 @@ input[type='range'] { width: 100%; accent-color: var(--color-brand); }
 .metadata-entries dt { color: var(--color-text-muted); }
 .metadata-entries dd { margin: 0; overflow-wrap: anywhere; font-weight: 700; }
 a.button { display: inline-flex; align-items: center; justify-content: center; text-decoration: none; }
+.resize-preview { display: grid; gap: var(--space-2); margin: 0; }
+.resize-stage { position: relative; max-width: 100%; margin: 0 auto; border: 1px solid var(--color-border); border-radius: var(--radius-sm); background: var(--color-background); }
+.resize-stage canvas { display: block; border-radius: var(--radius-sm); }
+.resize-crop-frame { position: absolute; border: 2px solid var(--color-brand); box-shadow: 0 0 0 200vmax color-mix(in srgb, var(--color-background) 55%, transparent); pointer-events: none; }
+.resize-result { display: block; max-width: 100%; max-height: 24rem; margin-inline: auto; border: 1px solid var(--color-border); border-radius: var(--radius-sm); background: var(--color-background); }
 @media (max-width: 720px) {
   .site-header { grid-template-columns: 1fr auto; }
   nav { display: none; }

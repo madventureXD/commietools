@@ -60,7 +60,7 @@ Both `npm run check` and `npm run build` fail when a package has no license, use
 
 ## Current scope
 
-The first executable slice is a bilingual, responsive, manifest-driven catalogue with five local tools and four curated suites. It establishes automatic routes, design tokens, theme handling, privacy classification and an offline shell without prematurely selecting server, database or native-app frameworks. The image metadata tool removes EXIF, XMP, IPTC and comment blocks without re-encoding the image, so the pixels stay byte-identical.
+The first executable slice is a bilingual, responsive, manifest-driven catalogue with six local tools and four curated suites. It establishes automatic routes, design tokens, theme handling, privacy classification and an offline shell without prematurely selecting server, database or native-app frameworks. The image metadata tool removes EXIF, XMP, IPTC and comment blocks without re-encoding the image, so the pixels stay byte-identical. The image resize tool scales, crops, rotates and mirrors with high-quality filtering in a web worker.
 
 See [docs/architecture.md](docs/architecture.md) and [docs/ui-system.md](docs/ui-system.md).
 

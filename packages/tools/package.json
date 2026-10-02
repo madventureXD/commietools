@@ -6,7 +6,7 @@
   "type": "module",
   "exports": "./src/index.ts",
   "dependencies": {
-    "@commietools/core": "0.1.0"
+    "@commietools/core": "0.1.0",
+    "pica": "^10.0.3"
   }
 }
-

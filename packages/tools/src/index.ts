@@ -14,6 +14,21 @@ export {
   type StripOptions,
   type StripResult
 } from './image/metadata/metadata'
+export {
+  MAX_EDGE,
+  clampCrop,
+  cropBoxFraction,
+  cropSourceRect,
+  fitScale,
+  normalizeTurns,
+  orientedSize,
+  planResize,
+  type CropRect,
+  type ResizeMode,
+  type ResizeOptions,
+  type ResizePlan,
+  type Size
+} from './image/resize/resize'
 
 export const toolManifests: readonly ToolManifest[] = [
   {
@@ -45,6 +60,11 @@ export const toolManifests: readonly ToolManifest[] = [
     id: 'image-metadata', route: '/tools/image-metadata', category: 'image',
     titleKey: 'tool.imageMetadata.title', descriptionKey: 'tool.imageMetadata.description',
     executionMode: 'local', resourceClass: 'universal', worksOffline: true
+  },
+  {
+    id: 'image-resize', route: '/tools/image-resize', category: 'image',
+    titleKey: 'tool.imageResize.title', descriptionKey: 'tool.imageResize.description',
+    executionMode: 'local', resourceClass: 'standard', worksOffline: true
   }
 ]
 
@@ -52,7 +72,7 @@ export const suiteManifests: readonly SuiteManifest[] = [
   { id: 'text', route: '/suites/text', titleKey: 'suite.text.title', descriptionKey: 'suite.text.description', toolIds: ['text-statistics', 'case-converter'] },
   { id: 'developer', route: '/suites/developer', titleKey: 'suite.developer.title', descriptionKey: 'suite.developer.description', toolIds: ['json-formatter'] },
   { id: 'generators', route: '/suites/generators', titleKey: 'suite.generators.title', descriptionKey: 'suite.generators.description', toolIds: ['qr-code-generator'] },
-  { id: 'image', route: '/suites/image', titleKey: 'suite.image.title', descriptionKey: 'suite.image.description', toolIds: ['image-metadata'] }
+  { id: 'image', route: '/suites/image', titleKey: 'suite.image.title', descriptionKey: 'suite.image.description', toolIds: ['image-metadata', 'image-resize'] }
 ]
 
 export const toolById = new Map(toolManifests.map((tool) => [tool.id, tool]))

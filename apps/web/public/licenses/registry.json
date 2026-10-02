@@ -5,7 +5,7 @@
     "license": "AGPL-3.0-only",
     "source": "LICENSE"
   },
-  "lockfileSha256": "4a7f68aa7c4a7f683b78332016960e2e693c29ff75c2920eec56d03b029de4a4",
+  "lockfileSha256": "59574cf7fb0ed6b8e670e898ecd90d8ea527ec2a544a49e288e592b58eca517b",
   "policy": {
     "allowedExpressions": [
       "(MIT OR CC0-1.0)",
@@ -36,11 +36,11 @@
     ]
   },
   "summary": {
-    "packages": 475,
-    "runtime": 53,
+    "packages": 478,
+    "runtime": 56,
     "development": 422,
     "optional": 81,
-    "installed": 398,
+    "installed": 401,
     "licenseExpressions": [
       "(MIT OR CC0-1.0)",
       "0BSD",
@@ -515,6 +515,10 @@
       "sha256": "e80af3fc41092353787eb36021f0aec4e2a7d2e920c923ed4d4f569ac3df2d43",
       "text": "All packages under `src/` are licensed according to the terms in\ntheir respective `LICENSE` or `LICENSE.md` files.\n\nThe remainder of this project is licensed under the Blue Oak\nModel License, as follows:\n\n-----\n\n# Blue Oak Model License\n\nVersion 1.0.0\n\n## Purpose\n\nThis license gives everyone as much permission to work with\nthis software as possible, while protecting contributors\nfrom liability.\n\n## Acceptance\n\nIn order to receive this license, you must agree to its\nrules.  The rules of this license are both obligations\nunder that agreement and conditions to your license.\nYou must not do anything with this software that triggers\na rule that you cannot or will not follow.\n\n## Copyright\n\nEach contributor licenses you to do everything with this\nsoftware that would otherwise infringe that contributor's\ncopyright in it.\n\n## Notices\n\nYou must ensure that everyone who gets a copy of\nany part of this software from you, with or without\nchanges, also gets the text of this license or a link to\n<https://blueoakcouncil.org/license/1.0.0>.\n\n## Excuse\n\nIf anyone notifies you in writing that you have not\ncomplied with [Notices](#notices), you can keep your\nlicense by taking all practical steps to comply within 30\ndays after the notice.  If you do not do so, your license\nends immediately.\n\n## Patent\n\nEach contributor licenses you to do everything with this\nsoftware that would otherwise infringe any patent claims\nthey can license or become able to license.\n\n## Reliability\n\nNo contributor can revoke this license.\n\n## No Liability\n\n***As far as the law allows, this software comes as is,\nwithout any warranty or condition, and no contributor\nwill be liable to anyone for any damages related to this\nsoftware or this license, under any kind of legal claim.***"
     },
+    "d8399b3e089d86571baaf044c1305aeee1aec4360df7352919c125f1f648a7d7": {
+      "sha256": "d8399b3e089d86571baaf044c1305aeee1aec4360df7352919c125f1f648a7d7",
+      "text": "The MIT License (MIT)\n\nCopyright (c) 2014 Andrei Tupitcyn\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\nSOFTWARE."
+    },
     "3f7cd27a6e506293b5ee0b0ed266d54a9407690293651369a8c1f211eaaac11f": {
       "sha256": "3f7cd27a6e506293b5ee0b0ed266d54a9407690293651369a8c1f211eaaac11f",
       "text": "MIT License\n\nCopyright (c) 2022 Jordan Harband\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\nSOFTWARE."
@@ -623,6 +627,10 @@
       "sha256": "e91069c31b4e4daee9db0e946308531fe585f091b655bb68fee44a83830ab9b6",
       "text": "The MIT License (MIT)\n\nCopyright (c) 2020 Vercel, Inc.\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\nSOFTWARE."
     },
+    "1f16ea7210a30957558b6598d67013ffb24150278729afeb19767613dd99f7da": {
+      "sha256": "1f16ea7210a30957558b6598d67013ffb24150278729afeb19767613dd99f7da",
+      "text": "(The MIT License)\n\nCopyright (C) 2017 by Vitaly Puzrin\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in\nall copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN\nTHE SOFTWARE."
+    },
     "33dc6a453e22e1f848a633be48c178791c3b07c70910c646f460e0100882aebe": {
       "sha256": "33dc6a453e22e1f848a633be48c178791c3b07c70910c646f460e0100882aebe",
       "text": "The MIT License (MIT)\n\nCopyright 2017 Andrey Sitnik <andrey@sitnik.ru>\n\nPermission is hereby granted, free of charge, to any person obtaining a copy of\nthis software and associated documentation files (the \"Software\"), to deal in\nthe Software without restriction, including without limitation the rights to\nuse, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of\nthe Software, and to permit persons to whom the Software is furnished to do so,\nsubject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS\nFOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR\nCOPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER\nIN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN\nCONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE."
@@ -654,6 +662,10 @@
     "d785edfd5a8ff55734ddd8cf37c398a1e01b02dbb5069f1e01eba1a90523e6f4": {
       "sha256": "d785edfd5a8ff55734ddd8cf37c398a1e01b02dbb5069f1e01eba1a90523e6f4",
       "text": "MIT License\n\nCopyright (c) Pooya Parsa <pooya@pi0.io> - Daniel Roe <daniel@roe.dev>\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\nSOFTWARE.\n\n---\n\nCopyright Joyent, Inc. and other Node contributors.\n\nPermission is hereby granted, free of charge, to any person obtaining a\ncopy of this software and associated documentation files (the\n\"Software\"), to deal in the Software without restriction, including\nwithout limitation the rights to use, copy, modify, merge, publish,\ndistribute, sublicense, and/or sell copies of the Software, and to permit\npersons to whom the Software is furnished to do so, subject to the\nfollowing conditions:\n\nThe above copyright notice and this permission notice shall be included\nin all copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS\nOR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF\nMERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN\nNO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,\nDAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR\nOTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE\nUSE OR OTHER DEALINGS IN THE SOFTWARE.\n\n---\n\nBundled zeptomatch (https://github.com/fabiospampinato/zeptomatch)\n\nThe MIT License (MIT)\n\nCopyright (c) 2023-present Fabio Spampinato\n\nPermission is hereby granted, free of charge, to any person obtaining a\ncopy of this software and associated documentation files (the \"Software\"),\nto deal in the Software without restriction, including without limitation\nthe rights to use, copy, modify, merge, publish, distribute, sublicense,\nand/or sell copies of the Software, and to permit persons to whom the\nSoftware is furnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in\nall copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING\nFROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER\nDEALINGS IN THE SOFTWARE."
+    },
+    "287abccb35fb27dc78d170a4f95384f936c334d9e7a85a26d2c672df3301e4f0": {
+      "sha256": "287abccb35fb27dc78d170a4f95384f936c334d9e7a85a26d2c672df3301e4f0",
+      "text": "(The MIT License)\n\nCopyright (C) 2014-2017 by Vitaly Puzrin\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in\nall copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN\nTHE SOFTWARE."
     },
     "fa11af88c78d3b5a92fd94c1a8e61d0684c605fb42e72d90f92d01c0ad59df01": {
       "sha256": "fa11af88c78d3b5a92fd94c1a8e61d0684c605fb42e72d90f92d01c0ad59df01",
@@ -6292,6 +6304,26 @@
       ]
     },
     {
+      "name": "glur",
+      "version": "2.0.0",
+      "licenseExpression": "MIT",
+      "licenseIds": [
+        "MIT"
+      ],
+      "dependencyType": "runtime",
+      "optional": false,
+      "installed": true,
+      "author": null,
+      "repository": "https://github.com/nodeca/glur",
+      "homepage": "https://github.com/andr83/glur/issues",
+      "documents": [
+        {
+          "name": "LICENSE",
+          "documentId": "d8399b3e089d86571baaf044c1305aeee1aec4360df7352919c125f1f648a7d7"
+        }
+      ]
+    },
+    {
       "name": "gopd",
       "version": "1.2.0",
       "licenseExpression": "MIT",
@@ -7452,6 +7484,26 @@
       ]
     },
     {
+      "name": "multimath",
+      "version": "3.0.0",
+      "licenseExpression": "MIT",
+      "licenseIds": [
+        "MIT"
+      ],
+      "dependencyType": "runtime",
+      "optional": false,
+      "installed": true,
+      "author": null,
+      "repository": "https://github.com/nodeca/multimath",
+      "homepage": null,
+      "documents": [
+        {
+          "name": "LICENSE",
+          "documentId": "1f16ea7210a30957558b6598d67013ffb24150278729afeb19767613dd99f7da"
+        }
+      ]
+    },
+    {
       "name": "nanoid",
       "version": "3.3.19",
       "licenseExpression": "MIT",
@@ -7688,6 +7740,26 @@
         {
           "name": "LICENSE",
           "documentId": "d785edfd5a8ff55734ddd8cf37c398a1e01b02dbb5069f1e01eba1a90523e6f4"
+        }
+      ]
+    },
+    {
+      "name": "pica",
+      "version": "10.0.3",
+      "licenseExpression": "MIT",
+      "licenseIds": [
+        "MIT"
+      ],
+      "dependencyType": "runtime",
+      "optional": false,
+      "installed": true,
+      "author": null,
+      "repository": "https://github.com/nodeca/pica",
+      "homepage": "https://github.com/nodeca/pica",
+      "documents": [
+        {
+          "name": "LICENSE",
+          "documentId": "287abccb35fb27dc78d170a4f95384f936c334d9e7a85a26d2c672df3301e4f0"
         }
       ]
     },
