@@ -457,3 +457,35 @@ in den Browsern, reale Laufzeit und Speicherbedarf, Qualität der Ergebnisse und
 Baubarkeit im bestehenden Vite-Aufbau (bekannte Reibung bei WASM-Abhängigkeiten). Diese
 Punkte brauchen einen Probeaufbau. Lizenzaussagen, die nicht selbst gegengeprüft wurden, sind
 im Text als solche gekennzeichnet.
+
+## Umsetzungshinweis: erstes Werkzeug gebaut (2026-10-02)
+
+**Nachtrag zum Abschnitt „Ergebnis je Werkzeug", Zeile 4. Kein Widerspruch, sondern eine
+Änderung mit Begründung.** Der Vorschlag lautete dort, für `image-metadata` die Bibliothek
+`exifreader` (MPL-2.0) einzusetzen. Bei der Umsetzung habe ich stattdessen einen eigenen
+Leser für die EXIF-Struktur geschrieben. Gründe, alle erst beim Bauen sichtbar geworden:
+
+1. **Zweite Abhängigkeit nötig.** Das Typpaket von `exifreader` verlangt `@types/node`, das
+   in diesem Projekt nicht installiert ist. Für eine reine Browser-Anwendung hätte das eine
+   zusätzliche Abhängigkeit bedeutet, nur damit die Typen übersetzen.
+2. **39 KB nicht baumelschüttelbares Bundle.** Das Paket liefert eine einzelne, 133 KB große
+   Datei (gemessen: 132.986 Bytes roh, 39.233 Bytes komprimiert). Sie wäre für jeden Nutzer
+   im Hauptbundle gelandet.
+3. **Fremder Ladepfad.** Der Nachinstallationsschritt des Pakets war von der
+   Installationsrichtlinie blockiert, und die Bibliothek will beim Lesen einen `ArrayBuffer`
+   statt einer `Uint8Array` — beides vermeidbare Reibung.
+
+Der eigene Leser deckt genau den benötigten Teil ab: IFD0, Exif-IFD und GPS-IFD aus der
+TIFF-Struktur hinter JPEG (APP1), PNG (eXIf) und WebP (EXIF), dazu PNG-Textblöcke. Ergebnis:
+**kein neues Laufzeitpaket**, keine Änderung an `licenses/policy.json`, keine Änderung an
+`package-lock.json`. Die Lizenzprüfung bleibt bei 475 Paketen und 12 Lizenztexten.
+
+Belegt wurde das nicht nur mit eigenen Ersatzbildern, sondern gegen **echte Kamera-Dateien**
+(Canon EOS 40D, Nikon COOLPIX P6000 mit GPS, Fujifilm FinePix E500) sowie in einem echten
+Browser mit Dateiauswahl und Speichervorgang. Einzelheiten stehen im Fortschrittsprotokoll
+unter `06-protokolle/`.
+
+**Was der Nachtrag nicht ändert:** die übrigen neun Werkzeuge und ihre Bewertung. Für
+`image-resize` (`pica`), `image-batch` (`fflate`) und `color-tools` (`colorjs.io`) bleibt es
+bei der Empfehlung, weil dort echte, geprüfte Fremdbibliotheken echten Eigenaufwand sparen.
+`image-metadata` ist der Fall, in dem das nicht zutraf.

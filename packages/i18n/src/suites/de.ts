@@ -3,5 +3,6 @@ export const suitesDe = {
   'suite.open': 'Suite öffnen', 'suite.tools': 'Werkzeuge',
   'suite.text.title': 'Text Suite', 'suite.text.description': 'Lokale Werkzeuge zum Analysieren und Bearbeiten von Text.',
   'suite.developer.title': 'Developer Suite', 'suite.developer.description': 'Präzise Hilfsmittel für strukturierte Daten und Entwicklung.',
-  'suite.generators.title': 'Generator Suite', 'suite.generators.description': 'Lokale Generatoren für QR-Codes und weitere digitale Formate.'
+  'suite.generators.title': 'Generator Suite', 'suite.generators.description': 'Lokale Generatoren für QR-Codes und weitere digitale Formate.',
+  'suite.image.title': 'Bild Suite', 'suite.image.description': 'Lokale Werkzeuge für Bilder, die ohne Übertragung und ohne Neuberechnung arbeiten.'
 } as const

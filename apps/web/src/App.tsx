@@ -4,6 +4,7 @@ import { createTranslator, detectLocale, isLocale, localeRegistry, supportedLoca
 import { convertCase, formatJson, getSuiteTools, getTextStatistics, suiteByRoute, suiteManifests, toolByRoute, toolManifests, toolMessages, type CaseMode } from '@commietools/tools'
 import { Button, LocalBadge } from '@commietools/ui'
 import { LicensePage } from './LicensePage'
+import { ImageMetadata } from './tools/ImageMetadata'
 import { QrCodeGenerator } from './tools/QrCodeGenerator'
 
 type Theme = 'light' | 'dark'
@@ -64,7 +65,7 @@ function JsonFormatterTool({ t }: { t: Translate }) {
 }
 
 function ToolPage({ tool, t, locale, navigate }: { tool: ToolManifest; t: Translate; locale: Locale; navigate: (path: string) => void }) {
-  const content = tool.id === 'text-statistics' ? <TextStatisticsTool t={t} /> : tool.id === 'case-converter' ? <CaseConverterTool t={t} locale={locale} /> : tool.id === 'json-formatter' ? <JsonFormatterTool t={t} /> : <QrCodeGenerator t={t} />
+  const content = tool.id === 'text-statistics' ? <TextStatisticsTool t={t} /> : tool.id === 'case-converter' ? <CaseConverterTool t={t} locale={locale} /> : tool.id === 'json-formatter' ? <JsonFormatterTool t={t} /> : tool.id === 'qr-code-generator' ? <QrCodeGenerator t={t} /> : <ImageMetadata t={t} locale={locale} />
   return <main className="detail-page"><button className="text-link back" onClick={() => navigate('/')}>← {t('tool.back')}</button><article className="tool-shell"><header className="tool-header"><div><p className="category">{t(`category.${tool.category}`)}</p><h1>{t(tool.titleKey)}</h1><p>{t(tool.descriptionKey)}</p></div><LocalBadge>{t('status.local')}</LocalBadge></header><div className="tool-content">{content}</div></article></main>
 }
 

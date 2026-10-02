@@ -1,3 +1,4 @@
+import { imageMetadataMessages } from './image/metadata/locales'
 import { jsonFormatterMessages } from './developer/json-formatter/locales'
 import { qrCodeGeneratorMessages } from './generator/qr-code-generator/locales'
 import { caseConverterMessages } from './text/case-converter/locales'
@@ -20,5 +21,6 @@ export const toolMessages = mergeToolCatalogs([
   textStatisticsMessages,
   caseConverterMessages,
   jsonFormatterMessages,
-  qrCodeGeneratorMessages
+  qrCodeGeneratorMessages,
+  imageMetadataMessages
 ])

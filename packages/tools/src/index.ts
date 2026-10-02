@@ -1,5 +1,19 @@
 import type { SuiteManifest, ToolCategory, ToolManifest } from '@commietools/core'
 export { toolMessages } from './locales'
+export {
+  detectImageFormat,
+  findMetadataSegments,
+  readMetadata,
+  stripMetadata,
+  type ImageFormat,
+  type MetadataEntry,
+  type MetadataGroup,
+  type MetadataPosition,
+  type MetadataReport,
+  type MetadataSegment,
+  type StripOptions,
+  type StripResult
+} from './image/metadata/metadata'
 
 export const toolManifests: readonly ToolManifest[] = [
   {
@@ -26,13 +40,19 @@ export const toolManifests: readonly ToolManifest[] = [
     id: 'qr-code-generator', route: '/tools/qr-code-generator', category: 'generator',
     titleKey: 'tool.qr.title', descriptionKey: 'tool.qr.description',
     executionMode: 'local', resourceClass: 'universal', worksOffline: true
+  },
+  {
+    id: 'image-metadata', route: '/tools/image-metadata', category: 'image',
+    titleKey: 'tool.imageMetadata.title', descriptionKey: 'tool.imageMetadata.description',
+    executionMode: 'local', resourceClass: 'universal', worksOffline: true
   }
 ]
 
 export const suiteManifests: readonly SuiteManifest[] = [
   { id: 'text', route: '/suites/text', titleKey: 'suite.text.title', descriptionKey: 'suite.text.description', toolIds: ['text-statistics', 'case-converter'] },
   { id: 'developer', route: '/suites/developer', titleKey: 'suite.developer.title', descriptionKey: 'suite.developer.description', toolIds: ['json-formatter'] },
-  { id: 'generators', route: '/suites/generators', titleKey: 'suite.generators.title', descriptionKey: 'suite.generators.description', toolIds: ['qr-code-generator'] }
+  { id: 'generators', route: '/suites/generators', titleKey: 'suite.generators.title', descriptionKey: 'suite.generators.description', toolIds: ['qr-code-generator'] },
+  { id: 'image', route: '/suites/image', titleKey: 'suite.image.title', descriptionKey: 'suite.image.description', toolIds: ['image-metadata'] }
 ]
 
 export const toolById = new Map(toolManifests.map((tool) => [tool.id, tool]))
