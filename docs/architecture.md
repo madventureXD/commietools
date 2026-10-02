@@ -20,6 +20,8 @@ Packages may depend on `core`. Tool logic must not depend on the web application
 
 Every tool has a serializable manifest: identity, category, translation keys, execution mode, resource class and offline capability. The catalogue is generated from manifests rather than duplicated navigation data.
 
+Suites are also manifest-driven. They reference tool IDs instead of copying tool code, so one tool may appear in multiple curated suites while retaining one implementation and one update path.
+
 Execution modes communicate data handling:
 
 - `local`: processing occurs on the device.

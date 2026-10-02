@@ -13,3 +13,11 @@ export interface ToolManifest {
   worksOffline: boolean
 }
 
+export interface SuiteManifest {
+  id: string
+  route: string
+  titleKey: string
+  descriptionKey: string
+  toolIds: readonly string[]
+}
+

@@ -46,7 +46,7 @@ The public licensing model is intentionally left undecided and must be selected 
 
 ## Current scope
 
-The first executable slice is a bilingual, responsive tool catalogue and a local text statistics tool. It establishes the design tokens, theme handling, tool manifest contract, privacy classification and offline shell without prematurely selecting server, database or native-app frameworks.
+The first executable slice is a bilingual, responsive, manifest-driven catalogue with three local tools and two curated suites. It establishes automatic routes, design tokens, theme handling, privacy classification and an offline shell without prematurely selecting server, database or native-app frameworks.
 
 See [docs/architecture.md](docs/architecture.md) and [docs/ui-system.md](docs/ui-system.md).
 
