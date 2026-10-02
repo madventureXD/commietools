@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import { PDFDocument, degrees } from 'pdf-lib'
-import { inspectPdf, mergePdfs, organizePdf, parsePageSelection, parseSplitGroups, PdfToolError, splitPdf } from '@commietools/tools'
+import { imagesToPdf, inspectPdf, mergePdfs, organizePdf, parsePageSelection, parseSplitGroups, PdfToolError, splitPdf } from '@commietools/tools'
 
 async function fixture(sizes: readonly [number, number][]) {
   const document = await PDFDocument.create()
@@ -66,5 +66,31 @@ describe('M1 PDF operations', () => {
     const result = await inspectPdf(output)
     expect(result.pages.map(({ width }) => width)).toEqual([300, 100, 300])
     expect(result.pages.map(({ rotation }) => rotation)).toEqual([90, 270, 0])
+  })
+})
+
+describe('M2 image conversion', () => {
+  const png = Uint8Array.from(atob('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII='), (character) => character.charCodeAt(0))
+
+  it('creates one PDF page per image', async () => {
+    const output = await imagesToPdf([
+      { name: 'first.png', bytes: png, mimeType: 'image/png' },
+      { name: 'second.png', bytes: png, mimeType: 'image/png' }
+    ], { pageSize: 'a4', orientation: 'portrait', margin: 24, fit: 'contain' })
+    const result = await inspectPdf(output)
+    expect(result.pageCount).toBe(2)
+    expect(result.pages[0]?.width).toBeCloseTo(595.28, 1)
+    expect(result.pages[0]?.height).toBeCloseTo(841.89, 1)
+  })
+
+  it('supports automatic landscape pages', async () => {
+    const output = await imagesToPdf([{ name: 'pixel.png', bytes: png, mimeType: 'image/png' }], { pageSize: 'letter', orientation: 'landscape', margin: 0, fit: 'cover' })
+    const [page] = (await inspectPdf(output)).pages
+    expect(page?.width).toBe(792)
+    expect(page?.height).toBe(612)
+  })
+
+  it('rejects an empty image collection', async () => {
+    await expect(imagesToPdf([], { pageSize: 'auto', orientation: 'auto', margin: 0, fit: 'contain' })).rejects.toMatchObject({ code: 'empty' })
   })
 })

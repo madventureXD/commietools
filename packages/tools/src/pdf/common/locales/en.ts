@@ -21,5 +21,6 @@ export const pdfCommonEn = {
   'tool.pdf.error.encrypted': 'The PDF is encrypted. Password-protected documents are not modified in this release.',
   'tool.pdf.error.invalid': 'The file could not be read as a valid PDF.',
   'tool.pdf.error.range': 'The page selection is invalid. Example: 1-3, 7, 10-8.',
+  'tool.pdf.error.unsupported': 'The file or selected format is unsupported or damaged.',
   'tool.pdf.error.generic': 'The PDF could not be processed.'
 } as const

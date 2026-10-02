@@ -1,7 +1,7 @@
 # Aktueller Projektstand
 
 **Stand:** 2026-10-03  
-**Letzter geprüfter Meilenstein:** PDF-Suite M0/M1, davor Katalogsuche über alle Sprachen (`6ccaeb2`)
+**Letzter geprüfter Meilenstein:** PDF-Suite M2, davor PDF-Suite M0/M1 (`a45f950`)
 
 ## Umgesetzt
 
@@ -25,6 +25,8 @@
 - PDF.js-Vorschau und `pdf-lib`-Verarbeitung als getrennt nachgeladene, offline zwischengespeicherte Engines
 - PDF-Warnungen für Formulare, XFA, Annotationen und Signaturen sowie klare Ablehnung verschlüsselter oder beschädigter Dateien
 - PDF-Suite M1 mit Zusammenführen, Teilen/Extrahieren sowie Sortieren, Drehen, Duplizieren und Löschen von Seiten
+- Bilder zu PDF: JPEG/PNG-Reihenfolge, A4/Letter/Bildgröße, Ausrichtung, Rand und Einpassen/Beschneiden
+- PDF zu Bildern: freie Seitenauswahl, PNG/JPEG, 72–300 DPI, JPEG-Qualität, Hintergrundfarbe und sequenzielle Ausgabe
 
 ## Derzeitige Tools
 
@@ -39,6 +41,8 @@
 | PDFs zusammenführen | `pdf-merge` | PDF | lokal | PDF hinein und heraus |
 | PDF teilen | `pdf-split` | PDF | lokal | PDF hinein und mehrere PDFs heraus |
 | PDF-Seiten organisieren | `pdf-organize` | PDF | lokal | PDF hinein und heraus |
+| Bilder zu PDF | `images-to-pdf` | PDF | lokal | JPEG/PNG hinein, PDF heraus |
+| PDF zu Bildern | `pdf-to-images` | PDF | lokal | PDF hinein, PNG/JPEG heraus |
 
 ## Derzeitige Suiten
 
@@ -46,7 +50,7 @@
 - Entwicklung
 - Generatoren
 - Bilder (Bild-Metadaten, Bild skalieren)
-- PDF (Zusammenführen, Teilen, Seiten organisieren)
+- PDF (Zusammenführen, Teilen, Seiten organisieren, Bilder zu PDF, PDF zu Bildern)
 
 ## Qualität und Compliance
 
@@ -55,15 +59,15 @@
 - erfasste externe Pakete: 496
 - vollständige Lizenztexte: 13
 - bewahrte originale Paketdokumente: 172
-- letzter bekannter Teststand: 85 Tests bestanden
-- Werkzeugregister: 9 Werkzeuge, 2 Sprachen, 9 Symbole, **716** Suchbegriffe und Schlagwörter, 31 deklarierte Dateitypen (`npm run catalog:check`)
-- letzter bekannter Produktions-Build: bestanden; Hauptbundle 450,13 kB (136,50 kB komprimiert), PDF-Engines in getrennten nachgeladenen Chunks, Vorab-Cache mit 21 Einträgen (1.391,72 KiB)
+- letzter bekannter Teststand: 88 Tests bestanden
+- Werkzeugregister: 11 Werkzeuge, 2 Sprachen, 11 Symbole, **776** Suchbegriffe und Schlagwörter, 37 deklarierte Dateitypen (`npm run catalog:check`)
+- letzter bekannter Produktions-Build: bestanden; Hauptbundle 458,60 kB (138,56 kB komprimiert), PDF-Engines in getrennten nachgeladenen Chunks, Vorab-Cache mit 25 Einträgen (1.410,69 KiB)
 
 Zahlen sind Momentaufnahmen. Nach Abhängigkeits-, Test- oder Tooländerungen müssen sie anhand der tatsächlichen Ausgabe aktualisiert werden.
 
 ## Noch nicht umgesetzt
 
-- PDF-Suite M2 bis M7 (Konvertierung, Platzierung, Formulare/Kommentare, Schutz/Kompression, OCR und digitale Signaturen)
+- PDF-Suite M3 bis M7 (Platzierung, Formulare/Kommentare, Schutz/Kompression, OCR und digitale Signaturen)
 - Backend, Konten und Synchronisierung
 - Desktop- und Mobile-Shells
 - öffentliches Quellcode-Repository und sichtbarer Source-Link für den späteren AGPL-Betrieb

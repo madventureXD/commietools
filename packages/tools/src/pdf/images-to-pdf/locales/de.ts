@@ -1,0 +1,23 @@
+export const imagesToPdfDe = {
+  'tool.imagesToPdf.title': 'Bilder zu PDF',
+  'tool.imagesToPdf.description': 'Erstellt aus JPEG- und PNG-Bildern ein PDF mit kontrollierter Reihenfolge, Seitengröße und Einpassung – vollständig lokal.',
+  'tool.imagesToPdf.summary': 'Verwandelt geordnete JPEG- und PNG-Bilder in ein PDF.',
+  'tool.imagesToPdf.terms': 'Bilder zu PDF,Fotos zu PDF,JPG zu PDF,JPEG zu PDF,PNG zu PDF,Bilddateien verbinden,Fotodokument,Scan zu PDF,Seitenformat A4,Letter PDF,Image to PDF,Photo to PDF,#pdf,#bilder,#konvertieren',
+  'tool.imagesToPdf.choose': 'JPEG- oder PNG-Bilder auswählen',
+  'tool.imagesToPdf.settings': 'Seiteneinstellungen',
+  'tool.imagesToPdf.pageSize': 'Seitengröße',
+  'tool.imagesToPdf.auto': 'Bildgröße',
+  'tool.imagesToPdf.a4': 'A4',
+  'tool.imagesToPdf.letter': 'Letter',
+  'tool.imagesToPdf.orientation': 'Ausrichtung',
+  'tool.imagesToPdf.autoOrientation': 'Automatisch',
+  'tool.imagesToPdf.portrait': 'Hochformat',
+  'tool.imagesToPdf.landscape': 'Querformat',
+  'tool.imagesToPdf.margin': 'Rand in Punkten',
+  'tool.imagesToPdf.fit': 'Einpassung',
+  'tool.imagesToPdf.contain': 'Vollständig einpassen',
+  'tool.imagesToPdf.cover': 'Seite füllen und beschneiden',
+  'tool.imagesToPdf.action': 'PDF erstellen',
+  'tool.imagesToPdf.result': 'Erstellte PDF',
+  'tool.imagesToPdf.success': '{count} Bilder wurden in ein PDF übernommen.'
+} as const

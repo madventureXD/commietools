@@ -81,6 +81,20 @@ export const toolManifests: readonly ToolManifest[] = [
     summaryKey: 'tool.pdfOrganize.summary', termsKey: 'tool.pdfOrganize.terms',
     executionMode: 'local', resourceClass: 'standard', worksOffline: true,
     files: { input: ['application/pdf'], output: ['application/pdf'] }
+  },
+  {
+    id: 'images-to-pdf', route: '/tools/images-to-pdf', category: 'pdf',
+    titleKey: 'tool.imagesToPdf.title', descriptionKey: 'tool.imagesToPdf.description',
+    summaryKey: 'tool.imagesToPdf.summary', termsKey: 'tool.imagesToPdf.terms',
+    executionMode: 'local', resourceClass: 'standard', worksOffline: true,
+    files: { input: ['image/jpeg', 'image/png'], output: ['application/pdf'] }
+  },
+  {
+    id: 'pdf-to-images', route: '/tools/pdf-to-images', category: 'pdf',
+    titleKey: 'tool.pdfToImages.title', descriptionKey: 'tool.pdfToImages.description',
+    summaryKey: 'tool.pdfToImages.summary', termsKey: 'tool.pdfToImages.terms',
+    executionMode: 'local', resourceClass: 'heavy', worksOffline: true,
+    files: { input: ['application/pdf'], output: ['image/png', 'image/jpeg'] }
   }
 ]
 
@@ -89,5 +103,5 @@ export const suiteManifests: readonly SuiteManifest[] = [
   { id: 'developer', route: '/suites/developer', titleKey: 'suite.developer.title', descriptionKey: 'suite.developer.description', toolIds: ['json-formatter'] },
   { id: 'generators', route: '/suites/generators', titleKey: 'suite.generators.title', descriptionKey: 'suite.generators.description', toolIds: ['qr-code-generator'] },
   { id: 'image', route: '/suites/image', titleKey: 'suite.image.title', descriptionKey: 'suite.image.description', toolIds: ['image-metadata', 'image-resize'] },
-  { id: 'pdf', route: '/suites/pdf', titleKey: 'suite.pdf.title', descriptionKey: 'suite.pdf.description', toolIds: ['pdf-merge', 'pdf-split', 'pdf-organize'] }
+  { id: 'pdf', route: '/suites/pdf', titleKey: 'suite.pdf.title', descriptionKey: 'suite.pdf.description', toolIds: ['pdf-merge', 'pdf-split', 'pdf-organize', 'images-to-pdf', 'pdf-to-images'] }
 ]

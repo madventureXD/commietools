@@ -88,3 +88,43 @@ export function useDownload(bytes: Uint8Array | null) {
   return url
 }
 
+export interface RenderedPdfPage {
+  readonly pageNumber: number
+  readonly blob: Blob
+  readonly width: number
+  readonly height: number
+}
+
+export async function renderPdfPages(bytes: Uint8Array, pages: readonly number[], options: { dpi: number; format: 'png' | 'jpeg'; quality: number; background: string }): Promise<RenderedPdfPage[]> {
+  const { GlobalWorkerOptions, getDocument } = await import('pdfjs-dist')
+  GlobalWorkerOptions.workerSrc = workerUrl
+  const task = getDocument({ data: bytes.slice() })
+  try {
+    const document = await task.promise
+    const results: RenderedPdfPage[] = []
+    for (const pageIndex of pages) {
+      const page = await document.getPage(pageIndex + 1)
+      const viewport = page.getViewport({ scale: options.dpi / 72 })
+      const width = Math.ceil(viewport.width)
+      const height = Math.ceil(viewport.height)
+      if (width * height > 40_000_000) throw new PdfToolError('unsupported', 'Rendered page exceeds the memory safety limit')
+      const canvas = window.document.createElement('canvas')
+      canvas.width = width
+      canvas.height = height
+      const context = canvas.getContext('2d')
+      if (!context) throw new PdfToolError('unsupported', 'Canvas unavailable')
+      context.fillStyle = options.background
+      context.fillRect(0, 0, width, height)
+      await page.render({ canvas, canvasContext: context, viewport, background: options.background }).promise
+      const mime = options.format === 'png' ? 'image/png' : 'image/jpeg'
+      const blob = await new Promise<Blob>((resolve, reject) => canvas.toBlob((value) => value ? resolve(value) : reject(new PdfToolError('unsupported', 'Image encoding failed')), mime, options.quality))
+      results.push({ pageNumber: pageIndex + 1, blob, width, height })
+      page.cleanup()
+    }
+    document.cleanup()
+    return results
+  } finally {
+    await task.destroy()
+  }
+}
+

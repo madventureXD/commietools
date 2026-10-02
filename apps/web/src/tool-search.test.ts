@@ -78,8 +78,8 @@ describe('search over declared file types and labels', () => {
   })
 
   it('finds tools by tag and by keyword', () => {
-    expect(germanIds('#bilder')).toEqual(['image-metadata', 'image-resize'])
-    expect(germanIds('bilder')).toEqual(['image-metadata', 'image-resize'])
+    expect(germanIds('#bilder')).toEqual(['image-metadata', 'image-resize', 'images-to-pdf', 'pdf-to-images'])
+    expect(germanIds('bilder')).toEqual(['images-to-pdf', 'image-metadata', 'image-resize', 'pdf-to-images'])
     expect(germanIds('#datenschutz')).toEqual(['image-metadata'])
   })
 
@@ -128,8 +128,8 @@ describe('search ranking and completeness', () => {
   })
 
   it('keeps the catalogue order when scores are equal', () => {
-    // "Bild" is an exact term of three tools, so the catalogue decides their order.
-    expect(germanIds('bild')).toEqual(['qr-code-generator', 'image-metadata', 'image-resize'])
+    // "Bild" is an exact term of five tools, so the catalogue decides their order.
+    expect(germanIds('bild')).toEqual(['qr-code-generator', 'image-metadata', 'image-resize', 'images-to-pdf', 'pdf-to-images'])
   })
 
   it('answers a nonsense query with nothing instead of guessing', () => {

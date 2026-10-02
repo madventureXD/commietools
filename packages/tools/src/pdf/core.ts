@@ -1,6 +1,6 @@
 import { degrees, EncryptedPDFError, PDFDocument } from 'pdf-lib'
 
-export type PdfIssueCode = 'encrypted' | 'invalid' | 'empty' | 'range'
+export type PdfIssueCode = 'encrypted' | 'invalid' | 'empty' | 'range' | 'unsupported'
 
 export class PdfToolError extends Error {
   constructor(public readonly code: PdfIssueCode, message: string) {
@@ -35,6 +35,23 @@ export interface PdfInput {
 export interface PdfPagePlan {
   readonly sourceIndex: number
   readonly rotation: number
+}
+
+export type PdfPageSize = 'auto' | 'a4' | 'letter'
+export type PdfOrientation = 'auto' | 'portrait' | 'landscape'
+export type PdfImageFit = 'contain' | 'cover'
+
+export interface PdfImageInput {
+  readonly name: string
+  readonly bytes: Uint8Array
+  readonly mimeType: 'image/jpeg' | 'image/png'
+}
+
+export interface ImagesToPdfOptions {
+  readonly pageSize: PdfPageSize
+  readonly orientation: PdfOrientation
+  readonly margin: number
+  readonly fit: PdfImageFit
 }
 
 function structuralFlags(bytes: Uint8Array) {
@@ -147,6 +164,46 @@ export async function organizePdf(bytes: Uint8Array, plan: readonly PdfPagePlan[
     if (!page) throw new PdfToolError('invalid', 'Could not copy PDF page')
     page.setRotation(degrees(normalizeRotation(page.getRotation().angle + entry.rotation)))
     output.addPage(page)
+  }
+  return output.save()
+}
+
+const FIXED_PAGE_SIZES = {
+  a4: [595.28, 841.89],
+  letter: [612, 792]
+} as const
+
+function orientSize(size: readonly [number, number], orientation: PdfOrientation, imageLandscape: boolean): [number, number] {
+  const landscape = orientation === 'landscape' || (orientation === 'auto' && imageLandscape)
+  const short = Math.min(...size)
+  const long = Math.max(...size)
+  return landscape ? [long, short] : [short, long]
+}
+
+export async function imagesToPdf(inputs: readonly PdfImageInput[], options: ImagesToPdfOptions): Promise<Uint8Array> {
+  if (!inputs.length) throw new PdfToolError('empty', 'No image files selected')
+  const output = await PDFDocument.create()
+  const margin = Math.max(0, options.margin)
+  for (const input of inputs) {
+    let image
+    try {
+      image = input.mimeType === 'image/jpeg' ? await output.embedJpg(input.bytes) : await output.embedPng(input.bytes)
+    } catch {
+      throw new PdfToolError('unsupported', `Unsupported or damaged image: ${input.name}`)
+    }
+    const intrinsic: [number, number] = [image.width, image.height]
+    const pageSize = options.pageSize === 'auto'
+      ? orientSize([image.width + margin * 2, image.height + margin * 2], options.orientation, image.width > image.height)
+      : orientSize(FIXED_PAGE_SIZES[options.pageSize], options.orientation, image.width > image.height)
+    const page = output.addPage(pageSize)
+    const availableWidth = Math.max(1, pageSize[0] - margin * 2)
+    const availableHeight = Math.max(1, pageSize[1] - margin * 2)
+    const scale = options.fit === 'cover'
+      ? Math.max(availableWidth / intrinsic[0], availableHeight / intrinsic[1])
+      : Math.min(availableWidth / intrinsic[0], availableHeight / intrinsic[1])
+    const width = intrinsic[0] * scale
+    const height = intrinsic[1] * scale
+    page.drawImage(image, { x: (pageSize[0] - width) / 2, y: (pageSize[1] - height) / 2, width, height })
   }
   return output.save()
 }

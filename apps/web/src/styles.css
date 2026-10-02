@@ -173,6 +173,8 @@ a.button { display: inline-flex; align-items: center; justify-content: center; t
 .pdf-page-actions { justify-content: center; }
 .pdf-page-actions .button { min-height: 38px; padding: .45rem .6rem; font-size: .82rem; }
 .pdf-result-list { grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); }
+.pdf-image-results { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: .8rem; }
+.pdf-image-results .pdf-page-card img { height: 220px; }
 
 @media (max-width: 620px) {
   .pdf-file-row { grid-template-columns: 60px minmax(0, 1fr); }

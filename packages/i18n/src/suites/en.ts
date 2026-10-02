@@ -5,5 +5,5 @@ export const suitesEn = {
   'suite.developer.title': 'Developer Suite', 'suite.developer.description': 'Precise utilities for structured data and development.',
   'suite.generators.title': 'Generator Suite', 'suite.generators.description': 'Local generators for QR codes and other digital formats.',
   'suite.image.title': 'Image Suite', 'suite.image.description': 'Local tools for images that work without uploads and without re-encoding.',
-  'suite.pdf.title': 'PDF Suite', 'suite.pdf.description': 'Local tools for merging, splitting and organizing PDF documents.'
+  'suite.pdf.title': 'PDF Suite', 'suite.pdf.description': 'Local tools for merging, splitting, organizing and converting PDF documents.'
 } as const

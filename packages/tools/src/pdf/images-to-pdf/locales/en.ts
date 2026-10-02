@@ -1,0 +1,23 @@
+export const imagesToPdfEn = {
+  'tool.imagesToPdf.title': 'Images to PDF',
+  'tool.imagesToPdf.description': 'Creates a PDF from JPEG and PNG images with controlled order, page size and fitting – entirely on your device.',
+  'tool.imagesToPdf.summary': 'Turns ordered JPEG and PNG images into one PDF.',
+  'tool.imagesToPdf.terms': 'images to PDF,photos to PDF,JPG to PDF,JPEG to PDF,PNG to PDF,combine image files,photo document,scan to PDF,A4 page size,Letter PDF,Bilder zu PDF,Fotos zu PDF,#pdf,#images,#convert',
+  'tool.imagesToPdf.choose': 'Choose JPEG or PNG images',
+  'tool.imagesToPdf.settings': 'Page settings',
+  'tool.imagesToPdf.pageSize': 'Page size',
+  'tool.imagesToPdf.auto': 'Image size',
+  'tool.imagesToPdf.a4': 'A4',
+  'tool.imagesToPdf.letter': 'Letter',
+  'tool.imagesToPdf.orientation': 'Orientation',
+  'tool.imagesToPdf.autoOrientation': 'Automatic',
+  'tool.imagesToPdf.portrait': 'Portrait',
+  'tool.imagesToPdf.landscape': 'Landscape',
+  'tool.imagesToPdf.margin': 'Margin in points',
+  'tool.imagesToPdf.fit': 'Fitting',
+  'tool.imagesToPdf.contain': 'Fit entire image',
+  'tool.imagesToPdf.cover': 'Fill page and crop',
+  'tool.imagesToPdf.action': 'Create PDF',
+  'tool.imagesToPdf.result': 'Created PDF',
+  'tool.imagesToPdf.success': '{count} images were added to one PDF.'
+} as const

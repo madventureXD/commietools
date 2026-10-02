@@ -18,6 +18,7 @@ export {
 export { toolMessages } from './locales'
 export {
   inspectPdf,
+  imagesToPdf,
   mergePdfs,
   organizePdf,
   parsePageSelection,
@@ -25,10 +26,15 @@ export {
   PdfToolError,
   splitPdf,
   type PdfInput,
+  type PdfImageFit,
+  type PdfImageInput,
   type PdfInspection,
   type PdfIssueCode,
+  type PdfOrientation,
   type PdfPageInfo,
-  type PdfPagePlan
+  type PdfPagePlan,
+  type PdfPageSize,
+  type ImagesToPdfOptions
 } from './pdf/core'
 export {
   detectImageFormat,

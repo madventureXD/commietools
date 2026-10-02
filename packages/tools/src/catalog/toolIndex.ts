@@ -1082,5 +1082,145 @@ export const toolIndex: readonly ToolSearchEntry[] = [
         ]
       }
     }
+  },
+  {
+    "id": "images-to-pdf",
+    "route": "/tools/images-to-pdf",
+    "icon": "/tools/images-to-pdf.svg",
+    "category": "pdf",
+    "suiteIds": [
+      "pdf"
+    ],
+    "executionMode": "local",
+    "resourceClass": "standard",
+    "worksOffline": true,
+    "input": [
+      "image/jpeg",
+      "image/png"
+    ],
+    "output": [
+      "application/pdf"
+    ],
+    "auxiliary": [],
+    "locales": {
+      "de": {
+        "title": "Bilder zu PDF",
+        "summary": "Verwandelt geordnete JPEG- und PNG-Bilder in ein PDF.",
+        "description": "Erstellt aus JPEG- und PNG-Bildern ein PDF mit kontrollierter Reihenfolge, Seitengröße und Einpassung – vollständig lokal.",
+        "terms": [
+          "Bilder zu PDF",
+          "Fotos zu PDF",
+          "JPG zu PDF",
+          "JPEG zu PDF",
+          "PNG zu PDF",
+          "Bilddateien verbinden",
+          "Fotodokument",
+          "Scan zu PDF",
+          "Seitenformat A4",
+          "Letter PDF",
+          "Image to PDF",
+          "Photo to PDF"
+        ],
+        "tags": [
+          "#pdf",
+          "#bilder",
+          "#konvertieren"
+        ]
+      },
+      "en": {
+        "title": "Images to PDF",
+        "summary": "Turns ordered JPEG and PNG images into one PDF.",
+        "description": "Creates a PDF from JPEG and PNG images with controlled order, page size and fitting – entirely on your device.",
+        "terms": [
+          "images to PDF",
+          "photos to PDF",
+          "JPG to PDF",
+          "JPEG to PDF",
+          "PNG to PDF",
+          "combine image files",
+          "photo document",
+          "scan to PDF",
+          "A4 page size",
+          "Letter PDF",
+          "Bilder zu PDF",
+          "Fotos zu PDF"
+        ],
+        "tags": [
+          "#pdf",
+          "#images",
+          "#convert"
+        ]
+      }
+    }
+  },
+  {
+    "id": "pdf-to-images",
+    "route": "/tools/pdf-to-images",
+    "icon": "/tools/pdf-to-images.svg",
+    "category": "pdf",
+    "suiteIds": [
+      "pdf"
+    ],
+    "executionMode": "local",
+    "resourceClass": "heavy",
+    "worksOffline": true,
+    "input": [
+      "application/pdf"
+    ],
+    "output": [
+      "image/png",
+      "image/jpeg"
+    ],
+    "auxiliary": [],
+    "locales": {
+      "de": {
+        "title": "PDF zu Bildern",
+        "summary": "Exportiert PDF-Seiten als PNG- oder JPEG-Bilder.",
+        "description": "Rendert ausgewählte PDF-Seiten als PNG oder JPEG mit einstellbarer Auflösung und Hintergrundfarbe – vollständig lokal.",
+        "terms": [
+          "PDF zu Bild",
+          "PDF zu PNG",
+          "PDF zu JPG",
+          "PDF zu JPEG",
+          "Seiten exportieren",
+          "PDF rendern",
+          "DPI",
+          "Auflösung",
+          "PDF Bildkonverter",
+          "PDF Seiten als Foto",
+          "PDF to image",
+          "PDF converter"
+        ],
+        "tags": [
+          "#pdf",
+          "#bilder",
+          "#exportieren"
+        ]
+      },
+      "en": {
+        "title": "PDF to images",
+        "summary": "Exports PDF pages as PNG or JPEG images.",
+        "description": "Renders selected PDF pages as PNG or JPEG with adjustable resolution and background colour – entirely on your device.",
+        "terms": [
+          "PDF to image",
+          "PDF to PNG",
+          "PDF to JPG",
+          "PDF to JPEG",
+          "export pages",
+          "render PDF",
+          "DPI",
+          "resolution",
+          "PDF image converter",
+          "PDF pages as photos",
+          "PDF zu Bild",
+          "PDF Konverter"
+        ],
+        "tags": [
+          "#pdf",
+          "#images",
+          "#export"
+        ]
+      }
+    }
   }
 ]
