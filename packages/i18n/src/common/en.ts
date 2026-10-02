@@ -1,0 +1,13 @@
+export const commonEn = {
+  'app.name': 'CommieTools', 'app.tagline': 'Free tools for everyone.', 'app.promise': 'Your tools. Your device. Your data.',
+  'nav.tools': 'Tools', 'nav.suites': 'Suites', 'nav.about': 'Principles',
+  'action.theme': 'Switch color theme', 'action.language': 'Switch language',
+  'status.local': 'Processed locally', 'status.offline': 'Available offline',
+  'catalog.title': 'Tools', 'catalog.intro': 'Clear, precise tools that respect your data.', 'catalog.open': 'Open tool',
+  'category.text': 'Text', 'category.pdf': 'PDF', 'category.image': 'Images', 'category.developer': 'Developer',
+  'tool.result': 'Result', 'tool.back': 'Back to all tools',
+  'principles.title': 'Built for trust',
+  'principles.local': 'Files and content stay on your device by default.',
+  'principles.offline': 'Tools without live data continue to work without internet.',
+  'principles.consistent': 'A shared interaction model makes every tool familiar.'
+} as const

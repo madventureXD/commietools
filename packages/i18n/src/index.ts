@@ -1,113 +1,19 @@
+import { commonDe } from './common/de'
+import { commonEn } from './common/en'
+import { suitesDe } from './suites/de'
+import { suitesEn } from './suites/en'
+
 export type Locale = 'de' | 'en'
+export type MessageCatalog = Readonly<Record<string, string>>
+export type LocalizedMessages = Readonly<Record<Locale, MessageCatalog>>
 
-export const messages = {
-  de: {
-    'app.name': 'CommieTools',
-    'app.tagline': 'Kostenlose Werkzeuge für alle.',
-    'app.promise': 'Deine Werkzeuge. Dein Gerät. Deine Daten.',
-    'nav.tools': 'Werkzeuge',
-    'nav.suites': 'Suites',
-    'nav.about': 'Prinzipien',
-    'action.theme': 'Farbschema wechseln',
-    'action.language': 'Sprache wechseln',
-    'status.local': 'Lokal verarbeitet',
-    'status.offline': 'Offline verfügbar',
-    'catalog.title': 'Werkzeuge',
-    'catalog.intro': 'Klare, präzise Werkzeuge, die deine Daten respektieren.',
-    'catalog.open': 'Tool öffnen',
-    'category.text': 'Text',
-    'category.pdf': 'PDF',
-    'category.image': 'Bilder',
-    'category.developer': 'Entwicklung',
-    'tool.textStats.title': 'Textstatistik',
-    'tool.textStats.description': 'Zählt Zeichen, Wörter und Zeilen direkt im Browser.',
-    'tool.textStats.input': 'Text eingeben',
-    'tool.textStats.placeholder': 'Text hier einfügen …',
-    'tool.textStats.characters': 'Zeichen',
-    'tool.textStats.words': 'Wörter',
-    'tool.textStats.lines': 'Zeilen',
-    'tool.caseConverter.title': 'Groß-/Kleinschreibung',
-    'tool.caseConverter.description': 'Wandelt Text lokal in Groß-, Klein- oder Titelschreibung um.',
-    'tool.caseConverter.input': 'Text eingeben',
-    'tool.caseConverter.upper': 'GROSSBUCHSTABEN',
-    'tool.caseConverter.lower': 'kleinbuchstaben',
-    'tool.caseConverter.titleCase': 'Titelschreibung',
-    'tool.jsonFormatter.title': 'JSON formatieren',
-    'tool.jsonFormatter.description': 'Prüft und formatiert JSON vollständig im Browser.',
-    'tool.jsonFormatter.input': 'JSON eingeben',
-    'tool.jsonFormatter.indentation': 'Einrückung',
-    'tool.jsonFormatter.invalid': 'Das eingegebene JSON ist nicht gültig.',
-    'tool.result': 'Ergebnis',
-    'tool.back': 'Zurück zu allen Tools',
-    'suite.heading': 'Werkzeug-Suites',
-    'suite.intro': 'Kuratierte Sammlungen gemeinsamer Werkzeuge – ohne doppelte Module.',
-    'suite.open': 'Suite öffnen',
-    'suite.tools': 'Werkzeuge',
-    'suite.text.title': 'Text Suite',
-    'suite.text.description': 'Lokale Werkzeuge zum Analysieren und Bearbeiten von Text.',
-    'suite.developer.title': 'Developer Suite',
-    'suite.developer.description': 'Präzise Hilfsmittel für strukturierte Daten und Entwicklung.',
-    'principles.title': 'Gebaut für Vertrauen',
-    'principles.local': 'Dateien und Inhalte bleiben standardmäßig auf deinem Gerät.',
-    'principles.offline': 'Werkzeuge ohne Live-Daten funktionieren auch ohne Internet.',
-    'principles.consistent': 'Ein gemeinsames Bedienmodell macht jedes Tool vertraut.'
-  },
-  en: {
-    'app.name': 'CommieTools',
-    'app.tagline': 'Free tools for everyone.',
-    'app.promise': 'Your tools. Your device. Your data.',
-    'nav.tools': 'Tools',
-    'nav.suites': 'Suites',
-    'nav.about': 'Principles',
-    'action.theme': 'Switch color theme',
-    'action.language': 'Switch language',
-    'status.local': 'Processed locally',
-    'status.offline': 'Available offline',
-    'catalog.title': 'Tools',
-    'catalog.intro': 'Clear, precise tools that respect your data.',
-    'catalog.open': 'Open tool',
-    'category.text': 'Text',
-    'category.pdf': 'PDF',
-    'category.image': 'Images',
-    'category.developer': 'Developer',
-    'tool.textStats.title': 'Text statistics',
-    'tool.textStats.description': 'Counts characters, words and lines in your browser.',
-    'tool.textStats.input': 'Enter text',
-    'tool.textStats.placeholder': 'Paste text here…',
-    'tool.textStats.characters': 'Characters',
-    'tool.textStats.words': 'Words',
-    'tool.textStats.lines': 'Lines',
-    'tool.caseConverter.title': 'Letter case',
-    'tool.caseConverter.description': 'Converts text locally to upper, lower or title case.',
-    'tool.caseConverter.input': 'Enter text',
-    'tool.caseConverter.upper': 'UPPERCASE',
-    'tool.caseConverter.lower': 'lowercase',
-    'tool.caseConverter.titleCase': 'Title case',
-    'tool.jsonFormatter.title': 'Format JSON',
-    'tool.jsonFormatter.description': 'Validates and formats JSON entirely in your browser.',
-    'tool.jsonFormatter.input': 'Enter JSON',
-    'tool.jsonFormatter.indentation': 'Indentation',
-    'tool.jsonFormatter.invalid': 'The entered JSON is invalid.',
-    'tool.result': 'Result',
-    'tool.back': 'Back to all tools',
-    'suite.heading': 'Tool suites',
-    'suite.intro': 'Curated collections of shared tools – without duplicate modules.',
-    'suite.open': 'Open suite',
-    'suite.tools': 'Tools',
-    'suite.text.title': 'Text Suite',
-    'suite.text.description': 'Local tools for analyzing and editing text.',
-    'suite.developer.title': 'Developer Suite',
-    'suite.developer.description': 'Precise utilities for structured data and development.',
-    'principles.title': 'Built for trust',
-    'principles.local': 'Files and content stay on your device by default.',
-    'principles.offline': 'Tools without live data continue to work without internet.',
-    'principles.consistent': 'A shared interaction model makes every tool familiar.'
-  }
-} as const
-
-export type MessageKey = keyof typeof messages.en
-
-export function translate(locale: Locale, key: MessageKey): string {
-  return messages[locale][key]
+export const platformMessages: LocalizedMessages = {
+  de: { ...commonDe, ...suitesDe },
+  en: { ...commonEn, ...suitesEn }
 }
 
+export function createTranslator(locale: Locale, extensions: readonly LocalizedMessages[] = []) {
+  const fallback = Object.assign({}, platformMessages.en, ...extensions.map((catalog) => catalog.en))
+  const selected = locale === 'en' ? fallback : Object.assign({}, fallback, platformMessages[locale], ...extensions.map((catalog) => catalog[locale]))
+  return (key: string): string => selected[key] ?? key
+}

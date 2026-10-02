@@ -1,4 +1,5 @@
 import type { SuiteManifest, ToolCategory, ToolManifest } from '@commietools/core'
+export { toolMessages } from './locales'
 
 export const toolManifests: readonly ToolManifest[] = [
   {

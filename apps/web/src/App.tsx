@@ -1,11 +1,11 @@
 import { useEffect, useMemo, useState } from 'react'
 import type { SuiteManifest, ToolManifest } from '@commietools/core'
-import { translate, type Locale, type MessageKey } from '@commietools/i18n'
-import { convertCase, formatJson, getSuiteTools, getTextStatistics, suiteByRoute, suiteManifests, toolByRoute, toolManifests, type CaseMode } from '@commietools/tools'
+import { createTranslator, type Locale } from '@commietools/i18n'
+import { convertCase, formatJson, getSuiteTools, getTextStatistics, suiteByRoute, suiteManifests, toolByRoute, toolManifests, toolMessages, type CaseMode } from '@commietools/tools'
 import { Button, LocalBadge } from '@commietools/ui'
 
 type Theme = 'light' | 'dark'
-type Translate = (key: MessageKey) => string
+type Translate = (key: string) => string
 
 function preferredTheme(): Theme {
   const saved = localStorage.getItem('commietools-theme')
@@ -28,7 +28,7 @@ function usePathname() {
 }
 
 function ToolCard({ tool, t, navigate }: { tool: ToolManifest; t: Translate; navigate: (path: string) => void }) {
-  return <article className="catalog-card"><p className="category">{t(`category.${tool.category}` as MessageKey)}</p><h3>{t(tool.titleKey as MessageKey)}</h3><p>{t(tool.descriptionKey as MessageKey)}</p><div className="card-footer"><LocalBadge>{t('status.local')}</LocalBadge><button className="text-link" onClick={() => navigate(tool.route)}>{t('catalog.open')} →</button></div></article>
+  return <article className="catalog-card"><p className="category">{t(`category.${tool.category}`)}</p><h3>{t(tool.titleKey)}</h3><p>{t(tool.descriptionKey)}</p><div className="card-footer"><LocalBadge>{t('status.local')}</LocalBadge><button className="text-link" onClick={() => navigate(tool.route)}>{t('catalog.open')} →</button></div></article>
 }
 
 function TextArea({ label, value, onChange, readOnly = false }: { label: string; value: string; onChange?: (value: string) => void; readOnly?: boolean }) {
@@ -45,7 +45,7 @@ function CaseConverterTool({ t, locale }: { t: Translate; locale: Locale }) {
   const [text, setText] = useState('')
   const [mode, setMode] = useState<CaseMode>('upper')
   const output = useMemo(() => convertCase(text, mode, locale), [text, mode, locale])
-  const labels: Record<CaseMode, MessageKey> = { upper: 'tool.caseConverter.upper', lower: 'tool.caseConverter.lower', title: 'tool.caseConverter.titleCase' }
+  const labels: Record<CaseMode, string> = { upper: 'tool.caseConverter.upper', lower: 'tool.caseConverter.lower', title: 'tool.caseConverter.titleCase' }
   return <div className="stack"><TextArea label={t('tool.caseConverter.input')} value={text} onChange={setText} /><div className="segmented" aria-label="Case mode">{(['upper', 'lower', 'title'] as const).map((item) => <Button key={item} className={mode === item ? 'active' : ''} onClick={() => setMode(item)}>{t(labels[item])}</Button>)}</div><TextArea label={t('tool.result')} value={output} readOnly /></div>
 }
 
@@ -58,19 +58,19 @@ function JsonFormatterTool({ t }: { t: Translate }) {
 
 function ToolPage({ tool, t, locale, navigate }: { tool: ToolManifest; t: Translate; locale: Locale; navigate: (path: string) => void }) {
   const content = tool.id === 'text-statistics' ? <TextStatisticsTool t={t} /> : tool.id === 'case-converter' ? <CaseConverterTool t={t} locale={locale} /> : <JsonFormatterTool t={t} />
-  return <main className="detail-page"><button className="text-link back" onClick={() => navigate('/')}>← {t('tool.back')}</button><article className="tool-shell"><header className="tool-header"><div><p className="category">{t(`category.${tool.category}` as MessageKey)}</p><h1>{t(tool.titleKey as MessageKey)}</h1><p>{t(tool.descriptionKey as MessageKey)}</p></div><LocalBadge>{t('status.local')}</LocalBadge></header><div className="tool-content">{content}</div></article></main>
+  return <main className="detail-page"><button className="text-link back" onClick={() => navigate('/')}>← {t('tool.back')}</button><article className="tool-shell"><header className="tool-header"><div><p className="category">{t(`category.${tool.category}`)}</p><h1>{t(tool.titleKey)}</h1><p>{t(tool.descriptionKey)}</p></div><LocalBadge>{t('status.local')}</LocalBadge></header><div className="tool-content">{content}</div></article></main>
 }
 
 function SuitePage({ suite, t, navigate }: { suite: SuiteManifest; t: Translate; navigate: (path: string) => void }) {
   const tools = getSuiteTools(suite)
-  return <main className="detail-page"><button className="text-link back" onClick={() => navigate('/')}>← {t('tool.back')}</button><section className="suite-hero"><p className="eyebrow">Suite</p><h1>{t(suite.titleKey as MessageKey)}</h1><p>{t(suite.descriptionKey as MessageKey)}</p><span>{tools.length} {t('suite.tools')}</span></section><div className="catalog-grid">{tools.map((tool) => <ToolCard key={tool.id} tool={tool} t={t} navigate={navigate} />)}</div></main>
+  return <main className="detail-page"><button className="text-link back" onClick={() => navigate('/')}>← {t('tool.back')}</button><section className="suite-hero"><p className="eyebrow">Suite</p><h1>{t(suite.titleKey)}</h1><p>{t(suite.descriptionKey)}</p><span>{tools.length} {t('suite.tools')}</span></section><div className="catalog-grid">{tools.map((tool) => <ToolCard key={tool.id} tool={tool} t={t} navigate={navigate} />)}</div></main>
 }
 
 export function App() {
   const [locale, setLocale] = useState<Locale>(() => navigator.language.startsWith('de') ? 'de' : 'en')
   const [theme, setTheme] = useState<Theme>(preferredTheme)
   const [pathname, navigate] = usePathname()
-  const t: Translate = (key) => translate(locale, key)
+  const t: Translate = createTranslator(locale, [toolMessages])
   const activeTool = toolByRoute.get(pathname)
   const activeSuite = suiteByRoute.get(pathname)
 
@@ -85,5 +85,5 @@ export function App() {
     requestAnimationFrame(() => document.getElementById('suites')?.scrollIntoView())
   }
 
-  return <div className="app" data-theme={theme}><header className="site-header"><button className="brand button-reset" onClick={() => navigate('/')} aria-label={t('app.name')}><span className="brand-mark" aria-hidden="true">★</span><span>Commie<span>Tools</span></span></button><nav aria-label="Main navigation"><button className="button-reset" onClick={() => navigate('/')}>{t('nav.tools')}</button><button className="button-reset" onClick={goToSuites}>{t('nav.suites')}</button></nav><div className="header-actions"><Button onClick={() => setLocale(locale === 'de' ? 'en' : 'de')} aria-label={t('action.language')}>{locale.toUpperCase()}</Button><Button onClick={toggleTheme} aria-label={t('action.theme')}><span aria-hidden="true">{theme === 'light' ? '☾' : '☀'}</span></Button></div></header>{activeTool ? <ToolPage tool={activeTool} t={t} locale={locale} navigate={navigate} /> : activeSuite ? <SuitePage suite={activeSuite} t={t} navigate={navigate} /> : <main><section className="hero"><p className="eyebrow">CommieTools.org</p><h1>{t('app.tagline')}</h1><p className="hero-copy">{t('app.promise')}</p><div className="badges"><LocalBadge>{t('status.local')}</LocalBadge><LocalBadge>{t('status.offline')}</LocalBadge></div></section><section className="section" id="tools"><div className="section-heading"><div><p className="eyebrow">01</p><h2>{t('catalog.title')}</h2></div><p>{t('catalog.intro')}</p></div><div className="catalog-grid">{toolManifests.map((tool) => <ToolCard key={tool.id} tool={tool} t={t} navigate={navigate} />)}</div></section><section className="section" id="suites"><div className="section-heading"><div><p className="eyebrow">02</p><h2>{t('suite.heading')}</h2></div><p>{t('suite.intro')}</p></div><div className="catalog-grid suites">{suiteManifests.map((suite) => <article className="catalog-card suite-card" key={suite.id}><p className="category">Suite</p><h3>{t(suite.titleKey as MessageKey)}</h3><p>{t(suite.descriptionKey as MessageKey)}</p><div className="card-footer"><span>{suite.toolIds.length} {t('suite.tools')}</span><button className="text-link" onClick={() => navigate(suite.route)}>{t('suite.open')} →</button></div></article>)}</div></section></main>}</div>
+  return <div className="app" data-theme={theme}><header className="site-header"><button className="brand button-reset" onClick={() => navigate('/')} aria-label={t('app.name')}><span className="brand-mark" aria-hidden="true">★</span><span>Commie<span>Tools</span></span></button><nav aria-label="Main navigation"><button className="button-reset" onClick={() => navigate('/')}>{t('nav.tools')}</button><button className="button-reset" onClick={goToSuites}>{t('nav.suites')}</button></nav><div className="header-actions"><Button onClick={() => setLocale(locale === 'de' ? 'en' : 'de')} aria-label={t('action.language')}>{locale.toUpperCase()}</Button><Button onClick={toggleTheme} aria-label={t('action.theme')}><span aria-hidden="true">{theme === 'light' ? '☾' : '☀'}</span></Button></div></header>{activeTool ? <ToolPage tool={activeTool} t={t} locale={locale} navigate={navigate} /> : activeSuite ? <SuitePage suite={activeSuite} t={t} navigate={navigate} /> : <main><section className="hero"><p className="eyebrow">CommieTools.org</p><h1>{t('app.tagline')}</h1><p className="hero-copy">{t('app.promise')}</p><div className="badges"><LocalBadge>{t('status.local')}</LocalBadge><LocalBadge>{t('status.offline')}</LocalBadge></div></section><section className="section" id="tools"><div className="section-heading"><div><p className="eyebrow">01</p><h2>{t('catalog.title')}</h2></div><p>{t('catalog.intro')}</p></div><div className="catalog-grid">{toolManifests.map((tool) => <ToolCard key={tool.id} tool={tool} t={t} navigate={navigate} />)}</div></section><section className="section" id="suites"><div className="section-heading"><div><p className="eyebrow">02</p><h2>{t('suite.heading')}</h2></div><p>{t('suite.intro')}</p></div><div className="catalog-grid suites">{suiteManifests.map((suite) => <article className="catalog-card suite-card" key={suite.id}><p className="category">Suite</p><h3>{t(suite.titleKey)}</h3><p>{t(suite.descriptionKey)}</p><div className="card-footer"><span>{suite.toolIds.length} {t('suite.tools')}</span><button className="text-link" onClick={() => navigate(suite.route)}>{t('suite.open')} →</button></div></article>)}</div></section></main>}</div>
 }

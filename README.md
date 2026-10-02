@@ -34,8 +34,8 @@ npm run check
 ```text
 apps/web          Web application and installable PWA
 packages/core     Shared platform types and runtime contracts
-packages/i18n     Locale definitions and translation resources
-packages/tools    Tool manifests and implementations
+packages/i18n     Shared platform and suite translations
+packages/tools    Tool manifests, implementations and tool-local translations
 packages/ui       Shared design tokens and UI components
 docs              Architecture and product decisions
 ```

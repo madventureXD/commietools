@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest'
-import { convertCase, formatJson, getSuiteTools, getTextStatistics, suiteManifests, toolByRoute } from '@commietools/tools'
+import { createTranslator } from '@commietools/i18n'
+import { convertCase, formatJson, getSuiteTools, getTextStatistics, suiteManifests, toolByRoute, toolMessages } from '@commietools/tools'
 
 describe('text statistics', () => {
   it('counts empty input', () => {
@@ -30,6 +31,21 @@ describe('local tool engines', () => {
   it('formats valid JSON and reports invalid JSON', () => {
     expect(formatJson('{"ok":true}').value).toBe('{\n  "ok": true\n}')
     expect(formatJson('{').error).toBe('invalid-json')
+  })
+})
+
+describe('hybrid translations', () => {
+  it('merges platform and per-tool messages', () => {
+    const t = createTranslator('de', [toolMessages])
+    expect(t('nav.tools')).toBe('Werkzeuge')
+    expect(t('tool.jsonFormatter.title')).toBe('JSON formatieren')
+  })
+
+  it('falls back to English and exposes missing keys', () => {
+    const incomplete = { de: {}, en: { 'tool.example.title': 'Example' } }
+    const t = createTranslator('de', [incomplete])
+    expect(t('tool.example.title')).toBe('Example')
+    expect(t('missing.key')).toBe('missing.key')
   })
 })
 
