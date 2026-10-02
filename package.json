@@ -1,0 +1,25 @@
+{
+  "name": "commietools",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Free, local-first tools for everyone.",
+  "license": "UNLICENSED",
+  "engines": {
+    "node": ">=22"
+  },
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "npm run dev --workspace @commietools/web",
+    "build": "npm run build --workspaces --if-present",
+    "check": "npm run typecheck --workspaces --if-present && npm run test --workspaces --if-present",
+    "lint": "npm run lint --workspaces --if-present",
+    "preview": "npm run preview --workspace @commietools/web"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.3"
+  }
+}
+
