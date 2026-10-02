@@ -52,6 +52,8 @@ Schritt 1 von drei für die geplante Katalogsuche: die zentrale, automatisch mit
 
 ## Entwurf der deutschen Suchbegriffe (zum Gegenlesen)
 
+> **Nachtrag 2026-10-03:** Diese Liste war der erste Entwurf mit 114 Einträgen. Auf Wunsch wurden die Begriffe deutlich erweitert; der gültige Stand umfasst 620 Einträge und steht im Protokoll `2026-10-03-katalogsuche.md`. Der ursprüngliche Entwurf bleibt hier als Verlauf stehen.
+
 | Werkzeug | Kurzbeschreibung | Suchbegriffe | Schlagwörter |
 |---|---|---|---|
 | Textstatistik | Zählt Zeichen, Wörter und Zeilen. | Text, zählen, Wörter, Zeichen, Zeilen, Statistik, Länge, Umfang | #text |

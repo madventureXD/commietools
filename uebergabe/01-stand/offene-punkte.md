@@ -10,8 +10,8 @@ Diese Liste enthält bestätigte, noch nicht abgeschlossene Arbeit. Details geh�
 
 ## Mittlere Priorität
 
-- [ ] Deutsche Suchbegriffe und Kurzbeschreibungen des Werkzeugregisters gegenlesen (Entwurf in `06-protokolle/2026-10-03-webkatalog.md`); danach Schritt 2 der Katalogsuche: Suchfeld über die Begriffe aller Sprachen, Treffer in der eingestellten Sprache.
-- [ ] Schritt 3 der Katalogsuche: gezogene Datei gegen die deklarierten Dateitypen prüfen und passende Werkzeuge vorschlagen.
+- [ ] Schritt 3 der Katalogsuche: gezogene Datei gegen die deklarierten Dateitypen prüfen und passende Werkzeuge vorschlagen, mit Unterscheidung zwischen „liest" und „schreibt".
+- [ ] Weitere Suchbegriffe ergänzen, wenn im Gebrauch Lücken auffallen (Register und Prüfung melden Dopplungen; zwei Tests finden tote Begriffe).
 - [ ] Offline-Verhalten mit einem automatisierten Browser-Test absichern.
 - [ ] Content Security Policy und spätere Deployment-Header konkretisieren.
 - [ ] Performance-Budgets für große Tool-Engines und optionale Offline-Caches festlegen.

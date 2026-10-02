@@ -1,7 +1,7 @@
 # Aktueller Projektstand
 
 **Stand:** 2026-10-03  
-**Letzter geprüfter Meilenstein:** Werkzeugkatalog als erzeugtes Register (`ef1d13e`), davor Werkzeug „Bild skalieren" (`b0809d2`), davor „Bild-Metadaten" (`f87be44`)
+**Letzter geprüfter Meilenstein:** Katalogsuche über alle Sprachen (`6ccaeb2`), davor Werkzeugkatalog als erzeugtes Register (`ef1d13e`), davor Werkzeug „Bild skalieren" (`b0809d2`)
 
 ## Umgesetzt
 
@@ -20,6 +20,7 @@
 - Lizenzprüfung als verpflichtender Bestandteil von Check und Build
 - erzeugtes Werkzeugregister (`packages/tools/src/catalog/toolIndex.ts`) mit Symbol, Kurzbeschreibung und Suchbegriffen je Werkzeug und Sprache; Prüfung als Bestandteil von Check und Build
 - deklarierte Dateifähigkeiten je Werkzeug im Manifest (`input`, `auxiliary`, `output`); Dateifelder, Formatlisten und Katalogkarten lesen daraus, nicht aus eigenen Kopien
+- Katalogsuche über Suchbegriffe, Schlagwörter, Titel, Kurzbeschreibung und Beschreibung **aller** Sprachen sowie über deklarierte Dateitypen, Kategorie und Suite; Treffer in der eingestellten Sprache mit Begründung („gefunden über …"), offline und ohne unscharfe Suche
 
 ## Derzeitige Tools
 
@@ -46,9 +47,9 @@
 - erfasste externe Pakete: 478
 - vollständige Lizenztexte: 12
 - bewahrte originale Paketdokumente: 165
-- letzter bekannter Teststand: 52 Tests bestanden
-- Werkzeugregister: 6 Werkzeuge, 2 Sprachen, 6 Symbole, 114 Suchbegriffe, 25 deklarierte Dateitypen (`npm run catalog:check`)
-- letzter bekannter Produktions-Build: bestanden; Hauptbundle 421,20 kB (127,30 kB komprimiert), Stylesheet 14,90 kB (3,48 kB komprimiert), Vorab-Cache mit 14 Einträgen (1.319,86 KiB)
+- letzter bekannter Teststand: 72 Tests bestanden
+- Werkzeugregister: 6 Werkzeuge, 2 Sprachen, 6 Symbole, **620** Suchbegriffe und Schlagwörter, 25 deklarierte Dateitypen (`npm run catalog:check`)
+- letzter bekannter Produktions-Build: bestanden; Hauptbundle 437,11 kB (132,84 kB komprimiert), Stylesheet 16,25 kB (3,66 kB komprimiert), Vorab-Cache mit 14 Einträgen (1.336,78 KiB)
 
 Zahlen sind Momentaufnahmen. Nach Abhängigkeits-, Test- oder Tooländerungen müssen sie anhand der tatsächlichen Ausgabe aktualisiert werden.
 
