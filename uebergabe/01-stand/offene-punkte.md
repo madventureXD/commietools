@@ -5,7 +5,7 @@ Diese Liste enthält bestätigte, noch nicht abgeschlossene Arbeit. Details geh�
 ## Hohe Priorität
 
 - [ ] Öffentliches Git-Repository festlegen und vor Veröffentlichung einen sichtbaren Quellcode-Link integrieren.
-- [ ] PDF-Suite als nächstes größeres Produktvorhaben fachlich und technisch spezifizieren.
+- [ ] PDF-Suite-Konzept prüfen und freigeben; anschließend M0 mit Testkorpus und PDF.js-/pdf-lib-Prototyp beginnen.
 - [ ] Automatisierte Barrierefreiheitsprüfung für zentrale Komponenten und Tool-Flows ergänzen.
 
 ## Mittlere Priorität
