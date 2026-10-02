@@ -17,6 +17,20 @@ export {
 } from './catalog/search'
 export { toolMessages } from './locales'
 export {
+  inspectPdf,
+  mergePdfs,
+  organizePdf,
+  parsePageSelection,
+  parseSplitGroups,
+  PdfToolError,
+  splitPdf,
+  type PdfInput,
+  type PdfInspection,
+  type PdfIssueCode,
+  type PdfPageInfo,
+  type PdfPagePlan
+} from './pdf/core'
+export {
   detectImageFormat,
   findMetadataSegments,
   readMetadata,

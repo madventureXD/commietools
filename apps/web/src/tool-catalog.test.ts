@@ -131,7 +131,7 @@ describe('declared file types', () => {
         expect(tool.files?.input?.length, tool.id).toBeGreaterThan(0)
       }
     }
-    expect(fileToolIds).toEqual(['image-metadata', 'image-resize'])
+    expect(fileToolIds).toEqual(['image-metadata', 'image-resize', 'pdf-merge', 'pdf-split', 'pdf-organize'])
   })
 
   it('separates types that are only read from types that are written', () => {
@@ -143,7 +143,8 @@ describe('declared file types', () => {
   })
 
   it('agrees with the format detection in the code', () => {
-    for (const toolId of fileToolIds) {
+    const imageToolIds = toolManifests.filter((tool) => tool.category === 'image').map((tool) => tool.id)
+    for (const toolId of imageToolIds) {
       for (const mime of inputMimeTypes(toolId)) {
         const signature = signatures[mime]
         expect(signature, `${toolId} declares ${mime} without a known header`).toBeDefined()

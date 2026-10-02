@@ -869,5 +869,218 @@ export const toolIndex: readonly ToolSearchEntry[] = [
         ]
       }
     }
+  },
+  {
+    "id": "pdf-merge",
+    "route": "/tools/pdf-merge",
+    "icon": "/tools/pdf-merge.svg",
+    "category": "pdf",
+    "suiteIds": [
+      "pdf"
+    ],
+    "executionMode": "local",
+    "resourceClass": "standard",
+    "worksOffline": true,
+    "input": [
+      "application/pdf"
+    ],
+    "output": [
+      "application/pdf"
+    ],
+    "auxiliary": [],
+    "locales": {
+      "de": {
+        "title": "PDFs zusammenführen",
+        "summary": "Verbindet mehrere PDFs in einer festgelegten Reihenfolge.",
+        "description": "Verbindet mehrere PDF-Dokumente in frei gewählter Reihenfolge – lokal und ohne Upload.",
+        "terms": [
+          "PDF zusammenführen",
+          "PDF verbinden",
+          "PDF kombinieren",
+          "PDF anhängen",
+          "Dokumente zusammenfügen",
+          "mehrere PDFs",
+          "eine PDF",
+          "Merge PDF",
+          "PDF merger",
+          "Seiten verbinden",
+          "Dateien verbinden",
+          "Sammeldokument",
+          "Unterlagen bündeln",
+          "Reihenfolge ändern"
+        ],
+        "tags": [
+          "#pdf",
+          "#zusammenführen",
+          "#verbinden"
+        ]
+      },
+      "en": {
+        "title": "Merge PDFs",
+        "summary": "Combines multiple PDFs in a chosen order.",
+        "description": "Combines multiple PDF documents in your chosen order – locally and without uploads.",
+        "terms": [
+          "merge PDF",
+          "combine PDF",
+          "join PDF",
+          "append PDF",
+          "multiple PDFs",
+          "one PDF",
+          "merge documents",
+          "combine documents",
+          "join files",
+          "page order",
+          "bundle documents",
+          "collate PDF",
+          "PDF merger",
+          "reorder documents"
+        ],
+        "tags": [
+          "#pdf",
+          "#merge",
+          "#combine"
+        ]
+      }
+    }
+  },
+  {
+    "id": "pdf-split",
+    "route": "/tools/pdf-split",
+    "icon": "/tools/pdf-split.svg",
+    "category": "pdf",
+    "suiteIds": [
+      "pdf"
+    ],
+    "executionMode": "local",
+    "resourceClass": "standard",
+    "worksOffline": true,
+    "input": [
+      "application/pdf"
+    ],
+    "output": [
+      "application/pdf"
+    ],
+    "auxiliary": [],
+    "locales": {
+      "de": {
+        "title": "PDF teilen",
+        "summary": "Teilt PDFs in Seiten oder ausgewählte Bereiche.",
+        "description": "Extrahiert einzelne Seiten oder frei festgelegte Seitengruppen aus einer PDF – vollständig lokal.",
+        "terms": [
+          "PDF teilen",
+          "PDF trennen",
+          "Seiten extrahieren",
+          "Seiten entnehmen",
+          "PDF aufteilen",
+          "einzelne Seiten",
+          "Seitenbereich",
+          "Bereich exportieren",
+          "Dokument zerlegen",
+          "Split PDF",
+          "PDF splitter",
+          "Seiten speichern",
+          "Seite herauslösen"
+        ],
+        "tags": [
+          "#pdf",
+          "#teilen",
+          "#extrahieren"
+        ]
+      },
+      "en": {
+        "title": "Split PDF",
+        "summary": "Splits PDFs into pages or selected ranges.",
+        "description": "Extracts individual pages or custom page groups from a PDF – entirely on your device.",
+        "terms": [
+          "split PDF",
+          "separate PDF",
+          "extract pages",
+          "remove pages",
+          "page range",
+          "export pages",
+          "individual pages",
+          "divide document",
+          "PDF splitter",
+          "save page",
+          "break apart PDF",
+          "selected pages"
+        ],
+        "tags": [
+          "#pdf",
+          "#split",
+          "#extract"
+        ]
+      }
+    }
+  },
+  {
+    "id": "pdf-organize",
+    "route": "/tools/pdf-organize",
+    "icon": "/tools/pdf-organize.svg",
+    "category": "pdf",
+    "suiteIds": [
+      "pdf"
+    ],
+    "executionMode": "local",
+    "resourceClass": "standard",
+    "worksOffline": true,
+    "input": [
+      "application/pdf"
+    ],
+    "output": [
+      "application/pdf"
+    ],
+    "auxiliary": [],
+    "locales": {
+      "de": {
+        "title": "PDF-Seiten organisieren",
+        "summary": "Sortiert, dreht, dupliziert und löscht PDF-Seiten.",
+        "description": "Sortiert, dreht, dupliziert und entfernt PDF-Seiten – mit lokaler Vorschau.",
+        "terms": [
+          "PDF Seiten sortieren",
+          "Seiten organisieren",
+          "Seiten drehen",
+          "PDF drehen",
+          "Seiten löschen",
+          "Seiten entfernen",
+          "Seite duplizieren",
+          "Reihenfolge ändern",
+          "PDF umordnen",
+          "PDF neu ordnen",
+          "rotate PDF",
+          "reorder PDF",
+          "delete pages",
+          "page organizer"
+        ],
+        "tags": [
+          "#pdf",
+          "#seiten",
+          "#sortieren"
+        ]
+      },
+      "en": {
+        "title": "Organize PDF pages",
+        "summary": "Reorders, rotates, duplicates and deletes PDF pages.",
+        "description": "Reorders, rotates, duplicates and removes PDF pages with a local preview.",
+        "terms": [
+          "organize PDF pages",
+          "reorder PDF",
+          "sort pages",
+          "rotate PDF",
+          "rotate pages",
+          "delete pages",
+          "remove pages",
+          "duplicate page",
+          "change page order",
+          "page organizer",
+          "rearrange PDF"
+        ],
+        "tags": [
+          "#pdf",
+          "#pages",
+          "#organize"
+        ]
+      }
+    }
   }
 ]

@@ -60,6 +60,27 @@ export const toolManifests: readonly ToolManifest[] = [
       input: ['image/jpeg', 'image/png', 'image/webp'],
       output: ['image/jpeg', 'image/png', 'image/webp']
     }
+  },
+  {
+    id: 'pdf-merge', route: '/tools/pdf-merge', category: 'pdf',
+    titleKey: 'tool.pdfMerge.title', descriptionKey: 'tool.pdfMerge.description',
+    summaryKey: 'tool.pdfMerge.summary', termsKey: 'tool.pdfMerge.terms',
+    executionMode: 'local', resourceClass: 'standard', worksOffline: true,
+    files: { input: ['application/pdf'], output: ['application/pdf'] }
+  },
+  {
+    id: 'pdf-split', route: '/tools/pdf-split', category: 'pdf',
+    titleKey: 'tool.pdfSplit.title', descriptionKey: 'tool.pdfSplit.description',
+    summaryKey: 'tool.pdfSplit.summary', termsKey: 'tool.pdfSplit.terms',
+    executionMode: 'local', resourceClass: 'standard', worksOffline: true,
+    files: { input: ['application/pdf'], output: ['application/pdf'] }
+  },
+  {
+    id: 'pdf-organize', route: '/tools/pdf-organize', category: 'pdf',
+    titleKey: 'tool.pdfOrganize.title', descriptionKey: 'tool.pdfOrganize.description',
+    summaryKey: 'tool.pdfOrganize.summary', termsKey: 'tool.pdfOrganize.terms',
+    executionMode: 'local', resourceClass: 'standard', worksOffline: true,
+    files: { input: ['application/pdf'], output: ['application/pdf'] }
   }
 ]
 
@@ -67,5 +88,6 @@ export const suiteManifests: readonly SuiteManifest[] = [
   { id: 'text', route: '/suites/text', titleKey: 'suite.text.title', descriptionKey: 'suite.text.description', toolIds: ['text-statistics', 'case-converter'] },
   { id: 'developer', route: '/suites/developer', titleKey: 'suite.developer.title', descriptionKey: 'suite.developer.description', toolIds: ['json-formatter'] },
   { id: 'generators', route: '/suites/generators', titleKey: 'suite.generators.title', descriptionKey: 'suite.generators.description', toolIds: ['qr-code-generator'] },
-  { id: 'image', route: '/suites/image', titleKey: 'suite.image.title', descriptionKey: 'suite.image.description', toolIds: ['image-metadata', 'image-resize'] }
+  { id: 'image', route: '/suites/image', titleKey: 'suite.image.title', descriptionKey: 'suite.image.description', toolIds: ['image-metadata', 'image-resize'] },
+  { id: 'pdf', route: '/suites/pdf', titleKey: 'suite.pdf.title', descriptionKey: 'suite.pdf.description', toolIds: ['pdf-merge', 'pdf-split', 'pdf-organize'] }
 ]

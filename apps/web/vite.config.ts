@@ -3,6 +3,16 @@ import react from '@vitejs/plugin-react'
 import { VitePWA } from 'vite-plugin-pwa'
 
 export default defineConfig({
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks(id) {
+          if (id.includes('node_modules/pdfjs-dist')) return 'pdfjs'
+          if (id.includes('node_modules/pdf-lib') || id.includes('node_modules/@pdf-lib') || id.includes('node_modules/pako')) return 'pdf-lib'
+        }
+      }
+    }
+  },
   plugins: [
     react(),
     VitePWA({
@@ -23,7 +33,13 @@ export default defineConfig({
       workbox: {
         navigateFallback: '/index.html',
         cleanupOutdatedCaches: true,
-        globPatterns: ['**/*.{js,css,html,ico,png,svg,json,txt}']
+        globPatterns: ['**/*.{js,css,html,ico,png,svg,json,txt}'],
+        globIgnores: ['**/pdfjs-*.js', '**/pdf-lib-*.js', '**/pdf.worker*.mjs'],
+        runtimeCaching: [{
+          urlPattern: /\/assets\/(?:pdfjs-|pdf-lib-|pdf\.worker)/,
+          handler: 'CacheFirst',
+          options: { cacheName: 'commietools-pdf-engines-v1' }
+        }]
       }
     })
   ]

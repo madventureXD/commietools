@@ -5,7 +5,8 @@ Diese Liste enthält bestätigte, noch nicht abgeschlossene Arbeit. Details geh�
 ## Hohe Priorität
 
 - [ ] Öffentliches Git-Repository festlegen und vor Veröffentlichung einen sichtbaren Quellcode-Link integrieren.
-- [ ] PDF-Suite-Konzept prüfen und freigeben; anschließend M0 mit Testkorpus und PDF.js-/pdf-lib-Prototyp beginnen.
+- [ ] PDF-Suite M2 umsetzen: Bilder zu PDF und PDF zu Bildern auf Basis des gemeinsamen M0/M1-Kerns.
+- [ ] Den PDF-Testkorpus um frei weitergebbare verschlüsselte, XFA-, Annotations- und Signatur-Beispiele sowie Reader-Interoperabilität erweitern.
 - [ ] Automatisierte Barrierefreiheitsprüfung für zentrale Komponenten und Tool-Flows ergänzen.
 
 ## Mittlere Priorität

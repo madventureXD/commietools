@@ -4,6 +4,10 @@ import { jsonFormatterMessages } from './developer/json-formatter/locales'
 import { qrCodeGeneratorMessages } from './generator/qr-code-generator/locales'
 import { caseConverterMessages } from './text/case-converter/locales'
 import { textStatisticsMessages } from './text/text-statistics/locales'
+import { pdfCommonMessages } from './pdf/common/locales'
+import { pdfMergeMessages } from './pdf/merge/locales'
+import { pdfSplitMessages } from './pdf/split/locales'
+import { pdfOrganizeMessages } from './pdf/organize/locales'
 
 type MessageCatalog = Readonly<Record<string, string>>
 type PartialLocalizedMessages = Readonly<Record<string, MessageCatalog>>
@@ -24,5 +28,9 @@ export const toolMessages = mergeToolCatalogs([
   jsonFormatterMessages,
   qrCodeGeneratorMessages,
   imageMetadataMessages,
-  imageResizeMessages
+  imageResizeMessages,
+  pdfCommonMessages,
+  pdfMergeMessages,
+  pdfSplitMessages,
+  pdfOrganizeMessages
 ])
