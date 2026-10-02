@@ -38,6 +38,19 @@ h1 { max-width: 16ch; margin-bottom: var(--space-4); font-size: clamp(3rem, 8vw,
 .tool-header .card-icon { margin-bottom: var(--space-3); }
 .format-list { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-2); margin: 0; color: var(--color-text-muted); font-size: 0.85rem; }
 .format-chip { padding: 0.15rem 0.5rem; border: 1px solid var(--color-border); border-radius: 999px; color: var(--color-text); font-weight: 700; }
+.catalog-search { display: flex; align-items: center; gap: var(--space-4); margin-bottom: var(--space-3); }
+.search-field { display: flex; align-items: center; gap: var(--space-3); flex: 1; max-width: 34rem; padding: 0 var(--space-4); border: 1px solid var(--color-border); border-radius: var(--radius-sm); background: var(--color-surface); color: var(--color-text-muted); font-size: 1.1rem; }
+.search-field input { width: 100%; min-height: 3rem; border: 0; color: var(--color-text); background: none; font-size: 1rem; }
+.search-field input:focus-visible { outline: none; }
+.search-field:focus-within { border-color: var(--color-brand); outline: 3px solid var(--color-focus); outline-offset: 2px; }
+.search-hint { max-width: 52rem; margin-bottom: var(--space-6); color: var(--color-text-muted); font-size: 0.85rem; }
+.search-count { margin-bottom: var(--space-4); color: var(--color-text-muted); }
+.search-count strong { color: var(--color-text); font-size: 1.1rem; }
+.search-empty { padding: var(--space-6); border: 1px dashed var(--color-border); border-radius: var(--radius-md); color: var(--color-text-muted); }
+.tag-list { display: flex; flex-wrap: wrap; gap: var(--space-2); margin-bottom: var(--space-2); }
+.tag-chip { padding: 0.1rem 0.45rem; border-radius: 999px; color: var(--color-brand); background: var(--color-brand-soft); font-size: 0.78rem; font-weight: 700; }
+.match-note { margin-bottom: 0; color: var(--color-text-muted); font-size: 0.8rem; }
+.match-note strong { color: var(--color-text); }
 .catalog-card > p:not(.category) { color: var(--color-text-muted); line-height: 1.55; }
 .card-footer { display: flex; justify-content: space-between; align-items: center; gap: var(--space-3); margin-top: auto; padding-top: var(--space-4); }
 .text-link { padding: 0; border: 0; color: var(--color-brand); background: none; cursor: pointer; font-weight: 800; }

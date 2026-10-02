@@ -1,9 +1,11 @@
 import { useEffect, useMemo, useState } from 'react'
 import type { SuiteManifest, ToolManifest } from '@commietools/core'
 import { createTranslator, detectLocale, isLocale, localeRegistry, supportedLocales, type Locale } from '@commietools/i18n'
-import { convertCase, formatJson, getSuiteTools, getTextStatistics, searchEntryById, suiteByRoute, suiteManifests, toolByRoute, toolManifests, toolMessages, type CaseMode } from '@commietools/tools'
+import { convertCase, formatJson, getSuiteTools, getTextStatistics, MIN_QUERY_LENGTH, searchEntryById, suiteByRoute, suiteManifests, toolByRoute, toolMessages, type CaseMode } from '@commietools/tools'
 import { Button, LocalBadge } from '@commietools/ui'
+import { CatalogSection } from './CatalogSection'
 import { LicensePage } from './LicensePage'
+import { ToolCard } from './ToolCard'
 import { ImageMetadata } from './tools/ImageMetadata'
 import { ImageResize } from './tools/ImageResize'
 import { QrCodeGenerator } from './tools/QrCodeGenerator'
@@ -34,11 +36,6 @@ function usePathname() {
     setPathname(path)
     scrollTo({ top: 0, behavior: 'smooth' })
   }] as const
-}
-
-function ToolCard({ tool, t, navigate }: { tool: ToolManifest; t: Translate; navigate: (path: string) => void }) {
-  const entry = searchEntryById.get(tool.id)
-  return <article className="catalog-card">{entry && <span className="card-icon" aria-hidden="true" style={{ maskImage: `url(${entry.icon})`, WebkitMaskImage: `url(${entry.icon})` }} />}<p className="category">{t(`category.${tool.category}`)}</p><h3>{t(tool.titleKey)}</h3><p>{t(tool.summaryKey)}</p><div className="card-footer"><LocalBadge>{t('status.local')}</LocalBadge><button className="text-link" onClick={() => navigate(tool.route)}>{t('catalog.open')} →</button></div></article>
 }
 
 function TextArea({ label, value, onChange, readOnly = false }: { label: string; value: string; onChange?: (value: string) => void; readOnly?: boolean }) {
@@ -72,15 +69,17 @@ function ToolPage({ tool, t, locale, navigate }: { tool: ToolManifest; t: Transl
   return <main className="detail-page"><button className="text-link back" onClick={() => navigate('/')}>← {t('tool.back')}</button><article className="tool-shell"><header className="tool-header"><div>{icon && <span className="card-icon" aria-hidden="true" style={{ maskImage: `url(${icon})`, WebkitMaskImage: `url(${icon})` }} />}<p className="category">{t(`category.${tool.category}`)}</p><h1>{t(tool.titleKey)}</h1><p>{t(tool.descriptionKey)}</p></div><LocalBadge>{t('status.local')}</LocalBadge></header><div className="tool-content">{content}</div></article></main>
 }
 
-function SuitePage({ suite, t, navigate }: { suite: SuiteManifest; t: Translate; navigate: (path: string) => void }) {
+function SuitePage({ suite, t, locale, navigate }: { suite: SuiteManifest; t: Translate; locale: string; navigate: (path: string) => void }) {
   const tools = getSuiteTools(suite)
-  return <main className="detail-page"><button className="text-link back" onClick={() => navigate('/')}>← {t('tool.back')}</button><section className="suite-hero"><p className="eyebrow">Suite</p><h1>{t(suite.titleKey)}</h1><p>{t(suite.descriptionKey)}</p><span>{tools.length} {t('suite.tools')}</span></section><div className="catalog-grid">{tools.map((tool) => <ToolCard key={tool.id} tool={tool} t={t} navigate={navigate} />)}</div></main>
+  return <main className="detail-page"><button className="text-link back" onClick={() => navigate('/')}>← {t('tool.back')}</button><section className="suite-hero"><p className="eyebrow">Suite</p><h1>{t(suite.titleKey)}</h1><p>{t(suite.descriptionKey)}</p><span>{tools.length} {t('suite.tools')}</span></section><div className="catalog-grid">{tools.map((tool) => <ToolCard key={tool.id} tool={tool} t={t} locale={locale} navigate={navigate} />)}</div></main>
 }
 
 export function App() {
   const [locale, setLocale] = useState<Locale>(preferredLocale)
   const [theme, setTheme] = useState<Theme>(preferredTheme)
   const [pathname, navigate] = usePathname()
+  const [query, setQuery] = useState('')
+  const searching = query.trim().length >= MIN_QUERY_LENGTH
   const t: Translate = createTranslator(locale, [toolMessages])
   const activeTool = toolByRoute.get(pathname)
   const activeSuite = suiteByRoute.get(pathname)
@@ -99,8 +98,9 @@ export function App() {
 
   const goToSuites = () => {
     navigate('/')
+    setQuery('')
     requestAnimationFrame(() => document.getElementById('suites')?.scrollIntoView())
   }
 
-  return <div className="app" data-theme={theme}><header className="site-header"><button className="brand button-reset" onClick={() => navigate('/')} aria-label={t('app.name')}><span className="brand-mark" aria-hidden="true">★</span><span>Commie<span>Tools</span></span></button><nav aria-label="Main navigation"><button className="button-reset" onClick={() => navigate('/')}>{t('nav.tools')}</button><button className="button-reset" onClick={goToSuites}>{t('nav.suites')}</button></nav><div className="header-actions"><select className="language-select" value={locale} aria-label={t('action.language')} onChange={(event) => { if (isLocale(event.target.value)) setLocale(event.target.value) }}>{supportedLocales.map((code) => <option key={code} value={code}>{localeRegistry[code].label}</option>)}</select><Button onClick={toggleTheme} aria-label={t('action.theme')}><span aria-hidden="true">{theme === 'light' ? '☾' : '☀'}</span></Button></div></header>{pathname === '/licenses' ? <LicensePage t={t} navigate={navigate} /> : activeTool ? <ToolPage tool={activeTool} t={t} locale={locale} navigate={navigate} /> : activeSuite ? <SuitePage suite={activeSuite} t={t} navigate={navigate} /> : <main><section className="hero"><p className="eyebrow">CommieTools.org</p><h1>{t('app.tagline')}</h1><p className="hero-copy">{t('app.promise')}</p><div className="badges"><LocalBadge>{t('status.local')}</LocalBadge><LocalBadge>{t('status.offline')}</LocalBadge></div></section><section className="section" id="tools"><div className="section-heading"><div><p className="eyebrow">01</p><h2>{t('catalog.title')}</h2></div><p>{t('catalog.intro')}</p></div><div className="catalog-grid">{toolManifests.map((tool) => <ToolCard key={tool.id} tool={tool} t={t} navigate={navigate} />)}</div></section><section className="section" id="suites"><div className="section-heading"><div><p className="eyebrow">02</p><h2>{t('suite.heading')}</h2></div><p>{t('suite.intro')}</p></div><div className="catalog-grid suites">{suiteManifests.map((suite) => <article className="catalog-card suite-card" key={suite.id}><p className="category">Suite</p><h3>{t(suite.titleKey)}</h3><p>{t(suite.descriptionKey)}</p><div className="card-footer"><span>{suite.toolIds.length} {t('suite.tools')}</span><button className="text-link" onClick={() => navigate(suite.route)}>{t('suite.open')} →</button></div></article>)}</div></section></main>}<footer className="site-footer"><span>© 2026 CommieTools contributors · AGPL-3.0-only</span><button className="text-link" onClick={() => navigate('/licenses')}>{t('footer.licenses')}</button></footer></div>
+  return <div className="app" data-theme={theme}><header className="site-header"><button className="brand button-reset" onClick={() => navigate('/')} aria-label={t('app.name')}><span className="brand-mark" aria-hidden="true">★</span><span>Commie<span>Tools</span></span></button><nav aria-label="Main navigation"><button className="button-reset" onClick={() => navigate('/')}>{t('nav.tools')}</button><button className="button-reset" onClick={goToSuites}>{t('nav.suites')}</button></nav><div className="header-actions"><select className="language-select" value={locale} aria-label={t('action.language')} onChange={(event) => { if (isLocale(event.target.value)) setLocale(event.target.value) }}>{supportedLocales.map((code) => <option key={code} value={code}>{localeRegistry[code].label}</option>)}</select><Button onClick={toggleTheme} aria-label={t('action.theme')}><span aria-hidden="true">{theme === 'light' ? '☾' : '☀'}</span></Button></div></header>{pathname === '/licenses' ? <LicensePage t={t} navigate={navigate} /> : activeTool ? <ToolPage tool={activeTool} t={t} locale={locale} navigate={navigate} /> : activeSuite ? <SuitePage suite={activeSuite} t={t} locale={locale} navigate={navigate} /> : <main><section className="hero"><p className="eyebrow">CommieTools.org</p><h1>{t('app.tagline')}</h1><p className="hero-copy">{t('app.promise')}</p><div className="badges"><LocalBadge>{t('status.local')}</LocalBadge><LocalBadge>{t('status.offline')}</LocalBadge></div></section><section className="section" id="tools"><CatalogSection t={t} locale={locale} navigate={navigate} query={query} onQuery={setQuery} /></section>{!searching && <section className="section" id="suites"><div className="section-heading"><div><p className="eyebrow">02</p><h2>{t('suite.heading')}</h2></div><p>{t('suite.intro')}</p></div><div className="catalog-grid suites">{suiteManifests.map((suite) => <article className="catalog-card suite-card" key={suite.id}><p className="category">Suite</p><h3>{t(suite.titleKey)}</h3><p>{t(suite.descriptionKey)}</p><div className="card-footer"><span>{suite.toolIds.length} {t('suite.tools')}</span><button className="text-link" onClick={() => navigate(suite.route)}>{t('suite.open')} →</button></div></article>)}</div></section>}</main>}<footer className="site-footer"><span>© 2026 CommieTools contributors · AGPL-3.0-only</span><button className="text-link" onClick={() => navigate('/licenses')}>{t('footer.licenses')}</button></footer></div>
 }

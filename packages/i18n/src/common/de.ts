@@ -4,6 +4,8 @@ export const commonDe = {
   'action.theme': 'Farbschema wechseln', 'action.language': 'Sprache wechseln',
   'status.local': 'Lokal verarbeitet', 'status.offline': 'Offline verfügbar',
   'catalog.title': 'Werkzeuge', 'catalog.intro': 'Klare, präzise Werkzeuge, die deine Daten respektieren.', 'catalog.open': 'Tool öffnen',
+  'catalog.search': 'Werkzeuge durchsuchen', 'catalog.clear': 'Suche leeren', 'catalog.results': 'Werkzeuge gefunden', 'catalog.foundVia': 'gefunden über', 'catalog.noResults': 'Kein Werkzeug passt zu dieser Suche. Versuch es mit einem anderen Wort oder einer Dateiendung wie webp.',
+  'catalog.searchHint': 'Sucht in Suchbegriffen, Titel und Kurzbeschreibung aller Sprachen sowie in Dateitypen, Kategorie und Suite. Mindestens 2 Zeichen, zum Beispiel webp, resize, #bilder.',
   'category.text': 'Text', 'category.pdf': 'PDF', 'category.image': 'Bilder', 'category.developer': 'Entwicklung', 'category.generator': 'Generatoren',
   'tool.result': 'Ergebnis', 'tool.back': 'Zurück zu allen Tools', 'tool.formats': 'Formate', 'tool.formats.readOnly': 'Nur lesbar',
   'footer.licenses': 'Lizenzen & Open Source',

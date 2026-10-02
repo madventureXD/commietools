@@ -5,6 +5,16 @@ import { toolIndex } from './catalog/toolIndex'
 
 export { suiteManifests, toolManifests } from './catalog/manifests'
 export { toolIndex } from './catalog/toolIndex'
+export {
+  MIN_QUERY_LENGTH,
+  declaredMimeTypes,
+  matchExcerpt,
+  normalizeSearchText,
+  searchTools,
+  type MatchField,
+  type SearchOptions,
+  type ToolMatch
+} from './catalog/search'
 export { toolMessages } from './locales'
 export {
   detectImageFormat,

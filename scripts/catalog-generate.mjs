@@ -202,6 +202,7 @@ const entries = toolManifests.map((tool) => {
     locales[language] = {
       title: catalogues[language][tool.titleKey],
       summary: catalogues[language][tool.summaryKey],
+      description: catalogues[language][tool.descriptionKey],
       terms: list.filter((term) => !term.startsWith('#')),
       tags: list.filter((term) => term.startsWith('#'))
     }

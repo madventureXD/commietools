@@ -1,6 +1,6 @@
 export const qrCodeGeneratorDe = {
   'tool.qr.title': 'QR-Code-Generator', 'tool.qr.description': 'Erstellt vielseitige, gestaltbare QR-Codes vollständig auf deinem Gerät.',
-  'tool.qr.summary': 'Erzeugt QR-Codes als Bild.', 'tool.qr.terms': 'QR-Code,WLAN,Zugang,Visitenkarte,vCard,Link,Adresse,E-Mail,erzeugen,#generator',
+  'tool.qr.summary': 'Erzeugt QR-Codes als Bild.', 'tool.qr.terms': 'QR-Code,QR,QRCode,QRCodes,Code,WLAN,WiFi,Wi-Fi,Funknetz,Zugang,Zugangsdaten,Netzwerk,Passwort,Kennwort,Router,Visitenkarte,Kontakt,vCard,Adresse,Anschrift,Link,URL,Webadresse,Website,Homepage,E-Mail,Email,Mail,Telefon,Telefonnummer,SMS,Nachricht,Text,Koordinaten,Standort,Geo,Geodaten,erzeugen,erstellen,generieren,Generator,herstellen,Bild,PNG,SVG,Grafik,Logo,Farbe,Farben,Stil,Design,Format,drucken,Druck,Aufkleber,Plakat,scannen,Scan,Mobile,Handy,#generator,#qr,#kontakt,#wlan',
   'tool.qr.content': 'Inhalt', 'tool.qr.type': 'Inhaltstyp', 'tool.qr.type.text': 'Text', 'tool.qr.type.url': 'Webadresse',
   'tool.qr.type.wifi': 'WLAN', 'tool.qr.type.contact': 'Kontakt (vCard)', 'tool.qr.type.email': 'E-Mail',
   'tool.qr.type.phone': 'Telefon', 'tool.qr.type.sms': 'SMS', 'tool.qr.type.geo': 'Geokoordinaten',

@@ -2,7 +2,7 @@ export const imageResizeDe = {
   'tool.imageResize.title': 'Bild skalieren',
   'tool.imageResize.description': 'Verkleinert, vergrößert, dreht, spiegelt und schneidet Bilder zu – vollständig auf deinem Gerät.',
   'tool.imageResize.summary': 'Ändert Größe, Zuschnitt und Ausrichtung.',
-  'tool.imageResize.terms': 'skalieren,verkleinern,vergrößern,Bildgröße,Zuschnitt,zuschneiden,drehen,spiegeln,Foto,Profilbild,#bilder',
+  'tool.imageResize.terms': 'skalieren,Skalierung,verkleinern,Verkleinerung,verkleinert,vergrößern,vergroessern,Vergrößerung,Größe ändern,Groesse aendern,Bildgröße ändern,Bildgroesse aendern,Größe,Groesse,Abmessungen,Pixel,Pixelmaße,Pixelmasse,Breite,Höhe,Auflösung,Aufloesung,Zuschnitt,zuschneiden,beschneiden,ausschneiden,Crop,Ausschnitt,drehen,Drehung,Rotation,rotieren,um 90 Grad drehen,spiegeln,Spiegelung,horizontal spiegeln,vertikal spiegeln,Ausrichtung,Seitenverhältnis,Seitenverhaeltnis,proportional,Proportionen erhalten,Quadrat,quadratisch,Profilbild,Avatar,Vorschaubild,Thumbnail,Vorschau,Webseite,Social Media,Instagram,Facebook,WhatsApp,E-Mail-Anhang,Anhang,Foto,Bild,Handyfoto,Bilddatei,JPEG,PNG,WebP,zuschneiden auf Quadrat,Bild verkleinern für E-Mail,#bilder,#größe,#zuschnitt,#drehen,#profilbild',
 
   'tool.imageResize.source': 'Bild',
   'tool.imageResize.chooseFile': 'Datei auswählen',

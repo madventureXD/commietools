@@ -2,7 +2,7 @@ export const imageResizeEn = {
   'tool.imageResize.title': 'Resize image',
   'tool.imageResize.description': 'Shrinks, enlarges, rotates, mirrors and crops images – entirely on your device.',
   'tool.imageResize.summary': 'Changes size, crop and orientation.',
-  'tool.imageResize.terms': 'resize,scale,shrink,enlarge,image size,crop,rotate,mirror,photo,profile picture,#images',
+  'tool.imageResize.terms': 'resize,resizing,resize image,scale,scaling,shrink,shrink image,make smaller,reduce,enlarge,enlarge image,make bigger,increase,change size,image size,size,dimensions,pixels,width,height,resolution,crop,cropping,cut,cut out,trim,aspect,rotate,rotation,turn,rotate 90 degrees,mirror,mirroring,flip,flip horizontal,flip vertical,orientation,aspect ratio,proportional,keep proportions,square,square crop,profile picture,avatar,profile photo,thumbnail,preview,website,social media,instagram,facebook,whatsapp,email attachment,attachment,photo,picture,image,image file,jpeg,png,webp,#images,#size,#crop,#rotate,#avatar',
 
   'tool.imageResize.source': 'Image',
   'tool.imageResize.chooseFile': 'Choose file',

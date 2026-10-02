@@ -2,7 +2,7 @@ export const imageMetadataDe = {
   'tool.imageMetadata.title': 'Bild-Metadaten',
   'tool.imageMetadata.description': 'Zeigt versteckte Metadaten in Fotos und entfernt sie, ohne das Bild neu zu berechnen.',
   'tool.imageMetadata.summary': 'Zeigt und entfernt versteckte Bilddaten.',
-  'tool.imageMetadata.terms': 'Metadaten,EXIF,GPS,Standort,Ortsdaten,entfernen,löschen,Foto,Handyfoto,Privatsphäre,Datenschutz,#datenschutz,#bilder',
+  'tool.imageMetadata.terms': 'Metadaten,Bilddaten,Bildinformationen,Informationen,EXIF,EXIF-Daten,GPS,Standort,Ortsdaten,Geodaten,Koordinaten,Position,Aufnahmeort,Kamera,Handykamera,Smartphone,Aufnahmedatum,Aufnahmezeit,Datum,Uhrzeit,Zeitstempel,Belichtung,Belichtungszeit,Blende,ISO,Brennweite,Objektiv,Blitz,Seriennummer,Gerät,Kameramodell,Copyright,Urheber,Künstler,Kuenstler,Fotograf,Autor,Software,Programm,Kommentar,Beschreibung,Schlagwörter,XMP,IPTC,ICC,Farbprofil,Ausrichtung,Drehung,entfernen,löschen,loeschen,bereinigen,säubern,saeubern,anonymisieren,versteckte Daten,Verlauf,Spuren,Tracking,verlustfrei,ohne Neuberechnung,Privatsphäre,Privatsphaere,Datenschutz,Foto,Bild,Handyfoto,Bilddatei,JPEG,PNG,WebP,teilen,veröffentlichen,veroeffentlichen,verschicken,#datenschutz,#bilder,#exif,#gps,#privatsphäre',
 
   'tool.imageMetadata.file': 'Bild auswählen',
   'tool.imageMetadata.chooseFile': 'Datei auswählen',

@@ -2,7 +2,7 @@ export const imageMetadataEn = {
   'tool.imageMetadata.title': 'Image metadata',
   'tool.imageMetadata.description': 'Shows hidden metadata in photos and removes it without re-encoding the image.',
   'tool.imageMetadata.summary': 'Shows and removes hidden image data.',
-  'tool.imageMetadata.terms': 'metadata,exif,gps,location,remove,strip,photo,picture,privacy,#privacy,#images',
+  'tool.imageMetadata.terms': 'metadata,exif,image data,image information,information,exif data,gps,location,geodata,geo,coordinates,position,capture location,camera,phone camera,smartphone,capture date,capture time,date,time,timestamp,exposure,exposure time,aperture,iso,focal length,lens,flash,serial number,device,camera model,copyright,creator,artist,photographer,author,software,program,comment,description,keywords,xmp,iptc,icc,colour profile,color profile,orientation,rotation,remove,delete,strip,clean,cleanse,sanitise,sanitize,anonymise,anonymize,hidden data,trail,traces,tracking,lossless,without re-encoding,privacy,photo,picture,image,image file,jpeg,png,webp,share,publish,send,#privacy,#images,#exif,#gps',
 
   'tool.imageMetadata.file': 'Select image',
   'tool.imageMetadata.chooseFile': 'Choose file',

@@ -81,6 +81,8 @@ export interface SuiteManifest {
 export interface ToolLocaleEntry {
   readonly title: string
   readonly summary: string
+  /** Long form, searched as well but ranked below title and summary. */
+  readonly description: string
   /** Plain search terms. */
   readonly terms: readonly string[]
   /** Terms written with a leading `#`, shown as labels. */
