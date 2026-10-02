@@ -37,14 +37,25 @@ packages/core     Shared platform types and runtime contracts
 packages/i18n     Shared platform and suite translations
 packages/tools    Tool manifests, implementations and tool-local translations
 packages/ui       Shared design tokens and UI components
+licenses          Verified machine-readable license database and policy
+scripts           License generation and compliance checks
 docs              Architecture and product decisions
 ```
 
 Desktop and mobile shells are deliberately not scaffolded yet. They should consume the same packages after the web/PWA architecture has proved stable.
 
-The public licensing model is intentionally left undecided and must be selected before publication.
+CommieTools is licensed under **GNU AGPL-3.0-only**. See [LICENSE](LICENSE).
 
-Third-party open-source components are documented in [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
+Third-party open-source components are documented in [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) and the complete machine-readable [license registry](licenses/registry.json). The same verified registry is available in the web app at `/licenses` and works offline.
+
+After changing dependencies, regenerate and review the registry:
+
+```bash
+npm run licenses:generate
+npm run licenses:check
+```
+
+Both `npm run check` and `npm run build` fail when a package has no license, uses an unreviewed expression, lacks a complete SPDX text, or when generated licensing files are missing or stale.
 
 ## Current scope
 
