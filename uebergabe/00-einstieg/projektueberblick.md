@@ -12,6 +12,8 @@ CommieTools.org ist eine freie, werbefreie und datenschutzorientierte Plattform 
 - Light und Dark Mode über gemeinsame semantische Design-Tokens
 - modulare Tools mit wiederverwendbarer Kernlogik
 - manifestbasierter Katalog und manifestbasierte Suiten
+- erzeugtes Werkzeugregister: je Werkzeug und Sprache Symbol, Kurzbeschreibung und Suchbegriffe; Prüfung als Bestandteil von `check` und `build`
+- Katalogsuche über die Begriffe, Schlagwörter, Titel und Beschreibungen aller Sprachen sowie über deklarierte Dateitypen, Kategorie und Suite
 - hybride Internationalisierung: gemeinsame Plattform-/Suite-Texte plus toolnahe Übersetzungen
 - vollständige, automatisch geprüfte Open-Source-Lizenzinformationen
 - Projektlizenz `AGPL-3.0-only`

@@ -9,9 +9,10 @@ Der Ordnername `uebergabe` verwendet bewusst nur ASCII-Zeichen, damit Skripte, G
 1. [`00-einstieg/projektueberblick.md`](00-einstieg/projektueberblick.md) lesen.
 2. [`00-einstieg/arbeitsregeln.md`](00-einstieg/arbeitsregeln.md) beachten.
 3. [`01-stand/aktueller-stand.md`](01-stand/aktueller-stand.md) und [`01-stand/offene-punkte.md`](01-stand/offene-punkte.md) prüfen.
-4. Betroffene Originaldokumente und den aktuellen Code lesen.
-5. Vor einer größeren oder schwer umkehrbaren Entscheidung die Entscheidungsübersicht prüfen und bei Bedarf einen ADR anlegen.
-6. Nach der Arbeit Status, offene Punkte und eine Übergabe aktualisieren.
+4. Die **jüngste Übergabe** unter [`05-uebergaben/`](05-uebergaben/) lesen (Dateiname `YYYY-MM-DD-…`, neuestes Datum zuerst): dort stehen die zuletzt geänderten Bereiche, die dort gelaufenen Prüfungen und der empfohlene nächste Schritt.
+5. Betroffene Originaldokumente und den aktuellen Code lesen.
+6. Vor einer größeren oder schwer umkehrbaren Entscheidung die Entscheidungsübersicht prüfen und bei Bedarf einen ADR anlegen.
+7. Nach der Arbeit Status, offene Punkte und eine Übergabe aktualisieren.
 
 ## Ablage
 

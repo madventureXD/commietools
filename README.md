@@ -56,11 +56,16 @@ npm run licenses:generate
 npm run licenses:check
 ```
 
-Both `npm run check` and `npm run build` fail when a package has no license, uses an unreviewed expression, lacks a complete SPDX text, or when generated licensing files are missing or stale.
+Both `npm run check` and `npm run build` fail when a package has no license, uses an unreviewed expression, lacks a complete SPDX text, or when generated licensing files are missing or stale. The same two commands fail when the searchable catalogue is stale or a tool declaration is incomplete — after changing tool manifests, locale catalogues or tool icons, regenerate it:
+
+```bash
+npm run catalog:generate
+npm run catalog:check
+```
 
 ## Current scope
 
-The first executable slice is a bilingual, responsive, manifest-driven catalogue with six local tools and four curated suites. It establishes automatic routes, design tokens, theme handling, privacy classification and an offline shell without prematurely selecting server, database or native-app frameworks. The image metadata tool removes EXIF, XMP, IPTC and comment blocks without re-encoding the image, so the pixels stay byte-identical. The image resize tool scales, crops, rotates and mirrors with high-quality filtering in a web worker.
+The first executable slice is a bilingual, responsive, manifest-driven catalogue with six local tools and four curated suites. It establishes automatic routes, design tokens, theme handling, privacy classification and an offline shell without prematurely selecting server, database or native-app frameworks. The image metadata tool removes EXIF, XMP, IPTC and comment blocks without re-encoding the image, so the pixels stay byte-identical. The image resize tool scales, crops, rotates and mirrors with high-quality filtering in a web worker. The catalogue is searchable across every language: a German query finds English terms and vice versa, while results are shown in the selected language and state what they matched on.
 
 See [docs/architecture.md](docs/architecture.md) and [docs/ui-system.md](docs/ui-system.md).
 

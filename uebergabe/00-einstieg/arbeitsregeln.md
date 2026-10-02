@@ -14,6 +14,13 @@
 - Tool-Logik von App-Shell und Darstellung trennen.
 - Keine nutzerseitigen Texte hart im Tool-Code hinterlegen.
 - Neue Tools über Manifeste integrieren und vorhandene gemeinsame UI-Bausteine verwenden.
+- **Jedes Tool braucht `summaryKey` (eine Zeile für Karten und Trefferlisten) und `termsKey`
+  (kommagetrennte Suchbegriffe, führendes `#` markiert ein Schlagwort) sowie ein Symbol unter
+  `apps/web/public/tools/<id>.svg`; Werkzeuge, die Dateien lesen oder schreiben, deklarieren das im
+  Manifest unter `files`.**
+- **Das Werkzeugregister `packages/tools/src/catalog/toolIndex.ts` wird erzeugt und nie von Hand
+  geändert.** Dateitypen in Oberflächen kommen aus der Deklaration (`acceptAttributeFor`), nicht aus
+  getippten Listen — die Prüfung lehnt `accept="…"` ab.
 - Abhängigkeiten nur mit dokumentierter Notwendigkeit und geprüfter Lizenz ergänzen.
 - Datenschutz-, Offline- und Barrierefreiheitsfolgen mitbedenken.
 - Keine Geheimnisse, Zugangsdaten oder personenbezogenen Daten dokumentieren.
@@ -26,6 +33,16 @@ Vor einer abgeschlossenen Übergabe mindestens ausführen:
 npm run check
 npm run build
 ```
+
+Nach Änderungen an Manifesten, Sprachkatalogen oder Werkzeugsymbolen zuerst das Register erzeugen:
+
+```bash
+npm run catalog:generate
+npm run catalog:check
+```
+
+`catalog:check` läuft in `check` und `build` mit und scheitert absichtlich, wenn das Register veraltet
+ist oder eine Angabe fehlt (Kurzbeschreibung, Suchbegriffe, Dateityp, Symbol, doppelter Begriff).
 
 Bei Abhängigkeitsänderungen zusätzlich die Lizenzdatenbank erzeugen und prüfen:
 

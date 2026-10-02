@@ -31,3 +31,15 @@ Light and dark modes share identical structure. Semantic design tokens define su
 
 Semantic HTML, visible keyboard focus, 44px minimum interactive targets, sufficient contrast, zoom-safe layouts and localized accessible names are required. Automated accessibility checks should be added with the first component test suite.
 
+## Catalogue and search
+
+The tool catalogue is the platform's entry surface and follows its own visible rules:
+
+- Every card shows the tool's symbol, its category, its title, the one-line summary from the catalogue and its tags. The long description stays on the tool page.
+- Search answers from two characters on and states the result count; below that it lists everything instead of pretending to search.
+- Every result says what it matched on (`gefunden über …` / `found via …`), in the language the catalogue is displayed in. A German query may match an English term and vice versa; the result is still shown in the selected language, only the matched word keeps its own language.
+- A hit inside a long sentence is reported with the single word, never with the whole sentence.
+- No fuzzy matching and no suggestions when nothing matches: an empty result is stated plainly, with a hint at what else to try.
+- While a search is active the suite list is hidden, because curated collections are not searchable.
+- File types shown to the user (`Formate`, `Nur lesbar`, the `accept` attribute) come from the manifest declaration, never from a literal in the interface.
+

@@ -53,6 +53,8 @@ Die Fehlschlagproben decken ab: fehlende Dateideklaration bei einem Bildwerkzeug
 
 ## Offene Punkte und Risiken
 
+> **Nachtrag 2026-10-03:** Der empfohlene nächste Schritt (Begriffe gegenlesen und Schritt 2 bauen) ist erledigt. Die Begriffe umfassen jetzt 620 Einträge, die Suche ist gebaut und im Browser belegt. Der gültige Stand steht in der Übergabe `2026-10-03-katalogsuche.md`; dieses Dokument bleibt als Verlauf stehen.
+
 - [ ] **Die deutschen Suchbegriffe sind ein Entwurf** und brauchen dein Gegenlesen (Liste im Protokoll `2026-10-03-webkatalog.md`). Das ist die einzige Stelle, an der geraten wurde.
 - [ ] Die Suche selbst fehlt noch (Schritt 2) und das Ablegen einer Datei mit Werkzeugvorschlag (Schritt 3).
 - [ ] Ein Registereintrag trägt die Anzeigetexte **aller** Sprachen und liegt damit im Hauptbundle: +8,77 kB (+2,12 kB komprimiert). Bei vielen Werkzeugen und Sprachen neu messen; Ausweg ist das Register als abgerufene Datei (dann mit Ladezustand, wie die Lizenzseite).
