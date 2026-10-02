@@ -57,8 +57,8 @@ Oberfläche, Übersetzungen, Manifest, Suite, Tests und Dokumentation.
 
 ## Relevante Verweise
 
-- Commit: `f87be44` – enthält Verarbeitungslogik, Oberfläche, Tests, README-Berichtigung,
-  Standaktualisierung und diesen Vermerk
+- Commit: `f87be44` – Verarbeitungslogik, Oberfläche, Tests und Konzeptnachtrag;
+  `f417b20` – README-Berichtigung, Standaktualisierung, dieser Vermerk und die Übergabe
 - Konzept: [`../03-konzepte/2026-10-02-bild-suite.md`](../03-konzepte/2026-10-02-bild-suite.md), Abschnitt „Umsetzungshinweis"
 - Übergabe: [`../05-uebergaben/2026-10-02-image-metadata.md`](../05-uebergaben/2026-10-02-image-metadata.md)
 - ADR: keiner. Die Entscheidung gegen eine Fremdbibliothek ist im Konzept begründet und
