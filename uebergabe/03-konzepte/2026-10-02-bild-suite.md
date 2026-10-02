@@ -489,3 +489,41 @@ unter `06-protokolle/`.
 `image-resize` (`pica`), `image-batch` (`fflate`) und `color-tools` (`colorjs.io`) bleibt es
 bei der Empfehlung, weil dort echte, geprüfte Fremdbibliotheken echten Eigenaufwand sparen.
 `image-metadata` ist der Fall, in dem das nicht zutraf.
+
+## Umsetzungshinweis: zweites Werkzeug gebaut (2026-10-03)
+
+**Betrifft `image-resize`.** Das Werkzeug folgt dem Vorschlag: `pica` (MIT) für die
+Skalierung, Canvas für Zuschnitt und Ausrichtung. Keine Abweichung, aber vier Festlegungen und
+eine berichtigte Zahl, die hier festgehalten gehören.
+
+1. **Kostenangabe berichtigt.** Im Abschnitt „Ergebnis je Werkzeug" stand „~14,8 kB gzip",
+   hochgerechnet aus der Paketangabe. Gemessen kostet die Abhängigkeit **+21,27 kB
+   komprimiert** (plus 71,08 kB roh), weil `glur` und `multimath` mitkommen und der
+   Worker-Code im Bündel liegt. Für künftige Zeilen dieser Tabelle ist die Paketangabe
+   offenbar kein belastbarer Schätzer.
+2. **Vollbau statt Teilbau.** `pica` bietet einen Teilbau mit eigener Worker-Datei. Er
+   verlangt, die Worker-Adresse über ein Paketkürzel aufzulösen, was im hiesigen
+   Vite-Aufbau unsicher ist. Gewählt wurde der Vollbau, der den Worker einbettet und über
+   eine Blob-Adresse startet. **Folge:** Eine strenge Content-Security-Policy braucht dann
+   `worker-src blob:`. Der Teilbau ist der Weg für die offene CSP-Frage und bleibt als
+   Folgemaßnahme vermerkt.
+3. **Fester Ablauf Ausrichtung → Zuschnitt → Skalierung.** Der Zuschnitt bezieht sich immer
+   auf das ausgerichtete Bild. Das ist die einzige Stelle, an der eine Eingabe durch eine
+   andere verworfen wird: Eine Drehung setzt den Zuschnitt zurück. Ohne diese Festlegung
+   hätten Vorschau, Zahlen und Ergebnis auseinanderlaufen können.
+4. **Zuschnitt über Zahlenfelder statt Ziehen.** Entspricht `docs/ui-system.md`: exakte
+   Zahlen, keine versteckte Geste, Tastatur gleichwertig. Ziehen bleibt als zusätzlicher
+   Bequemlichkeitsweg offen und ist als Folgemaßnahme vermerkt.
+5. **Grenze von 10.000 Pixeln je Kante wird gemeldet.** Eine stille Begrenzung wäre eine
+   unangekündigte Planänderung; die Oberfläche weist darauf hin.
+
+**Zwei eigene Mängel, erst bei der Prüfung in verschiedenen Fensterbreiten gefunden:** Der
+Zuschnittrahmen war in Vorschaupixeln positioniert und hätte nicht mehr zum Bild gepasst,
+sobald die Vorschau per CSS schmaler wird; er rechnet jetzt in Anteilen des Bildes. Und die
+Vorschau war mit 560 Pixeln fest verdrahtet und lief auf schmalen Bildschirmen über. Beide
+sind behoben und bei 1360 px und 420 px Fensterbreite nachgemessen. **Lehre für die nächsten
+Werkzeuge dieser Suite:** einmal bei voller Breite und einmal schmal prüfen, nicht nur bei
+einer Fenstergröße.
+
+**Offen und nicht gemessen:** ob beim Speichern ein Farbprofil der Quelldatei erhalten bleibt.
+Das Werkzeug verarbeitet über Canvas, also ist Vorsicht angebracht statt einer Annahme.

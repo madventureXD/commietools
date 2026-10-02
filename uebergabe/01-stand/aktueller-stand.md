@@ -1,7 +1,7 @@
 # Aktueller Projektstand
 
-**Stand:** 2026-10-02  
-**Letzter geprüfter Meilenstein:** Werkzeug „Bild-Metadaten" (`f87be44`), davor vollständiges Lizenzsystem (`8a39f66`)
+**Stand:** 2026-10-03  
+**Letzter geprüfter Meilenstein:** Werkzeug „Bild skalieren" (`b0809d2`), davor „Bild-Metadaten" (`f87be44`), davor vollständiges Lizenzsystem (`8a39f66`)
 
 ## Umgesetzt
 
@@ -13,6 +13,7 @@
 - hybride Internationalisierung mit Deutsch und Englisch
 - QR-Code-Generator mit UTF-8-Unterstützung
 - Bild-Metadaten: Anzeige und verlustfreies Entfernen von EXIF, XMP, IPTC und Kommentaren in JPEG, PNG und WebP, ohne Neuberechnung der Bildpunkte
+- Bild skalieren: Skalieren, Zuschnitt, Drehen und Spiegeln mit hochwertiger Filterung im Web Worker; fester Ablauf Ausrichtung → Zuschnitt → Skalierung
 - CommieTools-Logo- und Iconvarianten
 - vollständige AGPL-3.0-only-Projektlizenz
 - automatisch erzeugte und auf der Webseite abrufbare Lizenzdatenbank
@@ -27,23 +28,24 @@
 | JSON-Formatierer | `json-formatter` | Entwicklung | lokal |
 | QR-Code-Generator | `qr-code-generator` | Generatoren | lokal |
 | Bild-Metadaten | `image-metadata` | Bilder | lokal |
+| Bild skalieren | `image-resize` | Bilder | lokal |
 
 ## Derzeitige Suiten
 
 - Text
 - Entwicklung
 - Generatoren
-- Bilder
+- Bilder (Bild-Metadaten, Bild skalieren)
 
 ## Qualität und Compliance
 
 - Projekt und interne Pakete: `AGPL-3.0-only`
 - Lizenzübersicht in der Webanwendung: `/licenses`
-- erfasste externe Pakete: 475
+- erfasste externe Pakete: 478
 - vollständige Lizenztexte: 12
-- bewahrte originale Paketdokumente: 162
-- letzter bekannter Teststand: 22 Tests bestanden
-- letzter bekannter Produktions-Build: bestanden; Hauptbundle 341,35 kB (103,91 kB komprimiert), Stylesheet 13,67 kB (3,25 kB komprimiert), Vorab-Cache mit 8 Einträgen
+- bewahrte originale Paketdokumente: 165
+- letzter bekannter Teststand: 40 Tests bestanden
+- letzter bekannter Produktions-Build: bestanden; Hauptbundle 412,43 kB (125,18 kB komprimiert), Stylesheet 14,32 kB (3,37 kB komprimiert), Vorab-Cache mit 8 Einträgen (1.308,87 KiB)
 
 Zahlen sind Momentaufnahmen. Nach Abhängigkeits-, Test- oder Tooländerungen müssen sie anhand der tatsächlichen Ausgabe aktualisiert werden.
 
