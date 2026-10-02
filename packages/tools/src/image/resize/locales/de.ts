@@ -1,10 +1,11 @@
 export const imageResizeDe = {
   'tool.imageResize.title': 'Bild skalieren',
   'tool.imageResize.description': 'Verkleinert, vergrößert, dreht, spiegelt und schneidet Bilder zu – vollständig auf deinem Gerät.',
+  'tool.imageResize.summary': 'Ändert Größe, Zuschnitt und Ausrichtung.',
+  'tool.imageResize.terms': 'skalieren,verkleinern,vergrößern,Bildgröße,Zuschnitt,zuschneiden,drehen,spiegeln,Foto,Profilbild,#bilder',
 
   'tool.imageResize.source': 'Bild',
   'tool.imageResize.chooseFile': 'Datei auswählen',
-  'tool.imageResize.accepted': 'JPEG, PNG und WebP',
   'tool.imageResize.selected': 'Ausgewählte Datei',
   'tool.imageResize.originalSize': 'Original',
   'tool.imageResize.preview': 'Vorschau',

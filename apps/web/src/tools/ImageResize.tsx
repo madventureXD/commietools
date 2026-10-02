@@ -1,8 +1,13 @@
 import { useEffect, useMemo, useRef, useState, type ChangeEvent } from 'react'
-import { cropBoxFraction, fitScale, planResize, type CropRect, type ResizeMode } from '@commietools/tools'
+import { acceptAttributeFor, cropBoxFraction, fitScale, formatNames, inputMimeTypes, planResize, readOnlyFormatNames, type CropRect, type ResizeMode } from '@commietools/tools'
 import type { Locale } from '@commietools/i18n'
 import { Button, LocalBadge } from '@commietools/ui'
 import { renderOrientationPreview, renderPlan, type OutputFormat } from './imageResizeRender'
+
+/** Formats offered by this tool, straight from the manifest. */
+const acceptedFormatNames = formatNames(inputMimeTypes('image-resize'))
+/** Formats the tool can read but not write back; empty for this tool. */
+const partialFormatNames = readOnlyFormatNames('image-resize')
 
 type Translate = (key: string) => string
 
@@ -155,9 +160,18 @@ export function ImageResize({ t, locale }: { t: Translate; locale: Locale }) {
           <div className="stack">
             <label className="field">
               <span>{t('tool.imageResize.chooseFile')}</span>
-              <input type="file" accept="image/jpeg,image/png,image/webp" onChange={selectFile} />
+              <input type="file" accept={acceptAttributeFor('image-resize')} onChange={selectFile} />
             </label>
-            <p className="scan-note">{t('tool.imageResize.accepted')}</p>
+            <p className="format-list">
+              <span>{t('tool.formats')}</span>
+              {acceptedFormatNames.map((name) => <span className="format-chip" key={name}>{name}</span>)}
+            </p>
+            {partialFormatNames.length > 0 && (
+              <p className="format-list">
+                <span>{t('tool.formats.readOnly')}</span>
+                {partialFormatNames.map((name) => <span className="format-chip" key={name}>{name}</span>)}
+              </p>
+            )}
             {fileName && (
               <dl className="results metadata-facts">
                 <div>

@@ -1,4 +1,10 @@
+import { formatInfo } from '@commietools/core'
 import type { SuiteManifest, ToolCategory, ToolManifest } from '@commietools/core'
+import { suiteManifests, toolManifests } from './catalog/manifests'
+import { toolIndex } from './catalog/toolIndex'
+
+export { suiteManifests, toolManifests } from './catalog/manifests'
+export { toolIndex } from './catalog/toolIndex'
 export { toolMessages } from './locales'
 export {
   detectImageFormat,
@@ -30,51 +36,6 @@ export {
   type Size
 } from './image/resize/resize'
 
-export const toolManifests: readonly ToolManifest[] = [
-  {
-    id: 'text-statistics',
-    route: '/tools/text-statistics',
-    category: 'text',
-    titleKey: 'tool.textStats.title',
-    descriptionKey: 'tool.textStats.description',
-    executionMode: 'local',
-    resourceClass: 'universal',
-    worksOffline: true
-  },
-  {
-    id: 'case-converter', route: '/tools/case-converter', category: 'text',
-    titleKey: 'tool.caseConverter.title', descriptionKey: 'tool.caseConverter.description',
-    executionMode: 'local', resourceClass: 'universal', worksOffline: true
-  },
-  {
-    id: 'json-formatter', route: '/tools/json-formatter', category: 'developer',
-    titleKey: 'tool.jsonFormatter.title', descriptionKey: 'tool.jsonFormatter.description',
-    executionMode: 'local', resourceClass: 'universal', worksOffline: true
-  },
-  {
-    id: 'qr-code-generator', route: '/tools/qr-code-generator', category: 'generator',
-    titleKey: 'tool.qr.title', descriptionKey: 'tool.qr.description',
-    executionMode: 'local', resourceClass: 'universal', worksOffline: true
-  },
-  {
-    id: 'image-metadata', route: '/tools/image-metadata', category: 'image',
-    titleKey: 'tool.imageMetadata.title', descriptionKey: 'tool.imageMetadata.description',
-    executionMode: 'local', resourceClass: 'universal', worksOffline: true
-  },
-  {
-    id: 'image-resize', route: '/tools/image-resize', category: 'image',
-    titleKey: 'tool.imageResize.title', descriptionKey: 'tool.imageResize.description',
-    executionMode: 'local', resourceClass: 'standard', worksOffline: true
-  }
-]
-
-export const suiteManifests: readonly SuiteManifest[] = [
-  { id: 'text', route: '/suites/text', titleKey: 'suite.text.title', descriptionKey: 'suite.text.description', toolIds: ['text-statistics', 'case-converter'] },
-  { id: 'developer', route: '/suites/developer', titleKey: 'suite.developer.title', descriptionKey: 'suite.developer.description', toolIds: ['json-formatter'] },
-  { id: 'generators', route: '/suites/generators', titleKey: 'suite.generators.title', descriptionKey: 'suite.generators.description', toolIds: ['qr-code-generator'] },
-  { id: 'image', route: '/suites/image', titleKey: 'suite.image.title', descriptionKey: 'suite.image.description', toolIds: ['image-metadata', 'image-resize'] }
-]
-
 export const toolById = new Map(toolManifests.map((tool) => [tool.id, tool]))
 export const toolByRoute = new Map(toolManifests.map((tool) => [tool.route, tool]))
 export const suiteByRoute = new Map(suiteManifests.map((suite) => [suite.route, suite]))
@@ -89,6 +50,40 @@ export function getSuiteTools(suite: SuiteManifest): readonly ToolManifest[] {
     return tool ? [tool] : []
   })
 }
+
+/** MIME types a tool offers in its main file input. */
+export function inputMimeTypes(toolId: string): readonly string[] {
+  return toolById.get(toolId)?.files?.input ?? []
+}
+
+/** Value for the `accept` attribute of a file input, derived from the manifest. */
+export function acceptAttributeFor(toolId: string): string {
+  return inputMimeTypes(toolId).join(',')
+}
+
+/** Language-neutral format names for a list of MIME types. */
+export function formatNames(mimeTypes: readonly string[]): readonly string[] {
+  return mimeTypes.flatMap((mime) => {
+    const info = formatInfo(mime)
+    return info ? [info.name] : []
+  })
+}
+
+/** Format names a tool can read but not write back, in the declared order. */
+export function readOnlyFormatNames(toolId: string): readonly string[] {
+  const files = toolById.get(toolId)?.files
+  const output = files?.output ?? []
+  return formatNames((files?.input ?? []).filter((mime) => !output.includes(mime)))
+}
+
+/** MIME types declared for one auxiliary input role, such as a logo image. */
+export function auxiliaryMimeTypes(toolId: string, role: string): readonly string[] {
+  const extra = toolById.get(toolId)?.files?.auxiliary?.find((item) => item.role === role)
+  return extra?.mimeTypes ?? []
+}
+
+/** Generated catalogue entries by tool id. */
+export const searchEntryById = new Map(toolIndex.map((entry) => [entry.id, entry]))
 
 export interface TextStatistics {
   characters: number
@@ -180,4 +175,3 @@ export function buildQrPayload(input: QrPayloadInput): string {
 export function encodeQrPayload(payload: string): string {
   return Array.from(new TextEncoder().encode(payload), (byte) => String.fromCharCode(byte)).join('')
 }
-

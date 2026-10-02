@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from 'react'
 import type { SuiteManifest, ToolManifest } from '@commietools/core'
 import { createTranslator, detectLocale, isLocale, localeRegistry, supportedLocales, type Locale } from '@commietools/i18n'
-import { convertCase, formatJson, getSuiteTools, getTextStatistics, suiteByRoute, suiteManifests, toolByRoute, toolManifests, toolMessages, type CaseMode } from '@commietools/tools'
+import { convertCase, formatJson, getSuiteTools, getTextStatistics, searchEntryById, suiteByRoute, suiteManifests, toolByRoute, toolManifests, toolMessages, type CaseMode } from '@commietools/tools'
 import { Button, LocalBadge } from '@commietools/ui'
 import { LicensePage } from './LicensePage'
 import { ImageMetadata } from './tools/ImageMetadata'
@@ -37,7 +37,8 @@ function usePathname() {
 }
 
 function ToolCard({ tool, t, navigate }: { tool: ToolManifest; t: Translate; navigate: (path: string) => void }) {
-  return <article className="catalog-card"><p className="category">{t(`category.${tool.category}`)}</p><h3>{t(tool.titleKey)}</h3><p>{t(tool.descriptionKey)}</p><div className="card-footer"><LocalBadge>{t('status.local')}</LocalBadge><button className="text-link" onClick={() => navigate(tool.route)}>{t('catalog.open')} →</button></div></article>
+  const entry = searchEntryById.get(tool.id)
+  return <article className="catalog-card">{entry && <span className="card-icon" aria-hidden="true" style={{ maskImage: `url(${entry.icon})`, WebkitMaskImage: `url(${entry.icon})` }} />}<p className="category">{t(`category.${tool.category}`)}</p><h3>{t(tool.titleKey)}</h3><p>{t(tool.summaryKey)}</p><div className="card-footer"><LocalBadge>{t('status.local')}</LocalBadge><button className="text-link" onClick={() => navigate(tool.route)}>{t('catalog.open')} →</button></div></article>
 }
 
 function TextArea({ label, value, onChange, readOnly = false }: { label: string; value: string; onChange?: (value: string) => void; readOnly?: boolean }) {
@@ -67,7 +68,8 @@ function JsonFormatterTool({ t }: { t: Translate }) {
 
 function ToolPage({ tool, t, locale, navigate }: { tool: ToolManifest; t: Translate; locale: Locale; navigate: (path: string) => void }) {
   const content = tool.id === 'text-statistics' ? <TextStatisticsTool t={t} /> : tool.id === 'case-converter' ? <CaseConverterTool t={t} locale={locale} /> : tool.id === 'json-formatter' ? <JsonFormatterTool t={t} /> : tool.id === 'qr-code-generator' ? <QrCodeGenerator t={t} /> : tool.id === 'image-metadata' ? <ImageMetadata t={t} locale={locale} /> : <ImageResize t={t} locale={locale} />
-  return <main className="detail-page"><button className="text-link back" onClick={() => navigate('/')}>← {t('tool.back')}</button><article className="tool-shell"><header className="tool-header"><div><p className="category">{t(`category.${tool.category}`)}</p><h1>{t(tool.titleKey)}</h1><p>{t(tool.descriptionKey)}</p></div><LocalBadge>{t('status.local')}</LocalBadge></header><div className="tool-content">{content}</div></article></main>
+  const icon = searchEntryById.get(tool.id)?.icon
+  return <main className="detail-page"><button className="text-link back" onClick={() => navigate('/')}>← {t('tool.back')}</button><article className="tool-shell"><header className="tool-header"><div>{icon && <span className="card-icon" aria-hidden="true" style={{ maskImage: `url(${icon})`, WebkitMaskImage: `url(${icon})` }} />}<p className="category">{t(`category.${tool.category}`)}</p><h1>{t(tool.titleKey)}</h1><p>{t(tool.descriptionKey)}</p></div><LocalBadge>{t('status.local')}</LocalBadge></header><div className="tool-content">{content}</div></article></main>
 }
 
 function SuitePage({ suite, t, navigate }: { suite: SuiteManifest; t: Translate; navigate: (path: string) => void }) {

@@ -13,8 +13,10 @@
   ],
   "scripts": {
     "dev": "npm run dev --workspace @commietools/web",
-    "build": "npm run licenses:check && npm run build --workspaces --if-present",
-    "check": "npm run licenses:check && npm run typecheck --workspaces --if-present && npm run test --workspaces --if-present",
+    "build": "npm run licenses:check && npm run catalog:check && npm run build --workspaces --if-present",
+    "catalog:check": "node scripts/catalog-generate.mjs check",
+    "catalog:generate": "node scripts/catalog-generate.mjs generate",
+    "check": "npm run licenses:check && npm run catalog:check && npm run typecheck --workspaces --if-present && npm run test --workspaces --if-present",
     "licenses:generate": "node scripts/license-audit.mjs generate",
     "licenses:check": "node scripts/license-audit.mjs check",
     "lint": "npm run lint --workspaces --if-present",

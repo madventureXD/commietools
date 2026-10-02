@@ -1,5 +1,6 @@
 export const qrCodeGeneratorEn = {
   'tool.qr.title': 'QR code generator', 'tool.qr.description': 'Creates versatile, customizable QR codes entirely on your device.',
+  'tool.qr.summary': 'Creates QR codes as an image.', 'tool.qr.terms': 'qr code,wifi,access,vcard,contact,link,url,email,generate,#generator',
   'tool.qr.content': 'Content', 'tool.qr.type': 'Content type', 'tool.qr.type.text': 'Text', 'tool.qr.type.url': 'Web address',
   'tool.qr.type.wifi': 'Wi-Fi', 'tool.qr.type.contact': 'Contact (vCard)', 'tool.qr.type.email': 'Email',
   'tool.qr.type.phone': 'Phone', 'tool.qr.type.sms': 'SMS', 'tool.qr.type.geo': 'Geo coordinates',

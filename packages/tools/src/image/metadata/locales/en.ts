@@ -1,10 +1,11 @@
 export const imageMetadataEn = {
   'tool.imageMetadata.title': 'Image metadata',
   'tool.imageMetadata.description': 'Shows hidden metadata in photos and removes it without re-encoding the image.',
+  'tool.imageMetadata.summary': 'Shows and removes hidden image data.',
+  'tool.imageMetadata.terms': 'metadata,exif,gps,location,remove,strip,photo,picture,privacy,#privacy,#images',
 
   'tool.imageMetadata.file': 'Select image',
   'tool.imageMetadata.chooseFile': 'Choose file',
-  'tool.imageMetadata.accepted': 'JPEG, PNG and WebP',
   'tool.imageMetadata.selected': 'Selected file',
   'tool.imageMetadata.size': 'Size',
   'tool.imageMetadata.dimensions': 'Dimensions',

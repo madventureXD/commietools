@@ -5,7 +5,7 @@ export const commonEn = {
   'status.local': 'Processed locally', 'status.offline': 'Available offline',
   'catalog.title': 'Tools', 'catalog.intro': 'Clear, precise tools that respect your data.', 'catalog.open': 'Open tool',
   'category.text': 'Text', 'category.pdf': 'PDF', 'category.image': 'Images', 'category.developer': 'Developer', 'category.generator': 'Generators',
-  'tool.result': 'Result', 'tool.back': 'Back to all tools',
+  'tool.result': 'Result', 'tool.back': 'Back to all tools', 'tool.formats': 'Formats', 'tool.formats.readOnly': 'Read only',
   'footer.licenses': 'Licenses & open source',
   'licenses.title': 'Licenses & open source', 'licenses.intro': 'Complete, automatically verified license information for CommieTools and every included package.',
   'licenses.projectDescription': 'CommieTools is free software licensed under the GNU Affero General Public License, version 3 only.',

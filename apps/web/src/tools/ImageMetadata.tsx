@@ -1,7 +1,11 @@
 import { useEffect, useMemo, useRef, useState, type ChangeEvent } from 'react'
 import {
+  acceptAttributeFor,
   detectImageFormat,
   findMetadataSegments,
+  formatNames,
+  inputMimeTypes,
+  readOnlyFormatNames,
   readMetadata,
   stripMetadata,
   type ImageFormat,
@@ -12,6 +16,11 @@ import {
 } from '@commietools/tools'
 import type { Locale } from '@commietools/i18n'
 import { Button, LocalBadge } from '@commietools/ui'
+
+/** Formats offered by this tool, straight from the manifest. */
+const acceptedFormatNames = formatNames(inputMimeTypes('image-metadata'))
+/** Formats the tool can read but not clean losslessly. */
+const partialFormatNames = readOnlyFormatNames('image-metadata')
 
 type Translate = (key: string) => string
 
@@ -126,9 +135,18 @@ export function ImageMetadata({ t, locale }: { t: Translate; locale: Locale }) {
           <div className="stack">
             <label className="field">
               <span>{t('tool.imageMetadata.chooseFile')}</span>
-              <input type="file" accept="image/jpeg,image/png,image/webp,image/gif,image/bmp,image/tiff,image/avif,image/heic" onChange={selectFile} />
+              <input type="file" accept={acceptAttributeFor('image-metadata')} onChange={selectFile} />
             </label>
-            <p className="scan-note">{t('tool.imageMetadata.accepted')}</p>
+            <p className="format-list">
+              <span>{t('tool.formats')}</span>
+              {acceptedFormatNames.map((name) => <span className="format-chip" key={name}>{name}</span>)}
+            </p>
+            {partialFormatNames.length > 0 && (
+              <p className="format-list">
+                <span>{t('tool.formats.readOnly')}</span>
+                {partialFormatNames.map((name) => <span className="format-chip" key={name}>{name}</span>)}
+              </p>
+            )}
             {fileName && (
               <dl className="results metadata-facts">
                 <div>

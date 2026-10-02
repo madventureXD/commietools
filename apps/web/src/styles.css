@@ -34,6 +34,10 @@ h1 { max-width: 16ch; margin-bottom: var(--space-4); font-size: clamp(3rem, 8vw,
 .catalog-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-4); }
 .catalog-card { display: flex; flex-direction: column; min-height: 16rem; padding: var(--space-6); border: 1px solid var(--color-border); border-radius: var(--radius-md); background: var(--color-surface); box-shadow: var(--shadow-card); }
 .catalog-card h3 { margin-bottom: var(--space-2); font-size: 1.35rem; }
+.card-icon { display: block; width: 1.9rem; height: 1.9rem; margin-bottom: var(--space-4); background-color: var(--color-brand); -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat; -webkit-mask-position: center; mask-position: center; -webkit-mask-size: contain; mask-size: contain; }
+.tool-header .card-icon { margin-bottom: var(--space-3); }
+.format-list { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-2); margin: 0; color: var(--color-text-muted); font-size: 0.85rem; }
+.format-chip { padding: 0.15rem 0.5rem; border: 1px solid var(--color-border); border-radius: 999px; color: var(--color-text); font-weight: 700; }
 .catalog-card > p:not(.category) { color: var(--color-text-muted); line-height: 1.55; }
 .card-footer { display: flex; justify-content: space-between; align-items: center; gap: var(--space-3); margin-top: auto; padding-top: var(--space-4); }
 .text-link { padding: 0; border: 0; color: var(--color-brand); background: none; cursor: pointer; font-weight: 800; }
