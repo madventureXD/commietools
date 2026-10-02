@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef, useState, type ChangeEvent, type ReactNode } from 'react'
 import QRCodeStyling from 'qr-code-styling'
-import { buildQrPayload, type QrContentType, type QrPayloadInput } from '@commietools/tools'
+import { buildQrPayload, encodeQrPayload, type QrContentType, type QrPayloadInput } from '@commietools/tools'
 import { Button, LocalBadge } from '@commietools/ui'
 
 type Translate = (key: string) => string
@@ -37,12 +37,13 @@ export function QrCodeGenerator({ t }: { t: Translate }) {
   const previewRef = useRef<HTMLDivElement>(null)
   const qrRef = useRef<QRCodeStyling | null>(null)
   const payload = useMemo(() => buildQrPayload(input), [input])
+  const encodedPayload = useMemo(() => encodeQrPayload(payload), [payload])
 
   const update = <Key extends keyof QrPayloadInput>(key: Key, value: QrPayloadInput[Key]) => setInput((current) => ({ ...current, [key]: value }))
 
   useEffect(() => {
     const options = {
-      width: size, height: size, type: 'svg' as const, data: payload || ' ', margin,
+      width: size, height: size, type: 'svg' as const, data: encodedPayload || ' ', margin,
       image: logo || undefined,
       qrOptions: { errorCorrectionLevel: correction },
       dotsOptions: { color: foreground, type: dotStyle },
@@ -57,7 +58,7 @@ export function QrCodeGenerator({ t }: { t: Translate }) {
     } else {
       qrRef.current.update(options)
     }
-  }, [payload, size, margin, correction, dotStyle, cornerStyle, foreground, background, cornerColor, logo, logoSize, hideDots])
+  }, [encodedPayload, size, margin, correction, dotStyle, cornerStyle, foreground, background, cornerColor, logo, logoSize, hideDots])
 
   function selectLogo(event: ChangeEvent<HTMLInputElement>) {
     const file = event.target.files?.[0]

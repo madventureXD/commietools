@@ -133,3 +133,11 @@ export function buildQrPayload(input: QrPayloadInput): string {
   }
 }
 
+/**
+ * Converts Unicode text to the byte string expected by qrcode-generator.
+ * The renderer otherwise truncates every UTF-16 code unit to one byte.
+ */
+export function encodeQrPayload(payload: string): string {
+  return Array.from(new TextEncoder().encode(payload), (byte) => String.fromCharCode(byte)).join('')
+}
+

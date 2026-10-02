@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import { createTranslator, detectLocale, localeRegistry, supportedLocales } from '@commietools/i18n'
-import { buildQrPayload, convertCase, formatJson, getSuiteTools, getTextStatistics, suiteManifests, toolByRoute, toolMessages } from '@commietools/tools'
+import { buildQrPayload, convertCase, encodeQrPayload, formatJson, getSuiteTools, getTextStatistics, suiteManifests, toolByRoute, toolMessages } from '@commietools/tools'
 
 describe('text statistics', () => {
   it('counts empty input', () => {
@@ -35,6 +35,14 @@ describe('local tool engines', () => {
 })
 
 describe('QR payloads', () => {
+  it('encodes German characters and other Unicode as UTF-8 bytes', () => {
+    const text = 'ÄÖÜ äöü ß – Grüße 👋'
+    const encoded = encodeQrPayload(text)
+
+    expect(Uint8Array.from(encoded, (character) => character.charCodeAt(0))).toEqual(new TextEncoder().encode(text))
+    expect(new TextDecoder().decode(Uint8Array.from(encoded, (character) => character.charCodeAt(0)))).toBe(text)
+  })
+
   it('builds escaped Wi-Fi payloads', () => {
     expect(buildQrPayload({ type: 'wifi', ssid: 'Office;West', password: 'a:b', security: 'WPA', hidden: true })).toBe('WIFI:T:WPA;S:Office\\;West;P:a\\:b;H:true;;')
   })
