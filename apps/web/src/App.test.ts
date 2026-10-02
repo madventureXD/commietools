@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { createTranslator } from '@commietools/i18n'
+import { createTranslator, detectLocale, localeRegistry, supportedLocales } from '@commietools/i18n'
 import { convertCase, formatJson, getSuiteTools, getTextStatistics, suiteManifests, toolByRoute, toolMessages } from '@commietools/tools'
 
 describe('text statistics', () => {
@@ -46,6 +46,13 @@ describe('hybrid translations', () => {
     const t = createTranslator('de', [incomplete])
     expect(t('tool.example.title')).toBe('Example')
     expect(t('missing.key')).toBe('missing.key')
+  })
+
+  it('derives supported languages and browser matching from the registry', () => {
+    expect(supportedLocales).toEqual(['de', 'en'])
+    expect(detectLocale(['de-AT', 'en-US'])).toBe('de')
+    expect(detectLocale(['fr-FR'])).toBe('en')
+    expect(localeRegistry.de.direction).toBe('ltr')
   })
 })
 

@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react'
 import type { SuiteManifest, ToolManifest } from '@commietools/core'
-import { createTranslator, type Locale } from '@commietools/i18n'
+import { createTranslator, detectLocale, isLocale, localeRegistry, supportedLocales, type Locale } from '@commietools/i18n'
 import { convertCase, formatJson, getSuiteTools, getTextStatistics, suiteByRoute, suiteManifests, toolByRoute, toolManifests, toolMessages, type CaseMode } from '@commietools/tools'
 import { Button, LocalBadge } from '@commietools/ui'
 
@@ -11,6 +11,11 @@ function preferredTheme(): Theme {
   const saved = localStorage.getItem('commietools-theme')
   if (saved === 'light' || saved === 'dark') return saved
   return matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+}
+
+function preferredLocale(): Locale {
+  const saved = localStorage.getItem('commietools-locale')
+  return saved && isLocale(saved) ? saved : detectLocale(navigator.languages)
 }
 
 function usePathname() {
@@ -67,12 +72,18 @@ function SuitePage({ suite, t, navigate }: { suite: SuiteManifest; t: Translate;
 }
 
 export function App() {
-  const [locale, setLocale] = useState<Locale>(() => navigator.language.startsWith('de') ? 'de' : 'en')
+  const [locale, setLocale] = useState<Locale>(preferredLocale)
   const [theme, setTheme] = useState<Theme>(preferredTheme)
   const [pathname, navigate] = usePathname()
   const t: Translate = createTranslator(locale, [toolMessages])
   const activeTool = toolByRoute.get(pathname)
   const activeSuite = suiteByRoute.get(pathname)
+
+  useEffect(() => {
+    localStorage.setItem('commietools-locale', locale)
+    document.documentElement.lang = locale
+    document.documentElement.dir = localeRegistry[locale].direction
+  }, [locale])
 
   function toggleTheme() {
     const next = theme === 'light' ? 'dark' : 'light'
@@ -85,5 +96,5 @@ export function App() {
     requestAnimationFrame(() => document.getElementById('suites')?.scrollIntoView())
   }
 
-  return <div className="app" data-theme={theme}><header className="site-header"><button className="brand button-reset" onClick={() => navigate('/')} aria-label={t('app.name')}><span className="brand-mark" aria-hidden="true">★</span><span>Commie<span>Tools</span></span></button><nav aria-label="Main navigation"><button className="button-reset" onClick={() => navigate('/')}>{t('nav.tools')}</button><button className="button-reset" onClick={goToSuites}>{t('nav.suites')}</button></nav><div className="header-actions"><Button onClick={() => setLocale(locale === 'de' ? 'en' : 'de')} aria-label={t('action.language')}>{locale.toUpperCase()}</Button><Button onClick={toggleTheme} aria-label={t('action.theme')}><span aria-hidden="true">{theme === 'light' ? '☾' : '☀'}</span></Button></div></header>{activeTool ? <ToolPage tool={activeTool} t={t} locale={locale} navigate={navigate} /> : activeSuite ? <SuitePage suite={activeSuite} t={t} navigate={navigate} /> : <main><section className="hero"><p className="eyebrow">CommieTools.org</p><h1>{t('app.tagline')}</h1><p className="hero-copy">{t('app.promise')}</p><div className="badges"><LocalBadge>{t('status.local')}</LocalBadge><LocalBadge>{t('status.offline')}</LocalBadge></div></section><section className="section" id="tools"><div className="section-heading"><div><p className="eyebrow">01</p><h2>{t('catalog.title')}</h2></div><p>{t('catalog.intro')}</p></div><div className="catalog-grid">{toolManifests.map((tool) => <ToolCard key={tool.id} tool={tool} t={t} navigate={navigate} />)}</div></section><section className="section" id="suites"><div className="section-heading"><div><p className="eyebrow">02</p><h2>{t('suite.heading')}</h2></div><p>{t('suite.intro')}</p></div><div className="catalog-grid suites">{suiteManifests.map((suite) => <article className="catalog-card suite-card" key={suite.id}><p className="category">Suite</p><h3>{t(suite.titleKey)}</h3><p>{t(suite.descriptionKey)}</p><div className="card-footer"><span>{suite.toolIds.length} {t('suite.tools')}</span><button className="text-link" onClick={() => navigate(suite.route)}>{t('suite.open')} →</button></div></article>)}</div></section></main>}</div>
+  return <div className="app" data-theme={theme}><header className="site-header"><button className="brand button-reset" onClick={() => navigate('/')} aria-label={t('app.name')}><span className="brand-mark" aria-hidden="true">★</span><span>Commie<span>Tools</span></span></button><nav aria-label="Main navigation"><button className="button-reset" onClick={() => navigate('/')}>{t('nav.tools')}</button><button className="button-reset" onClick={goToSuites}>{t('nav.suites')}</button></nav><div className="header-actions"><select className="language-select" value={locale} aria-label={t('action.language')} onChange={(event) => { if (isLocale(event.target.value)) setLocale(event.target.value) }}>{supportedLocales.map((code) => <option key={code} value={code}>{localeRegistry[code].label}</option>)}</select><Button onClick={toggleTheme} aria-label={t('action.theme')}><span aria-hidden="true">{theme === 'light' ? '☾' : '☀'}</span></Button></div></header>{activeTool ? <ToolPage tool={activeTool} t={t} locale={locale} navigate={navigate} /> : activeSuite ? <SuitePage suite={activeSuite} t={t} navigate={navigate} /> : <main><section className="hero"><p className="eyebrow">CommieTools.org</p><h1>{t('app.tagline')}</h1><p className="hero-copy">{t('app.promise')}</p><div className="badges"><LocalBadge>{t('status.local')}</LocalBadge><LocalBadge>{t('status.offline')}</LocalBadge></div></section><section className="section" id="tools"><div className="section-heading"><div><p className="eyebrow">01</p><h2>{t('catalog.title')}</h2></div><p>{t('catalog.intro')}</p></div><div className="catalog-grid">{toolManifests.map((tool) => <ToolCard key={tool.id} tool={tool} t={t} navigate={navigate} />)}</div></section><section className="section" id="suites"><div className="section-heading"><div><p className="eyebrow">02</p><h2>{t('suite.heading')}</h2></div><p>{t('suite.intro')}</p></div><div className="catalog-grid suites">{suiteManifests.map((suite) => <article className="catalog-card suite-card" key={suite.id}><p className="category">Suite</p><h3>{t(suite.titleKey)}</h3><p>{t(suite.descriptionKey)}</p><div className="card-footer"><span>{suite.toolIds.length} {t('suite.tools')}</span><button className="text-link" onClick={() => navigate(suite.route)}>{t('suite.open')} →</button></div></article>)}</div></section></main>}</div>
 }

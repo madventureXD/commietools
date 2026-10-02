@@ -1,19 +1,31 @@
-import { commonDe } from './common/de'
-import { commonEn } from './common/en'
-import { suitesDe } from './suites/de'
-import { suitesEn } from './suites/en'
+import { defaultLocale, isLocale, localeRegistry, type Locale } from './registry'
 
-export type Locale = 'de' | 'en'
+export { defaultLocale, detectLocale, isLocale, localeRegistry, supportedLocales, type Locale, type LocaleDefinition } from './registry'
+
 export type MessageCatalog = Readonly<Record<string, string>>
-export type LocalizedMessages = Readonly<Record<Locale, MessageCatalog>>
+export type LocalizedMessages = Readonly<Partial<Record<string, MessageCatalog>>>
 
-export const platformMessages: LocalizedMessages = {
-  de: { ...commonDe, ...suitesDe },
-  en: { ...commonEn, ...suitesEn }
+function resolveFallbackChain(locale: Locale): Locale[] {
+  const chain: Locale[] = [locale]
+  let current = locale
+  while (true) {
+    const fallback = localeRegistry[current].fallback
+    if (!isLocale(fallback) || chain.includes(fallback)) break
+    chain.push(fallback)
+    current = fallback
+  }
+  if (!chain.includes(defaultLocale)) chain.push(defaultLocale)
+  return chain.reverse()
 }
 
 export function createTranslator(locale: Locale, extensions: readonly LocalizedMessages[] = []) {
-  const fallback = Object.assign({}, platformMessages.en, ...extensions.map((catalog) => catalog.en))
-  const selected = locale === 'en' ? fallback : Object.assign({}, fallback, platformMessages[locale], ...extensions.map((catalog) => catalog[locale]))
+  const selected = Object.assign(
+    {},
+    ...resolveFallbackChain(locale).flatMap((current) => [
+      localeRegistry[current].messages,
+      ...extensions.map((catalog) => catalog[current] ?? {})
+    ])
+  ) as Record<string, string>
+
   return (key: string): string => selected[key] ?? key
 }

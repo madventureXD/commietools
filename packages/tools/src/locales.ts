@@ -1,11 +1,22 @@
-import { jsonFormatterDe } from './developer/json-formatter/locales/de'
-import { jsonFormatterEn } from './developer/json-formatter/locales/en'
-import { caseConverterDe } from './text/case-converter/locales/de'
-import { caseConverterEn } from './text/case-converter/locales/en'
-import { textStatisticsDe } from './text/text-statistics/locales/de'
-import { textStatisticsEn } from './text/text-statistics/locales/en'
+import { jsonFormatterMessages } from './developer/json-formatter/locales'
+import { caseConverterMessages } from './text/case-converter/locales'
+import { textStatisticsMessages } from './text/text-statistics/locales'
 
-export const toolMessages = {
-  de: { ...textStatisticsDe, ...caseConverterDe, ...jsonFormatterDe },
-  en: { ...textStatisticsEn, ...caseConverterEn, ...jsonFormatterEn }
-} as const
+type MessageCatalog = Readonly<Record<string, string>>
+type PartialLocalizedMessages = Readonly<Record<string, MessageCatalog>>
+
+function mergeToolCatalogs(catalogs: readonly PartialLocalizedMessages[]) {
+  const merged: Record<string, Record<string, string>> = {}
+  for (const catalog of catalogs) {
+    for (const [locale, messages] of Object.entries(catalog)) {
+      merged[locale] = { ...merged[locale], ...messages }
+    }
+  }
+  return merged
+}
+
+export const toolMessages = mergeToolCatalogs([
+  textStatisticsMessages,
+  caseConverterMessages,
+  jsonFormatterMessages
+])

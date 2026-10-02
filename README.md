@@ -11,7 +11,7 @@ CommieTools is a free, ad-free and privacy-oriented platform for practical digit
 - **Consistent:** every tool follows a shared input → settings → action → result flow.
 - **Precise:** accessible controls, exact numeric input and clear feedback take priority over decoration.
 - **Modular:** tools, UI, processing logic and translations are separate packages.
-- **International:** no user-facing text is hard-coded in tool logic; German and English are the first reference languages.
+- **International:** no user-facing text is hard-coded in tool logic; a locale registry automatically drives language selection, fallback and text direction.
 
 ## Quick start
 
