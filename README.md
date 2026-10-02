@@ -40,6 +40,7 @@ packages/ui       Shared design tokens and UI components
 licenses          Verified machine-readable license database and policy
 scripts           License generation and compliance checks
 docs              Architecture and product decisions
+uebergabe         AI- and human-readable project status, decisions and handoffs
 ```
 
 Desktop and mobile shells are deliberately not scaffolded yet. They should consume the same packages after the web/PWA architecture has proved stable.
@@ -62,4 +63,8 @@ Both `npm run check` and `npm run build` fail when a package has no license, use
 The first executable slice is a bilingual, responsive, manifest-driven catalogue with three local tools and two curated suites. It establishes automatic routes, design tokens, theme handling, privacy classification and an offline shell without prematurely selecting server, database or native-app frameworks.
 
 See [docs/architecture.md](docs/architecture.md) and [docs/ui-system.md](docs/ui-system.md).
+
+## Collaboration and handoffs
+
+The structured [project handoff area](uebergabe/README.md) is the entry point for humans and AI systems continuing the work. It records current status, open items, concepts, durable decisions, progress logs and session handoffs without duplicating the authoritative technical documentation.
 
