@@ -1,6 +1,6 @@
 export type ToolExecutionMode = 'local' | 'hybrid' | 'online'
 export type ToolResourceClass = 'universal' | 'standard' | 'heavy'
-export type ToolCategory = 'text' | 'pdf' | 'image' | 'developer'
+export type ToolCategory = 'text' | 'pdf' | 'image' | 'developer' | 'generator'
 
 export interface ToolManifest {
   id: string

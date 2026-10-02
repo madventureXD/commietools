@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import { createTranslator, detectLocale, localeRegistry, supportedLocales } from '@commietools/i18n'
-import { convertCase, formatJson, getSuiteTools, getTextStatistics, suiteManifests, toolByRoute, toolMessages } from '@commietools/tools'
+import { buildQrPayload, convertCase, formatJson, getSuiteTools, getTextStatistics, suiteManifests, toolByRoute, toolMessages } from '@commietools/tools'
 
 describe('text statistics', () => {
   it('counts empty input', () => {
@@ -31,6 +31,17 @@ describe('local tool engines', () => {
   it('formats valid JSON and reports invalid JSON', () => {
     expect(formatJson('{"ok":true}').value).toBe('{\n  "ok": true\n}')
     expect(formatJson('{').error).toBe('invalid-json')
+  })
+})
+
+describe('QR payloads', () => {
+  it('builds escaped Wi-Fi payloads', () => {
+    expect(buildQrPayload({ type: 'wifi', ssid: 'Office;West', password: 'a:b', security: 'WPA', hidden: true })).toBe('WIFI:T:WPA;S:Office\\;West;P:a\\:b;H:true;;')
+  })
+
+  it('builds contact and email payloads', () => {
+    expect(buildQrPayload({ type: 'contact', firstName: 'Ada', lastName: 'Lovelace', email: 'ada@example.org' })).toContain('FN:Ada Lovelace')
+    expect(buildQrPayload({ type: 'email', email: 'info@example.org', subject: 'Hello world' })).toBe('mailto:info@example.org?subject=Hello+world')
   })
 })
 

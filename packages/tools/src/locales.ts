@@ -1,4 +1,5 @@
 import { jsonFormatterMessages } from './developer/json-formatter/locales'
+import { qrCodeGeneratorMessages } from './generator/qr-code-generator/locales'
 import { caseConverterMessages } from './text/case-converter/locales'
 import { textStatisticsMessages } from './text/text-statistics/locales'
 
@@ -18,5 +19,6 @@ function mergeToolCatalogs(catalogs: readonly PartialLocalizedMessages[]) {
 export const toolMessages = mergeToolCatalogs([
   textStatisticsMessages,
   caseConverterMessages,
-  jsonFormatterMessages
+  jsonFormatterMessages,
+  qrCodeGeneratorMessages
 ])

@@ -44,6 +44,8 @@ Desktop and mobile shells are deliberately not scaffolded yet. They should consu
 
 The public licensing model is intentionally left undecided and must be selected before publication.
 
+Third-party open-source components are documented in [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
+
 ## Current scope
 
 The first executable slice is a bilingual, responsive, manifest-driven catalogue with three local tools and two curated suites. It establishes automatic routes, design tokens, theme handling, privacy classification and an offline shell without prematurely selecting server, database or native-app frameworks.

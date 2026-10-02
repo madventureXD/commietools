@@ -16,6 +16,7 @@
     "@commietools/tools": "0.1.0",
     "@commietools/ui": "0.1.0",
     "@vite-pwa/assets-generator": "^1.0.0",
+    "qr-code-styling": "^1.9.2",
     "react": "^19.2.0",
     "react-dom": "^19.2.0"
   },

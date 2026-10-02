@@ -4,7 +4,7 @@ export const commonEn = {
   'action.theme': 'Switch color theme', 'action.language': 'Switch language',
   'status.local': 'Processed locally', 'status.offline': 'Available offline',
   'catalog.title': 'Tools', 'catalog.intro': 'Clear, precise tools that respect your data.', 'catalog.open': 'Open tool',
-  'category.text': 'Text', 'category.pdf': 'PDF', 'category.image': 'Images', 'category.developer': 'Developer',
+  'category.text': 'Text', 'category.pdf': 'PDF', 'category.image': 'Images', 'category.developer': 'Developer', 'category.generator': 'Generators',
   'tool.result': 'Result', 'tool.back': 'Back to all tools',
   'principles.title': 'Built for trust',
   'principles.local': 'Files and content stay on your device by default.',

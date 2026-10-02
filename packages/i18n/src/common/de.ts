@@ -4,7 +4,7 @@ export const commonDe = {
   'action.theme': 'Farbschema wechseln', 'action.language': 'Sprache wechseln',
   'status.local': 'Lokal verarbeitet', 'status.offline': 'Offline verfügbar',
   'catalog.title': 'Werkzeuge', 'catalog.intro': 'Klare, präzise Werkzeuge, die deine Daten respektieren.', 'catalog.open': 'Tool öffnen',
-  'category.text': 'Text', 'category.pdf': 'PDF', 'category.image': 'Bilder', 'category.developer': 'Entwicklung',
+  'category.text': 'Text', 'category.pdf': 'PDF', 'category.image': 'Bilder', 'category.developer': 'Entwicklung', 'category.generator': 'Generatoren',
   'tool.result': 'Ergebnis', 'tool.back': 'Zurück zu allen Tools',
   'principles.title': 'Gebaut für Vertrauen',
   'principles.local': 'Dateien und Inhalte bleiben standardmäßig auf deinem Gerät.',
