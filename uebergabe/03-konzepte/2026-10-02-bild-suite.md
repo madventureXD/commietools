@@ -184,10 +184,17 @@ Werkzeug-IDs. Kein Werkzeugcode und keine Übersetzungen werden kopiert.
 
 **Geprüft von:** Faber (Hermes Agent) · **Prüfart:** Papierprüfung, kein Probeaufbau
 
-**Ergebnis in einem Satz:** Alle zehn Werkzeuge sind lokal und offline machbar. Sechs davon
-brauchen keine neue Abhängigkeit, vier brauchen eine geprüfte Bibliothek oder Modellgewichte.
-Zwei Kandidaten sind wegen ihrer Lizenz ausgeschlossen, drei weitere wegen fehlender Pflege
-abzulehnen.
+**Ergebnis in einem Satz:** Alle zehn Werkzeuge sind lokal und offline machbar. Vier sind
+ohne Fremdbibliothek baubar, sofern `image-converter` ohne AVIF und `image-optimizer` ohne
+zusätzlichen Nachkodierer starten; sechs brauchen mindestens eine geprüfte Bibliothek oder
+Modellgewichte. Zwei Kandidaten sind wegen ihrer Lizenz ausgeschlossen (RMBG-1.4, RMBG-2.0),
+sechs weitere wegen fehlender Pflege abzulehnen.
+
+*Korrektur von 2026-10-02, unmittelbar nach dem ersten Schreiben dieses Abschnitts: In der
+ersten Fassung stand „sechs davon brauchen keine neue Abhängigkeit" und „drei weitere wegen
+fehlender Pflege". Beide Zahlen waren falsch gezählt. Die erste Berichtigung nannte
+`image-converter` pauschal ohne Pflichtabhängigkeit, was dem späteren AVIF-Befund
+widerspricht; maßgeblich ist die präzisierte Fassung oben.*
 
 ### Prüfmethodik und Belegstufen
 
