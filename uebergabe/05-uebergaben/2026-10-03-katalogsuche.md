@@ -78,7 +78,7 @@ Offen bleibt nur **Schritt 3**: eine gezogene Datei soll passende Werkzeuge vors
 
 **Vor jedem Commit:** `npm run check` und `npm run build`. Nach Änderungen an Manifesten, Sprachkatalogen oder Symbolen zuerst `npm run catalog:generate`.
 
-**Stand:** Branch `main`, **kein Remote konfiguriert**, Arbeitsbaum sauber. Letzte Commits (neueste zuerst): `bb7845a` (Dokumentation der Suche), `824364e` (Favicon), `6ccaeb2` (Suche), `d11cca3` (Dokumentation des Registers), `ef1d13e` (Register).
+**Stand:** Branch `main`, **kein Remote konfiguriert**, Arbeitsbaum sauber. Letzte Commits (neueste zuerst): `73d74af` (Übergabe und Einstiegspunkte), `bb7845a` (Dokumentation der Suche), `824364e` (Favicon), `6ccaeb2` (Suche), `d11cca3` (Dokumentation des Registers), `ef1d13e` (Register).
 
 **So prüft man die Oberfläche wirklich** (nicht nur mit Tests): `npm run preview` startet unter `http://localhost:4173`; Edge headless über `--headless=new --remote-debugging-port=9333` mit frischem Profil steuern (kein Chromium im Projekt, `browser_exec` scheitert). Vorher `navigator.serviceWorker.getRegistrations()` abmelden und `caches.keys()` leeren, sonst liefert der PWA-Cache die alte Fassung; die geladene Bündeldatei gegen `dist/assets/` vergleichen. Bei **zwei Fensterbreiten** (etwa 1360 und 420 px) und in **beiden Farbschemata** prüfen — im headless-Browser kommt das Farbschema aus `prefers-color-scheme`, nicht aus dem Speicher (`Emulation.setEmulatedMedia`).
 
@@ -86,5 +86,5 @@ Offen bleibt nur **Schritt 3**: eine gezogene Datei soll passende Werkzeuge vors
 
 ## Git
 
-- Commit: `6ccaeb2` (Suche), `824364e` (Favicon)
+- Commits: `6ccaeb2` (Suche), `824364e` (Favicon), `bb7845a` und `73d74af` (Dokumentation und Übergabe)
 - Arbeitsbaum: sauber
