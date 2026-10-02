@@ -1,7 +1,7 @@
 # Aktueller Projektstand
 
 **Stand:** 2026-10-03  
-**Letzter geprüfter Meilenstein:** Werkzeug „Bild skalieren" (`b0809d2`), davor „Bild-Metadaten" (`f87be44`), davor vollständiges Lizenzsystem (`8a39f66`)
+**Letzter geprüfter Meilenstein:** Werkzeugkatalog als erzeugtes Register (`ef1d13e`), davor Werkzeug „Bild skalieren" (`b0809d2`), davor „Bild-Metadaten" (`f87be44`)
 
 ## Umgesetzt
 
@@ -18,17 +18,19 @@
 - vollständige AGPL-3.0-only-Projektlizenz
 - automatisch erzeugte und auf der Webseite abrufbare Lizenzdatenbank
 - Lizenzprüfung als verpflichtender Bestandteil von Check und Build
+- erzeugtes Werkzeugregister (`packages/tools/src/catalog/toolIndex.ts`) mit Symbol, Kurzbeschreibung und Suchbegriffen je Werkzeug und Sprache; Prüfung als Bestandteil von Check und Build
+- deklarierte Dateifähigkeiten je Werkzeug im Manifest (`input`, `auxiliary`, `output`); Dateifelder, Formatlisten und Katalogkarten lesen daraus, nicht aus eigenen Kopien
 
 ## Derzeitige Tools
 
-| Tool | ID | Suite | Ausführung |
-|---|---|---|---|
-| Textstatistik | `text-statistics` | Text | lokal |
-| Groß-/Kleinschreibung | `case-converter` | Text | lokal |
-| JSON-Formatierer | `json-formatter` | Entwicklung | lokal |
-| QR-Code-Generator | `qr-code-generator` | Generatoren | lokal |
-| Bild-Metadaten | `image-metadata` | Bilder | lokal |
-| Bild skalieren | `image-resize` | Bilder | lokal |
+| Tool | ID | Suite | Ausführung | Dateien (deklariert) |
+|---|---|---|---|---|
+| Textstatistik | `text-statistics` | Text | lokal | keine (nur Information) |
+| Groß-/Kleinschreibung | `case-converter` | Text | lokal | keine (nur Information) |
+| JSON-Formatierer | `json-formatter` | Entwicklung | lokal | keine (nur Information) |
+| QR-Code-Generator | `qr-code-generator` | Generatoren | lokal | Logo hinein (4 Typen), Bild heraus (4 Typen) |
+| Bild-Metadaten | `image-metadata` | Bilder | lokal | 8 Typen hinein, 3 verlustfrei heraus |
+| Bild skalieren | `image-resize` | Bilder | lokal | 3 Typen hinein und heraus |
 
 ## Derzeitige Suiten
 
@@ -44,8 +46,9 @@
 - erfasste externe Pakete: 478
 - vollständige Lizenztexte: 12
 - bewahrte originale Paketdokumente: 165
-- letzter bekannter Teststand: 40 Tests bestanden
-- letzter bekannter Produktions-Build: bestanden; Hauptbundle 412,43 kB (125,18 kB komprimiert), Stylesheet 14,32 kB (3,37 kB komprimiert), Vorab-Cache mit 8 Einträgen (1.308,87 KiB)
+- letzter bekannter Teststand: 52 Tests bestanden
+- Werkzeugregister: 6 Werkzeuge, 2 Sprachen, 6 Symbole, 114 Suchbegriffe, 25 deklarierte Dateitypen (`npm run catalog:check`)
+- letzter bekannter Produktions-Build: bestanden; Hauptbundle 421,20 kB (127,30 kB komprimiert), Stylesheet 14,90 kB (3,48 kB komprimiert), Vorab-Cache mit 14 Einträgen (1.319,86 KiB)
 
 Zahlen sind Momentaufnahmen. Nach Abhängigkeits-, Test- oder Tooländerungen müssen sie anhand der tatsächlichen Ausgabe aktualisiert werden.
 

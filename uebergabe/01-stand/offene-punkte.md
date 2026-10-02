@@ -10,7 +10,8 @@ Diese Liste enth채lt best채tigte, noch nicht abgeschlossene Arbeit. Details geh�
 
 ## Mittlere Priorit채t
 
-- [ ] Standardisierten Generator bzw. Check f체r neue Tools definieren.
+- [ ] Deutsche Suchbegriffe und Kurzbeschreibungen des Werkzeugregisters gegenlesen (Entwurf in `06-protokolle/2026-10-03-webkatalog.md`); danach Schritt 2 der Katalogsuche: Suchfeld 체ber die Begriffe aller Sprachen, Treffer in der eingestellten Sprache.
+- [ ] Schritt 3 der Katalogsuche: gezogene Datei gegen die deklarierten Dateitypen pr체fen und passende Werkzeuge vorschlagen.
 - [ ] Offline-Verhalten mit einem automatisierten Browser-Test absichern.
 - [ ] Content Security Policy und sp채tere Deployment-Header konkretisieren.
 - [ ] Performance-Budgets f체r gro횩e Tool-Engines und optionale Offline-Caches festlegen.
@@ -18,6 +19,7 @@ Diese Liste enth채lt best채tigte, noch nicht abgeschlossene Arbeit. Details geh�
 ## Sp채ter / bei konkretem Bedarf
 
 - [ ] Speicheradapter f체r persistente lokale Nutzerdaten definieren.
+- [ ] Bei wachsender Werkzeug- und Sprachenzahl den Bundlezuwachs des Registers messen; Ausweg ist eine abgerufene Registerdatei mit Ladezustand.
 - [ ] Grenze f체r WebAssembly-basierte Verarbeitungs-Engines entscheiden.
 - [ ] Desktop- und Mobile-Shells evaluieren.
 - [ ] Erweiterungsmodell f체r externe Tools oder Plugins bewerten.

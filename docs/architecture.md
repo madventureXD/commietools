@@ -18,7 +18,11 @@ Packages may depend on `core`. Tool logic must not depend on the web application
 
 ## Tool contract
 
-Every tool has a serializable manifest: identity, category, translation keys, execution mode, resource class and offline capability. The catalogue is generated from manifests rather than duplicated navigation data.
+Every tool has a serializable manifest: identity, category, translation keys, execution mode, resource class and offline capability. A tool also declares which files it reads and writes (`files.input`, `files.auxiliary` with a role, `files.output`); a tool without an input keeps no file field at all, and one that only produces information declares no output. File types are written as MIME types and resolved against `knownFormats` in `packages/core`, the single source for format names and extensions.
+
+Two translation keys are mandatory per tool and must exist in every locale catalogue: a one-line `summaryKey` for result lists and cards, and a `termsKey` with comma-separated search terms, where a leading `#` marks a tag.
+
+The catalogue is generated from manifests and locale catalogues rather than duplicated navigation data: `scripts/catalog-generate.mjs` writes `packages/tools/src/catalog/toolIndex.ts`, and `npm run check` fails when that file is out of date or when a declaration is incomplete (missing summary, missing terms, unknown file type, missing icon, inconsistent locale set, a hand-written `accept` list in a tool interface). The generated entries carry the searchable text of every language, so a later search can match a German query against English terms while showing results in the language the user selected.
 
 Suites are also manifest-driven. They reference tool IDs instead of copying tool code, so one tool may appear in multiple curated suites while retaining one implementation and one update path.
 
