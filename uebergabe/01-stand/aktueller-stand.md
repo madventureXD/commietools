@@ -106,7 +106,7 @@ Zahlen sind Momentaufnahmen. Nach Abhängigkeits-, Test- oder Tooländerungen m�
 
 ## Noch nicht umgesetzt
 
-- PDF-Suite M7 (digitale Signaturen)
+- PDF-Suite M7 (digitale Signaturen) ist durch ADR 0004 am Sicherheitsgate gesperrt; der verworfene `@signpdf`-Prototyp wurde vollständig entfernt
 - Backend, Konten und Synchronisierung
 - Desktop- und Mobile-Shells
 - sichtbarer Source-Link in der Weboberfläche
