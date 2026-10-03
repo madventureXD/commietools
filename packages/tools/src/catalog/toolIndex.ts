@@ -2798,5 +2798,159 @@ export const toolIndex: readonly ToolSearchEntry[] = [
         ]
       }
     }
+  },
+  {
+    "id": "pdf-viewer",
+    "route": "/tools/pdf-viewer",
+    "icon": "/tools/pdf-viewer.svg",
+    "category": "pdf",
+    "suiteIds": [
+      "pdf"
+    ],
+    "executionMode": "local",
+    "resourceClass": "heavy",
+    "worksOffline": true,
+    "input": [
+      "application/pdf"
+    ],
+    "output": [],
+    "auxiliary": [],
+    "locales": {
+      "de": {
+        "title": "PDF-Viewer",
+        "summary": "PDFs lokal lesen, durchsuchen, vergrößern und drehen.",
+        "description": "Öffnet und durchsucht PDFs direkt im Browser – ohne Upload.",
+        "terms": [
+          "PDF Viewer",
+          "PDF lesen",
+          "PDF öffnen",
+          "PDF durchsuchen",
+          "PDF anzeigen",
+          "Seitenansicht",
+          "Zoom"
+        ],
+        "tags": [
+          "#pdf",
+          "#viewer",
+          "#lesen"
+        ]
+      },
+      "en": {
+        "title": "PDF viewer",
+        "summary": "Read, search, zoom and rotate PDFs locally.",
+        "description": "Opens and searches PDFs directly in your browser — without uploading them.",
+        "terms": [
+          "PDF viewer",
+          "read PDF",
+          "open PDF",
+          "search PDF",
+          "display PDF",
+          "page view",
+          "zoom"
+        ],
+        "tags": [
+          "#pdf",
+          "#viewer",
+          "#read"
+        ]
+      },
+      "es": {
+        "title": "Visor de PDF",
+        "summary": "Lee, busca, amplía y gira archivos PDF localmente.",
+        "description": "Abre y busca en archivos PDF directamente en el navegador, sin subirlos.",
+        "terms": [
+          "visor PDF",
+          "leer PDF",
+          "abrir PDF",
+          "buscar PDF",
+          "mostrar PDF",
+          "vista de página",
+          "zoom"
+        ],
+        "tags": [
+          "#pdf",
+          "#visor",
+          "#leer"
+        ]
+      }
+    }
+  },
+  {
+    "id": "pdf-text-ocr",
+    "route": "/tools/pdf-text-ocr",
+    "icon": "/tools/pdf-text-ocr.svg",
+    "category": "pdf",
+    "suiteIds": [
+      "pdf"
+    ],
+    "executionMode": "local",
+    "resourceClass": "heavy",
+    "worksOffline": true,
+    "input": [
+      "application/pdf"
+    ],
+    "output": [
+      "text/plain"
+    ],
+    "auxiliary": [],
+    "locales": {
+      "de": {
+        "title": "PDF-Text & OCR",
+        "summary": "Text aus PDFs auslesen oder gescannte Seiten per OCR erkennen.",
+        "description": "Extrahiert vorhandenen Text und erkennt Text in gescannten PDF-Seiten lokal per OCR.",
+        "terms": [
+          "PDF Text extrahieren",
+          "OCR",
+          "Texterkennung",
+          "Scan lesen",
+          "PDF in Text",
+          "Tesseract",
+          "gescannte PDF"
+        ],
+        "tags": [
+          "#pdf",
+          "#ocr",
+          "#text"
+        ]
+      },
+      "en": {
+        "title": "PDF text & OCR",
+        "summary": "Extract PDF text or recognise scanned pages with OCR.",
+        "description": "Extracts existing text and recognises text in scanned PDF pages locally using OCR.",
+        "terms": [
+          "extract PDF text",
+          "OCR",
+          "text recognition",
+          "read scan",
+          "PDF to text",
+          "Tesseract",
+          "scanned PDF"
+        ],
+        "tags": [
+          "#pdf",
+          "#ocr",
+          "#text"
+        ]
+      },
+      "es": {
+        "title": "Texto PDF y OCR",
+        "summary": "Extrae texto de PDF o reconoce páginas escaneadas con OCR.",
+        "description": "Extrae el texto existente y reconoce localmente el texto de páginas PDF escaneadas mediante OCR.",
+        "terms": [
+          "extraer texto PDF",
+          "OCR",
+          "reconocimiento de texto",
+          "leer escaneo",
+          "PDF a texto",
+          "Tesseract",
+          "PDF escaneado"
+        ],
+        "tags": [
+          "#pdf",
+          "#ocr",
+          "#texto"
+        ]
+      }
+    }
   }
 ]

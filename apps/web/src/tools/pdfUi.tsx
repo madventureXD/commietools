@@ -95,6 +95,61 @@ export interface RenderedPdfPage {
   readonly height: number
 }
 
+export interface ExtractedPdfPage {
+  readonly pageNumber: number
+  readonly text: string
+}
+
+export async function extractPdfText(bytes: Uint8Array, pages?: readonly number[]): Promise<ExtractedPdfPage[]> {
+  const { GlobalWorkerOptions, getDocument } = await import('pdfjs-dist')
+  GlobalWorkerOptions.workerSrc = workerUrl
+  const task = getDocument({ data: bytes.slice() })
+  try {
+    const document = await task.promise
+    const indexes = pages ?? Array.from({ length: document.numPages }, (_, index) => index)
+    const results: ExtractedPdfPage[] = []
+    for (const index of indexes) {
+      const page = await document.getPage(index + 1)
+      const content = await page.getTextContent()
+      const text = content.items
+        .map((item) => 'str' in item ? item.str : '')
+        .join(' ')
+        .replace(/\s+/gu, ' ')
+        .trim()
+      results.push({ pageNumber: index + 1, text })
+      page.cleanup()
+    }
+    document.cleanup()
+    return results
+  } finally {
+    await task.destroy()
+  }
+}
+
+export async function renderPdfPagePreview(bytes: Uint8Array, pageNumber: number, scale: number, rotation: number): Promise<Blob> {
+  const { GlobalWorkerOptions, getDocument } = await import('pdfjs-dist')
+  GlobalWorkerOptions.workerSrc = workerUrl
+  const task = getDocument({ data: bytes.slice() })
+  try {
+    const document = await task.promise
+    const page = await document.getPage(pageNumber)
+    const viewport = page.getViewport({ scale, rotation })
+    if (viewport.width * viewport.height > 40_000_000) throw new PdfToolError('unsupported', 'Rendered page exceeds the memory safety limit')
+    const canvas = window.document.createElement('canvas')
+    canvas.width = Math.ceil(viewport.width)
+    canvas.height = Math.ceil(viewport.height)
+    const context = canvas.getContext('2d')
+    if (!context) throw new PdfToolError('unsupported', 'Canvas unavailable')
+    await page.render({ canvas, canvasContext: context, viewport, background: '#ffffff' }).promise
+    const blob = await new Promise<Blob>((resolve, reject) => canvas.toBlob((value) => value ? resolve(value) : reject(new Error('Image encoding failed')), 'image/webp', 0.92))
+    page.cleanup()
+    document.cleanup()
+    return blob
+  } finally {
+    await task.destroy()
+  }
+}
+
 export async function renderPdfPages(bytes: Uint8Array, pages: readonly number[], options: { dpi: number; format: 'png' | 'jpeg'; quality: number; background: string }): Promise<RenderedPdfPage[]> {
   const { GlobalWorkerOptions, getDocument } = await import('pdfjs-dist')
   GlobalWorkerOptions.workerSrc = workerUrl

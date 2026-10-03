@@ -16,6 +16,7 @@ import { pdfToImagesMessages } from './pdf/pdf-to-images/locales'
 import { pdfPlacementMessages } from './pdf/placement/locales'
 import { pdfM4Messages } from './pdf/m4/locales'
 import { pdfM5Messages } from './pdf/m5/locales'
+import { pdfM6Messages } from './pdf/m6/locales'
 
 type MessageCatalog = Readonly<Record<string, string>>
 type PartialLocalizedMessages = Readonly<Record<string, MessageCatalog>>
@@ -48,5 +49,6 @@ export const toolMessages = mergeToolCatalogs([
   pdfToImagesMessages,
   pdfPlacementMessages,
   pdfM4Messages,
-  pdfM5Messages
+  pdfM5Messages,
+  pdfM6Messages
 ])

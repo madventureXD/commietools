@@ -27,6 +27,8 @@ const PdfFormFill = lazy(() => import('./tools/PdfInteractiveTools').then((modul
 const PdfAnnotate = lazy(() => import('./tools/PdfInteractiveTools').then((module) => ({ default: module.PdfAnnotate })))
 const PdfSecurity = lazy(() => import('./tools/PdfSecurityTools').then((module) => ({ default: module.PdfSecurity })))
 const PdfCompress = lazy(() => import('./tools/PdfSecurityTools').then((module) => ({ default: module.PdfCompress })))
+const PdfViewer = lazy(() => import('./tools/PdfViewer').then((module) => ({ default: module.PdfViewer })))
+const PdfTextOcr = lazy(() => import('./tools/PdfTextOcr').then((module) => ({ default: module.PdfTextOcr })))
 
 type Theme = 'light' | 'dark'
 type Translate = (key: string) => string
@@ -103,7 +105,9 @@ function ToolPage({ tool, t, locale, navigate }: { tool: ToolManifest; t: Transl
                               : tool.id === 'pdf-form-fill' ? <Suspense fallback={<p aria-live="polite">…</p>}><PdfFormFill t={t} /></Suspense>
                                 : tool.id === 'pdf-annotate' ? <Suspense fallback={<p aria-live="polite">…</p>}><PdfAnnotate t={t} /></Suspense>
                                   : tool.id === 'pdf-security' ? <Suspense fallback={<p aria-live="polite">…</p>}><PdfSecurity t={t} /></Suspense>
-                                    : <Suspense fallback={<p aria-live="polite">…</p>}><PdfCompress t={t} /></Suspense>
+                                    : tool.id === 'pdf-compress' ? <Suspense fallback={<p aria-live="polite">…</p>}><PdfCompress t={t} /></Suspense>
+                                      : tool.id === 'pdf-viewer' ? <Suspense fallback={<p aria-live="polite">…</p>}><PdfViewer t={t} /></Suspense>
+                                        : <Suspense fallback={<p aria-live="polite">…</p>}><PdfTextOcr t={t} /></Suspense>
   const icon = searchEntryById.get(tool.id)?.icon
   return <main className="detail-page"><button className="text-link back" onClick={() => navigate('/')}>← {t('tool.back')}</button><article className="tool-shell"><header className="tool-header"><div>{icon && <span className="card-icon" aria-hidden="true" style={{ maskImage: `url(${icon})`, WebkitMaskImage: `url(${icon})` }} />}<p className="category">{t(`category.${tool.category}`)}</p><h1>{t(tool.titleKey)}</h1><p>{t(tool.descriptionKey)}</p></div><LocalBadge>{t('status.local')}</LocalBadge></header><div className="tool-content">{content}</div></article></main>
 }

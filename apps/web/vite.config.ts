@@ -36,10 +36,13 @@ export default defineConfig({
           '**/mupdf-*.wasm',
           '**/qpdf-*.js',
           '**/qpdf-*.wasm',
+          '**/PdfTextOcr-*.js',
+          '**/tesseract-*.js',
+          '**/worker.min-*.js',
           '**/pdf.worker*.mjs'
         ],
         runtimeCaching: [{
-          urlPattern: /\/assets\/(?:Pdf|ImagesToPdf-|pdf-|pdfUi-|pdfjs-|pdf-lib-|mupdf-|qpdf-|pdf\.worker)/,
+          urlPattern: /\/assets\/(?:Pdf|ImagesToPdf-|pdf-|pdfUi-|pdfjs-|pdf-lib-|mupdf-|qpdf-|tesseract-|worker\.min-|pdf\.worker)/,
           handler: 'CacheFirst',
           options: { cacheName: 'commietools-pdf-engines-v2' }
         }]

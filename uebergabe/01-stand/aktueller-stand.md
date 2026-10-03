@@ -1,7 +1,7 @@
 # Aktueller Projektstand
 
 **Stand:** 2026-10-03  
-**Letzter geprüfter Meilenstein:** Veröffentlichung des geprüften Stands mit 21 Werkzeugen (2026-10-03), davor Produktivdomain und SSL aktiv
+**Letzter geprüfter Meilenstein:** PDF-Suite M6 lokal umgesetzt und geprüft; Veröffentlichung bewusst zurückgestellt (2026-10-03)
 
 ## Umgesetzt
 
@@ -48,6 +48,8 @@
 - MuPDF.js als nur auf M4-Routen nachgeladene Open-Source-Spezialengine; großes WASM-Modul im PDF-Laufzeitcache statt im PWA-Vorabcache
 - PDF schützen und entsperren: AES-256, getrennte Öffnungs-/Besitzerpasswörter, verständliche Berechtigungen, falsches-Passwort-Schutz und rein lokale Verarbeitung
 - PDF komprimieren: verlustfreie Strukturkompression sowie zwei klar gekennzeichnete optionale Bildstufen mit transparentem Größenvergleich
+- eigenständiger PDF-Viewer mit Miniaturen, Seitennavigation, Zoom, Drehung und lokaler Volltextsuche
+- PDF-Text & OCR mit Seitenauswahl, vorhandener Textebene, automatischem OCR-Fallback, Deutsch/Englisch/Spanisch, Fortschritt, Abbruch und TXT-Ausgabe; Tesseract.js und Sprachmodell werden erst nach ausdrücklicher Zustimmung geladen
 - QPDF 12.2.0 als getrennt nachgeladene Open-Source-WASM-Engine; Binärartefakt mit SHA-256, Upstream-Komponenten, festen Commits und vollständigen Lizenzen registriert
 - datensparsame Ladegrenzen: Startseite und Fremdwerkzeuge laden keine PDF-Engine; PDF-Routen, Worker und WASM werden erst bei Nutzung übertragen und nicht vorab offline gespeichert
 - automatische Startlastprüfung mit 250-KiB-Gzip-Budget und Sperre gegen statisch erreichbare PDF-Engines
@@ -77,6 +79,8 @@
 | PDF kommentieren und markieren | `pdf-annotate` | PDF | lokal | PDF hinein und heraus |
 | PDF schützen und entsperren | `pdf-security` | PDF | lokal | PDF hinein und heraus |
 | PDF komprimieren | `pdf-compress` | PDF | lokal | PDF hinein und heraus |
+| PDF-Viewer | `pdf-viewer` | PDF | lokal | PDF hinein (nur Information) |
+| PDF-Text & OCR | `pdf-text-ocr` | PDF | lokal | PDF hinein, Text heraus |
 
 ## Derzeitige Suiten
 
@@ -84,25 +88,25 @@
 - Entwicklung
 - Generatoren
 - Bilder (Bild-Metadaten, Bild skalieren, Icon-Generator, Wasserzeichen, Farbwerkzeuge)
-- PDF (Zusammenführen, Teilen, Seiten organisieren, Bilder zu PDF, PDF zu Bildern, Wasserzeichen, Seitenzahlen, sichtbar unterschreiben, Formular ausfüllen, kommentieren und markieren, schützen/entsperren, komprimieren)
+- PDF (Viewer, Text/OCR, Zusammenführen, Teilen, Seiten organisieren, Bilder zu PDF, PDF zu Bildern, Wasserzeichen, Seitenzahlen, sichtbar unterschreiben, Formular ausfüllen, kommentieren und markieren, schützen/entsperren, komprimieren)
 
 ## Qualität und Compliance
 
 - Projekt und interne Pakete: `AGPL-3.0-only`
 - Lizenzübersicht in der Webanwendung: `/licenses`
-- erfasste externe Pakete: 498
+- erfasste externe Pakete: 511
 - vollständige Lizenztexte: 15
-- bewahrte originale Paketdokumente: 171
+- bewahrte originale Paketdokumente: 180
 - eingebettete Binärartefakte: 1 vollständig geprüftes QPDF-WASM-Artefakt
 - letzter bekannter Teststand: 152 Tests bestanden
-- Werkzeugregister: 21 Werkzeuge, 3 Sprachen, 21 Symbole, 70 deklarierte Dateitypen (`npm run catalog:check`); Spanisch ist lokal als noch gegenzulesendes Testpaket eingebunden
-- letzter bekannter Produktions-Build: bestanden; lokaler spanischer Teststand mit 183,02 kB Startcode komprimiert und ohne statisch erreichbare PDF-Engine; PDF-Routen, Worker und WASM sind vom Vorab-Cache ausgeschlossen
+- Werkzeugregister: 23 Werkzeuge, 3 Sprachen, 23 Symbole, 73 deklarierte Dateitypen (`npm run catalog:check`); Spanisch ist lokal als noch gegenzulesendes Testpaket eingebunden
+- letzter bekannter Produktions-Build: bestanden; 185.593 Byte Startcode komprimiert und ohne statisch erreichbare PDF-Engine; PDF-/OCR-Routen, Worker und WASM sind vom Vorab-Cache ausgeschlossen
 
 Zahlen sind Momentaufnahmen. Nach Abhängigkeits-, Test- oder Tooländerungen müssen sie anhand der tatsächlichen Ausgabe aktualisiert werden.
 
 ## Noch nicht umgesetzt
 
-- PDF-Suite M6 bis M7 (Textextraktion/OCR und digitale Signaturen)
+- PDF-Suite M7 (digitale Signaturen)
 - Backend, Konten und Synchronisierung
 - Desktop- und Mobile-Shells
 - sichtbarer Source-Link in der Weboberfläche

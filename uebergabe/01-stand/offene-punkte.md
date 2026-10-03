@@ -12,9 +12,8 @@ Diese Liste enthält bestätigte, noch nicht abgeschlossene Arbeit. Details geh�
 
 - [ ] Nach erfolgreicher Domainumschaltung einen sichtbaren Source-Link auf `https://github.com/madventureXD/commietools` in die Weboberfläche integrieren.
 - [ ] Mailbetrieb nach DNS-Umschaltung prüfen: MX, `autoconfig`, vier SRV-Einträge und SPF; `autoconfig` muss in Cloudflare auf „DNS only“ bleiben.
-- [ ] PDF-Suite M6 vorbereiten: PDF.js-Textextraktion und Tesseract.js-OCR mit Sprachmodell-, Worker-, Cache-, Speicher- und Lizenzgate prototypisieren.
 - [ ] PDF-Suite M8/M9 gemäß erweitertem 24-Werkzeuge-Konzept umsetzen; mit dem vorhandenen
-  PDF.js-Unterbau beim eigenständigen Viewer beginnen, danach Metadaten, Beschneiden,
+  PDF.js-Unterbau nach dem umgesetzten eigenständigen Viewer mit Metadaten, Beschneiden,
   Reparatur, Anhänge und Vergleich umsetzen; anschließend die risikoreicheren Werkzeuge PDF/A,
   sichere Schwärzung und Office-Konvertierung angehen. Für jeden Schritt gilt das dokumentierte
   Open-Source-, Lizenz- und Artefaktgate; proprietäre Dienste sind kein Fallback.
