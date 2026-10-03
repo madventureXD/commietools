@@ -30,7 +30,8 @@ verwenden, ohne auf kleinen Bildschirmen Arbeitsfläche dauerhaft zu belegen.
 - Den vollständigen Katalog oder die Suite-Seiten ersetzen.
 - Beliebtheit aus zentraler Telemetrie oder Nutzertracking ableiten.
 - Konten oder geräteübergreifende Synchronisierung voraussetzen.
-- Im ersten Schritt frei verschiebbare oder verschachtelte Menüstrukturen anbieten.
+- Frei verschiebbare Menüstrukturen anbieten. Unterkategorien sind als spätere, maximal zweistufige
+  Erweiterung der Manifestdaten vorgesehen.
 
 ## Gemeinsame Informationsarchitektur
 
@@ -44,7 +45,7 @@ Das Menü besteht in beiden Darstellungen aus:
 
 ### Sortieransichten
 
-- **Kategorien** – Standardansicht, gruppiert nach den vorhandenen fünf Suiten.
+- **Kategorien** – Standardansicht mit zunächst geschlossenen Kategorie-Akkordeons und Werkzeuganzahl.
 - **A–Z** – flache alphabetische Liste in der gewählten Sprache.
 - **Zuletzt** – zuletzt auf diesem Gerät geöffnete Werkzeuge, neueste zuerst.
 - **Favoriten** – vom Nutzer auf diesem Gerät markierte Werkzeuge.
@@ -113,7 +114,7 @@ Dateinamen, Suchbegriffe oder Nutzerdokumente.
 
 ## Zustände
 
-- **Standard:** Kategorien geöffnet; zuletzt gewählte Sortierung darf lokal gemerkt werden.
+- **Standard:** Kategorien eingeklappt; zuletzt gewählte Sortierung darf lokal gemerkt werden.
 - **Suche:** flache Trefferliste mit Ergebniszahl und Treffergrund.
 - **Keine Treffer:** klare leere Ansicht mit Aktion **Suche löschen**.
 - **Keine Favoriten:** Erklärung plus Möglichkeit, Sterne direkt in anderen Ansichten zu setzen.
@@ -143,6 +144,8 @@ Dateinamen, Suchbegriffe oder Nutzerdokumente.
 ## Technische Einordnung
 
 - Manifest, Symbole, Übersetzungen und `toolIndex.ts` bleiben die einzigen Werkzeugquellen.
+- Spätere Unterkategorien werden als optionale Manifestmetadaten modelliert. Die Navigation zeigt
+  höchstens Kategorie und Unterkategorie, damit sie auch mit vielen Bereichen übersichtlich bleibt.
 - `searchTools` beziehungsweise seine reine Suchlogik wird wiederverwendet.
 - Ein schmaler lokaler Navigationsspeicher verwaltet Favoriten, letzte Werkzeug-IDs und gewählte
   Sortierung; Fehler beim lokalen Speicher dürfen die Navigation nicht blockieren.

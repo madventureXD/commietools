@@ -55,7 +55,9 @@ The tool catalogue is the platform's entry surface and follows its own visible r
   drawer becomes a full-width sheet beneath the header.
 - The menu reuses the generated catalogue and the normal search implementation. It never imports
   a tool implementation or optional engine.
-- Categories are the default; A–Z, recent tools and favorites are alternative local views.
+- Categories are the default and start as collapsed accordions with a tool count; A–Z, recent tools
+  and favorites are alternative flat views. Future subcategories use the same nested disclosure
+  pattern and remain limited to two navigation levels.
 - Favorites and the ten most recent tool IDs are stored only on the device. Search text and user
   file information are never persisted.
 - Escape, the backdrop, the close button and the mobile back action close the menu and restore

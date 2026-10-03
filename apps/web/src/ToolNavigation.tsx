@@ -9,7 +9,12 @@ const FAVORITES_KEY = 'commietools-tool-favorites'
 const RECENT_KEY = 'commietools-tool-recent'
 const SORT_KEY = 'commietools-tool-sort'
 const knownIds = new Set(toolManifests.map((tool) => tool.id))
-const categoryOrder: ToolCategory[] = ['pdf', 'image', 'generator', 'developer', 'text']
+const preferredCategoryOrder: ToolCategory[] = ['pdf', 'image', 'generator', 'developer', 'text']
+const categoryOrder = [...new Set(toolManifests.map((tool) => tool.category))].sort((left, right) => {
+  const leftIndex = preferredCategoryOrder.indexOf(left)
+  const rightIndex = preferredCategoryOrder.indexOf(right)
+  return (leftIndex < 0 ? Number.MAX_SAFE_INTEGER : leftIndex) - (rightIndex < 0 ? Number.MAX_SAFE_INTEGER : rightIndex)
+})
 
 function readJson<T>(key: string, fallback: T): T {
   try {
@@ -144,10 +149,13 @@ export function ToolNavigation({ t, locale, activeToolId, navigate }: { t: Trans
 
   const content = trimmed.length >= MIN_QUERY_LENGTH || sort !== 'category'
     ? visible.length ? <div className="tool-menu-list">{visible.map(toolRow)}</div> : <div className="tool-menu-empty"><p>{t(trimmed ? 'toolMenu.noResults' : sort === 'favorites' ? 'toolMenu.noFavorites' : 'toolMenu.noRecent')}</p>{trimmed && <button className="text-link" onClick={() => setQuery('')}>{t('catalog.clear')}</button>}</div>
-    : <>{categoryOrder.map((category) => {
+    : <div className="tool-menu-categories">{categoryOrder.map((category) => {
       const tools = visible.filter((tool) => tool.category === category)
-      return tools.length ? <section className="tool-menu-group" key={category}><h3>{t(`category.${category}`)}</h3>{tools.map(toolRow)}</section> : null
-    })}</>
+      return tools.length ? <details className="tool-menu-group" key={category}>
+        <summary><span>{t(`category.${category}`)}</span><span className="tool-menu-group-count">{tools.length}</span></summary>
+        <div className="tool-menu-group-tools">{tools.map(toolRow)}</div>
+      </details> : null
+    })}</div>
 
   return <>
     <button ref={triggerRef} className="button tool-menu-trigger" onClick={openMenu} aria-label={t('toolMenu.open')} aria-expanded={open} aria-controls="tool-navigation"><span aria-hidden="true">☰</span></button>
