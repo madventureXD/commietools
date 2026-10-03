@@ -1,7 +1,9 @@
 import { commonDe } from './common/de'
 import { commonEn } from './common/en'
+import { commonEs } from './common/es'
 import { suitesDe } from './suites/de'
 import { suitesEn } from './suites/en'
+import { suitesEs } from './suites/es'
 
 export interface LocaleDefinition {
   label: string
@@ -24,6 +26,12 @@ export const localeRegistry = {
     direction: 'ltr',
     fallback: 'en',
     messages: { ...commonEn, ...suitesEn }
+  },
+  es: {
+    label: 'Español',
+    direction: 'ltr',
+    fallback: 'en',
+    messages: { ...commonEs, ...suitesEs }
   }
 } as const satisfies Record<string, LocaleDefinition>
 

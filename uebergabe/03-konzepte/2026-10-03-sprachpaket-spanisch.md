@@ -1,16 +1,16 @@
 # Konzept: Spanisches Sprachpaket
 
-**Status:** entworfen, noch nicht umgesetzt  
+**Status:** lokal als Testpaket umgesetzt, sprachliches Gegenlesen ausstehend
 **Datum:** 2026-10-03  
 **Sprachkennung:** `es`
 
 ## Ziel
 
-CommieTools erhält zu Testzwecken ein vollständiges spanisches Sprachpaket. Es soll nicht nur die
+CommieTools erhält zu Testzwecken ein vollständiges spanisches Sprachpaket. Es übersetzt nicht nur die
 Startseite übersetzen, sondern Navigation, Suiten, alle 21 Werkzeuge, Status- und Fehlermeldungen,
 Speichern-Dialoge, Lizenzseite, Impressum sowie Katalog- und Menüsuche abdecken. Der Sprachschalter
-wird erst aktiviert, wenn das Paket vollständig geprüft ist; bis dahin bleibt die öffentliche
-Oberfläche unverändert.
+wird im lokalen Teststand aktiviert; die öffentliche Oberfläche bleibt bis zum vollständigen
+sprachlichen Gegenlesen unverändert.
 
 ## Sprachvariante und Stil
 

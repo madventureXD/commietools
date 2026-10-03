@@ -95,8 +95,8 @@
 - bewahrte originale Paketdokumente: 171
 - eingebettete Binärartefakte: 1 vollständig geprüftes QPDF-WASM-Artefakt
 - letzter bekannter Teststand: 152 Tests bestanden
-- Werkzeugregister: 21 Werkzeuge, 2 Sprachen, 21 Symbole, 70 deklarierte Dateitypen (`npm run catalog:check`)
-- letzter bekannter Produktions-Build: bestanden; Startcode 167,24 kB komprimiert und ohne statisch erreichbare PDF-Engine; PDF-Routen, Worker und WASM sind vom Vorab-Cache ausgeschlossen
+- Werkzeugregister: 21 Werkzeuge, 3 Sprachen, 21 Symbole, 70 deklarierte Dateitypen (`npm run catalog:check`); Spanisch ist lokal als noch gegenzulesendes Testpaket eingebunden
+- letzter bekannter Produktions-Build: bestanden; lokaler spanischer Teststand mit 183,02 kB Startcode komprimiert und ohne statisch erreichbare PDF-Engine; PDF-Routen, Worker und WASM sind vom Vorab-Cache ausgeschlossen
 
 Zahlen sind Momentaufnahmen. Nach Abhängigkeits-, Test- oder Tooländerungen müssen sie anhand der tatsächlichen Ausgabe aktualisiert werden.
 

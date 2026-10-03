@@ -1,3 +1,4 @@
 import { pdfOrganizeDe } from './de'
 import { pdfOrganizeEn } from './en'
-export const pdfOrganizeMessages = { de: pdfOrganizeDe, en: pdfOrganizeEn } as const
+import { pdfOrganizeEs } from './es'
+export const pdfOrganizeMessages = { de: pdfOrganizeDe, en: pdfOrganizeEn, es: pdfOrganizeEs } as const

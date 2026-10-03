@@ -68,10 +68,12 @@ describe('hybrid translations', () => {
   })
 
   it('derives supported languages and browser matching from the registry', () => {
-    expect(supportedLocales).toEqual(['de', 'en'])
+    expect(supportedLocales).toEqual(['de', 'en', 'es'])
     expect(detectLocale(['de-AT', 'en-US'])).toBe('de')
+    expect(detectLocale(['es-MX', 'en-US'])).toBe('es')
     expect(detectLocale(['fr-FR'])).toBe('en')
     expect(localeRegistry.de.direction).toBe('ltr')
+    expect(localeRegistry.es.label).toBe('Español')
   })
 })
 

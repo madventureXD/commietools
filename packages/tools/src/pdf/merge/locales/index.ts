@@ -1,3 +1,4 @@
 import { pdfMergeDe } from './de'
 import { pdfMergeEn } from './en'
-export const pdfMergeMessages = { de: pdfMergeDe, en: pdfMergeEn } as const
+import { pdfMergeEs } from './es'
+export const pdfMergeMessages = { de: pdfMergeDe, en: pdfMergeEn, es: pdfMergeEs } as const

@@ -1,3 +1,4 @@
 import { pdfSplitDe } from './de'
 import { pdfSplitEn } from './en'
-export const pdfSplitMessages = { de: pdfSplitDe, en: pdfSplitEn } as const
+import { pdfSplitEs } from './es'
+export const pdfSplitMessages = { de: pdfSplitDe, en: pdfSplitEn, es: pdfSplitEs } as const

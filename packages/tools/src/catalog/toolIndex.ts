@@ -101,6 +101,44 @@ export const toolIndex: readonly ToolSearchEntry[] = [
         "tags": [
           "#text"
         ]
+      },
+      "es": {
+        "title": "Estadísticas de texto",
+        "summary": "Cuenta caracteres, palabras y líneas.",
+        "description": "Cuenta caracteres, palabras y líneas en su navegador.",
+        "terms": [
+          "texto",
+          "recuento",
+          "contando",
+          "contador",
+          "cuenta",
+          "palabra",
+          "palabras",
+          "recuento de palabras",
+          "número de palabra",
+          "carácter",
+          "caracteres",
+          "recuento de caracteres",
+          "letra",
+          "letras",
+          "línea",
+          "líneas",
+          "recuento de líneas",
+          "párrafo",
+          "párrafos",
+          "estadísticas",
+          "estadísticas de texto",
+          "longitud del texto",
+          "longitud",
+          "tamaño",
+          "número",
+          "análisis",
+          "analizar",
+          "documento"
+        ],
+        "tags": [
+          "#texto"
+        ]
       }
     }
   },
@@ -196,6 +234,31 @@ export const toolIndex: readonly ToolSearchEntry[] = [
         "tags": [
           "#text",
           "#casing"
+        ]
+      },
+      "es": {
+        "title": "caso de letra",
+        "summary": "Cambia entre mayúsculas, minúsculas y formato de título.",
+        "description": "Convierte texto localmente a mayúsculas, minúsculas o a mayúsculas.",
+        "terms": [
+          "mayúsculas",
+          "minúsculas",
+          "letras mayúsculas",
+          "formato de título",
+          "capitalización",
+          "convertir",
+          "conversión",
+          "cambiar",
+          "transformar",
+          "texto",
+          "letras",
+          "palabras",
+          "oración",
+          "párrafo"
+        ],
+        "tags": [
+          "#texto",
+          "#mayúsculas"
         ]
       }
     }
@@ -308,6 +371,48 @@ export const toolIndex: readonly ToolSearchEntry[] = [
           "#development",
           "#json",
           "#data"
+        ]
+      },
+      "es": {
+        "title": "Formato JSON",
+        "summary": "Sangra y valida JSON.",
+        "description": "Valida y formatea JSON completamente en su navegador.",
+        "terms": [
+          "json",
+          "datos json",
+          "formateador json",
+          "visor json",
+          "formato",
+          "formateador",
+          "formateo",
+          "embellecer",
+          "bonito",
+          "impresión bonita",
+          "sangría",
+          "legible",
+          "validar",
+          "validación",
+          "verificar",
+          "error",
+          "errores",
+          "mensaje de error",
+          "sintaxis",
+          "sintaxis error",
+          "estructura",
+          "análisis",
+          "espacios en blanco",
+          "espacios",
+          "archivo",
+          "config",
+          "datos",
+          "desarrollador",
+          "desarrollo",
+          "programación"
+        ],
+        "tags": [
+          "#desarrollo",
+          "#json",
+          "#datos"
         ]
       }
     }
@@ -480,6 +585,71 @@ export const toolIndex: readonly ToolSearchEntry[] = [
           "#generator",
           "#qr",
           "#contact",
+          "#wifi"
+        ]
+      },
+      "es": {
+        "title": "generador de códigos QR",
+        "summary": "Crea códigos QR como una imagen.",
+        "description": "Crea códigos QR versátiles y personalizables completamente en su dispositivo.",
+        "terms": [
+          "qr",
+          "código qr",
+          "códigos qr",
+          "código",
+          "wifi",
+          "wi-fi",
+          "inalámbrico",
+          "red",
+          "acceso",
+          "credenciales",
+          "contraseña",
+          "enrutador",
+          "vcard",
+          "contacto",
+          "tarjeta de visita",
+          "dirección",
+          "enlace",
+          "url",
+          "dirección web",
+          "sitio web",
+          "correo electrónico",
+          "correo",
+          "teléfono",
+          "teléfono número",
+          "sms",
+          "mensaje",
+          "texto",
+          "coordenadas",
+          "ubicación",
+          "geo",
+          "geodatos",
+          "generar",
+          "generador",
+          "crear",
+          "hacer",
+          "imagen",
+          "png",
+          "svg",
+          "gráfico",
+          "logotipo",
+          "color",
+          "estilo",
+          "diseño",
+          "formato",
+          "imprimir",
+          "impresión",
+          "pegatina",
+          "póster",
+          "escanear",
+          "escaneo",
+          "móvil",
+          "teléfono inteligente"
+        ],
+        "tags": [
+          "#generador",
+          "#qr",
+          "#contacto",
           "#wifi"
         ]
       }
@@ -688,6 +858,87 @@ export const toolIndex: readonly ToolSearchEntry[] = [
           "#exif",
           "#gps"
         ]
+      },
+      "es": {
+        "title": "Metadatos de imagen",
+        "summary": "Muestra y elimina datos de imágenes ocultos.",
+        "description": "Muestra metadatos ocultos en fotos y los elimina sin volver a codificar la imagen.",
+        "terms": [
+          "metadatos",
+          "exif",
+          "datos de imagen",
+          "información de imagen",
+          "información",
+          "datos exif",
+          "gps",
+          "ubicación",
+          "geodatos",
+          "geo",
+          "coordenadas",
+          "posición",
+          "ubicación de captura",
+          "cámara",
+          "cámara del teléfono",
+          "teléfono inteligente",
+          "fecha de captura",
+          "hora de captura",
+          "fecha",
+          "hora",
+          "marca de tiempo",
+          "exposición",
+          "tiempo de exposición",
+          "apertura",
+          "iso",
+          "distancia focal",
+          "lente",
+          "flash",
+          "número de serie",
+          "dispositivo",
+          "cámara modelo",
+          "copyright",
+          "creador",
+          "artista",
+          "fotógrafo",
+          "autor",
+          "software",
+          "programa",
+          "comentario",
+          "descripción",
+          "palabras clave",
+          "xmp",
+          "iptc",
+          "icc",
+          "perfil de color",
+          "orientación",
+          "rotación",
+          "eliminar",
+          "tira",
+          "limpiar",
+          "desinfectar",
+          "anonimizar",
+          "datos ocultos",
+          "rastro",
+          "rastros",
+          "seguimiento",
+          "sin pérdidas",
+          "sin recodificación",
+          "privacidad",
+          "foto",
+          "imagen",
+          "archivo de imagen",
+          "jpeg",
+          "png",
+          "webp",
+          "compartir",
+          "publicar",
+          "enviar"
+        ],
+        "tags": [
+          "#privacidad",
+          "#imágenes",
+          "#exif",
+          "#gps"
+        ]
       }
     }
   },
@@ -867,6 +1118,74 @@ export const toolIndex: readonly ToolSearchEntry[] = [
           "#rotate",
           "#avatar"
         ]
+      },
+      "es": {
+        "title": "Cambiar el tamaño de la imagen",
+        "summary": "Cambia de tamaño, recorte y orientación.",
+        "description": "Reduce, amplía, rota, refleja y recorta imágenes, completamente en tu dispositivo.",
+        "terms": [
+          "cambiar el tamaño",
+          "cambiar el tamaño de la imagen",
+          "escala",
+          "reducir",
+          "reducir la imagen",
+          "hacer más pequeño",
+          "ampliar",
+          "ampliar la imagen",
+          "hacer más grande",
+          "aumentar",
+          "cambiar tamaño",
+          "tamaño de la imagen",
+          "tamaño",
+          "dimensiones",
+          "píxeles",
+          "ancho",
+          "alto",
+          "resolución",
+          "recortar",
+          "cortar",
+          "aspecto",
+          "rotar",
+          "rotación",
+          "girar",
+          "girar 90 grados",
+          "espejo",
+          "reflejo",
+          "voltear",
+          "voltear horizontal",
+          "girar vertical",
+          "orientación",
+          "relación de aspecto",
+          "proporcional",
+          "mantener proporciones",
+          "cuadrado",
+          "recorte cuadrado",
+          "imagen de perfil",
+          "avatar",
+          "foto de perfil",
+          "miniatura",
+          "vista previa",
+          "sitio web",
+          "redes sociales",
+          "instagram",
+          "facebook",
+          "whatsapp",
+          "archivo adjunto de correo electrónico",
+          "archivo adjunto",
+          "foto",
+          "imagen",
+          "archivo de imagen",
+          "jpeg",
+          "png",
+          "webp"
+        ],
+        "tags": [
+          "#imágenes",
+          "#tamaño",
+          "#recortar",
+          "#rotar",
+          "#avatar"
+        ]
       }
     }
   },
@@ -982,6 +1301,48 @@ export const toolIndex: readonly ToolSearchEntry[] = [
         ],
         "tags": [
           "#icon",
+          "#favicon",
+          "#pwa"
+        ]
+      },
+      "es": {
+        "title": "Generador de iconos",
+        "summary": "Crea conjuntos de iconos y favicon a partir de una imagen.",
+        "description": "Convierte una imagen en un conjunto completo de íconos: favicon, íconos de PWA, ícono táctil de Apple y una variante enmascarable, completamente en tu dispositivo.",
+        "terms": [
+          "icono",
+          "iconos",
+          "favicon",
+          "favicon.ico",
+          "icono de aplicación",
+          "icono de sitio web",
+          "conjunto de iconos",
+          "tamaños de iconos",
+          "tamaños",
+          "16x16",
+          "32x32",
+          "180x180",
+          "192x192",
+          "512x512",
+          "pwa",
+          "manifiesto de aplicación web",
+          "manifest.json",
+          "enmascarable",
+          "android",
+          "pantalla de inicio",
+          "icono de Apple Touch",
+          "icono táctil",
+          "crear favicon",
+          "pestaña del navegador",
+          "pestaña icono",
+          "png",
+          "ico",
+          "windows",
+          "icono de programa",
+          "acceso directo al escritorio"
+        ],
+        "tags": [
+          "#icono",
           "#favicon",
           "#pwa"
         ]
@@ -1127,6 +1488,59 @@ export const toolIndex: readonly ToolSearchEntry[] = [
           "#images",
           "#copyright"
         ]
+      },
+      "es": {
+        "title": "Filigrana",
+        "summary": "Agrega texto o un logotipo como marca de agua a una imagen.",
+        "description": "Agrega texto o un logotipo como marca de agua a una imagen: la posición, el tamaño, la opacidad, la rotación y el mosaico son ajustables, completamente en su dispositivo.",
+        "terms": [
+          "marca de agua",
+          "agregar marca de agua",
+          "marca de agua de imagen",
+          "marca de agua de foto",
+          "derechos de autor",
+          "aviso de derechos de autor",
+          "atribución",
+          "proteger",
+          "proteger imágenes",
+          "derechos de imagen",
+          "prueba",
+          "fuente",
+          "crédito",
+          "línea de crédito",
+          "agregar texto",
+          "texto en la imagen",
+          "agregar logotipo",
+          "logotipo en la imagen",
+          "marca",
+          "logotipo de la empresa",
+          "opacidad",
+          "transparencia",
+          "semitransparente",
+          "posición",
+          "ubicación",
+          "esquina",
+          "abajo a la derecha",
+          "mosaico",
+          "mosaico patrón",
+          "patrón",
+          "repetir",
+          "diagonal",
+          "rotar",
+          "rotación",
+          "imagen",
+          "foto",
+          "jpeg",
+          "png",
+          "webp",
+          "en venta",
+          "listado"
+        ],
+        "tags": [
+          "#marca de agua",
+          "#imágenes",
+          "#copyright"
+        ]
       }
     }
   },
@@ -1247,6 +1661,53 @@ export const toolIndex: readonly ToolSearchEntry[] = [
           "#colours",
           "#accessibility"
         ]
+      },
+      "es": {
+        "title": "herramientas de color",
+        "summary": "Convierte colores, comprueba el contraste y extrae paletas de imágenes.",
+        "description": "Convierte colores entre HEX, RGB, HSL y LAB, verifica el contraste WCAG, extrae la paleta de una imagen y muestra cómo aparecen los colores con deficiencia en la visión del color, completamente en tu dispositivo.",
+        "terms": [
+          "color",
+          "colores",
+          "herramienta de color",
+          "convertidor de color",
+          "convertir",
+          "hex",
+          "rgb",
+          "hsl",
+          "lab",
+          "hex a rgb",
+          "rgb a hex",
+          "valor de color",
+          "código de color",
+          "selector de color",
+          "cuentagotas",
+          "paleta",
+          "paleta de colores",
+          "colores dominantes",
+          "colores de la imagen",
+          "contraste de color",
+          "contraste",
+          "wcag",
+          "relación de contraste",
+          "accesibilidad",
+          "legibilidad",
+          "texto en color",
+          "daltonismo",
+          "visión de colores deficiencia",
+          "protanopia",
+          "deuteranopia",
+          "tritanopia",
+          "simulación",
+          "diseño",
+          "tokens",
+          "diseño web"
+        ],
+        "tags": [
+          "#color",
+          "#colores",
+          "#accesibilidad"
+        ]
       }
     }
   },
@@ -1320,6 +1781,31 @@ export const toolIndex: readonly ToolSearchEntry[] = [
           "#merge",
           "#combine"
         ]
+      },
+      "es": {
+        "title": "Fusionar archivos PDF",
+        "summary": "Combina varios archivos PDF en un orden elegido.",
+        "description": "Combina múltiples documentos PDF en el orden elegido, localmente y sin cargas.",
+        "terms": [
+          "fusionar PDF",
+          "combinar PDF",
+          "unir PDF",
+          "agregar PDF",
+          "varios PDF",
+          "un PDF",
+          "fusionar documentos",
+          "combinar documentos",
+          "unir archivos",
+          "orden de páginas",
+          "agrupar documentos",
+          "clasificar PDF",
+          "reordenar documentos"
+        ],
+        "tags": [
+          "#pdf",
+          "#fusionar",
+          "#combinar"
+        ]
       }
     }
   },
@@ -1389,6 +1875,29 @@ export const toolIndex: readonly ToolSearchEntry[] = [
           "#pdf",
           "#split",
           "#extract"
+        ]
+      },
+      "es": {
+        "title": "Dividir PDF",
+        "summary": "Divide archivos PDF en páginas o rangos seleccionados.",
+        "description": "Extrae páginas individuales o grupos de páginas personalizados de un PDF, completamente en su dispositivo.",
+        "terms": [
+          "dividir PDF",
+          "separar PDF",
+          "extraer páginas",
+          "eliminar páginas",
+          "rango de páginas",
+          "exportar páginas",
+          "páginas individuales",
+          "dividir documento",
+          "divisor de PDF",
+          "guardar página",
+          "páginas seleccionadas"
+        ],
+        "tags": [
+          "#pdf",
+          "#dividir",
+          "#extraer"
         ]
       }
     }
@@ -1460,6 +1969,28 @@ export const toolIndex: readonly ToolSearchEntry[] = [
           "#pages",
           "#organize"
         ]
+      },
+      "es": {
+        "title": "Organizar páginas PDF",
+        "summary": "Reordena, rota, duplica y elimina páginas PDF.",
+        "description": "Reordena, rota, duplica y elimina páginas PDF con una vista previa local.",
+        "terms": [
+          "organizar páginas PDF",
+          "reordenar PDF",
+          "ordenar páginas",
+          "rotar PDF",
+          "rotar páginas",
+          "eliminar páginas",
+          "duplicar páginas",
+          "cambiar el orden de las páginas",
+          "organizador de páginas",
+          "reorganizar PDF"
+        ],
+        "tags": [
+          "#pdf",
+          "#páginas",
+          "#organizar"
+        ]
       }
     }
   },
@@ -1529,6 +2060,29 @@ export const toolIndex: readonly ToolSearchEntry[] = [
           "#pdf",
           "#images",
           "#convert"
+        ]
+      },
+      "es": {
+        "title": "Imágenes a PDF",
+        "summary": "Convierte imágenes JPEG y PNG ordenadas en un solo PDF.",
+        "description": "Crea un PDF a partir de imágenes JPEG y PNG con orden, tamaño de página y ajuste controlados, completamente en su dispositivo.",
+        "terms": [
+          "imágenes a PDF",
+          "fotos a PDF",
+          "JPG a PDF",
+          "JPEG a PDF",
+          "PNG a PDF",
+          "combinar archivos de imágenes",
+          "documento fotográfico",
+          "escanear a PDF",
+          "tamaño de página A4",
+          "PDF Carta",
+          "Bilder zu PDF"
+        ],
+        "tags": [
+          "#pdf",
+          "#images",
+          "#convertir"
         ]
       }
     }
@@ -1600,6 +2154,30 @@ export const toolIndex: readonly ToolSearchEntry[] = [
           "#images",
           "#export"
         ]
+      },
+      "es": {
+        "title": "PDF a imágenes",
+        "summary": "Exporta páginas PDF como imágenes PNG o JPEG.",
+        "description": "Reproduce páginas PDF seleccionadas como PNG o JPEG con resolución y color de fondo ajustables, completamente en su dispositivo.",
+        "terms": [
+          "PDF a imagen",
+          "PDF a PNG",
+          "PDF a JPG",
+          "PDF a JPEG",
+          "exportar páginas",
+          "renderizar PDF",
+          "DPI",
+          "resolución",
+          "convertidor de imágenes PDF",
+          "páginas PDF como fotografías",
+          "PDF zu Bild",
+          "convertidor de PDF"
+        ],
+        "tags": [
+          "#pdf",
+          "#imágenes",
+          "#exportar"
+        ]
       }
     }
   },
@@ -1669,6 +2247,30 @@ export const toolIndex: readonly ToolSearchEntry[] = [
           "#watermark",
           "#document"
         ]
+      },
+      "es": {
+        "title": "marca de agua PDF",
+        "summary": "Agrega texto como una marca de agua PDF única o repetida.",
+        "description": "Agrega una marca de agua de texto ajustable a páginas PDF seleccionadas, localmente y sin cargas.",
+        "terms": [
+          "Marca de agua PDF",
+          "PDF con marca de agua",
+          "PDF con derechos de autor",
+          "texto en PDF",
+          "confidencial",
+          "borrador",
+          "sello",
+          "marcar páginas",
+          "repetición",
+          "mosaico",
+          "opacidad",
+          "rotación"
+        ],
+        "tags": [
+          "#pdf",
+          "#marca de agua",
+          "#documento"
+        ]
       }
     }
   },
@@ -1734,6 +2336,29 @@ export const toolIndex: readonly ToolSearchEntry[] = [
           "#pdf",
           "#page-numbers",
           "#number"
+        ]
+      },
+      "es": {
+        "title": "números de página PDF",
+        "summary": "Agrega números de página con formato libre a los archivos PDF.",
+        "description": "Numera las páginas PDF seleccionadas con un valor inicial, formato, prefijo y sufijo, completamente en su dispositivo.",
+        "terms": [
+          "Números de página de PDF",
+          "número PDF",
+          "número de páginas",
+          "número de página",
+          "pie de página",
+          "encabezado",
+          "número de inicio",
+          "página de",
+          "prefijo",
+          "sufijo",
+          "PDF Seitenzahlen"
+        ],
+        "tags": [
+          "#pdf",
+          "#números de página",
+          "#número"
         ]
       }
     }
@@ -1807,6 +2432,27 @@ export const toolIndex: readonly ToolSearchEntry[] = [
           "#signature",
           "#sign"
         ]
+      },
+      "es": {
+        "title": "Firmar PDF visiblemente",
+        "summary": "Coloca una firma electrónica visible en un PDF.",
+        "description": "Coloca una imagen de firma visiblemente en una página PDF, localmente y claramente separada de la firma de un certificado.",
+        "terms": [
+          "firmar PDF",
+          "firma PDF",
+          "añadir firma",
+          "imagen de firma",
+          "firma PNG",
+          "firma visible",
+          "firma electrónica",
+          "fecha",
+          "colocar firma",
+          "PDF unterschreiben"
+        ],
+        "tags": [
+          "#pdf",
+          "#firma"
+        ]
       }
     }
   },
@@ -1872,6 +2518,29 @@ export const toolIndex: readonly ToolSearchEntry[] = [
           "#pdf",
           "#form",
           "#fill"
+        ]
+      },
+      "es": {
+        "title": "Rellenar formulario PDF",
+        "summary": "Rellena campos de texto, opciones, casillas de verificación y radio en archivos PDF.",
+        "description": "Lee y completa campos de AcroForm localmente; XFA se detecta y se marca claramente como no compatible.",
+        "terms": [
+          "completar formulario PDF",
+          "AcroForm",
+          "campos PDF",
+          "campo de texto",
+          "casilla de verificación",
+          "campo de elección",
+          "botón de opción",
+          "guardar formulario",
+          "aplanar formulario",
+          "XFA",
+          "formulario PDF"
+        ],
+        "tags": [
+          "#pdf",
+          "#formulario",
+          "#rellenar"
         ]
       }
     }
@@ -1941,6 +2610,30 @@ export const toolIndex: readonly ToolSearchEntry[] = [
           "#comment",
           "#annotation"
         ]
+      },
+      "es": {
+        "title": "Comentar y marcar PDF",
+        "summary": "Crea y elimina anotaciones PDF estándar.",
+        "description": "Agrega notas PDF genuinas, marcas, formas, líneas y anotaciones manuscritas localmente.",
+        "terms": [
+          "comentar PDF",
+          "marcar PDF",
+          "nota PDF",
+          "resaltar",
+          "subrayar",
+          "tachar",
+          "tinta",
+          "rectángulo",
+          "círculo",
+          "línea",
+          "eliminar anotación",
+          "comentarios PDF"
+        ],
+        "tags": [
+          "#pdf",
+          "#comentar",
+          "#annotación"
+        ]
       }
     }
   },
@@ -2003,6 +2696,27 @@ export const toolIndex: readonly ToolSearchEntry[] = [
           "#security",
           "#password"
         ]
+      },
+      "es": {
+        "title": "Proteger y desbloquear PDF",
+        "summary": "Cifra archivos PDF con AES-256 y los descifra con la contraseña válida.",
+        "description": "Protege archivos PDF localmente con AES-256 o elimina la protección mediante una contraseña válida.",
+        "terms": [
+          "proteger PDF",
+          "contraseña de PDF",
+          "cifrar PDF",
+          "AES-256",
+          "desbloquear PDF",
+          "descifrar PDF",
+          "contraseña de propietario",
+          "permisos",
+          "protección de PDF"
+        ],
+        "tags": [
+          "#pdf",
+          "#seguridad",
+          "#contraseña"
+        ]
       }
     }
   },
@@ -2062,6 +2776,25 @@ export const toolIndex: readonly ToolSearchEntry[] = [
           "#pdf",
           "#compress",
           "#optimise"
+        ]
+      },
+      "es": {
+        "title": "Comprimir PDF",
+        "summary": "Reduce archivos PDF sin pérdida o comprimiendo imágenes opcionalmente.",
+        "description": "Optimiza las estructuras PDF localmente y ofrece compresión de imágenes opcional claramente etiquetada.",
+        "terms": [
+          "comprimir PDF",
+          "reducir PDF",
+          "optimizar PDF",
+          "tamaño de archivo PDF",
+          "QPDF",
+          "sin pérdida",
+          "comprimir imágenes"
+        ],
+        "tags": [
+          "#pdf",
+          "#comprimir",
+          "#optimizar"
         ]
       }
     }
