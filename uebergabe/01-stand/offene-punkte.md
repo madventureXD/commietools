@@ -1,5 +1,8 @@
 # Offene Punkte
 
+- [ ] Anbieterneutralen Übersetzungsablauf mit Google Cloud Translation Advanced gemäß
+  `uebergabe/03-konzepte/2026-10-03-automatisierte-sprachpakete.md` erst bei der nächsten
+  geplanten Sprache umsetzen.
 - [ ] Lokales spanisches Testpaket gemäß `uebergabe/03-konzepte/2026-10-03-sprachpaket-spanisch.md`
   sprachlich und visuell gegenlesen; erst danach zur Veröffentlichung freigeben.
 

@@ -3,6 +3,10 @@
 Dieses Dokument ist die verbindliche Übergaberegel für neue CommieTools-Sprachen. Ein Sprachpaket
 ist eine Produktfunktion, keine lose Sammlung übersetzter Zeichenketten.
 
+Das geplante technische Verfahren mit Google Cloud Translation, Glossar, Translation Memory,
+Kostenkontrolle und anbieterneutralem Adapter ist in
+`uebergabe/03-konzepte/2026-10-03-automatisierte-sprachpakete.md` beschrieben.
+
 ## 1. Entscheidung vor Beginn
 
 Für jede Sprache werden vor der Übersetzung festgehalten:
