@@ -26,6 +26,7 @@ Katalogmetadaten und importiert keine Werkzeugimplementierung oder PDF-Engine.
 
 - Das Menü liegt als deckende Ebene über dem Seiteninhalt und nutzt die verfügbare Bildschirmhöhe.
 - Auf Mobilgeräten wird das Suchfeld nicht automatisch fokussiert, damit die Bildschirmtastatur erst nach bewusster Auswahl erscheint.
+- Kopf, Suche, Sortierung und Fußzeile bleiben vollständig sichtbar; nur die Werkzeugliste scrollt.
 
 ## Bedienung
 
