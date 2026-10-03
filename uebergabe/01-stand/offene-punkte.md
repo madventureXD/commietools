@@ -4,7 +4,6 @@ Diese Liste enthält bestätigte, noch nicht abgeschlossene Arbeit. Details geh�
 
 ## Hohe Priorität
 
-- [ ] Nach abgeschlossener Nameserver-Propagation `commietools.org` und `www.commietools.org` unter Cloudflare Pages → `commietools` → Custom domains zuordnen, SSL-Ausstellung abwarten und beide URLs prüfen.
 - [ ] Nach erfolgreicher Domainumschaltung einen sichtbaren Source-Link auf `https://github.com/madventureXD/commietools` in die Weboberfläche integrieren.
 - [ ] Mailbetrieb nach DNS-Umschaltung prüfen: MX, `autoconfig`, vier SRV-Einträge und SPF; `autoconfig` muss in Cloudflare auf „DNS only“ bleiben.
 - [ ] PDF-Suite M6 vorbereiten: PDF.js-Textextraktion und Tesseract.js-OCR mit Sprachmodell-, Worker-, Cache-, Speicher- und Lizenzgate prototypisieren.
