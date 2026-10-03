@@ -7,7 +7,6 @@ Diese Liste enthält bestätigte, noch nicht abgeschlossene Arbeit. Details geh�
 - [ ] Nach abgeschlossener Nameserver-Propagation `commietools.org` und `www.commietools.org` unter Cloudflare Pages → `commietools` → Custom domains zuordnen, SSL-Ausstellung abwarten und beide URLs prüfen.
 - [ ] Nach erfolgreicher Domainumschaltung einen sichtbaren Source-Link auf `https://github.com/madventureXD/commietools` in die Weboberfläche integrieren.
 - [ ] Mailbetrieb nach DNS-Umschaltung prüfen: MX, `autoconfig`, vier SRV-Einträge und SPF; `autoconfig` muss in Cloudflare auf „DNS only“ bleiben.
-- [ ] PDF-Suite M3 freigeben: visuelle Referenz- und Reader-Tests für CropBox/MediaBox und rotierte Seiten, Unicode-Schriften sowie Zeichnen/Name für sichtbare Unterschriften ergänzen.
 - [ ] PDF-Suite M4 prototypisieren: AcroForm-Formulare und echte PDF-Annotationen hinter getrennten Engine-Adaptern prüfen.
 - [ ] Den PDF-Testkorpus um frei weitergebbare verschlüsselte, XFA-, Annotations- und Signatur-Beispiele sowie Reader-Interoperabilität erweitern.
 - [ ] Automatisierte Barrierefreiheitsprüfung für zentrale Komponenten und Tool-Flows ergänzen.

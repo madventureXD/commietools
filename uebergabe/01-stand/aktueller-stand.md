@@ -1,7 +1,7 @@
 # Aktueller Projektstand
 
 **Stand:** 2026-10-03  
-**Letzter geprüfter Meilenstein:** PDF-Suite M3 Beta (2026-10-03), davor Bild-Suite „Farbwerkzeuge“
+**Letzter geprüfter Meilenstein:** PDF-Suite M3 (2026-10-03), davor Bild-Suite „Farbwerkzeuge“
 
 ## Umgesetzt
 
@@ -33,10 +33,10 @@
 - PDF-Suite M1 mit Zusammenführen, Teilen/Extrahieren sowie Sortieren, Drehen, Duplizieren und Löschen von Seiten
 - Bilder zu PDF: JPEG/PNG-Reihenfolge, A4/Letter/Bildgröße, Ausrichtung, Rand und Einpassen/Beschneiden
 - PDF zu Bildern: freie Seitenauswahl, PNG/JPEG, 72–300 DPI, JPEG-Qualität, Hintergrundfarbe und sequenzielle Ausgabe
-- gemeinsame PDF-Platzierungsengine mit neun Ankerpositionen für unterschiedliche Seitengrößen
-- PDF-Wasserzeichen: Text, Seitenauswahl, Einzel-/Kachelmodus, Position, Farbe, Größe, Winkel, Deckkraft, Rand und Abstand
-- PDF-Seitenzahlen: Seitenauswahl, unabhängiger Startwert, Format, Präfix/Suffix, Position, Größe, Farbe, Deckkraft und Rand
-- PDF sichtbar unterschreiben: PNG/JPEG-Import, Seite, Position, Breite, Deckkraft, Drehung und optionale Datumszeile; klar von Zertifikatssignaturen abgegrenzt
+- gemeinsame PDF-Platzierungsengine mit neun Ankerpositionen, CropBox-Versatz und rotationsgerechter sichtbarer Platzierung
+- PDF-Wasserzeichen: Unicode-Text, Seitenauswahl, Einzel-/Kachelmodus, Position, Farbe, Größe, Winkel, Deckkraft, Rand und Abstand
+- PDF-Seitenzahlen: Unicode-Präfix/-Suffix, Seitenauswahl, unabhängiger Startwert, Format, Position, Größe, Farbe, Deckkraft und Rand
+- PDF sichtbar unterschreiben: Zeichnen per Maus/Stift/Touch, Namenssignatur oder PNG/JPEG-Import; Seite, Position, Breite, Deckkraft, Drehung und optionale Datumszeile; klar von Zertifikatssignaturen abgegrenzt
 
 ## Derzeitige Tools
 
@@ -75,15 +75,15 @@
 - erfasste externe Pakete: 496
 - vollständige Lizenztexte: 13
 - bewahrte originale Paketdokumente: 170
-- letzter bekannter Teststand: 137 Tests bestanden
+- letzter bekannter Teststand: 139 Tests bestanden
 - Werkzeugregister: 17 Werkzeuge, 2 Sprachen, 17 Symbole, **1105** Suchbegriffe und Schlagwörter, 62 deklarierte Dateitypen (`npm run catalog:check`)
-- letzter bekannter Produktions-Build: bestanden; Hauptbundle 537,77 kB (158,47 kB komprimiert, **Warnung über 500 kB**), Stylesheet 23,39 kB (4,96 kB komprimiert), PDF-Engines und M3-Oberfläche in getrennten nachgeladenen Chunks, Vorab-Cache mit 32 Einträgen
+- letzter bekannter Produktions-Build: bestanden; Hauptbundle 538,41 kB (158,64 kB komprimiert, **Warnung über 500 kB**), Stylesheet 23,88 kB (5,04 kB komprimiert), PDF-Engines und M3-Oberfläche in getrennten nachgeladenen Chunks, Vorab-Cache mit 32 Einträgen
 
 Zahlen sind Momentaufnahmen. Nach Abhängigkeits-, Test- oder Tooländerungen müssen sie anhand der tatsächlichen Ausgabe aktualisiert werden.
 
 ## Noch nicht umgesetzt
 
-- PDF-Suite M3-Freigabegate sowie M4 bis M7 (Formulare/Kommentare, Schutz/Kompression, OCR und digitale Signaturen)
+- PDF-Suite M4 bis M7 (Formulare/Kommentare, Schutz/Kompression, OCR und digitale Signaturen)
 - Backend, Konten und Synchronisierung
 - Desktop- und Mobile-Shells
 - sichtbarer Source-Link in der Weboberfläche

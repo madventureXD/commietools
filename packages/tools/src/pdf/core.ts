@@ -74,6 +74,8 @@ interface PdfTextStyle {
 
 export interface PdfWatermarkOptions extends PdfTextStyle {
   readonly text: string
+  /** Optional browser-rendered PNG. Used for full Unicode without bundling a font. */
+  readonly textImage?: Uint8Array
   readonly pages: readonly number[]
   readonly tiled: boolean
   readonly spacing: number
@@ -87,6 +89,8 @@ export interface PdfPageNumberOptions extends Omit<PdfTextStyle, 'rotation'> {
   readonly prefix: string
   readonly suffix: string
   readonly format: PdfNumberFormat
+  /** Optional PNGs matching `pages`, rendered by the caller for full Unicode. */
+  readonly textImages?: readonly Uint8Array[]
 }
 
 export interface PdfSignatureOptions {
@@ -99,6 +103,13 @@ export interface PdfSignatureOptions {
   readonly anchor: PdfPlacementAnchor
   readonly margin: number
   readonly dateText?: string
+}
+
+interface PdfPageBox { readonly x: number; readonly y: number; readonly width: number; readonly height: number }
+
+export interface PdfPagePlacement extends PdfPlacementRect {
+  /** Rotation that keeps added content upright in the viewer. */
+  readonly rotation: number
 }
 
 function structuralFlags(bytes: Uint8Array) {
@@ -226,7 +237,20 @@ export function resolvePdfPlacement(pageWidth: number, pageHeight: number, eleme
   return { x: horizontal, y: vertical, width, height }
 }
 
-function pageNumberText(index: number, total: number, options: PdfPageNumberOptions) {
+/** Resolves a visual anchor into PDF user-space, including CropBox offsets and page rotation. */
+export function resolvePdfPagePlacement(pageWidth: number, pageHeight: number, cropBox: PdfPageBox, pageRotation: number, elementWidth: number, elementHeight: number, anchor: PdfPlacementAnchor, margin: number): PdfPagePlacement {
+  const rotation = normalizeRotation(pageRotation)
+  const rotated = rotation === 90 || rotation === 270
+  const visualWidth = rotated ? cropBox.height : cropBox.width
+  const visualHeight = rotated ? cropBox.width : cropBox.height
+  const visual = resolvePdfPlacement(visualWidth, visualHeight, elementWidth, elementHeight, anchor, margin)
+  if (rotation === 90) return { x: cropBox.x + cropBox.width - visual.y - visual.height, y: cropBox.y + visual.x + visual.width, width: visual.width, height: visual.height, rotation: -90 }
+  if (rotation === 180) return { x: cropBox.x + cropBox.width - visual.x, y: cropBox.y + cropBox.height - visual.y, width: visual.width, height: visual.height, rotation: -180 }
+  if (rotation === 270) return { x: cropBox.x + visual.y + visual.height, y: cropBox.y + cropBox.height - visual.x - visual.width, width: visual.width, height: visual.height, rotation: -270 }
+  return { x: cropBox.x + visual.x, y: cropBox.y + visual.y, width: visual.width, height: visual.height, rotation: 0 }
+}
+
+export function formatPdfPageNumber(index: number, total: number, options: Pick<PdfPageNumberOptions, 'start' | 'prefix' | 'suffix' | 'format'>) {
   const number = options.start + index
   const core = options.format === 'page-total' ? `${number} / ${options.start + total - 1}` : options.format === 'dash' ? `– ${number} –` : String(number)
   return `${options.prefix}${core}${options.suffix}`
@@ -237,28 +261,49 @@ export async function addPdfWatermark(bytes: Uint8Array, options: PdfWatermarkOp
   const pages = validatePages(options.pages, document.getPageCount())
   const text = options.text.trim()
   if (!text) throw new PdfToolError('empty', 'Watermark text is empty')
-  const font = await document.embedFont(StandardFonts.Helvetica)
   const fontSize = clamp(options.fontSize, 6, 144)
+  const font = options.textImage ? null : await document.embedFont(StandardFonts.Helvetica)
+  const textImage = options.textImage ? await document.embedPng(options.textImage) : null
   let width: number
-  try {
-    width = font.widthOfTextAtSize(text, fontSize)
-  } catch {
-    throw new PdfToolError('unsupported', 'The selected text contains characters that are not supported by the standard PDF font')
+  let height: number
+  if (textImage) {
+    height = fontSize * 1.2
+    width = height * textImage.width / textImage.height
+  } else {
+    try { width = font!.widthOfTextAtSize(text, fontSize) } catch { throw new PdfToolError('unsupported', 'The selected text contains characters that are not supported by the standard PDF font') }
+    height = font!.heightAtSize(fontSize)
   }
-  const height = font.heightAtSize(fontSize)
   const color = parseHexColor(options.color)
   for (const pageIndex of pages) {
     const page = document.getPage(pageIndex)
     const { width: pageWidth, height: pageHeight } = page.getSize()
-    const draw = (x: number, y: number) => page.drawText(text, { x, y, size: fontSize, font, color, opacity: clamp(options.opacity, 0.05, 1), rotate: degrees(clamp(options.rotation, -180, 180)) })
+    const crop = page.getCropBox()
+    const pageRotation = page.getRotation().angle
+    const draw = (placement: PdfPagePlacement) => {
+      const rotation = placement.rotation + clamp(options.rotation, -180, 180)
+      if (textImage) page.drawImage(textImage, { x: placement.x, y: placement.y, width: placement.width, height: placement.height, opacity: clamp(options.opacity, 0.05, 1), rotate: degrees(rotation) })
+      else page.drawText(text, { x: placement.x, y: placement.y, size: fontSize, font: font!, color, opacity: clamp(options.opacity, 0.05, 1), rotate: degrees(rotation) })
+    }
     if (options.tiled) {
       const spacing = clamp(options.spacing, 10, 400)
-      for (let y = spacing / 2; y < pageHeight; y += height + spacing) {
-        for (let x = -width / 3; x < pageWidth; x += width + spacing) draw(x, y)
+      const rotated = normalizeRotation(pageRotation) % 180 !== 0
+      const visualWidth = rotated ? crop.height : crop.width
+      const visualHeight = rotated ? crop.width : crop.height
+      for (let y = spacing / 2; y < visualHeight; y += height + spacing) {
+        for (let x = -width / 3; x < visualWidth; x += width + spacing) {
+          const tileOrigin = resolvePdfPagePlacement(pageWidth, pageHeight, crop, pageRotation, width, height, 'bottom-left', 0)
+          const base = resolvePdfPlacement(visualWidth, visualHeight, width, height, 'bottom-left', 0)
+          const dx = x - base.x; const dy = y - base.y
+          let xPosition = tileOrigin.x; let yPosition = tileOrigin.y
+          if (normalizeRotation(pageRotation) === 90) { xPosition -= dy; yPosition += dx }
+          else if (normalizeRotation(pageRotation) === 180) { xPosition -= dx; yPosition -= dy }
+          else if (normalizeRotation(pageRotation) === 270) { xPosition += dy; yPosition -= dx }
+          else { xPosition += dx; yPosition += dy }
+          draw({ ...tileOrigin, x: xPosition, y: yPosition })
+        }
       }
     } else {
-      const placement = resolvePdfPlacement(pageWidth, pageHeight, width, height, options.anchor, options.margin)
-      draw(placement.x, placement.y)
+      draw(resolvePdfPagePlacement(pageWidth, pageHeight, crop, pageRotation, width, height, options.anchor, options.margin))
     }
   }
   return document.save()
@@ -267,22 +312,23 @@ export async function addPdfWatermark(bytes: Uint8Array, options: PdfWatermarkOp
 export async function addPdfPageNumbers(bytes: Uint8Array, options: PdfPageNumberOptions): Promise<Uint8Array> {
   const document = await loadPdf(bytes)
   const pages = validatePages(options.pages, document.getPageCount())
-  const font = await document.embedFont(StandardFonts.Helvetica)
+  const font = options.textImages ? null : await document.embedFont(StandardFonts.Helvetica)
+  if (options.textImages && options.textImages.length !== pages.length) throw new PdfToolError('range', 'Page number image count does not match selected pages')
+  const images = options.textImages ? await Promise.all(options.textImages.map((image) => document.embedPng(image))) : null
   const fontSize = clamp(options.fontSize, 6, 72)
   const color = parseHexColor(options.color)
   pages.forEach((pageIndex, logicalIndex) => {
     const page = document.getPage(pageIndex)
-    const text = pageNumberText(logicalIndex, pages.length, options)
+    const text = formatPdfPageNumber(logicalIndex, pages.length, options)
     let width: number
-    try {
-      width = font.widthOfTextAtSize(text, fontSize)
-    } catch {
-      throw new PdfToolError('unsupported', 'The selected prefix or suffix is not supported by the standard PDF font')
-    }
-    const height = font.heightAtSize(fontSize)
+    let height: number
+    const image = images?.[logicalIndex]
+    if (image) { height = fontSize * 1.2; width = height * image.width / image.height }
+    else { try { width = font!.widthOfTextAtSize(text, fontSize) } catch { throw new PdfToolError('unsupported', 'The selected prefix or suffix is not supported by the standard PDF font') }; height = font!.heightAtSize(fontSize) }
     const size = page.getSize()
-    const placement = resolvePdfPlacement(size.width, size.height, width, height, options.anchor, options.margin)
-    page.drawText(text, { x: placement.x, y: placement.y, size: fontSize, font, color, opacity: clamp(options.opacity, 0.05, 1) })
+    const placement = resolvePdfPagePlacement(size.width, size.height, page.getCropBox(), page.getRotation().angle, width, height, options.anchor, options.margin)
+    if (image) page.drawImage(image, { x: placement.x, y: placement.y, width: placement.width, height: placement.height, rotate: degrees(placement.rotation), opacity: clamp(options.opacity, 0.05, 1) })
+    else page.drawText(text, { x: placement.x, y: placement.y, size: fontSize, font: font!, color, rotate: degrees(placement.rotation), opacity: clamp(options.opacity, 0.05, 1) })
   })
   return document.save()
 }
@@ -300,8 +346,8 @@ export async function addVisiblePdfSignature(bytes: Uint8Array, options: PdfSign
   const pageSize = page.getSize()
   const width = clamp(options.width, 24, pageSize.width)
   const height = width * image.height / image.width
-  const placement = resolvePdfPlacement(pageSize.width, pageSize.height, width, height, options.anchor, options.margin)
-  page.drawImage(image, { ...placement, opacity: clamp(options.opacity, 0.05, 1), rotate: degrees(clamp(options.rotation, -180, 180)) })
+  const placement = resolvePdfPagePlacement(pageSize.width, pageSize.height, page.getCropBox(), page.getRotation().angle, width, height, options.anchor, options.margin)
+  page.drawImage(image, { x: placement.x, y: placement.y, width: placement.width, height: placement.height, opacity: clamp(options.opacity, 0.05, 1), rotate: degrees(placement.rotation + clamp(options.rotation, -180, 180)) })
   if (options.dateText?.trim()) {
     const font = await document.embedFont(StandardFonts.Helvetica)
     const text = options.dateText.trim()

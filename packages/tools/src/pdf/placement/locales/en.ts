@@ -44,10 +44,16 @@ export const en = {
   'tool.pdfSignature.terms': 'sign PDF,PDF signature,add signature,signature image,PNG signature,visible signature,electronic signature,date,place signature,PDF unterschreiben,#pdf,#signature,#sign',
   'tool.pdfSignature.disclaimer': 'This is a visible electronic signature. It does not create a cryptographic certificate signature and does not prove that the document is unchanged.',
   'tool.pdfSignature.image': 'Signature as PNG or JPEG',
+  'tool.pdfSignature.source': 'Create signature',
+  'tool.pdfSignature.draw': 'Draw',
+  'tool.pdfSignature.name': 'Name',
+  'tool.pdfSignature.nameLabel': 'Name for the signature',
+  'tool.pdfSignature.clear': 'Clear drawing',
+  'tool.pdfSignature.canvas': 'Draw signature with mouse, pen or touch',
   'tool.pdfSignature.page': 'Page',
   'tool.pdfSignature.width': 'Width (pt)',
   'tool.pdfSignature.date': 'Date line (optional)',
-  'tool.pdfSignature.required': 'Choose a signature image.',
+  'tool.pdfSignature.required': 'Draw a signature, enter a name or choose an image.',
   'tool.pdfSignature.action': 'Place visible signature',
   'tool.pdfSignature.result': 'Visibly signed PDF'
 } as const

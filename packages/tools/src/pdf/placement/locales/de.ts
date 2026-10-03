@@ -44,10 +44,16 @@ export const de = {
   'tool.pdfSignature.terms': 'PDF unterschreiben,Unterschrift PDF,Signatur einfügen,Unterschriftenbild,PNG Unterschrift,sichtbar signieren,elektronische Unterschrift,Datum,platzieren,#pdf,#unterschrift,#signatur',
   'tool.pdfSignature.disclaimer': 'Dies ist eine sichtbare elektronische Unterschrift. Sie erzeugt keine kryptografische Zertifikatssignatur und bestätigt nicht die Unverändertheit des Dokuments.',
   'tool.pdfSignature.image': 'Unterschrift als PNG oder JPEG',
+  'tool.pdfSignature.source': 'Unterschrift erstellen',
+  'tool.pdfSignature.draw': 'Zeichnen',
+  'tool.pdfSignature.name': 'Name',
+  'tool.pdfSignature.nameLabel': 'Name für die Unterschrift',
+  'tool.pdfSignature.clear': 'Zeichnung löschen',
+  'tool.pdfSignature.canvas': 'Unterschrift mit Maus, Stift oder Touch zeichnen',
   'tool.pdfSignature.page': 'Seite',
   'tool.pdfSignature.width': 'Breite (pt)',
   'tool.pdfSignature.date': 'Datumszeile (optional)',
-  'tool.pdfSignature.required': 'Wähle eine Unterschriftengrafik aus.',
+  'tool.pdfSignature.required': 'Zeichne eine Unterschrift, gib einen Namen ein oder wähle eine Grafik aus.',
   'tool.pdfSignature.action': 'Sichtbare Unterschrift einsetzen',
   'tool.pdfSignature.result': 'Sichtbar unterschriebene PDF'
 } as const

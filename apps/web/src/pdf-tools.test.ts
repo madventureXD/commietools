@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import { PDFDocument, degrees } from 'pdf-lib'
-import { addPdfPageNumbers, addPdfWatermark, addVisiblePdfSignature, imagesToPdf, inspectPdf, mergePdfs, organizePdf, parsePageSelection, parseSplitGroups, PdfToolError, resolvePdfPlacement, splitPdf } from '@commietools/tools'
+import { addPdfPageNumbers, addPdfWatermark, addVisiblePdfSignature, imagesToPdf, inspectPdf, mergePdfs, organizePdf, parsePageSelection, parseSplitGroups, PdfToolError, resolvePdfPagePlacement, resolvePdfPlacement, splitPdf } from '@commietools/tools'
 
 async function fixture(sizes: readonly [number, number][]) {
   const document = await PDFDocument.create()
@@ -76,11 +76,24 @@ describe('M3 PDF placement operations', () => {
     expect(resolvePdfPlacement(600, 800, 100, 40, 'bottom-right', 20)).toEqual({ x: 480, y: 20, width: 100, height: 40 })
   })
 
+  it('maps visual placement through CropBox offsets and page rotation', () => {
+    const crop = { x: 10, y: 20, width: 200, height: 300 }
+    expect(resolvePdfPagePlacement(240, 340, crop, 0, 50, 20, 'top-left', 10)).toEqual({ x: 20, y: 290, width: 50, height: 20, rotation: 0 })
+    expect(resolvePdfPagePlacement(240, 340, crop, 90, 50, 20, 'top-left', 10)).toEqual({ x: 20, y: 80, width: 50, height: 20, rotation: -90 })
+  })
+
   it('adds a watermark only to selected pages', async () => {
     const source = await fixture([[300, 400], [300, 400]])
     const output = await addPdfWatermark(source, { text: 'DRAFT', pages: [1], anchor: 'center', fontSize: 36, margin: 20, opacity: 0.25, rotation: -30, color: '#c91f2c', tiled: false, spacing: 80 })
     expect((await inspectPdf(output)).pageCount).toBe(2)
     expect(output.byteLength).toBeGreaterThan(source.byteLength)
+  })
+
+  it('accepts a caller-rendered Unicode watermark layer', async () => {
+    const source = await fixture([[300, 400]])
+    const image = Uint8Array.from(atob('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M/wHwAF/gL+X2NDWQAAAABJRU5ErkJggg=='), (character) => character.charCodeAt(0))
+    const output = await addPdfWatermark(source, { text: 'Grüße – 東京', textImage: image, pages: [0], anchor: 'center', fontSize: 36, margin: 20, opacity: 0.25, rotation: -30, color: '#c91f2c', tiled: false, spacing: 80 })
+    expect((await inspectPdf(output)).pageCount).toBe(1)
   })
 
   it('numbers a selected logical range independently of physical page numbers', async () => {
