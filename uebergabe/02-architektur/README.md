@@ -12,6 +12,21 @@ Dieser Bereich ist für ergänzende, thematisch abgegrenzte Architekturleitfäde
 
 ## Erweiterungsregeln
 
+### Open Source zuerst
+
+Für jede neue Verarbeitungsfähigkeit werden zuerst geeignete, gepflegte Open-Source-Lösungen recherchiert, verglichen und möglichst prototypisch geprüft. Eine passende Lösung wird integriert, wenn sie Funktion, Local-/Offline-First, unterstützte Zielplattformen, Sicherheit, Datenschutz, Barrierefreiheit, Leistung und Lizenzanforderungen erfüllt.
+
+Eigenentwicklung ist nur vorgesehen, wenn keine adäquate Open-Source-Lösung verfügbar ist oder alle Kandidaten an einem dokumentierten Muss-Kriterium scheitern. Diese Begründung gehört in das jeweilige Konzept, die Übergabe oder ein ADR. Eigene schlanke Adapter, Oberflächen, Validierung und Orchestrierung gelten nicht als Neuerfindung der Verarbeitungsengine, sondern als notwendige Einbindung in CommieTools.
+
+Verbindliche Reihenfolge:
+
+1. Anforderungen und Muss-Kriterien festlegen.
+2. Open-Source-Kandidaten und deren Wartungszustand recherchieren.
+3. Funktion, Offline-Fähigkeit, Sicherheit, Größe, Kompatibilität und Lizenz vergleichen.
+4. geeignete Kandidaten mit realen Dateien prototypisch prüfen.
+5. beste Lösung integrieren und vollständig in der Lizenzdatenbank erfassen.
+6. nur bei dokumentierter Ablehnung aller Kandidaten selbst implementieren.
+
 ### Neues Tool
 
 Ein Tool besitzt eine eindeutige ID, ein Manifest, toolnahe Logik und bei Bedarf eigene Übersetzungen. Es verwendet gemeinsame UI-Komponenten und wird nicht durch fest codierte Navigation dupliziert.

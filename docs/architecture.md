@@ -54,6 +54,14 @@ Shared navigation, status, category and suite translations live in `packages/i18
 - Tool dependencies are reviewed for unexpected network access.
 - Content Security Policy and deployment headers are added with the hosting configuration.
 
+## Open-source-first implementation policy
+
+CommieTools provides tools primarily by integrating suitable open-source solutions. Before a processing capability is implemented, maintained open-source libraries and applications must be researched and compared. An existing solution is preferred when it adequately satisfies the required function, browser or target-platform support, Local-/Offline-First operation, security, privacy, accessibility, performance and license compatibility.
+
+Custom implementation is reserved for capabilities for which no adequate open-source solution exists, or where available solutions fail one of those requirements. The reason must be recorded in the relevant concept, handoff or ADR. Small CommieTools-specific adapters, user interfaces, validation, orchestration and compatibility layers are still expected: they connect the selected open-source engine to the shared tool contract without reimplementing the engine itself.
+
+The required order for a new capability is therefore: define requirements, research open-source candidates, compare and prototype viable candidates, complete license and security review, then integrate the best candidate. Only after the comparison rejects all candidates may the missing capability be implemented in-house.
+
 ## Deferred decisions
 
 - Node.js API and PostgreSQL schema

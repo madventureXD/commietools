@@ -13,5 +13,7 @@ Wird eine Entscheidung ersetzt, bleiben beide Dateien erhalten und verweisen geg
 
 ## Entscheidungsindex
 
-Noch keine separaten ADRs vorhanden. Die bisherige Architekturgrundlage ist in [`../../docs/architecture.md`](../../docs/architecture.md) dokumentiert. Neue größere Entscheidungen werden ab jetzt hier erfasst.
+- [`0001-open-source-first.md`](0001-open-source-first.md): Open-Source-Lösungen haben vor Eigenentwicklung Vorrang — angenommen.
+
+Die allgemeine Architekturgrundlage ist in [`../../docs/architecture.md`](../../docs/architecture.md) dokumentiert.
 
