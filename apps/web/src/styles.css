@@ -192,6 +192,22 @@ a.button { display: inline-flex; align-items: center; justify-content: center; t
   .pdf-row-actions { grid-column: 1 / -1; }
   .pdf-thumbnail-grid, .pdf-organizer { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
+/* Icon generator */
+.icon-preview-grid { display: flex; flex-wrap: wrap; gap: var(--space-4); align-items: start; }
+.icon-tile { display: grid; gap: var(--space-2); margin: 0; text-align: center; }
+.icon-tile figcaption { color: var(--color-text-muted); font-size: 0.8rem; font-weight: 700; }
+.icon-tile canvas { display: block; width: min(100%, 160px); height: auto; border: 1px solid var(--color-border); border-radius: var(--radius-sm); background-color: var(--color-background); background-image: conic-gradient(from 90deg at 50% 50%, #0000 50%, color-mix(in srgb, var(--color-text-muted) 18%, transparent) 50%); background-size: 16px 16px; }
+.icon-size-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(6.5rem, 1fr)); gap: var(--space-2) var(--space-4); }
+.icon-result-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(9.5rem, 1fr)); gap: var(--space-4); }
+.icon-result { display: grid; justify-items: center; gap: var(--space-2); margin: 0; padding: var(--space-4); border: 1px solid var(--color-border); border-radius: var(--radius-md); background: var(--color-background); }
+.icon-result img { max-width: 72px; max-height: 72px; border-radius: 4px; background-color: var(--color-background); background-image: conic-gradient(from 90deg at 50% 50%, #0000 50%, color-mix(in srgb, var(--color-text-muted) 18%, transparent) 50%); background-size: 12px 12px; }
+.icon-result figcaption { display: grid; justify-items: center; gap: 0.35rem; overflow-wrap: anywhere; text-align: center; font-size: 0.82rem; font-weight: 700; }
+.icon-result figcaption .button { min-height: 2.25rem; padding: 0.25rem 0.6rem; font-size: 0.82rem; }
+.icon-manifest { min-height: 12rem; font: 0.82rem/1.5 ui-monospace, SFMono-Regular, Consolas, monospace; }
+
+@media (max-width: 620px) {
+  .icon-result-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { scroll-behavior: auto !important; transition: none !important; }
 }

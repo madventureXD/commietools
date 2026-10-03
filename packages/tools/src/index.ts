@@ -65,6 +65,25 @@ export {
   type ResizePlan,
   type Size
 } from './image/resize/resize'
+export {
+  ICO_MAX_SIZE,
+  ICON_SIZES,
+  IconError,
+  MASKABLE_SAFE_ZONE,
+  buildIco,
+  buildManifestIcons,
+  icoSizes,
+  normalizeSizes,
+  planIcon,
+  planIcons,
+  readPngSize,
+  type IconBox,
+  type IconErrorCode,
+  type IconFit,
+  type IconPlanItem,
+  type IconPlanOptions,
+  type ManifestIconEntry
+} from './image/icon/icon'
 
 export const toolById = new Map(toolManifests.map((tool) => [tool.id, tool]))
 export const toolByRoute = new Map(toolManifests.map((tool) => [tool.route, tool]))

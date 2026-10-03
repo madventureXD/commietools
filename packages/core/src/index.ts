@@ -23,6 +23,7 @@ export const knownFormats: readonly FormatInfo[] = [
   { mime: 'image/bmp', name: 'BMP', extensions: ['.bmp'] },
   { mime: 'image/tiff', name: 'TIFF', extensions: ['.tif', '.tiff'] },
   { mime: 'image/heic', name: 'HEIC', extensions: ['.heic'] },
+  { mime: 'image/x-icon', name: 'ICO', extensions: ['.ico'] },
   { mime: 'image/svg+xml', name: 'SVG', extensions: ['.svg'] },
   { mime: 'application/pdf', name: 'PDF', extensions: ['.pdf'] },
   { mime: 'text/plain', name: 'Text', extensions: ['.txt'] },

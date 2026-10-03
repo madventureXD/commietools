@@ -1,7 +1,7 @@
 # Aktueller Projektstand
 
 **Stand:** 2026-10-03  
-**Letzter geprüfter Meilenstein:** PDF-Suite M2, davor PDF-Suite M0/M1 (`a45f950`)
+**Letzter geprüfter Meilenstein:** Bild-Suite „Icon-Generator“ (2026-10-03), davor PDF-Suite M2, davor PDF-Suite M0/M1 (`a45f950`)
 
 ## Umgesetzt
 
@@ -14,6 +14,7 @@
 - QR-Code-Generator mit UTF-8-Unterstützung
 - Bild-Metadaten: Anzeige und verlustfreies Entfernen von EXIF, XMP, IPTC und Kommentaren in JPEG, PNG und WebP, ohne Neuberechnung der Bildpunkte
 - Bild skalieren: Skalieren, Zuschnitt, Drehen und Spiegeln mit hochwertiger Filterung im Web Worker; fester Ablauf Ausrichtung → Zuschnitt → Skalierung
+- Icon-Generator: PNG-Satz von 16 bis 512 px, maskierbare Variante je Größe, `favicon.ico` mit selbst geschriebenem ICO-Container und kopierbarer `icons`-Eintrag für ein Web-App-Manifest
 - CommieTools-Logo- und Iconvarianten
 - vollständige AGPL-3.0-only-Projektlizenz
 - automatisch erzeugte und auf der Webseite abrufbare Lizenzdatenbank
@@ -40,6 +41,7 @@
 | QR-Code-Generator | `qr-code-generator` | Generatoren | lokal | Logo hinein (4 Typen), Bild heraus (4 Typen) |
 | Bild-Metadaten | `image-metadata` | Bilder | lokal | 8 Typen hinein, 3 verlustfrei heraus |
 | Bild skalieren | `image-resize` | Bilder | lokal | 3 Typen hinein und heraus |
+| Icon-Generator | `icon-generator` | Bilder | lokal | PNG/JPEG/WebP hinein, PNG und ICO heraus |
 | PDFs zusammenführen | `pdf-merge` | PDF | lokal | PDF hinein und heraus |
 | PDF teilen | `pdf-split` | PDF | lokal | PDF hinein und mehrere PDFs heraus |
 | PDF-Seiten organisieren | `pdf-organize` | PDF | lokal | PDF hinein und heraus |
@@ -51,7 +53,7 @@
 - Text
 - Entwicklung
 - Generatoren
-- Bilder (Bild-Metadaten, Bild skalieren)
+- Bilder (Bild-Metadaten, Bild skalieren, Icon-Generator)
 - PDF (Zusammenführen, Teilen, Seiten organisieren, Bilder zu PDF, PDF zu Bildern)
 
 ## Qualität und Compliance
@@ -60,10 +62,10 @@
 - Lizenzübersicht in der Webanwendung: `/licenses`
 - erfasste externe Pakete: 496
 - vollständige Lizenztexte: 13
-- bewahrte originale Paketdokumente: 172
-- letzter bekannter Teststand: 88 Tests bestanden
-- Werkzeugregister: 11 Werkzeuge, 2 Sprachen, 11 Symbole, **776** Suchbegriffe und Schlagwörter, 37 deklarierte Dateitypen (`npm run catalog:check`)
-- letzter bekannter Produktions-Build: bestanden; Hauptbundle 458,60 kB (138,56 kB komprimiert), PDF-Engines in getrennten nachgeladenen Chunks, Vorab-Cache mit 25 Einträgen (1.410,69 KiB)
+- bewahrte originale Paketdokumente: 170
+- letzter bekannter Teststand: 101 Tests bestanden
+- Werkzeugregister: 12 Werkzeuge, 2 Sprachen, 12 Symbole, **852** Suchbegriffe und Schlagwörter, 42 deklarierte Dateitypen (`npm run catalog:check`)
+- letzter bekannter Produktions-Build: bestanden; Hauptbundle 480,59 kB (143,85 kB komprimiert), Stylesheet 20,75 kB (4,50 kB komprimiert), PDF-Engines in getrennten nachgeladenen Chunks, Vorab-Cache mit 26 Einträgen
 
 Zahlen sind Momentaufnahmen. Nach Abhängigkeits-, Test- oder Tooländerungen müssen sie anhand der tatsächlichen Ausgabe aktualisiert werden.
 

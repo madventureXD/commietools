@@ -1,5 +1,6 @@
 import { imageMetadataMessages } from './image/metadata/locales'
 import { imageResizeMessages } from './image/resize/locales'
+import { iconGeneratorMessages } from './image/icon/locales'
 import { jsonFormatterMessages } from './developer/json-formatter/locales'
 import { qrCodeGeneratorMessages } from './generator/qr-code-generator/locales'
 import { caseConverterMessages } from './text/case-converter/locales'
@@ -31,6 +32,7 @@ export const toolMessages = mergeToolCatalogs([
   qrCodeGeneratorMessages,
   imageMetadataMessages,
   imageResizeMessages,
+  iconGeneratorMessages,
   pdfCommonMessages,
   pdfMergeMessages,
   pdfSplitMessages,

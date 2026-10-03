@@ -121,6 +121,7 @@ describe('declared file types', () => {
   it('derives the accept attribute instead of typing it by hand', () => {
     expect(acceptAttributeFor('image-metadata')).toBe('image/jpeg,image/png,image/webp,image/gif,image/bmp,image/tiff,image/avif,image/heic')
     expect(acceptAttributeFor('image-resize')).toBe('image/jpeg,image/png,image/webp')
+    expect(acceptAttributeFor('icon-generator')).toBe('image/png,image/jpeg,image/webp')
     expect(acceptAttributeFor('images-to-pdf')).toBe('image/jpeg,image/png')
     expect(acceptAttributeFor('text-statistics')).toBe('')
     expect(inputMimeTypes('unknown-tool')).toEqual([])
@@ -132,12 +133,14 @@ describe('declared file types', () => {
         expect(tool.files?.input?.length, tool.id).toBeGreaterThan(0)
       }
     }
-    expect(fileToolIds).toEqual(['image-metadata', 'image-resize', 'pdf-merge', 'pdf-split', 'pdf-organize', 'images-to-pdf', 'pdf-to-images'])
+    expect(fileToolIds).toEqual(['image-metadata', 'image-resize', 'icon-generator', 'pdf-merge', 'pdf-split', 'pdf-organize', 'images-to-pdf', 'pdf-to-images'])
   })
 
   it('separates types that are only read from types that are written', () => {
     expect(readOnlyFormatNames('image-metadata')).toEqual(['GIF', 'BMP', 'TIFF', 'AVIF', 'HEIC'])
     expect(readOnlyFormatNames('image-resize')).toEqual([])
+    // The icon generator reads JPEG and WebP but writes PNG and ICO only.
+    expect(readOnlyFormatNames('icon-generator')).toEqual(['JPEG', 'WebP'])
     expect(formatNames(auxiliaryMimeTypes('qr-code-generator', 'logo'))).toEqual(['PNG', 'JPEG', 'WebP', 'SVG'])
     expect(auxiliaryMimeTypes('qr-code-generator', 'frame')).toEqual([])
     expect(toolById.get('qr-code-generator')?.files?.auxiliary?.[0]?.role).toBe('logo')

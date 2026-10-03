@@ -871,6 +871,124 @@ export const toolIndex: readonly ToolSearchEntry[] = [
     }
   },
   {
+    "id": "icon-generator",
+    "route": "/tools/icon-generator",
+    "icon": "/tools/icon-generator.svg",
+    "category": "image",
+    "suiteIds": [
+      "image"
+    ],
+    "executionMode": "local",
+    "resourceClass": "standard",
+    "worksOffline": true,
+    "input": [
+      "image/png",
+      "image/jpeg",
+      "image/webp"
+    ],
+    "output": [
+      "image/png",
+      "image/x-icon"
+    ],
+    "auxiliary": [],
+    "locales": {
+      "de": {
+        "title": "Icon-Generator",
+        "summary": "Erzeugt Favicon- und Icon-Sätze aus einem Bild.",
+        "description": "Erzeugt aus einem Bild einen vollständigen Satz Symbole: Favicon, PWA-Icons, Apple-Touch-Icon und eine maskierbare Variante – vollständig auf deinem Gerät.",
+        "terms": [
+          "icon",
+          "icons",
+          "favicon",
+          "favicon.ico",
+          "app icon",
+          "App-Symbol",
+          "Symbol",
+          "Symbole",
+          "Website-Icon",
+          "Webseite",
+          "Icon-Satz",
+          "Icon-Set",
+          "Icongrößen",
+          "Icongroessen",
+          "Größen",
+          "Groessen",
+          "16x16",
+          "32x32",
+          "180x180",
+          "192x192",
+          "512x512",
+          "PWA",
+          "Web-App-Manifest",
+          "manifest.json",
+          "maskable",
+          "maskierbar",
+          "Android",
+          "Homescreen",
+          "Startbildschirm",
+          "Apple-Touch-Icon",
+          "Touch-Icon",
+          "Favicon erzeugen",
+          "Browser-Tab",
+          "Tab-Symbol",
+          "PNG",
+          "ICO",
+          "Windows",
+          "Programmsymbol",
+          "Desktop-Verknüpfung"
+        ],
+        "tags": [
+          "#icon",
+          "#favicon",
+          "#pwa"
+        ]
+      },
+      "en": {
+        "title": "Icon generator",
+        "summary": "Creates favicon and icon sets from one image.",
+        "description": "Turns one image into a complete set of icons: favicon, PWA icons, Apple touch icon and a maskable variant – entirely on your device.",
+        "terms": [
+          "icon",
+          "icons",
+          "favicon",
+          "favicon.ico",
+          "app icon",
+          "website icon",
+          "icon set",
+          "icon sizes",
+          "sizes",
+          "16x16",
+          "32x32",
+          "180x180",
+          "192x192",
+          "512x512",
+          "pwa",
+          "web app manifest",
+          "manifest.json",
+          "maskable",
+          "android",
+          "homescreen",
+          "home screen",
+          "apple touch icon",
+          "touch icon",
+          "create favicon",
+          "browser tab",
+          "tab icon",
+          "png",
+          "ico",
+          "windows",
+          "program icon",
+          "desktop shortcut"
+        ],
+        "tags": [
+          "#icon",
+          "#favicon",
+          "#pwa"
+        ]
+      }
+    }
+  },
+  {
     "id": "pdf-merge",
     "route": "/tools/pdf-merge",
     "icon": "/tools/pdf-merge.svg",

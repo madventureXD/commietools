@@ -62,6 +62,16 @@ export const toolManifests: readonly ToolManifest[] = [
     }
   },
   {
+    id: 'icon-generator', route: '/tools/icon-generator', category: 'image',
+    titleKey: 'tool.iconGenerator.title', descriptionKey: 'tool.iconGenerator.description',
+    summaryKey: 'tool.iconGenerator.summary', termsKey: 'tool.iconGenerator.terms',
+    executionMode: 'local', resourceClass: 'standard', worksOffline: true,
+    files: {
+      input: ['image/png', 'image/jpeg', 'image/webp'],
+      output: ['image/png', 'image/x-icon']
+    }
+  },
+  {
     id: 'pdf-merge', route: '/tools/pdf-merge', category: 'pdf',
     titleKey: 'tool.pdfMerge.title', descriptionKey: 'tool.pdfMerge.description',
     summaryKey: 'tool.pdfMerge.summary', termsKey: 'tool.pdfMerge.terms',
@@ -102,6 +112,6 @@ export const suiteManifests: readonly SuiteManifest[] = [
   { id: 'text', route: '/suites/text', titleKey: 'suite.text.title', descriptionKey: 'suite.text.description', toolIds: ['text-statistics', 'case-converter'] },
   { id: 'developer', route: '/suites/developer', titleKey: 'suite.developer.title', descriptionKey: 'suite.developer.description', toolIds: ['json-formatter'] },
   { id: 'generators', route: '/suites/generators', titleKey: 'suite.generators.title', descriptionKey: 'suite.generators.description', toolIds: ['qr-code-generator'] },
-  { id: 'image', route: '/suites/image', titleKey: 'suite.image.title', descriptionKey: 'suite.image.description', toolIds: ['image-metadata', 'image-resize'] },
+  { id: 'image', route: '/suites/image', titleKey: 'suite.image.title', descriptionKey: 'suite.image.description', toolIds: ['image-metadata', 'image-resize', 'icon-generator'] },
   { id: 'pdf', route: '/suites/pdf', titleKey: 'suite.pdf.title', descriptionKey: 'suite.pdf.description', toolIds: ['pdf-merge', 'pdf-split', 'pdf-organize', 'images-to-pdf', 'pdf-to-images'] }
 ]

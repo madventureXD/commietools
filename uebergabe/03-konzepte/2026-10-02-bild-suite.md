@@ -527,3 +527,41 @@ einer Fenstergröße.
 
 **Offen und nicht gemessen:** ob beim Speichern ein Farbprofil der Quelldatei erhalten bleibt.
 Das Werkzeug verarbeitet über Canvas, also ist Vorsicht angebracht statt einer Annahme.
+
+## Umsetzungshinweis: drittes Werkzeug gebaut (2026-10-03)
+
+**Betrifft `icon-generator`.** Das Konzept führte das Werkzeug als „abhängigkeitsfrei, eigener
+ICO-Container". Genau so ist es gebaut — aber erst nach einer erneuten Prüfung der Lage am
+Markt, weil diese Sitzung ausdrücklich „passende Open-Source-Lösungen recherchieren" verlangte.
+
+1. **Neuer Kandidat geprüft: `icojs`.** MIT, aktiv gepflegt (letzte Fassung 2026-08-22), mit
+   eigenem Browser-Einstieg (`dist/ico.js`, 8,6 kB). Auf den ersten Blick die naheliegende
+   Wahl — verworfen, weil es fünf Laufzeitpakete mitbringt (`pngjs`, `jpeg-js`, `file-type`,
+   `bmp-ts`, `decode-ico`), die es für das **Dekodieren** braucht; gebraucht wird hier nur das
+   Verpacken. Dieselbe Abwägung, mit der `exifreader` beim ersten Werkzeug ausschied, und eine
+   zusätzliche Abhängigkeitskette wäre in diesem Projekt begründungspflichtig gewesen.
+2. **Alle anderen Kandidaten bleiben ungeeignet.** `png-to-ico` (MIT, aktiv) ist Node-only
+   (`pngjs`, `@types/node`); `@shockpkg/icon-encoder` (MPL-2.0) hängt ebenfalls an `pngjs`;
+   `to-ico` (2017), `image-to-ico` (2022, `jimp`), `png2ico` (2013), `sharp-ico` (2022) und
+   `favicons` (Node, `sharp`) scheiden durch Alter, Node-Bindung oder Umfang aus.
+3. **Frames werden aus PNG gebaut, nicht aus Bitmap-Masken.** Windows liest seit Vista
+   vollständige PNG-Dateien im ICO und leitet die Transparenz selbst aus dem Alphakanal ab. Die
+   im Konzept als „eigener Byte-Schreiber" umrissene Arbeit schrumpft damit auf 6 Byte Kopf,
+   16 Byte je Eintrag und die unveränderte PNG-Datei. **Grenze:** Das Verzeichnis beschreibt
+   Kantenlängen in einem Byte, 0 steht für 256 — größere Frames sind im Format nicht darstellbar
+   und werden als PNG belassen, nicht stillschweigend falsch eingetragen.
+4. **Die maskierbare Variante bekommt immer eine deckende Fläche.** Ein transparenter Rand
+   würde beim Zuschneiden durch das Betriebssystem als Fehler sichtbar. Das ist eine Festlegung
+   gegen die sonstige Einstellung „durchsichtig" und in der Oberfläche benannt.
+5. **Skalierung mit dem vorhandenen `pica`.** Zuerst wird die größte gewünschte Größe einmal aus
+   dem Original gerechnet, alle kleineren entstehen daraus. Belegt: 511 ms für zehn Symbole aus
+   einem 640 × 480 großen Foto.
+
+**Prüfung der Ausgabe gegen fremde Werkzeuge, nicht gegen die eigene Logik:** Die erzeugte
+`favicon.ico` wurde von Pillow 12.3.0 gelesen (vier Frames, lückenlose Offsets, IHDR deckt sich
+mit dem Verzeichnis) und die Frame-Daten sind byteweise identisch mit den einzeln ausgegebenen
+PNG-Dateien. Im Browser lädt die Datei mit 192 px Kantenlänge.
+
+**Offen und gemessen:** Die PNG-Ausgabe ist groß — 754 kB für 512 px. Das ist die
+Browser-Kodierung, nicht die Zeichnung; eine Palettenquantisierung wäre ein eigener Schritt und
+ist als Folgemaßnahme vermerkt.
