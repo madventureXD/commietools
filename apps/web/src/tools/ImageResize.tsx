@@ -3,6 +3,7 @@ import { acceptAttributeFor, cropBoxFraction, fitScale, formatNames, inputMimeTy
 import type { Locale } from '@commietools/i18n'
 import { Button, LocalBadge } from '@commietools/ui'
 import { renderOrientationPreview, renderPlan, type OutputFormat } from './imageResizeRender'
+import { SaveFileControl } from './SaveFileControl'
 
 /** Formats offered by this tool, straight from the manifest. */
 const acceptedFormatNames = formatNames(inputMimeTypes('image-resize'))
@@ -332,11 +333,7 @@ export function ImageResize({ t, locale }: { t: Translate; locale: Locale }) {
             </div>
           </dl>
           <img className="resize-result" src={result.url} alt="" />
-          <div className="download-row">
-            <a className="button primary" href={result.url} download={outputName(fileName, result.width, result.height, fileType)}>
-              {t('tool.imageResize.download')}
-            </a>
-          </div>
+          <SaveFileControl url={result.url} suggestedName={outputName(fileName, result.width, result.height, fileType)} mimeType={fileType} t={t} />
         </section>
       )}
     </div>

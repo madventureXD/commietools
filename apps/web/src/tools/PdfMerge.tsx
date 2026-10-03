@@ -3,6 +3,7 @@ import { acceptAttributeFor } from '@commietools/tools'
 import { inspectPdf, mergePdfs } from '@commietools/tools/pdf/core'
 import { Button, LocalBadge } from '@commietools/ui'
 import { PdfWarnings, baseName, pdfErrorKey, useDownload, usePdfThumbnails, type LoadedPdf, type Translate } from './pdfUi'
+import { SaveFileControl } from './SaveFileControl'
 
 function Preview({ file }: { file: LoadedPdf }) {
   const { images } = usePdfThumbnails(file.bytes, 100)
@@ -72,7 +73,7 @@ export function PdfMerge({ t }: { t: Translate }) {
       {error && <p className="error" role="alert">{t(error)}</p>}
       <Button className="primary" disabled={!files.length || processing} onClick={process}>{processing ? t('tool.pdf.processing') : t('tool.pdfMerge.action')}</Button>
     </section>
-    {result && downloadUrl && <section className="settings-card stack" aria-live="polite"><div className="preview-heading"><h2>{t('tool.pdfMerge.result')}</h2><LocalBadge>{t('status.local')}</LocalBadge></div><a className="button primary" href={downloadUrl} download={`${baseName(files[0]?.name ?? 'documents')}-merged.pdf`}>{t('tool.pdf.download')}</a></section>}
+    {result && downloadUrl && <section className="settings-card stack" aria-live="polite"><div className="preview-heading"><h2>{t('tool.pdfMerge.result')}</h2><LocalBadge>{t('status.local')}</LocalBadge></div><SaveFileControl url={downloadUrl} suggestedName={`${baseName(files[0]?.name ?? 'documents')}-merged.pdf`} mimeType="application/pdf" t={t} /></section>}
   </div>
 }
 

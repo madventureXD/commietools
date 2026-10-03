@@ -16,6 +16,7 @@ import {
 } from '@commietools/tools/pdf/m5'
 import { Button, LocalBadge } from '@commietools/ui'
 import { PdfWarnings, baseName, pdfErrorKey, usePdfThumbnails, type Translate } from './pdfUi'
+import { SaveFileControl } from './SaveFileControl'
 
 type PdfFile = { name: string; bytes: Uint8Array; inspection?: PdfInspection }
 
@@ -31,7 +32,7 @@ function Facts({ file, t }: { file: PdfFile; t: Translate }) {
 }
 
 function DownloadResult({ url, name, title, t, children }: { url: string; name: string; title: string; t: Translate; children?: ReactNode }) {
-  return <section className="settings-card stack" aria-live="polite"><div className="preview-heading"><h2>{title}</h2><LocalBadge>{t('status.local')}</LocalBadge></div>{children}<a className="button primary" href={url} download={name}>{t('tool.pdf.download')}</a></section>
+  return <section className="settings-card stack" aria-live="polite"><div className="preview-heading"><h2>{title}</h2><LocalBadge>{t('status.local')}</LocalBadge></div>{children}<SaveFileControl url={url} suggestedName={name} mimeType="application/pdf" t={t} /></section>
 }
 
 function formatBytes(bytes: number): string {

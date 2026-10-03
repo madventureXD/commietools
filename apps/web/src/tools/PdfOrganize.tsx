@@ -3,6 +3,7 @@ import { acceptAttributeFor } from '@commietools/tools'
 import { inspectPdf, organizePdf, type PdfPagePlan } from '@commietools/tools/pdf/core'
 import { Button, LocalBadge } from '@commietools/ui'
 import { PdfWarnings, baseName, pdfErrorKey, useDownload, usePdfThumbnails, type LoadedPdf, type Translate } from './pdfUi'
+import { SaveFileControl } from './SaveFileControl'
 
 interface PageItem extends PdfPagePlan { readonly id: string }
 
@@ -70,7 +71,7 @@ export function PdfOrganize({ t }: { t: Translate }) {
       </article>)}</div><Button className="primary" disabled={processing} onClick={process}>{processing ? t('tool.pdf.processing') : t('tool.pdfOrganize.action')}</Button></>}
     {error && <p className="error" role="alert">{t(error)}</p>}
   </section>
-  {result && downloadUrl && <section className="settings-card stack" aria-live="polite"><div className="preview-heading"><h2>{t('tool.pdfOrganize.result')}</h2><LocalBadge>{t('status.local')}</LocalBadge></div><a className="button primary" href={downloadUrl} download={`${baseName(file?.name ?? 'document')}-organized.pdf`}>{t('tool.pdf.download')}</a></section>}
+  {result && downloadUrl && <section className="settings-card stack" aria-live="polite"><div className="preview-heading"><h2>{t('tool.pdfOrganize.result')}</h2><LocalBadge>{t('status.local')}</LocalBadge></div><SaveFileControl url={downloadUrl} suggestedName={`${baseName(file?.name ?? 'document')}-organized.pdf`} mimeType="application/pdf" t={t} /></section>}
   </div>
 }
 

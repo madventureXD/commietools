@@ -28,6 +28,9 @@
 - zweisprachige, dauerhaft im Footer erreichbare Impressumsseite mit Anbieteranschrift und E-Mail-Kontakt
 - erzeugtes Werkzeugregister (`packages/tools/src/catalog/toolIndex.ts`) mit Symbol, Kurzbeschreibung und Suchbegriffen je Werkzeug und Sprache; Prüfung als Bestandteil von Check und Build
 - deklarierte Dateifähigkeiten je Werkzeug im Manifest (`input`, `auxiliary`, `output`); Dateifelder, Formatlisten und Katalogkarten lesen daraus, nicht aus eigenen Kopien
+- einheitliches lokales Speichern für alle 17 dateierzeugenden Werkzeuge: editierbarer Dateiname,
+  nativer Speichern-unter-Dialog in unterstützenden Browsern und transparenter Download-Fallback;
+  Mehrfachausgaben bieten diese Steuerung für jede einzelne Datei
 - Katalogsuche über Suchbegriffe, Schlagwörter, Titel, Kurzbeschreibung und Beschreibung **aller** Sprachen sowie über deklarierte Dateitypen, Kategorie und Suite; Treffer in der eingestellten Sprache mit Begründung („gefunden über …"), offline und ohne unscharfe Suche
 - gemeinsamer, UI-unabhängiger PDF-Kern für Prüfung, Seitenbereiche und Seitenoperationen
 - PDF.js-Vorschau und `pdf-lib`-Verarbeitung als getrennt nachgeladene, offline zwischengespeicherte Engines
@@ -90,9 +93,9 @@
 - vollständige Lizenztexte: 15
 - bewahrte originale Paketdokumente: 171
 - eingebettete Binärartefakte: 1 vollständig geprüftes QPDF-WASM-Artefakt
-- letzter bekannter Teststand: 145 Tests bestanden
+- letzter bekannter Teststand: 149 Tests bestanden
 - Werkzeugregister: 21 Werkzeuge, 2 Sprachen, 21 Symbole, 70 deklarierte Dateitypen (`npm run catalog:check`)
-- letzter bekannter Produktions-Build: bestanden; Startcode 163,99 kB komprimiert und ohne statisch erreichbare PDF-Engine; PDF-Routen, Worker und WASM sind vom Vorab-Cache ausgeschlossen
+- letzter bekannter Produktions-Build: bestanden; Startcode 165,13 kB komprimiert und ohne statisch erreichbare PDF-Engine; PDF-Routen, Worker und WASM sind vom Vorab-Cache ausgeschlossen
 
 Zahlen sind Momentaufnahmen. Nach Abhängigkeits-, Test- oder Tooländerungen müssen sie anhand der tatsächlichen Ausgabe aktualisiert werden.
 

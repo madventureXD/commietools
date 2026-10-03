@@ -15,6 +15,7 @@ import {
 import type { Locale } from '@commietools/i18n'
 import { Button, LocalBadge } from '@commietools/ui'
 import { buildIcoBlob, renderIconSet, type RenderedIcon } from './iconGeneratorRender'
+import { SaveFileControl } from './SaveFileControl'
 
 type Translate = (key: string) => string
 
@@ -94,7 +95,7 @@ export function IconGenerator({ t, locale }: { t: Translate; locale: Locale }) {
   const [copied, setCopied] = useState(false)
   const [result, setResult] = useState<{
     icons: { icon: RenderedIcon; file: string; url: string }[]
-    ico: { url: string; size: number } | null
+    ico: { blob: Blob; url: string; size: number } | null
     manifest: string
   } | null>(null)
   const plainPreview = useRef<HTMLCanvasElement>(null)
@@ -166,7 +167,7 @@ export function IconGenerator({ t, locale }: { t: Translate; locale: Locale }) {
       }))
       setResult({
         icons: entries,
-        ico: icoBlob ? { url: URL.createObjectURL(icoBlob), size: icoBlob.size } : null,
+        ico: icoBlob ? { blob: icoBlob, url: URL.createObjectURL(icoBlob), size: icoBlob.size } : null,
         manifest: buildManifestIcons(manifestEntries)
       })
     } catch {
@@ -318,7 +319,7 @@ export function IconGenerator({ t, locale }: { t: Translate; locale: Locale }) {
                 <figcaption>
                   <span>{entry.file}</span>
                   <span className="scan-note">{formatBytes(entry.icon.blob.size, locale)}</span>
-                  <a className="button" href={entry.url} download={entry.file}>{t('tool.iconGenerator.download')}</a>
+                  <SaveFileControl blob={entry.icon.blob} suggestedName={entry.file} mimeType="image/png" t={t} />
                 </figcaption>
               </figure>
             ))}
@@ -328,7 +329,7 @@ export function IconGenerator({ t, locale }: { t: Translate; locale: Locale }) {
                 <figcaption>
                   <span>favicon.ico</span>
                   <span className="scan-note">{formatBytes(result.ico.size, locale)}</span>
-                  <a className="button" href={result.ico.url} download="favicon.ico">{t('tool.iconGenerator.download')}</a>
+                  <SaveFileControl blob={result.ico.blob} suggestedName="favicon.ico" mimeType="image/x-icon" t={t} />
                 </figcaption>
               </figure>
             )}

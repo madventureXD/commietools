@@ -15,6 +15,7 @@ import {
 import type { Locale } from '@commietools/i18n'
 import { Button, LocalBadge } from '@commietools/ui'
 import { drawMark, measureMark, plannedMarkSize, renderWatermark, type MarkSource } from './imageWatermarkRender'
+import { SaveFileControl } from './SaveFileControl'
 
 type Translate = (key: string) => string
 
@@ -382,11 +383,7 @@ export function ImageWatermark({ t, locale }: { t: Translate; locale: Locale }) 
             </div>
           </dl>
           <img className="resize-result" src={result.url} alt="" />
-          <div className="download-row">
-            <a className="button primary" href={result.url} download={outputName(fileName, fileType)}>
-              {t('tool.watermark.download')}
-            </a>
-          </div>
+          <SaveFileControl url={result.url} suggestedName={outputName(fileName, fileType)} mimeType={fileType} t={t} />
         </section>
       )}
     </div>

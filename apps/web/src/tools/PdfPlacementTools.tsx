@@ -15,6 +15,7 @@ import {
 } from '@commietools/tools/pdf/core'
 import { Button, LocalBadge } from '@commietools/ui'
 import { PdfWarnings, baseName, pdfErrorKey, usePdfThumbnails, type LoadedPdf, type Translate } from './pdfUi'
+import { SaveFileControl } from './SaveFileControl'
 
 const anchors: readonly PdfPlacementAnchor[] = ['top-left', 'top-center', 'top-right', 'middle-left', 'center', 'middle-right', 'bottom-left', 'bottom-center', 'bottom-right']
 const anchorKeys: Record<PdfPlacementAnchor, string> = {
@@ -106,7 +107,7 @@ function PdfInput({ toolId, file, setFile, setError, t }: { toolId: string; file
 }
 
 function Result({ url, name, title, t }: { url: string; name: string; title: string; t: Translate }) {
-  return <section className="settings-card stack" aria-live="polite"><div className="preview-heading"><h2>{title}</h2><LocalBadge>{t('status.local')}</LocalBadge></div><a className="button primary" href={url} download={name}>{t('tool.pdf.download')}</a></section>
+  return <section className="settings-card stack" aria-live="polite"><div className="preview-heading"><h2>{title}</h2><LocalBadge>{t('status.local')}</LocalBadge></div><SaveFileControl url={url} suggestedName={name} mimeType="application/pdf" t={t} /></section>
 }
 
 function usePdfResult() {

@@ -3,6 +3,7 @@ import { acceptAttributeFor } from '@commietools/tools'
 import { inspectPdf, parseSplitGroups, splitPdf } from '@commietools/tools/pdf/core'
 import { Button, LocalBadge } from '@commietools/ui'
 import { PdfWarnings, baseName, pdfErrorKey, usePdfThumbnails, type LoadedPdf, type Translate } from './pdfUi'
+import { SaveFileControl } from './SaveFileControl'
 
 type Mode = 'every' | 'groups'
 
@@ -60,7 +61,7 @@ export function PdfSplit({ t }: { t: Translate }) {
       <Button className="primary" disabled={processing} onClick={process}>{processing ? t('tool.pdf.processing') : t('tool.pdfSplit.action')}</Button></>}
     {error && <p className="error" role="alert">{t(error)}</p>}
   </section>
-  {results.length > 0 && <section className="settings-card stack" aria-live="polite"><div className="preview-heading"><h2>{t('tool.pdfSplit.result')}</h2><LocalBadge>{t('status.local')}</LocalBadge></div><div className="pdf-result-list">{results.map((result, index) => <a className="button" key={result.url} href={result.url} download={`${baseName(file?.name ?? 'document')}-pages-${result.pages.join('-')}.pdf`}>{t('tool.pdfSplit.download').replace('{number}', String(index + 1))} ({result.pages.join(', ')})</a>)}</div></section>}
+  {results.length > 0 && <section className="settings-card stack" aria-live="polite"><div className="preview-heading"><h2>{t('tool.pdfSplit.result')}</h2><LocalBadge>{t('status.local')}</LocalBadge></div><div className="pdf-result-list">{results.map((result, index) => <div className="settings-card stack" key={result.url}><strong>{t('tool.pdfSplit.download').replace('{number}', String(index + 1))} ({result.pages.join(', ')})</strong><SaveFileControl url={result.url} suggestedName={`${baseName(file?.name ?? 'document')}-pages-${result.pages.join('-')}.pdf`} mimeType="application/pdf" t={t} /></div>)}</div></section>}
   </div>
 }
 

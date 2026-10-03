@@ -22,6 +22,11 @@ The shell may adapt to file tools, editors, calculators, generators, text/code t
 - Errors appear next to the affected input and explain recovery.
 - Motion respects `prefers-reduced-motion`.
 - Color is never the only carrier of meaning.
+- Every generated file shows an editable file name before saving. Supporting browsers use a native
+  **Save as…** dialog; other browsers use a clearly explained download fallback. File type, MIME
+  type and extension must stay consistent.
+- Tools with multiple results expose the same name and save control for every file. They never
+  trigger a series of automatic downloads.
 
 ## Themes
 

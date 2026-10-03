@@ -16,6 +16,11 @@ apps/web
 
 Packages may depend on `core`. Tool logic must not depend on the web application. UI components must not perform file processing. This keeps future PWA, desktop and mobile shells able to reuse the same capabilities.
 
+Generated files cross one web-shell adapter before they reach the user's file system. Tool logic
+produces bytes or blobs and proposes a name; the adapter normalises that name, invokes the native
+save picker when the browser supports it and otherwise performs a normal browser download. Tool
+logic must not call browser download libraries or create its own download anchors.
+
 ## Tool contract
 
 Every tool has a serializable manifest: identity, category, translation keys, execution mode, resource class and offline capability. A tool also declares which files it reads and writes (`files.input`, `files.auxiliary` with a role, `files.output`); a tool without an input keeps no file field at all, and one that only produces information declares no output. File types are written as MIME types and resolved against `knownFormats` in `packages/core`, the single source for format names and extensions.

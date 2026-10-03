@@ -2,6 +2,7 @@ import { useEffect, useMemo, useRef, useState, type ChangeEvent, type ReactNode 
 import QRCodeStyling from 'qr-code-styling'
 import { auxiliaryMimeTypes, buildQrPayload, encodeQrPayload, type QrContentType, type QrPayloadInput } from '@commietools/tools'
 import { Button, LocalBadge } from '@commietools/ui'
+import { SaveFileControl } from './SaveFileControl'
 
 const logoAccept = auxiliaryMimeTypes('qr-code-generator', 'logo').join(',')
 
@@ -70,9 +71,10 @@ export function QrCodeGenerator({ t }: { t: Translate }) {
     reader.readAsDataURL(file)
   }
 
-  async function download() {
-    if (!payload || !qrRef.current) return
-    await qrRef.current.download({ name: 'commietools-qr', extension: format })
+  async function qrBlob(): Promise<Blob | null> {
+    if (!payload || !qrRef.current) return null
+    const data = await qrRef.current.getRawData(format)
+    return data instanceof Blob ? data : data ? new Blob([data]) : null
   }
 
   const basicInput = (key: keyof QrPayloadInput, label: string, type = 'text') => <Field label={label}><input type={type} value={String(input[key] ?? '')} onChange={(event) => update(key, event.target.value as never)} /></Field>
@@ -93,6 +95,6 @@ export function QrCodeGenerator({ t }: { t: Translate }) {
         <div className="form-grid"><Field label={t('tool.qr.logo')}><input type="file" accept={logoAccept} onChange={selectLogo} /></Field>{logo && <Button onClick={() => setLogo('')}>{t('tool.qr.removeLogo')}</Button>}<Field label={`${t('tool.qr.logoSize')}: ${logoSize}%`}><input type="range" min="10" max="45" value={logoSize} onChange={(event) => setLogoSize(Number(event.target.value))} /></Field><label className="check-field"><input type="checkbox" checked={hideDots} onChange={(event) => setHideDots(event.target.checked)} />{t('tool.qr.hideDots')}</label></div>
       </section>
     </div>
-    <aside className="qr-preview settings-card"><div className="preview-heading"><h2>{t('tool.qr.preview')}</h2><LocalBadge>{t('status.local')}</LocalBadge></div><div ref={previewRef} className="qr-canvas" aria-label={t('tool.qr.preview')} />{!payload && <p>{t('tool.qr.empty')}</p>}<p className="privacy-note">{t('tool.qr.privacy')}</p><p className="scan-note">{t('tool.qr.scanHint')}</p><div className="download-row"><Field label={t('tool.qr.format')}><select value={format} onChange={(event) => setFormat(event.target.value as ExportFormat)}><option value="png">PNG</option><option value="svg">SVG</option><option value="jpeg">JPEG</option><option value="webp">WebP</option></select></Field><Button className="primary" disabled={!payload} onClick={download}>{t('tool.qr.download')}</Button></div></aside>
+    <aside className="qr-preview settings-card"><div className="preview-heading"><h2>{t('tool.qr.preview')}</h2><LocalBadge>{t('status.local')}</LocalBadge></div><div ref={previewRef} className="qr-canvas" aria-label={t('tool.qr.preview')} />{!payload && <p>{t('tool.qr.empty')}</p>}<p className="privacy-note">{t('tool.qr.privacy')}</p><p className="scan-note">{t('tool.qr.scanHint')}</p><Field label={t('tool.qr.format')}><select value={format} onChange={(event) => setFormat(event.target.value as ExportFormat)}><option value="png">PNG</option><option value="svg">SVG</option><option value="jpeg">JPEG</option><option value="webp">WebP</option></select></Field>{payload && <SaveFileControl getBlob={qrBlob} suggestedName={`commietools-qr.${format === 'jpeg' ? 'jpg' : format}`} mimeType={format === 'svg' ? 'image/svg+xml' : `image/${format}`} t={t} />}</aside>
   </div>
 }

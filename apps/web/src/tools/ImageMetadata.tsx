@@ -16,6 +16,7 @@ import {
 } from '@commietools/tools'
 import type { Locale } from '@commietools/i18n'
 import { Button, LocalBadge } from '@commietools/ui'
+import { SaveFileControl } from './SaveFileControl'
 
 /** Formats offered by this tool, straight from the manifest. */
 const acceptedFormatNames = formatNames(inputMimeTypes('image-metadata'))
@@ -267,9 +268,7 @@ export function ImageMetadata({ t, locale }: { t: Translate; locale: Locale }) {
             {t('tool.imageMetadata.savedBytes')}: {formatBytes(Math.max(cleaned.saved, 0), locale)}
           </p>
           <p className="privacy-note">{t('tool.imageMetadata.lossless')}</p>
-          <div className="download-row">
-            <a className="button primary" href={cleaned.url} download={cleanedName(fileName)}>{t('tool.imageMetadata.download')}</a>
-          </div>
+          <SaveFileControl url={cleaned.url} suggestedName={cleanedName(fileName)} mimeType={fileType || 'application/octet-stream'} t={t} />
         </section>
       )}
     </div>
