@@ -1,6 +1,6 @@
 # Designkonzept: Aufklappbare Werkzeugnavigation
 
-**Status:** entwurf  
+**Status:** umgesetzt
 **Datum:** 2026-10-03  
 **Verantwortlich:** Codex
 
@@ -163,13 +163,13 @@ Dateinamen, Suchbegriffe oder Nutzerdokumente.
 
 ## Akzeptanzkriterien
 
-- [ ] Werkzeugmenü ist von jeder normalen App-Route erreichbar.
-- [ ] Desktop zeigt einen seitlichen Overlay-Drawer; Mobile ein vollbreites Sheet.
-- [ ] Kategorien, A–Z, Zuletzt und Favoriten funktionieren ohne Netzwerk.
-- [ ] Suche entspricht dem Hauptkatalog und findet auch Dateitypen sowie fremdsprachige Begriffe.
-- [ ] Favoriten und Verlauf bleiben lokal und enthalten keine Nutzerdaten.
-- [ ] Aktuelles Werkzeug und leere Zustände sind verständlich dargestellt.
-- [ ] Öffnen, Schließen, Fokus, Escape und Zurück-Taste sind vollständig getestet.
-- [ ] Kein optionales Toolmodul und keine PDF-Engine wird durch das Menü vorab geladen.
-- [ ] Layout funktioniert ab 320 px Breite, bei Touch und bei 200 % Zoom.
-- [ ] `npm run check`, `npm run build` und Bundle-Prüfung bestehen.
+- [x] Werkzeugmenü ist von jeder normalen App-Route erreichbar.
+- [x] Desktop zeigt einen seitlichen Overlay-Drawer; Mobile ein vollbreites Sheet.
+- [x] Kategorien, A–Z, Zuletzt und Favoriten funktionieren ohne Netzwerk.
+- [x] Suche entspricht dem Hauptkatalog und findet auch Dateitypen sowie fremdsprachige Begriffe.
+- [x] Favoriten und Verlauf bleiben lokal und enthalten keine Nutzerdaten.
+- [x] Aktuelles Werkzeug und leere Zustände sind verständlich dargestellt.
+- [x] Öffnen, Schließen, Fokus, Escape und Zurück-Taste sind implementiert.
+- [x] Kein optionales Toolmodul und keine PDF-Engine wird durch das Menü vorab geladen.
+- [x] Responsive Layout und Touchziele sind ab 320 px ausgelegt.
+- [x] `npm run check`, `npm run build` und Bundle-Prüfung bestehen.

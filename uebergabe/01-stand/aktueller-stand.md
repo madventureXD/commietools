@@ -32,6 +32,7 @@
   nativer Speichern-unter-Dialog in unterstützenden Browsern und transparenter Download-Fallback;
   Mehrfachausgaben bieten diese Steuerung für jede einzelne Datei
 - Katalogsuche über Suchbegriffe, Schlagwörter, Titel, Kurzbeschreibung und Beschreibung **aller** Sprachen sowie über deklarierte Dateitypen, Kategorie und Suite; Treffer in der eingestellten Sprache mit Begründung („gefunden über …"), offline und ohne unscharfe Suche
+- globale aufklappbare Werkzeugnavigation auf jeder Route: Desktop-Drawer und mobiles Vollbreiten-Sheet mit Kategoriensicht, A–Z, lokaler Suche, Favoriten und zehn zuletzt verwendeten Werkzeugen; keine Telemetrie und kein Vorabladen optionaler Toolmodule
 - gemeinsamer, UI-unabhängiger PDF-Kern für Prüfung, Seitenbereiche und Seitenoperationen
 - PDF.js-Vorschau und `pdf-lib`-Verarbeitung als getrennt nachgeladene, offline zwischengespeicherte Engines
 - PDF-Warnungen für Formulare, XFA, Annotationen und Signaturen sowie klare Ablehnung verschlüsselter oder beschädigter Dateien
@@ -93,9 +94,9 @@
 - vollständige Lizenztexte: 15
 - bewahrte originale Paketdokumente: 171
 - eingebettete Binärartefakte: 1 vollständig geprüftes QPDF-WASM-Artefakt
-- letzter bekannter Teststand: 149 Tests bestanden
+- letzter bekannter Teststand: 152 Tests bestanden
 - Werkzeugregister: 21 Werkzeuge, 2 Sprachen, 21 Symbole, 70 deklarierte Dateitypen (`npm run catalog:check`)
-- letzter bekannter Produktions-Build: bestanden; Startcode 165,13 kB komprimiert und ohne statisch erreichbare PDF-Engine; PDF-Routen, Worker und WASM sind vom Vorab-Cache ausgeschlossen
+- letzter bekannter Produktions-Build: bestanden; Startcode 167,24 kB komprimiert und ohne statisch erreichbare PDF-Engine; PDF-Routen, Worker und WASM sind vom Vorab-Cache ausgeschlossen
 
 Zahlen sind Momentaufnahmen. Nach Abhängigkeits-, Test- oder Tooländerungen müssen sie anhand der tatsächlichen Ausgabe aktualisiert werden.
 

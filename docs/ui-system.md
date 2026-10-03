@@ -48,3 +48,16 @@ The tool catalogue is the platform's entry surface and follows its own visible r
 - While a search is active the suite list is hidden, because curated collections are not searchable.
 - File types shown to the user (`Formate`, `Nur lesbar`, the `accept` attribute) come from the manifest declaration, never from a literal in the interface.
 
+## Global tool navigation
+
+- Every normal route exposes the same labelled tool-menu trigger before the brand.
+- Desktop uses a left overlay drawer so editors keep their full working width; below 768 px the
+  drawer becomes a full-width sheet beneath the header.
+- The menu reuses the generated catalogue and the normal search implementation. It never imports
+  a tool implementation or optional engine.
+- Categories are the default; A–Z, recent tools and favorites are alternative local views.
+- Favorites and the ten most recent tool IDs are stored only on the device. Search text and user
+  file information are never persisted.
+- Escape, the backdrop, the close button and the mobile back action close the menu and restore
+  focus to its trigger.
+

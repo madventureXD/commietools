@@ -12,9 +12,6 @@ Diese Liste enthält bestätigte, noch nicht abgeschlossene Arbeit. Details geh�
 
 ## Mittlere Priorität
 
-- [ ] Aufklappbare Werkzeugnavigation gemäß
-  `../03-konzepte/2026-10-03-werkzeugnavigation.md` umsetzen: Desktop-Drawer, mobiles Sheet,
-  Kategoriensicht, A–Z, lokale Favoriten und zuletzt verwendete Werkzeuge.
 - [ ] Für Mehrfachausgaben nach gesonderter Größen- und Lizenzprüfung **Alle speichern …** per
   Ordnerauswahl und/oder ZIP-Fallback ergänzen; Einzel-Speichern mit frei wählbarem Namen und Ort
   ist bereits einheitlich umgesetzt.
