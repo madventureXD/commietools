@@ -197,6 +197,7 @@ a.button { display: inline-flex; align-items: center; justify-content: center; t
 .pdf-annotation-list li { display: flex; align-items: center; justify-content: space-between; gap: var(--space-3); padding: var(--space-3); border: 1px solid var(--color-border); border-radius: var(--radius-sm); }
 .pdf-ink-editor { display: grid; gap: var(--space-2); }
 .pdf-ink-editor svg { width: 100%; max-width: 720px; aspect-ratio: 1.414 / 1; touch-action: none; cursor: crosshair; border: 1px solid var(--color-border); border-radius: var(--radius-sm); background: var(--color-surface); }
+.pdf-size-results { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 
 @media (max-width: 620px) {
   .pdf-file-row { grid-template-columns: 60px minmax(0, 1fr); }

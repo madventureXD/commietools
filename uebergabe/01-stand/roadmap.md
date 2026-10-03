@@ -13,7 +13,7 @@ Die Roadmap beschreibt die derzeitige Reihenfolge, keine festen Termine.
 
 ## Phase 1 – PDF-Suite
 
-**Status:** M0 bis M4 umgesetzt; M5 als nächster Meilenstein
+**Status:** M0 bis M5 umgesetzt; M6 als nächster Meilenstein
 
 Vollständiges Umsetzungskonzept: [`../03-konzepte/2026-10-03-pdf-suite.md`](../03-konzepte/2026-10-03-pdf-suite.md)
 
@@ -22,7 +22,8 @@ Vollständiges Umsetzungskonzept: [`../03-konzepte/2026-10-03-pdf-suite.md`](../
 - M2: Bilder zu PDF und PDF zu Bildern
 - M3: Gestaltung und sichtbare Unterschriften – umgesetzt
 - M4: Formulare und Kommentare – umgesetzt
-- M5–M6: Sicherheit, Kompression und OCR
+- M5: Sicherheit und Kompression – umgesetzt
+- M6: Textextraktion und OCR
 - M7: digitale Signaturen erst nach eigenem Sicherheits-ADR
 
 ## Phase 2 – Plattformqualität

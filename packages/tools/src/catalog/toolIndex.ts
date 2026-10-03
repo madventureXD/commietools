@@ -1943,5 +1943,127 @@ export const toolIndex: readonly ToolSearchEntry[] = [
         ]
       }
     }
+  },
+  {
+    "id": "pdf-security",
+    "route": "/tools/pdf-security",
+    "icon": "/tools/pdf-security.svg",
+    "category": "pdf",
+    "suiteIds": [
+      "pdf"
+    ],
+    "executionMode": "local",
+    "resourceClass": "heavy",
+    "worksOffline": true,
+    "input": [
+      "application/pdf"
+    ],
+    "output": [
+      "application/pdf"
+    ],
+    "auxiliary": [],
+    "locales": {
+      "de": {
+        "title": "PDF schützen und entsperren",
+        "summary": "Verschlüsselt PDFs mit AES-256 und entschlüsselt sie mit dem gültigen Passwort.",
+        "description": "Schützt PDFs lokal mit AES-256 oder entfernt den Schutz mit einem gültigen Passwort.",
+        "terms": [
+          "PDF schützen",
+          "PDF Passwort",
+          "PDF verschlüsseln",
+          "AES-256",
+          "PDF entsperren",
+          "PDF entschlüsseln",
+          "Besitzerpasswort",
+          "Berechtigungen"
+        ],
+        "tags": [
+          "#pdf",
+          "#sicherheit",
+          "#passwort"
+        ]
+      },
+      "en": {
+        "title": "Protect and unlock PDF",
+        "summary": "Encrypts PDFs with AES-256 and decrypts them with the valid password.",
+        "description": "Protects PDFs locally with AES-256 or removes protection using a valid password.",
+        "terms": [
+          "protect PDF",
+          "PDF password",
+          "encrypt PDF",
+          "AES-256",
+          "unlock PDF",
+          "decrypt PDF",
+          "owner password",
+          "permissions",
+          "PDF schützen"
+        ],
+        "tags": [
+          "#pdf",
+          "#security",
+          "#password"
+        ]
+      }
+    }
+  },
+  {
+    "id": "pdf-compress",
+    "route": "/tools/pdf-compress",
+    "icon": "/tools/pdf-compress.svg",
+    "category": "pdf",
+    "suiteIds": [
+      "pdf"
+    ],
+    "executionMode": "local",
+    "resourceClass": "heavy",
+    "worksOffline": true,
+    "input": [
+      "application/pdf"
+    ],
+    "output": [
+      "application/pdf"
+    ],
+    "auxiliary": [],
+    "locales": {
+      "de": {
+        "title": "PDF komprimieren",
+        "summary": "Verkleinert PDFs strukturell verlustfrei oder mit optionaler Bildkompression.",
+        "description": "Optimiert PDF-Strukturen lokal und bietet wahlweise eine klar gekennzeichnete Bildkompression.",
+        "terms": [
+          "PDF komprimieren",
+          "PDF verkleinern",
+          "PDF optimieren",
+          "PDF Dateigröße",
+          "QPDF",
+          "verlustfrei",
+          "Bilder komprimieren"
+        ],
+        "tags": [
+          "#pdf",
+          "#komprimieren",
+          "#optimieren"
+        ]
+      },
+      "en": {
+        "title": "Compress PDF",
+        "summary": "Reduces PDFs structurally without loss or with optional image compression.",
+        "description": "Optimises PDF structures locally and offers clearly labelled optional image compression.",
+        "terms": [
+          "compress PDF",
+          "reduce PDF",
+          "optimise PDF",
+          "PDF file size",
+          "QPDF",
+          "lossless",
+          "compress images",
+          "PDF komprimieren"
+        ],
+        "tags": [
+          "#pdf",
+          "#compress",
+          "#optimise"
+        ]
+      }
+    }
   }
 ]

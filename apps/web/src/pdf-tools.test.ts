@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import { PDFDocument, degrees } from 'pdf-lib'
-import { addPdfAnnotation, addPdfPageNumbers, addPdfWatermark, addVisiblePdfSignature, deletePdfAnnotation, fillPdfForm, imagesToPdf, inspectPdf, inspectPdfAnnotations, inspectPdfForm, mergePdfs, organizePdf, parsePageSelection, parseSplitGroups, PdfToolError, resolvePdfPagePlacement, resolvePdfPlacement, splitPdf } from '@commietools/tools'
+import { addPdfAnnotation, addPdfPageNumbers, addPdfWatermark, addVisiblePdfSignature, compressionArguments, deletePdfAnnotation, fillPdfForm, imagesToPdf, inspectPdf, inspectPdfAnnotations, inspectPdfForm, mergePdfs, organizePdf, parsePageSelection, parseSplitGroups, PdfToolError, protectionArguments, resolvePdfPagePlacement, resolvePdfPlacement, splitPdf } from '@commietools/tools'
 
 async function fixture(sizes: readonly [number, number][]) {
   const document = await PDFDocument.create()
@@ -173,5 +173,26 @@ describe('M4 interactive PDF operations', () => {
     expect(annotations).toHaveLength(1)
     expect(annotations[0]).toMatchObject({ type: 'Highlight', contents: 'Wichtig', author: 'CommieTools' })
     expect(inspectPdfAnnotations(deletePdfAnnotation(added, 0, 0))).toHaveLength(0)
+  })
+})
+
+describe('M5 QPDF operation plans', () => {
+  it('always chooses AES-256 and maps permissions explicitly', () => {
+    const args = protectionArguments({ userPassword: 'Öffnen 2026', ownerPassword: 'Verwalten 2026', printing: 'low', modification: 'form', allowExtraction: false })
+    expect(args).toContain('--bits=256')
+    expect(args).toContain('--print=low')
+    expect(args).toContain('--modify=form')
+    expect(args).toContain('--extract=n')
+  })
+
+  it('rejects empty or identical protection passwords', () => {
+    expect(() => protectionArguments({ userPassword: '', ownerPassword: 'owner', printing: 'full', modification: 'all', allowExtraction: true })).toThrow(PdfToolError)
+    expect(() => protectionArguments({ userPassword: 'same', ownerPassword: 'same', printing: 'full', modification: 'all', allowExtraction: true })).toThrow(PdfToolError)
+  })
+
+  it('keeps structural compression lossless unless an image level is selected', () => {
+    expect(compressionArguments('lossless')).not.toContain('--optimize-images')
+    expect(compressionArguments('balanced')).toEqual(expect.arrayContaining(['--optimize-images', '--jpeg-quality=82']))
+    expect(compressionArguments('strong')).toEqual(expect.arrayContaining(['--optimize-images', '--jpeg-quality=65']))
   })
 })

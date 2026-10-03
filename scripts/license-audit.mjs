@@ -1,5 +1,5 @@
 import { createHash } from 'node:crypto'
-import { existsSync, readFileSync, readdirSync, writeFileSync } from 'node:fs'
+import { existsSync, readFileSync, readdirSync, statSync, writeFileSync } from 'node:fs'
 import { dirname, join, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
@@ -7,6 +7,7 @@ const root = resolve(dirname(fileURLToPath(import.meta.url)), '..')
 const mode = process.argv[2] ?? 'check'
 const lockPath = join(root, 'package-lock.json')
 const policyPath = join(root, 'licenses', 'policy.json')
+const artifactsPath = join(root, 'licenses', 'artifacts.json')
 const registryPath = join(root, 'licenses', 'registry.json')
 const publicRegistryPath = join(root, 'apps', 'web', 'public', 'licenses', 'registry.json')
 const noticesPath = join(root, 'THIRD_PARTY_NOTICES.md')
@@ -70,6 +71,7 @@ function buildRegistry() {
   const lockText = readFileSync(lockPath, 'utf8')
   const lock = JSON.parse(lockText)
   const policy = readJson(policyPath)
+  const artifactConfig = readJson(artifactsPath)
   const internalManifests = [
     'package.json',
     'apps/web/package.json',
@@ -122,7 +124,27 @@ function buildRegistry() {
   }
 
   packages.sort((a, b) => a.name.localeCompare(b.name) || a.version.localeCompare(b.version))
-  const usedLicenseIds = [...new Set([policy.projectLicense, ...packages.flatMap((entry) => entry.licenseIds)])].sort()
+  const artifacts = artifactConfig.artifacts.map((artifact) => {
+    const sourcePath = join(root, ...artifact.sourcePath.split('/'))
+    if (!existsSync(sourcePath)) fail(`missing licensed artifact ${artifact.sourcePath}`)
+    const data = readFileSync(sourcePath)
+    if (!artifact.licenseIds?.length) fail(`artifact ${artifact.id} has no license IDs`)
+    for (const id of artifact.licenseIds) if (!spdx[id]) fail(`artifact ${artifact.id} has unknown SPDX license ${id}`)
+    return {
+      id: artifact.id,
+      name: artifact.name,
+      version: artifact.version,
+      fileName: artifact.sourcePath.split('/').at(-1),
+      size: statSync(sourcePath).size,
+      sha256: sha256(data),
+      licenseIds: [...artifact.licenseIds].sort(),
+      source: artifact.source,
+      build: artifact.build,
+      components: artifact.components,
+      toolIds: artifact.toolIds
+    }
+  })
+  const usedLicenseIds = [...new Set([policy.projectLicense, ...packages.flatMap((entry) => entry.licenseIds), ...artifacts.flatMap((entry) => entry.licenseIds)])].sort()
   const licenses = Object.fromEntries(usedLicenseIds.map((id) => {
     const entry = spdx[id]
     if (!entry?.licenseText?.trim()) fail(`SPDX has no complete text for ${id}`)
@@ -156,6 +178,7 @@ function buildRegistry() {
       licenseExpressions: [...expressions].sort(),
       licenseIds: usedLicenseIds
     },
+    artifacts,
     licenses,
     documents,
     packages
@@ -177,6 +200,12 @@ function notices(registry) {
     '| Package | Version | Use | License |',
     '| --- | --- | --- | --- |',
     ...registry.packages.map((entry) => `| ${entry.name.replace(/\|/g, '\\|')} | ${entry.version} | ${entry.dependencyType}${entry.optional ? ', optional' : ''} | ${entry.licenseExpression.replace(/\|/g, '\\|')} |`),
+    '',
+    '## Embedded binary artifacts',
+    '',
+    '| Artifact | Version | SHA-256 | Licenses |',
+    '| --- | --- | --- | --- |',
+    ...registry.artifacts.map((entry) => `| ${entry.name} | ${entry.version} | \`${entry.sha256}\` | ${entry.licenseIds.join(', ')} |`),
     ''
   ]
   return lines.join('\n')

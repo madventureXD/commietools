@@ -32,6 +32,20 @@ interface PackageRecord {
   documents: PackageDocument[]
 }
 
+interface ArtifactRecord {
+  id: string
+  name: string
+  version: string
+  fileName: string
+  size: number
+  sha256: string
+  licenseIds: string[]
+  source: string
+  build: string
+  components: Array<{ name: string; version?: string; commit: string; licenseIds: string[] }>
+  toolIds: string[]
+}
+
 interface LicenseRegistry {
   project: { name: string; license: string; source: string }
   lockfileSha256: string
@@ -39,6 +53,7 @@ interface LicenseRegistry {
   licenses: Record<string, LicenseRecord>
   documents: Record<string, { sha256: string; text: string }>
   packages: PackageRecord[]
+  artifacts: ArtifactRecord[]
 }
 
 export function LicensePage({ t, navigate }: { t: Translate; navigate: (path: string) => void }) {
@@ -111,6 +126,12 @@ export function LicensePage({ t, navigate }: { t: Translate; navigate: (path: st
           {!packages.length && <p>{t('licenses.none')}</p>}
         </div>
       </section>
+
+      {registry.artifacts.length > 0 && <section className="stack">
+        <div className="license-heading"><div><p className="category">WebAssembly</p><h2>{t('licenses.artifacts')}</h2></div><strong>{registry.artifacts.length}</strong></div>
+        <p>{t('licenses.artifactsDescription')}</p>
+        <div className="license-list">{registry.artifacts.map((artifact) => <details className="license-package" key={artifact.id}><summary><span><strong>{artifact.name}</strong><small>{artifact.version} · {(artifact.size / 1024 / 1024).toFixed(2)} MB</small></span><span className="license-expression">{artifact.licenseIds.join(', ')}</span></summary><div className="license-package-content stack"><div className="license-links"><a href={artifact.source} target="_blank" rel="noreferrer">{t('licenses.source')} ↗</a><a href={artifact.build} target="_blank" rel="noreferrer">{t('licenses.build')} ↗</a></div><p><strong>SHA-256:</strong> <code>{artifact.sha256}</code></p><p><strong>{t('licenses.tools')}:</strong> {artifact.toolIds.join(', ')}</p>{artifact.components.map((component) => <div key={`${artifact.id}-${component.name}`}><strong>{component.name}{component.version ? ` ${component.version}` : ''}</strong><p><code>{component.commit}</code> · {component.licenseIds.join(', ')}</p></div>)}{artifact.licenseIds.map((id) => <details key={id}><summary>{registry.licenses[id]?.name ?? id} ({id})</summary><pre className="license-text">{registry.licenses[id]?.text ?? ''}</pre></details>)}</div></details>)}</div>
+      </section>}
     </div>}
   </main>
 }

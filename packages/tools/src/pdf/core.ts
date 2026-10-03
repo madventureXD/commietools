@@ -1,6 +1,6 @@
 import { degrees, EncryptedPDFError, PDFDocument, rgb, StandardFonts } from 'pdf-lib'
 
-export type PdfIssueCode = 'encrypted' | 'invalid' | 'empty' | 'range' | 'unsupported'
+export type PdfIssueCode = 'encrypted' | 'invalid' | 'empty' | 'password' | 'range' | 'unsupported'
 
 export class PdfToolError extends Error {
   constructor(public readonly code: PdfIssueCode, message: string) {

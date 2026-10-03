@@ -64,6 +64,17 @@ export {
   type PdfFormValue
 } from './pdf/m4'
 export {
+  compressPdf,
+  compressionArguments,
+  protectPdf,
+  protectionArguments,
+  unlockPdf,
+  type PdfCompressionMode,
+  type PdfModifyPermission,
+  type PdfPrintPermission,
+  type PdfProtectionOptions
+} from './pdf/m5'
+export {
   detectImageFormat,
   findMetadataSegments,
   readMetadata,

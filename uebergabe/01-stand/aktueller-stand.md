@@ -1,7 +1,7 @@
 # Aktueller Projektstand
 
 **Stand:** 2026-10-03  
-**Letzter geprüfter Meilenstein:** PDF-Suite M4 (2026-10-03), davor PDF-Suite M3
+**Letzter geprüfter Meilenstein:** PDF-Suite M5 (2026-10-03), davor PDF-Suite M4
 
 ## Umgesetzt
 
@@ -40,6 +40,9 @@
 - PDF-Formular ausfüllen: lokale AcroForm-Erkennung und Bearbeitung von Text, Checkboxen, Optionsgruppen und Auswahllisten, optionales dauerhaftes Einbetten sowie klare XFA-Grenze
 - PDF kommentieren und markieren: echte Notiz-, Text-, Markierungs-, Form-, Linien- und per Maus/Stift/Touch gezeichnete Ink-Annotationen einschließlich Löschen
 - MuPDF.js als nur auf M4-Routen nachgeladene Open-Source-Spezialengine; großes WASM-Modul im PDF-Laufzeitcache statt im PWA-Vorabcache
+- PDF schützen und entsperren: AES-256, getrennte Öffnungs-/Besitzerpasswörter, verständliche Berechtigungen, falsches-Passwort-Schutz und rein lokale Verarbeitung
+- PDF komprimieren: verlustfreie Strukturkompression sowie zwei klar gekennzeichnete optionale Bildstufen mit transparentem Größenvergleich
+- QPDF 12.2.0 als getrennt nachgeladene Open-Source-WASM-Engine; Binärartefakt mit SHA-256, Upstream-Komponenten, festen Commits und vollständigen Lizenzen registriert
 
 ## Derzeitige Tools
 
@@ -64,6 +67,8 @@
 | PDF sichtbar unterschreiben | `pdf-visible-signature` | PDF | lokal | PDF sowie PNG/JPEG-Unterschrift hinein, PDF heraus |
 | PDF-Formular ausfüllen | `pdf-form-fill` | PDF | lokal | PDF hinein und heraus |
 | PDF kommentieren und markieren | `pdf-annotate` | PDF | lokal | PDF hinein und heraus |
+| PDF schützen und entsperren | `pdf-security` | PDF | lokal | PDF hinein und heraus |
+| PDF komprimieren | `pdf-compress` | PDF | lokal | PDF hinein und heraus |
 
 ## Derzeitige Suiten
 
@@ -71,24 +76,25 @@
 - Entwicklung
 - Generatoren
 - Bilder (Bild-Metadaten, Bild skalieren, Icon-Generator, Wasserzeichen, Farbwerkzeuge)
-- PDF (Zusammenführen, Teilen, Seiten organisieren, Bilder zu PDF, PDF zu Bildern, Wasserzeichen, Seitenzahlen, sichtbar unterschreiben, Formular ausfüllen, kommentieren und markieren)
+- PDF (Zusammenführen, Teilen, Seiten organisieren, Bilder zu PDF, PDF zu Bildern, Wasserzeichen, Seitenzahlen, sichtbar unterschreiben, Formular ausfüllen, kommentieren und markieren, schützen/entsperren, komprimieren)
 
 ## Qualität und Compliance
 
 - Projekt und interne Pakete: `AGPL-3.0-only`
 - Lizenzübersicht in der Webanwendung: `/licenses`
-- erfasste externe Pakete: 497
-- vollständige Lizenztexte: 14
+- erfasste externe Pakete: 498
+- vollständige Lizenztexte: 15
 - bewahrte originale Paketdokumente: 171
-- letzter bekannter Teststand: 142 Tests bestanden
-- Werkzeugregister: 19 Werkzeuge, 2 Sprachen, 19 Symbole, 66 deklarierte Dateitypen (`npm run catalog:check`)
-- letzter bekannter Produktions-Build: bestanden; Hauptbundle 546,12 kB (160,37 kB komprimiert, **Warnung über 500 kB**), M4-Oberfläche 13,10 kB und MuPDF-JavaScript 88,90 kB getrennt nachgeladen; MuPDF-WASM 10,41 MB im PDF-Laufzeitcache, Vorab-Cache mit 36 Einträgen
+- eingebettete Binärartefakte: 1 vollständig geprüftes QPDF-WASM-Artefakt
+- letzter bekannter Teststand: 145 Tests bestanden
+- Werkzeugregister: 21 Werkzeuge, 2 Sprachen, 21 Symbole, 70 deklarierte Dateitypen (`npm run catalog:check`)
+- letzter bekannter Produktions-Build: bestanden; Hauptbundle 558,43 kB (163,38 kB komprimiert, **Warnung über 500 kB**), M5-Oberfläche 9,81 kB und QPDF-JavaScript 42,67 kB getrennt nachgeladen; QPDF-WASM 1,33 MB im PDF-Laufzeitcache, Vorab-Cache mit 38 Einträgen
 
 Zahlen sind Momentaufnahmen. Nach Abhängigkeits-, Test- oder Tooländerungen müssen sie anhand der tatsächlichen Ausgabe aktualisiert werden.
 
 ## Noch nicht umgesetzt
 
-- PDF-Suite M5 bis M7 (Schutz/Kompression, OCR und digitale Signaturen)
+- PDF-Suite M6 bis M7 (Textextraktion/OCR und digitale Signaturen)
 - Backend, Konten und Synchronisierung
 - Desktop- und Mobile-Shells
 - sichtbarer Source-Link in der Weboberfläche

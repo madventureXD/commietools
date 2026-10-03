@@ -19,6 +19,8 @@ export const commonEn = {
   'licenses.project': 'Project license', 'licenses.dependencies': 'Third-party packages', 'licenses.search': 'Search packages',
   'licenses.all': 'All uses', 'licenses.runtime': 'Runtime', 'licenses.development': 'Development',
   'licenses.packages': 'Packages', 'licenses.licenses': 'License texts', 'licenses.optional': 'optional',
+  'licenses.artifacts': 'Embedded binary artifacts', 'licenses.artifactsDescription': 'WASM engines are recorded with their origin, reproducible build, checksum, components and complete licence texts.',
+  'licenses.build': 'Build source', 'licenses.tools': 'Used by',
   'licenses.source': 'Source code', 'licenses.homepage': 'Homepage', 'licenses.notices': 'Original package notices',
   'licenses.loading': 'Loading license data…', 'licenses.error': 'The verified license database could not be loaded.',
   'licenses.none': 'No matching packages found.', 'licenses.back': 'Back to CommieTools',

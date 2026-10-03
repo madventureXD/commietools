@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "artifacts": [
+    {
+      "id": "qpdf-wasm-12.2.0",
+      "name": "QPDF WebAssembly engine",
+      "version": "12.2.0",
+      "sourcePath": "node_modules/@neslinesli93/qpdf-wasm/dist/qpdf.wasm",
+      "source": "https://github.com/neslinesli93/qpdf-wasm/releases/tag/0.3.0",
+      "build": "https://github.com/neslinesli93/qpdf-wasm/blob/e661db2/Dockerfile",
+      "licenseIds": ["Apache-2.0", "BSD-3-Clause", "IJG", "Zlib"],
+      "components": [
+        { "name": "qpdf", "version": "12.2.0", "commit": "856d32c610334855d30e96d25eb5f9636fb62f08", "licenseIds": ["Apache-2.0"] },
+        { "name": "zlib", "commit": "21767c654d31d2dccdde4330529775c6c5fd5389", "licenseIds": ["Zlib"] },
+        { "name": "jpeg-turbo", "commit": "7aa2a898c564041a24b09d0a6e780aaa632d08d3", "licenseIds": ["BSD-3-Clause", "IJG", "Zlib"] }
+      ],
+      "toolIds": ["pdf-security", "pdf-compress"]
+    }
+  ]
+}

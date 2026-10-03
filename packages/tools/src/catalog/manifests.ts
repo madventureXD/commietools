@@ -163,6 +163,20 @@ export const toolManifests: readonly ToolManifest[] = [
     summaryKey: 'tool.pdfAnnotate.summary', termsKey: 'tool.pdfAnnotate.terms',
     executionMode: 'local', resourceClass: 'heavy', worksOffline: true,
     files: { input: ['application/pdf'], output: ['application/pdf'] }
+  },
+  {
+    id: 'pdf-security', route: '/tools/pdf-security', category: 'pdf',
+    titleKey: 'tool.pdfSecurity.title', descriptionKey: 'tool.pdfSecurity.description',
+    summaryKey: 'tool.pdfSecurity.summary', termsKey: 'tool.pdfSecurity.terms',
+    executionMode: 'local', resourceClass: 'heavy', worksOffline: true,
+    files: { input: ['application/pdf'], output: ['application/pdf'] }
+  },
+  {
+    id: 'pdf-compress', route: '/tools/pdf-compress', category: 'pdf',
+    titleKey: 'tool.pdfCompress.title', descriptionKey: 'tool.pdfCompress.description',
+    summaryKey: 'tool.pdfCompress.summary', termsKey: 'tool.pdfCompress.terms',
+    executionMode: 'local', resourceClass: 'heavy', worksOffline: true,
+    files: { input: ['application/pdf'], output: ['application/pdf'] }
   }
 ]
 
@@ -171,5 +185,5 @@ export const suiteManifests: readonly SuiteManifest[] = [
   { id: 'developer', route: '/suites/developer', titleKey: 'suite.developer.title', descriptionKey: 'suite.developer.description', toolIds: ['json-formatter'] },
   { id: 'generators', route: '/suites/generators', titleKey: 'suite.generators.title', descriptionKey: 'suite.generators.description', toolIds: ['qr-code-generator'] },
   { id: 'image', route: '/suites/image', titleKey: 'suite.image.title', descriptionKey: 'suite.image.description', toolIds: ['image-metadata', 'image-resize', 'icon-generator', 'image-watermark', 'color-tools'] },
-  { id: 'pdf', route: '/suites/pdf', titleKey: 'suite.pdf.title', descriptionKey: 'suite.pdf.description', toolIds: ['pdf-merge', 'pdf-split', 'pdf-organize', 'images-to-pdf', 'pdf-to-images', 'pdf-watermark', 'pdf-page-numbers', 'pdf-visible-signature', 'pdf-form-fill', 'pdf-annotate'] }
+  { id: 'pdf', route: '/suites/pdf', titleKey: 'suite.pdf.title', descriptionKey: 'suite.pdf.description', toolIds: ['pdf-merge', 'pdf-split', 'pdf-organize', 'images-to-pdf', 'pdf-to-images', 'pdf-watermark', 'pdf-page-numbers', 'pdf-visible-signature', 'pdf-form-fill', 'pdf-annotate', 'pdf-security', 'pdf-compress'] }
 ]

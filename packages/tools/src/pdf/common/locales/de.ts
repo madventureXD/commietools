@@ -20,6 +20,8 @@ export const pdfCommonDe = {
   'tool.pdf.warning.annotations': 'Dieses Dokument enthält Kommentare oder andere Annotationen. Prüfe das Ergebnis in einem PDF-Reader.',
   'tool.pdf.error.encrypted': 'Die PDF ist verschlüsselt. Passwortgeschützte Dokumente werden in dieser Ausbaustufe nicht verändert.',
   'tool.pdf.error.invalid': 'Die Datei konnte nicht als gültige PDF gelesen werden.',
+  'tool.pdf.error.password': 'Das Passwort fehlt, ist falsch oder erfüllt die Sicherheitsanforderungen nicht.',
+  'tool.pdf.error.empty': 'Die PDF-Datei ist leer.',
   'tool.pdf.error.range': 'Die Seitenangabe ist ungültig. Beispiel: 1-3, 7, 10-8.',
   'tool.pdf.error.unsupported': 'Die Datei oder das gewählte Format wird nicht unterstützt oder ist beschädigt.',
   'tool.pdf.error.generic': 'Die PDF konnte nicht verarbeitet werden.'

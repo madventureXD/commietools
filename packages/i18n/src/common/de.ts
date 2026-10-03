@@ -19,6 +19,8 @@ export const commonDe = {
   'licenses.project': 'Projektlizenz', 'licenses.dependencies': 'Drittanbieterpakete', 'licenses.search': 'Pakete durchsuchen',
   'licenses.all': 'Alle Verwendungen', 'licenses.runtime': 'Laufzeit', 'licenses.development': 'Entwicklung',
   'licenses.packages': 'Pakete', 'licenses.licenses': 'Lizenztexte', 'licenses.optional': 'optional',
+  'licenses.artifacts': 'Eingebettete Binärartefakte', 'licenses.artifactsDescription': 'WASM-Engines werden mit Herkunft, reproduzierbarem Build, Prüfsumme, Komponenten und vollständigen Lizenztexten erfasst.',
+  'licenses.build': 'Buildquelle', 'licenses.tools': 'Verwendet von',
   'licenses.source': 'Quellcode', 'licenses.homepage': 'Homepage', 'licenses.notices': 'Originalhinweise des Pakets',
   'licenses.loading': 'Lizenzdaten werden geladen …', 'licenses.error': 'Die geprüfte Lizenzdatenbank konnte nicht geladen werden.',
   'licenses.none': 'Keine passenden Pakete gefunden.', 'licenses.back': 'Zurück zu CommieTools',

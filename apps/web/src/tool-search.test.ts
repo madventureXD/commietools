@@ -79,7 +79,7 @@ describe('search over declared file types and labels', () => {
 
   it('finds tools by tag and by keyword', () => {
     expect(germanIds('#bilder')).toEqual(['image-metadata', 'image-resize', 'image-watermark', 'images-to-pdf', 'pdf-to-images'])
-    expect(germanIds('bilder')).toEqual(['images-to-pdf', 'image-metadata', 'image-resize', 'image-watermark', 'pdf-to-images', 'color-tools', 'icon-generator'])
+    expect(germanIds('bilder')).toEqual(['images-to-pdf', 'pdf-compress', 'image-metadata', 'image-resize', 'image-watermark', 'pdf-to-images', 'color-tools', 'icon-generator'])
     expect(germanIds('#datenschutz')).toEqual(['image-metadata'])
   })
 
@@ -129,7 +129,7 @@ describe('search ranking and completeness', () => {
 
   it('keeps the catalogue order when scores are equal', () => {
     // "Bild" scores the same for several tools, so the catalogue decides their order.
-    expect(germanIds('bild')).toEqual(['qr-code-generator', 'image-metadata', 'image-resize', 'image-watermark', 'images-to-pdf', 'pdf-to-images', 'icon-generator', 'color-tools', 'pdf-visible-signature'])
+    expect(germanIds('bild')).toEqual(['qr-code-generator', 'image-metadata', 'image-resize', 'image-watermark', 'images-to-pdf', 'pdf-compress', 'pdf-to-images', 'icon-generator', 'color-tools', 'pdf-visible-signature'])
   })
 
   it('answers a nonsense query with nothing instead of guessing', () => {

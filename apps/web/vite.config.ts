@@ -11,6 +11,7 @@ export default defineConfig({
           if (id.includes('node_modules/pdfjs-dist')) return 'pdfjs'
           if (id.includes('node_modules/pdf-lib') || id.includes('node_modules/@pdf-lib') || id.includes('node_modules/pako')) return 'pdf-lib'
           if (id.includes('node_modules/mupdf')) return 'mupdf'
+          if (id.includes('node_modules/@neslinesli93/qpdf-wasm')) return 'qpdf'
         }
       }
     }
@@ -36,11 +37,11 @@ export default defineConfig({
         navigateFallback: '/index.html',
         cleanupOutdatedCaches: true,
         globPatterns: ['**/*.{js,css,html,ico,png,svg,json,txt,wasm}'],
-        globIgnores: ['**/pdfjs-*.js', '**/pdf-lib-*.js', '**/mupdf-*.js', '**/mupdf-*.wasm', '**/pdf.worker*.mjs'],
+        globIgnores: ['**/pdfjs-*.js', '**/pdf-lib-*.js', '**/mupdf-*.js', '**/mupdf-*.wasm', '**/qpdf-*.js', '**/qpdf-*.wasm', '**/pdf.worker*.mjs'],
         runtimeCaching: [{
-          urlPattern: /\/assets\/(?:pdfjs-|pdf-lib-|mupdf-|pdf\.worker)/,
+          urlPattern: /\/assets\/(?:pdfjs-|pdf-lib-|mupdf-|qpdf-|pdf\.worker)/,
           handler: 'CacheFirst',
-          options: { cacheName: 'commietools-pdf-engines-v1' }
+          options: { cacheName: 'commietools-pdf-engines-v2' }
         }]
       }
     })
