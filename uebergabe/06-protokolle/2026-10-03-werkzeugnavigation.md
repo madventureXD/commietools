@@ -22,9 +22,14 @@ Favoriten, Verlauf und gewählte Sortierung werden ausschließlich lokal gespeic
 Dateinamen und Nutzerdokumente werden nicht persistiert. Die Navigation verwendet nur erzeugte
 Katalogmetadaten und importiert keine Werkzeugimplementierung oder PDF-Engine.
 
+## Mobile Nachbesserung
+
+- Das Menü liegt als deckende Ebene über dem Seiteninhalt und nutzt die verfügbare Bildschirmhöhe.
+- Auf Mobilgeräten wird das Suchfeld nicht automatisch fokussiert, damit die Bildschirmtastatur erst nach bewusster Auswahl erscheint.
+
 ## Bedienung
 
-- Fokus startet beim Öffnen in der Suche und bleibt im geöffneten Overlay.
+- Auf Desktop startet der Fokus beim Öffnen in der Suche; auf Mobilgeräten bleibt die Tastatur zunächst geschlossen.
 - Escape, Schließen-Schaltfläche, Hintergrund und mobile Zurück-Navigation schließen das Menü.
 - Der Fokus kehrt zum Menüauslöser zurück.
 - Alle Werkzeugzeilen und Favoritenaktionen sind getrennte, beschriftete Schaltflächen.

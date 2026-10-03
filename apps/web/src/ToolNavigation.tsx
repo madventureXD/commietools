@@ -51,7 +51,9 @@ export function ToolNavigation({ t, locale, activeToolId, navigate }: { t: Trans
     if (!open) return
     const previousOverflow = document.body.style.overflow
     document.body.style.overflow = 'hidden'
-    requestAnimationFrame(() => searchRef.current?.focus())
+    // On phones, focusing search immediately opens the software keyboard and
+    // hides most of the navigation. Desktop keeps the keyboard-first flow.
+    if (matchMedia('(min-width: 721px)').matches) requestAnimationFrame(() => searchRef.current?.focus())
     const onKeyDown = (event: KeyboardEvent) => {
       if (event.key === 'Escape') {
         event.preventDefault()
