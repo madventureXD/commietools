@@ -88,5 +88,5 @@ ohne Pflege und ohne Kachelung) und ohne weitere Fremdbibliothek. `package-lock.
 
 ## Git
 
-- Commit: siehe Protokoll (wird nach dem Commit nachgetragen)
+- Commit: `87e1ae0` (Umsetzung, Tests, Dokumentation); die Nachträge in einem zweiten Commit
 - Arbeitsbaum: die genannten Bereiche; `package-lock.json` unverändert

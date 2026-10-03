@@ -11,6 +11,7 @@ import { ImageMetadata } from './tools/ImageMetadata'
 import { ImageResize } from './tools/ImageResize'
 import { IconGenerator } from './tools/IconGenerator'
 import { ImageWatermark } from './tools/ImageWatermark'
+import { ColorTools } from './tools/ColorTools'
 import { QrCodeGenerator } from './tools/QrCodeGenerator'
 
 const PdfMerge = lazy(() => import('./tools/PdfMerge').then((module) => ({ default: module.PdfMerge })))
@@ -81,6 +82,7 @@ function ToolPage({ tool, t, locale, navigate }: { tool: ToolManifest; t: Transl
             : tool.id === 'image-resize' ? <ImageResize t={t} locale={locale} />
               : tool.id === 'icon-generator' ? <IconGenerator t={t} locale={locale} />
                 : tool.id === 'image-watermark' ? <ImageWatermark t={t} locale={locale} />
+                  : tool.id === 'color-tools' ? <ColorTools t={t} />
               : tool.id === 'pdf-merge' ? <Suspense fallback={<p aria-live="polite">…</p>}><PdfMerge t={t} /></Suspense>
                 : tool.id === 'pdf-split' ? <Suspense fallback={<p aria-live="polite">…</p>}><PdfSplit t={t} /></Suspense>
                   : tool.id === 'pdf-organize' ? <Suspense fallback={<p aria-live="polite">…</p>}><PdfOrganize t={t} /></Suspense>

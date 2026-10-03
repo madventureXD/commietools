@@ -598,3 +598,37 @@ Markenbereich). Das Werkzeug berechnet das Bild nicht neu, es legt die Marke dar
 **Neue Folge aus diesem Werkzeug:** Das Hauptbundle hat mit 503 kB die Warnschwelle des
 Bauwerkzeugs überschritten. Das liegt am erzeugten Werkzeugregister, das mit jedem Werkzeug
 wächst; der Ausweg (abgerufene Registerdatei) ist eine Entscheidung vor dem nächsten Werkzeug.
+
+## Umsetzungshinweis: fünftes Werkzeug gebaut (2026-10-03)
+
+**Betrifft `color-tools`.** Das Konzept nannte `colorjs.io` (MIT) für die Umrechnungen und
+empfahl für die Simulation von Farbsehschwächen ausdrücklich eine Eigenlösung, weil die bekannte
+`color-blind`-Bibliothek teils unter CC-BY-SA und einer nicht-kommerziellen Lizenz steht. Die
+Umsetzung geht einen Schritt weiter: **auch die Umrechnungen sind selbst geschrieben.** Sie sind
+wenige Zeilen (sRGB-Transferfunktion, HSL, XYZ, Lab), während eine Bibliothek für den
+Farbräume-Vollbau ein Vielfaches an Bundle gekostet hätte — gemessen an der Begründung, mit der
+schon `exifreader` ausschied. Keine neue Abhängigkeit.
+
+Vier Festlegungen, die dort festgehalten gehören:
+
+1. **Ein Simulationsmodell für alle drei Dichromasien.** Gewählt wurde Brettel, Viénot & Mollon
+   (1997) mit zwei Projektionshalbebenen, nicht die einfachere Einzelmatrix aus Viénot 1999.
+   Letztere ist für Tritanopie nachweislich ungenau; drei Verfahren mit unterschiedlicher
+   Verlässlichkeit nebeneinander wären irreführend.
+2. **Die Matrizen werden eingebettet, nicht zur Laufzeit gerechnet.** Sie wurden einmal mit
+   `libDaltonLens` (MIT, Python) berechnet; Herkunft und Verfahren stehen als Kommentar im
+   Quelltext. `libDaltonLens` ist kein Bestandteil des Projekts, sondern lief als Prüfmittel in
+   einer Wegwerf-Umgebung — und diente danach als unabhängiger Maßstab: die eigene Rechnung
+   weicht über 16 Farben und drei Dichromasien um höchstens 1 von 255 ab.
+3. **Gerechnet wird auf linearem sRGB.** Das ist die Stelle, an der viele Umsetzungen im Umlauf
+   falsch liegen; die Anwendung der Matrizen auf gamma-kodierte Werte verschiebt die Mitteltöne.
+4. **Die Palette ist deterministisch** (Histogramm-Startpunkte, feste Zahl k-means-Runden). Eine
+   zufällige Startwahl hätte bei jedem Lauf andere Farben geliefert.
+
+**Belegt wurde die Pipette mit einem Bild aus vier bekannten Farbflächen:** alle vier Klicks
+liefern exakt die Farbe der Fläche, auch über die Tastatur (sechs Schritte mit Umschalt+Pfeil
+von Rot nach Grün). Die im Browser angezeigten Simulationswerte wurden gegen die Python-Referenz
+gestellt — Übereinstimmung bis auf die Ganzzahl-Rundung.
+
+**Folgemaßnahme, jetzt dringlicher:** Mit 14 Werkzeugen liegt das Hauptbundle bei 526 kB. Die
+Registerdatei gehört aus dem Hauptbundle heraus, bevor weitere Werkzeuge dazukommen.

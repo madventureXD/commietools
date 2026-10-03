@@ -98,6 +98,29 @@ export {
   type WatermarkBox,
   type WatermarkOptions
 } from './image/watermark/watermark'
+export {
+  CVD_TYPES,
+  MAX_PALETTE_COLORS,
+  clampChannel,
+  contrastRatio,
+  contrastVerdict,
+  cvdRows,
+  hslToRgb,
+  linearFromSrgbChannel,
+  paletteFromPixels,
+  parseColor,
+  relativeLuminance,
+  rgbToHsl,
+  rgbToLab,
+  simulateCvd,
+  srgbFromLinearChannel,
+  toHex,
+  type ContrastVerdict,
+  type CvdType,
+  type Hsl,
+  type Lab,
+  type Rgb
+} from './image/color/color'
 
 export const toolById = new Map(toolManifests.map((tool) => [tool.id, tool]))
 export const toolByRoute = new Map(toolManifests.map((tool) => [tool.route, tool]))

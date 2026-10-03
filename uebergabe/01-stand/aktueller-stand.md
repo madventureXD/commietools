@@ -1,7 +1,7 @@
 # Aktueller Projektstand
 
 **Stand:** 2026-10-03  
-**Letzter geprüfter Meilenstein:** Bild-Suite „Wasserzeichen“ (2026-10-03), davor Bild-Suite „Icon-Generator“, davor PDF-Suite M2
+**Letzter geprüfter Meilenstein:** Bild-Suite „Farbwerkzeuge“ (2026-10-03), davor „Wasserzeichen“, davor „Icon-Generator“
 
 ## Umgesetzt
 
@@ -16,6 +16,7 @@
 - Bild skalieren: Skalieren, Zuschnitt, Drehen und Spiegeln mit hochwertiger Filterung im Web Worker; fester Ablauf Ausrichtung → Zuschnitt → Skalierung
 - Icon-Generator: PNG-Satz von 16 bis 512 px, maskierbare Variante je Größe, `favicon.ico` mit selbst geschriebenem ICO-Container und kopierbarer `icons`-Eintrag für ein Web-App-Manifest
 - Wasserzeichen: Text oder eigenes Logo, einzeln an neun Positionen oder als gedrehtes Kachelmuster über das Bild, mit Größe, Deckkraft, Rand- und Musterabstand
+- Farbwerkzeuge: Umrechnung zwischen HEX, RGB, HSL und LAB, Pipette auf Bildern (Maus und Tastatur), Palette, WCAG-Kontrastprüfung sowie Simulation für Protanopie, Deuteranopie, Tritanopie und Achromatopsie
 - CommieTools-Logo- und Iconvarianten
 - vollständige AGPL-3.0-only-Projektlizenz
 - automatisch erzeugte und auf der Webseite abrufbare Lizenzdatenbank
@@ -44,6 +45,7 @@
 | Bild skalieren | `image-resize` | Bilder | lokal | 3 Typen hinein und heraus |
 | Icon-Generator | `icon-generator` | Bilder | lokal | PNG/JPEG/WebP hinein, PNG und ICO heraus |
 | Wasserzeichen | `image-watermark` | Bilder | lokal | JPEG/PNG/WebP hinein und heraus; Logo als Nebenrolle |
+| Farbwerkzeuge | `color-tools` | Bilder | lokal | JPEG/PNG/WebP hinein (nur Information) |
 | PDFs zusammenführen | `pdf-merge` | PDF | lokal | PDF hinein und heraus |
 | PDF teilen | `pdf-split` | PDF | lokal | PDF hinein und mehrere PDFs heraus |
 | PDF-Seiten organisieren | `pdf-organize` | PDF | lokal | PDF hinein und heraus |
@@ -55,7 +57,7 @@
 - Text
 - Entwicklung
 - Generatoren
-- Bilder (Bild-Metadaten, Bild skalieren, Icon-Generator, Wasserzeichen)
+- Bilder (Bild-Metadaten, Bild skalieren, Icon-Generator, Wasserzeichen, Farbwerkzeuge)
 - PDF (Zusammenführen, Teilen, Seiten organisieren, Bilder zu PDF, PDF zu Bildern)
 
 ## Qualität und Compliance
@@ -65,9 +67,9 @@
 - erfasste externe Pakete: 496
 - vollständige Lizenztexte: 13
 - bewahrte originale Paketdokumente: 170
-- letzter bekannter Teststand: 117 Tests bestanden
-- Werkzeugregister: 13 Werkzeuge, 2 Sprachen, 13 Symbole, **942** Suchbegriffe und Schlagwörter, 51 deklarierte Dateitypen (`npm run catalog:check`)
-- letzter bekannter Produktions-Build: bestanden; Hauptbundle 503,28 kB (148,96 kB komprimiert, **Warnung über 500 kB**), Stylesheet 21,32 kB (4,60 kB komprimiert), PDF-Engines in getrennten nachgeladenen Chunks, Vorab-Cache mit 27 Einträgen
+- letzter bekannter Teststand: 133 Tests bestanden
+- Werkzeugregister: 14 Werkzeuge, 2 Sprachen, 14 Symbole, **1023** Suchbegriffe und Schlagwörter, 54 deklarierte Dateitypen (`npm run catalog:check`)
+- letzter bekannter Produktions-Build: bestanden; Hauptbundle 525,83 kB (155,73 kB komprimiert, **Warnung über 500 kB**), Stylesheet 23,19 kB (4,92 kB komprimiert), PDF-Engines in getrennten nachgeladenen Chunks, Vorab-Cache mit 28 Einträgen
 
 Zahlen sind Momentaufnahmen. Nach Abhängigkeits-, Test- oder Tooländerungen müssen sie anhand der tatsächlichen Ausgabe aktualisiert werden.
 

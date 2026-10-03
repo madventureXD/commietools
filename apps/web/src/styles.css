@@ -212,7 +212,25 @@ a.button { display: inline-flex; align-items: center; justify-content: center; t
   *, *::before, *::after { scroll-behavior: auto !important; transition: none !important; }
 }
 
-/* Watermark */
+/* Colour tools */
+.color-figure { display: grid; gap: var(--space-2); margin: 0; }
+.color-stage { position: relative; display: inline-block; max-width: 100%; }
+.color-canvas { display: block; max-width: 100%; height: auto; border: 1px solid var(--color-border); border-radius: var(--radius-sm); cursor: crosshair; }
+.color-cursor { position: absolute; width: 14px; height: 14px; margin: -7px 0 0 -7px; border: 2px solid white; border-radius: 50%; box-shadow: 0 0 0 2px rgb(0 0 0 / 55%); pointer-events: none; }
+.color-preview { display: block; width: 100%; max-width: 16rem; min-height: 3.5rem; border: 1px solid var(--color-border); border-radius: var(--radius-sm); }
+.swatch-list { display: flex; flex-wrap: wrap; gap: var(--space-4); margin: 0; padding: 0; list-style: none; }
+.swatch-list li { display: grid; justify-items: center; gap: 0.35rem; font-size: 0.8rem; font-weight: 700; }
+.swatch { width: 4.5rem; height: 4.5rem; border: 1px solid var(--color-border); border-radius: var(--radius-sm); cursor: pointer; }
+.swatch-inline { display: inline-block; width: 1rem; height: 1rem; margin-right: 0.4rem; border: 1px solid var(--color-border); border-radius: 3px; vertical-align: -0.15rem; }
+.verdict-list { display: grid; gap: var(--space-2); margin: 0; padding: 0; list-style: none; }
+.verdict-list li { display: flex; align-items: center; gap: var(--space-3); padding: var(--space-3); border-radius: var(--radius-sm); background: var(--color-background); font-weight: 700; }
+.verdict-list li.ok { color: var(--color-success); }
+.verdict-list li.bad { color: var(--color-brand); }
+.contrast-sample { padding: var(--space-5); border-radius: var(--radius-md); font-size: 1.3rem; font-weight: 800; text-align: center; }
+.cvd-table-wrap { overflow-x: auto; }
+.cvd-table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+.cvd-table th, .cvd-table td { padding: var(--space-2); border-bottom: 1px solid var(--color-border); text-align: left; white-space: nowrap; font-variant-numeric: tabular-nums; }
+.cvd-table thead th { color: var(--color-text-muted); font-size: 0.78rem; letter-spacing: 0.04em; text-transform: uppercase; }
 .watermark-stage { display: block; max-width: 100%; height: auto; margin: 0 auto; border: 1px solid var(--color-border); border-radius: var(--radius-sm); background: var(--color-background); }
 .anchor-grid { display: grid; grid-template-columns: repeat(3, minmax(2.75rem, 2.75rem)); gap: var(--space-2); width: fit-content; }
 .anchor-grid .button { display: grid; place-items: center; min-width: 2.75rem; padding: 0; }

@@ -133,7 +133,7 @@ describe('declared file types', () => {
         expect(tool.files?.input?.length, tool.id).toBeGreaterThan(0)
       }
     }
-    expect(fileToolIds).toEqual(['image-metadata', 'image-resize', 'icon-generator', 'image-watermark', 'pdf-merge', 'pdf-split', 'pdf-organize', 'images-to-pdf', 'pdf-to-images'])
+    expect(fileToolIds).toEqual(['image-metadata', 'image-resize', 'icon-generator', 'image-watermark', 'color-tools', 'pdf-merge', 'pdf-split', 'pdf-organize', 'images-to-pdf', 'pdf-to-images'])
   })
 
   it('separates types that are only read from types that are written', () => {

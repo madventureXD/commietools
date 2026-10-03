@@ -39,7 +39,7 @@ tatsächlich nur die Wasserzeichen-Pixel verändert werden.
 
 ## Relevante Verweise
 
-- Commit: wird nachgetragen
+- Commit: `87e1ae0` (Umsetzung, Tests, Dokumentation)
 - Konzept: `uebergabe/03-konzepte/2026-10-02-bild-suite.md` (Umsetzungshinweis viertes Werkzeug)
 - Übergabe: `uebergabe/05-uebergaben/2026-10-03-image-watermark.md`
 
