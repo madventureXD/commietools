@@ -24,7 +24,7 @@
 - öffentliches GitHub-Repository `madventureXD/commietools`; `main` löst automatische Cloudflare-Pages-Deployments aus
 - Cloudflare-Pages-Bereitstellung aktiv unter `https://commietools.pages.dev`: SPA-Fallback, PWA-Cache-Regeln und Sicherheitsheader; Domainregistrierung bleibt bei Hetzner
 - Produktivdomains `https://commietools.org` und `https://www.commietools.org` im Pages-Projekt aktiv; beide mit Cloudflare-SSL
-- geprüfter Stand mit 21 Werkzeugen über `main` zur automatischen Veröffentlichung auf Cloudflare Pages freigegeben
+- geprüfter Stand mit 21 Werkzeugen über `main` veröffentlicht und auf der Produktivdomain kontrolliert
 - zweisprachige, dauerhaft im Footer erreichbare Impressumsseite mit Anbieteranschrift und E-Mail-Kontakt
 - erzeugtes Werkzeugregister (`packages/tools/src/catalog/toolIndex.ts`) mit Symbol, Kurzbeschreibung und Suchbegriffen je Werkzeug und Sprache; Prüfung als Bestandteil von Check und Build
 - deklarierte Dateifähigkeiten je Werkzeug im Manifest (`input`, `auxiliary`, `output`); Dateifelder, Formatlisten und Katalogkarten lesen daraus, nicht aus eigenen Kopien

@@ -1,7 +1,7 @@
 # Veröffentlichung: geprüfter Stand mit 21 Werkzeugen
 
 **Datum:** 2026-10-03  
-**Status:** über `main` zur Veröffentlichung freigegeben
+**Status:** veröffentlicht und auf der Produktivdomain kontrolliert
 
 ## Umfang
 
@@ -30,8 +30,17 @@ Ein Push auf `main` löst den bestehenden automatischen Cloudflare-Pages-Build f
 Die veraltete Angabe von 14 Werkzeugen in der Haupt-README wurde auf 21 korrigiert und der dort
 beschriebene Funktionsumfang der PDF-Suite auf den Stand M5 gebracht.
 
+## Produktivkontrolle
+
+- `main` wurde bis einschließlich Dokumentationscommit `cbcd74d` zu GitHub übertragen.
+- `https://commietools.org` antwortete nach der Cloudflare-Umschaltung mit HTTP 200.
+- Die Produktivseite lieferte das im lokalen Produktions-Build erzeugte Einstiegsbundle
+  `index-CalhZJrG.js` aus.
+- Der zuvor vorhandene statische `pdf-lib`-Preload war im neuen HTML-Einstieg nicht mehr
+  enthalten; die korrigierte Ladegrenze ist damit auch produktiv sichtbar.
+
 ## Verbleibende Nachkontrolle
 
-Nach Abschluss des Cloudflare-Builds sind die Produktivdomain, die PWA und mindestens je ein
-Bild- und PDF-Werkzeug im Browser zu prüfen. Die getrennte Kontrolle der übernommenen
-Mail-DNS-Einträge bleibt weiterhin offen.
+Ein manueller Funktionsdurchlauf der PWA sowie mindestens je eines Bild- und PDF-Werkzeugs auf
+der Produktivdomain bleibt sinnvoll. Die getrennte Kontrolle der übernommenen Mail-DNS-Einträge
+bleibt weiterhin offen.
