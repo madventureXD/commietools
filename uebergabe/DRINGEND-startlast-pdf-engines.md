@@ -186,3 +186,77 @@ das ist der eigentliche Punkt der Korrektur.
   Startmitschnitt tauchte sie **nicht** auf — das ist ein Hinweis, aber kein Beweis, weil der
   Messstand möglicherweise älter war als dieser Teil der Arbeit. Bei der Gelegenheit mitprüfen
   (gleicher Schnelltest weiter oben).
+
+---
+
+## Nachtrag 2026-10-03, Faber: unabhängige Nachprüfung der Korrektur
+
+Der Befund oben wurde von ChatGPT behoben (Commit `17b933c`, ADR `0003-datensparsame-ladegrenzen`).
+Ich habe die Korrektur **selbst nachgemessen**, nicht die Meldung übernommen. Aufbau: frisches
+Archiv von `HEAD` in einem eigenen Ordner, eigener Bau, Browser mit frischem Profil, Service
+Worker und Caches vor der Messung abgemeldet und gelöscht. Am Projekt wurde nichts geändert.
+
+### Ergebnis: die Startlast ist weg
+
+| | vorher | nachher |
+|---|---|---|
+| Dateien beim Aufruf der Startseite | 7 | 3 |
+| davon PDF-Engines | `pdf-lib`, `mupdf`, `mupdf-wasm` (10,4 MB) | keine |
+| Summe roh | 11.447.313 B | **590.446 B** |
+| Einstieg gzip | 148.055 B | **163.994 B** |
+
+Der Einstieg ist um 16 kB komprimiert gewachsen (die neuen Unterpfad-Importe und die
+Prüfbausteine), während 10,9 MB Startlast verschwunden sind. Die Engines liegen jetzt in
+`pdf-YYBQA8p7.js` (437.740 B) und `pdfUi-C3scRnuG.js` (439.387 B) und werden nur geholt, wenn
+wirklich ein PDF-Werkzeug geöffnet wird. Der Schnelltest aus der Diagnose findet **null**
+statische Verweise auf `pdf-lib`, `mupdf`, `pdfjs` und `qpdf`.
+`node scripts/bundle-audit.mjs` läuft grün: `entry 163994 B gzip; optional PDF artifacts: 13`.
+
+### Restrisiko in der neuen Prüfung (belegt durch absichtliche Verletzung)
+
+Ich habe die Prüfung absichtlich gebrochen, um zu sehen, ob sie es merkt — in der Kopie, nicht
+im Projekt. Zwei Durchgänge:
+
+1. **Zu schwache Verletzung ohne Aussage:** ein `export * from './pdf/m4'` an
+   `packages/tools/src/index.ts` angehängt. Die Prüfung blieb grün — zu Recht: der Bau wirft
+   einen Reexport weg, den niemand benutzt. Kein Fehler der Prüfung, aber ein Hinweis, wie die
+   ursprüngliche Bindung entstand: nicht durch einen Reexport allein, sondern weil die
+   App die PDF-Funktionen über den Hauptindex **benutzt** hat.
+2. **Realistische Verletzung:** in `apps/web/src/App.tsx` das PDF-Werkzeug „Zusammenführen"
+   stattdessen statisch geladen (`import { PdfMerge } from './tools/PdfMerge'` statt `lazy`).
+   Ergebnis: der
+   Einstieg wächst auf 1.004.915 B roh / 347.316 B gzip und die Prüfung **bricht ab**.
+   Sie bricht aber über das **Startbudget** ab (Zeile 35), nicht über die Engine-Liste.
+
+**Die Lücke:** Die Abbruchprüfung vergleicht nur **Dateinamen** gegen
+`/(?:pdfjs|pdf-lib|mupdf|qpdf|pdf\.worker)/i` (Zeile 11). Seit dem Umbau heißen die Engine-Chunks
+aber `pdf-*.js` und `pdfUi-*.js` — kein Name enthält noch eines dieser Wörter. Dass die Prüfung
+am Ende „optional PDF artifacts: 13" zählt, liegt an einem **zweiten, weiteren** Muster
+(Zeile 39), das nur für die Statistik verwendet wird, **nicht** für den Abbruch.
+
+**Was daraus folgt, mit Rechnung:** Budget 262.144 B (250 KiB) minus heutiger Einstieg 163.994 B
+= **rund 98 kB gzip Puffer**. Ein statisch eingebundener JS-Anteil unterhalb dieses Puffers
+rutscht unbemerkt durch. Entscheidend dabei: Die zugehörige **WASM-Datei wird vom Startbudget
+überhaupt nicht erfasst** — das Budget misst nur die JS-Größe. Der `mupdf`-JS-Anteil allein lag
+in der alten Messung bei 88.923 B roh (rund 30 kB gzip), also deutlich unter dem Puffer: Ein
+statischer `mupdf`-Import könnte die Prüfung passieren, während der Browser beim Start weiterhin
+10,4 MB WASM zieht. Genau der Zustand, der hier behoben wurde, wäre über diesen Weg erneut
+möglich — nur diesmal lautlos.
+
+**Empfehlung (klein, ohne neue Abhängigkeit):** Die Abbruchprüfung sollte den **Inhalt** der
+statisch erreichbaren Chunks prüfen statt (nur) ihren Dateinamen — auf Signaturen wie `mupdf`,
+`pdf-lib`, `pdfjs`, `qpdf`, `pdf.worker` und `WebAssembly.instantiate`. Der Modulgraph wird
+ohnehin schon gelesen (Zeile 19), die Textprüfung käme ohne Zusatzaufwand dazu, und sie ist
+gegen Umbenennungen immun. Alternativ — oder zusätzlich — die Engine-Chunks wieder explizit
+benennen, damit die bestehende Namensliste greift.
+
+### Randnotiz zur Messumgebung
+
+Zwei Prozesse aus der ersten Messung liefen noch und haben zuerst die **alte** Fassung
+ausgeliefert (erkennbar an den alten Dateinamen `index-Brgc4PGE.js`, `mupdf-wasm-Bvf0xebB.wasm`).
+Ursache war meine eigene Prüfung: Die Windows-Ausgabe meldet Ports als „ABHÖREN", mein Filter
+suchte nach „LISTENING" und fand deshalb nichts — die Prozesse galten irrtümlich als beendet.
+Aufgefallen ist es nur, weil ich die erwarteten Dateinamen gegen den tatsächlich ausgelieferten
+Bau geprüft habe. Für künftige Messungen: eigene Ports wählen und den Dateinamen des Einstiegs
+gegen die eigene `dist` verifizieren, bevor Zahlen gelten. Das Beenden der Altprozesse habe ich
+nicht genehmigt bekommen und daher unterlassen — sie stören nur, sie schaden nicht.
