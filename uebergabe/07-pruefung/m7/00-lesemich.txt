@@ -1,0 +1,35 @@
+M7 ALTERNATIVE – ABSCHLUSSPRÜFUNG
+Stand: 2026-10-03
+
+Ziel
+Dieses Verzeichnis ist der vollständige Prüfauftrag für die alternative M7-Umsetzung:
+lokales Signieren und Prüfen von PDF-Zertifikatssignaturen mit einer Rust-WASM-Engine.
+
+Wichtig
+- Noch kein Kandidat ist freigegeben oder Bestandteil der Webanwendung.
+- Keine echte private Schlüsseldatei in dieses Repository kopieren.
+- Ausschließlich neu erzeugte, widerrufbare Testzertifikate verwenden.
+- Ein mathematisch korrektes Ergebnis ist nicht automatisch vertrauenswürdig oder qualifiziert.
+- B-T, B-LT, B-LTA, OCSP, CRL und TSA sind nicht Teil des ersten Browserprototyps.
+
+Reihenfolge der Abschlussprüfung
+1. 01-kandidatenvergleich.txt lesen und Kandidat A bestätigen oder ablehnen.
+2. 02-bedrohungsmodell.txt vollständig gegen Implementierung und Engine prüfen.
+3. 03-testkorpus.txt erzeugen; Herkunft und Prüfsummen protokollieren.
+4. 04-testmatrix.txt vollständig ausführen.
+5. Ergebnisse wortgetreu in 05-ergebnisprotokoll-vorlage.txt eintragen.
+6. 06-reader-gegenpruefung.txt mit mindestens drei unabhängigen Prüfern durchführen.
+7. 07-freigabecheckliste.txt darf ausschließlich mit belegten Nachweisen abgehakt werden.
+8. Quellenstand und Versions-Pins aus 08-quellen.txt erneut auf Aktualität prüfen.
+
+Vorgesehener erster Umfang
+- PAdES B-B / ETSI.CAdES.detached
+- RSA-SHA256 zuerst; ECDSA erst nach separatem Vektorensatz
+- P12/PFX lokal öffnen
+- unsichtbare Signatur; sichtbares Erscheinungsbild erst nach korrekter Basis
+- Signaturintegrität und Änderungserkennung lokal prüfen
+- Zertifikat und Gültigkeitszeitraum anzeigen
+- Vertrauen immer separat und standardmäßig als „nicht bewertet“ anzeigen
+
+Abbruchkriterium
+Jede ungeklärte Abweichung zwischen Engine, Adobe Acrobat, Poppler pdfsig und EU DSS sperrt die Freigabe.

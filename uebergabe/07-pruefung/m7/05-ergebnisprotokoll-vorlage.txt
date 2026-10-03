@@ -1,0 +1,54 @@
+M7 ABSCHLUSSPRÜFUNG – ERGEBNISPROTOKOLL
+
+Datum:
+Prüfer:
+CommieTools-Commit:
+Engine-Repository:
+Engine-Commit:
+Cargo.lock SHA-256:
+WASM SHA-256:
+Browser/Version:
+Betriebssystem:
+
+Build
+Ergebnis:
+Abweichungen:
+Nachweise:
+
+Lizenz und Lieferkette
+Ergebnis:
+Abweichungen:
+Nachweise:
+
+P12/PFX und Schlüsselbehandlung
+Ergebnis:
+Abweichungen:
+Nachweise:
+
+Signieren
+Ergebnis:
+Abweichungen:
+Nachweise:
+
+Prüfen und Angriffstests
+Ergebnis:
+Abweichungen:
+Nachweise:
+
+Reader-Gegenprüfung
+Adobe Acrobat:
+Poppler pdfsig:
+EU DSS 6.5:
+QPDF --check:
+Weitere:
+
+Mobile, Barrierefreiheit und Ressourcen
+Ergebnis:
+Abweichungen:
+Nachweise:
+
+Offene Sicherheitsfragen:
+
+Freigabeurteil: NICHT FREIGEGEBEN / INTERNER PROTOTYP / LOKAL FREIGEGEBEN / VERÖFFENTLICHUNGSFÄHIG
+Begründung:
+Unterschrift/Datum des Prüfers:

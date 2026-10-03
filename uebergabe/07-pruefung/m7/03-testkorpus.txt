@@ -1,0 +1,53 @@
+M7 TESTKORPUS – ZU ERZEUGEN
+
+Jede Datei erhält: ID, Erzeugungsbefehl/Quelle, Lizenz, SHA-256, Größe, erwartetes Ergebnis.
+Keine produktiven Zertifikate oder vertraulichen Dokumente verwenden.
+
+UNSIGNIERTE BASIS
+U01  eine Seite, einfacher Text
+U02  mehrere Seiten, unterschiedliche Größen und Rotation
+U03  AcroForm und vorhandenes leeres Signaturfeld
+U04  Annotationen, Anhänge, Lesezeichen und Links
+U05  verschlüsselte PDF mit Testpasswort
+U06  absichtlich beschädigte PDF
+
+TESTZERTIFIKATE
+C01  selbstsigniert, RSA-2048/SHA-256, gültig
+C02  Test-Root + Intermediate + RSA-Endzertifikat
+C03  ECDSA P-256
+C04  abgelaufen
+C05  noch nicht gültig
+C06  ohne digitalSignature-KeyUsage
+C07  falsches P12-Passwort
+C08  beschädigte P12-Datei
+
+GÜLTIGE SIGNATUREN
+S01  PAdES B-B, RSA, unsichtbar
+S02  PAdES B-B, RSA, sichtbares Erscheinungsbild
+S03  PAdES B-B, ECDSA
+S04  zwei inkrementelle Signaturen
+S05  B-T mit lokaler Test-TSA – erst in Ausbaustufe 2
+S06  B-LT/B-LTA – erst in Ausbaustufe 3
+
+MANIPULATIONEN
+M01  ein Byte im signierten Bereich ändern
+M02  ByteRange außerhalb der Datei
+M03  überlappende ByteRange-Segmente
+M04  nicht abgedeckte Daten vor /Contents
+M05  Seiteninhalt inkrementell ersetzen
+M06  Seite austauschen oder Seitenbaum ändern
+M07  CropBox/MediaBox nachträglich ändern
+M08  sichtüberdeckende Annotation hinzufügen
+M09  bestehende Annotation ändern
+M10  /Contents-Referenz oder Signaturfeld verschieben
+M11  zusätzliches nicht signiertes EOF/Objekt anhängen
+M12  extrem großes /Contents und tief verschachteltes ASN.1
+
+EXTERNE INTEROPERABILITÄT
+E01  gültige Adobe-Acrobat-Testsignatur, soweit rechtlich weitergebbar
+E02  gültige LibreOffice-Signatur
+E03  gültige EU-DSS-Testsignatur
+E04  gültige Poppler-kompatible Signatur
+
+Aufbewahrung
+Binäre Testdateien kommen erst nach Lizenz- und Geheimnisprüfung in einen klar benannten Fixture-Ordner. P12-Testpasswörter müssen ausschließlich dokumentierte Wegwerfpasswörter sein.

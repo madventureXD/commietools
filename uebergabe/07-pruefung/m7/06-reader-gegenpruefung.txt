@@ -1,0 +1,35 @@
+M7 READER- UND REFERENZGEGENPRÜFUNG
+
+Für jede erzeugte und manipulierte PDF werden Dateihash, Werkzeugversion, vollständige Meldung und Screenshot/Textbericht gesichert.
+
+1. Adobe Acrobat Reader
+- Signatur erkannt?
+- mathematisch gültig?
+- Dokument seit Signatur verändert?
+- Identität unbekannt oder vertrauenswürdig?
+- Zertifikatszeitraum und behauptete Signierzeit?
+- mehrere Revisionen korrekt dargestellt?
+
+2. Poppler pdfsig
+- vollständige Ausgabe mit Programmversion sichern
+- Signature Validation, Certificate Validation und Total document signed vergleichen
+- Exit-Code protokollieren
+
+3. EU DSS 6.5 lokal
+- Simple, Detailed und ETSI Validation Report sichern
+- Indication/SubIndication je Signatur dokumentieren
+- keine öffentliche Demo mit vertraulichen Dateien verwenden
+
+4. QPDF
+- qpdf --check auf Original und Ausgabe
+- Strukturfehler und Warnungen protokollieren
+- QPDF ist Strukturprüfer, kein vollständiger PAdES-Vertrauensprüfer
+
+5. Optionaler unabhängiger Reader
+- LibreOffice oder ein weiterer gepflegter Reader
+- genaue Version und Wortlaut sichern
+
+Vergleichsregel
+- Unterschiede bei Begriffen sind erlaubt, Unterschiede bei Integrität, abgedeckter Revision oder Manipulation nicht.
+- CommieTools darf nie positiver urteilen als die belastbarste gemeinsame Aussage der unabhängigen Prüfer.
+- Jede ungeklärte Differenz sperrt die Veröffentlichung.

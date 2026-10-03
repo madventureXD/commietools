@@ -1,0 +1,35 @@
+M7 QUELLENSTAND – 2026-10-03
+
+Primärquellen
+1. StrategicProjects/pdf_signer
+   https://github.com/StrategicProjects/pdf_signer
+   Geprüfte Aussagen: Version 0.3.2; GPL-3.0-or-later; reine Rust-Kryptografie; PKCS#12; PAdES B-B bis B-LTA; strukturelle Verifikation; Poppler-/QPDF-Gegenprüfung; HTTPS optional.
+
+2. fdimarh/rust_pdf_signing
+   https://github.com/fdimarh/rust_pdf_signing
+   Geprüfte Aussagen: Version 0.1.0; MIT OR Apache-2.0; dokumentiertes WASM-Feature; Angriffsklassen und PAdES-Prüfung; lokale Pfadabhängigkeit rust-pdfbox im Cargo.toml als aktueller Reproduzierbarkeitsblocker.
+
+3. digitorus/pdfsign
+   https://github.com/digitorus/pdfsign
+   Geprüfte Aussagen: BSD-2-Clause; Go; Signieren/Prüfen; externe Widerrufsprüfung optional; EU DSS in den Projekttests.
+
+4. EU Digital Signature Service 6.5
+   https://ec.europa.eu/digital-building-blocks/DSS/webapp-demo/doc/dss-documentation.html
+   Geprüfte Aussagen: Open-Source-Java-Bibliothek für Erzeugung, Erweiterung und Validierung; PAdES; Vertrauensketten; OCSP/CRL; Zeitstempel; ETSI-Prüfberichte.
+
+5. Apache PDFBox – Signature FAQ und Security
+   https://pdfbox.apache.org/3.0/faq.html
+   https://pdfbox.apache.org/security.html
+   Geprüfte Aussage: Beispielprüfung ist partiell und bewertet unter anderem erlaubte/verbotene Änderungen sowie AATL/EUTL nicht vollständig.
+
+6. Abgelehnter JavaScript-Pfad
+   https://github.com/vbuch/node-signpdf
+   https://github.com/advisories/GHSA-86w9-cpqp-85rv
+   Grund: @signpdf/signer-p12 verwendet node-forge; ungepatchte High-Severity-Schwachstelle im RSA-PKCS#1-v1.5-Prüfpfad.
+
+Vor jedem Prototypbuild erneut prüfen
+- aktueller Default-Branch und Commit
+- Releases und Tags
+- Security Advisories der direkten und transitiven Abhängigkeiten
+- Lizenzdateien und SPDX-Ausdrücke
+- offene Issues zu P12, ByteRange, CMS, ASN.1, Trust und WASM

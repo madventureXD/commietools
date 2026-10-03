@@ -24,7 +24,7 @@ Vollständiges Umsetzungskonzept: [`../03-konzepte/2026-10-03-pdf-suite.md`](../
 - M4: Formulare und Kommentare – umgesetzt
 - M5: Sicherheit und Kompression – umgesetzt
 - M6: eigenständiger Viewer, Textextraktion und OCR – lokal umgesetzt, noch nicht veröffentlicht
-- M7: digitale Signaturen – Sicherheits-ADR abgeschlossen; Umsetzung wegen ungepatchter beziehungsweise noch unzureichend geprüfter Browser-Engines gesperrt
+- M7: digitale Signaturen – JavaScript-Pfad gesperrt; Rust-WASM-Alternative mit vorbereitetem Abschlussprüfplan gestartet
 
 ## Phase 2 – Plattformqualität
 

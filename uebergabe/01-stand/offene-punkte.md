@@ -10,7 +10,7 @@ Diese Liste enthält bestätigte, noch nicht abgeschlossene Arbeit. Details geh�
 
 ## Hohe Priorität
 
-- [ ] PDF-Suite M7 erst fortsetzen, wenn eine lokal im Browser nutzbare Open-Source-Signaturengine alle Gates aus ADR 0004 erfüllt; `@signpdf/signer-p12`/`node-forge` wegen `GHSA-86w9-cpqp-85rv` nicht einsetzen.
+- [ ] M7-Rust-WASM-Prototyp gemäß `uebergabe/07-pruefung/m7/` durchführen: zuerst `StrategicProjects/pdf_signer` nativ reproduzieren, anschließend minimalen B-B-WASM-Adapter prüfen; `@signpdf/signer-p12`/`node-forge` wegen `GHSA-86w9-cpqp-85rv` nicht einsetzen.
 - [ ] Nach erfolgreicher Domainumschaltung einen sichtbaren Source-Link auf `https://github.com/madventureXD/commietools` in die Weboberfläche integrieren.
 - [ ] Mailbetrieb nach DNS-Umschaltung prüfen: MX, `autoconfig`, vier SRV-Einträge und SPF; `autoconfig` muss in Cloudflare auf „DNS only“ bleiben.
 - [ ] PDF-Suite M8/M9 gemäß erweitertem 24-Werkzeuge-Konzept umsetzen; mit dem vorhandenen

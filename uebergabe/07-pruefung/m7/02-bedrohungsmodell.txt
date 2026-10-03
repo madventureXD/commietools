@@ -1,0 +1,52 @@
+M7 BEDROHUNGSMODELL
+
+Schutzgüter
+- private Schlüssel aus P12/PFX
+- Zertifikatspasswort
+- PDF-Inhalt und personenbezogene Dokumentdaten
+- korrekte Integritäts-, Änderungs- und Vertrauensaussagen
+- Nachvollziehbarkeit der erzeugten PDF-Revision
+
+Vertrauensgrenzen
+- Datei- und Passwortauswahl durch den Nutzer
+- JavaScript-Hauptthread
+- dedizierter kurzlebiger Signatur-Web-Worker
+- Rust-WASM-Speicher
+- Browsercache/PWA-Cache
+- optionale spätere TSA-/OCSP-/CRL-Netzwerkgrenze
+
+Pflichtmaßnahmen
+- P12/PFX, Passwort und PDF niemals übertragen, protokollieren oder persistent speichern.
+- Signaturengine nur auf der M7-Route laden.
+- Arbeit in einem eigenen Worker; Worker nach Abschluss oder Abbruch beenden.
+- Passwort nicht in React-State, URL, Fehlermeldungen oder Telemetrie halten.
+- P12-, Passwort- und temporäre Digest-Puffer vor Freigabe überschreiben, soweit die Laufzeit dies zulässt.
+- Keine Schlüsselbytes über postMessage zurückgeben.
+- Nur Ergebnis-PDF und strukturierter Prüfbericht verlassen den Worker.
+- ByteRange muss geordnet, lückenlos im erlaubten Schema, nicht überlappend und innerhalb der Datei liegen.
+- /Contents muss an exakt die geprüfte Signaturrevision gebunden sein.
+- Mehrere Signaturen und inkrementelle Revisionen einzeln bewerten.
+- Zertifikatszeitraum, mathematische Integrität, Dokumentänderung und Vertrauen getrennt darstellen.
+- Unbekannte Root-CA ist nicht „ungültig“, sondern „Integrität gültig; Vertrauen nicht bewertet“.
+- Selbstsigniert niemals als vertrauenswürdig bezeichnen.
+- Behauptete Signierzeit ohne RFC-3161-Zeitstempel als unbestätigte Angabe kennzeichnen.
+- SHA-1 und schwächere Algorithmen nicht zum Signieren anbieten; beim Prüfen deutlich warnen.
+- Netzwerkzugriff standardmäßig vollständig gesperrt.
+
+Angriffe im Test
+- Universal Signature Forgery durch manipulierte ByteRange
+- Signature Wrapping / verschobene Signaturreferenz
+- Incremental Saving Attack und Shadow Attack
+- nachträglich ausgetauschte Seiteninhalte, Seitenbäume, CropBox/MediaBox oder optionale Ebenen
+- überlagernde Annotationen und eingebettete aktive Inhalte
+- übergroße /Contents- oder ASN.1-Strukturen, tiefe Rekursion, Speicher- und CPU-Erschöpfung
+- falsches P12-Passwort, beschädigte P12-Datei und Zertifikat ohne DigitalSignature-KeyUsage
+- abgelaufenes, noch nicht gültiges, widerrufenes und unbekanntes Zertifikat
+- bestehende Signaturen beim Hinzufügen einer weiteren Signatur
+
+Nichtversprechen des ersten Prototyps
+- keine qualifizierte elektronische Signatur
+- keine Rechtsberatung oder Identitätsbestätigung
+- keine AATL/EUTL-Vertrauensaussage
+- keine Widerrufsprüfung ohne aktuelle OCSP/CRL-Daten
+- keine Langzeitvalidierung ohne B-LT/B-LTA und unabhängige Prüfung

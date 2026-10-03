@@ -34,3 +34,7 @@ Eine spätere Engine muss vor der Integration alle folgenden Gates erfüllen:
 - Die vorhandene sichtbare Unterschrift bleibt klar als nicht kryptografisch gekennzeichnet.
 - Eine reine Strukturerkennung von `/Sig` oder `/ByteRange` darf nicht als Signaturprüfung bezeichnet werden.
 - Zeitstempel-, OCSP- oder CRL-Netzwerkzugriffe wären später einzeln zustimmungspflichtige Online-Funktionen.
+
+## Alternative Prüfstrecke
+
+Die Sperre gilt nicht für einen isolierten Forschungsprototyp. Als bevorzugte neue Prüfstrecke wird `StrategicProjects/pdf_signer` zunächst nativ reproduziert und unabhängig gegengeprüft. Erst danach darf ein minimaler Rust-WASM-Adapter für PAdES B-B untersucht werden. Der vollständige Prüfauftrag liegt unter `uebergabe/07-pruefung/m7/`. Bis alle dortigen Gates erfüllt sind, bleibt jeder Build intern und unveröffentlicht.

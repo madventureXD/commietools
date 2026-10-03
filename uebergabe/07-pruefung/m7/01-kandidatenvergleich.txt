@@ -1,0 +1,56 @@
+M7 KANDIDATENVERGLEICH
+Recherche: 2026-10-03
+
+KANDIDAT A – StrategicProjects/pdf_signer 0.3.2
+Quelle: https://github.com/StrategicProjects/pdf_signer
+Lizenz: GPL-3.0-or-later; mit CommieTools AGPL-3.0-only grundsätzlich vereinbar, vor Einbindung juristisch im Lizenzgate bestätigen.
+Stärken:
+- reine Rust-Kryptografie ohne OpenSSL, Java oder Systembibliotheken
+- PKCS#12, RSA, ECDSA und Ed25519
+- PAdES B-B bis B-LTA
+- Verifikation anhand PDF-Struktur statt bloßer Byte-Suche
+- ByteRange-, CMS-, ESS-signing-certificate-v2- und Änderungskontrollen
+- Tests mit lokaler RFC-3161-TSA; laut Projekt Gegenprüfung mit Poppler pdfsig und qpdf
+- keine HTTP-Abhängigkeit im Standardumfang
+Risiken:
+- jung: Version 0.3.2, etwa 50 Commits und sehr geringe öffentliche Nutzung
+- kein dokumentierter wasm32-unknown-unknown-Build
+- p12-keystore 0.1.5 und gesamter transitiver RustCrypto-Pfad müssen auditiert werden
+- Browser-Speicherlöschung und Worker-Abbruch sind nicht belegt
+Bewertung: bevorzugte Referenzengine; erst nativen Testlauf reproduzieren, dann WASM-Port prüfen.
+
+KANDIDAT B – fdimarh/rust_pdf_signing 0.1.0
+Quelle: https://github.com/fdimarh/rust_pdf_signing
+Lizenz: MIT OR Apache-2.0.
+Stärken:
+- dokumentierter wasm32-unknown-unknown-Build mit Feature „web“
+- WebCrypto-Zufall über getrandom/js
+- P12, PAdES, mehrere Signaturen und umfangreiche Angriffsklassen beschrieben
+- MIT/Apache-Lizenz einfach integrierbar
+Blocker:
+- Cargo.toml verweist auf lokale Pfadabhängigkeit ../rust-pdfbox mit version="*"; Checkout ist damit nicht eigenständig reproduzierbar
+- Repository ist ein Fork, Paketmetadaten verweisen teils auf ein anderes Ursprungsrepository
+- Version 0.1.0, sehr geringe öffentliche Nutzung
+Bewertung: derzeit nicht integrieren; nur erneut prüfen, wenn ein eigenständiger, gepinnter WASM-Build veröffentlicht ist.
+
+KANDIDAT C – digitorus/pdfsign
+Quelle: https://github.com/digitorus/pdfsign
+Lizenz: BSD-2-Clause.
+Stärken:
+- größere öffentliche Nutzung als die Rust-Kandidaten
+- Signieren und Prüfen, PAdES/AES/QES, klare Optionen für externe Widerrufsprüfung
+- Projekt verwendet EU DSS für Gegenprüfungen
+Risiken:
+- Go; kein belegter Browser-WASM-Integrationspfad für den vollständigen Funktionsumfang
+- Netzwerk- und Plattformteile müssten sauber abgetrennt werden
+Bewertung: unabhängige Referenz und mögliche Ausweichengine, nicht erster Browserkandidat.
+
+REFERENZ – EU Digital Signature Service 6.5
+Quelle: https://ec.europa.eu/digital-building-blocks/DSS/webapp-demo/doc/dss-documentation.html
+Rolle: maßgeblicher unabhängiger Prüfer für PAdES, Vertrauenskette, Widerruf und ETSI-Berichte.
+Grenze: Java, daher keine direkte Browserengine. Nur lokal/CI verwenden; keine Nutzerdokumente an fremde Dienste senden.
+
+ENTSCHEIDUNG FÜR DEN PROTOTYP
+1. Kandidat A nativ reproduzieren und Testausgaben gegen Poppler, QPDF und EU DSS prüfen.
+2. Einen minimalen WASM-Adapter für parse_p12, sign_b_b und verify_local entwerfen.
+3. Falls A nicht ohne sicherheitsrelevante Umbauten nach WASM portierbar ist: stoppen und B erst nach behobenem Reproduzierbarkeitsblocker neu bewerten.
