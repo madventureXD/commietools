@@ -989,6 +989,148 @@ export const toolIndex: readonly ToolSearchEntry[] = [
     }
   },
   {
+    "id": "image-watermark",
+    "route": "/tools/image-watermark",
+    "icon": "/tools/image-watermark.svg",
+    "category": "image",
+    "suiteIds": [
+      "image"
+    ],
+    "executionMode": "local",
+    "resourceClass": "standard",
+    "worksOffline": true,
+    "input": [
+      "image/jpeg",
+      "image/png",
+      "image/webp"
+    ],
+    "output": [
+      "image/jpeg",
+      "image/png",
+      "image/webp"
+    ],
+    "auxiliary": [
+      {
+        "role": "logo",
+        "mimeTypes": [
+          "image/png",
+          "image/jpeg",
+          "image/webp"
+        ]
+      }
+    ],
+    "locales": {
+      "de": {
+        "title": "Wasserzeichen",
+        "summary": "Setzt Text oder Logo als Wasserzeichen auf ein Bild.",
+        "description": "Setzt Text oder ein Logo als Wasserzeichen auf ein Bild – Position, Größe, Deckkraft, Drehung und Kachelmuster einstellbar, vollständig auf deinem Gerät.",
+        "terms": [
+          "wasserzeichen",
+          "wasserzeichen einfügen",
+          "bild wasserzeichen",
+          "foto wasserzeichen",
+          "copyright",
+          "copyright-vermerk",
+          "urheber",
+          "urheberrecht",
+          "schützen",
+          "bildschutz",
+          "fotorechte",
+          "nachweis",
+          "quelle",
+          "quelle angeben",
+          "text einfügen",
+          "text auf bild",
+          "logo einfügen",
+          "logo auf bild",
+          "branding",
+          "marke",
+          "firmenlogo",
+          "deckkraft",
+          "transparenz",
+          "halbtransparent",
+          "position",
+          "platzierung",
+          "ecke",
+          "kacheln",
+          "kachelmuster",
+          "wiederholen",
+          "muster",
+          "diagonal",
+          "drehen",
+          "drehung",
+          "bild",
+          "foto",
+          "jpeg",
+          "png",
+          "webp",
+          "verkaufen",
+          "exposé",
+          "expose"
+        ],
+        "tags": [
+          "#wasserzeichen",
+          "#bilder",
+          "#urheber"
+        ]
+      },
+      "en": {
+        "title": "Watermark",
+        "summary": "Adds text or a logo as a watermark to an image.",
+        "description": "Adds text or a logo as a watermark to an image – position, size, opacity, rotation and tiling are adjustable, entirely on your device.",
+        "terms": [
+          "watermark",
+          "add watermark",
+          "image watermark",
+          "photo watermark",
+          "copyright",
+          "copyright notice",
+          "attribution",
+          "protect",
+          "protect images",
+          "image rights",
+          "proof",
+          "source",
+          "credit",
+          "credit line",
+          "add text",
+          "text on image",
+          "add logo",
+          "logo on image",
+          "branding",
+          "brand",
+          "company logo",
+          "opacity",
+          "transparency",
+          "semi transparent",
+          "position",
+          "placement",
+          "corner",
+          "bottom right",
+          "tile",
+          "tiled pattern",
+          "pattern",
+          "repeat",
+          "diagonal",
+          "rotate",
+          "rotation",
+          "image",
+          "photo",
+          "jpeg",
+          "png",
+          "webp",
+          "for sale",
+          "listing"
+        ],
+        "tags": [
+          "#watermark",
+          "#images",
+          "#copyright"
+        ]
+      }
+    }
+  },
+  {
     "id": "pdf-merge",
     "route": "/tools/pdf-merge",
     "icon": "/tools/pdf-merge.svg",

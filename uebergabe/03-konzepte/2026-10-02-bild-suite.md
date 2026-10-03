@@ -565,3 +565,36 @@ PNG-Dateien. Im Browser lädt die Datei mit 192 px Kantenlänge.
 **Offen und gemessen:** Die PNG-Ausgabe ist groß — 754 kB für 512 px. Das ist die
 Browser-Kodierung, nicht die Zeichnung; eine Palettenquantisierung wäre ein eigener Schritt und
 ist als Folgemaßnahme vermerkt.
+
+## Umsetzungshinweis: viertes Werkzeug gebaut (2026-10-03)
+
+**Betrifft `image-watermark`.** Das Konzept empfahl „Canvas direkt" und verwarf `watermarkjs`.
+Die Recherche hat das bestätigt: `watermarkjs` kann keine Kachelung und ist seit 2020
+unverändert, andere Kandidaten sind Node-gebunden oder ebenfalls ohne Pflege. Es entstand keine
+neue Abhängigkeit.
+
+Drei Festlegungen, die über das Konzept hinausgehen und dort festgehalten gehören:
+
+1. **Die Markengröße bezieht sich auf die kurze Bildkante.** Ein Prozentwert bedeutet dadurch
+   auf Hoch- und Querformat dasselbe; eine Angabe relativ zur Breite hätte auf Hochformaten
+   andere Ergebnisse geliefert als auf Querformaten.
+2. **Die Drehung bewegt die Platzierungsbox nicht.** Die Boxen bleiben achsenparallel, gedreht
+   wird beim Zeichnen um ihren Mittelpunkt. Andernfalls hätten Vorschau und Ergebnis
+   unterschiedlich gerechnet, sobald der Winkel von 0 abweicht.
+3. **Das Kachelraster entsteht über der Diagonalen** und wird um den Drehwinkel gedreht. So
+   bleibt bei jedem Winkel keine Bildecke leer. Zusätzlich hält das Zeilenraster mindestens die
+   halbe Markenbreite Abstand — sonst stapelten sich Textzeilen im Abstand der Glyphenhöhe
+   (gemessen 7 px), was im Browserdurchlauf sichtbar wurde.
+
+**Drei eigene Fehler, alle von den Tests gefunden und behoben:** Die neun Anker waren in
+Zeile und Spalte vertauscht („oben links" landete auf halber Höhe); ein großer Randabstand
+konnte die Marke aus dem Bild schieben (der Abstand gibt jetzt nach); der Zeilenabstand im
+Muster war zu eng. Ohne die Tests wären alle drei durchgegangen.
+
+**Nachweis, dass nur das Wasserzeichen gerechnet wird:** Mit einer PNG-Quelle ist der Vergleich
+exakt — außerhalb der Marke bleibt kein Pixel verändert (0 in der bildfreien Ecke, 356 im
+Markenbereich). Das Werkzeug berechnet das Bild nicht neu, es legt die Marke darauf.
+
+**Neue Folge aus diesem Werkzeug:** Das Hauptbundle hat mit 503 kB die Warnschwelle des
+Bauwerkzeugs überschritten. Das liegt am erzeugten Werkzeugregister, das mit jedem Werkzeug
+wächst; der Ausweg (abgerufene Registerdatei) ist eine Entscheidung vor dem nächsten Werkzeug.

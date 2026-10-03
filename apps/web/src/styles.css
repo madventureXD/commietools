@@ -212,3 +212,11 @@ a.button { display: inline-flex; align-items: center; justify-content: center; t
   *, *::before, *::after { scroll-behavior: auto !important; transition: none !important; }
 }
 
+/* Watermark */
+.watermark-stage { display: block; max-width: 100%; height: auto; margin: 0 auto; border: 1px solid var(--color-border); border-radius: var(--radius-sm); background: var(--color-background); }
+.anchor-grid { display: grid; grid-template-columns: repeat(3, minmax(2.75rem, 2.75rem)); gap: var(--space-2); width: fit-content; }
+.anchor-grid .button { display: grid; place-items: center; min-width: 2.75rem; padding: 0; }
+.anchor-dot { display: block; width: 0.7rem; height: 0.7rem; border-radius: 50%; background: currentColor; }
+.anchor-grid .active { color: white; }
+.anchor-caption { margin: 0; color: var(--color-text-muted); font-size: 0.9rem; }
+

@@ -69,17 +69,17 @@ describe('search over declared file types and labels', () => {
     // The two image tools carry "WebP" as a curated term, the QR tool only as a
     // declared output type - the curated term ranks above the derived type.
     const byType = searchTools(toolIndex, { query: 'webp', locale: 'de', label: de })
-    expect(byType.map((match) => match.entry.id)).toEqual(['image-metadata', 'image-resize', 'qr-code-generator', 'icon-generator'])
-    expect(byType.slice(0, 2).every((match) => match.field === 'term')).toBe(true)
-    expect(byType[2]?.field).toBe('format')
+    expect(byType.map((match) => match.entry.id)).toEqual(['image-metadata', 'image-resize', 'image-watermark', 'qr-code-generator', 'icon-generator'])
+    expect(byType.slice(0, 3).every((match) => match.field === 'term')).toBe(true)
+    expect(byType[3]?.field).toBe('format')
     expect(germanIds('heic')).toEqual(['image-metadata'])
     expect(germanIds('.jpg')).toContain('image-resize')
     expect(germanIds('.jpg')).toContain('image-metadata')
   })
 
   it('finds tools by tag and by keyword', () => {
-    expect(germanIds('#bilder')).toEqual(['image-metadata', 'image-resize', 'images-to-pdf', 'pdf-to-images'])
-    expect(germanIds('bilder')).toEqual(['images-to-pdf', 'image-metadata', 'image-resize', 'pdf-to-images', 'icon-generator'])
+    expect(germanIds('#bilder')).toEqual(['image-metadata', 'image-resize', 'image-watermark', 'images-to-pdf', 'pdf-to-images'])
+    expect(germanIds('bilder')).toEqual(['images-to-pdf', 'image-metadata', 'image-resize', 'image-watermark', 'pdf-to-images', 'icon-generator'])
     expect(germanIds('#datenschutz')).toEqual(['image-metadata'])
   })
 
@@ -91,7 +91,7 @@ describe('search over declared file types and labels', () => {
   })
 
   it('works without a label resolver too', () => {
-    expect(searchTools(toolIndex, { query: 'webp', locale: 'de' }).length).toBe(4)
+    expect(searchTools(toolIndex, { query: 'webp', locale: 'de' }).length).toBe(5)
     expect(searchTools(toolIndex, { query: 'exif', locale: 'de' })[0]?.entry.id).toBe('image-metadata')
   })
 })
@@ -128,8 +128,8 @@ describe('search ranking and completeness', () => {
   })
 
   it('keeps the catalogue order when scores are equal', () => {
-    // "Bild" scores the same for six tools, so the catalogue decides their order.
-    expect(germanIds('bild')).toEqual(['qr-code-generator', 'image-metadata', 'image-resize', 'images-to-pdf', 'pdf-to-images', 'icon-generator'])
+    // "Bild" scores the same for several tools, so the catalogue decides their order.
+    expect(germanIds('bild')).toEqual(['qr-code-generator', 'image-metadata', 'image-resize', 'image-watermark', 'images-to-pdf', 'pdf-to-images', 'icon-generator'])
   })
 
   it('answers a nonsense query with nothing instead of guessing', () => {

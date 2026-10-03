@@ -133,7 +133,7 @@ describe('declared file types', () => {
         expect(tool.files?.input?.length, tool.id).toBeGreaterThan(0)
       }
     }
-    expect(fileToolIds).toEqual(['image-metadata', 'image-resize', 'icon-generator', 'pdf-merge', 'pdf-split', 'pdf-organize', 'images-to-pdf', 'pdf-to-images'])
+    expect(fileToolIds).toEqual(['image-metadata', 'image-resize', 'icon-generator', 'image-watermark', 'pdf-merge', 'pdf-split', 'pdf-organize', 'images-to-pdf', 'pdf-to-images'])
   })
 
   it('separates types that are only read from types that are written', () => {
@@ -141,6 +141,9 @@ describe('declared file types', () => {
     expect(readOnlyFormatNames('image-resize')).toEqual([])
     // The icon generator reads JPEG and WebP but writes PNG and ICO only.
     expect(readOnlyFormatNames('icon-generator')).toEqual(['JPEG', 'WebP'])
+    // The watermark tool writes back every format it reads.
+    expect(readOnlyFormatNames('image-watermark')).toEqual([])
+    expect(formatNames(auxiliaryMimeTypes('image-watermark', 'logo'))).toEqual(['PNG', 'JPEG', 'WebP'])
     expect(formatNames(auxiliaryMimeTypes('qr-code-generator', 'logo'))).toEqual(['PNG', 'JPEG', 'WebP', 'SVG'])
     expect(auxiliaryMimeTypes('qr-code-generator', 'frame')).toEqual([])
     expect(toolById.get('qr-code-generator')?.files?.auxiliary?.[0]?.role).toBe('logo')

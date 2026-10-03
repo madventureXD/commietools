@@ -84,6 +84,20 @@ export {
   type IconPlanOptions,
   type ManifestIconEntry
 } from './image/icon/icon'
+export {
+  MAX_SCALE,
+  MIN_SCALE,
+  WATERMARK_ANCHORS,
+  clampOpacity,
+  clampScale,
+  clampSpacing,
+  markSize,
+  normalizeRotation,
+  placeWatermark,
+  type WatermarkAnchor,
+  type WatermarkBox,
+  type WatermarkOptions
+} from './image/watermark/watermark'
 
 export const toolById = new Map(toolManifests.map((tool) => [tool.id, tool]))
 export const toolByRoute = new Map(toolManifests.map((tool) => [tool.route, tool]))

@@ -72,6 +72,17 @@ export const toolManifests: readonly ToolManifest[] = [
     }
   },
   {
+    id: 'image-watermark', route: '/tools/image-watermark', category: 'image',
+    titleKey: 'tool.watermark.title', descriptionKey: 'tool.watermark.description',
+    summaryKey: 'tool.watermark.summary', termsKey: 'tool.watermark.terms',
+    executionMode: 'local', resourceClass: 'standard', worksOffline: true,
+    files: {
+      input: ['image/jpeg', 'image/png', 'image/webp'],
+      auxiliary: [{ role: 'logo', mimeTypes: ['image/png', 'image/jpeg', 'image/webp'] }],
+      output: ['image/jpeg', 'image/png', 'image/webp']
+    }
+  },
+  {
     id: 'pdf-merge', route: '/tools/pdf-merge', category: 'pdf',
     titleKey: 'tool.pdfMerge.title', descriptionKey: 'tool.pdfMerge.description',
     summaryKey: 'tool.pdfMerge.summary', termsKey: 'tool.pdfMerge.terms',
@@ -112,6 +123,6 @@ export const suiteManifests: readonly SuiteManifest[] = [
   { id: 'text', route: '/suites/text', titleKey: 'suite.text.title', descriptionKey: 'suite.text.description', toolIds: ['text-statistics', 'case-converter'] },
   { id: 'developer', route: '/suites/developer', titleKey: 'suite.developer.title', descriptionKey: 'suite.developer.description', toolIds: ['json-formatter'] },
   { id: 'generators', route: '/suites/generators', titleKey: 'suite.generators.title', descriptionKey: 'suite.generators.description', toolIds: ['qr-code-generator'] },
-  { id: 'image', route: '/suites/image', titleKey: 'suite.image.title', descriptionKey: 'suite.image.description', toolIds: ['image-metadata', 'image-resize', 'icon-generator'] },
+  { id: 'image', route: '/suites/image', titleKey: 'suite.image.title', descriptionKey: 'suite.image.description', toolIds: ['image-metadata', 'image-resize', 'icon-generator', 'image-watermark'] },
   { id: 'pdf', route: '/suites/pdf', titleKey: 'suite.pdf.title', descriptionKey: 'suite.pdf.description', toolIds: ['pdf-merge', 'pdf-split', 'pdf-organize', 'images-to-pdf', 'pdf-to-images'] }
 ]

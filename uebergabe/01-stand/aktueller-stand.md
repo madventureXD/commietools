@@ -1,7 +1,7 @@
 # Aktueller Projektstand
 
 **Stand:** 2026-10-03  
-**Letzter geprüfter Meilenstein:** Bild-Suite „Icon-Generator“ (2026-10-03), davor PDF-Suite M2, davor PDF-Suite M0/M1 (`a45f950`)
+**Letzter geprüfter Meilenstein:** Bild-Suite „Wasserzeichen“ (2026-10-03), davor Bild-Suite „Icon-Generator“, davor PDF-Suite M2
 
 ## Umgesetzt
 
@@ -15,6 +15,7 @@
 - Bild-Metadaten: Anzeige und verlustfreies Entfernen von EXIF, XMP, IPTC und Kommentaren in JPEG, PNG und WebP, ohne Neuberechnung der Bildpunkte
 - Bild skalieren: Skalieren, Zuschnitt, Drehen und Spiegeln mit hochwertiger Filterung im Web Worker; fester Ablauf Ausrichtung → Zuschnitt → Skalierung
 - Icon-Generator: PNG-Satz von 16 bis 512 px, maskierbare Variante je Größe, `favicon.ico` mit selbst geschriebenem ICO-Container und kopierbarer `icons`-Eintrag für ein Web-App-Manifest
+- Wasserzeichen: Text oder eigenes Logo, einzeln an neun Positionen oder als gedrehtes Kachelmuster über das Bild, mit Größe, Deckkraft, Rand- und Musterabstand
 - CommieTools-Logo- und Iconvarianten
 - vollständige AGPL-3.0-only-Projektlizenz
 - automatisch erzeugte und auf der Webseite abrufbare Lizenzdatenbank
@@ -42,6 +43,7 @@
 | Bild-Metadaten | `image-metadata` | Bilder | lokal | 8 Typen hinein, 3 verlustfrei heraus |
 | Bild skalieren | `image-resize` | Bilder | lokal | 3 Typen hinein und heraus |
 | Icon-Generator | `icon-generator` | Bilder | lokal | PNG/JPEG/WebP hinein, PNG und ICO heraus |
+| Wasserzeichen | `image-watermark` | Bilder | lokal | JPEG/PNG/WebP hinein und heraus; Logo als Nebenrolle |
 | PDFs zusammenführen | `pdf-merge` | PDF | lokal | PDF hinein und heraus |
 | PDF teilen | `pdf-split` | PDF | lokal | PDF hinein und mehrere PDFs heraus |
 | PDF-Seiten organisieren | `pdf-organize` | PDF | lokal | PDF hinein und heraus |
@@ -53,7 +55,7 @@
 - Text
 - Entwicklung
 - Generatoren
-- Bilder (Bild-Metadaten, Bild skalieren, Icon-Generator)
+- Bilder (Bild-Metadaten, Bild skalieren, Icon-Generator, Wasserzeichen)
 - PDF (Zusammenführen, Teilen, Seiten organisieren, Bilder zu PDF, PDF zu Bildern)
 
 ## Qualität und Compliance
@@ -63,9 +65,9 @@
 - erfasste externe Pakete: 496
 - vollständige Lizenztexte: 13
 - bewahrte originale Paketdokumente: 170
-- letzter bekannter Teststand: 101 Tests bestanden
-- Werkzeugregister: 12 Werkzeuge, 2 Sprachen, 12 Symbole, **852** Suchbegriffe und Schlagwörter, 42 deklarierte Dateitypen (`npm run catalog:check`)
-- letzter bekannter Produktions-Build: bestanden; Hauptbundle 480,59 kB (143,85 kB komprimiert), Stylesheet 20,75 kB (4,50 kB komprimiert), PDF-Engines in getrennten nachgeladenen Chunks, Vorab-Cache mit 26 Einträgen
+- letzter bekannter Teststand: 117 Tests bestanden
+- Werkzeugregister: 13 Werkzeuge, 2 Sprachen, 13 Symbole, **942** Suchbegriffe und Schlagwörter, 51 deklarierte Dateitypen (`npm run catalog:check`)
+- letzter bekannter Produktions-Build: bestanden; Hauptbundle 503,28 kB (148,96 kB komprimiert, **Warnung über 500 kB**), Stylesheet 21,32 kB (4,60 kB komprimiert), PDF-Engines in getrennten nachgeladenen Chunks, Vorab-Cache mit 27 Einträgen
 
 Zahlen sind Momentaufnahmen. Nach Abhängigkeits-, Test- oder Tooländerungen müssen sie anhand der tatsächlichen Ausgabe aktualisiert werden.
 
