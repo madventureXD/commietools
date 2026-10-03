@@ -1,6 +1,8 @@
 import { describe, expect, it } from 'vitest'
 import { PDFDocument, degrees } from 'pdf-lib'
-import { addPdfAnnotation, addPdfPageNumbers, addPdfWatermark, addVisiblePdfSignature, compressionArguments, deletePdfAnnotation, fillPdfForm, imagesToPdf, inspectPdf, inspectPdfAnnotations, inspectPdfForm, mergePdfs, organizePdf, parsePageSelection, parseSplitGroups, PdfToolError, protectionArguments, resolvePdfPagePlacement, resolvePdfPlacement, splitPdf } from '@commietools/tools'
+import { addPdfPageNumbers, addPdfWatermark, addVisiblePdfSignature, imagesToPdf, inspectPdf, mergePdfs, organizePdf, parsePageSelection, parseSplitGroups, PdfToolError, resolvePdfPagePlacement, resolvePdfPlacement, splitPdf } from '@commietools/tools/pdf/core'
+import { addPdfAnnotation, deletePdfAnnotation, fillPdfForm, inspectPdfAnnotations, inspectPdfForm } from '@commietools/tools/pdf/m4'
+import { compressionArguments, protectionArguments } from '@commietools/tools/pdf/m5'
 
 async function fixture(sizes: readonly [number, number][]) {
   const document = await PDFDocument.create()

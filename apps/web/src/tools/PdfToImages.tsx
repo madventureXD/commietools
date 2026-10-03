@@ -1,5 +1,6 @@
 import { useEffect, useState, type ChangeEvent } from 'react'
-import { acceptAttributeFor, inspectPdf, parsePageSelection } from '@commietools/tools'
+import { acceptAttributeFor } from '@commietools/tools'
+import { inspectPdf, parsePageSelection } from '@commietools/tools/pdf/core'
 import { Button, LocalBadge } from '@commietools/ui'
 import { PdfWarnings, pdfErrorKey, renderPdfPages, usePdfThumbnails, type LoadedPdf, type Translate } from './pdfUi'
 

@@ -17,64 +17,6 @@ export {
 } from './catalog/search'
 export { toolMessages } from './locales'
 export {
-  addPdfPageNumbers,
-  addPdfWatermark,
-  addVisiblePdfSignature,
-  formatPdfPageNumber,
-  inspectPdf,
-  imagesToPdf,
-  mergePdfs,
-  organizePdf,
-  parsePageSelection,
-  parseSplitGroups,
-  PdfToolError,
-  splitPdf,
-  resolvePdfPlacement,
-  resolvePdfPagePlacement,
-  type PdfNumberFormat,
-  type PdfPageNumberOptions,
-  type PdfPlacementAnchor,
-  type PdfPlacementRect,
-  type PdfPagePlacement,
-  type PdfSignatureOptions,
-  type PdfWatermarkOptions,
-  type PdfInput,
-  type PdfImageFit,
-  type PdfImageInput,
-  type PdfInspection,
-  type PdfIssueCode,
-  type PdfOrientation,
-  type PdfPageInfo,
-  type PdfPagePlan,
-  type PdfPageSize,
-  type ImagesToPdfOptions
-} from './pdf/core'
-export {
-  addPdfAnnotation,
-  deletePdfAnnotation,
-  fillPdfForm,
-  inspectPdfAnnotations,
-  inspectPdfForm,
-  type PdfAnnotationInfo,
-  type PdfAnnotationOptions,
-  type PdfAnnotationType,
-  type PdfFormFieldInfo,
-  type PdfFormFieldType,
-  type PdfFormInspection,
-  type PdfFormValue
-} from './pdf/m4'
-export {
-  compressPdf,
-  compressionArguments,
-  protectPdf,
-  protectionArguments,
-  unlockPdf,
-  type PdfCompressionMode,
-  type PdfModifyPermission,
-  type PdfPrintPermission,
-  type PdfProtectionOptions
-} from './pdf/m5'
-export {
   detectImageFormat,
   findMetadataSegments,
   readMetadata,

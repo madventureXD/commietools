@@ -1,17 +1,21 @@
 import { useEffect, useRef, useState, type ChangeEvent, type PointerEvent } from 'react'
 import {
-  acceptAttributeFor,
+  acceptAttributeFor
+} from '@commietools/tools'
+import {
+  inspectPdf
+} from '@commietools/tools/pdf/core'
+import {
   addPdfAnnotation,
   deletePdfAnnotation,
   fillPdfForm,
-  inspectPdf,
   inspectPdfAnnotations,
   inspectPdfForm,
   type PdfAnnotationInfo,
   type PdfAnnotationType,
   type PdfFormInspection,
   type PdfFormValue
-} from '@commietools/tools'
+} from '@commietools/tools/pdf/m4'
 import { Button, LocalBadge } from '@commietools/ui'
 import { PdfWarnings, baseName, pdfErrorKey, usePdfThumbnails, type LoadedPdf, type Translate } from './pdfUi'
 

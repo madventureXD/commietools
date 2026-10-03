@@ -4,18 +4,6 @@ import { VitePWA } from 'vite-plugin-pwa'
 
 export default defineConfig({
   optimizeDeps: { exclude: ['mupdf'] },
-  build: {
-    rollupOptions: {
-      output: {
-        manualChunks(id) {
-          if (id.includes('node_modules/pdfjs-dist')) return 'pdfjs'
-          if (id.includes('node_modules/pdf-lib') || id.includes('node_modules/@pdf-lib') || id.includes('node_modules/pako')) return 'pdf-lib'
-          if (id.includes('node_modules/mupdf')) return 'mupdf'
-          if (id.includes('node_modules/@neslinesli93/qpdf-wasm')) return 'qpdf'
-        }
-      }
-    }
-  },
   plugins: [
     react(),
     VitePWA({
@@ -37,9 +25,21 @@ export default defineConfig({
         navigateFallback: '/index.html',
         cleanupOutdatedCaches: true,
         globPatterns: ['**/*.{js,css,html,ico,png,svg,json,txt,wasm}'],
-        globIgnores: ['**/pdfjs-*.js', '**/pdf-lib-*.js', '**/mupdf-*.js', '**/mupdf-*.wasm', '**/qpdf-*.js', '**/qpdf-*.wasm', '**/pdf.worker*.mjs'],
+        globIgnores: [
+          '**/Pdf*.js',
+          '**/ImagesToPdf-*.js',
+          '**/pdf-*.js',
+          '**/pdfUi-*.js',
+          '**/pdfjs-*.js',
+          '**/pdf-lib-*.js',
+          '**/mupdf-*.js',
+          '**/mupdf-*.wasm',
+          '**/qpdf-*.js',
+          '**/qpdf-*.wasm',
+          '**/pdf.worker*.mjs'
+        ],
         runtimeCaching: [{
-          urlPattern: /\/assets\/(?:pdfjs-|pdf-lib-|mupdf-|qpdf-|pdf\.worker)/,
+          urlPattern: /\/assets\/(?:Pdf|ImagesToPdf-|pdf-|pdfUi-|pdfjs-|pdf-lib-|mupdf-|qpdf-|pdf\.worker)/,
           handler: 'CacheFirst',
           options: { cacheName: 'commietools-pdf-engines-v2' }
         }]

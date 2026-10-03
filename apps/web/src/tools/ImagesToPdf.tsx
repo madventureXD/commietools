@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState, type ChangeEvent } from 'react'
-import { acceptAttributeFor, imagesToPdf, type PdfImageFit, type PdfOrientation, type PdfPageSize } from '@commietools/tools'
+import { acceptAttributeFor } from '@commietools/tools'
+import { imagesToPdf, type PdfImageFit, type PdfOrientation, type PdfPageSize } from '@commietools/tools/pdf/core'
 import { Button, LocalBadge } from '@commietools/ui'
 import { pdfErrorKey, useDownload, type Translate } from './pdfUi'
 

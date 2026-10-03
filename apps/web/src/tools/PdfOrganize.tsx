@@ -1,5 +1,6 @@
 import { useEffect, useState, type ChangeEvent } from 'react'
-import { acceptAttributeFor, inspectPdf, organizePdf, type PdfPagePlan } from '@commietools/tools'
+import { acceptAttributeFor } from '@commietools/tools'
+import { inspectPdf, organizePdf, type PdfPagePlan } from '@commietools/tools/pdf/core'
 import { Button, LocalBadge } from '@commietools/ui'
 import { PdfWarnings, baseName, pdfErrorKey, useDownload, usePdfThumbnails, type LoadedPdf, type Translate } from './pdfUi'
 

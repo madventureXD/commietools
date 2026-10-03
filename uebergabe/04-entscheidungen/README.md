@@ -15,6 +15,7 @@ Wird eine Entscheidung ersetzt, bleiben beide Dateien erhalten und verweisen geg
 
 - [`0001-open-source-first.md`](0001-open-source-first.md): Open-Source-Lösungen haben vor Eigenentwicklung Vorrang — angenommen.
 - [`0002-qpdf-wasm-fuer-pdf-sicherheit.md`](0002-qpdf-wasm-fuer-pdf-sicherheit.md): QPDF-WASM für PDF-Sicherheit und Strukturkompression — angenommen.
+- [`0003-datensparsame-ladegrenzen.md`](0003-datensparsame-ladegrenzen.md): Nur tatsächlich benötigte Tool-Module und Engines übertragen — angenommen.
 
 Die allgemeine Architekturgrundlage ist in [`../../docs/architecture.md`](../../docs/architecture.md) dokumentiert.
 

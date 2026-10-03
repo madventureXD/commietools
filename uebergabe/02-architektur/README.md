@@ -27,6 +27,28 @@ Verbindliche Reihenfolge:
 5. beste Lösung integrieren und vollständig in der Lizenzdatenbank erfassen.
 6. nur bei dokumentierter Ablehnung aller Kandidaten selbst implementieren.
 
+### Datensparsame Ladegrenzen
+
+CommieTools lädt nur, was für die aktuell aufgerufene Funktion notwendig ist. Das ist eine
+verbindliche Architekturregel und keine nachträgliche Leistungsoptimierung.
+
+- Die Startseite enthält nur App-Shell, Katalog, UI-Grundlagen und die aktive Sprache.
+- Jede Werkzeugoberfläche wird erst beim Öffnen ihrer Route geladen.
+- Große Engines werden direkt vom nutzenden Werkzeug importiert und nicht über den allgemeinen
+  Paket-Einstiegspunkt reexportiert.
+- Benötigt ein Tool mehrere optionale Fähigkeiten, werden auch diese möglichst erst bei Aktivierung
+  nachgeladen, beispielsweise OCR samt Sprachmodell erst nach Wahl der OCR-Funktion.
+- Nicht aktive Sprachen, Beispiele, Zusatzschriften und Offline-Artefakte werden nicht vorsorglich
+  übertragen.
+- Offline-Caches dürfen nutzerinitiierte Downloads dauerhaft verfügbar machen, aber keine noch nie
+  verwendeten Großmodule pauschal vorladen.
+- Die Produktionsprüfung kontrolliert die statische Importkette der Startseite und ein komprimiertes
+  Startbudget. Neue Engine-Klassen werden in diese Sperrliste aufgenommen.
+
+Für PDF gilt konkret: `@commietools/tools` bleibt leicht. PDF-Funktionen kommen aus den expliziten
+Einstiegspunkten `@commietools/tools/pdf/core`, `/pdf/m4` und `/pdf/m5`, die ausschließlich in den
+verzögert geladenen PDF-Oberflächen verwendet werden.
+
 ### Neues Tool
 
 Ein Tool besitzt eine eindeutige ID, ein Manifest, toolnahe Logik und bei Bedarf eigene Übersetzungen. Es verwendet gemeinsame UI-Komponenten und wird nicht durch fest codierte Navigation dupliziert.

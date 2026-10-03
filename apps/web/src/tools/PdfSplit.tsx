@@ -1,5 +1,6 @@
 import { useState, type ChangeEvent } from 'react'
-import { acceptAttributeFor, inspectPdf, parseSplitGroups, splitPdf } from '@commietools/tools'
+import { acceptAttributeFor } from '@commietools/tools'
+import { inspectPdf, parseSplitGroups, splitPdf } from '@commietools/tools/pdf/core'
 import { Button, LocalBadge } from '@commietools/ui'
 import { PdfWarnings, baseName, pdfErrorKey, usePdfThumbnails, type LoadedPdf, type Translate } from './pdfUi'
 

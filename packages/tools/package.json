@@ -4,7 +4,12 @@
   "private": true,
   "license": "AGPL-3.0-only",
   "type": "module",
-  "exports": "./src/index.ts",
+  "exports": {
+    ".": "./src/index.ts",
+    "./pdf/core": "./src/pdf/core.ts",
+    "./pdf/m4": "./src/pdf/m4.ts",
+    "./pdf/m5": "./src/pdf/m5.ts"
+  },
   "dependencies": {
     "@commietools/core": "0.1.0",
     "@neslinesli93/qpdf-wasm": "^0.3.0",

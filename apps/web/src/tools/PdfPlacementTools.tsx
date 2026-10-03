@@ -1,16 +1,18 @@
 import { useEffect, useRef, useState, type ChangeEvent, type PointerEvent, type ReactNode } from 'react'
 import {
   acceptAttributeFor,
+  auxiliaryMimeTypes
+} from '@commietools/tools'
+import {
   addPdfPageNumbers,
   addPdfWatermark,
   addVisiblePdfSignature,
-  auxiliaryMimeTypes,
   formatPdfPageNumber,
   inspectPdf,
   parsePageSelection,
   type PdfNumberFormat,
   type PdfPlacementAnchor
-} from '@commietools/tools'
+} from '@commietools/tools/pdf/core'
 import { Button, LocalBadge } from '@commietools/ui'
 import { PdfWarnings, baseName, pdfErrorKey, usePdfThumbnails, type LoadedPdf, type Translate } from './pdfUi'
 

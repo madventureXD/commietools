@@ -1,15 +1,19 @@
 import { useEffect, useState, type ChangeEvent, type ReactNode } from 'react'
 import {
-  acceptAttributeFor,
-  compressPdf,
+  acceptAttributeFor
+} from '@commietools/tools'
+import {
   inspectPdf,
+  type PdfInspection
+} from '@commietools/tools/pdf/core'
+import {
+  compressPdf,
   protectPdf,
   unlockPdf,
   type PdfCompressionMode,
-  type PdfInspection,
   type PdfModifyPermission,
   type PdfPrintPermission
-} from '@commietools/tools'
+} from '@commietools/tools/pdf/m5'
 import { Button, LocalBadge } from '@commietools/ui'
 import { PdfWarnings, baseName, pdfErrorKey, usePdfThumbnails, type Translate } from './pdfUi'
 

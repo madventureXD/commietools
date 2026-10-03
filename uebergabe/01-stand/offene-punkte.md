@@ -4,7 +4,6 @@ Diese Liste enthält bestätigte, noch nicht abgeschlossene Arbeit. Details geh�
 
 ## Hohe Priorität
 
-- [ ] **Startlast der Webseite senken (dringend).** Die Startseite lädt 11,4 MB roh (rund 5 MB komprimiert) mit, darunter eine 10,4 MB große WASM-Datei der PDF-Engine — auch wenn kein PDF-Werkzeug geöffnet wird. Nötig wären 153 kB komprimiert. Vollständige Diagnose, Ursache, Lösungsweg und Prüfanleitung: `uebergabe/DRINGEND-startlast-pdf-engines.md`. Zuständig: Webseite/Gesamtprojekt.
 - [ ] Nach abgeschlossener Nameserver-Propagation `commietools.org` und `www.commietools.org` unter Cloudflare Pages → `commietools` → Custom domains zuordnen, SSL-Ausstellung abwarten und beide URLs prüfen.
 - [ ] Nach erfolgreicher Domainumschaltung einen sichtbaren Source-Link auf `https://github.com/madventureXD/commietools` in die Weboberfläche integrieren.
 - [ ] Mailbetrieb nach DNS-Umschaltung prüfen: MX, `autoconfig`, vier SRV-Einträge und SPF; `autoconfig` muss in Cloudflare auf „DNS only“ bleiben.
@@ -18,7 +17,7 @@ Diese Liste enthält bestätigte, noch nicht abgeschlossene Arbeit. Details geh�
 - [ ] Weitere Suchbegriffe ergänzen, wenn im Gebrauch Lücken auffallen (Register und Prüfung melden Dopplungen; zwei Tests finden tote Begriffe).
 - [ ] Offline-Verhalten mit einem automatisierten Browser-Test absichern.
 - [ ] Content Security Policy und spätere Deployment-Header konkretisieren.
-- [ ] Performance-Budgets für große Tool-Engines und optionale Offline-Caches festlegen.
+- [ ] Größenbudgets zusätzlich pro große Tool-Engine festlegen; das Startbudget und die Sperre gegen PDF-Engines sind umgesetzt.
 
 ## Später / bei konkretem Bedarf
 

@@ -23,6 +23,12 @@
   getippten Listen — die Prüfung lehnt `accept="…"` ab.
 - Abhängigkeiten nur mit dokumentierter Notwendigkeit und geprüfter Lizenz ergänzen.
 - Datenschutz-, Offline- und Barrierefreiheitsfolgen mitbedenken.
+- **Datensparsamkeit gilt auch für Downloads:** Eine Route lädt nur Shell, aktive Sprache und die
+  tatsächlich benötigten Tool-Module. Große Engines, Sprachmodelle, Worker, Schriften und Beispiele
+  werden erst bei konkreter Nutzung nachgeladen. Suite-Zugehörigkeit allein darf keinen Download
+  auslösen.
+- Tool- und Suite-Einstiegspunkte dürfen keine schweren optionalen Engines reexportieren. Direkte
+  Modulimporte markieren die Ladegrenze; neue Engines benötigen ein geprüftes Größenbudget.
 - Keine Geheimnisse, Zugangsdaten oder personenbezogenen Daten dokumentieren.
 
 ## Pflichtprüfungen
@@ -33,6 +39,9 @@ Vor einer abgeschlossenen Übergabe mindestens ausführen:
 npm run check
 npm run build
 ```
+
+Der Build führt `bundle:check` aus. Die Prüfung muss scheitern, wenn eine PDF-Engine statisch von der
+Startseite erreichbar ist oder deren komprimierter Einstieg das festgelegte Budget überschreitet.
 
 Nach Änderungen an Manifesten, Sprachkatalogen oder Werkzeugsymbolen zuerst das Register erzeugen:
 

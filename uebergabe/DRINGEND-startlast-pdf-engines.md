@@ -1,4 +1,8 @@
-# DRINGEND: Startseite lädt 5 MB mit, die sie nicht braucht
+# ERLEDIGT: Startseite lud 5 MB mit, die sie nicht brauchte
+
+> Behoben am 2026-10-03. Der allgemeine Export wurde von den PDF-Engines getrennt, die manuelle
+> Bündelung entfernt und `bundle:check` als verbindliche Produktionsprüfung ergänzt. PDF-Routen und
+> ihre Engines sind außerdem vom Vorab-Cache ausgenommen. Historische Diagnose folgt.
 
 **Datum:** 2026-10-03
 **Gemeldet von:** Faber (Hermes Agent, Rolle: Werkzeuge und Kontrolle)

@@ -43,6 +43,8 @@
 - PDF schützen und entsperren: AES-256, getrennte Öffnungs-/Besitzerpasswörter, verständliche Berechtigungen, falsches-Passwort-Schutz und rein lokale Verarbeitung
 - PDF komprimieren: verlustfreie Strukturkompression sowie zwei klar gekennzeichnete optionale Bildstufen mit transparentem Größenvergleich
 - QPDF 12.2.0 als getrennt nachgeladene Open-Source-WASM-Engine; Binärartefakt mit SHA-256, Upstream-Komponenten, festen Commits und vollständigen Lizenzen registriert
+- datensparsame Ladegrenzen: Startseite und Fremdwerkzeuge laden keine PDF-Engine; PDF-Routen, Worker und WASM werden erst bei Nutzung übertragen und nicht vorab offline gespeichert
+- automatische Startlastprüfung mit 250-KiB-Gzip-Budget und Sperre gegen statisch erreichbare PDF-Engines
 
 ## Derzeitige Tools
 
@@ -88,7 +90,7 @@
 - eingebettete Binärartefakte: 1 vollständig geprüftes QPDF-WASM-Artefakt
 - letzter bekannter Teststand: 145 Tests bestanden
 - Werkzeugregister: 21 Werkzeuge, 2 Sprachen, 21 Symbole, 70 deklarierte Dateitypen (`npm run catalog:check`)
-- letzter bekannter Produktions-Build: bestanden; Hauptbundle 558,43 kB (163,38 kB komprimiert, **Warnung über 500 kB**), M5-Oberfläche 9,81 kB und QPDF-JavaScript 42,67 kB getrennt nachgeladen; QPDF-WASM 1,33 MB im PDF-Laufzeitcache, Vorab-Cache mit 38 Einträgen
+- letzter bekannter Produktions-Build: bestanden; Startcode 163,99 kB komprimiert und ohne statisch erreichbare PDF-Engine; PDF-Routen, Worker und WASM sind vom Vorab-Cache ausgeschlossen
 
 Zahlen sind Momentaufnahmen. Nach Abhängigkeits-, Test- oder Tooländerungen müssen sie anhand der tatsächlichen Ausgabe aktualisiert werden.
 

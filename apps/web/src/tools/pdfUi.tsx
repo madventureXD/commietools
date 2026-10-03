@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import workerUrl from 'pdfjs-dist/build/pdf.worker.min.mjs?url'
-import { PdfToolError, type PdfInspection } from '@commietools/tools'
+import { PdfToolError, type PdfInspection } from '@commietools/tools/pdf/core'
 
 export type Translate = (key: string) => string
 
