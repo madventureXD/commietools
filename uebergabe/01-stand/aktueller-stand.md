@@ -21,7 +21,8 @@
 - vollständige AGPL-3.0-only-Projektlizenz
 - automatisch erzeugte und auf der Webseite abrufbare Lizenzdatenbank
 - Lizenzprüfung als verpflichtender Bestandteil von Check und Build
-- Cloudflare-Pages-Bereitstellung vorbereitet: SPA-Fallback, PWA-Cache-Regeln und Sicherheitsheader; Domain bleibt bei Hetzner
+- öffentliches GitHub-Repository `madventureXD/commietools`; `main` löst automatische Cloudflare-Pages-Deployments aus
+- Cloudflare-Pages-Bereitstellung aktiv unter `https://commietools.pages.dev`: SPA-Fallback, PWA-Cache-Regeln und Sicherheitsheader; Domainregistrierung bleibt bei Hetzner
 - zweisprachige, dauerhaft im Footer erreichbare Impressumsseite mit Anbieteranschrift und E-Mail-Kontakt
 - erzeugtes Werkzeugregister (`packages/tools/src/catalog/toolIndex.ts`) mit Symbol, Kurzbeschreibung und Suchbegriffen je Werkzeug und Sprache; Prüfung als Bestandteil von Check und Build
 - deklarierte Dateifähigkeiten je Werkzeug im Manifest (`input`, `auxiliary`, `output`); Dateifelder, Formatlisten und Katalogkarten lesen daraus, nicht aus eigenen Kopien
@@ -78,6 +79,6 @@ Zahlen sind Momentaufnahmen. Nach Abhängigkeits-, Test- oder Tooländerungen m�
 - PDF-Suite M3 bis M7 (Platzierung, Formulare/Kommentare, Schutz/Kompression, OCR und digitale Signaturen)
 - Backend, Konten und Synchronisierung
 - Desktop- und Mobile-Shells
-- öffentliches Quellcode-Repository und sichtbarer Source-Link für den späteren AGPL-Betrieb
-- tatsächliche Cloudflare-Pages-Veröffentlichung und DNS-Umschaltung; derzeit ist kein Git-Remote konfiguriert
+- sichtbarer Source-Link in der Weboberfläche
+- Abschluss der DNS-Propagation zu Cloudflare und Zuordnung von `commietools.org` sowie `www.commietools.org` zum Pages-Projekt
 - umfassende automatisierte Barrierefreiheitstests
