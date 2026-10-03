@@ -16,6 +16,7 @@ export const de = {
   'tool.pdfVerify.terms': 'PDF Signatur prüfen,PAdES prüfen,Zertifikat prüfen,PDF verändert,Integrität,CMS,#pdf,#signatur,#prüfen',
   'tool.pdfVerify.action': 'Signaturen überprüfen',
   'tool.pdfVerify.none': 'Keine kryptografische PDF-Signatur gefunden.',
+  'tool.pdfVerify.unsupported': 'Eine Signaturstruktur wurde erkannt, konnte aber nicht sicher ausgewertet werden. Das Dokument gilt nicht als geprüft.',
   'tool.pdfVerify.valid': 'Signatur mathematisch gültig',
   'tool.pdfVerify.invalid': 'Signatur ungültig',
   'tool.pdfVerify.intact': 'Dokument seit der Signatur unverändert',

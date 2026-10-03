@@ -6,7 +6,7 @@ import { Button, LocalBadge } from '@commietools/ui'
 import { baseName, pdfErrorKey, useDownload, type Translate } from './pdfUi'
 import { SaveFileControl } from './SaveFileControl'
 
-type InputFile = { name: string; bytes: Uint8Array }
+type InputFile = { name: string; bytes: Uint8Array; hasSignatureHint?: boolean }
 
 async function readFile(event: ChangeEvent<HTMLInputElement>): Promise<InputFile | null> {
   const selected = event.target.files?.[0]
@@ -65,7 +65,7 @@ export function PdfSignatureVerify({ t }: { t: Translate }) {
   const [error, setError] = useState('')
   const [processing, setProcessing] = useState(false)
   async function choosePdf(event: ChangeEvent<HTMLInputElement>) {
-    try { const next = await readFile(event); if (next) { await inspectPdf(next.bytes); setFile(next); setReport(null); setError('') } }
+    try { const next = await readFile(event); if (next) { const inspection = await inspectPdf(next.bytes); setFile({ ...next, hasSignatureHint: inspection.hasSignatures }); setReport(null); setError('') } }
     catch (caught) { setFile(null); setError(message(caught, 'tool.pdfVerify.failed')) }
   }
   async function process() {
@@ -76,5 +76,5 @@ export function PdfSignatureVerify({ t }: { t: Translate }) {
     finally { setProcessing(false) }
   }
   return <div className="stack"><section className="settings-card stack"><label className="field"><span>{t('tool.pdf.choose')}</span><input type="file" accept={acceptAttributeFor('pdf-signature-verify')} onChange={choosePdf} /></label><p className="privacy-note">{t('tool.pdf.local')}</p>{file && <strong>{file.name}</strong>}<Button className="primary" disabled={!file || processing} onClick={process}>{processing ? t('tool.pdf.processing') : t('tool.pdfVerify.action')}</Button>{error && <p className="error" role="alert">{t(error)}</p>}</section>
-  {report && <section className="settings-card stack" aria-live="polite">{report.signatures.length === 0 ? <p className="warning">{t('tool.pdfVerify.none')}</p> : <><div className="signature-verdict"><strong>{t(report.allValid ? 'tool.pdfVerify.valid' : 'tool.pdfVerify.invalid')}</strong><span>{t(report.documentIntact ? 'tool.pdfVerify.intact' : 'tool.pdfVerify.changed')}</span></div>{report.signatures.map((signature, index) => <dl className="results" key={index}><div><dt>{t('tool.pdfVerify.signer')}</dt><dd>{signature.signer ?? '—'}</dd></div><div><dt>{t('tool.pdfVerify.coverage')}</dt><dd>{signature.coversWholeDocument ? '✓' : '✕'}</dd></div><div><dt>{t('tool.pdfVerify.trustUnknown')}</dt><dd>{signature.chainTrusted === true ? '✓' : '—'}</dd></div></dl>)}<p className="warning">{t('tool.pdfVerify.trustWarning')}</p></>}</section>}</div>
+  {report && <section className="settings-card stack" aria-live="polite">{report.signatures.length === 0 ? <p className="warning">{t(file?.hasSignatureHint ? 'tool.pdfVerify.unsupported' : 'tool.pdfVerify.none')}</p> : <><div className="signature-verdict"><strong>{t(report.allValid ? 'tool.pdfVerify.valid' : 'tool.pdfVerify.invalid')}</strong><span>{t(report.documentIntact ? 'tool.pdfVerify.intact' : 'tool.pdfVerify.changed')}</span></div>{report.signatures.map((signature, index) => <dl className="results" key={index}><div><dt>{t('tool.pdfVerify.signer')}</dt><dd>{signature.signer ?? '—'}</dd></div><div><dt>{t('tool.pdfVerify.coverage')}</dt><dd>{signature.coversWholeDocument ? '✓' : '✕'}</dd></div><div><dt>{t('tool.pdfVerify.trustUnknown')}</dt><dd>{signature.chainTrusted === true ? '✓' : '—'}</dd></div></dl>)}<p className="warning">{t('tool.pdfVerify.trustWarning')}</p></>}</section>}</div>
 }

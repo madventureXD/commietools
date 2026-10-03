@@ -35,7 +35,7 @@ PRÜFEN
 [ ] Zertifikatszeitraum separat ausgewiesen
 [ ] Vertrauensstatus standardmäßig „nicht bewertet“
 [ ] unbestätigte Signierzeit klar gekennzeichnet
-[ ] M01 bis M12 werden abgelehnt oder mit exakt passender Hochrisikowarnung gemeldet
+[!] Externe M01-/ByteRange-/Seiten-/Annotationsfälle werden abgelehnt oder als verändert gemeldet; komplexe Mehrfach- und PAdES-T/LT/LTA-Fälle sind noch nicht vollständig kompatibel
 [ ] keine PDF-JavaScript-Aktion oder Anlage wird ausgeführt
 
 RESSOURCENGRENZEN

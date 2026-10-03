@@ -10,7 +10,7 @@ Diese Liste enthält bestätigte, noch nicht abgeschlossene Arbeit. Details geh�
 
 ## Hohe Priorität
 
-- [ ] M7 vor Veröffentlichung unabhängig mit Adobe Reader, Poppler `pdfsig` und EU DSS gegenprüfen und die Freigabecheckliste unter `uebergabe/07-pruefung/m7/` vollständig abschließen; Rust-WASM-Browserablauf und Manipulationserkennung sind lokal umgesetzt.
+- [ ] M7-Kompatibilitätsabweichungen aus `test-assets/pdf/m7/external/eu-dss/README.md` beheben: mehrere ältere CMS-Kodierungen, inkrementelle Mehrfachsignaturen und PAdES-T/LT/LTA werden noch nicht vollständig ausgewertet. Danach erneut mit EU DSS sowie zusätzlich Adobe Reader und Poppler `pdfsig` gegenprüfen und die Freigabecheckliste vollständig abschließen.
 - [ ] Nach erfolgreicher Domainumschaltung einen sichtbaren Source-Link auf `https://github.com/madventureXD/commietools` in die Weboberfläche integrieren.
 - [ ] Mailbetrieb nach DNS-Umschaltung prüfen: MX, `autoconfig`, vier SRV-Einträge und SPF; `autoconfig` muss in Cloudflare auf „DNS only“ bleiben.
 - [ ] PDF-Suite M8/M9 gemäß erweitertem 24-Werkzeuge-Konzept umsetzen; mit dem vorhandenen

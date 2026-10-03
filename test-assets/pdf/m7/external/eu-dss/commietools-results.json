@@ -1,0 +1,253 @@
+{
+  "source": "EU DSS",
+  "sourceCommit": "c8aea1f90958a851f651fe39f1575fcbd6d4a11d",
+  "engine": "pdf_signer 0.3.2 / CommieTools WASM",
+  "results": [
+    {
+      "name": "BadEncodedCMS.pdf",
+      "bytes": 40272,
+      "sha256": "08a33cdbf5b278673a014dfef524cd029fd13c2a286c1deeb91d9c4b60e5ade1",
+      "parsed": true,
+      "signatures": 1,
+      "allValid": false,
+      "documentIntact": false,
+      "signaturesDetail": [
+        {
+          "valid": false,
+          "timestamp": false,
+          "coversWholeDocument": true,
+          "signer": null,
+          "detail": "cryptography error: ASN.1 INTEGER not canonically encoded as DER at DER byte 81"
+        }
+      ]
+    },
+    {
+      "name": "PAdES-LTA.pdf",
+      "bytes": 4261525,
+      "sha256": "876e78f407e0c163f2e6d7dd23d0f3bbcd382027de18278fa8787eab80727cda",
+      "parsed": true,
+      "signatures": 2,
+      "allValid": false,
+      "documentIntact": true,
+      "signaturesDetail": [
+        {
+          "valid": false,
+          "timestamp": false,
+          "coversWholeDocument": false,
+          "signer": null,
+          "detail": "cryptography error: trailing data at end of DER message: decoded 127 bytes, 232 bytes remaining at DER byte 127"
+        },
+        {
+          "valid": true,
+          "timestamp": true,
+          "coversWholeDocument": true,
+          "signer": "C=FR,O=Cryptolog International,OU=0002 43912916400026,CN=Universign Timestamping Unit 018",
+          "detail": "valid document timestamp (RFC 3161)"
+        }
+      ]
+    },
+    {
+      "name": "doc-firmado-LT.pdf",
+      "bytes": 49311,
+      "sha256": "130ff45493c0cff873b44662bf9bb609820fabe4a0e666604ae1ac2795059eaf",
+      "parsed": true,
+      "signatures": 1,
+      "allValid": false,
+      "documentIntact": false,
+      "signaturesDetail": [
+        {
+          "valid": false,
+          "timestamp": false,
+          "coversWholeDocument": false,
+          "signer": null,
+          "detail": "malformed PDF: cannot read CMS DER length"
+        }
+      ]
+    },
+    {
+      "name": "doc-firmado-T.pdf",
+      "bytes": 28316,
+      "sha256": "cdac360bb3f545ecd6dbc6f622511e3d06e5aca7e77ce2243d7806e18721ba35",
+      "parsed": true,
+      "signatures": 1,
+      "allValid": false,
+      "documentIntact": false,
+      "signaturesDetail": [
+        {
+          "valid": false,
+          "timestamp": false,
+          "coversWholeDocument": false,
+          "signer": null,
+          "detail": "malformed PDF: cannot read CMS DER length"
+        }
+      ]
+    },
+    {
+      "name": "hello_signed_INCSAVE_signed.pdf",
+      "bytes": 235978,
+      "sha256": "af63353c955aaa66612d87e7340d19726b8127a138fd393dd67840c1dc905625",
+      "parsed": true,
+      "signatures": 2,
+      "allValid": false,
+      "documentIntact": false,
+      "signaturesDetail": [
+        {
+          "valid": false,
+          "timestamp": false,
+          "coversWholeDocument": false,
+          "signer": null,
+          "detail": "malformed PDF: cannot read CMS DER length"
+        },
+        {
+          "valid": false,
+          "timestamp": false,
+          "coversWholeDocument": false,
+          "signer": null,
+          "detail": "malformed PDF: cannot read CMS DER length"
+        }
+      ]
+    },
+    {
+      "name": "hello_signed_INCSAVE_signed_EDITED.pdf",
+      "bytes": 235978,
+      "sha256": "cf1ab7b64dc49ee47d101133a57cc51e604eb23dbabb2075732d41804831aba9",
+      "parsed": true,
+      "signatures": 2,
+      "allValid": false,
+      "documentIntact": false,
+      "signaturesDetail": [
+        {
+          "valid": false,
+          "timestamp": false,
+          "coversWholeDocument": false,
+          "signer": null,
+          "detail": "malformed PDF: cannot read CMS DER length"
+        },
+        {
+          "valid": false,
+          "timestamp": false,
+          "coversWholeDocument": false,
+          "signer": null,
+          "detail": "malformed PDF: cannot read CMS DER length"
+        }
+      ]
+    },
+    {
+      "name": "pades-5-signatures-and-1-document-timestamp.pdf",
+      "bytes": 335556,
+      "sha256": "962dd61443f8c124aa029bef2d2150712ed2bc895b2646f38af5f0f9d7bedc8e",
+      "parsed": true,
+      "signatures": 0,
+      "allValid": false,
+      "documentIntact": false,
+      "signaturesDetail": []
+    },
+    {
+      "name": "pades-signed-annot-added.pdf",
+      "bytes": 85676,
+      "sha256": "cd20365310578663d2f289713de914fb8d5021ed1a801e87ff80c7b7939a1c52",
+      "parsed": true,
+      "signatures": 1,
+      "allValid": false,
+      "documentIntact": false,
+      "signaturesDetail": [
+        {
+          "valid": true,
+          "timestamp": false,
+          "coversWholeDocument": false,
+          "signer": "C=LU,OU=PKI-TEST,O=Nowina Solutions,CN=good-user",
+          "detail": "valid CMS signature; signer: C=LU,OU=PKI-TEST,O=Nowina Solutions,CN=good-user"
+        }
+      ]
+    },
+    {
+      "name": "pdf-byterange-overlap.pdf",
+      "bytes": 82414,
+      "sha256": "92212d423c94c8bb4431348b194590f6844c927638f7db835d180adb0a676451",
+      "parsed": true,
+      "signatures": 2,
+      "allValid": false,
+      "documentIntact": false,
+      "signaturesDetail": [
+        {
+          "valid": true,
+          "timestamp": false,
+          "coversWholeDocument": false,
+          "signer": "C=LU,OU=PKI-TEST,O=Nowina Solutions,CN=good-user",
+          "detail": "valid CMS signature; signer: C=LU,OU=PKI-TEST,O=Nowina Solutions,CN=good-user"
+        },
+        {
+          "valid": false,
+          "timestamp": false,
+          "coversWholeDocument": false,
+          "signer": null,
+          "detail": "signature verification failed: messageDigest mismatch"
+        }
+      ]
+    },
+    {
+      "name": "pdf-signed-added-page.pdf",
+      "bytes": 152031,
+      "sha256": "467573be2135cb83c17e450a1ea7992f087d79d4f18f5386509020901da7a2ec",
+      "parsed": true,
+      "signatures": 1,
+      "allValid": false,
+      "documentIntact": false,
+      "signaturesDetail": [
+        {
+          "valid": true,
+          "timestamp": false,
+          "coversWholeDocument": false,
+          "signer": "C=LU,OU=PKI-TEST,O=Nowina Solutions,CN=good-user",
+          "detail": "valid CMS signature; signer: C=LU,OU=PKI-TEST,O=Nowina Solutions,CN=good-user"
+        }
+      ]
+    },
+    {
+      "name": "pdf-signed-corrupted.pdf",
+      "bytes": 151116,
+      "sha256": "8be92f00f5354f6b88f692872c4f40cb4eea21d81b474942ce545dde93aadd05",
+      "parsed": true,
+      "signatures": 0,
+      "allValid": false,
+      "documentIntact": false,
+      "signaturesDetail": []
+    },
+    {
+      "name": "pdf-signed-original.pdf",
+      "bytes": 151126,
+      "sha256": "2f575aa24dcb5f15e5e81512d396d934a055830c5b8fe4b09868a6c9af19a330",
+      "parsed": true,
+      "signatures": 1,
+      "allValid": true,
+      "documentIntact": true,
+      "signaturesDetail": [
+        {
+          "valid": true,
+          "timestamp": false,
+          "coversWholeDocument": true,
+          "signer": "C=LU,OU=PKI-TEST,O=Nowina Solutions,CN=good-user",
+          "detail": "valid CMS signature; signer: C=LU,OU=PKI-TEST,O=Nowina Solutions,CN=good-user"
+        }
+      ]
+    },
+    {
+      "name": "pdf-signed-out-of-byteRange.pdf",
+      "bytes": 151126,
+      "sha256": "bf3efb114dcd72cfcc6cbb77b33921ed8b8d445f0c5567b21deb791808b81829",
+      "parsed": true,
+      "signatures": 1,
+      "allValid": false,
+      "documentIntact": false,
+      "signaturesDetail": [
+        {
+          "valid": false,
+          "timestamp": false,
+          "coversWholeDocument": false,
+          "signer": null,
+          "detail": "ByteRange out of bounds"
+        }
+      ]
+    }
+  ]
+}

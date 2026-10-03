@@ -1,4 +1,4 @@
-M7 TESTKORPUS – ZU ERZEUGEN
+M7 TESTKORPUS – LOKALER UND EXTERNER PRÜFBESTAND
 
 Jede Datei erhält: ID, Erzeugungsbefehl/Quelle, Lizenz, SHA-256, Größe, erwartetes Ergebnis.
 Keine produktiven Zertifikate oder vertraulichen Dokumente verwenden.
@@ -48,6 +48,13 @@ E01  gültige Adobe-Acrobat-Testsignatur, soweit rechtlich weitergebbar
 E02  gültige LibreOffice-Signatur
 E03  gültige EU-DSS-Testsignatur
 E04  gültige Poppler-kompatible Signatur
+
+EU-DSS-REFERENZBESTAND
+13 unveränderte Dateien aus dem offiziellen DSS-Testrepository sind unter
+test-assets/pdf/m7/external/eu-dss/ revisionsfest übernommen. Quelle, Lizenz,
+SHA-256, Referenzzweck und aktuelles CommieTools-Ergebnis stehen in der dortigen
+README.md. Mehrfachsignaturen sowie PAdES-T/LT/LTA zeigen noch Abweichungen und
+sind Freigabesperren.
 
 Aufbewahrung
 Binäre Testdateien kommen erst nach Lizenz- und Geheimnisprüfung in einen klar benannten Fixture-Ordner. P12-Testpasswörter müssen ausschließlich dokumentierte Wegwerfpasswörter sein.
