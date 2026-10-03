@@ -112,5 +112,6 @@ ist unberührt.
 
 ## Git
 
-- Commit: `noch nicht committed`
+- Commit: `bba6fcc` (Umsetzung, Tests, Dokumentation); die Nachträge dieses Protokolls und der
+  Übergabe stehen in einem zweiten Commit
 - Arbeitsbaum: die oben genannten Bereiche; `package-lock.json` unverändert

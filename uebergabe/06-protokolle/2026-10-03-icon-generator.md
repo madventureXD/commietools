@@ -43,7 +43,7 @@ Fremddatei.
 
 ## Relevante Verweise
 
-- Commit: noch nicht committed
+- Commit: `bba6fcc` (Umsetzung, Tests, Dokumentation)
 - Konzept: `uebergabe/03-konzepte/2026-10-02-bild-suite.md` (Umsetzungshinweis drittes Werkzeug)
 - Übergabe: `uebergabe/05-uebergaben/2026-10-03-icon-generator.md`
 - Beleg für das ICO-Format: ICO-Dateiformat, Struktur von ICONDIR und ICONDIRENTRY, PNG-Frames
