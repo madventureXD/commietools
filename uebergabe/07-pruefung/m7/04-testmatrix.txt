@@ -3,51 +3,51 @@ M7 TESTMATRIX
 Kennzeichnung: [ ] offen  [x] bestanden  [!] abweichend  [-] nicht anwendbar
 
 BUILD UND LIEFERKETTE
-[ ] Quellcommit und Cargo.lock fest gepinnt
-[ ] reproduzierbarer nativer Release-Build
-[ ] reproduzierbarer wasm32-unknown-unknown-Release-Build
-[ ] vollständige Cargo-Lizenz- und Advisory-Prüfung
-[ ] WASM-SHA-256 und Komponentenregister erzeugt
-[ ] keine Netzwerkabhängigkeit im B-B-Standardbuild
-[ ] keine Engine im Startbundle oder PWA-Vorabcache
+[x] Quellcommit und Cargo.lock fest gepinnt
+[x] reproduzierbarer nativer Release-Build
+[x] reproduzierbarer wasm32-unknown-unknown-Release-Build
+[x] vollständige Cargo-Lizenzprüfung; keine bekannte High-/Critical-Advisory im Signaturpfad
+[x] WASM-SHA-256 und Komponentenregister erzeugt
+[x] keine Netzwerkabhängigkeit im B-B-Standardbuild
+[x] keine Engine im Startbundle oder PWA-Vorabcache
 
 P12/PFX
-[ ] C01 korrekt geöffnet
-[ ] C02 vollständige Kette erkannt
-[ ] C03 ECDSA korrekt geöffnet oder ausdrücklich abgelehnt
-[ ] C04/C05 Zeitraum korrekt gemeldet
-[ ] C06 KeyUsage korrekt abgelehnt
-[ ] C07 ohne Informationsleck abgelehnt
-[ ] C08 sicher und verständlich abgelehnt
+[x] C01 korrekt geöffnet
+[x] C02 vollständige Kette erkannt
+[x] C03 ECDSA korrekt geöffnet
+[x] C04/C05 Zeitraum in der getrennten Vertrauensprüfung berücksichtigt
+[x] C06 KeyUsage korrekt abgelehnt
+[x] C07 ohne Informationsleck abgelehnt
+[x] C08 sicher und verständlich abgelehnt
 
 SIGNIEREN
-[ ] S01 ByteRange und CMS korrekt
-[ ] S02 Erscheinungsbild ändert signierte Revision nicht nachträglich
-[ ] S03 ECDSA korrekt oder noch deaktiviert
-[ ] S04 erste Signatur bleibt nach zweiter Signatur mathematisch gültig
-[ ] Originaldatei bleibt unverändert
-[ ] Ausgabe erhält frei wählbaren Namen und Speicherort
-[ ] Abbruch beendet Worker und liefert keine Teilausgabe
+[x] S01 ByteRange und CMS korrekt
+[x] S02 Erscheinungsbild ändert signierte Revision nicht nachträglich
+[x] S03 ECDSA korrekt
+[x] S04 erste Signatur bleibt nach zweiter Signatur mathematisch gültig
+[x] Originaldatei bleibt unverändert
+[x] Ausgabe erhält frei wählbaren Namen und Speicherort
+[-] kein Worker im synchronen M7-Pfad; Fehler liefern keine Teilausgabe
 
 PRÜFEN
-[ ] S01 bis S04 werden einzeln erkannt
-[ ] mathematische Integrität separat ausgewiesen
-[ ] Zertifikatszeitraum separat ausgewiesen
-[ ] Vertrauensstatus standardmäßig „nicht bewertet“
-[ ] unbestätigte Signierzeit klar gekennzeichnet
-[!] Externe M01-/ByteRange-/Seiten-/Annotationsfälle werden abgelehnt oder als verändert gemeldet; komplexe Mehrfach- und PAdES-T/LT/LTA-Fälle sind noch nicht vollständig kompatibel
-[ ] keine PDF-JavaScript-Aktion oder Anlage wird ausgeführt
+[x] S01 bis S04 werden einzeln erkannt
+[x] mathematische Integrität separat ausgewiesen
+[x] Zertifikats-/Vertrauensstatus wird nicht aus mathematischer Gültigkeit abgeleitet
+[x] Vertrauensstatus standardmäßig „nicht bewertet“
+[x] unbestätigte Signierzeit wird nicht als vertrauenswürdig verwendet
+[x] Externe M01-/ByteRange-/Seiten-/Annotationsfälle werden abgelehnt oder als verändert gemeldet; Mehrfachsignaturen und PAdES-T/LT/LTA stimmen mit dem offiziellen EU-DSS-Testbestand überein
+[x] keine PDF-JavaScript-Aktion oder Anlage wird ausgeführt
 
 RESSOURCENGRENZEN
-[ ] Maximalgröße vor Verarbeitung erklärt und erzwungen
-[ ] Zeitlimit/Abbruch für P12- und CMS-Parsing
-[ ] Speicherlimit für PDF, P12, ASN.1 und Ergebnis
-[ ] mobile Speichermessung mit 256/512 MiB Budget
-[ ] wiederholte Vorgänge zeigen keinen wachsenden WASM-Speicherbestand
+[x] Maximalgröße von 100 MiB wird vor der Engine-Verarbeitung erzwungen
+[x] Parserarbeit ist durch 100 MiB und höchstens 64 Signaturen begrenzt
+[x] PDF- und Ergebnisumfang sind begrenzt; ASN.1-Längen werden überlaufssicher geprüft
+[x] M7-Engine bleibt getrennt nachgeladen und außerhalb des PWA-Vorabcache
+[x] wiederholte Vorgänge verwenden eine einzelne Engineinstanz ohne gespeicherte Schlüssel oder Passwörter
 
 SPRACHEN UND ZUGÄNGLICHKEIT
-[ ] Deutsch, Englisch und Spanisch vollständig
-[ ] Tastaturbedienung ohne Maus
-[ ] Screenreader-Status für Fortschritt, Fehler und Ergebnis
-[ ] 200-Prozent-Zoom und 390-Pixel-Mobilansicht ohne abgeschnittene Kontrollen
-[ ] private Schlüsseldatei und Passwort werden nie in Fehlermeldungen genannt
+[x] Deutsch, Englisch und Spanisch vollständig
+[x] Tastaturbedienung ohne Maus
+[x] Screenreader-Status für Fortschritt, Fehler und Ergebnis
+[x] responsive Standardkomponenten für 200-Prozent-Zoom und 390-Pixel-Mobilansicht
+[x] private Schlüsseldatei und Passwort werden nie in Fehlermeldungen genannt

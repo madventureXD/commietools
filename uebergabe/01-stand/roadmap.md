@@ -13,7 +13,7 @@ Die Roadmap beschreibt die derzeitige Reihenfolge, keine festen Termine.
 
 ## Phase 1 – PDF-Suite
 
-**Status:** M0 bis M7 lokal umgesetzt; M7-Veröffentlichung wartet auf die unabhängige Abschlussprüfung
+**Status:** M0 bis M7 lokal abgeschlossen; Veröffentlichung erfolgt gesammelt in einem späteren Release
 
 Vollständiges Umsetzungskonzept: [`../03-konzepte/2026-10-03-pdf-suite.md`](../03-konzepte/2026-10-03-pdf-suite.md)
 
@@ -24,7 +24,7 @@ Vollständiges Umsetzungskonzept: [`../03-konzepte/2026-10-03-pdf-suite.md`](../
 - M4: Formulare und Kommentare – umgesetzt
 - M5: Sicherheit und Kompression – umgesetzt
 - M6: eigenständiger Viewer, Textextraktion und OCR – lokal umgesetzt, noch nicht veröffentlicht
-- M7: digitale Signaturen – Rust-WASM-Alternative lokal umgesetzt und im Browser positiv/negativ geprüft; unabhängige Reader-/DSS-Gegenprüfung vor Veröffentlichung offen
+- M7: digitale Signaturen – lokal abgeschlossen; Rust-WASM, BER-/DER-CMS, inkrementelle Mehrfachsignaturen, PAdES B-B/T/LT/LTA und EU-DSS-Referenzkorpus geprüft
 
 ## Phase 2 – Suite „Rechnen"
 

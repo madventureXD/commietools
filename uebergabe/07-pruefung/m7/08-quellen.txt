@@ -16,6 +16,10 @@ Primärquellen
 4. EU Digital Signature Service 6.5
    https://ec.europa.eu/digital-building-blocks/DSS/webapp-demo/doc/dss-documentation.html
    Geprüfte Aussagen: Open-Source-Java-Bibliothek für Erzeugung, Erweiterung und Validierung; PAdES; Vertrauensketten; OCSP/CRL; Zeitstempel; ETSI-Prüfberichte.
+   Fest geprüfter Korpus-Commit: c8aea1f90958a851f651fe39f1575fcbd6d4a11d
+   Maßgeblicher Mehrfachsignatur-Test:
+   https://github.com/esig/dss/blob/c8aea1f90958a851f651fe39f1575fcbd6d4a11d/dss-pades/src/test/java/eu/europa/esig/dss/pades/validation/suite/revocation/PAdESFiveSignaturesDocTest.java
+   Erwartung: fünf Signaturen vorhanden, alle auf B-Level technisch ungültig; Dokumentzeitstempel separat vorhanden.
 
 5. Apache PDFBox – Signature FAQ und Security
    https://pdfbox.apache.org/3.0/faq.html

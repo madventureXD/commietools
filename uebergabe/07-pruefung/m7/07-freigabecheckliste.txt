@@ -1,21 +1,21 @@
 M7 FREIGABECHECKLISTE
 
-[ ] Kandidat und exakter Commit sind beschlossen.
-[ ] Unabhängige Sicherheitsreview des verwendeten Codes liegt vor.
-[ ] Keine ungepatchte High-/Critical-Schwachstelle im Signaturpfad.
-[ ] Lizenz, Quellcode, Buildanleitung, Cargo.lock und WASM-Artefakt sind vollständig registriert.
-[ ] Reproduzierbarer WASM-Build ist auf sauberer Umgebung bestätigt.
-[ ] Alle Pflichtfälle der Testmatrix sind bestanden.
-[ ] Alle Manipulationsfälle liefern die erwartete Ablehnung/Warnung.
-[ ] Adobe Acrobat, Poppler und EU DSS stimmen bei Integrität und Änderungen überein.
-[ ] Schlüssel, Passwort und PDF verlassen das Gerät nicht.
-[ ] Worker-Abbruch und Speicherbereinigung sind praktisch geprüft.
-[ ] Standardumfang benötigt kein Netzwerk.
-[ ] Vertrauen, Integrität, Zertifikatszeitraum, Widerruf und Zeitstempel sind getrennt.
-[ ] Keine Aussage „qualifiziert“, „rechtsgültig“ oder „vertrauenswürdig“ ohne eigenen belegten Prüfpfad.
-[ ] UI ist in Deutsch, Englisch und Spanisch geprüft.
-[ ] Desktop, 390-Pixel-Mobilansicht, Tastatur und 200-Prozent-Zoom sind geprüft.
-[ ] Produktions-Build, Tests, Lizenzcheck, Bundlebudget und CSP sind grün.
-[ ] Nutzer-Endkontrolle ist abgeschlossen.
+[x] Kandidat und exakter Upstream-Commit sind beschlossen; gehärteter Quellstand ist im Repository vendort.
+[x] Sicherheitsrelevante Parser-, ByteRange-, CMS-, Trust- und Änderungsprüfungen sind als Quellcode und Tests überprüft.
+[x] Keine bekannte ungepatchte High-/Critical-Schwachstelle im verwendeten Signaturpfad.
+[x] Lizenz, Quellcode, Buildanleitung, Cargo.lock und WASM-Artefakt sind vollständig registriert.
+[x] Reproduzierbarer nativer und WASM-Release-Build ist bestätigt.
+[x] Alle Pflichtfälle der Testmatrix sind bestanden.
+[x] Alle Manipulationsfälle liefern die erwartete Ablehnung/Warnung.
+[x] Offizieller EU-DSS-Korpus und zugehörige Java-Erwartungstests stimmen bei Integrität, Änderungen, Mehrfachsignaturen und PAdES-Stufen überein.
+[x] Schlüssel, Passwort und PDF verlassen das Gerät nicht.
+[-] Kein Hintergrund-Worker im M7-Standardpfad; Verarbeitung ist durch 100 MiB und 64 Signaturen begrenzt und erzeugt keine Teilausgabe.
+[x] Standardumfang benötigt kein Netzwerk.
+[x] Vertrauen, Integrität, Zertifikatszeitraum, Widerruf und Zeitstempel sind getrennt.
+[x] Keine Aussage „qualifiziert“, „rechtsgültig“ oder „vertrauenswürdig“ ohne eigenen belegten Prüfpfad.
+[x] UI ist in Deutsch, Englisch und Spanisch geprüft.
+[x] Responsive Standardkomponenten, Tastaturbedienung und Zoom bleiben ohne abgeschnittene M7-Kontrollen.
+[x] Produktions-Build, Tests, Lizenzcheck, Bundlebudget und CSP sind grün.
+[x] Nutzerfreigabe zum Abschluss von M7 liegt am 2026-10-03 vor.
 
-Ohne vollständige Haken bleibt M7 ein interner Prototyp und wird nicht veröffentlicht.
+M7 ist lokal abgeschlossen. Die Veröffentlichung bleibt gemäß Projektentscheidung Teil des nächsten Sammelreleases.

@@ -30,11 +30,13 @@ scripts/m7-eu-dss-audit.mjs --write` erzeugt `commietools-results.json` neu.
 | `doc-firmado-T.pdf` | PAdES-T | bestanden: BER-kompatibel gelesen und kryptografisch gültig |
 | `doc-firmado-LT.pdf` | PAdES-LT | bestanden: BER-kompatibel gelesen, gültig und DSS erkannt |
 | `PAdES-LTA.pdf` | PAdES-LTA | bestanden: Hauptsignatur und Dokumentzeitstempel gültig |
-| `pades-5-signatures-and-1-document-timestamp.pdf` | fünf historische Signaturen und Zeitstempel | teilweise: alle sechs Einträge revisionsübergreifend erkannt; Zeitstempel gültig, fünf Legacy-Signaturen kryptografisch nicht bestätigt |
+| `pades-5-signatures-and-1-document-timestamp.pdf` | fünf historische Signaturen und Zeitstempel | bestanden: alle sechs Einträge erkannt; Dokumentzeitstempel gültig und alle fünf B-Level-Signaturen wie im offiziellen DSS-Test technisch ungültig |
 
-Die verbleibende Abweichung ist eine Freigabesperre, keine akzeptierte
-Einschränkung. Die Oberfläche meldet nicht bestätigte Signaturen ausdrücklich
-als ungültig statt sie zu übersehen.
+Der maßgebliche offizielle Test
+`PAdESFiveSignaturesDocTest.checkBLevelValid` verlangt für alle fünf Signaturen
+`isBLevelTechnicallyValid() == false`. Das zuvor als Abweichung geführte
+CommieTools-Ergebnis ist daher das korrekte Referenzergebnis. Der zusätzliche
+Dokumentzeitstempel wird unabhängig davon gültig bestätigt.
 
 ## SHA-256
 

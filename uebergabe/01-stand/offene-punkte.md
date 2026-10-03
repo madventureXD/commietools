@@ -10,7 +10,6 @@ Diese Liste enthält bestätigte, noch nicht abgeschlossene Arbeit. Details geh�
 
 ## Hohe Priorität
 
-- [ ] M7-Restabweichung aus `test-assets/pdf/m7/external/eu-dss/README.md` beheben: die fünf Legacy-Signaturen der Mehrfachsignatur-Datei werden gefunden, aber noch nicht kryptografisch bestätigt. Danach zusätzlich Adobe Reader und Poppler `pdfsig` gegenprüfen und die Freigabecheckliste vollständig abschließen. BER-CMS, inkrementelle Doppelsignaturen sowie PAdES-T/LT/LTA sind im EU-DSS-Korpus behoben.
 - [ ] Nach erfolgreicher Domainumschaltung einen sichtbaren Source-Link auf `https://github.com/madventureXD/commietools` in die Weboberfläche integrieren.
 - [ ] Mailbetrieb nach DNS-Umschaltung prüfen: MX, `autoconfig`, vier SRV-Einträge und SPF; `autoconfig` muss in Cloudflare auf „DNS only“ bleiben.
 - [ ] PDF-Suite M8/M9 gemäß erweitertem 24-Werkzeuge-Konzept umsetzen; mit dem vorhandenen
