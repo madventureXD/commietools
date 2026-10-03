@@ -5,6 +5,7 @@ Diese Liste enthält bestätigte, noch nicht abgeschlossene Arbeit. Details geh�
 ## Hohe Priorität
 
 - [ ] Öffentliches Git-Repository festlegen und vor Veröffentlichung einen sichtbaren Quellcode-Link integrieren.
+- [ ] Danach Cloudflare-Pages-Projekt verbinden und die Hetzner-Domain gemäß `docs/deployment-cloudflare-pages.md` umstellen; vorhandene E-Mail-DNS-Einträge vorher sichern.
 - [ ] PDF-Suite M3 umsetzen: Wasserzeichen, Seitenzahlen und sichtbare Unterschrift mit einer gemeinsamen Platzierungsengine.
 - [ ] Den PDF-Testkorpus um frei weitergebbare verschlüsselte, XFA-, Annotations- und Signatur-Beispiele sowie Reader-Interoperabilität erweitern.
 - [ ] Automatisierte Barrierefreiheitsprüfung für zentrale Komponenten und Tool-Flows ergänzen.

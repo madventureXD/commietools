@@ -69,6 +69,8 @@ The current executable slice is a bilingual, responsive, manifest-driven catalog
 
 See [docs/architecture.md](docs/architecture.md) and [docs/ui-system.md](docs/ui-system.md).
 
+The recommended production deployment is a static Cloudflare Pages project while the domain remains registered at Hetzner. Build settings, DNS safeguards and cache/security rules are documented in [docs/deployment-cloudflare-pages.md](docs/deployment-cloudflare-pages.md).
+
 ## Collaboration and handoffs
 
 The structured [project handoff area](uebergabe/README.md) is the entry point for humans and AI systems continuing the work. It records current status, open items, concepts, durable decisions, progress logs and session handoffs without duplicating the authoritative technical documentation.
