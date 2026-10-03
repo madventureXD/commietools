@@ -2,6 +2,10 @@
 
 CommieTools uses a registry-driven hybrid translation model.
 
+The binding handover and quality rules for planning, Unicode, completeness, search, review and
+release live in `uebergabe/02-architektur/sprachpakete.md`. A locale is not made selectable until
+that checklist is complete.
+
 ## Adding a language
 
 Adding a language is intentionally limited to four steps:

@@ -1,5 +1,8 @@
 # Offene Punkte
 
+- [ ] Spanisches Sprachpaket gemäß `uebergabe/03-konzepte/2026-10-03-sprachpaket-spanisch.md`
+  vollständig umsetzen und erst nach sprachlicher sowie visueller Abnahme registrieren.
+
 Diese Liste enthält bestätigte, noch nicht abgeschlossene Arbeit. Details gehören in verlinkte Konzepte oder Issues, sobald solche vorhanden sind.
 
 ## Hohe Priorität
