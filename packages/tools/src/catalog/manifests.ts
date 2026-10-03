@@ -149,6 +149,20 @@ export const toolManifests: readonly ToolManifest[] = [
       auxiliary: [{ role: 'signature', mimeTypes: ['image/png', 'image/jpeg'] }],
       output: ['application/pdf']
     }
+  },
+  {
+    id: 'pdf-form-fill', route: '/tools/pdf-form-fill', category: 'pdf',
+    titleKey: 'tool.pdfForm.title', descriptionKey: 'tool.pdfForm.description',
+    summaryKey: 'tool.pdfForm.summary', termsKey: 'tool.pdfForm.terms',
+    executionMode: 'local', resourceClass: 'heavy', worksOffline: true,
+    files: { input: ['application/pdf'], output: ['application/pdf'] }
+  },
+  {
+    id: 'pdf-annotate', route: '/tools/pdf-annotate', category: 'pdf',
+    titleKey: 'tool.pdfAnnotate.title', descriptionKey: 'tool.pdfAnnotate.description',
+    summaryKey: 'tool.pdfAnnotate.summary', termsKey: 'tool.pdfAnnotate.terms',
+    executionMode: 'local', resourceClass: 'heavy', worksOffline: true,
+    files: { input: ['application/pdf'], output: ['application/pdf'] }
   }
 ]
 
@@ -157,5 +171,5 @@ export const suiteManifests: readonly SuiteManifest[] = [
   { id: 'developer', route: '/suites/developer', titleKey: 'suite.developer.title', descriptionKey: 'suite.developer.description', toolIds: ['json-formatter'] },
   { id: 'generators', route: '/suites/generators', titleKey: 'suite.generators.title', descriptionKey: 'suite.generators.description', toolIds: ['qr-code-generator'] },
   { id: 'image', route: '/suites/image', titleKey: 'suite.image.title', descriptionKey: 'suite.image.description', toolIds: ['image-metadata', 'image-resize', 'icon-generator', 'image-watermark', 'color-tools'] },
-  { id: 'pdf', route: '/suites/pdf', titleKey: 'suite.pdf.title', descriptionKey: 'suite.pdf.description', toolIds: ['pdf-merge', 'pdf-split', 'pdf-organize', 'images-to-pdf', 'pdf-to-images', 'pdf-watermark', 'pdf-page-numbers', 'pdf-visible-signature'] }
+  { id: 'pdf', route: '/suites/pdf', titleKey: 'suite.pdf.title', descriptionKey: 'suite.pdf.description', toolIds: ['pdf-merge', 'pdf-split', 'pdf-organize', 'images-to-pdf', 'pdf-to-images', 'pdf-watermark', 'pdf-page-numbers', 'pdf-visible-signature', 'pdf-form-fill', 'pdf-annotate'] }
 ]

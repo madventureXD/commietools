@@ -190,12 +190,20 @@ a.button { display: inline-flex; align-items: center; justify-content: center; t
 .signature-source legend { padding-inline: var(--space-2); font-weight: 800; }
 .signature-pad { display: grid; justify-items: start; gap: var(--space-3); }
 .signature-pad canvas { display: block; width: min(100%, 45rem); height: auto; aspect-ratio: 3 / 1; border: 1px solid var(--color-border); border-radius: var(--radius-sm); background: white; cursor: crosshair; touch-action: none; }
+.pdf-form-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-4); }
+.pdf-form-field { padding: var(--space-3); border: 1px solid var(--color-border); border-radius: var(--radius-sm); background: var(--color-surface); }
+.pdf-form-field small { display: block; color: var(--color-text-muted); }
+.pdf-annotation-list { display: grid; gap: var(--space-2); margin: 0; padding: 0; list-style: none; }
+.pdf-annotation-list li { display: flex; align-items: center; justify-content: space-between; gap: var(--space-3); padding: var(--space-3); border: 1px solid var(--color-border); border-radius: var(--radius-sm); }
+.pdf-ink-editor { display: grid; gap: var(--space-2); }
+.pdf-ink-editor svg { width: 100%; max-width: 720px; aspect-ratio: 1.414 / 1; touch-action: none; cursor: crosshair; border: 1px solid var(--color-border); border-radius: var(--radius-sm); background: var(--color-surface); }
 
 @media (max-width: 620px) {
   .pdf-file-row { grid-template-columns: 60px minmax(0, 1fr); }
   .pdf-file-preview, .pdf-preview-placeholder { width: 56px; min-height: 72px; }
   .pdf-row-actions { grid-column: 1 / -1; }
   .pdf-thumbnail-grid, .pdf-organizer { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .pdf-form-grid { grid-template-columns: 1fr; }
 }
 /* Icon generator */
 .icon-preview-grid { display: flex; flex-wrap: wrap; gap: var(--space-4); align-items: start; }

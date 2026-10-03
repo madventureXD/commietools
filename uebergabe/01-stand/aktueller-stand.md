@@ -1,7 +1,7 @@
 # Aktueller Projektstand
 
 **Stand:** 2026-10-03  
-**Letzter geprüfter Meilenstein:** PDF-Suite M3 (2026-10-03), davor Bild-Suite „Farbwerkzeuge“
+**Letzter geprüfter Meilenstein:** PDF-Suite M4 (2026-10-03), davor PDF-Suite M3
 
 ## Umgesetzt
 
@@ -37,6 +37,9 @@
 - PDF-Wasserzeichen: Unicode-Text, Seitenauswahl, Einzel-/Kachelmodus, Position, Farbe, Größe, Winkel, Deckkraft, Rand und Abstand
 - PDF-Seitenzahlen: Unicode-Präfix/-Suffix, Seitenauswahl, unabhängiger Startwert, Format, Position, Größe, Farbe, Deckkraft und Rand
 - PDF sichtbar unterschreiben: Zeichnen per Maus/Stift/Touch, Namenssignatur oder PNG/JPEG-Import; Seite, Position, Breite, Deckkraft, Drehung und optionale Datumszeile; klar von Zertifikatssignaturen abgegrenzt
+- PDF-Formular ausfüllen: lokale AcroForm-Erkennung und Bearbeitung von Text, Checkboxen, Optionsgruppen und Auswahllisten, optionales dauerhaftes Einbetten sowie klare XFA-Grenze
+- PDF kommentieren und markieren: echte Notiz-, Text-, Markierungs-, Form-, Linien- und per Maus/Stift/Touch gezeichnete Ink-Annotationen einschließlich Löschen
+- MuPDF.js als nur auf M4-Routen nachgeladene Open-Source-Spezialengine; großes WASM-Modul im PDF-Laufzeitcache statt im PWA-Vorabcache
 
 ## Derzeitige Tools
 
@@ -59,6 +62,8 @@
 | PDF-Wasserzeichen | `pdf-watermark` | PDF | lokal | PDF hinein und heraus |
 | PDF-Seitenzahlen | `pdf-page-numbers` | PDF | lokal | PDF hinein und heraus |
 | PDF sichtbar unterschreiben | `pdf-visible-signature` | PDF | lokal | PDF sowie PNG/JPEG-Unterschrift hinein, PDF heraus |
+| PDF-Formular ausfüllen | `pdf-form-fill` | PDF | lokal | PDF hinein und heraus |
+| PDF kommentieren und markieren | `pdf-annotate` | PDF | lokal | PDF hinein und heraus |
 
 ## Derzeitige Suiten
 
@@ -66,24 +71,24 @@
 - Entwicklung
 - Generatoren
 - Bilder (Bild-Metadaten, Bild skalieren, Icon-Generator, Wasserzeichen, Farbwerkzeuge)
-- PDF (Zusammenführen, Teilen, Seiten organisieren, Bilder zu PDF, PDF zu Bildern, Wasserzeichen, Seitenzahlen, sichtbar unterschreiben)
+- PDF (Zusammenführen, Teilen, Seiten organisieren, Bilder zu PDF, PDF zu Bildern, Wasserzeichen, Seitenzahlen, sichtbar unterschreiben, Formular ausfüllen, kommentieren und markieren)
 
 ## Qualität und Compliance
 
 - Projekt und interne Pakete: `AGPL-3.0-only`
 - Lizenzübersicht in der Webanwendung: `/licenses`
-- erfasste externe Pakete: 496
-- vollständige Lizenztexte: 13
-- bewahrte originale Paketdokumente: 170
-- letzter bekannter Teststand: 139 Tests bestanden
-- Werkzeugregister: 17 Werkzeuge, 2 Sprachen, 17 Symbole, **1105** Suchbegriffe und Schlagwörter, 62 deklarierte Dateitypen (`npm run catalog:check`)
-- letzter bekannter Produktions-Build: bestanden; Hauptbundle 538,41 kB (158,64 kB komprimiert, **Warnung über 500 kB**), Stylesheet 23,88 kB (5,04 kB komprimiert), PDF-Engines und M3-Oberfläche in getrennten nachgeladenen Chunks, Vorab-Cache mit 32 Einträgen
+- erfasste externe Pakete: 497
+- vollständige Lizenztexte: 14
+- bewahrte originale Paketdokumente: 171
+- letzter bekannter Teststand: 142 Tests bestanden
+- Werkzeugregister: 19 Werkzeuge, 2 Sprachen, 19 Symbole, 66 deklarierte Dateitypen (`npm run catalog:check`)
+- letzter bekannter Produktions-Build: bestanden; Hauptbundle 546,12 kB (160,37 kB komprimiert, **Warnung über 500 kB**), M4-Oberfläche 13,10 kB und MuPDF-JavaScript 88,90 kB getrennt nachgeladen; MuPDF-WASM 10,41 MB im PDF-Laufzeitcache, Vorab-Cache mit 36 Einträgen
 
 Zahlen sind Momentaufnahmen. Nach Abhängigkeits-, Test- oder Tooländerungen müssen sie anhand der tatsächlichen Ausgabe aktualisiert werden.
 
 ## Noch nicht umgesetzt
 
-- PDF-Suite M4 bis M7 (Formulare/Kommentare, Schutz/Kompression, OCR und digitale Signaturen)
+- PDF-Suite M5 bis M7 (Schutz/Kompression, OCR und digitale Signaturen)
 - Backend, Konten und Synchronisierung
 - Desktop- und Mobile-Shells
 - sichtbarer Source-Link in der Weboberfläche

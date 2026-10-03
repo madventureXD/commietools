@@ -13,14 +13,16 @@ Die Roadmap beschreibt die derzeitige Reihenfolge, keine festen Termine.
 
 ## Phase 1 – PDF-Suite
 
-**Status:** Konzept erstellt, Freigabe und technischer Grundprototyp ausstehend
+**Status:** M0 bis M4 umgesetzt; M5 als nächster Meilenstein
 
 Vollständiges Umsetzungskonzept: [`../03-konzepte/2026-10-03-pdf-suite.md`](../03-konzepte/2026-10-03-pdf-suite.md)
 
 - M0: gemeinsamer PDF-Kern, lizenzierter Testkorpus sowie PDF.js-/pdf-lib-Prototyp
 - M1: Zusammenführen, Teilen und Seiten organisieren
 - M2: Bilder zu PDF und PDF zu Bildern
-- M3–M6: Gestaltung, Formulare, Kommentare, Sicherheit, Kompression und OCR
+- M3: Gestaltung und sichtbare Unterschriften – umgesetzt
+- M4: Formulare und Kommentare – umgesetzt
+- M5–M6: Sicherheit, Kompression und OCR
 - M7: digitale Signaturen erst nach eigenem Sicherheits-ADR
 
 ## Phase 2 – Plattformqualität

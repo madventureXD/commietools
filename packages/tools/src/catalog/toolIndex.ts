@@ -1809,5 +1809,139 @@ export const toolIndex: readonly ToolSearchEntry[] = [
         ]
       }
     }
+  },
+  {
+    "id": "pdf-form-fill",
+    "route": "/tools/pdf-form-fill",
+    "icon": "/tools/pdf-form-fill.svg",
+    "category": "pdf",
+    "suiteIds": [
+      "pdf"
+    ],
+    "executionMode": "local",
+    "resourceClass": "heavy",
+    "worksOffline": true,
+    "input": [
+      "application/pdf"
+    ],
+    "output": [
+      "application/pdf"
+    ],
+    "auxiliary": [],
+    "locales": {
+      "de": {
+        "title": "PDF-Formular ausfüllen",
+        "summary": "Füllt Textfelder, Auswahlfelder, Checkboxen und Optionsgruppen in PDFs aus.",
+        "description": "Liest und füllt AcroForm-Felder lokal aus; XFA wird erkannt und klar als nicht unterstützt gekennzeichnet.",
+        "terms": [
+          "PDF Formular ausfüllen",
+          "AcroForm",
+          "PDF Felder",
+          "Textfeld",
+          "Checkbox",
+          "Auswahlfeld",
+          "Optionsfeld",
+          "Formular speichern",
+          "Formular einbetten",
+          "XFA"
+        ],
+        "tags": [
+          "#pdf",
+          "#formular",
+          "#ausfüllen"
+        ]
+      },
+      "en": {
+        "title": "Fill PDF form",
+        "summary": "Fills text, choice, checkbox and radio fields in PDFs.",
+        "description": "Reads and fills AcroForm fields locally; XFA is detected and clearly marked as unsupported.",
+        "terms": [
+          "fill PDF form",
+          "AcroForm",
+          "PDF fields",
+          "text field",
+          "checkbox",
+          "choice field",
+          "radio button",
+          "save form",
+          "flatten form",
+          "XFA",
+          "PDF Formular"
+        ],
+        "tags": [
+          "#pdf",
+          "#form",
+          "#fill"
+        ]
+      }
+    }
+  },
+  {
+    "id": "pdf-annotate",
+    "route": "/tools/pdf-annotate",
+    "icon": "/tools/pdf-annotate.svg",
+    "category": "pdf",
+    "suiteIds": [
+      "pdf"
+    ],
+    "executionMode": "local",
+    "resourceClass": "heavy",
+    "worksOffline": true,
+    "input": [
+      "application/pdf"
+    ],
+    "output": [
+      "application/pdf"
+    ],
+    "auxiliary": [],
+    "locales": {
+      "de": {
+        "title": "PDF kommentieren und markieren",
+        "summary": "Erstellt und entfernt standardisierte PDF-Annotationen.",
+        "description": "Fügt echte PDF-Notizen, Markierungen, Formen, Linien und Freihand-Anmerkungen lokal hinzu.",
+        "terms": [
+          "PDF kommentieren",
+          "PDF markieren",
+          "Notiz PDF",
+          "Hervorheben",
+          "Unterstreichen",
+          "Durchstreichen",
+          "Freihand",
+          "Rechteck",
+          "Kreis",
+          "Linie",
+          "Annotation löschen"
+        ],
+        "tags": [
+          "#pdf",
+          "#kommentar",
+          "#annotation"
+        ]
+      },
+      "en": {
+        "title": "Comment and mark up PDF",
+        "summary": "Creates and removes standard PDF annotations.",
+        "description": "Adds genuine PDF notes, markup, shapes, lines and ink annotations locally.",
+        "terms": [
+          "comment PDF",
+          "mark up PDF",
+          "PDF note",
+          "highlight",
+          "underline",
+          "strike out",
+          "ink",
+          "rectangle",
+          "circle",
+          "line",
+          "delete annotation",
+          "PDF kommentieren"
+        ],
+        "tags": [
+          "#pdf",
+          "#comment",
+          "#annotation"
+        ]
+      }
+    }
   }
 ]

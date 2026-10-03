@@ -3,12 +3,14 @@ import react from '@vitejs/plugin-react'
 import { VitePWA } from 'vite-plugin-pwa'
 
 export default defineConfig({
+  optimizeDeps: { exclude: ['mupdf'] },
   build: {
     rollupOptions: {
       output: {
         manualChunks(id) {
           if (id.includes('node_modules/pdfjs-dist')) return 'pdfjs'
           if (id.includes('node_modules/pdf-lib') || id.includes('node_modules/@pdf-lib') || id.includes('node_modules/pako')) return 'pdf-lib'
+          if (id.includes('node_modules/mupdf')) return 'mupdf'
         }
       }
     }
@@ -33,10 +35,10 @@ export default defineConfig({
       workbox: {
         navigateFallback: '/index.html',
         cleanupOutdatedCaches: true,
-        globPatterns: ['**/*.{js,css,html,ico,png,svg,json,txt}'],
-        globIgnores: ['**/pdfjs-*.js', '**/pdf-lib-*.js', '**/pdf.worker*.mjs'],
+        globPatterns: ['**/*.{js,css,html,ico,png,svg,json,txt,wasm}'],
+        globIgnores: ['**/pdfjs-*.js', '**/pdf-lib-*.js', '**/mupdf-*.js', '**/mupdf-*.wasm', '**/pdf.worker*.mjs'],
         runtimeCaching: [{
-          urlPattern: /\/assets\/(?:pdfjs-|pdf-lib-|pdf\.worker)/,
+          urlPattern: /\/assets\/(?:pdfjs-|pdf-lib-|mupdf-|pdf\.worker)/,
           handler: 'CacheFirst',
           options: { cacheName: 'commietools-pdf-engines-v1' }
         }]

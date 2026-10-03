@@ -50,6 +50,20 @@ export {
   type ImagesToPdfOptions
 } from './pdf/core'
 export {
+  addPdfAnnotation,
+  deletePdfAnnotation,
+  fillPdfForm,
+  inspectPdfAnnotations,
+  inspectPdfForm,
+  type PdfAnnotationInfo,
+  type PdfAnnotationOptions,
+  type PdfAnnotationType,
+  type PdfFormFieldInfo,
+  type PdfFormFieldType,
+  type PdfFormInspection,
+  type PdfFormValue
+} from './pdf/m4'
+export {
   detectImageFormat,
   findMetadataSegments,
   readMetadata,

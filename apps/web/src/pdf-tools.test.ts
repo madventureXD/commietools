@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import { PDFDocument, degrees } from 'pdf-lib'
-import { addPdfPageNumbers, addPdfWatermark, addVisiblePdfSignature, imagesToPdf, inspectPdf, mergePdfs, organizePdf, parsePageSelection, parseSplitGroups, PdfToolError, resolvePdfPagePlacement, resolvePdfPlacement, splitPdf } from '@commietools/tools'
+import { addPdfAnnotation, addPdfPageNumbers, addPdfWatermark, addVisiblePdfSignature, deletePdfAnnotation, fillPdfForm, imagesToPdf, inspectPdf, inspectPdfAnnotations, inspectPdfForm, mergePdfs, organizePdf, parsePageSelection, parseSplitGroups, PdfToolError, resolvePdfPagePlacement, resolvePdfPlacement, splitPdf } from '@commietools/tools'
 
 async function fixture(sizes: readonly [number, number][]) {
   const document = await PDFDocument.create()
@@ -136,5 +136,42 @@ describe('M2 image conversion', () => {
 
   it('rejects an empty image collection', async () => {
     await expect(imagesToPdf([], { pageSize: 'auto', orientation: 'auto', margin: 0, fit: 'contain' })).rejects.toMatchObject({ code: 'empty' })
+  })
+})
+
+describe('M4 interactive PDF operations', () => {
+  async function formFixture() {
+    const document = await PDFDocument.create()
+    const page = document.addPage([400, 500])
+    const form = document.getForm()
+    const name = form.createTextField('person.name'); name.addToPage(page, { x: 40, y: 400, width: 220, height: 28 })
+    const accepted = form.createCheckBox('accepted'); accepted.addToPage(page, { x: 40, y: 350, width: 20, height: 20 })
+    const country = form.createDropdown('country'); country.setOptions(['Deutschland', 'France']); country.addToPage(page, { x: 40, y: 300, width: 180, height: 28 })
+    return new Uint8Array(await document.save())
+  }
+
+  it('inspects and fills AcroForm fields with Unicode values', async () => {
+    const source = await formFixture()
+    const initial = inspectPdfForm(source)
+    expect(initial.fields.map((field) => field.name)).toEqual(['person.name', 'accepted', 'country'])
+    const output = fillPdfForm(source, { 'person.name': 'Jörg Weiß', accepted: true, country: 'Deutschland' })
+    const result = inspectPdfForm(output)
+    expect(result.fields.find((field) => field.name === 'person.name')?.value).toBe('Jörg Weiß')
+    expect(result.fields.find((field) => field.name === 'accepted')?.value).toBe(true)
+    expect(result.fields.find((field) => field.name === 'country')?.value).toBe('Deutschland')
+  })
+
+  it('can irreversibly flatten filled form fields', async () => {
+    const output = fillPdfForm(await formFixture(), { 'person.name': 'Ada' }, true)
+    expect(inspectPdfForm(output).fields).toHaveLength(0)
+  })
+
+  it('adds and deletes a genuine PDF annotation', async () => {
+    const source = await fixture([[400, 500]])
+    const added = addPdfAnnotation(source, { pageIndex: 0, type: 'Highlight', rect: [40, 60, 220, 90], contents: 'Wichtig', author: 'CommieTools', color: [1, 0.8, 0], opacity: 0.5 })
+    const annotations = inspectPdfAnnotations(added)
+    expect(annotations).toHaveLength(1)
+    expect(annotations[0]).toMatchObject({ type: 'Highlight', contents: 'Wichtig', author: 'CommieTools' })
+    expect(inspectPdfAnnotations(deletePdfAnnotation(added, 0, 0))).toHaveLength(0)
   })
 })
