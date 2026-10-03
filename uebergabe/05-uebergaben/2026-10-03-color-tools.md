@@ -101,5 +101,5 @@ Zeilen sind — die Simulation und die Palette wären ohnehin Eigenarbeit geblie
 
 ## Git
 
-- Commit: `folgt` (wird nach dem Commit nachgetragen)
+- Commit: `584af3b` (Umsetzung, Tests, Dokumentation); die Nachträge in einem zweiten Commit
 - Arbeitsbaum: die genannten Bereiche; `package-lock.json` unverändert

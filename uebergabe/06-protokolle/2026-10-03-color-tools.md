@@ -38,7 +38,7 @@ Palettenbildung sowie im Browser die Pipette mit einem Bild aus bekannten Farbfl
 
 ## Relevante Verweise
 
-- Commit: folgt
+- Commit: `584af3b` (Umsetzung, Tests, Dokumentation)
 - Konzept: `uebergabe/03-konzepte/2026-10-02-bild-suite.md` (Umsetzungshinweis fünftes Werkzeug)
 - Übergabe: `uebergabe/05-uebergaben/2026-10-03-color-tools.md`
 - Referenz der Simulation: Brettel, Viénot & Mollon (1997), Werte berechnet mit libDaltonLens
