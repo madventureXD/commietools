@@ -11,7 +11,7 @@ export const commonDe = {
   'catalog.title': 'Werkzeuge', 'catalog.intro': 'Klare, präzise Werkzeuge, die deine Daten respektieren.', 'catalog.open': 'Tool öffnen',
   'catalog.search': 'Werkzeuge durchsuchen', 'catalog.clear': 'Suche leeren', 'catalog.results': 'Werkzeuge gefunden', 'catalog.foundVia': 'gefunden über', 'catalog.noResults': 'Kein Werkzeug passt zu dieser Suche. Versuch es mit einem anderen Wort oder einer Dateiendung wie webp.',
   'catalog.searchHint': 'Sucht in Suchbegriffen, Titel und Kurzbeschreibung aller Sprachen sowie in Dateitypen, Kategorie und Suite. Mindestens 2 Zeichen, zum Beispiel webp, resize, #bilder.',
-  'category.text': 'Text', 'category.pdf': 'PDF', 'category.image': 'Bilder', 'category.developer': 'Entwicklung', 'category.generator': 'Generatoren',
+  'category.text': 'Text', 'category.pdf': 'PDF', 'category.image': 'Bilder', 'category.developer': 'Entwicklung', 'category.generator': 'Generatoren', 'category.calculator': 'Rechnen',
   'tool.result': 'Ergebnis', 'tool.back': 'Zurück zu allen Tools', 'tool.formats': 'Formate', 'tool.formats.readOnly': 'Nur lesbar',
   'save.fileName': 'Dateiname', 'save.saveAs': 'Speichern unter …', 'save.download': 'Herunterladen', 'save.saving': 'Wird gespeichert …',
   'save.saved': 'Datei gespeichert.', 'save.cancelled': 'Speichern abgebrochen.', 'save.downloadStarted': 'Download gestartet.',

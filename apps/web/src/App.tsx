@@ -31,6 +31,7 @@ const PdfViewer = lazy(() => import('./tools/PdfViewer').then((module) => ({ def
 const PdfTextOcr = lazy(() => import('./tools/PdfTextOcr').then((module) => ({ default: module.PdfTextOcr })))
 const PdfCertificateSign = lazy(() => import('./tools/PdfCertificateTools').then((module) => ({ default: module.PdfCertificateSign })))
 const PdfSignatureVerify = lazy(() => import('./tools/PdfCertificateTools').then((module) => ({ default: module.PdfSignatureVerify })))
+const Calculator = lazy(() => import('./tools/Calculator').then((module) => ({ default: module.Calculator })))
 
 type Theme = 'light' | 'dark'
 type Translate = (key: string) => string
@@ -96,6 +97,7 @@ function ToolPage({ tool, t, locale, navigate }: { tool: ToolManifest; t: Transl
               : tool.id === 'icon-generator' ? <IconGenerator t={t} locale={locale} />
                 : tool.id === 'image-watermark' ? <ImageWatermark t={t} locale={locale} />
                   : tool.id === 'color-tools' ? <ColorTools t={t} />
+                    : tool.id === 'calculator' ? <Suspense fallback={<p aria-live="polite">…</p>}><Calculator t={t} /></Suspense>
               : tool.id === 'pdf-merge' ? <Suspense fallback={<p aria-live="polite">…</p>}><PdfMerge t={t} /></Suspense>
                 : tool.id === 'pdf-split' ? <Suspense fallback={<p aria-live="polite">…</p>}><PdfSplit t={t} /></Suspense>
                   : tool.id === 'pdf-organize' ? <Suspense fallback={<p aria-live="polite">…</p>}><PdfOrganize t={t} /></Suspense>

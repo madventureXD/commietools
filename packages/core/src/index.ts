@@ -1,6 +1,6 @@
 export type ToolExecutionMode = 'local' | 'hybrid' | 'online'
 export type ToolResourceClass = 'universal' | 'standard' | 'heavy'
-export type ToolCategory = 'text' | 'pdf' | 'image' | 'developer' | 'generator'
+export type ToolCategory = 'text' | 'pdf' | 'image' | 'developer' | 'generator' | 'calculator'
 
 /**
  * Formats the platform knows by name and extension. This table is the single

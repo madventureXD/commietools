@@ -56,6 +56,7 @@
 - QPDF 12.2.0 als getrennt nachgeladene Open-Source-WASM-Engine; Binärartefakt mit SHA-256, Upstream-Komponenten, festen Commits und vollständigen Lizenzen registriert
 - datensparsame Ladegrenzen: Startseite und Fremdwerkzeuge laden keine PDF-Engine; PDF-Routen, Worker und WASM werden erst bei Nutzung übertragen und nicht vorab offline gespeichert
 - automatische Startlastprüfung mit 250-KiB-Gzip-Budget und Sperre gegen statisch erreichbare PDF-Engines
+- Rechner (Suite „Rechnen", Welle 1): kuratierter mathjs-Rechenkern in eigenem dynamisch geladenen Chunk (94,3 KiB gzip), exakte Zahlenmodelle (`BigNumber` 64 Stellen, `Fraction`), Fehler als übersetzbare Codes, Verlauf als Ringpuffer, benannte Variablen, „Formel und Quelle"
 
 ## Derzeitige Tools
 
@@ -86,6 +87,7 @@
 | PDF-Text & OCR | `pdf-text-ocr` | PDF | lokal | PDF hinein, Text heraus |
 | PDF mit Zertifikat signieren | `pdf-certificate-sign` | PDF | lokal | PDF und PKCS#12/PFX hinein, PDF heraus |
 | PDF-Signaturen überprüfen | `pdf-signature-verify` | PDF | lokal | PDF hinein (nur Information) |
+| Rechner | `calculator` | Rechnen | lokal | keine (nur Information) |
 
 ## Derzeitige Suiten
 
@@ -93,19 +95,20 @@
 - Entwicklung
 - Generatoren
 - Bilder (Bild-Metadaten, Bild skalieren, Icon-Generator, Wasserzeichen, Farbwerkzeuge)
+- Rechnen (Rechner)
 - PDF (Viewer, Text/OCR, Zertifikatssignaturen prüfen und erstellen, Zusammenführen, Teilen, Seiten organisieren, Bilder zu PDF, PDF zu Bildern, Wasserzeichen, Seitenzahlen, sichtbar unterschreiben, Formular ausfüllen, kommentieren und markieren, schützen/entsperren, komprimieren)
 
 ## Qualität und Compliance
 
 - Projekt und interne Pakete: `AGPL-3.0-only`
 - Lizenzübersicht in der Webanwendung: `/licenses`
-- erfasste externe Pakete: 511
+- erfasste externe Pakete: 520
 - vollständige Lizenztexte: 16
-- bewahrte originale Paketdokumente: 180
+- bewahrte originale Paketdokumente: 187
 - eingebettete Binärartefakte: 2 registrierte WASM-Artefakte (QPDF und PDF Signer)
-- letzter bekannter Teststand: 152 Tests bestanden
-- Werkzeugregister: 25 Werkzeuge, 3 Sprachen, 25 Symbole, 77 deklarierte Dateitypen (`npm run catalog:check`); Spanisch ist lokal als noch gegenzulesendes Testpaket eingebunden
-- letzter bekannter Produktions-Build: bestanden; 188.121 Byte Startcode komprimiert und ohne statisch erreichbare PDF-Engine; PDF-/OCR-/Signaturrouten, Worker und WASM sind vom Vorab-Cache ausgeschlossen
+- letzter bekannter Teststand: 160 Tests bestanden
+- Werkzeugregister: 26 Werkzeuge, 3 Sprachen, 26 Symbole, 77 deklarierte Dateitypen (`npm run catalog:check`); Spanisch ist lokal als noch gegenzulesendes Testpaket eingebunden
+- letzter bekannter Produktions-Build: bestanden; 191.327 Byte Startcode komprimiert und ohne statisch erreichbare PDF- oder Rechen-Engine; PDF-/OCR-/Signaturrouten, Worker und WASM sind vom Vorab-Cache ausgeschlossen
 
 Zahlen sind Momentaufnahmen. Nach Abhängigkeits-, Test- oder Tooländerungen müssen sie anhand der tatsächlichen Ausgabe aktualisiert werden.
 

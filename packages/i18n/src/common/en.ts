@@ -11,7 +11,7 @@ export const commonEn = {
   'catalog.title': 'Tools', 'catalog.intro': 'Clear, precise tools that respect your data.', 'catalog.open': 'Open tool',
   'catalog.search': 'Search tools', 'catalog.clear': 'Clear search', 'catalog.results': 'tools found', 'catalog.foundVia': 'found via', 'catalog.noResults': 'No tool matches this search. Try another word or a file extension such as webp.',
   'catalog.searchHint': 'Searches the terms, titles and summaries of every language, plus file types, category and suite. At least 2 characters, for example webp, resize or #images.',
-  'category.text': 'Text', 'category.pdf': 'PDF', 'category.image': 'Images', 'category.developer': 'Developer', 'category.generator': 'Generators',
+  'category.text': 'Text', 'category.pdf': 'PDF', 'category.image': 'Images', 'category.developer': 'Developer', 'category.generator': 'Generators', 'category.calculator': 'Calculation',
   'tool.result': 'Result', 'tool.back': 'Back to all tools', 'tool.formats': 'Formats', 'tool.formats.readOnly': 'Read only',
   'save.fileName': 'File name', 'save.saveAs': 'Save as…', 'save.download': 'Download', 'save.saving': 'Saving…',
   'save.saved': 'File saved.', 'save.cancelled': 'Saving cancelled.', 'save.downloadStarted': 'Download started.',

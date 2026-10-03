@@ -18,6 +18,7 @@ import { pdfM4Messages } from './pdf/m4/locales'
 import { pdfM5Messages } from './pdf/m5/locales'
 import { pdfM6Messages } from './pdf/m6/locales'
 import { pdfM7Messages } from './pdf/m7/locales'
+import { calculatorMessages } from './calculator/locales'
 
 type MessageCatalog = Readonly<Record<string, string>>
 type PartialLocalizedMessages = Readonly<Record<string, MessageCatalog>>
@@ -52,5 +53,6 @@ export const toolMessages = mergeToolCatalogs([
   pdfM4Messages,
   pdfM5Messages,
   pdfM6Messages,
-  pdfM7Messages
+  pdfM7Messages,
+  calculatorMessages
 ])

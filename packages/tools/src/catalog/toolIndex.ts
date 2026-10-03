@@ -3110,5 +3110,110 @@ export const toolIndex: readonly ToolSearchEntry[] = [
         ]
       }
     }
+  },
+  {
+    "id": "calculator",
+    "route": "/tools/calculator",
+    "icon": "/tools/calculator.svg",
+    "category": "calculator",
+    "suiteIds": [
+      "calculator"
+    ],
+    "executionMode": "local",
+    "resourceClass": "heavy",
+    "worksOffline": true,
+    "input": [],
+    "output": [],
+    "auxiliary": [],
+    "locales": {
+      "de": {
+        "title": "Rechner",
+        "summary": "Rechnet exakt mit Brüchen und Dezimalzahlen.",
+        "description": "Exakter Taschenrechner mit Brüchen und Dezimalzahlen, Verlauf und benannten Variablen. Rechnet vollständig im Browser.",
+        "terms": [
+          "Rechner",
+          "Taschenrechner",
+          "Rechnen",
+          "Bruch",
+          "Brüche",
+          "Bruchrechnung",
+          "Dezimal",
+          "Dezimalzahl",
+          "Komma",
+          "Genauigkeit",
+          "exakt",
+          "Rundung",
+          "Prozent",
+          "Quadratwurzel",
+          "Wurzel",
+          "Potenz",
+          "Grundrechenarten",
+          "Rechenweg",
+          "Verlauf",
+          "Taschenrechner online",
+          "kopfrechnen"
+        ],
+        "tags": [
+          "#rechnen",
+          "#mathematik"
+        ]
+      },
+      "en": {
+        "title": "Calculator",
+        "summary": "Calculates exactly with fractions and decimals.",
+        "description": "Exact calculator with fractions and decimals, history and named variables. All computation stays in the browser.",
+        "terms": [
+          "calculator",
+          "taschenrechner",
+          "math",
+          "calculate",
+          "computation",
+          "fraction",
+          "fractions",
+          "decimal",
+          "precision",
+          "exact",
+          "rounding",
+          "percentage",
+          "square root",
+          "power",
+          "arithmetic",
+          "history",
+          "variables",
+          "maths"
+        ],
+        "tags": [
+          "#calculate",
+          "#math"
+        ]
+      },
+      "es": {
+        "title": "Calculadora",
+        "summary": "Calcula con exactitud usando fracciones y decimales.",
+        "description": "Calculadora exacta con fracciones y decimales, historial y variables con nombre. Todo el cálculo ocurre en el navegador.",
+        "terms": [
+          "calculadora",
+          "calcular",
+          "matematicas",
+          "fraccion",
+          "fracciones",
+          "decimal",
+          "decimales",
+          "precision",
+          "exacto",
+          "redondeo",
+          "porcentaje",
+          "raiz cuadrada",
+          "potencia",
+          "aritmetica",
+          "historial",
+          "variables"
+        ],
+        "tags": [
+          "#calcular",
+          "#matematicas"
+        ]
+      }
+    }
   }
 ]

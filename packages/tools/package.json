@@ -6,6 +6,9 @@
   "type": "module",
   "exports": {
     ".": "./src/index.ts",
+    "./calculator/core": "./src/calculator/core.ts",
+    "./calculator/functions": "./src/calculator/functions.ts",
+    "./calculator/history": "./src/calculator/history.ts",
     "./pdf/core": "./src/pdf/core.ts",
     "./pdf/m4": "./src/pdf/m4.ts",
     "./pdf/m5": "./src/pdf/m5.ts",
@@ -14,6 +17,8 @@
   "dependencies": {
     "@commietools/core": "0.1.0",
     "@neslinesli93/qpdf-wasm": "^0.3.0",
+    "idb-keyval": "^6.3.0",
+    "mathjs": "^15.2.0",
     "mupdf": "^1.28.1",
     "pdf-lib": "^1.17.1",
     "pica": "^10.0.3"
