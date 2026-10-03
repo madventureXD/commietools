@@ -2952,5 +2952,163 @@ export const toolIndex: readonly ToolSearchEntry[] = [
         ]
       }
     }
+  },
+  {
+    "id": "pdf-certificate-sign",
+    "route": "/tools/pdf-certificate-sign",
+    "icon": "/tools/pdf-certificate-sign.svg",
+    "category": "pdf",
+    "suiteIds": [
+      "pdf"
+    ],
+    "executionMode": "local",
+    "resourceClass": "heavy",
+    "worksOffline": true,
+    "input": [
+      "application/pdf"
+    ],
+    "output": [
+      "application/pdf"
+    ],
+    "auxiliary": [
+      {
+        "role": "certificate",
+        "mimeTypes": [
+          "application/x-pkcs12"
+        ]
+      }
+    ],
+    "locales": {
+      "de": {
+        "title": "PDF mit Zertifikat signieren",
+        "summary": "PDF lokal und kryptografisch mit einem Zertifikat signieren.",
+        "description": "Erstellt lokal eine kryptografische PAdES-B-B-Signatur mit einer PKCS#12- oder PFX-Datei.",
+        "terms": [
+          "PDF digital signieren",
+          "Zertifikat",
+          "P12",
+          "PFX",
+          "PKCS12",
+          "PAdES",
+          "CMS",
+          "kryptografische Signatur"
+        ],
+        "tags": [
+          "#pdf",
+          "#signatur"
+        ]
+      },
+      "en": {
+        "title": "Sign PDF with certificate",
+        "summary": "Cryptographically sign a PDF locally with a certificate.",
+        "description": "Creates a local cryptographic PAdES B-B signature using a PKCS#12 or PFX file.",
+        "terms": [
+          "digitally sign PDF",
+          "certificate",
+          "P12",
+          "PFX",
+          "PKCS12",
+          "PAdES",
+          "CMS",
+          "cryptographic signature"
+        ],
+        "tags": [
+          "#pdf",
+          "#signature"
+        ]
+      },
+      "es": {
+        "title": "Firmar PDF con certificado",
+        "summary": "Firma criptográficamente un PDF con un certificado, de forma local.",
+        "description": "Crea localmente una firma criptográfica PAdES B-B con un archivo PKCS#12 o PFX.",
+        "terms": [
+          "firmar PDF digitalmente",
+          "certificado",
+          "P12",
+          "PFX",
+          "PKCS12",
+          "PAdES",
+          "CMS",
+          "firma criptográfica"
+        ],
+        "tags": [
+          "#pdf",
+          "#firma"
+        ]
+      }
+    }
+  },
+  {
+    "id": "pdf-signature-verify",
+    "route": "/tools/pdf-signature-verify",
+    "icon": "/tools/pdf-signature-verify.svg",
+    "category": "pdf",
+    "suiteIds": [
+      "pdf"
+    ],
+    "executionMode": "local",
+    "resourceClass": "heavy",
+    "worksOffline": true,
+    "input": [
+      "application/pdf"
+    ],
+    "output": [],
+    "auxiliary": [],
+    "locales": {
+      "de": {
+        "title": "PDF-Signaturen überprüfen",
+        "summary": "Kryptografische PDF-Signaturen und Dokumentintegrität lokal prüfen.",
+        "description": "Prüft lokale PDF-Zertifikatssignaturen mathematisch und erkennt nachträgliche Änderungen.",
+        "terms": [
+          "PDF Signatur prüfen",
+          "PAdES prüfen",
+          "Zertifikat prüfen",
+          "PDF verändert",
+          "Integrität",
+          "CMS"
+        ],
+        "tags": [
+          "#pdf",
+          "#signatur",
+          "#prüfen"
+        ]
+      },
+      "en": {
+        "title": "Verify PDF signatures",
+        "summary": "Verify cryptographic PDF signatures and document integrity locally.",
+        "description": "Cryptographically verifies local PDF certificate signatures and detects later changes.",
+        "terms": [
+          "verify PDF signature",
+          "verify PAdES",
+          "check certificate",
+          "modified PDF",
+          "integrity",
+          "CMS"
+        ],
+        "tags": [
+          "#pdf",
+          "#signature",
+          "#verify"
+        ]
+      },
+      "es": {
+        "title": "Verificar firmas PDF",
+        "summary": "Verifica localmente firmas criptográficas e integridad del PDF.",
+        "description": "Verifica criptográficamente firmas de certificado en PDF y detecta cambios posteriores.",
+        "terms": [
+          "verificar firma PDF",
+          "verificar PAdES",
+          "comprobar certificado",
+          "PDF modificado",
+          "integridad",
+          "CMS"
+        ],
+        "tags": [
+          "#pdf",
+          "#firma",
+          "#verificar"
+        ]
+      }
+    }
   }
 ]

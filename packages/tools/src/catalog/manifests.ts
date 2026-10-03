@@ -191,6 +191,24 @@ export const toolManifests: readonly ToolManifest[] = [
     summaryKey: 'tool.pdfTextOcr.summary', termsKey: 'tool.pdfTextOcr.terms',
     executionMode: 'local', resourceClass: 'heavy', worksOffline: true,
     files: { input: ['application/pdf'], output: ['text/plain'] }
+  },
+  {
+    id: 'pdf-certificate-sign', route: '/tools/pdf-certificate-sign', category: 'pdf',
+    titleKey: 'tool.pdfCertificateSign.title', descriptionKey: 'tool.pdfCertificateSign.description',
+    summaryKey: 'tool.pdfCertificateSign.summary', termsKey: 'tool.pdfCertificateSign.terms',
+    executionMode: 'local', resourceClass: 'heavy', worksOffline: true,
+    files: {
+      input: ['application/pdf'],
+      auxiliary: [{ role: 'certificate', mimeTypes: ['application/x-pkcs12'] }],
+      output: ['application/pdf']
+    }
+  },
+  {
+    id: 'pdf-signature-verify', route: '/tools/pdf-signature-verify', category: 'pdf',
+    titleKey: 'tool.pdfVerify.title', descriptionKey: 'tool.pdfVerify.description',
+    summaryKey: 'tool.pdfVerify.summary', termsKey: 'tool.pdfVerify.terms',
+    executionMode: 'local', resourceClass: 'heavy', worksOffline: true,
+    files: { input: ['application/pdf'] }
   }
 ]
 
@@ -199,5 +217,5 @@ export const suiteManifests: readonly SuiteManifest[] = [
   { id: 'developer', route: '/suites/developer', titleKey: 'suite.developer.title', descriptionKey: 'suite.developer.description', toolIds: ['json-formatter'] },
   { id: 'generators', route: '/suites/generators', titleKey: 'suite.generators.title', descriptionKey: 'suite.generators.description', toolIds: ['qr-code-generator'] },
   { id: 'image', route: '/suites/image', titleKey: 'suite.image.title', descriptionKey: 'suite.image.description', toolIds: ['image-metadata', 'image-resize', 'icon-generator', 'image-watermark', 'color-tools'] },
-  { id: 'pdf', route: '/suites/pdf', titleKey: 'suite.pdf.title', descriptionKey: 'suite.pdf.description', toolIds: ['pdf-viewer', 'pdf-text-ocr', 'pdf-merge', 'pdf-split', 'pdf-organize', 'images-to-pdf', 'pdf-to-images', 'pdf-watermark', 'pdf-page-numbers', 'pdf-visible-signature', 'pdf-form-fill', 'pdf-annotate', 'pdf-security', 'pdf-compress'] }
+  { id: 'pdf', route: '/suites/pdf', titleKey: 'suite.pdf.title', descriptionKey: 'suite.pdf.description', toolIds: ['pdf-viewer', 'pdf-text-ocr', 'pdf-signature-verify', 'pdf-certificate-sign', 'pdf-merge', 'pdf-split', 'pdf-organize', 'images-to-pdf', 'pdf-to-images', 'pdf-watermark', 'pdf-page-numbers', 'pdf-visible-signature', 'pdf-form-fill', 'pdf-annotate', 'pdf-security', 'pdf-compress'] }
 ]

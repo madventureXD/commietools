@@ -26,6 +26,7 @@ export const knownFormats: readonly FormatInfo[] = [
   { mime: 'image/x-icon', name: 'ICO', extensions: ['.ico'] },
   { mime: 'image/svg+xml', name: 'SVG', extensions: ['.svg'] },
   { mime: 'application/pdf', name: 'PDF', extensions: ['.pdf'] },
+  { mime: 'application/x-pkcs12', name: 'PKCS#12', extensions: ['.p12', '.pfx'] },
   { mime: 'text/plain', name: 'Text', extensions: ['.txt'] },
   { mime: 'application/json', name: 'JSON', extensions: ['.json'] },
   { mime: 'text/csv', name: 'CSV', extensions: ['.csv'] }

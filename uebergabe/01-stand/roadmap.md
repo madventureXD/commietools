@@ -13,7 +13,7 @@ Die Roadmap beschreibt die derzeitige Reihenfolge, keine festen Termine.
 
 ## Phase 1 – PDF-Suite
 
-**Status:** M0 bis M6 umgesetzt; M7 am Sicherheitsgate gesperrt, M8 als nächster umsetzbarer Meilenstein
+**Status:** M0 bis M7 lokal umgesetzt; M7-Veröffentlichung wartet auf die unabhängige Abschlussprüfung
 
 Vollständiges Umsetzungskonzept: [`../03-konzepte/2026-10-03-pdf-suite.md`](../03-konzepte/2026-10-03-pdf-suite.md)
 
@@ -24,7 +24,7 @@ Vollständiges Umsetzungskonzept: [`../03-konzepte/2026-10-03-pdf-suite.md`](../
 - M4: Formulare und Kommentare – umgesetzt
 - M5: Sicherheit und Kompression – umgesetzt
 - M6: eigenständiger Viewer, Textextraktion und OCR – lokal umgesetzt, noch nicht veröffentlicht
-- M7: digitale Signaturen – JavaScript-Pfad gesperrt; Rust-WASM-Alternative mit vorbereitetem Abschlussprüfplan gestartet
+- M7: digitale Signaturen – Rust-WASM-Alternative lokal umgesetzt und im Browser positiv/negativ geprüft; unabhängige Reader-/DSS-Gegenprüfung vor Veröffentlichung offen
 
 ## Phase 2 – Plattformqualität
 

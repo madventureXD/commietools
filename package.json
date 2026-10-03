@@ -12,6 +12,7 @@
     "packages/*"
   ],
   "scripts": {
+    "m7:build": "cargo build --manifest-path crates/pdf-signer-wasm/Cargo.toml --release --target wasm32-unknown-unknown && wasm-bindgen crates/pdf-signer-wasm/target/wasm32-unknown-unknown/release/commietools_pdf_signer_wasm.wasm --target web --out-dir packages/tools/src/pdf/m7-wasm --out-name engine",
     "dev": "npm run dev --workspace @commietools/web",
     "build": "npm run licenses:check && npm run catalog:check && npm run build --workspaces --if-present",
     "catalog:check": "node scripts/catalog-generate.mjs check",

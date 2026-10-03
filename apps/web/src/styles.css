@@ -256,6 +256,7 @@ a.button { display: inline-flex; align-items: center; justify-content: center; t
 .pdf-image-results { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: .8rem; }
 .pdf-image-results .pdf-page-card img { height: 220px; }
 .pdf-signature-disclaimer { margin: 0; padding: .8rem 1rem; border-left: 3px solid var(--color-brand); border-radius: var(--radius-sm); background: var(--color-brand-soft); font-weight: 700; line-height: 1.55; }
+.signature-verdict { display: grid; gap: .35rem; padding: 1rem; border: 1px solid var(--color-border); border-left: 4px solid var(--color-brand); border-radius: var(--radius-sm); }
 .signature-source { display: grid; gap: var(--space-4); margin: 0; padding: var(--space-4); border: 1px solid var(--color-border); border-radius: var(--radius-sm); }
 .signature-source legend { padding-inline: var(--space-2); font-weight: 800; }
 .signature-pad { display: grid; justify-items: start; gap: var(--space-3); }

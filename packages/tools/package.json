@@ -8,7 +8,8 @@
     ".": "./src/index.ts",
     "./pdf/core": "./src/pdf/core.ts",
     "./pdf/m4": "./src/pdf/m4.ts",
-    "./pdf/m5": "./src/pdf/m5.ts"
+    "./pdf/m5": "./src/pdf/m5.ts",
+    "./pdf/m7": "./src/pdf/m7.ts"
   },
   "dependencies": {
     "@commietools/core": "0.1.0",

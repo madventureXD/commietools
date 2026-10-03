@@ -15,6 +15,20 @@
         { "name": "jpeg-turbo", "commit": "7aa2a898c564041a24b09d0a6e780aaa632d08d3", "licenseIds": ["BSD-3-Clause", "IJG", "Zlib"] }
       ],
       "toolIds": ["pdf-security", "pdf-compress"]
+    },
+    {
+      "id": "pdf-signer-wasm-0.3.2",
+      "name": "PDF Signer WebAssembly engine",
+      "version": "0.3.2",
+      "sourcePath": "packages/tools/src/pdf/m7-wasm/engine_bg.wasm",
+      "source": "https://github.com/StrategicProjects/pdf_signer/tree/6cc0218100d9ffc038f8dccee3b707e5bd136100",
+      "build": "crates/pdf-signer-wasm/README.md",
+      "licenseIds": ["GPL-3.0-or-later"],
+      "components": [
+        { "name": "pdf_signer", "version": "0.3.2", "commit": "6cc0218100d9ffc038f8dccee3b707e5bd136100", "licenseIds": ["GPL-3.0-or-later"] },
+        { "name": "CommieTools WASM adapter", "version": "0.1.0", "licenseIds": ["AGPL-3.0-only"] }
+      ],
+      "toolIds": ["pdf-certificate-sign", "pdf-signature-verify"]
     }
   ]
 }

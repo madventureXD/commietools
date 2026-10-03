@@ -1,7 +1,7 @@
 # Aktueller Projektstand
 
 **Stand:** 2026-10-03  
-**Letzter geprüfter Meilenstein:** PDF-Suite M6 lokal umgesetzt und geprüft; Veröffentlichung bewusst zurückgestellt (2026-10-03)
+**Letzter geprüfter Meilenstein:** PDF-Suite M7 lokal umgesetzt und im Browser geprüft; Veröffentlichung bewusst zurückgestellt (2026-10-03)
 
 ## Umgesetzt
 
@@ -50,6 +50,9 @@
 - PDF komprimieren: verlustfreie Strukturkompression sowie zwei klar gekennzeichnete optionale Bildstufen mit transparentem Größenvergleich
 - eigenständiger PDF-Viewer mit Miniaturen, Seitennavigation, Zoom, Drehung und lokaler Volltextsuche
 - PDF-Text & OCR mit Seitenauswahl, vorhandener Textebene, automatischem OCR-Fallback, Deutsch/Englisch/Spanisch, Fortschritt, Abbruch und TXT-Ausgabe; Tesseract.js und Sprachmodell werden erst nach ausdrücklicher Zustimmung geladen
+- PDF mit Zertifikat signieren: lokale PAdES-B-B-Signatur mit PKCS#12/PFX und unmittelbar anschließender Eigenprüfung; Schlüssel und Passwort verlassen den Browser nicht
+- PDF-Signaturen überprüfen: mathematische CMS-Prüfung, vollständige ByteRange-Abdeckung und Erkennung nachträglicher Änderungen; Vertrauensstatus wird ohne Trust Store ausdrücklich nicht behauptet
+- `pdf_signer` 0.3.2 als gepinnte, nur auf M7-Routen nachgeladene Rust-WASM-Engine; reproduzierbarer Adapter, Prüfsumme, Herkunft und GPL-3.0-or-later-Lizenz sind registriert
 - QPDF 12.2.0 als getrennt nachgeladene Open-Source-WASM-Engine; Binärartefakt mit SHA-256, Upstream-Komponenten, festen Commits und vollständigen Lizenzen registriert
 - datensparsame Ladegrenzen: Startseite und Fremdwerkzeuge laden keine PDF-Engine; PDF-Routen, Worker und WASM werden erst bei Nutzung übertragen und nicht vorab offline gespeichert
 - automatische Startlastprüfung mit 250-KiB-Gzip-Budget und Sperre gegen statisch erreichbare PDF-Engines
@@ -81,6 +84,8 @@
 | PDF komprimieren | `pdf-compress` | PDF | lokal | PDF hinein und heraus |
 | PDF-Viewer | `pdf-viewer` | PDF | lokal | PDF hinein (nur Information) |
 | PDF-Text & OCR | `pdf-text-ocr` | PDF | lokal | PDF hinein, Text heraus |
+| PDF mit Zertifikat signieren | `pdf-certificate-sign` | PDF | lokal | PDF und PKCS#12/PFX hinein, PDF heraus |
+| PDF-Signaturen überprüfen | `pdf-signature-verify` | PDF | lokal | PDF hinein (nur Information) |
 
 ## Derzeitige Suiten
 
@@ -88,25 +93,25 @@
 - Entwicklung
 - Generatoren
 - Bilder (Bild-Metadaten, Bild skalieren, Icon-Generator, Wasserzeichen, Farbwerkzeuge)
-- PDF (Viewer, Text/OCR, Zusammenführen, Teilen, Seiten organisieren, Bilder zu PDF, PDF zu Bildern, Wasserzeichen, Seitenzahlen, sichtbar unterschreiben, Formular ausfüllen, kommentieren und markieren, schützen/entsperren, komprimieren)
+- PDF (Viewer, Text/OCR, Zertifikatssignaturen prüfen und erstellen, Zusammenführen, Teilen, Seiten organisieren, Bilder zu PDF, PDF zu Bildern, Wasserzeichen, Seitenzahlen, sichtbar unterschreiben, Formular ausfüllen, kommentieren und markieren, schützen/entsperren, komprimieren)
 
 ## Qualität und Compliance
 
 - Projekt und interne Pakete: `AGPL-3.0-only`
 - Lizenzübersicht in der Webanwendung: `/licenses`
 - erfasste externe Pakete: 511
-- vollständige Lizenztexte: 15
+- vollständige Lizenztexte: 16
 - bewahrte originale Paketdokumente: 180
-- eingebettete Binärartefakte: 1 vollständig geprüftes QPDF-WASM-Artefakt
+- eingebettete Binärartefakte: 2 registrierte WASM-Artefakte (QPDF und PDF Signer)
 - letzter bekannter Teststand: 152 Tests bestanden
-- Werkzeugregister: 23 Werkzeuge, 3 Sprachen, 23 Symbole, 73 deklarierte Dateitypen (`npm run catalog:check`); Spanisch ist lokal als noch gegenzulesendes Testpaket eingebunden
-- letzter bekannter Produktions-Build: bestanden; 185.593 Byte Startcode komprimiert und ohne statisch erreichbare PDF-Engine; PDF-/OCR-Routen, Worker und WASM sind vom Vorab-Cache ausgeschlossen
+- Werkzeugregister: 25 Werkzeuge, 3 Sprachen, 25 Symbole, 77 deklarierte Dateitypen (`npm run catalog:check`); Spanisch ist lokal als noch gegenzulesendes Testpaket eingebunden
+- letzter bekannter Produktions-Build: bestanden; 188.121 Byte Startcode komprimiert und ohne statisch erreichbare PDF-Engine; PDF-/OCR-/Signaturrouten, Worker und WASM sind vom Vorab-Cache ausgeschlossen
 
 Zahlen sind Momentaufnahmen. Nach Abhängigkeits-, Test- oder Tooländerungen müssen sie anhand der tatsächlichen Ausgabe aktualisiert werden.
 
 ## Noch nicht umgesetzt
 
-- PDF-Suite M7 (digitale Signaturen) ist durch ADR 0004 am Sicherheitsgate gesperrt; der verworfene `@signpdf`-Prototyp wurde vollständig entfernt
+- Öffentliche M7-Freigabe bleibt bis zur unabhängigen Reader-/DSS-Gegenprüfung und vollständig abgehakten Freigabecheckliste gesperrt
 - Backend, Konten und Synchronisierung
 - Desktop- und Mobile-Shells
 - sichtbarer Source-Link in der Weboberfläche
