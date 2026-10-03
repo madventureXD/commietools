@@ -19,6 +19,7 @@
 - automatisch erzeugte und auf der Webseite abrufbare Lizenzdatenbank
 - Lizenzprüfung als verpflichtender Bestandteil von Check und Build
 - Cloudflare-Pages-Bereitstellung vorbereitet: SPA-Fallback, PWA-Cache-Regeln und Sicherheitsheader; Domain bleibt bei Hetzner
+- zweisprachige, dauerhaft im Footer erreichbare Impressumsseite mit Anbieteranschrift und E-Mail-Kontakt
 - erzeugtes Werkzeugregister (`packages/tools/src/catalog/toolIndex.ts`) mit Symbol, Kurzbeschreibung und Suchbegriffen je Werkzeug und Sprache; Prüfung als Bestandteil von Check und Build
 - deklarierte Dateifähigkeiten je Werkzeug im Manifest (`input`, `auxiliary`, `output`); Dateifelder, Formatlisten und Katalogkarten lesen daraus, nicht aus eigenen Kopien
 - Katalogsuche über Suchbegriffe, Schlagwörter, Titel, Kurzbeschreibung und Beschreibung **aller** Sprachen sowie über deklarierte Dateitypen, Kategorie und Suite; Treffer in der eingestellten Sprache mit Begründung („gefunden über …"), offline und ohne unscharfe Suche
