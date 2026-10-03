@@ -100,7 +100,7 @@ function buildRegistry() {
 
     const packageDirectory = join(root, ...packagePath.split('/'))
     const manifestPath = join(packageDirectory, 'package.json')
-    const manifest = existsSync(manifestPath) ? readJson(manifestPath) : {}
+    const manifest = !lockEntry.optional && existsSync(manifestPath) ? readJson(manifestPath) : {}
     const ids = licenseIds(expression, spdx)
     if (!ids.length) fail(`${name}@${lockEntry.version} has no resolvable SPDX license in ${expression}`)
 
@@ -111,11 +111,13 @@ function buildRegistry() {
       licenseIds: ids,
       dependencyType: lockEntry.dev ? 'development' : 'runtime',
       optional: Boolean(lockEntry.optional),
-      installed: existsSync(packageDirectory),
       author: authorName(manifest.author),
       repository: normalizeRepository(manifest.repository),
       homepage: manifest.homepage ?? null,
-      documents: packageDocuments(existsSync(packageDirectory) ? packageDirectory : null, documents)
+      // Optional native packages differ by operating system. Their SPDX texts
+      // remain complete, while package-local documents are collected only for
+      // dependencies installed consistently on every supported platform.
+      documents: packageDocuments(!lockEntry.optional && existsSync(packageDirectory) ? packageDirectory : null, documents)
     })
   }
 
@@ -151,7 +153,6 @@ function buildRegistry() {
       runtime: packages.filter((entry) => entry.dependencyType === 'runtime').length,
       development: packages.filter((entry) => entry.dependencyType === 'development').length,
       optional: packages.filter((entry) => entry.optional).length,
-      installed: packages.filter((entry) => entry.installed).length,
       licenseExpressions: [...expressions].sort(),
       licenseIds: usedLicenseIds
     },
