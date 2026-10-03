@@ -19,22 +19,22 @@ scripts/m7-eu-dss-audit.mjs --write` erzeugt `commietools-results.json` neu.
 | Datei | Referenzzweck | Ergebnis M7 |
 |---|---|---|
 | `pdf-signed-original.pdf` | gültige einfache Signatur | bestanden: gültig und intakt |
-| `pdf-signed-corrupted.pdf` | beschädigte ByteRange/Signatur | bestanden: nicht gültig; derzeit keine Signaturinstanz extrahiert |
+| `pdf-signed-corrupted.pdf` | beschädigte ByteRange/Signatur | bestanden: Signatur erkannt und wegen ungültiger ByteRange abgelehnt |
 | `pdf-signed-out-of-byteRange.pdf` | ByteRange außerhalb der Datei | bestanden: abgelehnt |
 | `pdf-byterange-overlap.pdf` | eine gültige und eine fehlerhafte Signatur | bestanden: beide erkannt, Gesamtergebnis ungültig |
 | `pdf-signed-added-page.pdf` | nachträglich hinzugefügte Seite | bestanden: CMS gültig, Dokument verändert |
 | `pades-signed-annot-added.pdf` | nachträglich hinzugefügte Annotation | bestanden: CMS gültig, Dokument verändert |
 | `BadEncodedCMS.pdf` | ungültig kodiertes CMS | bestanden: sicher abgelehnt |
-| `hello_signed_INCSAVE_signed.pdf` | zwei inkrementelle Signaturen | abweichend: zwei Strukturen erkannt, CMS-DER nicht gelesen |
-| `hello_signed_INCSAVE_signed_EDITED.pdf` | zwei Signaturen, davon eine beschädigt | abweichend: Strukturen erkannt, Zustände nicht differenziert |
-| `doc-firmado-T.pdf` | PAdES-T | abweichend: CMS-DER nicht gelesen |
-| `doc-firmado-LT.pdf` | PAdES-LT | abweichend: CMS-DER nicht gelesen |
-| `PAdES-LTA.pdf` | PAdES-LTA | teilweise: Dokumentzeitstempel gültig, Hauptsignatur nicht gelesen |
-| `pades-5-signatures-and-1-document-timestamp.pdf` | fünf Signaturen und Zeitstempel | abweichend: Signaturen nicht strukturell extrahiert |
+| `hello_signed_INCSAVE_signed.pdf` | zwei inkrementelle Signaturen | bestanden: beide Signaturen gültig, Dokument intakt |
+| `hello_signed_INCSAVE_signed_EDITED.pdf` | zwei Signaturen, davon eine beschädigt | bestanden: erste gültig, zweite manipuliert, Gesamtergebnis ungültig |
+| `doc-firmado-T.pdf` | PAdES-T | bestanden: BER-kompatibel gelesen und kryptografisch gültig |
+| `doc-firmado-LT.pdf` | PAdES-LT | bestanden: BER-kompatibel gelesen, gültig und DSS erkannt |
+| `PAdES-LTA.pdf` | PAdES-LTA | bestanden: Hauptsignatur und Dokumentzeitstempel gültig |
+| `pades-5-signatures-and-1-document-timestamp.pdf` | fünf historische Signaturen und Zeitstempel | teilweise: alle sechs Einträge revisionsübergreifend erkannt; Zeitstempel gültig, fünf Legacy-Signaturen kryptografisch nicht bestätigt |
 
-Die Abweichungen sind Freigabesperren, keine akzeptierten Einschränkungen. Die
-Oberfläche meldet bei erkannter, aber nicht auswertbarer Signaturstruktur nun
-ausdrücklich „nicht geprüft“ statt „keine Signatur“.
+Die verbleibende Abweichung ist eine Freigabesperre, keine akzeptierte
+Einschränkung. Die Oberfläche meldet nicht bestätigte Signaturen ausdrücklich
+als ungültig statt sie zu übersehen.
 
 ## SHA-256
 

@@ -532,4 +532,4 @@ CommieTools uses 520 locked third-party packages. Complete SPDX license texts an
 | Artifact | Version | SHA-256 | Licenses |
 | --- | --- | --- | --- |
 | QPDF WebAssembly engine | 12.2.0 | `abd933f4ccace4f732999381b21aec8b7e3726f18a5b167fafd57f88dd440876` | Apache-2.0, BSD-3-Clause, IJG, Zlib |
-| PDF Signer WebAssembly engine | 0.3.2 | `c9d61ac3088edd2dcebd9afb2cfcac46298bad5196c67b6ed73a0b3173afb325` | GPL-3.0-or-later |
+| PDF Signer WebAssembly engine | 0.3.2 | `675c7dd4e0e63cee6fcc19bbbef846c7142045feb602d0d98ba45f6bb8580532` | GPL-3.0-or-later |

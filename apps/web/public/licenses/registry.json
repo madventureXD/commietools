@@ -131,8 +131,8 @@
       "name": "PDF Signer WebAssembly engine",
       "version": "0.3.2",
       "fileName": "engine_bg.wasm",
-      "size": 1414078,
-      "sha256": "c9d61ac3088edd2dcebd9afb2cfcac46298bad5196c67b6ed73a0b3173afb325",
+      "size": 1415068,
+      "sha256": "675c7dd4e0e63cee6fcc19bbbef846c7142045feb602d0d98ba45f6bb8580532",
       "licenseIds": [
         "GPL-3.0-or-later"
       ],

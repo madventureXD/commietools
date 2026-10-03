@@ -24,6 +24,10 @@ for (const name of names) {
       signatures: report.signatures.length,
       allValid: report.allValid,
       documentIntact: report.documentIntact,
+      padesLevel: report.padesLevel,
+      modificationKind: report.modificationKind,
+      timestampCount: report.timestampCount,
+      hasValidationMaterial: report.hasValidationMaterial,
       signaturesDetail: report.signatures.map((signature) => ({
         valid: signature.valid,
         timestamp: signature.isTimestamp,

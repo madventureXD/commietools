@@ -186,6 +186,11 @@ function __wbg_get_imports() {
             const ret = getStringFromWasm0(arg0, arg1);
             return addHeapObject(ret);
         },
+        __wbindgen_generic_0000000000000004: function(arg0) {
+            // Cast intrinsic for `U64 -> Externref`.
+            const ret = BigInt.asUintN(64, arg0);
+            return addHeapObject(ret);
+        },
         __wbindgen_object_clone_ref: function(arg0) {
             const ret = getObject(arg0);
             return addHeapObject(ret);

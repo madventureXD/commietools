@@ -1,4 +1,5 @@
 export const de = {
+  'tool.pdfVerify.padesLevel': 'Erkannte PAdES-Stufe', 'tool.pdfVerify.timestamps': 'Dokumentzeitstempel', 'tool.pdfVerify.modification': 'Änderung nach Signatur', 'tool.pdfVerify.validationMaterial': 'Validierungsmaterial eingebettet', 'tool.pdfVerify.modification.none': 'Keine', 'tool.pdfVerify.modification.validation-material': 'Nur Validierungsmaterial', 'tool.pdfVerify.modification.signature': 'Weitere Signatur', 'tool.pdfVerify.modification.pages': 'Seiten oder Seiteninhalt', 'tool.pdfVerify.modification.annotation': 'Anmerkung', 'tool.pdfVerify.modification.form': 'Formular', 'tool.pdfVerify.modification.unknown': 'Unbekannt – als unsicher behandelt',
   'tool.pdfCertificateSign.title': 'PDF mit Zertifikat signieren',
   'tool.pdfCertificateSign.description': 'Erstellt lokal eine kryptografische PAdES-B-B-Signatur mit einer PKCS#12- oder PFX-Datei.',
   'tool.pdfCertificateSign.summary': 'PDF lokal und kryptografisch mit einem Zertifikat signieren.',

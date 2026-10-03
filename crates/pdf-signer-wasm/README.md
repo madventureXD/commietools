@@ -1,7 +1,9 @@
 # CommieTools PDF signer WebAssembly adapter
 
-This adapter pins `StrategicProjects/pdf_signer` 0.3.2 at commit
-`6cc0218100d9ffc038f8dccee3b707e5bd136100` and exposes its in-memory PAdES B-B
+This adapter vendors `StrategicProjects/pdf_signer` 0.3.2 from commit
+`6cc0218100d9ffc038f8dccee3b707e5bd136100` in `../pdf-signer-engine`, including
+CommieTools interoperability hardening for BER CMS and historical incremental
+signatures, and exposes its in-memory PAdES B-B
 signing and verification functions to the browser. Network timestamping and
 trust-list downloads are deliberately not enabled.
 

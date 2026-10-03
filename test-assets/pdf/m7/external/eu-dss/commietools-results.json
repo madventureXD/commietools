@@ -11,6 +11,10 @@
       "signatures": 1,
       "allValid": false,
       "documentIntact": false,
+      "padesLevel": "B-T",
+      "modificationKind": "none",
+      "timestampCount": 0,
+      "hasValidationMaterial": false,
       "signaturesDetail": [
         {
           "valid": false,
@@ -27,15 +31,19 @@
       "sha256": "876e78f407e0c163f2e6d7dd23d0f3bbcd382027de18278fa8787eab80727cda",
       "parsed": true,
       "signatures": 2,
-      "allValid": false,
+      "allValid": true,
       "documentIntact": true,
+      "padesLevel": "B-LTA",
+      "modificationKind": "none",
+      "timestampCount": 1,
+      "hasValidationMaterial": true,
       "signaturesDetail": [
         {
-          "valid": false,
+          "valid": true,
           "timestamp": false,
           "coversWholeDocument": false,
-          "signer": null,
-          "detail": "cryptography error: trailing data at end of DER message: decoded 127 bytes, 232 bytes remaining at DER byte 127"
+          "signer": "TITLE=Professional Person,EMAIL=Andreas.Reifschneider@dialogika.de,SERIALNUMBER=10100753840003118865,GIVENNAME=Andreas,SN=Reifschneider,CN=Andreas Reifschneider,OU=HRB NR. 7347,O=DIaLOGIKa GmbH,L=DE,C=DE",
+          "detail": "valid CMS signature; signer: TITLE=Professional Person,EMAIL=Andreas.Reifschneider@dialogika.de,SERIALNUMBER=10100753840003118865,GIVENNAME=Andreas,SN=Reifschneider,CN=Andreas Reifschneider,OU=HRB NR. 7347,O=DIaLOGIKa GmbH,L=DE,C=DE"
         },
         {
           "valid": true,
@@ -52,15 +60,19 @@
       "sha256": "130ff45493c0cff873b44662bf9bb609820fabe4a0e666604ae1ac2795059eaf",
       "parsed": true,
       "signatures": 1,
-      "allValid": false,
-      "documentIntact": false,
+      "allValid": true,
+      "documentIntact": true,
+      "padesLevel": "B-LT",
+      "modificationKind": "validation-material",
+      "timestampCount": 0,
+      "hasValidationMaterial": true,
       "signaturesDetail": [
         {
-          "valid": false,
+          "valid": true,
           "timestamp": false,
           "coversWholeDocument": false,
-          "signer": null,
-          "detail": "malformed PDF: cannot read CMS DER length"
+          "signer": "CN=FRANCISCO DE LA PEÑA FERNANDEZ (FIRMA),OU=CIUDADANO,O=PERSONA FISICA,C=CR,GIVENNAME=FRANCISCO,SN=DE LA PEÑA FERNANDEZ,SERIALNUMBER=CPF-08-0119-0592",
+          "detail": "valid CMS signature; signer: CN=FRANCISCO DE LA PEÑA FERNANDEZ (FIRMA),OU=CIUDADANO,O=PERSONA FISICA,C=CR,GIVENNAME=FRANCISCO,SN=DE LA PEÑA FERNANDEZ,SERIALNUMBER=CPF-08-0119-0592"
         }
       ]
     },
@@ -70,15 +82,19 @@
       "sha256": "cdac360bb3f545ecd6dbc6f622511e3d06e5aca7e77ce2243d7806e18721ba35",
       "parsed": true,
       "signatures": 1,
-      "allValid": false,
-      "documentIntact": false,
+      "allValid": true,
+      "documentIntact": true,
+      "padesLevel": "B-T",
+      "modificationKind": "none",
+      "timestampCount": 0,
+      "hasValidationMaterial": false,
       "signaturesDetail": [
         {
-          "valid": false,
+          "valid": true,
           "timestamp": false,
-          "coversWholeDocument": false,
-          "signer": null,
-          "detail": "malformed PDF: cannot read CMS DER length"
+          "coversWholeDocument": true,
+          "signer": "CN=FRANCISCO DE LA PEÑA FERNANDEZ (FIRMA),OU=CIUDADANO,O=PERSONA FISICA,C=CR,GIVENNAME=FRANCISCO,SN=DE LA PEÑA FERNANDEZ,SERIALNUMBER=CPF-08-0119-0592",
+          "detail": "valid CMS signature; signer: CN=FRANCISCO DE LA PEÑA FERNANDEZ (FIRMA),OU=CIUDADANO,O=PERSONA FISICA,C=CR,GIVENNAME=FRANCISCO,SN=DE LA PEÑA FERNANDEZ,SERIALNUMBER=CPF-08-0119-0592"
         }
       ]
     },
@@ -88,22 +104,26 @@
       "sha256": "af63353c955aaa66612d87e7340d19726b8127a138fd393dd67840c1dc905625",
       "parsed": true,
       "signatures": 2,
-      "allValid": false,
-      "documentIntact": false,
+      "allValid": true,
+      "documentIntact": true,
+      "padesLevel": "B-B",
+      "modificationKind": "none",
+      "timestampCount": 0,
+      "hasValidationMaterial": false,
       "signaturesDetail": [
         {
-          "valid": false,
+          "valid": true,
           "timestamp": false,
           "coversWholeDocument": false,
-          "signer": null,
-          "detail": "malformed PDF: cannot read CMS DER length"
+          "signer": "DNQUALIFIER=15374967,SN=MonacelliTestIncard 02 2016,GIVENNAME=MarcoTestIncard 02  2016,SERIALNUMBER=IT:AAAAAA00A00A000A,CN=MonacelliTestIncard 02 2016 MarcoTestIncard 02  2016,O=non presente,C=IT",
+          "detail": "valid CMS signature; signer: DNQUALIFIER=15374967,SN=MonacelliTestIncard 02 2016,GIVENNAME=MarcoTestIncard 02  2016,SERIALNUMBER=IT:AAAAAA00A00A000A,CN=MonacelliTestIncard 02 2016 MarcoTestIncard 02  2016,O=non presente,C=IT"
         },
         {
-          "valid": false,
+          "valid": true,
           "timestamp": false,
-          "coversWholeDocument": false,
-          "signer": null,
-          "detail": "malformed PDF: cannot read CMS DER length"
+          "coversWholeDocument": true,
+          "signer": "DNQUALIFIER=15374967,SN=MonacelliTestIncard 02 2016,GIVENNAME=MarcoTestIncard 02  2016,SERIALNUMBER=IT:AAAAAA00A00A000A,CN=MonacelliTestIncard 02 2016 MarcoTestIncard 02  2016,O=non presente,C=IT",
+          "detail": "valid CMS signature; signer: DNQUALIFIER=15374967,SN=MonacelliTestIncard 02 2016,GIVENNAME=MarcoTestIncard 02  2016,SERIALNUMBER=IT:AAAAAA00A00A000A,CN=MonacelliTestIncard 02 2016 MarcoTestIncard 02  2016,O=non presente,C=IT"
         }
       ]
     },
@@ -115,20 +135,24 @@
       "signatures": 2,
       "allValid": false,
       "documentIntact": false,
+      "padesLevel": "B-B",
+      "modificationKind": "signature",
+      "timestampCount": 0,
+      "hasValidationMaterial": false,
       "signaturesDetail": [
         {
-          "valid": false,
+          "valid": true,
           "timestamp": false,
           "coversWholeDocument": false,
-          "signer": null,
-          "detail": "malformed PDF: cannot read CMS DER length"
+          "signer": "DNQUALIFIER=15374967,SN=MonacelliTestIncard 02 2016,GIVENNAME=MarcoTestIncard 02  2016,SERIALNUMBER=IT:AAAAAA00A00A000A,CN=MonacelliTestIncard 02 2016 MarcoTestIncard 02  2016,O=non presente,C=IT",
+          "detail": "valid CMS signature; signer: DNQUALIFIER=15374967,SN=MonacelliTestIncard 02 2016,GIVENNAME=MarcoTestIncard 02  2016,SERIALNUMBER=IT:AAAAAA00A00A000A,CN=MonacelliTestIncard 02 2016 MarcoTestIncard 02  2016,O=non presente,C=IT"
         },
         {
           "valid": false,
           "timestamp": false,
           "coversWholeDocument": false,
           "signer": null,
-          "detail": "malformed PDF: cannot read CMS DER length"
+          "detail": "signature verification failed: messageDigest mismatch"
         }
       ]
     },
@@ -137,10 +161,57 @@
       "bytes": 335556,
       "sha256": "962dd61443f8c124aa029bef2d2150712ed2bc895b2646f38af5f0f9d7bedc8e",
       "parsed": true,
-      "signatures": 0,
+      "signatures": 6,
       "allValid": false,
-      "documentIntact": false,
-      "signaturesDetail": []
+      "documentIntact": true,
+      "padesLevel": "B-LTA",
+      "modificationKind": "none",
+      "timestampCount": 1,
+      "hasValidationMaterial": true,
+      "signaturesDetail": [
+        {
+          "valid": false,
+          "timestamp": false,
+          "coversWholeDocument": false,
+          "signer": null,
+          "detail": "signature verification failed: signature invalid"
+        },
+        {
+          "valid": false,
+          "timestamp": false,
+          "coversWholeDocument": false,
+          "signer": null,
+          "detail": "signature verification failed: signature invalid"
+        },
+        {
+          "valid": false,
+          "timestamp": false,
+          "coversWholeDocument": false,
+          "signer": null,
+          "detail": "signature verification failed: signature invalid"
+        },
+        {
+          "valid": false,
+          "timestamp": false,
+          "coversWholeDocument": false,
+          "signer": null,
+          "detail": "signature verification failed: signature invalid"
+        },
+        {
+          "valid": false,
+          "timestamp": false,
+          "coversWholeDocument": false,
+          "signer": null,
+          "detail": "signature verification failed: signature invalid"
+        },
+        {
+          "valid": true,
+          "timestamp": true,
+          "coversWholeDocument": true,
+          "signer": "CN=BalTstamp QTSA TSU2,O=BalTstamp UAB,L=Vilnius,C=LT",
+          "detail": "valid document timestamp (RFC 3161)"
+        }
+      ]
     },
     {
       "name": "pades-signed-annot-added.pdf",
@@ -150,6 +221,10 @@
       "signatures": 1,
       "allValid": false,
       "documentIntact": false,
+      "padesLevel": "B-B",
+      "modificationKind": "annotation",
+      "timestampCount": 0,
+      "hasValidationMaterial": false,
       "signaturesDetail": [
         {
           "valid": true,
@@ -168,6 +243,10 @@
       "signatures": 2,
       "allValid": false,
       "documentIntact": false,
+      "padesLevel": "B-B",
+      "modificationKind": "none",
+      "timestampCount": 0,
+      "hasValidationMaterial": false,
       "signaturesDetail": [
         {
           "valid": true,
@@ -193,6 +272,10 @@
       "signatures": 1,
       "allValid": false,
       "documentIntact": false,
+      "padesLevel": "B-B",
+      "modificationKind": "pages",
+      "timestampCount": 0,
+      "hasValidationMaterial": false,
       "signaturesDetail": [
         {
           "valid": true,
@@ -208,10 +291,22 @@
       "bytes": 151116,
       "sha256": "8be92f00f5354f6b88f692872c4f40cb4eea21d81b474942ce545dde93aadd05",
       "parsed": true,
-      "signatures": 0,
+      "signatures": 1,
       "allValid": false,
       "documentIntact": false,
-      "signaturesDetail": []
+      "padesLevel": "B-B",
+      "modificationKind": "none",
+      "timestampCount": 0,
+      "hasValidationMaterial": false,
+      "signaturesDetail": [
+        {
+          "valid": false,
+          "timestamp": false,
+          "coversWholeDocument": false,
+          "signer": null,
+          "detail": "ByteRange out of bounds"
+        }
+      ]
     },
     {
       "name": "pdf-signed-original.pdf",
@@ -221,6 +316,10 @@
       "signatures": 1,
       "allValid": true,
       "documentIntact": true,
+      "padesLevel": "B-B",
+      "modificationKind": "none",
+      "timestampCount": 0,
+      "hasValidationMaterial": false,
       "signaturesDetail": [
         {
           "valid": true,
@@ -239,6 +338,10 @@
       "signatures": 1,
       "allValid": false,
       "documentIntact": false,
+      "padesLevel": "B-B",
+      "modificationKind": "none",
+      "timestampCount": 0,
+      "hasValidationMaterial": false,
       "signaturesDetail": [
         {
           "valid": false,

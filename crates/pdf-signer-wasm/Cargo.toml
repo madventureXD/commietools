@@ -9,7 +9,7 @@ publish = false
 crate-type = ["cdylib"]
 
 [dependencies]
-pdf_signer = { git = "https://github.com/StrategicProjects/pdf_signer", rev = "6cc0218100d9ffc038f8dccee3b707e5bd136100" }
+pdf_signer = { path = "../pdf-signer-engine" }
 wasm-bindgen = "0.2"
 serde = { version = "1", features = ["derive"] }
 serde-wasm-bindgen = "0.6"
