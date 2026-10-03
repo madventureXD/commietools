@@ -11,9 +11,10 @@
 - spanische Titel, Kurzbeschreibungen, Bedienoberflächen und Suchbegriffe
 - Browsererkennung für Varianten wie `es-MX`
 
-Der erste Übersetzungsstand wurde mit ausdrücklicher Zustimmung aus den öffentlichen englischen
-UI-Texten maschinell erzeugt und technisch nachbearbeitet. Er ist ein lokaler Teststand und noch
-keine sprachlich freigegebene Veröffentlichung.
+Der erste Übersetzungsstand wurde mit ausdrücklicher Zustimmung am 2026-10-03 über Google Translate
+aus den öffentlichen englischen UI-Texten erzeugt und technisch nachbearbeitet. Es wurden keine
+Nutzerdaten oder Nutzerdateien übertragen. Er ist ein lokaler Teststand und noch keine sprachlich
+freigegebene Veröffentlichung.
 
 ## Technische Prüfung
 

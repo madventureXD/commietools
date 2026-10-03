@@ -29,11 +29,27 @@ Ein öffentlich auswählbares Sprachpaket muss vollständig sein. Es enthält:
 5. Suchbegriffe und mindestens ein lokales Tag je Werkzeug.
 
 Englischer Fallback ist eine technische Ausfallsicherung, keine Freigabestrategie. Eine Sprache
-darf während der Entwicklung unregistriert unvollständig sein. Sie darf erst in den Registry- und
-Sprachschalter gelangen, wenn die Schlüsselprüfung vollständig grün ist. Neue Werkzeuge müssen vor
-dem Zusammenführen alle bereits veröffentlichten Sprachen ergänzen.
+darf während der Entwicklung unregistriert unvollständig sein. Für einen ausdrücklich lokalen
+Abnahmetest darf sie nach vollständiger Schlüsselprüfung vorübergehend in Registry und
+Sprachschalter erscheinen. Dieser Stand wird als **lokales Testpaket** dokumentiert und niemals
+veröffentlicht. Die öffentliche Freigabe erfolgt erst nach sprachlicher und visueller Abnahme. Neue
+Werkzeuge müssen vor dem Zusammenführen alle bereits veröffentlichten Sprachen ergänzen.
 
-## 3. Ablage und Zuständigkeit
+## 3. Übersetzungsquellen und externe Dienste
+
+- Menschliche Übersetzung oder fachlich geprüftes Gegenlesen bleibt die Freigabegrundlage.
+- Maschinelle Übersetzung darf einen lokalen Erstentwurf erzeugen, aber niemals ungeprüft
+  veröffentlicht werden.
+- Vor Nutzung eines externen Übersetzungsdienstes ist die ausdrückliche Zustimmung des
+  Auftraggebers einzuholen. Dabei werden Dienst und übertragener Inhalt genannt.
+- Übertragen werden ausschließlich öffentliche Referenztexte. Nutzerdaten, Nutzerdateien,
+  Zugangsdaten, interne Geheimnisse und nicht öffentliche Inhalte sind ausgeschlossen.
+- Das Übergabeprotokoll nennt Ausgangssprache, Zielsprache, verwendeten Dienst, Datum,
+  Nachbearbeitung und ausstehende sprachliche Prüfung.
+- Fachbegriffe, rechtliche Aussagen, Verneinungen, Sicherheits- und Datenschutzversprechen werden
+  nach maschineller Übersetzung besonders geprüft.
+
+## 4. Ablage und Zuständigkeit
 
 - `packages/i18n/src/common/<locale>.ts`: App-Shell und gemeinsam verwendete Texte;
 - `packages/i18n/src/suites/<locale>.ts`: Namen und Beschreibungen der Suiten;
@@ -45,7 +61,7 @@ dem Zusammenführen alle bereits veröffentlichten Sprachen ergänzen.
 Schlüssel bleiben sprachneutral und stabil. Übersetzungen dürfen weder Anzeigetexte in Komponenten
 noch sprachabhängige Verzweigungen in Werkzeuglogik erzeugen.
 
-## 4. Inhaltliche Regeln
+## 5. Inhaltliche Regeln
 
 - Bedeutung, Einschränkungen und Sicherheitsniveau der Referenz bleiben erhalten.
 - Kurze UI-Aktionen bleiben kurz; Erklärtexte dürfen zugunsten natürlicher Grammatik umgestellt
@@ -60,7 +76,7 @@ noch sprachabhängige Verzweigungen in Werkzeuglogik erzeugen.
   normalisiert eindeutig und enthält mindestens ein mit `#` beginnendes Tag.
 - Übersetzungen dürfen keine zusätzlichen Funktionen oder stärkeren Versprechen behaupten.
 
-## 5. Unicode und Sonderzeichen
+## 6. Unicode und Sonderzeichen
 
 - Alle Sprachdateien sind UTF-8 ohne künstliche Umschrift sichtbarer Texte.
 - Texte werden in Unicode-Normalform NFC abgelegt und geprüft.
@@ -77,7 +93,7 @@ noch sprachabhängige Verzweigungen in Werkzeuglogik erzeugen.
 - Dateioperationen erhalten Unicode-Dateinamen unverändert. Sanitizing darf nur unzulässige
   Dateisystemzeichen behandeln, keine Buchstaben oder Akzente.
 
-## 6. Variablen, Markup und Grammatik
+## 7. Variablen, Markup und Grammatik
 
 - Platzhalter, Zeilenumbrüche und erforderliche Markup-Struktur werden vor und nach der
   Übersetzung automatisch verglichen.
@@ -89,7 +105,7 @@ noch sprachabhängige Verzweigungen in Werkzeuglogik erzeugen.
   ist vor der Übersetzung zu entscheiden, ob Pluralregeln beziehungsweise `Intl` nötig sind.
 - Übersetzungen enthalten kein HTML. Hervorhebung und Verlinkung bleiben Aufgabe der Komponente.
 
-## 7. Suche und Katalog
+## 8. Suche und Katalog
 
 - Titel, Kurzbeschreibung, Beschreibung und Suchbegriffe jeder veröffentlichten Sprache gehen in
   das erzeugte Register ein.
@@ -101,11 +117,13 @@ noch sprachabhängige Verzweigungen in Werkzeuglogik erzeugen.
   abwertende oder nur maschinell erzeugte Wortlisten sind unzulässig.
 - Nach jeder Änderung an Sprachkatalogen wird das Register neu erzeugt und geprüft.
 
-## 8. Prüfmatrix vor Freigabe
+## 9. Prüfmatrix vor Freigabe
 
 ### Automatisch
 
 - Schlüsselmenge gegen die vollständige Referenz prüfen;
+- Browsererkennung für die Basissprache und mindestens eine regionale Kennung prüfen, zum Beispiel
+  `es` und `es-MX`;
 - leere Werte, doppelte Schlüssel und unaufgelöste Schlüssel ablehnen;
 - NFC, Ersatzzeichen `�`, unerwünschte Entities und Escape-Schreibweisen prüfen;
 - Platzhaltergleichheit und maximale Länge von `summary` prüfen;
@@ -129,19 +147,34 @@ noch sprachabhängige Verzweigungen in Werkzeuglogik erzeugen.
 - Eingabe, Suche, Dateiname, Speichern und erneutes Öffnen mit sprachtypischen Zeichen testen;
 - bei RTL zusätzlich Spiegelung, gemischte Schreibrichtungen und technische Token prüfen.
 
-## 9. Übergabeinhalt
+## 10. Übergabeinhalt
 
 Jede fertige Sprache erhält ein Übergabeprotokoll mit:
 
 - Sprachkennung, Variante, Selbstbezeichnung, Richtung und Fallback;
 - Umfang und Liste der geänderten Kataloge;
 - Glossar und bewusst gewählte Regionalismen;
+- Herkunft des Erstentwurfs und gegebenenfalls verwendeter externer Übersetzungsdienst;
 - Ergebnis der Schlüssel-, Unicode-, Such-, Build- und Layoutprüfungen;
 - gemessenem Bundlezuwachs;
 - bekannten Einschränkungen und zuständiger sprachlicher Abnahme;
 - Commit und Veröffentlichungsstatus.
 
-## 10. Abbruchkriterien
+## 11. Statusmodell
+
+Jedes Sprachpaket trägt genau einen nachvollziehbaren Status:
+
+1. **Konzept** – Variante, Ton, Umfang und Prüfplan sind festgelegt.
+2. **Entwurf** – Übersetzung ist in Arbeit und nicht auswählbar.
+3. **Lokales Testpaket** – alle Schlüssel und technischen Prüfungen sind vollständig; nur lokal
+   auswählbar, sprachliche oder visuelle Abnahme steht noch aus.
+4. **Freigabebereit** – sprachlich, fachlich und visuell abgenommen.
+5. **Veröffentlicht** – ausgeliefert und im öffentlichen Sprachschalter sichtbar.
+
+Ein Statuswechsel wird im Konzept oder Fortschrittsprotokoll festgehalten. „Technisch vollständig“
+ist nicht gleichbedeutend mit „sprachlich freigegeben“.
+
+## 12. Abbruchkriterien
 
 Nicht freigeben bei fehlenden Schlüsseln, sichtbarem Fallback, ungeprüfter Maschinenübersetzung,
 kaputten Sonderzeichen, nicht auffindbaren Werkzeugen, abgeschnittenen Hauptaktionen,
