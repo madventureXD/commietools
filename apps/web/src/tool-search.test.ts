@@ -129,7 +129,7 @@ describe('search ranking and completeness', () => {
 
   it('keeps the catalogue order when scores are equal', () => {
     // "Bild" scores the same for several tools, so the catalogue decides their order.
-    expect(germanIds('bild')).toEqual(['qr-code-generator', 'image-metadata', 'image-resize', 'image-watermark', 'images-to-pdf', 'pdf-to-images', 'icon-generator', 'color-tools'])
+    expect(germanIds('bild')).toEqual(['qr-code-generator', 'image-metadata', 'image-resize', 'image-watermark', 'images-to-pdf', 'pdf-to-images', 'icon-generator', 'color-tools', 'pdf-visible-signature'])
   })
 
   it('answers a nonsense query with nothing instead of guessing', () => {

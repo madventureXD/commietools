@@ -19,6 +19,9 @@ const PdfSplit = lazy(() => import('./tools/PdfSplit').then((module) => ({ defau
 const PdfOrganize = lazy(() => import('./tools/PdfOrganize').then((module) => ({ default: module.PdfOrganize })))
 const ImagesToPdf = lazy(() => import('./tools/ImagesToPdf').then((module) => ({ default: module.ImagesToPdf })))
 const PdfToImages = lazy(() => import('./tools/PdfToImages').then((module) => ({ default: module.PdfToImages })))
+const PdfWatermark = lazy(() => import('./tools/PdfPlacementTools').then((module) => ({ default: module.PdfWatermark })))
+const PdfPageNumbers = lazy(() => import('./tools/PdfPlacementTools').then((module) => ({ default: module.PdfPageNumbers })))
+const PdfVisibleSignature = lazy(() => import('./tools/PdfPlacementTools').then((module) => ({ default: module.PdfVisibleSignature })))
 
 type Theme = 'light' | 'dark'
 type Translate = (key: string) => string
@@ -87,7 +90,10 @@ function ToolPage({ tool, t, locale, navigate }: { tool: ToolManifest; t: Transl
                 : tool.id === 'pdf-split' ? <Suspense fallback={<p aria-live="polite">…</p>}><PdfSplit t={t} /></Suspense>
                   : tool.id === 'pdf-organize' ? <Suspense fallback={<p aria-live="polite">…</p>}><PdfOrganize t={t} /></Suspense>
                     : tool.id === 'images-to-pdf' ? <Suspense fallback={<p aria-live="polite">…</p>}><ImagesToPdf t={t} /></Suspense>
-                      : <Suspense fallback={<p aria-live="polite">…</p>}><PdfToImages t={t} /></Suspense>
+                      : tool.id === 'pdf-to-images' ? <Suspense fallback={<p aria-live="polite">…</p>}><PdfToImages t={t} /></Suspense>
+                        : tool.id === 'pdf-watermark' ? <Suspense fallback={<p aria-live="polite">…</p>}><PdfWatermark t={t} /></Suspense>
+                          : tool.id === 'pdf-page-numbers' ? <Suspense fallback={<p aria-live="polite">…</p>}><PdfPageNumbers t={t} /></Suspense>
+                            : <Suspense fallback={<p aria-live="polite">…</p>}><PdfVisibleSignature t={t} /></Suspense>
   const icon = searchEntryById.get(tool.id)?.icon
   return <main className="detail-page"><button className="text-link back" onClick={() => navigate('/')}>← {t('tool.back')}</button><article className="tool-shell"><header className="tool-header"><div>{icon && <span className="card-icon" aria-hidden="true" style={{ maskImage: `url(${icon})`, WebkitMaskImage: `url(${icon})` }} />}<p className="category">{t(`category.${tool.category}`)}</p><h1>{t(tool.titleKey)}</h1><p>{t(tool.descriptionKey)}</p></div><LocalBadge>{t('status.local')}</LocalBadge></header><div className="tool-content">{content}</div></article></main>
 }

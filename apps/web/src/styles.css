@@ -185,6 +185,7 @@ a.button { display: inline-flex; align-items: center; justify-content: center; t
 .pdf-result-list { grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); }
 .pdf-image-results { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: .8rem; }
 .pdf-image-results .pdf-page-card img { height: 220px; }
+.pdf-signature-disclaimer { margin: 0; padding: .8rem 1rem; border-left: 3px solid var(--color-brand); border-radius: var(--radius-sm); background: var(--color-brand-soft); font-weight: 700; line-height: 1.55; }
 
 @media (max-width: 620px) {
   .pdf-file-row { grid-template-columns: 60px minmax(0, 1fr); }

@@ -1602,5 +1602,212 @@ export const toolIndex: readonly ToolSearchEntry[] = [
         ]
       }
     }
+  },
+  {
+    "id": "pdf-watermark",
+    "route": "/tools/pdf-watermark",
+    "icon": "/tools/pdf-watermark.svg",
+    "category": "pdf",
+    "suiteIds": [
+      "pdf"
+    ],
+    "executionMode": "local",
+    "resourceClass": "standard",
+    "worksOffline": true,
+    "input": [
+      "application/pdf"
+    ],
+    "output": [
+      "application/pdf"
+    ],
+    "auxiliary": [],
+    "locales": {
+      "de": {
+        "title": "PDF-Wasserzeichen",
+        "summary": "Fügt Text als einzelnes oder wiederholtes PDF-Wasserzeichen ein.",
+        "description": "Setzt ein einstellbares Text-Wasserzeichen auf ausgewählte PDF-Seiten – lokal und ohne Upload.",
+        "terms": [
+          "PDF Wasserzeichen",
+          "Wasserzeichen PDF",
+          "Copyright PDF",
+          "Text auf PDF",
+          "vertraulich",
+          "Entwurf",
+          "Stempel",
+          "Seiten markieren",
+          "wiederholen",
+          "kacheln",
+          "Deckkraft",
+          "Drehung"
+        ],
+        "tags": [
+          "#pdf",
+          "#wasserzeichen",
+          "#dokument"
+        ]
+      },
+      "en": {
+        "title": "PDF watermark",
+        "summary": "Adds text as a single or repeated PDF watermark.",
+        "description": "Adds an adjustable text watermark to selected PDF pages – locally and without uploads.",
+        "terms": [
+          "PDF watermark",
+          "watermark PDF",
+          "copyright PDF",
+          "text on PDF",
+          "confidential",
+          "draft",
+          "stamp",
+          "mark pages",
+          "repeat",
+          "tile",
+          "opacity",
+          "rotation"
+        ],
+        "tags": [
+          "#pdf",
+          "#watermark",
+          "#document"
+        ]
+      }
+    }
+  },
+  {
+    "id": "pdf-page-numbers",
+    "route": "/tools/pdf-page-numbers",
+    "icon": "/tools/pdf-page-numbers.svg",
+    "category": "pdf",
+    "suiteIds": [
+      "pdf"
+    ],
+    "executionMode": "local",
+    "resourceClass": "standard",
+    "worksOffline": true,
+    "input": [
+      "application/pdf"
+    ],
+    "output": [
+      "application/pdf"
+    ],
+    "auxiliary": [],
+    "locales": {
+      "de": {
+        "title": "PDF-Seitenzahlen",
+        "summary": "Fügt frei formatierbare Seitenzahlen in PDFs ein.",
+        "description": "Nummeriert ausgewählte PDF-Seiten mit Startwert, Format, Präfix und Suffix – vollständig lokal.",
+        "terms": [
+          "PDF Seitenzahlen",
+          "PDF nummerieren",
+          "Seiten nummerieren",
+          "Seitennummer",
+          "Fußzeile",
+          "Kopfzeile",
+          "Startnummer",
+          "Seite von",
+          "Präfix",
+          "Suffix"
+        ],
+        "tags": [
+          "#pdf",
+          "#seitenzahlen",
+          "#nummerieren"
+        ]
+      },
+      "en": {
+        "title": "PDF page numbers",
+        "summary": "Adds freely formatted page numbers to PDFs.",
+        "description": "Numbers selected PDF pages with a start value, format, prefix and suffix – entirely on your device.",
+        "terms": [
+          "PDF page numbers",
+          "number PDF",
+          "number pages",
+          "page number",
+          "footer",
+          "header",
+          "start number",
+          "page of",
+          "prefix",
+          "suffix",
+          "PDF Seitenzahlen"
+        ],
+        "tags": [
+          "#pdf",
+          "#page-numbers",
+          "#number"
+        ]
+      }
+    }
+  },
+  {
+    "id": "pdf-visible-signature",
+    "route": "/tools/pdf-visible-signature",
+    "icon": "/tools/pdf-visible-signature.svg",
+    "category": "pdf",
+    "suiteIds": [
+      "pdf"
+    ],
+    "executionMode": "local",
+    "resourceClass": "standard",
+    "worksOffline": true,
+    "input": [
+      "application/pdf"
+    ],
+    "output": [
+      "application/pdf"
+    ],
+    "auxiliary": [
+      {
+        "role": "signature",
+        "mimeTypes": [
+          "image/png",
+          "image/jpeg"
+        ]
+      }
+    ],
+    "locales": {
+      "de": {
+        "title": "PDF sichtbar unterschreiben",
+        "summary": "Platziert eine sichtbare elektronische Unterschrift in einer PDF.",
+        "description": "Platziert ein Unterschriftenbild sichtbar auf einer PDF-Seite – lokal und klar getrennt von einer Zertifikatssignatur.",
+        "terms": [
+          "PDF unterschreiben",
+          "Unterschrift PDF",
+          "Signatur einfügen",
+          "Unterschriftenbild",
+          "PNG Unterschrift",
+          "sichtbar signieren",
+          "elektronische Unterschrift",
+          "Datum",
+          "platzieren"
+        ],
+        "tags": [
+          "#pdf",
+          "#unterschrift",
+          "#signatur"
+        ]
+      },
+      "en": {
+        "title": "Visibly sign PDF",
+        "summary": "Places a visible electronic signature in a PDF.",
+        "description": "Places a signature image visibly on one PDF page – locally and clearly separate from a certificate signature.",
+        "terms": [
+          "sign PDF",
+          "PDF signature",
+          "add signature",
+          "signature image",
+          "PNG signature",
+          "visible signature",
+          "electronic signature",
+          "date",
+          "place signature",
+          "PDF unterschreiben"
+        ],
+        "tags": [
+          "#pdf",
+          "#signature",
+          "#sign"
+        ]
+      }
+    }
   }
 ]

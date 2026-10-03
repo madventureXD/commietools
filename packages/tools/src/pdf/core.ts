@@ -1,4 +1,4 @@
-import { degrees, EncryptedPDFError, PDFDocument } from 'pdf-lib'
+import { degrees, EncryptedPDFError, PDFDocument, rgb, StandardFonts } from 'pdf-lib'
 
 export type PdfIssueCode = 'encrypted' | 'invalid' | 'empty' | 'range' | 'unsupported'
 
@@ -52,6 +52,53 @@ export interface ImagesToPdfOptions {
   readonly orientation: PdfOrientation
   readonly margin: number
   readonly fit: PdfImageFit
+}
+
+export type PdfPlacementAnchor = 'top-left' | 'top-center' | 'top-right' | 'middle-left' | 'center' | 'middle-right' | 'bottom-left' | 'bottom-center' | 'bottom-right'
+
+export interface PdfPlacementRect {
+  readonly x: number
+  readonly y: number
+  readonly width: number
+  readonly height: number
+}
+
+interface PdfTextStyle {
+  readonly fontSize: number
+  readonly color: string
+  readonly opacity: number
+  readonly rotation: number
+  readonly anchor: PdfPlacementAnchor
+  readonly margin: number
+}
+
+export interface PdfWatermarkOptions extends PdfTextStyle {
+  readonly text: string
+  readonly pages: readonly number[]
+  readonly tiled: boolean
+  readonly spacing: number
+}
+
+export type PdfNumberFormat = 'number' | 'page-total' | 'dash'
+
+export interface PdfPageNumberOptions extends Omit<PdfTextStyle, 'rotation'> {
+  readonly pages: readonly number[]
+  readonly start: number
+  readonly prefix: string
+  readonly suffix: string
+  readonly format: PdfNumberFormat
+}
+
+export interface PdfSignatureOptions {
+  readonly pageIndex: number
+  readonly image: Uint8Array
+  readonly mimeType: 'image/png' | 'image/jpeg'
+  readonly width: number
+  readonly opacity: number
+  readonly rotation: number
+  readonly anchor: PdfPlacementAnchor
+  readonly margin: number
+  readonly dateText?: string
 }
 
 function structuralFlags(bytes: Uint8Array) {
@@ -150,6 +197,123 @@ export async function splitPdf(bytes: Uint8Array, groups: readonly (readonly num
 
 function normalizeRotation(value: number): number {
   return ((Math.round(value / 90) * 90) % 360 + 360) % 360
+}
+
+function clamp(value: number, min: number, max: number) {
+  return Math.min(max, Math.max(min, Number.isFinite(value) ? value : min))
+}
+
+function parseHexColor(value: string) {
+  const match = /^#?([0-9a-f]{6})$/iu.exec(value.trim())
+  if (!match?.[1]) throw new PdfToolError('unsupported', 'Colour must be a six-digit hexadecimal value')
+  const numeric = Number.parseInt(match[1], 16)
+  return rgb(((numeric >> 16) & 255) / 255, ((numeric >> 8) & 255) / 255, (numeric & 255) / 255)
+}
+
+function validatePages(pages: readonly number[], pageCount: number) {
+  if (!pages.length || pages.some((page) => page < 0 || page >= pageCount)) {
+    throw new PdfToolError('range', 'Invalid page selection')
+  }
+  return [...new Set(pages)]
+}
+
+export function resolvePdfPlacement(pageWidth: number, pageHeight: number, elementWidth: number, elementHeight: number, anchor: PdfPlacementAnchor, margin: number): PdfPlacementRect {
+  const safeMargin = clamp(margin, 0, Math.min(pageWidth, pageHeight) / 2)
+  const width = clamp(elementWidth, 1, Math.max(1, pageWidth - safeMargin * 2))
+  const height = clamp(elementHeight, 1, Math.max(1, pageHeight - safeMargin * 2))
+  const horizontal = anchor.endsWith('left') ? safeMargin : anchor.endsWith('right') ? pageWidth - safeMargin - width : (pageWidth - width) / 2
+  const vertical = anchor.startsWith('top') ? pageHeight - safeMargin - height : anchor.startsWith('bottom') ? safeMargin : (pageHeight - height) / 2
+  return { x: horizontal, y: vertical, width, height }
+}
+
+function pageNumberText(index: number, total: number, options: PdfPageNumberOptions) {
+  const number = options.start + index
+  const core = options.format === 'page-total' ? `${number} / ${options.start + total - 1}` : options.format === 'dash' ? `– ${number} –` : String(number)
+  return `${options.prefix}${core}${options.suffix}`
+}
+
+export async function addPdfWatermark(bytes: Uint8Array, options: PdfWatermarkOptions): Promise<Uint8Array> {
+  const document = await loadPdf(bytes)
+  const pages = validatePages(options.pages, document.getPageCount())
+  const text = options.text.trim()
+  if (!text) throw new PdfToolError('empty', 'Watermark text is empty')
+  const font = await document.embedFont(StandardFonts.Helvetica)
+  const fontSize = clamp(options.fontSize, 6, 144)
+  let width: number
+  try {
+    width = font.widthOfTextAtSize(text, fontSize)
+  } catch {
+    throw new PdfToolError('unsupported', 'The selected text contains characters that are not supported by the standard PDF font')
+  }
+  const height = font.heightAtSize(fontSize)
+  const color = parseHexColor(options.color)
+  for (const pageIndex of pages) {
+    const page = document.getPage(pageIndex)
+    const { width: pageWidth, height: pageHeight } = page.getSize()
+    const draw = (x: number, y: number) => page.drawText(text, { x, y, size: fontSize, font, color, opacity: clamp(options.opacity, 0.05, 1), rotate: degrees(clamp(options.rotation, -180, 180)) })
+    if (options.tiled) {
+      const spacing = clamp(options.spacing, 10, 400)
+      for (let y = spacing / 2; y < pageHeight; y += height + spacing) {
+        for (let x = -width / 3; x < pageWidth; x += width + spacing) draw(x, y)
+      }
+    } else {
+      const placement = resolvePdfPlacement(pageWidth, pageHeight, width, height, options.anchor, options.margin)
+      draw(placement.x, placement.y)
+    }
+  }
+  return document.save()
+}
+
+export async function addPdfPageNumbers(bytes: Uint8Array, options: PdfPageNumberOptions): Promise<Uint8Array> {
+  const document = await loadPdf(bytes)
+  const pages = validatePages(options.pages, document.getPageCount())
+  const font = await document.embedFont(StandardFonts.Helvetica)
+  const fontSize = clamp(options.fontSize, 6, 72)
+  const color = parseHexColor(options.color)
+  pages.forEach((pageIndex, logicalIndex) => {
+    const page = document.getPage(pageIndex)
+    const text = pageNumberText(logicalIndex, pages.length, options)
+    let width: number
+    try {
+      width = font.widthOfTextAtSize(text, fontSize)
+    } catch {
+      throw new PdfToolError('unsupported', 'The selected prefix or suffix is not supported by the standard PDF font')
+    }
+    const height = font.heightAtSize(fontSize)
+    const size = page.getSize()
+    const placement = resolvePdfPlacement(size.width, size.height, width, height, options.anchor, options.margin)
+    page.drawText(text, { x: placement.x, y: placement.y, size: fontSize, font, color, opacity: clamp(options.opacity, 0.05, 1) })
+  })
+  return document.save()
+}
+
+export async function addVisiblePdfSignature(bytes: Uint8Array, options: PdfSignatureOptions): Promise<Uint8Array> {
+  const document = await loadPdf(bytes)
+  if (options.pageIndex < 0 || options.pageIndex >= document.getPageCount()) throw new PdfToolError('range', 'Signature page is outside the document')
+  let image
+  try {
+    image = options.mimeType === 'image/jpeg' ? await document.embedJpg(options.image) : await document.embedPng(options.image)
+  } catch {
+    throw new PdfToolError('unsupported', 'Signature image is damaged or unsupported')
+  }
+  const page = document.getPage(options.pageIndex)
+  const pageSize = page.getSize()
+  const width = clamp(options.width, 24, pageSize.width)
+  const height = width * image.height / image.width
+  const placement = resolvePdfPlacement(pageSize.width, pageSize.height, width, height, options.anchor, options.margin)
+  page.drawImage(image, { ...placement, opacity: clamp(options.opacity, 0.05, 1), rotate: degrees(clamp(options.rotation, -180, 180)) })
+  if (options.dateText?.trim()) {
+    const font = await document.embedFont(StandardFonts.Helvetica)
+    const text = options.dateText.trim()
+    const size = 9
+    try {
+      font.widthOfTextAtSize(text, size)
+    } catch {
+      throw new PdfToolError('unsupported', 'The date label is not supported by the standard PDF font')
+    }
+    page.drawText(text, { x: placement.x, y: Math.max(2, placement.y - 12), size, font, color: rgb(0.2, 0.2, 0.2) })
+  }
+  return document.save()
 }
 
 export async function organizePdf(bytes: Uint8Array, plan: readonly PdfPagePlan[]): Promise<Uint8Array> {

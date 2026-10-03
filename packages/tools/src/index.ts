@@ -17,6 +17,9 @@ export {
 } from './catalog/search'
 export { toolMessages } from './locales'
 export {
+  addPdfPageNumbers,
+  addPdfWatermark,
+  addVisiblePdfSignature,
   inspectPdf,
   imagesToPdf,
   mergePdfs,
@@ -25,6 +28,13 @@ export {
   parseSplitGroups,
   PdfToolError,
   splitPdf,
+  resolvePdfPlacement,
+  type PdfNumberFormat,
+  type PdfPageNumberOptions,
+  type PdfPlacementAnchor,
+  type PdfPlacementRect,
+  type PdfSignatureOptions,
+  type PdfWatermarkOptions,
   type PdfInput,
   type PdfImageFit,
   type PdfImageInput,

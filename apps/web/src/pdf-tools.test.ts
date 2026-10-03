@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import { PDFDocument, degrees } from 'pdf-lib'
-import { imagesToPdf, inspectPdf, mergePdfs, organizePdf, parsePageSelection, parseSplitGroups, PdfToolError, splitPdf } from '@commietools/tools'
+import { addPdfPageNumbers, addPdfWatermark, addVisiblePdfSignature, imagesToPdf, inspectPdf, mergePdfs, organizePdf, parsePageSelection, parseSplitGroups, PdfToolError, resolvePdfPlacement, splitPdf } from '@commietools/tools'
 
 async function fixture(sizes: readonly [number, number][]) {
   const document = await PDFDocument.create()
@@ -66,6 +66,37 @@ describe('M1 PDF operations', () => {
     const result = await inspectPdf(output)
     expect(result.pages.map(({ width }) => width)).toEqual([300, 100, 300])
     expect(result.pages.map(({ rotation }) => rotation)).toEqual([90, 270, 0])
+  })
+})
+
+describe('M3 PDF placement operations', () => {
+  it('places elements at all shared anchor extremes', () => {
+    expect(resolvePdfPlacement(600, 800, 100, 40, 'top-left', 20)).toEqual({ x: 20, y: 740, width: 100, height: 40 })
+    expect(resolvePdfPlacement(600, 800, 100, 40, 'center', 20)).toEqual({ x: 250, y: 380, width: 100, height: 40 })
+    expect(resolvePdfPlacement(600, 800, 100, 40, 'bottom-right', 20)).toEqual({ x: 480, y: 20, width: 100, height: 40 })
+  })
+
+  it('adds a watermark only to selected pages', async () => {
+    const source = await fixture([[300, 400], [300, 400]])
+    const output = await addPdfWatermark(source, { text: 'DRAFT', pages: [1], anchor: 'center', fontSize: 36, margin: 20, opacity: 0.25, rotation: -30, color: '#c91f2c', tiled: false, spacing: 80 })
+    expect((await inspectPdf(output)).pageCount).toBe(2)
+    expect(output.byteLength).toBeGreaterThan(source.byteLength)
+  })
+
+  it('numbers a selected logical range independently of physical page numbers', async () => {
+    const source = await fixture([[300, 400], [300, 400], [300, 400]])
+    const output = await addPdfPageNumbers(source, { pages: [1, 2], anchor: 'bottom-center', fontSize: 11, margin: 24, opacity: 1, color: '#17181b', start: 5, prefix: 'Page ', suffix: '', format: 'page-total' })
+    expect((await inspectPdf(output)).pageCount).toBe(3)
+    expect(output.byteLength).toBeGreaterThan(source.byteLength)
+  })
+
+  it('embeds a visible signature image without changing the page count', async () => {
+    const source = await fixture([[300, 400]])
+    const base64 = 'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M/wHwAF/gL+X2NDWQAAAABJRU5ErkJggg=='
+    const image = Uint8Array.from(atob(base64), (character) => character.charCodeAt(0))
+    const output = await addVisiblePdfSignature(source, { pageIndex: 0, image, mimeType: 'image/png', width: 120, opacity: 1, rotation: 0, anchor: 'bottom-right', margin: 20, dateText: '2026-10-03' })
+    expect((await inspectPdf(output)).pageCount).toBe(1)
+    expect(output.byteLength).toBeGreaterThan(source.byteLength)
   })
 })
 

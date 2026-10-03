@@ -124,6 +124,31 @@ export const toolManifests: readonly ToolManifest[] = [
     summaryKey: 'tool.pdfToImages.summary', termsKey: 'tool.pdfToImages.terms',
     executionMode: 'local', resourceClass: 'heavy', worksOffline: true,
     files: { input: ['application/pdf'], output: ['image/png', 'image/jpeg'] }
+  },
+  {
+    id: 'pdf-watermark', route: '/tools/pdf-watermark', category: 'pdf',
+    titleKey: 'tool.pdfWatermark.title', descriptionKey: 'tool.pdfWatermark.description',
+    summaryKey: 'tool.pdfWatermark.summary', termsKey: 'tool.pdfWatermark.terms',
+    executionMode: 'local', resourceClass: 'standard', worksOffline: true,
+    files: { input: ['application/pdf'], output: ['application/pdf'] }
+  },
+  {
+    id: 'pdf-page-numbers', route: '/tools/pdf-page-numbers', category: 'pdf',
+    titleKey: 'tool.pdfPageNumbers.title', descriptionKey: 'tool.pdfPageNumbers.description',
+    summaryKey: 'tool.pdfPageNumbers.summary', termsKey: 'tool.pdfPageNumbers.terms',
+    executionMode: 'local', resourceClass: 'standard', worksOffline: true,
+    files: { input: ['application/pdf'], output: ['application/pdf'] }
+  },
+  {
+    id: 'pdf-visible-signature', route: '/tools/pdf-visible-signature', category: 'pdf',
+    titleKey: 'tool.pdfSignature.title', descriptionKey: 'tool.pdfSignature.description',
+    summaryKey: 'tool.pdfSignature.summary', termsKey: 'tool.pdfSignature.terms',
+    executionMode: 'local', resourceClass: 'standard', worksOffline: true,
+    files: {
+      input: ['application/pdf'],
+      auxiliary: [{ role: 'signature', mimeTypes: ['image/png', 'image/jpeg'] }],
+      output: ['application/pdf']
+    }
   }
 ]
 
@@ -132,5 +157,5 @@ export const suiteManifests: readonly SuiteManifest[] = [
   { id: 'developer', route: '/suites/developer', titleKey: 'suite.developer.title', descriptionKey: 'suite.developer.description', toolIds: ['json-formatter'] },
   { id: 'generators', route: '/suites/generators', titleKey: 'suite.generators.title', descriptionKey: 'suite.generators.description', toolIds: ['qr-code-generator'] },
   { id: 'image', route: '/suites/image', titleKey: 'suite.image.title', descriptionKey: 'suite.image.description', toolIds: ['image-metadata', 'image-resize', 'icon-generator', 'image-watermark', 'color-tools'] },
-  { id: 'pdf', route: '/suites/pdf', titleKey: 'suite.pdf.title', descriptionKey: 'suite.pdf.description', toolIds: ['pdf-merge', 'pdf-split', 'pdf-organize', 'images-to-pdf', 'pdf-to-images'] }
+  { id: 'pdf', route: '/suites/pdf', titleKey: 'suite.pdf.title', descriptionKey: 'suite.pdf.description', toolIds: ['pdf-merge', 'pdf-split', 'pdf-organize', 'images-to-pdf', 'pdf-to-images', 'pdf-watermark', 'pdf-page-numbers', 'pdf-visible-signature'] }
 ]

@@ -1,7 +1,7 @@
 # Aktueller Projektstand
 
 **Stand:** 2026-10-03  
-**Letzter geprüfter Meilenstein:** Bild-Suite „Farbwerkzeuge“ (2026-10-03), davor „Wasserzeichen“, davor „Icon-Generator“
+**Letzter geprüfter Meilenstein:** PDF-Suite M3 Beta (2026-10-03), davor Bild-Suite „Farbwerkzeuge“
 
 ## Umgesetzt
 
@@ -33,6 +33,10 @@
 - PDF-Suite M1 mit Zusammenführen, Teilen/Extrahieren sowie Sortieren, Drehen, Duplizieren und Löschen von Seiten
 - Bilder zu PDF: JPEG/PNG-Reihenfolge, A4/Letter/Bildgröße, Ausrichtung, Rand und Einpassen/Beschneiden
 - PDF zu Bildern: freie Seitenauswahl, PNG/JPEG, 72–300 DPI, JPEG-Qualität, Hintergrundfarbe und sequenzielle Ausgabe
+- gemeinsame PDF-Platzierungsengine mit neun Ankerpositionen für unterschiedliche Seitengrößen
+- PDF-Wasserzeichen: Text, Seitenauswahl, Einzel-/Kachelmodus, Position, Farbe, Größe, Winkel, Deckkraft, Rand und Abstand
+- PDF-Seitenzahlen: Seitenauswahl, unabhängiger Startwert, Format, Präfix/Suffix, Position, Größe, Farbe, Deckkraft und Rand
+- PDF sichtbar unterschreiben: PNG/JPEG-Import, Seite, Position, Breite, Deckkraft, Drehung und optionale Datumszeile; klar von Zertifikatssignaturen abgegrenzt
 
 ## Derzeitige Tools
 
@@ -52,6 +56,9 @@
 | PDF-Seiten organisieren | `pdf-organize` | PDF | lokal | PDF hinein und heraus |
 | Bilder zu PDF | `images-to-pdf` | PDF | lokal | JPEG/PNG hinein, PDF heraus |
 | PDF zu Bildern | `pdf-to-images` | PDF | lokal | PDF hinein, PNG/JPEG heraus |
+| PDF-Wasserzeichen | `pdf-watermark` | PDF | lokal | PDF hinein und heraus |
+| PDF-Seitenzahlen | `pdf-page-numbers` | PDF | lokal | PDF hinein und heraus |
+| PDF sichtbar unterschreiben | `pdf-visible-signature` | PDF | lokal | PDF sowie PNG/JPEG-Unterschrift hinein, PDF heraus |
 
 ## Derzeitige Suiten
 
@@ -59,7 +66,7 @@
 - Entwicklung
 - Generatoren
 - Bilder (Bild-Metadaten, Bild skalieren, Icon-Generator, Wasserzeichen, Farbwerkzeuge)
-- PDF (Zusammenführen, Teilen, Seiten organisieren, Bilder zu PDF, PDF zu Bildern)
+- PDF (Zusammenführen, Teilen, Seiten organisieren, Bilder zu PDF, PDF zu Bildern, Wasserzeichen, Seitenzahlen, sichtbar unterschreiben)
 
 ## Qualität und Compliance
 
@@ -68,15 +75,15 @@
 - erfasste externe Pakete: 496
 - vollständige Lizenztexte: 13
 - bewahrte originale Paketdokumente: 170
-- letzter bekannter Teststand: 133 Tests bestanden
-- Werkzeugregister: 14 Werkzeuge, 2 Sprachen, 14 Symbole, **1023** Suchbegriffe und Schlagwörter, 54 deklarierte Dateitypen (`npm run catalog:check`)
-- letzter bekannter Produktions-Build: bestanden; Hauptbundle 525,83 kB (155,73 kB komprimiert, **Warnung über 500 kB**), Stylesheet 23,19 kB (4,92 kB komprimiert), PDF-Engines in getrennten nachgeladenen Chunks, Vorab-Cache mit 28 Einträgen
+- letzter bekannter Teststand: 137 Tests bestanden
+- Werkzeugregister: 17 Werkzeuge, 2 Sprachen, 17 Symbole, **1105** Suchbegriffe und Schlagwörter, 62 deklarierte Dateitypen (`npm run catalog:check`)
+- letzter bekannter Produktions-Build: bestanden; Hauptbundle 537,77 kB (158,47 kB komprimiert, **Warnung über 500 kB**), Stylesheet 23,39 kB (4,96 kB komprimiert), PDF-Engines und M3-Oberfläche in getrennten nachgeladenen Chunks, Vorab-Cache mit 32 Einträgen
 
 Zahlen sind Momentaufnahmen. Nach Abhängigkeits-, Test- oder Tooländerungen müssen sie anhand der tatsächlichen Ausgabe aktualisiert werden.
 
 ## Noch nicht umgesetzt
 
-- PDF-Suite M3 bis M7 (Platzierung, Formulare/Kommentare, Schutz/Kompression, OCR und digitale Signaturen)
+- PDF-Suite M3-Freigabegate sowie M4 bis M7 (Formulare/Kommentare, Schutz/Kompression, OCR und digitale Signaturen)
 - Backend, Konten und Synchronisierung
 - Desktop- und Mobile-Shells
 - sichtbarer Source-Link in der Weboberfläche
