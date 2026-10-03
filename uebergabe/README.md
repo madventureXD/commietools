@@ -9,10 +9,13 @@ Der Ordnername `uebergabe` verwendet bewusst nur ASCII-Zeichen, damit Skripte, G
 1. [`00-einstieg/projektueberblick.md`](00-einstieg/projektueberblick.md) lesen.
 2. [`00-einstieg/arbeitsregeln.md`](00-einstieg/arbeitsregeln.md) beachten.
 3. [`01-stand/aktueller-stand.md`](01-stand/aktueller-stand.md) und [`01-stand/offene-punkte.md`](01-stand/offene-punkte.md) prüfen.
-4. Die **jüngste Übergabe** unter [`05-uebergaben/`](05-uebergaben/) lesen (Dateiname `YYYY-MM-DD-…`, neuestes Datum zuerst): dort stehen die zuletzt geänderten Bereiche, die dort gelaufenen Prüfungen und der empfohlene nächste Schritt.
-5. Betroffene Originaldokumente und den aktuellen Code lesen.
-6. Vor einer größeren oder schwer umkehrbaren Entscheidung die Entscheidungsübersicht prüfen und bei Bedarf einen ADR anlegen.
-7. Nach der Arbeit Status, offene Punkte und eine Übergabe aktualisieren.
+4. **`DRINGEND-*`-Dateien in diesem Ordner zuerst lesen.** Sie enthalten Befunde, die keinen
+   Aufschub dulden, mit Messwerten und Lösungsweg. Steht dort etwas, hat es Vorrang vor der
+   regulären Arbeit; die Punkte tauchen zusätzlich in `01-stand/offene-punkte.md` auf.
+5. Die **jüngste Übergabe** unter [`05-uebergaben/`](05-uebergaben/) lesen (Dateiname `YYYY-MM-DD-…`, neuestes Datum zuerst): dort stehen die zuletzt geänderten Bereiche, die dort gelaufenen Prüfungen und der empfohlene nächste Schritt.
+6. Betroffene Originaldokumente und den aktuellen Code lesen.
+7. Vor einer größeren oder schwer umkehrbaren Entscheidung die Entscheidungsübersicht prüfen und bei Bedarf einen ADR anlegen.
+8. Nach der Arbeit Status, offene Punkte und eine Übergabe aktualisieren.
 
 ## Ablage
 
@@ -25,7 +28,8 @@ uebergabe/
 ├── 04-entscheidungen/ Dauerhafte Architekturentscheidungen (ADR)
 ├── 05-uebergaben/     Sitzungsbezogene Übergabeprotokolle
 ├── 06-protokolle/     Chronologische Fortschritts- und Prüfprotokolle
-└── vorlagen/          Einheitliche Vorlagen
+├── vorlagen/          Einheitliche Vorlagen
+└── DRINGEND-*.md      Befunde ohne Aufschub, mit Messwerten und Lösungsweg
 ```
 
 ## Dokumentstatus
