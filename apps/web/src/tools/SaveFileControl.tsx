@@ -89,14 +89,29 @@ export function SaveFileControl(props: SaveFileControlProps) {
     const finalName = normaliseFileName(fileName, suggestedName)
     setFileName(finalName)
     try {
-      const data = await blobFrom(props)
-      if (!data) throw new Error('No file data')
+      let handle: WritableFileHandle | null = null
       if (picker) {
         const extension = expectedExtension(finalName)
-        const handle = await picker.call(window, {
-          suggestedName: finalName,
-          types: extension ? [{ description: extension.slice(1).toUpperCase(), accept: { [mimeType]: [extension] } }] : undefined
-        })
+        try {
+          // The picker must be the first awaited operation so the browser still sees
+          // the direct click/tap that grants transient user activation.
+          handle = await picker.call(window, {
+            suggestedName: finalName,
+            types: extension ? [{ description: extension.slice(1).toUpperCase(), accept: { [mimeType]: [extension] } }] : undefined
+          })
+        } catch (error) {
+          if (error instanceof DOMException && error.name === 'AbortError') {
+            setStatus('save.cancelled')
+            return
+          }
+          // Some mobile browsers expose the API but reject the picker. Their safe
+          // fallback remains the ordinary browser download.
+          handle = null
+        }
+      }
+      const data = await blobFrom(props)
+      if (!data) throw new Error('No file data')
+      if (handle) {
         const writable = await handle.createWritable()
         await writable.write(data)
         await writable.close()

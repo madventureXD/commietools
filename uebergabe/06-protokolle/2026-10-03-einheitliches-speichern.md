@@ -41,3 +41,13 @@ Sammelaktion per Ordnerauswahl und/oder ZIP bleibt nach Größen- und Lizenzprü
 
 - manueller Browser-Matrix-Test des nativen Pickers und des Download-Fallbacks
 - Entscheidung über Ordnerauswahl und/oder ZIP für **Alle speichern …** bei Mehrfachausgaben
+
+## Mobile Nachkorrektur
+
+Ein Praxistest auf Android zeigte, dass der Speicherdialog zunächst mit einer allgemeinen
+Fehlermeldung abbrach. Vor `showSaveFilePicker()` war der Ergebnis-Blob asynchron aufgelöst worden;
+dadurch konnte die für den Picker erforderliche direkte Nutzeraktivierung verloren gehen. Der
+Picker wird nun als erste asynchrone Operation unmittelbar aus dem Tippen geöffnet. Mobile Browser,
+die die Methode zwar anbieten, den Dialog aber dennoch ablehnen, wechseln kontrolliert zum
+klassischen Download-Fallback. Ein bewusst abgebrochener Dialog bleibt weiterhin ein Abbruch und
+löst keinen Download aus.
