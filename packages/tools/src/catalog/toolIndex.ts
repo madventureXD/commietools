@@ -787,5 +787,35 @@ export const toolIndex: readonly ToolCatalogEntry[] = [
     "input": [],
     "output": [],
     "auxiliary": []
+  },
+  {
+    "id": "concrete",
+    "route": "/tools/concrete",
+    "icon": "/tools/concrete.svg",
+    "category": "craft",
+    "suiteIds": [
+      "craft"
+    ],
+    "executionMode": "local",
+    "resourceClass": "standard",
+    "worksOffline": true,
+    "input": [],
+    "output": [],
+    "auxiliary": []
+  },
+  {
+    "id": "roof",
+    "route": "/tools/roof",
+    "icon": "/tools/roof.svg",
+    "category": "craft",
+    "suiteIds": [
+      "craft"
+    ],
+    "executionMode": "local",
+    "resourceClass": "standard",
+    "worksOffline": true,
+    "input": [],
+    "output": [],
+    "auxiliary": []
   }
 ]

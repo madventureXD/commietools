@@ -1329,5 +1329,69 @@ export const searchLocale: Readonly<Record<string, ToolLocaleEntry>> = {
       "#rechnen",
       "#geometrie"
     ]
+  },
+  "concrete": {
+    "title": "Beton, Mörtel und Estrich",
+    "summary": "Zement, Wasser, Zuschlag und Sackzahl für Beton, Mörtel und Estrich.",
+    "description": "Materialbedarf für Beton, Mörtel und Estrich: Zement, Wasser, Zuschlag und Sackzahl aus Volumen, Mischung und Verschnitt — mit vollständiger Massenbilanz. Rechnet vollständig im Browser.",
+    "terms": [
+      "Beton",
+      "Mörtel",
+      "Estrich",
+      "Zement",
+      "Sand",
+      "Kies",
+      "Zuschlag",
+      "Wasser",
+      "Mischungsverhältnis",
+      "Zementgehalt",
+      "Wasserzementwert",
+      "Sack",
+      "Fundament",
+      "Bodenplatte",
+      "Magerbeton",
+      "Baustoff",
+      "Materialbedarf",
+      "Baustelle",
+      "Handwerk"
+    ],
+    "tags": [
+      "#handwerk",
+      "#baustoffe"
+    ]
+  },
+  "roof": {
+    "title": "Dach",
+    "summary": "Dachfläche, Firsthöhe, Sparren und Eindeckung aus Neigung und Grundriss.",
+    "description": "Dachfläche, Firsthöhe, Sparrenlänge und Materialbedarf für Pult-, Sattel- und Walmdach. Die Neigung wird in Grad, Prozent oder als Verhältnis eingegeben. Rechnet vollständig im Browser.",
+    "terms": [
+      "Dach",
+      "Dachfläche",
+      "Dachneigung",
+      "Neigung",
+      "Neigungsfaktor",
+      "Dachwinkel",
+      "Grad",
+      "Prozent",
+      "Pultdach",
+      "Satteldach",
+      "Walmdach",
+      "Sparren",
+      "Sparrenlänge",
+      "First",
+      "Firsthöhe",
+      "Traufe",
+      "Überstand",
+      "Dachziegel",
+      "Eindeckung",
+      "Unterspannbahn",
+      "Dachdecker",
+      "Zimmerer",
+      "Handwerk"
+    ],
+    "tags": [
+      "#handwerk",
+      "#dach"
+    ]
   }
 }

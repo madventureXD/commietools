@@ -1228,5 +1228,68 @@ export const searchLocale: Readonly<Record<string, ToolLocaleEntry>> = {
       "#calcular",
       "#matematicas"
     ]
+  },
+  "concrete": {
+    "title": "Hormigón, mortero y solera",
+    "summary": "Cemento, agua, árido y sacos para hormigón, mortero y solera.",
+    "description": "Cantidad de material para hormigón, mortero y solera: cemento, agua, árido y número de sacos a partir del volumen, la mezcla y la merma, con balance de masas completo. Calcula por completo en el navegador.",
+    "terms": [
+      "hormigón",
+      "mortero",
+      "solera",
+      "cemento",
+      "arena",
+      "grava",
+      "árido",
+      "agua",
+      "dosificación",
+      "contenido de cemento",
+      "relación agua cemento",
+      "saco",
+      "cimiento",
+      "losa",
+      "material de construcción",
+      "cantidad",
+      "obra",
+      "oficio"
+    ],
+    "tags": [
+      "#oficios",
+      "#materiales"
+    ]
+  },
+  "roof": {
+    "title": "Tejado",
+    "summary": "Superficie, altura de cumbrera, cabios y cobertura según pendiente y planta.",
+    "description": "Superficie de tejado, altura de cumbrera, longitud de cabios y material para tejado a un agua, a dos aguas y a cuatro aguas. La pendiente se introduce en grados, por ciento o como proporción. Calcula por completo en el navegador.",
+    "terms": [
+      "tejado",
+      "cubierta",
+      "superficie de tejado",
+      "pendiente",
+      "inclinación",
+      "factor de pendiente",
+      "ángulo",
+      "grados",
+      "por ciento",
+      "tejado a un agua",
+      "tejado a dos aguas",
+      "tejado a cuatro aguas",
+      "cabio",
+      "cumbrera",
+      "altura de cumbrera",
+      "alero",
+      "alero voladizo",
+      "teja",
+      "cobertura",
+      "manta",
+      "techador",
+      "carpintero",
+      "oficio"
+    ],
+    "tags": [
+      "#oficios",
+      "#tejado"
+    ]
   }
 }

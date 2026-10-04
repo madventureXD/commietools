@@ -299,6 +299,18 @@ export const toolManifests: readonly ToolManifest[] = [
     titleKey: 'tool.geometry.title', descriptionKey: 'tool.geometry.description',
     summaryKey: 'tool.geometry.summary', termsKey: 'tool.geometry.terms',
     executionMode: 'local', resourceClass: 'standard', worksOffline: true
+  },
+  {
+    id: 'concrete', route: '/tools/concrete', category: 'craft',
+    titleKey: 'tool.concrete.title', descriptionKey: 'tool.concrete.description',
+    summaryKey: 'tool.concrete.summary', termsKey: 'tool.concrete.terms',
+    executionMode: 'local', resourceClass: 'standard', worksOffline: true
+  },
+  {
+    id: 'roof', route: '/tools/roof', category: 'craft',
+    titleKey: 'tool.roof.title', descriptionKey: 'tool.roof.description',
+    summaryKey: 'tool.roof.summary', termsKey: 'tool.roof.terms',
+    executionMode: 'local', resourceClass: 'standard', worksOffline: true
   }
 ]
 
@@ -308,5 +320,6 @@ export const suiteManifests: readonly SuiteManifest[] = [
   { id: 'generators', route: '/suites/generators', titleKey: 'suite.generators.title', descriptionKey: 'suite.generators.description', toolIds: ['qr-code-generator'] },
   { id: 'image', route: '/suites/image', titleKey: 'suite.image.title', descriptionKey: 'suite.image.description', toolIds: ['image-metadata', 'image-resize', 'icon-generator', 'image-watermark', 'color-tools'] },
   { id: 'pdf', route: '/suites/pdf', titleKey: 'suite.pdf.title', descriptionKey: 'suite.pdf.description', toolIds: ['pdf-viewer', 'pdf-text-ocr', 'pdf-signature-verify', 'pdf-certificate-sign', 'pdf-a-preflight', 'pdf-redact', 'pdf-metadata', 'pdf-crop', 'pdf-repair', 'pdf-attachments', 'pdf-compare', 'pdf-merge', 'pdf-split', 'pdf-organize', 'images-to-pdf', 'pdf-to-images', 'pdf-watermark', 'pdf-page-numbers', 'pdf-visible-signature', 'pdf-form-fill', 'pdf-annotate', 'pdf-security', 'pdf-compress'] },
-  { id: 'calculator', route: '/suites/calculator', titleKey: 'suite.calculator.title', descriptionKey: 'suite.calculator.description', toolIds: ['calculator', 'convert', 'commercial', 'datetime', 'plotter', 'statistics', 'equations', 'geometry', 'aufmass'] }
+  { id: 'calculator', route: '/suites/calculator', titleKey: 'suite.calculator.title', descriptionKey: 'suite.calculator.description', toolIds: ['calculator', 'convert', 'commercial', 'datetime', 'plotter', 'statistics', 'equations', 'geometry', 'aufmass'] },
+  { id: 'craft', route: '/suites/craft', titleKey: 'suite.craft.title', descriptionKey: 'suite.craft.description', toolIds: ['concrete', 'roof'] }
 ]

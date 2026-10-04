@@ -30,6 +30,9 @@ import { equationsMessages } from './calculator/equations/locales'
 import { statisticsMessages } from './calculator/statistics/locales'
 import { plotterMessages } from './calculator/plotter/locales'
 import { aufmassMessages } from './calculator/aufmass/locales'
+import { craftCommonMessages } from './craft/common/locales'
+import { concreteMessages } from './craft/concrete/locales'
+import { roofMessages } from './craft/roof/locales'
 
 type MessageCatalog = Readonly<Record<string, string>>
 type PartialLocalizedMessages = Readonly<Record<string, MessageCatalog>>
@@ -76,5 +79,8 @@ export const toolMessages = mergeToolCatalogs([
   equationsMessages,
   statisticsMessages,
   plotterMessages,
-  aufmassMessages
+  aufmassMessages,
+  craftCommonMessages,
+  concreteMessages,
+  roofMessages
 ])

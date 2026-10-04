@@ -11,7 +11,7 @@ export const commonEs = {
   'catalog.title': 'Herramientas', 'catalog.intro': 'Herramientas claras, precisas y respetuosas con tus datos.', 'catalog.open': 'Abrir herramienta',
   'catalog.search': 'Herramientas de búsqueda', 'catalog.clear': 'Borrar búsqueda', 'catalog.results': 'herramientas encontradas', 'catalog.foundVia': 'encontrado a través de', 'catalog.noResults': 'Ninguna herramienta coincide con esta búsqueda. Pruebe con otra palabra o extensión de archivo como webp.',
   'catalog.searchHint': 'Busca términos, títulos y resúmenes de cada idioma, además de tipos de archivos, categorías y conjuntos. Al menos 2 caracteres, por ejemplo webp, resize o #images.',
-  'category.text': 'Texto', 'category.pdf': 'PDF', 'category.image': 'Imágenes', 'category.developer': 'Revelador', 'category.generator': 'Generadores', 'category.calculator': 'Cálculo',
+  'category.text': 'Texto', 'category.pdf': 'PDF', 'category.image': 'Imágenes', 'category.developer': 'Revelador', 'category.generator': 'Generadores', 'category.calculator': 'Cálculo', 'category.craft': 'Oficios',
   'tool.result': 'Resultado', 'tool.back': 'Volver a todas las herramientas', 'tool.formats': 'Formatos', 'tool.formats.readOnly': 'Solo lectura',
   'tool.detach': 'Desacoplar en su propia ventana', 'tool.detach.return': 'Volver a la ventana principal',
   'tool.detach.placeholder': 'Esta herramienta se ejecuta en su propia ventana.',

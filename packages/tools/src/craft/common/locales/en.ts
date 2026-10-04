@@ -1,0 +1,43 @@
+export const craftCommonEn = {
+  'tool.craft.calculate': 'Calculate',
+  'tool.craft.result': 'Result',
+  'tool.craft.values': 'Values',
+  'tool.craft.formula': 'Formula and source',
+  'tool.craft.assumptions': 'Assumptions',
+  'tool.craft.lastChecked': 'Every suggested value is a guide value and can be overwritten. Values are computed to twelve significant digits and displayed in the user\u2019s language.',
+
+  'tool.craft.inputMode': 'Input',
+  'tool.craft.inputMode.dimensions': 'Dimensions (L × W × D)',
+  'tool.craft.inputMode.area': 'Area and thickness',
+  'tool.craft.inputMode.volume': 'Volume directly',
+  'tool.craft.length': 'Length',
+  'tool.craft.breadth': 'Width',
+  'tool.craft.thickness': 'Thickness',
+  'tool.craft.area': 'Area',
+  'tool.craft.volume': 'Volume',
+  'tool.craft.volumeUnit': 'm³',
+
+  'tool.craft.valueSource': 'Suggested values',
+  'tool.craft.valueSource.sourced': 'Sourced trade values (sources below)',
+  'tool.craft.valueSource.experience': 'Rule-of-thumb values without a published source — check before ordering',
+  'tool.craft.reset': 'Reset suggested values',
+
+  'tool.craft.out.volume': 'Mix including waste',
+  'tool.craft.out.cement': 'Cement',
+  'tool.craft.out.bags': 'Bags of cement',
+  'tool.craft.out.bagsRemainder': 'above the required amount',
+  'tool.craft.out.water': 'Water',
+  'tool.craft.out.aggregate': 'Aggregate (sand, gravel)',
+  'tool.craft.out.totalMass': 'Total mass',
+  'tool.craft.out.ratio': 'Cement : aggregate ratio by mass',
+
+  'tool.craft.error.empty': 'Please fill in every field.',
+  'tool.craft.error.invalid': 'At least one value is not a number.',
+  'tool.craft.error.volume': 'The volume must be greater than zero.',
+  'tool.craft.error.cement': 'The cement content is outside the sensible range (50 to 800 kg/m³).',
+  'tool.craft.error.ratio': 'The water-cement ratio is outside the sensible range (0.2 to 1.2).',
+  'tool.craft.error.density': 'The fresh density is outside the sensible range (1200 to 2800 kg/m³).',
+  'tool.craft.error.waste': 'Waste must be between 0 and 50 percent.',
+  'tool.craft.error.bag': 'The bag size must be between 5 and 50 kg.',
+  'tool.craft.error.mix': 'These values leave no aggregate at all. Cement content, water-cement ratio and fresh density do not fit together.'
+} as const

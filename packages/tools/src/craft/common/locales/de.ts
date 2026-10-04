@@ -1,0 +1,43 @@
+export const craftCommonDe = {
+  'tool.craft.calculate': 'Berechnen',
+  'tool.craft.result': 'Ergebnis',
+  'tool.craft.values': 'Werte',
+  'tool.craft.formula': 'Formel und Quelle',
+  'tool.craft.assumptions': 'Annahmen',
+  'tool.craft.lastChecked': 'Alle Vorschlagswerte sind Richtwerte und lassen sich überschreiben. Gerechnet wird auf zwölf gültige Stellen; angezeigt wird in der Sprache des Nutzers.',
+
+  'tool.craft.inputMode': 'Eingabe',
+  'tool.craft.inputMode.dimensions': 'Maße (L × B × D)',
+  'tool.craft.inputMode.area': 'Fläche und Dicke',
+  'tool.craft.inputMode.volume': 'Volumen direkt',
+  'tool.craft.length': 'Länge',
+  'tool.craft.breadth': 'Breite',
+  'tool.craft.thickness': 'Dicke',
+  'tool.craft.area': 'Fläche',
+  'tool.craft.volume': 'Volumen',
+  'tool.craft.volumeUnit': 'm³',
+
+  'tool.craft.valueSource': 'Vorschlagswerte',
+  'tool.craft.valueSource.sourced': 'Belegte Fachwerte (Quellen unten)',
+  'tool.craft.valueSource.experience': 'Erfahrungswerte ohne Fachquellenbeleg — vor der Bestellung prüfen',
+  'tool.craft.reset': 'Vorschlagswerte zurücksetzen',
+
+  'tool.craft.out.volume': 'Mischung einschließlich Verschnitt',
+  'tool.craft.out.cement': 'Zement',
+  'tool.craft.out.bags': 'Säcke Zement',
+  'tool.craft.out.bagsRemainder': 'über der benötigten Menge',
+  'tool.craft.out.water': 'Wasser',
+  'tool.craft.out.aggregate': 'Zuschlag (Sand, Kies)',
+  'tool.craft.out.totalMass': 'Gesamtmasse',
+  'tool.craft.out.ratio': 'Verhältnis Zement : Zuschlag nach Masse',
+
+  'tool.craft.error.empty': 'Bitte alle Felder ausfüllen.',
+  'tool.craft.error.invalid': 'Mindestens ein Wert ist keine Zahl.',
+  'tool.craft.error.volume': 'Das Volumen muss größer als null sein.',
+  'tool.craft.error.cement': 'Der Zementgehalt liegt außerhalb des sinnvollen Bereichs (50 bis 800 kg/m³).',
+  'tool.craft.error.ratio': 'Der Wasserzementwert liegt außerhalb des sinnvollen Bereichs (0,2 bis 1,2).',
+  'tool.craft.error.density': 'Die Frischdichte liegt außerhalb des sinnvollen Bereichs (1200 bis 2800 kg/m³).',
+  'tool.craft.error.waste': 'Der Verschnitt muss zwischen 0 und 50 Prozent liegen.',
+  'tool.craft.error.bag': 'Die Sackgröße muss zwischen 5 und 50 kg liegen.',
+  'tool.craft.error.mix': 'Mit diesen Werten bleibt kein Zuschlag übrig. Zementgehalt, Wasserzementwert und Frischdichte passen nicht zusammen.'
+} as const

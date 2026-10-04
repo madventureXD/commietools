@@ -1289,5 +1289,69 @@ export const searchLocale: Readonly<Record<string, ToolLocaleEntry>> = {
       "#calculate",
       "#geometry"
     ]
+  },
+  "concrete": {
+    "title": "Concrete, mortar and screed",
+    "summary": "Cement, water, aggregate and bags for concrete, mortar and screed.",
+    "description": "Material quantities for concrete, mortar and screed: cement, water, aggregate and bag count from volume, mix and waste — with a complete mass balance. Runs entirely in the browser.",
+    "terms": [
+      "concrete",
+      "mortar",
+      "screed",
+      "cement",
+      "sand",
+      "gravel",
+      "aggregate",
+      "water",
+      "mix ratio",
+      "cement content",
+      "water cement ratio",
+      "bag",
+      "foundation",
+      "slab",
+      "building material",
+      "quantity",
+      "site",
+      "trade"
+    ],
+    "tags": [
+      "#trades",
+      "#materials"
+    ]
+  },
+  "roof": {
+    "title": "Roof",
+    "summary": "Roof area, ridge height, rafters and covering from pitch and footprint.",
+    "description": "Roof area, ridge height, rafter length and material demand for mono-pitch, gable and hip roofs. Pitch is entered in degrees, percent or as a ratio. Runs entirely in the browser.",
+    "terms": [
+      "roof",
+      "roof area",
+      "roof pitch",
+      "pitch",
+      "pitch factor",
+      "roof angle",
+      "degrees",
+      "percent",
+      "mono pitch",
+      "shed roof",
+      "gable roof",
+      "hip roof",
+      "rafter",
+      "rafter length",
+      "ridge",
+      "ridge height",
+      "eaves",
+      "overhang",
+      "roof tile",
+      "covering",
+      "underlay",
+      "roofer",
+      "carpenter",
+      "trade"
+    ],
+    "tags": [
+      "#trades",
+      "#roof"
+    ]
   }
 }

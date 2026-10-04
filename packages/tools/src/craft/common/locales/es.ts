@@ -1,0 +1,43 @@
+export const craftCommonEs = {
+  'tool.craft.calculate': 'Calcular',
+  'tool.craft.result': 'Resultado',
+  'tool.craft.values': 'Valores',
+  'tool.craft.formula': 'Fórmula y fuente',
+  'tool.craft.assumptions': 'Supuestos',
+  'tool.craft.lastChecked': 'Todos los valores propuestos son orientativos y se pueden sobrescribir. Se calcula con doce cifras significativas y se muestra en el idioma del usuario.',
+
+  'tool.craft.inputMode': 'Entrada',
+  'tool.craft.inputMode.dimensions': 'Medidas (L × A × G)',
+  'tool.craft.inputMode.area': 'Superficie y grosor',
+  'tool.craft.inputMode.volume': 'Volumen directo',
+  'tool.craft.length': 'Longitud',
+  'tool.craft.breadth': 'Anchura',
+  'tool.craft.thickness': 'Grosor',
+  'tool.craft.area': 'Superficie',
+  'tool.craft.volume': 'Volumen',
+  'tool.craft.volumeUnit': 'm³',
+
+  'tool.craft.valueSource': 'Valores propuestos',
+  'tool.craft.valueSource.sourced': 'Valores técnicos documentados (fuentes abajo)',
+  'tool.craft.valueSource.experience': 'Valores empíricos sin fuente publicada: comprobar antes de pedir',
+  'tool.craft.reset': 'Restablecer valores propuestos',
+
+  'tool.craft.out.volume': 'Mezcla con merma incluida',
+  'tool.craft.out.cement': 'Cemento',
+  'tool.craft.out.bags': 'Sacos de cemento',
+  'tool.craft.out.bagsRemainder': 'por encima de la cantidad necesaria',
+  'tool.craft.out.water': 'Agua',
+  'tool.craft.out.aggregate': 'Árido (arena, grava)',
+  'tool.craft.out.totalMass': 'Masa total',
+  'tool.craft.out.ratio': 'Relación cemento : árido en masa',
+
+  'tool.craft.error.empty': 'Rellene todos los campos.',
+  'tool.craft.error.invalid': 'Al menos un valor no es un número.',
+  'tool.craft.error.volume': 'El volumen debe ser mayor que cero.',
+  'tool.craft.error.cement': 'El contenido de cemento está fuera del rango razonable (50 a 800 kg/m³).',
+  'tool.craft.error.ratio': 'La relación agua-cemento está fuera del rango razonable (0,2 a 1,2).',
+  'tool.craft.error.density': 'La densidad en fresco está fuera del rango razonable (1200 a 2800 kg/m³).',
+  'tool.craft.error.waste': 'La merma debe estar entre 0 y 50 por ciento.',
+  'tool.craft.error.bag': 'El tamaño del saco debe estar entre 5 y 50 kg.',
+  'tool.craft.error.mix': 'Con estos valores no queda árido alguno. El contenido de cemento, la relación agua-cemento y la densidad en fresco no encajan.'
+} as const

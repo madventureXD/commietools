@@ -6,5 +6,6 @@ export const suitesDe = {
   'suite.generators.title': 'Generator Suite', 'suite.generators.description': 'Lokale Generatoren für QR-Codes und weitere digitale Formate.',
   'suite.image.title': 'Bild Suite', 'suite.image.description': 'Lokale Werkzeuge für Bilder, die ohne Übertragung und ohne Neuberechnung arbeiten.',
   'suite.pdf.title': 'PDF Suite', 'suite.pdf.description': 'Lokale Werkzeuge zum Zusammenführen, Teilen, Organisieren und Konvertieren von PDF-Dokumenten.',
-  'suite.calculator.title': 'Rechnen', 'suite.calculator.description': 'Exakte Rechner für Alltag, Handwerk und kaufmännische Aufgaben – lokal, ohne Übertragung.'
+  'suite.calculator.title': 'Rechnen', 'suite.calculator.description': 'Exakte Rechner für Alltag, Handwerk und kaufmännische Aufgaben – lokal, ohne Übertragung.',
+  'suite.craft.title': 'Handwerk', 'suite.craft.description': 'Material- und Maßbedarf für Baustelle und Werkstatt – lokal, mit Formel, Annahme und Quelle.'
 } as const
