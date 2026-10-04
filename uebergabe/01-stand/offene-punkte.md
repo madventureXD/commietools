@@ -3,8 +3,8 @@
 - [ ] Anbieterneutralen Übersetzungsablauf mit Google Cloud Translation Advanced gemäß
   `uebergabe/03-konzepte/2026-10-03-automatisierte-sprachpakete.md` erst bei der nächsten
   geplanten Sprache umsetzen.
-- [ ] Lokales spanisches Testpaket gemäß `uebergabe/03-konzepte/2026-10-03-sprachpaket-spanisch.md`
-  sprachlich und visuell gegenlesen; erst danach zur Veröffentlichung freigeben.
+- [ ] Veröffentlichtes spanisches Testpaket gemäß `uebergabe/03-konzepte/2026-10-03-sprachpaket-spanisch.md`
+  online sprachlich und visuell gegenlesen.
   *(2026-10-04: Das Gegenlesen ist erst **nach** der Online-Stellung möglich. Bis dahin bleibt
   `es` im Sprachschalter sichtbar und wird mitausgeliefert — abweichend von
   `02-architektur/sprachpakete.md` §2, das ein Testpaket „niemals veröffentlicht" sieht. Die
@@ -30,7 +30,7 @@ Diese Liste enthält bestätigte, noch nicht abgeschlossene Arbeit. Details geh�
 - [ ] Content Security Policy und spätere Deployment-Header konkretisieren.
 - [ ] Größenbudgets zusätzlich pro große Tool-Engine festlegen; das Startbudget und die Sperre gegen PDF-Engines sind umgesetzt.
 - [ ] **Werkzeugtexte je Sprache im Blick behalten — Reserve 4,3 KiB.** Mit dem umgesetzten
-  Sprachpaket-Umbau ist das Startbündel entspannt (136.959 von 204.800 B gzip); das frühere
+  Sprachpaket-Umbau ist das Startbündel entspannt (136.961 von 204.800 B gzip); das frühere
   Budgetproblem „vor Welle 6 den Ausweg bauen“ ist damit **erledigt**, ebenso der Punkt zur
   Aufnahme von `bundle:check` in den Prüflauf (die Größenkontrolle läuft im Build). An ihre
   Stelle tritt die neue Warnschwelle aus `sprachgetrennte-suchpakete`: **Werkzeugtexte Deutsch

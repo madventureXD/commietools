@@ -13,7 +13,7 @@ Die Roadmap beschreibt die derzeitige Reihenfolge, keine festen Termine.
 
 ## Phase 1 – PDF-Suite
 
-**Status:** M0 bis M9 lokal abgeschlossen; Veröffentlichung erfolgt gesammelt in einem späteren Release
+**Status:** M0 bis M9 abgeschlossen und im Sammelrelease vom 2026-10-04 veröffentlicht; Online-Nachkontrolle steht aus
 
 Vollständiges Umsetzungskonzept: [`../03-konzepte/2026-10-03-pdf-suite.md`](../03-konzepte/2026-10-03-pdf-suite.md)
 
@@ -23,7 +23,7 @@ Vollständiges Umsetzungskonzept: [`../03-konzepte/2026-10-03-pdf-suite.md`](../
 - M3: Gestaltung und sichtbare Unterschriften – umgesetzt
 - M4: Formulare und Kommentare – umgesetzt
 - M5: Sicherheit und Kompression – umgesetzt
-- M6: eigenständiger Viewer, Textextraktion und OCR – lokal umgesetzt, noch nicht veröffentlicht
+- M6: eigenständiger Viewer, Textextraktion und OCR – veröffentlicht
 - M7: digitale Signaturen – lokal abgeschlossen; Rust-WASM, BER-/DER-CMS, inkrementelle Mehrfachsignaturen, PAdES B-B/T/LT/LTA und EU-DSS-Referenzkorpus geprüft
 - M8: Dokumentprüfung und -pflege – Viewer, Metadaten, Beschneiden, QPDF-Reparatur, sichere Anhangverwaltung sowie getrennter Struktur-, Text- und Renderingvergleich lokal umgesetzt
 - M9: sichere grafische Schwärzung und PDF/A-Vorcheck lokal umgesetzt; echte PDF/A- und Office-Konvertierung nach Recherche und ADR 0006 bewusst nicht freigegeben

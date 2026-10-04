@@ -1,7 +1,7 @@
 # Aktueller Projektstand
 
 **Stand:** 2026-10-04
-**Letzter geprüfter Meilenstein:** Rechner-Suite Welle 6 (Aufmaß) lokal abgenommen — damit ist die Suite „Rechnen" **vollständig** (neun Werkzeuge in sechs Wellen); PDF-Suite M8 und M9 ebenfalls lokal abgeschlossen; Veröffentlichung für den nächsten Sammelrelease zurückgestellt (2026-10-04)
+**Letzter geprüfter Meilenstein:** Sammelrelease mit 41 Werkzeugen, vollständiger Rechner-Suite, PDF-Suite M0–M9 und sprachgetrennten Suchpaketen auf `main` veröffentlicht (`95e1b2f`, 2026-10-04); automatische Cloudflare-Bereitstellung und Online-Nachkontrolle sind als nächster Schritt vorgesehen.
 
 ## Umgesetzt
 
@@ -10,7 +10,7 @@
 - responsives einheitliches UI mit Light/Dark Mode
 - Local-/Offline-Kennzeichnung
 - manifestbasierte Tools und Suiten
-- hybride Internationalisierung mit Deutsch und Englisch
+- hybride Internationalisierung mit Deutsch, Englisch und einem veröffentlichten spanischen Testpaket; Werkzeug- und Suchtexte werden je Sprache nachgeladen
 - QR-Code-Generator mit UTF-8-Unterstützung
 - Bild-Metadaten: Anzeige und verlustfreies Entfernen von EXIF, XMP, IPTC und Kommentaren in JPEG, PNG und WebP, ohne Neuberechnung der Bildpunkte
 - Bild skalieren: Skalieren, Zuschnitt, Drehen und Spiegeln mit hochwertiger Filterung im Web Worker; fester Ablauf Ausrichtung → Zuschnitt → Skalierung
@@ -24,14 +24,14 @@
 - öffentliches GitHub-Repository `madventureXD/commietools`; `main` löst automatische Cloudflare-Pages-Deployments aus
 - Cloudflare-Pages-Bereitstellung aktiv unter `https://commietools.pages.dev`: SPA-Fallback, PWA-Cache-Regeln und Sicherheitsheader; Domainregistrierung bleibt bei Hetzner
 - Produktivdomains `https://commietools.org` und `https://www.commietools.org` im Pages-Projekt aktiv; beide mit Cloudflare-SSL
-- geprüfter Stand mit 21 Werkzeugen über `main` veröffentlicht und auf der Produktivdomain kontrolliert
+- geprüfter Stand mit 41 Werkzeugen über `main` veröffentlicht; die Produktivkontrolle des Sammelreleases steht noch aus
 - zweisprachige, dauerhaft im Footer erreichbare Impressumsseite mit Anbieteranschrift und E-Mail-Kontakt
 - erzeugtes Werkzeugregister (`packages/tools/src/catalog/toolIndex.ts`) mit Symbol, Kurzbeschreibung und Suchbegriffen je Werkzeug und Sprache; Prüfung als Bestandteil von Check und Build
 - deklarierte Dateifähigkeiten je Werkzeug im Manifest (`input`, `auxiliary`, `output`); Dateifelder, Formatlisten und Katalogkarten lesen daraus, nicht aus eigenen Kopien
 - einheitliches lokales Speichern für alle 17 dateierzeugenden Werkzeuge: editierbarer Dateiname,
   nativer Speichern-unter-Dialog in unterstützenden Browsern und transparenter Download-Fallback;
   Mehrfachausgaben bieten diese Steuerung für jede einzelne Datei
-- Katalogsuche über Suchbegriffe, Schlagwörter, Titel, Kurzbeschreibung und Beschreibung **aller** Sprachen sowie über deklarierte Dateitypen, Kategorie und Suite; Treffer in der eingestellten Sprache mit Begründung („gefunden über …"), offline und ohne unscharfe Suche
+- Katalogsuche über Suchbegriffe, Schlagwörter, Titel, Kurzbeschreibung und Beschreibung der **gewählten Sprache plus Englisch** sowie über deklarierte Dateitypen, Kategorie und Suite; Treffer in der eingestellten Sprache mit Begründung („gefunden über …"), offline und ohne unscharfe Suche
 - globale aufklappbare Werkzeugnavigation auf jeder Route: Desktop-Drawer und mobiles Vollbreiten-Sheet mit Kategoriensicht, A–Z, lokaler Suche, Favoriten und zehn zuletzt verwendeten Werkzeugen; keine Telemetrie und kein Vorabladen optionaler Toolmodule
 - gemeinsamer, UI-unabhängiger PDF-Kern für Prüfung, Seitenbereiche und Seitenoperationen
 - PDF.js-Vorschau und `pdf-lib`-Verarbeitung als getrennt nachgeladene, offline zwischengespeicherte Engines
@@ -62,7 +62,7 @@
 - `pdf_signer` 0.3.2 als vendorte und nur auf M7-Routen nachgeladene Rust-WASM-Engine; BER-Kompatibilität und revisionsübergreifende Signatursuche sind lokal gehärtet, Prüfsumme, Herkunft und GPL-3.0-or-later-Lizenz registriert
 - QPDF 12.2.0 als getrennt nachgeladene Open-Source-WASM-Engine; Binärartefakt mit SHA-256, Upstream-Komponenten, festen Commits und vollständigen Lizenzen registriert
 - datensparsame Ladegrenzen: Startseite und Fremdwerkzeuge laden keine PDF-Engine; PDF-Routen, Worker und WASM werden erst bei Nutzung übertragen und nicht vorab offline gespeichert
-- automatische Startlastprüfung mit 250-KiB-Gzip-Budget und Sperre gegen statisch erreichbare PDF-Engines
+- automatische Startlastprüfung mit 200-KiB-Gzip-Warnschwelle; Größenüberschreitungen warnen, Architekturverstöße wie statisch erreichbare PDF- oder Rechen-Engines brechen den Prüflauf weiterhin ab
 - Rechner (Suite „Rechnen", Welle 1): kuratierter mathjs-Rechenkern in eigenem dynamisch geladenen Chunk (94,3 KiB gzip), exakte Zahlenmodelle (`BigNumber` 64 Stellen, `Fraction`), Fehler als übersetzbare Codes, Verlauf als Ringpuffer, benannte Variablen, „Formel und Quelle"
 - Rechner (Suite „Rechnen", Welle 2 abgenommen): vier Rechnerarten in der Oberfläche — Standard und Brüche als Zahlenmodell, wissenschaftlich mit Winkelmodus (Bogenmaß, Grad, Gon) und 32 Tasten, Programmierer mit Anzeige-Basis, Wortbreite 8/16/32/64 und Zweierkomplement samt Darstellungs-Karte, RPN mit Token-Eingabe, Stapeltasten, **live sichtbarem Stapel und Rechenweg** je Schritt; Funktionsliste mit Aufruftest je Funktion und belegter Fehlschlagprobe; Rechenkern 102.436 B gzip
 - Kaufmännisch (Suite „Rechnen", Welle 3): Prozent in drei Richtungen, Rabatt, Aufschlag, Marge **und** Aufschlag gemeinsam mit klarer Bezugsgröße, Umsatzsteuer raus und rein, Skonto, Dreisatz, Zinseszins und Tilgungsplan; rechnet ohne neue Abhängigkeit in `BigInt` cent-genau, Plan summiert sich exakt zum Darlehen; Formeln, Annahmen und Quellen in drei Sprachen
@@ -102,6 +102,13 @@
 | PDF-Text & OCR | `pdf-text-ocr` | PDF | lokal | PDF hinein, Text heraus |
 | PDF mit Zertifikat signieren | `pdf-certificate-sign` | PDF | lokal | PDF und PKCS#12/PFX hinein, PDF heraus |
 | PDF-Signaturen überprüfen | `pdf-signature-verify` | PDF | lokal | PDF hinein (nur Information) |
+| PDF-Metadaten | `pdf-metadata` | PDF | lokal | PDF hinein und heraus |
+| PDF-Seiten beschneiden | `pdf-crop` | PDF | lokal | PDF hinein und heraus |
+| PDF reparieren und prüfen | `pdf-repair` | PDF | lokal | PDF hinein und heraus |
+| PDF-Anhänge | `pdf-attachments` | PDF | lokal | PDF und Anhänge hinein, PDF und Anhänge heraus |
+| PDFs vergleichen | `pdf-compare` | PDF | lokal | zwei PDFs hinein (nur Information) |
+| PDF/A-Vorcheck | `pdf-a-preflight` | PDF | lokal | PDF hinein (nur Information) |
+| PDF sicher schwärzen | `pdf-redact` | PDF | lokal | PDF hinein und heraus |
 | Rechner | `calculator` | Rechnen | lokal | keine (nur Information) |
 | Kaufmännisch | `commercial` | Rechnen | lokal | keine (nur Information) |
 | Geometrie | `geometry` | Rechnen | lokal | keine (nur Information) |
@@ -119,7 +126,7 @@
 - Generatoren
 - Bilder (Bild-Metadaten, Bild skalieren, Icon-Generator, Wasserzeichen, Farbwerkzeuge)
 - Rechnen (Rechner, Umrechnen, Kaufmännisch, Zeit und Datum, Funktionsplotter, Statistik, Gleichungslöser, Geometrie, Aufmaß)
-- PDF (Viewer, Text/OCR, Zertifikatssignaturen prüfen und erstellen, Zusammenführen, Teilen, Seiten organisieren, Bilder zu PDF, PDF zu Bildern, Wasserzeichen, Seitenzahlen, sichtbar unterschreiben, Formular ausfüllen, kommentieren und markieren, schützen/entsperren, komprimieren)
+- PDF (Viewer, Text/OCR, Zertifikatssignaturen prüfen und erstellen, Zusammenführen, Teilen, Seiten organisieren, Bilder zu PDF, PDF zu Bildern, Wasserzeichen, Seitenzahlen, sichtbar unterschreiben, Formular ausfüllen, kommentieren und markieren, schützen/entsperren, komprimieren, Metadaten, Beschneiden, Reparatur, Anhänge, Vergleich, PDF/A-Vorcheck und sichere Schwärzung)
 
 ## Qualität und Compliance
 
@@ -130,8 +137,8 @@
 - bewahrte originale Paketdokumente: 188
 - eingebettete Binärartefakte: 2 registrierte WASM-Artefakte (QPDF und PDF Signer)
 - letzter bekannter Teststand: 301 Webtests in 16 Dateien bestanden (`npm run check`, gemessen 2026-10-04); Rust-Tests in diesem Lauf nicht neu gemessen — der zuletzt bekannte Stand bleibt 50
-- Werkzeugregister: 41 Werkzeuge, 3 Sprachen, 41 Symbole, 2.730 Suchbegriffe, 92 deklarierte Dateitypen (`npm run catalog:generate`, gemessen 2026-10-04); Spanisch ist lokal als noch gegenzulesendes Testpaket eingebunden
-- letzter bekannter Produktions-Build: bestanden; **136.959 Byte Startcode komprimiert** (Warnschwelle 204.800), sprachgetrennte Such- und Werkzeugtextpakete mit verzögertem Laden, ohne statisch erreichbare PDF- oder Rechen-Engine; PDF-/OCR-/Signaturrouten, Worker und WASM sind vom Vorab-Cache ausgeschlossen; nachgeladener Rechenkern 102.476 Byte gzip, Katalogbasis 1.100 Byte, Werkzeugtexte Deutsch 26.403 von 30.720 Byte (gemessen 2026-10-04)
+- Werkzeugregister: 41 Werkzeuge, 3 Sprachen, 41 Symbole, 2.730 Suchbegriffe, 92 deklarierte Dateitypen (`npm run catalog:generate`, gemessen 2026-10-04); Spanisch wird als noch gegenzulesendes Testpaket mitausgeliefert
+- letzter bekannter Produktions-Build: bestanden; **136.961 Byte Startcode komprimiert** (Warnschwelle 204.800), sprachgetrennte Such- und Werkzeugtextpakete mit verzögertem Laden, ohne statisch erreichbare PDF- oder Rechen-Engine; PDF-/OCR-/Signaturrouten, Worker und WASM sind vom Vorab-Cache ausgeschlossen; nachgeladener Rechenkern 102.476 Byte gzip, Katalogbasis 1.100 Byte, Werkzeugtexte Deutsch 26.403 von 30.720 Byte (gemessen 2026-10-04)
 
 Zahlen sind Momentaufnahmen. Nach Abhängigkeits-, Test- oder Tooländerungen müssen sie anhand der tatsächlichen Ausgabe aktualisiert werden.
 

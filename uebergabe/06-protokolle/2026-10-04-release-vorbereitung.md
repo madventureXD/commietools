@@ -16,9 +16,10 @@
   damit derselbe Commit unter Windows mit CRLF und in einem frischen Checkout mit LF identisch
   geprüft wird.
 
-## Noch auszuführen
+## Abschluss
 
-1. Gesamten zusammengehörigen Stand committen.
-2. Exakt diesen Commit in einem separaten sauberen Checkout mit Katalog-, Lizenz-, Typ-, Test-,
-   Build-, Bundle-, Diff- und 320-px-Prüfung abnehmen.
-3. Veröffentlichung vorbereiten, aber ohne ausdrücklichen Folgeauftrag weder pushen noch deployen.
+Der zusammengehörige Stand wurde mit `a47d725` eingecheckt, in einem separaten sauberen Checkout
+vollständig abgenommen und nach zwei Nachbesserungen als `95e1b2f` auf `main` veröffentlicht.
+Bestanden haben Katalog-, Lizenz-, Typ-, Test-, Build-, Bundle-, Diff- und 320-px-Prüfung. Der
+Push löst die automatische Cloudflare-Pages-Bereitstellung aus; die Online-Nachkontrolle ist in
+der Abschlussübergabe als nächster Schritt festgehalten.
