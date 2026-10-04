@@ -3,6 +3,7 @@ import type { SuiteManifest, ToolManifest } from '@commietools/core'
 import { createTranslator, detectLocale, isLocale, loadInterfaceMessages, localeRegistry, supportedLocales, type Locale } from '@commietools/i18n'
 import { convertCase, formatJson, getSuiteTools, getTextStatistics, loadToolMessages, MIN_QUERY_LENGTH, searchEntryById, suiteByRoute, suiteManifests, toolByRoute, type CaseMode } from '@commietools/tools'
 import { Button, LocalBadge } from '@commietools/ui'
+import { PipTrigger, PipWrapper } from '@pip-it-up/react'
 import { CatalogSection } from './CatalogSection'
 import { LicensePage } from './LicensePage'
 import { LegalNoticePage } from './LegalNoticePage'
@@ -145,7 +146,15 @@ function ToolPage({ tool, t, locale, navigate }: { tool: ToolManifest; t: Transl
                                                         : tool.id === 'pdf-a-preflight' ? <Suspense fallback={<p aria-live="polite">…</p>}><PdfAPreflightTool t={t} /></Suspense>
                                                           : <Suspense fallback={<p aria-live="polite">…</p>}><PdfRedactTool t={t} /></Suspense>
   const icon = searchEntryById.get(tool.id)?.icon
-  return <main className="detail-page"><button className="text-link back" onClick={() => navigate('/')}>← {t('tool.back')}</button><article className="tool-shell"><header className="tool-header"><div>{icon && <span className="card-icon" aria-hidden="true" style={{ maskImage: `url(${icon})`, WebkitMaskImage: `url(${icon})` }} />}<p className="category">{t(`category.${tool.category}`)}</p><h1>{t(tool.titleKey)}</h1><p>{t(tool.descriptionKey)}</p></div><LocalBadge>{t('status.local')}</LocalBadge></header><div className="tool-content">{content}</div></article></main>
+  // Auskoppeln: eine Instanz, zwei Orte. Der Inhalt wandert per Portal in das eigene
+  // Fenster und kommt beim Schliessen unveraendert zurueck. Ohne Unterstuetzung
+  // (Safari, mobil) verschwindet der Knopf, statt etwas Halbes anzubieten.
+  const pipId = `tool-${tool.id}`
+  // Ein Knopf, eine Stelle: Er bleibt im Hauptfenster stehen und steuert das Fenster ueber
+  // die Kennung. So ist der Rueckweg immer erreichbar - auch waehrend das Werkzeug draussen ist.
+  const detachTrigger = <PipTrigger pipId={pipId} renderOpen={t('tool.detach')} renderClose={t('tool.detach.return')} openLabel={t('tool.detach')} closeLabel={t('tool.detach.return')} className="button detach" />
+  const detachPlaceholder = <div className="pip-placeholder stack"><p className="privacy-note">{t('tool.detach.placeholder')}</p><p>{t('tool.detach.placeholderHint')}</p></div>
+  return <main className="detail-page"><button className="text-link back" onClick={() => navigate('/')}>← {t('tool.back')}</button><article className="tool-shell"><div className="tool-shell-bar">{detachTrigger}</div><PipWrapper id={pipId} fallback="none" placeholder={detachPlaceholder}><header className="tool-header"><div>{icon && <span className="card-icon" aria-hidden="true" style={{ maskImage: `url(${icon})`, WebkitMaskImage: `url(${icon})` }} />}<p className="category">{t(`category.${tool.category}`)}</p><h1>{t(tool.titleKey)}</h1><p>{t(tool.descriptionKey)}</p></div><div className="tool-header-side"><LocalBadge>{t('status.local')}</LocalBadge></div></header><div className="tool-content">{content}</div></PipWrapper></article></main>
 }
 
 function SuitePage({ suite, t, locale, navigate }: { suite: SuiteManifest; t: Translate; locale: string; navigate: (path: string) => void }) {
