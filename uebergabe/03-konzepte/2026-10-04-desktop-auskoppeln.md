@@ -136,3 +136,22 @@ ausgekoppelten Fenster, die nur erscheint, wenn die Größe abweicht. Der Katalo
    Sonderfall je Werkzeug; der Knopf erscheint ohnehin nur, wo die Schnittstelle brauchbar ist; eine
    Auswahl bräuchte eine gepflegte Liste mit Begründung je Werkzeug — Aufwand ohne belegten Nutzen.
    Der Nachweis steht in M5 (alle 41 Routen).
+
+## Nachtrag 2026-10-04 (M7) — M6 und M7 abgeschlossen
+
+*Ergänzt, nichts überschrieben.*
+
+- **M6 „Verhalten ohne PiP"** ist durch Produktentscheidung 3 abgedeckt und belegt: Der Knopf
+  erscheint ausschließlich nach einer **Fähigkeitsprüfung zur Laufzeit**
+  (`typeof window.documentPictureInPicture?.requestWindow === 'function'`), nicht nach Browsernamen.
+  Gemessen: ohne brauchbare Schnittstelle **kein** Knopf (`false`), mit Schnittstelle `true`. Eine
+  Messung in einem Browser, der die Schnittstelle gar nicht kennt (Safari), fand **nicht** statt —
+  Safari steht auf diesem Rechner nicht zur Verfügung; die Prüfung hängt aber nicht am Browsernamen.
+- **M7 „Dokumentation und Übergabe"**: `docs/ui-system.md` trägt den Abschnitt „Detaching a tool into
+  its own window" (Ort und Sichtbarkeit des Knopfes, eine Instanz über zwei Dokumente, gemessene
+  Zielgröße und Größen-Hilfe, Farbschema, Barrierefreiheits-Grundlinie, ausdrücklich dokumentierte
+  Plattformgrenzen). `01-stand/aktueller-stand.md` und `01-stand/offene-punkte.md` sind gepflegt,
+  Übergabe und Fortschrittsprotokoll liegen vor.
+- **Damit ist das Vorhaben in der geplanten Form abgeschlossen.** Offen bleiben die zwei ausdrücklich
+  benannten Lücken (Firefox-Messung, Desktop-Breiten 1920/1366/1024/768) und die Veröffentlichung:
+  die Commits liegen lokal, `main` löst das Cloudflare-Pages-Deployment aus.

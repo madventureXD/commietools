@@ -26,6 +26,10 @@ Diese Liste enthält bestätigte, noch nicht abgeschlossene Arbeit. Details geh�
   ist bereits einheitlich umgesetzt.
 - [ ] Schritt 3 der Katalogsuche: gezogene Datei gegen die deklarierten Dateitypen prüfen und passende Werkzeuge vorschlagen, mit Unterscheidung zwischen „liest" und „schreibt".
 - [ ] Weitere Suchbegriffe ergänzen, wenn im Gebrauch Lücken auffallen (Register und Prüfung melden Dopplungen; zwei Tests finden tote Begriffe).
+- [ ] **Elf ältere Übergaben verfehlen die Pflichtabschnitte der Vorlage** (gemeldet am 2026-10-04
+  aus der Welle-5-Übergabe; die Prüfung deckte zugleich Lücken in den Wellen 2 und 4 auf). Nicht
+  angefasst — eigener Auftrag: fehlende Abschnitte **ergänzen, nie überschreiben**, mit datiertem
+  Hinweis.
 - [ ] Offline-Verhalten mit einem automatisierten Browser-Test absichern.
 - [ ] Content Security Policy und spätere Deployment-Header konkretisieren.
 - [ ] Größenbudgets zusätzlich pro große Tool-Engine festlegen; das Startbudget und die Sperre gegen PDF-Engines sind umgesetzt.
@@ -54,11 +58,13 @@ Diese Liste enthält bestätigte, noch nicht abgeschlossene Arbeit. Details geh�
 
 ## Später / bei konkretem Bedarf
 
-- [x] **Werkzeuge in ein eigenes Fenster auskoppeln** (Desktop-Erfahrung). M0–M5 am 2026-10-04
+- [x] **Werkzeuge in ein eigenes Fenster auskoppeln** (Desktop-Erfahrung). M0–M7 am 2026-10-04
   abgeschlossen: Auskoppeln funktioniert mit Zustandserhalt in beide Richtungen, Größen-Hilfe im
-  Fenster, Ehrlichkeits- und Farbschema-Nachweis; **41 von 41 Werkzeug-Routen belegt**. Offen:
-  Firefox-Messung, Desktop-Breiten, `docs/ui-system.md`
-  (`05-uebergaben/2026-10-04-desktop-auskoppeln-m3-m5.md`).
+  Fenster (Zielgröße gemessen statt deklariert), Ehrlichkeits- und Farbschema-Nachweis;
+  **41 von 41 Werkzeug-Routen belegt**; Regeln und Grenzen stehen seit M7 in `docs/ui-system.md`.
+  Offen bleibt: Firefox-Messung, Desktop-Breiten (1920/1366/1024/768),
+  **Veröffentlichung** (`05-uebergaben/2026-10-04-desktop-auskoppeln-m3-m5.md`,
+  `05-uebergaben/2026-10-04-desktop-auskoppeln-m7.md`).
 - [ ] Speicheradapter für persistente lokale Nutzerdaten definieren.
 - [ ] Bei wachsender Werkzeug- und Sprachenzahl den Bundlezuwachs des Registers messen; Ausweg ist eine abgerufene Registerdatei mit Ladezustand.
 - [ ] Desktop- und Mobile-Shells evaluieren. *(2026-10-04: Das Auskoppeln ist der erste Teil davon;

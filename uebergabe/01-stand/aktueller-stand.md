@@ -2,6 +2,8 @@
 
 **Stand:** 2026-10-04
 **Letzter geprüfter Meilenstein:** Sammelrelease mit 41 Werkzeugen, vollständiger Rechner-Suite, PDF-Suite M0–M9 und sprachgetrennten Suchpaketen auf `main` veröffentlicht (`95e1b2f`, 2026-10-04); automatische Cloudflare-Bereitstellung und Online-Nachkontrolle sind als nächster Schritt vorgesehen.
+**Lokal fertiggestellt, noch nicht veröffentlicht:** Desktop-Auskoppeln M0–M7 (Werkzeuge laufen in
+einem eigenen Fenster); die elf zugehörigen Commits liegen lokal vor `origin/main`.
 
 ## Umgesetzt
 
@@ -33,6 +35,7 @@
   Mehrfachausgaben bieten diese Steuerung für jede einzelne Datei
 - Katalogsuche über Suchbegriffe, Schlagwörter, Titel, Kurzbeschreibung und Beschreibung der **gewählten Sprache plus Englisch** sowie über deklarierte Dateitypen, Kategorie und Suite; Treffer in der eingestellten Sprache mit Begründung („gefunden über …"), offline und ohne unscharfe Suche
 - globale aufklappbare Werkzeugnavigation auf jeder Route: Desktop-Drawer und mobiles Vollbreiten-Sheet mit Kategoriensicht, A–Z, lokaler Suche, Favoriten und zehn zuletzt verwendeten Werkzeugen; keine Telemetrie und kein Vorabladen optionaler Toolmodule
+- Werkzeuge in ein eigenes Fenster auskoppelbar (`@pip-it-up/react`, MIT-Ausnahme nach ADR 0007/0008): der Rahmen sitzt zentral in der Werkzeugseite, das Werkzeug wandert als **eine** Instanz per Portal in das zweite Fenster und kommt unverändert zurück; der Knopf erscheint nur bei belegter Fähigkeit zur Laufzeit (Safari und mobil: kein Knopf); Zielgröße **gemessen** statt im Katalog deklariert, mit Größen-Hilfe im Fenster; Farbschema wird mitgeführt; belegt auf allen 41 Werkzeug-Routen (M0–M7, `05-uebergaben/2026-10-04-desktop-auskoppeln-m3-m5.md`); Grenzen und Regeln in `docs/ui-system.md`
 - gemeinsamer, UI-unabhängiger PDF-Kern für Prüfung, Seitenbereiche und Seitenoperationen
 - PDF.js-Vorschau und `pdf-lib`-Verarbeitung als getrennt nachgeladene, offline zwischengespeicherte Engines
 - PDF-Warnungen für Formulare, XFA, Annotationen und Signaturen sowie klare Ablehnung verschlüsselter oder beschädigter Dateien
@@ -133,19 +136,28 @@
 
 - Projekt und interne Pakete: `AGPL-3.0-only`
 - Lizenzübersicht in der Webanwendung: `/licenses`
-- erfasste externe Pakete: 522
+- erfasste externe Pakete: 524
 - vollständige Lizenztexte: 16
-- bewahrte originale Paketdokumente: 188
+- bewahrte originale Paketdokumente: 189
 - eingebettete Binärartefakte: 2 registrierte WASM-Artefakte (QPDF und PDF Signer)
 - letzter bekannter Teststand: 339 Webtests in 18 Dateien bestanden (`npm run check`, gemessen 2026-10-04); Rust-Tests in diesem Lauf nicht neu gemessen — der zuletzt bekannte Stand bleibt 50
 - Werkzeugregister: 41 Werkzeuge, 3 Sprachen, 41 Symbole, 2.730 Suchbegriffe, 92 deklarierte Dateitypen (`npm run catalog:generate`, gemessen 2026-10-04); Spanisch wird als noch gegenzulesendes Testpaket mitausgeliefert
-- letzter bekannter Produktions-Build: bestanden; **136.967 Byte Startcode komprimiert** (Warnschwelle 204.800), sprachgetrennte Such- und Werkzeugtextpakete mit verzögertem Laden, ohne statisch erreichbare PDF- oder Rechen-Engine; PDF-/OCR-/Signaturrouten, Worker und WASM sind vom Vorab-Cache ausgeschlossen; nachgeladener Rechenkern 103.709 Byte gzip, Katalogbasis 1.100 Byte, Werkzeugtexte Deutsch 26.972 von 30.720 Byte (gemessen 2026-10-04)
+- Produktions-Build: bestanden. **Veröffentlicht** (Sammelrelease, ohne Auskoppeln): 136.967 Byte
+  Startcode komprimiert. **Aktueller Arbeitsstand** (mit Auskoppeln, noch nicht gepusht):
+  **145.559 Byte** von 204.800 (Reserve rund 59 kB; +8.598 Byte durch die Auskoppel-Bibliothek),
+  gemessen 2026-10-04. Sprachgetrennte Such- und Werkzeugtextpakete mit verzögertem Laden, ohne
+  statisch erreichbare PDF- oder Rechen-Engine; PDF-/OCR-/Signaturrouten, Worker und WASM sind vom
+  Vorab-Cache ausgeschlossen; nachgeladener Rechenkern 103.709 Byte gzip, Katalogbasis 1.100 Byte,
+  Werkzeugtexte Deutsch 26.972 von 30.720 Byte (gemessen 2026-10-04)
 
 Zahlen sind Momentaufnahmen. Nach Abhängigkeits-, Test- oder Tooländerungen müssen sie anhand der tatsächlichen Ausgabe aktualisiert werden.
 
 ## Noch nicht umgesetzt
 
 - Backend, Konten und Synchronisierung
-- Desktop- und Mobile-Shells
+- Desktop- und Mobile-Shells (das Auskoppeln in ein eigenes Fenster ist der erste Teil davon und
+  lokal fertig; die übrige Shell-Frage bleibt offen)
 - sichtbarer Source-Link in der Weboberfläche
 - umfassende automatisierte Barrierefreiheitstests
+- **nicht belegt:** Firefox-Verhalten des Auskoppelns (geckodriver fehlt) und Überbreiten-Freiheit
+  bei 1920/1366/1024/768 px — geprüft ist bisher nur 320 px durch `npm run viewport:check`

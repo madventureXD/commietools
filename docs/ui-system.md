@@ -63,3 +63,39 @@ The tool catalogue is the platform's entry surface and follows its own visible r
 - Escape, the backdrop, the close button and the mobile back action close the menu and restore
   focus to its trigger.
 
+## Detaching a tool into its own window
+
+Every tool route carries the same shell bar above the tool header. It holds exactly one control and
+is hidden while empty. The catalogue, the suite pages, the licence page and the legal notice are not
+detachable: they are entry surface, not workbenches.
+
+- The control is offered **only** where the capability really exists. The test is a runtime check on
+  `typeof window.documentPictureInPicture?.requestWindow === 'function'`, never a browser name. Where
+  the platform has no such window (Safari, mobile), the button is absent instead of half-working.
+- **One instance, two places.** Detaching moves the running tool into the second document through a
+  portal; the component is not mounted again, so its local state and any running computation stay the
+  same. The main window shows a placeholder that says the tool is running in its own window and
+  remains the place from which it can be brought back. There is never a second copy of a tool state.
+- The control stays in the main window and drives the second window by its id, so the way back
+  remains reachable while the tool is outside. Its visible text and its accessible name switch
+  together between detaching and returning, and both are translated.
+- **The wanted size is measured, not declared.** Before the content moves, the size the tool
+  occupies in the main window is taken; after the window opens, its inner size is compared with that
+  measurement. Only when the two differ does a fitting aid appear — inside the detached window, with
+  its own translated text and a button that fits the window to the measurement. `resizeTo()` sets the
+  outer size, so the difference to the inner size (frame width and title bar) is added; the click must
+  happen in the detached window because only there does it count as the authorising gesture. No
+  catalogue field holds a window size, because a declared size would be a promise the platform does
+  not keep.
+- **The colour scheme travels with the content.** The theme attribute normally sits on the app
+  element of the main window; the second document does not know it, and `copyStyles: 'sync'` copies
+  style sheets, not attributes. It is therefore written into the second document when the window
+  opens and again on every change of the theme.
+- The detached window keeps the accessibility baseline: keyboard reachable, translated accessible
+  name, minimum target size, and focus back on the control after closing.
+
+Platform limits that are documented rather than promised: the window size on opening cannot be
+prescribed (Chromium uses the size of the calling window), the position cannot be set, one window per
+tab, it never outlives the window it came from, it cannot be navigated, fullscreen is blocked inside
+it, and both top-level context and HTTPS are required.
+
