@@ -62,13 +62,43 @@ npm run licenses:check
 
 Fehlgeschlagene oder nicht ausführbare Prüfungen müssen in der Übergabe ausdrücklich genannt werden.
 
+## Sitzungsabschluss
+
+**Eine Sitzung ist erst abgeschlossen, wenn ihre Übergabe geschrieben ist.** Die Übergabe ist kein
+Anhang und keine Kür: Sie ist der Teil des Abschlusses, der die Sitzung überlebt, und sie entsteht
+**bei jedem Abschluss**, auch wenn nur geprüft und nichts gebaut wurde.
+
+Pflicht dabei:
+
+1. **Ablage:** `uebergabe/05-uebergaben/YYYY-MM-DD-kurzer-titel.md`, erzeugt **nach der Vorlage**
+   `uebergabe/vorlagen/uebergabe.md`.
+2. **Alle Abschnitte der Vorlage** in ihrer Reihenfolge: Kopf (`Datum`, `Bearbeitet durch`,
+   `Auftrag`, `Status`), Ziel der Sitzung, Ergebnis, Geänderte Bereiche, Entscheidungen und
+   Annahmen, Prüfungen, Offene Punkte und Risiken, Empfohlener nächster Schritt, Git.
+   Ein fehlender Pflichtabschnitt macht die Übergabe unbrauchbar, auch wenn der Inhalt reich ist —
+   wer die Akte gewohnt ist, sucht die Angaben dort, wo sie stehen müssen.
+3. **Gegen die Vorlage prüfen, nicht aus dem Gedächtnis.** Vor dem Melden die Abschnittsliste der
+   Vorlage mit der geschriebenen Datei abgleichen (Zeile für Zeile), nicht „ich habe doch alles
+   drin" annehmen. Die Vorlage ist die Prüfung.
+4. **Nicht erfüllte Abnahmekriterien ausdrücklich benennen** — im Ergebnis oder in den offenen
+   Punkten, mit dem Grund. Ein Kriterium stillschweigend fallen zu lassen ist der gefährlichste
+   Fehler einer Übergabe.
+5. **Prüfresultate nur belegbar eintragen** und fehlgeschlagene oder nicht ausgeführte Prüfungen
+   ausdrücklich nennen. Commits mit Hash, und ob gepusht wurde oder nicht.
+6. **Bestehende Übergaben werden ergänzt, nicht überschrieben.** Wird ein fehlender Abschnitt
+   nachgetragen, bekommt er einen datierten Hinweis; der alte Wortlaut bleibt stehen.
+
+*Aufgenommen am 2026-10-04 auf Thomas' Anweisung, weil die Welle-5-Übergabe der Vorlage nicht
+folgte und zwei ältere Übergaben Lücken hatten.*
+
 ## Dokumentationspflicht nach Änderungen
 
 - tatsächlichen Projektstand in `01-stand/aktueller-stand.md` aktualisieren,
 - neue oder erledigte Aufgaben in `01-stand/offene-punkte.md` pflegen,
 - größere Entscheidungen als ADR dokumentieren,
 - neue Vorhaben zunächst als Konzept erfassen,
-- eine sitzungsbezogene Übergabe nach der Vorlage anlegen,
+- eine sitzungsbezogene Übergabe nach der Vorlage anlegen (**Pflichtteil des Sitzungsabschlusses,
+  siehe oben**),
 - nur belegbare Prüfresultate eintragen.
 
 ## Git-Regeln
