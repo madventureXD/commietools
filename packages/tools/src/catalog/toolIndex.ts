@@ -4144,7 +4144,7 @@ export const toolIndex: readonly ToolSearchEntry[] = [
       "de": {
         "title": "Funktionsplotter",
         "summary": "Kurven, Wertetabelle und Nullstellen.",
-        "description": "Mehrere Funktionen gleichzeitig zeichnen, mit Wertetabelle und berechneten Nullstellen. Die Zeichenengine wird erst beim Öffnen nachgeladen. Rechnet vollständig im Browser.",
+        "description": "Mehrere Funktionen gleichzeitig zeichnen, mit Wertetabelle und berechneten Nullstellen. Gezeichnet wird mit einem eigenen Zeichner. Rechnet vollständig im Browser.",
         "terms": [
           "Funktionsplotter",
           "Plotter",
@@ -4172,7 +4172,7 @@ export const toolIndex: readonly ToolSearchEntry[] = [
       "en": {
         "title": "Function plotter",
         "summary": "Curves, value table and roots.",
-        "description": "Plot several functions at once, with a value table and computed roots. The drawing engine is loaded only when the tool is opened. All computation stays in the browser.",
+        "description": "Plot several functions at once, with a value table and computed roots. Drawing uses our own renderer. All computation stays in the browser.",
         "terms": [
           "function plotter",
           "plotter",
@@ -4201,7 +4201,7 @@ export const toolIndex: readonly ToolSearchEntry[] = [
       "es": {
         "title": "Representador de funciones",
         "summary": "Curvas, tabla de valores y raíces.",
-        "description": "Representa varias funciones a la vez, con tabla de valores y raíces calculadas. El motor de dibujo se carga solo al abrir la herramienta. Todo el cálculo ocurre en el navegador.",
+        "description": "Representa varias funciones a la vez, con tabla de valores y raíces calculadas. El dibujo usa un trazador propio. Todo el cálculo ocurre en el navegador.",
         "terms": [
           "representador de funciones",
           "graficador",

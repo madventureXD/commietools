@@ -13,7 +13,7 @@ Die Roadmap beschreibt die derzeitige Reihenfolge, keine festen Termine.
 
 ## Phase 1 – PDF-Suite
 
-**Status:** M0 bis M7 lokal abgeschlossen; M8 funktional umgesetzt, Qualitätsgate noch offen; Veröffentlichung erfolgt gesammelt in einem späteren Release
+**Status:** M0 bis M9 lokal abgeschlossen; Veröffentlichung erfolgt gesammelt in einem späteren Release
 
 Vollständiges Umsetzungskonzept: [`../03-konzepte/2026-10-03-pdf-suite.md`](../03-konzepte/2026-10-03-pdf-suite.md)
 
@@ -25,12 +25,12 @@ Vollständiges Umsetzungskonzept: [`../03-konzepte/2026-10-03-pdf-suite.md`](../
 - M5: Sicherheit und Kompression – umgesetzt
 - M6: eigenständiger Viewer, Textextraktion und OCR – lokal umgesetzt, noch nicht veröffentlicht
 - M7: digitale Signaturen – lokal abgeschlossen; Rust-WASM, BER-/DER-CMS, inkrementelle Mehrfachsignaturen, PAdES B-B/T/LT/LTA und EU-DSS-Referenzkorpus geprüft
-- M8: Dokumentprüfung und -pflege – lokaler Viewer sowie Metadaten, Beschneiden, QPDF-Reparatur, Anhänge und Struktur-/Textvergleich umgesetzt; visueller Vergleich und Reader-Interoperabilität noch offen
-- M9: sichere Schwärzung lokal umgesetzt; PDF/A nur als klar begrenzter Vorcheck; echte PDF/A-Validierung/-Konvertierung und Office-Konvertierung bleiben am Local-First-Qualitätsgate gesperrt
+- M8: Dokumentprüfung und -pflege – Viewer, Metadaten, Beschneiden, QPDF-Reparatur, sichere Anhangverwaltung sowie getrennter Struktur-, Text- und Renderingvergleich lokal umgesetzt
+- M9: sichere grafische Schwärzung und PDF/A-Vorcheck lokal umgesetzt; echte PDF/A- und Office-Konvertierung nach Recherche und ADR 0006 bewusst nicht freigegeben
 
 ## Phase 2 – Suite „Rechnen"
 
-**Status:** Wellen 1 bis 4 abgenommen; Welle 5 ff. offen
+**Status:** Wellen 1 bis 5 abgenommen; Welle 6 ff. offen
 **Konzept:** [`../03-konzepte/2026-10-03-taschenrechner-suite.md`](../03-konzepte/2026-10-03-taschenrechner-suite.md)
 **Entscheidung:** [ADR 0005](../04-entscheidungen/0005-mathjs-rechenkern.md) — mathjs aus kuratierten Factories
 
@@ -117,14 +117,20 @@ prüft das dauerhaft. Der Rückweg bleibt in einem `try/catch` und meldet im Feh
 **Nicht enthalten, bewusst:** Feiertage je Bundesland (die Abnahme verlangt sie nicht; sie
 brauchen einen Kalender je Land) und Zeitdauern über Zeitzonen hinweg.
 
-### Welle 5 – Mathematik (zweite neue Engine)
+### Welle 5 – Mathematik — **abgenommen 2026-10-04**
 
 - Werkzeug 7 „Gleichungslöser", Werkzeug 6 „Statistik", Werkzeug 5 „Funktionsplotter"
-- `function-plot` (64,5 KiB gzip), ausdrücklich als nachgeladenes Modul
+- **Keine neue Engine.** `function-plot` trägt nicht: Sie zieht `interval-arithmetic` mit, das
+  unter `BSL-1.0` steht — in der Politik weder freigegeben noch geprüft. Der Plotter zeichnet
+  deshalb mit einem eigenen Zeichner (SVG aus berechneter Geometrie). Damit entfällt auch die
+  `sampler`-Falle, die eine Eigenschaft dieser Engine war. Wird `BSL-1.0` später in die Politik
+  aufgenommen, kann `function-plot` zurückkommen.
 
-**Abnahme:** lineare, quadratische und kubische Gleichungen mit Lösungsweg · Statistik-Kennwerte
-gegen Nachrechnung · Plotter mit mehreren Kurven, Wertetabelle, Nullstellen · Datenoptionen
-einzeln geprüft (`sampler`-Falle) · Bedienung auch per Tastatur.
+**Abnahme:** lineare, quadratische und kubische Gleichungen mit Lösungsweg (erfüllt: sechs
+Schritte bis zur Cardano-Fallunterscheidung) · Statistik-Kennwerte gegen Nachrechnung (erfüllt) ·
+Plotter mit mehreren Kurven, Wertetabelle, Nullstellen (erfüllt; Polstellen werden nicht als
+Nullstelle gemeldet) · Datenoptionen einzeln geprüft (entfallen mit der Engine) · **Bedienung per
+Tastatur: nicht durchgespielt** — offener Punkt.
 
 ### Welle 6 – Aufmaß
 

@@ -1,7 +1,7 @@
 # Aktueller Projektstand
 
 **Stand:** 2026-10-04
-**Letzter geprüfter Meilenstein:** PDF-Suite M8 funktional lokal umgesetzt; Qualitätsgate und Veröffentlichung noch offen (2026-10-04)
+**Letzter geprüfter Meilenstein:** Rechner-Suite Welle 5 (Gleichungslöser, Statistik, Funktionsplotter) lokal abgenommen; PDF-Suite M8 und M9 ebenfalls lokal abgeschlossen; Veröffentlichung für den nächsten Sammelrelease zurückgestellt (2026-10-04)
 
 ## Umgesetzt
 
@@ -68,6 +68,7 @@
 - Kaufmännisch (Suite „Rechnen", Welle 3): Prozent in drei Richtungen, Rabatt, Aufschlag, Marge **und** Aufschlag gemeinsam mit klarer Bezugsgröße, Umsatzsteuer raus und rein, Skonto, Dreisatz, Zinseszins und Tilgungsplan; rechnet ohne neue Abhängigkeit in `BigInt` cent-genau, Plan summiert sich exakt zum Darlehen; Formeln, Annahmen und Quellen in drei Sprachen
 - Umrechnen (Suite „Rechnen", Welle 4): Einheiten in zwölf Größen, Winkel, Zahlensysteme 2–36 in `BigInt`, Zollbrüche und 18 Kalender; Umrechnungsfaktoren werden zur Laufzeit aus der Einheitenbibliothek **gemessen** statt abgeschrieben; Kalender vorwärts über `Intl`, Rückweg über `Temporal` mit `monthCode`
 - Zeit und Datum (Suite „Rechnen", Welle 4): Datumsabstand, Verschieben über Monats- und Jahresgrenzen, Arbeitstage, Kalenderwoche nach ISO 8601, Fristen nach BGB §§ 187/188/193 und Zeitdauern für den Stundenzettel
+- Gleichungslöser, Statistik und Funktionsplotter (Suite „Rechnen", Welle 5 abgenommen): lineare, quadratische und kubische Gleichungen mit sechsstufigem Lösungsweg (Normieren, Substitution, reduzierte Form, Diskriminante, Cardano-Fall, Probe) und Scheitelpunkt; Kennwerte mit Varianz und Standardabweichung **in beiden Bezugsarten**, Quartilen nach linearer Interpolation, Ausreißergrenzen, Regression mit Korrelation und Bestimmtheitsmaß; Plotter für mehrere Funktionen mit Wertetabelle und berechneten Nullstellen. **Keine neue Engine:** `function-plot` trägt wegen `BSL-1.0` einer mitgezogenen Abhängigkeit nicht (in der Lizenzpolitik nicht geprüft), deshalb ein eigener Zeichner, der SVG-Geometrie aus dem vorhandenen Rechenkern erzeugt; die gemessenen 3 Kurvenzüge für x²−4 und 1/x zeigen die Asttrennung an Polstellen, die Polstelle wird nicht als Nullstelle gemeldet
 - `@js-temporal/polyfill` 0.5.1 als **nur nach Feature-Abfrage** nachgeladene Engine; eigener Chunk, vom Vorabcache ausgenommen und im Laufzeitcache (gemessen 154 kB roh)
 - Geometrie (Suite „Rechnen", Welle 3): 16 Formen und Körper von Rechteck bis Kugel; jede Ergebniszeile zeigt ihre Formel im Klartext; Formeln und Annahmen in drei Sprachen, Werte gegen unabhängige Nachrechnung geprüft
 
@@ -104,6 +105,9 @@
 | Kaufmännisch | `commercial` | Rechnen | lokal | keine (nur Information) |
 | Geometrie | `geometry` | Rechnen | lokal | keine (nur Information) |
 | Umrechnen | `convert` | Rechnen | lokal | keine (nur Information) |
+| Funktionsplotter | `plotter` | Rechnen | lokal | keine (nur Information) |
+| Statistik | `statistics` | Rechnen | lokal | keine (nur Information) |
+| Gleichungslöser | `equations` | Rechnen | lokal | keine (nur Information) |
 | Zeit und Datum | `datetime` | Rechnen | lokal | keine (nur Information) |
 
 ## Derzeitige Suiten
@@ -112,7 +116,7 @@
 - Entwicklung
 - Generatoren
 - Bilder (Bild-Metadaten, Bild skalieren, Icon-Generator, Wasserzeichen, Farbwerkzeuge)
-- Rechnen (Rechner, Umrechnen, Kaufmännisch, Zeit und Datum, Geometrie)
+- Rechnen (Rechner, Umrechnen, Kaufmännisch, Zeit und Datum, Funktionsplotter, Statistik, Gleichungslöser, Geometrie)
 - PDF (Viewer, Text/OCR, Zertifikatssignaturen prüfen und erstellen, Zusammenführen, Teilen, Seiten organisieren, Bilder zu PDF, PDF zu Bildern, Wasserzeichen, Seitenzahlen, sichtbar unterschreiben, Formular ausfüllen, kommentieren und markieren, schützen/entsperren, komprimieren)
 
 ## Qualität und Compliance
@@ -123,9 +127,9 @@
 - vollständige Lizenztexte: 16
 - bewahrte originale Paketdokumente: 188
 - eingebettete Binärartefakte: 2 registrierte WASM-Artefakte (QPDF und PDF Signer)
-- letzter bekannter Teststand: 248 Webtests in 14 Dateien bestanden (`npm run check`, gemessen 2026-10-03); Rust-Tests in diesem Lauf nicht neu gemessen — der zuletzt bekannte Stand bleibt 50
+- letzter bekannter Teststand: 281 Webtests in 15 Dateien bestanden (`npm run check`, gemessen 2026-10-04); Rust-Tests in diesem Lauf nicht neu gemessen — der zuletzt bekannte Stand bleibt 50
 - Werkzeugregister: 37 Werkzeuge, 3 Sprachen, 37 Symbole, 2.458 Suchbegriffe, 89 deklarierte Dateitypen (`npm run catalog:check`, gemessen 2026-10-03); Spanisch ist lokal als noch gegenzulesendes Testpaket eingebunden
-- letzter bekannter Produktions-Build: bestanden; 206.547 Byte Startcode komprimiert und ohne statisch erreichbare PDF- oder Rechen-Engine; PDF-/OCR-/Signaturrouten, Worker und WASM sind vom Vorab-Cache ausgeschlossen; nachgeladener Rechenkern 102.436 Byte gzip (gemessen 2026-10-03)
+- letzter bekannter Produktions-Build: bestanden; 226.708 Byte Startcode komprimiert und ohne statisch erreichbare PDF- oder Rechen-Engine; PDF-/OCR-/Signaturrouten, Worker und WASM sind vom Vorab-Cache ausgeschlossen; nachgeladener Rechenkern 102.436 Byte gzip (gemessen 2026-10-03)
 
 Zahlen sind Momentaufnahmen. Nach Abhängigkeits-, Test- oder Tooländerungen müssen sie anhand der tatsächlichen Ausgabe aktualisiert werden.
 

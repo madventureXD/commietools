@@ -76,11 +76,11 @@ eigene Zeichner ist davon unabhängig lauffähig.
 | Tests | 248 in 14 Dateien | **281 in 15 Dateien** |
 | Katalog | 37 Werkzeuge / 89 Dateitypen | **40 Werkzeuge / 40 Icons / 89 Dateitypen** |
 | Lizenzen | 522 Pakete | **522 Pakete** (function-plot samt Anhang wieder entfernt) |
-| Startbündel | 216.392 B gzip | **226.806 B gzip** (Budget 250 KiB) |
+| Startbündel | 216.392 B gzip | **226.708 B gzip** (Budget 250 KiB) |
 | Rechenkern | 102.437 B | **102.437 B** (Gate 110 KiB) |
 | Vorabladen | 56 Einträge | **62 Einträge (2363,60 KiB)** |
 
-Der Katalog steht bei 2646 Suchbegriffen. **Das Startbündel ist um 10,4 kB gewachsen** — siehe
+Der Katalog steht bei 2646 Suchbegriffen. **Das Startbündel ist um 10,3 kB gewachsen** — siehe
 offene Punkte.
 
 ## Artefaktprüfung (Edge headless, Port 4174, Build aus dem Arbeitsbaum)
