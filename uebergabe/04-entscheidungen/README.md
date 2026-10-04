@@ -18,6 +18,7 @@ Wird eine Entscheidung ersetzt, bleiben beide Dateien erhalten und verweisen geg
 - [`0003-datensparsame-ladegrenzen.md`](0003-datensparsame-ladegrenzen.md): Nur tatsächlich benötigte Tool-Module und Engines übertragen — angenommen.
 - [`0004-m7-signatur-sicherheitsgate.md`](0004-m7-signatur-sicherheitsgate.md): Kryptografische PDF-Signaturen bleiben bis zu einer sicher prüfbaren Browser-Engine gesperrt — angenommen.
 - [`0005-mathjs-rechenkern.md`](0005-mathjs-rechenkern.md): mathjs aus kuratierten Factories als Rechenkern der Suite „Rechnen" — angenommen.
+- [`0006-voller-wert-und-genauigkeitsampel.md`](0006-voller-wert-und-genauigkeitsampel.md): Der Rechenkern gibt den vollen Wert getrennt aus; die Genauigkeitsampel vergleicht Zeichenketten — angenommen.
 
 Die allgemeine Architekturgrundlage ist in [`../../docs/architecture.md`](../../docs/architecture.md) dokumentiert.
 

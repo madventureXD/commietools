@@ -36,6 +36,11 @@ Diese Liste enthält bestätigte, noch nicht abgeschlossene Arbeit. Details geh�
   Stelle tritt die neue Warnschwelle aus `sprachgetrennte-suchpakete`: **Werkzeugtexte Deutsch
   26.403 von 30.720 B gzip** nach Welle 6. Eine weitere Werkzeugwelle dieser Größe kann sie
   reißen; Ausweg ist die Aufteilung der Werkzeugtexte je Sprache (etwa je Suite).
+  *(2026-10-04: Das geplante Tastenfeld des Rechners (`03-konzepte/2026-10-04-rechner-oberflaeche.md`)
+  bringt rund **35 zusätzliche Schlüssel je Sprache** — jedes Tastensymbol braucht laut
+  `docs/ui-system.md` einen übersetzten zugänglichen Namen. Damit ist die Reserve von rund 4,3 KiB
+  vor der Umsetzung neu zu messen; gegebenenfalls wird die Aufteilung der Werkzeugtexte je Sprache
+  zur Voraussetzung dieser Welle statt zu einem Folgeschritt.)*
 - [ ] Bedienung per Tastatur automatisiert prüfen (seit Welle 5 offen; in Welle 6 erneut nur
   teilweise — native Formularelemente mit Beschriftungen, kein durchgespielter Tastaturlauf).
   *(2026-10-04: Der durchgespielte Lauf ist erst **nach** der Online-Stellung möglich; bis dahin
@@ -45,6 +50,7 @@ Diese Liste enthält bestätigte, noch nicht abgeschlossene Arbeit. Details geh�
   chinesisch) werden transliteriert oder zu `?`. Für Deutsch, Englisch und Spanisch reicht das;
   eine Sprache mit anderer Schrift braucht eine eingebettete Schrift.
 - [ ] Verhalten von Aufmaß bei sehr vielen Zeilen (mehrere hundert) und an Speichergrenzen messen.
+
 
 ## Später / bei konkretem Bedarf
 

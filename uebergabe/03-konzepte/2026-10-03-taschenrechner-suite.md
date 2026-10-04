@@ -1089,3 +1089,117 @@ beiläufig mit hineinrutschen.
   (Deprecated-Hinweis), `github.com/networkteam/eel`.
 - Formel-Quellenangabe: `freetoolarena.com/source` (Q6).
 - Projektregeln: `licenses/policy.json`, `uebergabe/00-einstieg/arbeitsregeln.md`.
+
+## Nachtrag 2026-10-04, Faber: die Oberfläche des Rechners bekommt ein eigenes Konzept
+
+Auf Thomas' Vorgabe vom 2026-10-04 („Design der Taschenrechner … Tasten zum Drücken, möglichst
+wenig Text, mehr eindeutige mathematische Zeichen", dazu eine per Klick umschaltbare
+zweidimensionale Anzeige) liegt der Entwurf jetzt als eigenes Konzept:
+**`2026-10-04-rechner-oberflaeche.md`**. Der Wortlaut oben bleibt stehen.
+
+Kurzfassung, damit dieses Konzept nicht zwei Orte für dieselbe Frage hat:
+
+- **Tastenfeld** für Standard (4 × 5) und Wissenschaftlich (5 × 8 mit drei Funktionsreihen und
+  `2nd`-Umschalter) — ersetzt die 31 Wortknöpfe, **nicht** das Textfeld.
+- **Tastensprache** in vier Klassen: reines Zeichen, genormte Abkürzung (nicht übersetzt), Symbol
+  statt Wort, sichtbarer Text für Zustände und Handlungen. Dazu ein **übersetzter** zugänglicher
+  Name je Taste (`docs/ui-system.md`).
+- **Anzeige** in zwei Zuständen, ein Klick, Wert identisch, kopiert wird immer der Text.
+- **Kein neuer Rechenkern.** Tasten hängen Schnipsel an den vorhandenen Ausdruck; `appendSnippet`
+  tut das schon. Damit wächst weder die mathjs-Last (89,5 KiB, ADR 0005) noch die Lizenzliste.
+- **Der Anzeige-Renderer ist offen und ungemessen.** Gemessen ist nur, dass der vorhandene Kern
+  LaTeX liefert (`toTex` ✓), aber keine 2D-Darstellung: `toHTML` ist flach, `toMathML` gibt es in
+  mathjs 15.2.0 nicht.
+
+Was dieses Konzept **nicht** berührt: Werkzeug 2–9 der Suite, die Währungsentscheidung, die
+Gruppierung, die in diesem Dokument festgehaltenen OSS-Urteile.
+
+## Nachtrag 2026-10-04 (zweiter), Faber: Thomas' vier Antworten und die Messungen dazu
+
+**Der Wortlaut oben bleibt stehen.** Thomas hat am 2026-10-04 auf die vier offenen Bedienfragen
+geantwortet:
+
+| Frage | Antwort | Folge |
+|---|---|---|
+| 1 · Tastenfeld allein oder neben dem Textfeld | **„bitte concept Art für beide Varianten"** | nicht entschieden — beide Varianten sind als Tafel vorgelegt (`work/rechner-tastatur-varianten.html`) |
+| 2 · `2nd` oder alle Funktionen einzeln | **`2nd` plus eine weitere Taste** für alles, was keinen Platz mehr hat | zweite Belegung auf vorhandenen Tasten; Rest im Blatt `⋯` |
+| 3 · Dezimaltrenner lokalisiert | **ja** | `,` deutsch/spanisch, `.` englisch — die einzige Taste mit sprachabhängiger Aufschrift |
+| 4 · Auch Programmierer und RPN | **ja** | eigene Tastenfelder für beide Rechenarten (`work/rechner-tasten-programmierer-rpn.html`) |
+
+### Messungen, die dabei angefallen sind (nicht angenommen)
+
+**M1 — Der Rechenkern kennt die hübschen Zeichen nicht.** Gemessen in mathjs 15.2.0 aus
+`node_modules` des Projekts:
+
+| Eingabe | Ergebnis |
+|---|---|
+| `2 × 3` | `Undefined symbol ×` |
+| `6 ÷ 2` | `Undefined symbol ÷` |
+| `5 − 2` (U+2212) | `Syntax error in part "− 2"` |
+| `2 · 3` | Syntaxfehler |
+| `1,5 + 1` | `Unexpected operator ,` |
+
+**Folge:** Die Taste darf `×`, `÷`, `−` zeigen, **ablegen muss sie `*`, `/`, `-`** — und der
+Dezimaltrenner im Ausdruck ist der Punkt. Damit steht eine Festlegung an: entweder zeigt die
+Eingabezeile die abgelegte Form (ehrlich, kopierbar, ohne zweite Wahrheit), oder sie zeigt die
+hübschen Zeichen und die Auswertung normalisiert vorher. **Empfehlung: erstere** — eine zweite
+Umschreibregel zwischen Anzeige und Ausdruck ist genau die Art stiller Zweideutigkeit, die dieses
+Projekt schon einmal einen Faktor 1000 gekostet hat.
+
+**M2 — Die Anzeige benutzt heute einen Punkt, kein Komma.** Belegt im vorhandenen Projekttest:
+`evaluate('sin(30)', …).display` ergibt `'0.5'` (`calculator-core.test.ts`). Eine **lokalisierte
+Komma-Taste** (Antwort 3) vor einer Anzeige mit Punkt ist widersprüchlich. Zu entscheiden: Taste
+und Anzeige gleich ziehen — entweder beide lokalisiert (dann braucht der Formatierer eine
+Dezimaltrenner-Option) oder Taste bleibt beim Punkt.
+
+**M3 — Die kuratierte Factory-Liste ist enger als der übliche Funktionsumfang.**
+`packages/tools/src/calculator/functions.ts` lädt unter anderem **nicht**:
+`nthRoot`, `cbrt`, `tau`, `phi`, `i`, `arg`, `isPrime`, `mean`, `std`, `hypot`.
+Eine fehlende Factory bricht erst zur Laufzeit, nie beim Bau (ADR 0005). Deshalb:
+- Die Zeichen `∛` und `ⁿ√x` sind **Zeichen, keine Funktionen** — sie setzen `x^(1/3)` und `x^(1/n)`
+  über die vorhandene Potenz.
+- Das Blatt `⋯` führt **nur**, was die Factories wirklich hergeben:
+  `asin acos atan atan2` · `sinh cosh tanh asinh acosh atanh` · `abs round floor ceil fix sign` ·
+  `gcd lcm mod` · `combinations permutations` · `max min sum` · `π e`.
+
+**M4 — `rightLogShift` bleibt außen vor.** mathjs bietet es nur vektoriell und lehnt Skalare ab
+(steht so im Kommentar der Factory-Liste). Ein logischer Rechts-Shift auf einem Wert läuft über die
+Wortbreite (`toWord`) und wäre eine eigene Ergänzung, kein Tastensymbol. Die Tafel zeigt daher nur
+`<<` und `>>`.
+
+### Zwei Befunde, die über die Oberfläche hinausgehen
+
+**B1 — RPN mit einem echten Stapel ist eine Kernänderung, keine Tastenbelegung.** Heute liest der
+RPN-Modus eine **getippte Zeichenkette** (`splitRpnTokens`, `evaluateRpn`) und zeigt den Stapel als
+Ergebnis. Die vorgeschlagenen Tasten `ENTER`, `DROP`, `SWAP`, `ROLL` verlangen einen **Zustand
+zwischen den Anschlägen**. Zwei Wege, beide gangbar:
+(a) RPN bleibt die getippte Zeichenkette und bekommt nur Zeichen statt Wörter — die vier
+Stapeltasten entfallen;
+(b) RPN wird ein echter Stapelrechner — Aufwand im Rechenkern, nicht im Tastenfeld.
+**Braucht Thomas' Entscheidung.**
+
+**B2 — Im Programmierer-Modus haben `A–F` nicht in jeder Basis eine Bedeutung.** In DEC, OCT und
+BIN sind sie keine Ziffern; in BIN bleiben nur `0` und `1`. Vorschlag: je Basis **abgeschaltet**
+(nicht nur blass, sondern nicht bedienbar). Das ist die einzige Verhaltensänderung dieser
+Rechenart.
+
+### Offene Fragen — bereinigter Stand
+
+- [ ] **Variante A oder B** (Tafel liegt vor).
+- [ ] **Dezimaltrenner in Eingabe und Anzeige gleich ziehen** (M1/M2).
+- [ ] **Schreibweise im Ausdruck:** abgelegte Form (`* / -` und Punkt) oder hübsche Zeichen mit
+      Normalisierung? Empfehlung: abgelegte Form.
+- [ ] **RPN:** Zeichenkette (a) oder echter Stapel (b)?
+- [ ] **Programmierer:** Zifferntasten je Basis abschalten (B2)?
+- [ ] **Umfang des Blattes `⋯`** bestätigen (M3).
+- [ ] **Anzeige-Renderer** für die 2D-Darstellung — weiterhin ungemessen.
+- [ ] **Werkzeugtexte Deutsch** nach den rund 35 neuen Schlüsseln je Sprache neu messen.
+
+### Zeichnungen zu diesem Nachtrag
+
+- `work/rechner-tastatur-varianten.html` — Variante A und B, `2nd`-Ebene, Blatt `⋯`, die vier
+  Antworten
+- `work/rechner-tasten-programmierer-rpn.html` — Programmierer (HEX, ausgegraute `A–F` in DEC) und
+  RPN mit Stapel
+- `work/rechner-tastatur-concept.html`, `work/rechner-anzeige-concept.html` — die früheren Tafeln
+  (in der ersten war `40,7` gezeichnet; nach M2 berichtigt auf `40.7`)

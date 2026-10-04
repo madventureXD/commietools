@@ -1,0 +1,57 @@
+# Genauigkeitsmessung zum Ampel-Konzept
+# Aufgenommen am 2026-10-04 mit dem echten Rechenkern (esbuild-Bündel aus work/*.cjs)
+# mathjs 15.2.0 aus dem Projekt; kein Quellcode geändert
+
+## 1) Was gibt evaluate heute heraus? (display, raw, precision-Wirkung)
+
+1/3 (Dezimal)          | ok=true | display=0.33333333333333 | raw=0.33333333333333 | rawZeichen=16 | error=-
+1/3*3 (Dezimal)        | ok=true | display=1 | raw=1 | rawZeichen=1 | error=-
+2/7 (Dezimal)          | ok=true | display=0.28571428571429 | raw=0.28571428571429 | rawZeichen=16 | error=-
+sqrt(4) (Dezimal)      | ok=true | display=2 | raw=2 | rawZeichen=1 | error=-
+sqrt(2) (Dezimal)      | ok=true | display=1.4142135623731 | raw=1.4142135623731 | rawZeichen=15 | error=-
+pi (Dezimal)           | ok=true | display=3.1415926535898 | raw=3.1415926535898 | rawZeichen=15 | error=-
+sin(30) Grad (Dez.)    | ok=true | display=0.5 | raw=0.5 | rawZeichen=3 | error=-
+1/3 Dez. 40 Stellen    | ok=true | display=0.33333333333333 | raw=0.33333333333333 | rawZeichen=16 | error=-
+1/3 Dez. 14 Stellen    | ok=true | display=0.33333333333333 | raw=0.33333333333333 | rawZeichen=16 | error=-
+1/3 am Stück (Vorgabe) | ok=true | display=1/3 | raw=1/3 | rawZeichen=3 | error=-
+1/3*3 (Vorgabe)        | ok=true | display=1/1 | raw=1/1 | rawZeichen=3 | error=-
+1/3+1/6 (Vorgabe)      | ok=true | display=1/2 | raw=1/2 | rawZeichen=3 | error=-
+sqrt(2) (Vorgabe)      | ok=false | display= | raw= | rawZeichen=0 | error=numberModel
+sqrt(4) (Vorgabe)      | ok=false | display= | raw= | rawZeichen=0 | error=numberModel
+sqrt(2) Bruch          | ok=false | display= | raw= | rawZeichen=0 | error=numberModel
+1/3+1/6 Bruch          | ok=true | display=1/2 | raw=1/2 | rawZeichen=3 | error=-
+
+## 2) Liegt der volle Wert im Kern? (math.format über die Kern-Instanz)
+
+1/3      | format 14: 0.33333333333333 | | format 64: 0.3333333333333333333333333333333333333333333333333333333333333333
+2/7      | format 14: 0.28571428571429 | | format 64: 0.2857142857142857142857142857142857142857142857142857142857142857
+sqrt(2)  | format 14: 1.4142135623731 | | format 64: 1.414213562373095048801688724209698078569671875376948073176679738
+pi       | format 14: 3.1415926535898 | | format 64: 3.141592653589793238462643383279502884197169399375105820974944592
+1/3*3    | format 14: 1 | | format 64: 0.9999999999999999999999999999999999999999999999999999999999999999
+Differenz nach Rückweg über den 14-Stellen-Text: 3.33333e-15
+
+## 3) Entscheidung exakt/gerundet je Modell (Zeichenkettenvergleich, nicht math.equal)
+
+=== Dezimal-Modell (BigNumber, intern 64 Stellen) ===
+1/3*3              | angezeigt=1                  | voll=0.9999999999999999999999999999999999… | verschieden → gerundet
+sqrt(2)*sqrt(2)    | angezeigt=2                  | voll=2                                     | gleich → exakt angezeigt
+sqrt(2)            | angezeigt=1.4142135623731    | voll=1.4142135623730950488016887242096980… | verschieden → gerundet
+1/7*7              | angezeigt=1                  | voll=1                                     | gleich → exakt angezeigt
+sin(pi) rad        | angezeigt=3.0781640628621e-6 | voll=3.0781640628620899862803482534211706… | verschieden → gerundet
+pi/pi              | angezeigt=1                  | voll=1                                     | gleich → exakt angezeigt
+0.1+0.2            | angezeigt=0.3                | voll=0.3                                   | gleich → exakt angezeigt
+sin(30) Grad       | angezeigt=0.5                | voll=0.5                                   | gleich → exakt angezeigt
+2^0.5              | angezeigt=1.4142135623731    | voll=1.4142135623730950488016887242096980… | verschieden → gerundet
+log(1000,10)       | angezeigt=3                  | voll=3                                     | gleich → exakt angezeigt
+
+=== Bruch-Modell (Fraction) ===
+1/3*3              | ok=true  | display=1/1               | error=-            | voll=1/1 · Typ=Fraction · gleich
+sqrt(2)*sqrt(2)    | ok=false | display=—                 | error=numberModel  | kein Wert
+sqrt(2)            | ok=false | display=—                 | error=numberModel  | kein Wert
+1/7*7              | ok=true  | display=1/1               | error=-            | voll=1/1 · Typ=Fraction · gleich
+sin(pi) rad        | ok=true  | display=0                 | error=-            | voll=1.2246467991473532e-16 · Typ=Number · verschieden → gerundet
+pi/pi              | ok=true  | display=1                 | error=-            | voll=1 · Typ=Number · gleich
+0.1+0.2            | ok=true  | display=3/10              | error=-            | voll=3/10 · Typ=Fraction · gleich
+sin(30) Grad       | ok=false | display=—                 | error=numberModel  | kein Wert
+2^0.5              | ok=true  | display=1.4142135623731   | error=-            | voll=1.4142135623730951 · Typ=Number · verschieden → gerundet
+log(1000,10)       | ok=true  | display=3/1               | error=-            | voll=3/1 · Typ=Fraction · gleich

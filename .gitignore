@@ -10,4 +10,7 @@ Thumbs.db
 .codex-remote-attachments/
 tmp/
 work/
+# Fremdes, laufendes Prüfaudit im Wurzelverzeichnis (nicht Teil der Projektstruktur, nicht
+# veröffentlichen). Soll es später versioniert werden, diese Zeile entfernen.
+QM/
 

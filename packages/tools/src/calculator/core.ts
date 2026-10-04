@@ -26,6 +26,12 @@ export interface CalculatorOptions {
   readonly number?: NumberMode
   readonly precision?: number
   readonly angleMode?: AngleMode
+  /**
+   * Dezimaltrenner der **Anzeige**. Ohne Angabe bleibt es beim Punkt — die Anzeige ist damit
+   * sprachabhängig, der Rohwert (`raw`) nie: der trägt immer den Punkt und bleibt in jedem
+   * Zahlenmodell wieder einlesbar.
+   */
+  readonly decimalSeparator?: ',' | '.'
 }
 
 /** Fehlerklassen, übersetzt in den Sprachkatalogen unter `calculator.error.<code>`. */
@@ -36,6 +42,7 @@ export type CalculatorErrorCode =
   | 'zeroDivision'
   | 'outOfRange'
   | 'unsupported'
+  | 'numberModel'
   | 'stackUnderflow'
   | 'stackLeftover'
   | 'wordRange'
@@ -51,6 +58,7 @@ export const calculatorErrorCodes = [
   'zeroDivision',
   'outOfRange',
   'unsupported',
+  'numberModel',
   'stackUnderflow',
   'stackLeftover',
   'wordRange'
@@ -62,6 +70,13 @@ export interface Calculation {
   readonly display: string
   /** Wert für die Weiterverwendung (etwa im Verlauf oder in einer Variablen). */
   readonly raw: string
+  /**
+   * Derselbe Wert in der **vollen Rechengenauigkeit** (64 Stellen), unformatiert lokalisiert.
+   * Nur zum Vergleichen gedacht — die Genauigkeitsampel des Rechners erkennt daran, ob die
+   * Anzeige der ganze Wert ist (`raw === full`). **Nicht** zum Anzeigen und **nicht** zum
+   * Weiterrechnen: dafür bleibt `raw` zuständig. Bei Fehlern leer.
+   */
+  readonly full: string
   readonly error: CalculatorErrorCode | null
 }
 
@@ -144,6 +159,13 @@ export function calculatorFor(options: CalculatorOptions = {}): MathJsInstance {
  * Die Reihenfolge ist wichtig: mathjs meldet unbekannte Namen als `Undefined …`.
  */
 function classify(message: string): CalculatorErrorCode {
+  // Zuerst die Zahlenmodell-Grenze: mathjs kann im Bruch-Modell Wurzeln und Winkelfunktionen
+  // nicht rechnen, weil deren Argumente intern in BigNumber gewandelt werden. Gemessen und
+  // festgehalten am 2026-10-04 (mit und ohne die neuen Factories `cbrt`/`nthRoot`): `sqrt(2)`,
+  // `sin(30)` im Bogenmaß, `cbrt(-8)` und `nthRoot(-8, 3)` scheitern **alle** mit dieser Meldung.
+  // Eine eigene Klasse, weil die Meldung im Sprachkatalog einen brauchbaren Hinweis trägt —
+  // „nicht unterstützt" wäre für den Nutzer eine Sackgasse.
+  if (/Cannot implicitly convert/iu.test(message)) return 'numberModel'
   if (/Undefined (function|symbol)/iu.test(message)) return 'unknownName'
   if (/Division by zero/iu.test(message)) return 'zeroDivision'
   if (/Value expected|Unexpected|Parenthesis|Invalid|Syntax|expected/iu.test(message)) return 'syntax'
@@ -169,7 +191,7 @@ function classify(message: string): CalculatorErrorCode {
  * sondern rund `1,5e-64`. Angezeigt wird **0** — das ist die Taschenrechner-Konvention und
  * beschreibt den wahren Wert richtig; die Abweichung liegt unterhalb der Anzeigepräzision.
  */
-function formatValue(math: MathJsInstance, value: unknown): string {
+function formatValue(math: MathJsInstance, value: unknown, precision: number = DISPLAY_PRECISION): string {
   try {
     // Über `number()` in eine JS-Zahl wandeln: `math.abs` ist als `number` typisiert, liefert
     // zur Laufzeit aber ein BigNumber — dessen `.lessThan` kennt TypeScript nicht.
@@ -178,7 +200,7 @@ function formatValue(math: MathJsInstance, value: unknown): string {
   } catch {
     // Kein Zahlenwert (Einheit, Wahrheitswert, Matrix) — dann die übrigen Wege.
   }
-  const text = math.format(value, { precision: DISPLAY_PRECISION })
+  const text = math.format(value, { precision })
   if (!/\de[+-]\d+$/iu.test(text)) return text
   try {
     if (math.isInteger(value as never)) return math.format(value, { notation: 'fixed' })
@@ -198,21 +220,37 @@ export function evaluate(
   scope: Record<string, unknown> = {}
 ): Calculation {
   const trimmed = expression.trim()
-  if (!trimmed) return { ok: false, display: '', raw: '', error: 'empty' }
+  if (!trimmed) return { ok: false, display: '', raw: '', full: '', error: 'empty' }
 
   const math = calculatorFor(options)
   try {
-    const value = math.evaluate(trimmed, scope)
+    let value: unknown
+    try {
+      value = math.evaluate(trimmed, scope)
+    } catch (first) {
+      /**
+       * Zweiter Versuch mit deutschem Dezimalkomma — **nur** wenn der Ausdruck sonst nicht lesbar
+       * ist. Warum nicht vorher umschreiben: mathjs benutzt das Komma als **Argumenttrenner**.
+       * Eine blinde Umschreibung machte aus `gcd(12,18)` die Zahl `gcd(12.18)`. Erst scheitern
+       * lassen heißt: jeder gültige Ausdruck behält seine Bedeutung, und nur `1,5` wird zur
+       * Dezimalzahl. Dieselbe Regel wie im RPN-Pfad, wo je Token umgeschrieben wird.
+       */
+      const normalized = normalizeDecimalInput(trimmed)
+      if (normalized === trimmed) throw first
+      value = math.evaluate(normalized, scope)
+    }
     const raw = formatValue(math, value)
+    // Derselbe Wert in voller Rechengenauigkeit — nur für den Vergleich, nicht für die Anzeige.
+    const full = formatValue(math, value, DEFAULT_PRECISION)
     // mathjs wirft bei einer Division durch null nicht immer: im BigNumber-Modell kommt
     // `Infinity` heraus. Ein solches Ergebnis ist keine gültige Rechnung.
     if (/^(?:-?Infinity|NaN)$/u.test(raw)) {
-      return { ok: false, display: '', raw: '', error: 'outOfRange' }
+      return { ok: false, display: '', raw: '', full: '', error: 'outOfRange' }
     }
-    return { ok: true, display: raw, raw, error: null }
+    return { ok: true, display: localizeNumber(raw, options.decimalSeparator), raw, full, error: null }
   } catch (error) {
     const message = error instanceof Error ? error.message : String(error)
-    return { ok: false, display: '', raw: '', error: classify(message) }
+    return { ok: false, display: '', raw: '', full: '', error: classify(message) }
   }
 }
 
@@ -228,11 +266,12 @@ export function toFraction(expression: string, options: CalculatorOptions = {}):
   try {
     const fraction = math.fraction(result.raw)
     const text = math.format(fraction)
+    const display = localizeNumber(text, options.decimalSeparator)
     // Eine ganze Zahl bleibt eine Zahl: „3/1“ wäre im Rechner verwirrend.
-    if (/^-?\d+$/u.test(text)) return { ok: true, display: text, raw: text, error: null }
-    return { ok: true, display: text, raw: text, error: null }
+    if (/^-?\d+$/u.test(text)) return { ok: true, display, raw: text, full: text, error: null }
+    return { ok: true, display, raw: text, full: text, error: null }
   } catch {
-    return { ok: false, display: '', raw: '', error: 'unsupported' }
+    return { ok: false, display: '', raw: '', full: '', error: 'unsupported' }
   }
 }
 
@@ -259,6 +298,17 @@ export function withVariable(
 /** Zahleingabe mit deutschem Dezimalkomma in einen mathjs-lesbaren Ausdruck bringen. */
 export function normalizeDecimalInput(input: string): string {
   return input.replace(/(\d),(?=\d)/gu, '$1.')
+}
+
+/**
+ * Bringt einen Anzeigewert in den Dezimaltrenner der Sprache. Nur die **Anzeige** wird
+ * umgeschrieben; `raw` behält immer den Punkt und bleibt damit in jedem Zahlenmodell
+ * wieder einlesbar. Betroffen ist nur ein Punkt zwischen Ziffern — Exponenten (`1.5e+10`) werden
+ * mitgenommen, Trennzeichen in anderen Schreibweisen (`3/4`, `F000`, `1 + 2i`) bleiben unberührt.
+ */
+export function localizeNumber(text: string, separator: ',' | '.' | undefined): string {
+  if (!separator || separator === '.') return text
+  return text.replace(/(\d)\.(?=\d)/gu, `$1${separator}`)
 }
 
 /** Zahlensysteme des Programmierer-Modus. */
@@ -288,9 +338,11 @@ export function toBase(
     // das Suffix beschreibt die Eingabe-Notation, nicht den Wert.
     const value = math.evaluate(result.raw)
     const text = math.format(value, { notation, precision: DISPLAY_PRECISION })
-    return { ok: true, display: text, raw: text, error: null }
+    // In einer anderen Basis ist die Schreibweise die ganze Zahl; die Ampel bleibt dort aus,
+    // weil schon die Anzeige-Basis eine eigene Einstellung ist.
+    return { ok: true, display: localizeNumber(text, options.decimalSeparator), raw: text, full: text, error: null }
   } catch {
-    return { ok: false, display: '', raw: '', error: 'unsupported' }
+    return { ok: false, display: '', raw: '', full: '', error: 'unsupported' }
   }
 }
 
@@ -311,10 +363,10 @@ export function toWord(
     const value = BigInt(result.raw)
     const reduced = signed ? BigInt.asIntN(bits, value) : BigInt.asUintN(bits, value)
     const text = reduced.toString()
-    return { ok: true, display: text, raw: text, error: null }
+    return { ok: true, display: text, raw: text, full: text, error: null }
   } catch {
     // Kein ganzer Wert (etwa ein Bruch) — die Wortbreite ergibt dann keinen Sinn.
-    return { ok: false, display: '', raw: '', error: 'wordRange' }
+    return { ok: false, display: '', raw: '', full: '', error: 'wordRange' }
   }
 }
 
@@ -351,7 +403,7 @@ export function evaluateRpn(
 ): RpnResult {
   const stack: string[] = []
   const steps: RpnStep[] = []
-  const fail = (error: CalculatorErrorCode): RpnResult => ({ ok: false, display: '', raw: '', error, steps, stack: [...stack] })
+  const fail = (error: CalculatorErrorCode): RpnResult => ({ ok: false, display: '', raw: '', full: '', error, steps, stack: [...stack] })
 
   for (const token of tokens) {
     const entry = normalizeDecimalInput(token.trim())
@@ -393,5 +445,5 @@ export function evaluateRpn(
   if (stack.length !== 1) return fail('stackLeftover')
   const display = evaluate(stack[0] as string, options, scope)
   if (!display.ok) return { ...display, steps, stack: [...stack] }
-  return { ok: true, display: display.display, raw: display.raw, error: null, steps, stack: [...stack] }
+  return { ok: true, display: display.display, raw: display.raw, full: display.full, error: null, steps, stack: [...stack] }
 }

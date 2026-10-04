@@ -112,7 +112,7 @@ function ToolPage({ tool, t, locale, navigate }: { tool: ToolManifest; t: Transl
               : tool.id === 'icon-generator' ? <IconGenerator t={t} locale={locale} />
                 : tool.id === 'image-watermark' ? <ImageWatermark t={t} locale={locale} />
                   : tool.id === 'color-tools' ? <ColorTools t={t} />
-                    : tool.id === 'calculator' ? <Suspense fallback={<p aria-live="polite">…</p>}><Calculator t={t} /></Suspense>
+                    : tool.id === 'calculator' ? <Suspense fallback={<p aria-live="polite">…</p>}><Calculator t={t} locale={locale} /></Suspense>
                       : tool.id === 'commercial' ? <Suspense fallback={<p aria-live="polite">…</p>}><Commercial t={t} locale={locale} /></Suspense>
                         : tool.id === 'geometry' ? <Suspense fallback={<p aria-live="polite">…</p>}><Geometry t={t} locale={locale} /></Suspense>
                         : tool.id === 'convert' ? <Suspense fallback={<p aria-live="polite">…</p>}><Convert t={t} locale={locale} /></Suspense>

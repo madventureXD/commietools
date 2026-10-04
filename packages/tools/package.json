@@ -19,6 +19,8 @@
     "./calculator/plotter": "./src/calculator/plotter.ts",
     "./calculator/aufmass": "./src/calculator/aufmass.ts",
     "./calculator/aufmassStore": "./src/calculator/aufmassStore.ts",
+    "./calculator/keypad": "./src/calculator/keypad.ts",
+    "./calculator/render": "./src/calculator/render.ts",
     "./pdf/core": "./src/pdf/core.ts",
     "./pdf/m4": "./src/pdf/m4.ts",
     "./pdf/m5": "./src/pdf/m5.ts",

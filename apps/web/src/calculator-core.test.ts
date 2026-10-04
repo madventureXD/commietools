@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { calculatorErrorCodes, evaluate, evaluateRpn, toBase, toFraction, toWord, withVariable } from '@commietools/tools/calculator/core'
+import { calculatorErrorCodes, evaluate, evaluateRpn, localizeNumber, toBase, toFraction, toWord, withVariable } from '@commietools/tools/calculator/core'
 import {
   calculatorAngleProbes,
   calculatorFunctions,
@@ -255,5 +255,77 @@ describe('Fehlertexte', () => {
     const result = evaluate('sin(30)', { number: 'Fraction', angleMode: 'deg' })
     expect(result.ok, String(result.error)).toBe(true)
     expect(result.display).toBe('0.5')
+  })
+})
+
+/**
+ * Dezimaltrenner (Konzept-Nachtrag 2026-10-04). Das Komma ist in mathjs **Argumenttrenner** —
+ * deshalb wird ein Ausdruck nicht blind umgeschrieben, sondern erst dann, wenn er sonst nicht
+ * lesbar ist. Ohne diese Unterscheidung würde aus `gcd(12,18)` die Zahl `gcd(12.18)`.
+ */
+describe('Dezimaltrenner', () => {
+  it('liest das deutsche Komma als Dezimaltrenner', () => {
+    const result = evaluate('1,5 + 1', { number: 'BigNumber' })
+    expect(result.ok, String(result.error)).toBe(true)
+    expect(result.display).toBe('2.5')
+    expect(result.raw).toBe('2.5')
+  })
+
+  it('lässt das Komma als Argumenttrenner unangetastet', () => {
+    // Ohne diese Unterscheidung machte eine blinde Umschreibung aus gcd(12,18) die Zahl gcd(12.18).
+    expect(evaluate('gcd(12,18)', { number: 'BigNumber' }).display).toBe('6')
+    expect(evaluate('max(2,9,4)', { number: 'BigNumber' }).display).toBe('9')
+    expect(evaluate('combinations(49,6)', { number: 'BigNumber' }).display).toBe('13983816')
+  })
+
+  it('zeigt den Wert im Dezimaltrenner der Sprache und lässt den Rohwert maschinenlesbar', () => {
+    const german = evaluate('1,5 + 1', { number: 'BigNumber', decimalSeparator: ',' })
+    expect(german.display).toBe('2,5')
+    expect(german.raw).toBe('2.5')
+    expect(evaluate('1/3', { number: 'Fraction', decimalSeparator: ',' }).display).toBe('1/3')
+    expect(toBase('61440.5', 10, { number: 'BigNumber', decimalSeparator: ',' }).display).toBe('61440,5')
+  })
+
+  it('schreibt nur Ziffern um, keine anderen Schreibweisen', () => {
+    expect(localizeNumber('1.5e+10', ',')).toBe('1,5e+10')
+    expect(localizeNumber('3/4', ',')).toBe('3/4')
+    expect(localizeNumber('F000', ',')).toBe('F000')
+    expect(localizeNumber('1 + 2i', ',')).toBe('1 + 2i')
+    expect(localizeNumber('2.5', '.')).toBe('2.5')
+    expect(localizeNumber('2.5', undefined)).toBe('2.5')
+  })
+})
+
+/**
+ * Ungerade Wurzeln negativer Zahlen: der Grund, warum `cbrt` und `nthRoot` überhaupt in der
+ * kuratierten Factory-Liste stehen. `(-8)^(1/3)` ist in allen Zahlenmodellen **komplex**.
+ */
+describe('Ungerade Wurzeln negativer Zahlen', () => {
+  it('liefert mit cbrt und nthRoot eine reelle Wurzel', () => {
+    expect(evaluate('cbrt(-8)', { number: 'BigNumber' }).display).toBe('-2')
+    expect(evaluate('nthRoot(-8, 3)', { number: 'BigNumber' }).display).toBe('-2')
+    expect(evaluate('nthRoot(81, 4)', { number: 'BigNumber' }).display).toBe('3')
+  })
+
+  it('belegt, warum die Potenz dafür nicht taugt', () => {
+    const power = evaluate('(-8)^(1/3)', { number: 'BigNumber' })
+    expect(power.ok).toBe(true)
+    expect(power.display).toContain('i')
+  })
+
+  /**
+   * Festgehaltener Befund, keine Erwartung an einen Wunsch: im **Bruch-Modell** rechnet mathjs
+   * Wurzeln und Winkelfunktionen nicht, weil sie ihr Argument intern in BigNumber wandeln.
+   * Das gilt für `cbrt` und `nthRoot` genauso wie für `sqrt(2)` und `sin(30)` im Bogenmaß und ist
+   * **älter als diese Welle** (mit dem alten Factory-Stand genauso gemessen). Der Kern gibt dafür
+   * `numberModel` zurück, damit die Oberfläche einen Hinweis zeigen kann statt „nicht unterstützt".
+   */
+  it('meldet im Bruch-Modell die Zahlenmodell-Grenze statt eines Rätsels', () => {
+    expect(evaluate('cbrt(-8)', { number: 'Fraction' }).error).toBe('numberModel')
+    expect(evaluate('sqrt(2)', { number: 'Fraction' }).error).toBe('numberModel')
+    expect(evaluate('nthRoot(-8, 3)', { number: 'Fraction' }).error).toBe('numberModel')
+    // Gegenprobe: die Grundrechenarten und Brüche laufen im Bruch-Modell weiter.
+    expect(evaluate('1/3 + 1/6', { number: 'Fraction' }).display).toBe('1/2')
+    expect(evaluate('2^0.5', { number: 'Fraction' }).display).toBe('1.4142135623731')
   })
 })

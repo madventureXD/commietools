@@ -29,6 +29,11 @@ export interface CalculatorSettings {
   readonly wordBits: number
   /** Mit Vorzeichen (`intN`) oder ohne (`uintN`). */
   readonly signed: boolean
+  /**
+   * Anzeige 1 (zweidimensional, gesetzt) gegen Anzeige 2 (roher Term).
+   * Vorgabe: **zweidimensional** — die schöne Anzeige ist die erste.
+   */
+  readonly twoDimensional: boolean
 }
 
 export const HISTORY_LIMIT = 200
@@ -45,7 +50,8 @@ const DEFAULT_SETTINGS: CalculatorSettings = {
   angleMode: 'rad',
   base: 16,
   wordBits: 32,
-  signed: true
+  signed: true,
+  twoDimensional: true
 }
 
 export async function readHistory(): Promise<readonly HistoryEntry[]> {
@@ -79,6 +85,8 @@ export async function writeVariables(variables: Record<string, string>): Promise
 
 export async function readSettings(): Promise<CalculatorSettings> {
   const stored = await get<CalculatorSettings>(KEYS.settings)
+  // Zusammenführen statt ersetzen: ein gespeicherter Datensatz aus einer früheren Fassung hat
+  // das Feld `twoDimensional` nicht — dann gilt die Vorgabe. Keine Migration nötig.
   return stored ? { ...DEFAULT_SETTINGS, ...stored } : DEFAULT_SETTINGS
 }
 

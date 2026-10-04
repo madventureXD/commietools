@@ -73,7 +73,8 @@
 - Geometrie (Suite „Rechnen", Welle 3): 16 Formen und Körper von Rechteck bis Kugel; jede Ergebniszeile zeigt ihre Formel im Klartext; Formeln und Annahmen in drei Sprachen, Werte gegen unabhängige Nachrechnung geprüft
 - Aufmaß (Suite „Rechnen", Welle 6 abgenommen — **die Suite ist damit vollständig**): zwei getrennte Ebenen — Aufmaßzeile (Maßkette oder Formel → Menge) und Position (Menge × Einzelpreis → Betrag, Menge wahlweise aus einer Aufmaßzeile, dann bleibt der Rechenweg am Blatt). Abschnitte mit Zwischensummen, Mengensummen **je Einheit** und nie über Einheiten hinweg, Ausgabe als CSV, PDF oder Text (die PDF-Engine wird erst beim Auslösen geladen). Eigener Speicherbereich `aufmass.sheet.v1`, bewusst getrennt vom Rechner-Verlauf. **Keine neue Abhängigkeit:** eigener Vorrangparser in `BigInt` statt mathjs in der Fachlogik
 
-## Derzeitige Tools
+- Rechner-Genauigkeitsampel (Suite „Rechnen"): Der Rechenkern gibt neben der 14-stelligen Anzeige den **vollen Wert** (64 Stellen) getrennt aus; daran entscheidet die Ampel in der Anzeigezeile, ob das Gezeigte der ganze Wert ist (grün `=`) oder gerundet wurde (rot `≈`). Die Erklärung öffnet per Zeigen, Ansteuern und Tippen und liegt unter 640 px als Blatt am unteren Rand. Kann das Bruch-Modell eine Rechnung nicht führen (Wurzeln, Winkelfunktionen), rechnet der Rechner **einmalig und sichtbar** im Dezimal-Modell; die Einstellung bleibt. Keine neue Abhängigkeit, keine neue Farbmarke, Anzeigehöhe unverändert (ADR 0006)
+- Aufmaß (Suite „Rechnen", Welle 6 abgenommen — **die Suite ist damit vollständig**):
 
 | Tool | ID | Suite | Ausführung | Dateien (deklariert) |
 |---|---|---|---|---|
@@ -136,9 +137,9 @@
 - vollständige Lizenztexte: 16
 - bewahrte originale Paketdokumente: 188
 - eingebettete Binärartefakte: 2 registrierte WASM-Artefakte (QPDF und PDF Signer)
-- letzter bekannter Teststand: 301 Webtests in 16 Dateien bestanden (`npm run check`, gemessen 2026-10-04); Rust-Tests in diesem Lauf nicht neu gemessen — der zuletzt bekannte Stand bleibt 50
+- letzter bekannter Teststand: 339 Webtests in 18 Dateien bestanden (`npm run check`, gemessen 2026-10-04); Rust-Tests in diesem Lauf nicht neu gemessen — der zuletzt bekannte Stand bleibt 50
 - Werkzeugregister: 41 Werkzeuge, 3 Sprachen, 41 Symbole, 2.730 Suchbegriffe, 92 deklarierte Dateitypen (`npm run catalog:generate`, gemessen 2026-10-04); Spanisch wird als noch gegenzulesendes Testpaket mitausgeliefert
-- letzter bekannter Produktions-Build: bestanden; **136.961 Byte Startcode komprimiert** (Warnschwelle 204.800), sprachgetrennte Such- und Werkzeugtextpakete mit verzögertem Laden, ohne statisch erreichbare PDF- oder Rechen-Engine; PDF-/OCR-/Signaturrouten, Worker und WASM sind vom Vorab-Cache ausgeschlossen; nachgeladener Rechenkern 102.476 Byte gzip, Katalogbasis 1.100 Byte, Werkzeugtexte Deutsch 26.403 von 30.720 Byte (gemessen 2026-10-04)
+- letzter bekannter Produktions-Build: bestanden; **136.967 Byte Startcode komprimiert** (Warnschwelle 204.800), sprachgetrennte Such- und Werkzeugtextpakete mit verzögertem Laden, ohne statisch erreichbare PDF- oder Rechen-Engine; PDF-/OCR-/Signaturrouten, Worker und WASM sind vom Vorab-Cache ausgeschlossen; nachgeladener Rechenkern 103.709 Byte gzip, Katalogbasis 1.100 Byte, Werkzeugtexte Deutsch 26.972 von 30.720 Byte (gemessen 2026-10-04)
 
 Zahlen sind Momentaufnahmen. Nach Abhängigkeits-, Test- oder Tooländerungen müssen sie anhand der tatsächlichen Ausgabe aktualisiert werden.
 

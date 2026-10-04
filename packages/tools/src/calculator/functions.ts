@@ -29,6 +29,7 @@ import {
   bitNotDependencies,
   bitOrDependencies,
   bitXorDependencies,
+  cbrtDependencies,
   ceilDependencies,
   combinationsDependencies,
   compileDependencies,
@@ -53,6 +54,7 @@ import {
   minDependencies,
   modDependencies,
   multiplyDependencies,
+  nthRootDependencies,
   numericDependencies,
   parseDependencies,
   permutationsDependencies,
@@ -90,6 +92,7 @@ export const calculatorFactories = {
   bitNotDependencies,
   bitOrDependencies,
   bitXorDependencies,
+  cbrtDependencies,
   ceilDependencies,
   combinationsDependencies,
   compileDependencies,
@@ -114,6 +117,7 @@ export const calculatorFactories = {
   minDependencies,
   modDependencies,
   multiplyDependencies,
+  nthRootDependencies,
   numericDependencies,
   parseDependencies,
   permutationsDependencies,
@@ -173,6 +177,11 @@ export const calculatorFunctions: readonly {
   { name: 'exp', expression: 'exp(0)', expected: '1', mode: 'scientific' },
   { name: 'pow', expression: '2^10', expected: '1024', mode: 'scientific' },
   { name: 'sqrt', expression: 'sqrt(144)', expected: '12', mode: 'scientific' },
+  // Die ungerade Wurzel aus einer negativen Zahl ist der Grund, warum `cbrt` und `nthRoot`
+  // gebraucht werden: `(-8)^(1/3)` liefert in allen Zahlenmodellen eine **komplexe** Zahl,
+  // `cbrt(-8)` dagegen `-2`. Beide Fabriken sind bewusst in der kuratierten Liste.
+  { name: 'cbrt', expression: 'cbrt(-8)', expected: '-2', mode: 'scientific' },
+  { name: 'nthRoot', expression: 'nthRoot(-8, 3)', expected: '-2', mode: 'scientific' },
   { name: 'pi', expression: 'pi', mode: 'scientific' },
   { name: 'e', expression: 'e', mode: 'scientific' },
   // Wissenschaftlich — Kombinatorik

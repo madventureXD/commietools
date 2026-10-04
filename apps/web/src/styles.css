@@ -341,3 +341,75 @@ a.button { display: inline-flex; align-items: center; justify-content: center; t
 /* Zeichenfläche des Funktionsplotters: die Oberfläche setzt hier ihr SVG hinein. */
 .plot-target { width: 100%; min-height: 20rem; overflow-x: auto; }
 .plot-target svg { display: block; width: 100%; height: auto; }
+
+/* Rechner: Tastenfeld, Anzeige und Blatt „Weitere Funktionen" (Welle 7).
+   Die Anzeige hat eine **feste Mindesthöhe**, damit das Tastenfeld beim Umschalten zwischen
+   zweidimensionaler und roher Anzeige nicht springt. */
+.calculator-display { display: grid; gap: var(--space-2); align-content: center; min-height: 8rem; padding: var(--space-3) var(--space-4); border: 1px solid var(--color-border); border-radius: var(--radius-sm); background: var(--color-background); overflow: hidden; }
+.calculator-display.raw { align-content: start; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+.calculator-display .expression-line { margin: 0; color: var(--color-text-muted); font-size: 0.95rem; text-align: right; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-variant-numeric: tabular-nums; }
+.calculator-display .result-line { margin: 0; font-size: 1.9rem; font-weight: 750; text-align: right; font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
+.calculator-display.raw .expression-line, .calculator-display.raw .result-line { text-align: left; }
+.calculator-display math { font-size: 1.9rem; line-height: 1.35; }
+.calculator-math-block { display: grid; justify-items: end; gap: var(--space-1); max-width: 100%; }
+.calculator-math-block math { max-width: 100%; overflow-x: auto; }
+.calculator-flags { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-2); }
+.calculator-flag { padding: 0.1rem 0.4rem; border: 1px solid var(--color-border); border-radius: 5px; color: var(--color-text-muted); font-size: 0.7rem; font-weight: 800; letter-spacing: 0.05em; }
+.calculator-flag.active { border-color: var(--color-brand); color: var(--color-brand); }
+.calculator-display-tools { display: flex; align-items: center; gap: var(--space-2); margin-left: auto; }
+/* Genauigkeitsampel. Das Zeichen trägt die Bedeutung, die Farbe verstärkt sie nur (WCAG 1.4.1):
+   die beiden Zustände sind auch in Graustufen an „=" gegen „≈" und am Text unterscheidbar. */
+.calculator-accuracy { position: relative; display: inline-flex; }
+.accuracy-light { display: grid; place-items: center; width: 1.375rem; height: 1.375rem; padding: 0; border: 1px solid currentColor; border-radius: 999px; background: transparent; font: inherit; font-size: 0.8rem; font-weight: 800; line-height: 1; cursor: pointer; }
+.accuracy-light.complete { color: var(--color-success); }
+.accuracy-light.rounded { color: var(--color-brand); }
+/* Die Erklärung liegt **über** der Anzeige: sie darf die Anzeigehöhe nicht verändern, sonst
+   springt das Tastenfeld beim Öffnen (Abnahmekriterium des Konzepts). */
+.accuracy-bubble { position: absolute; left: 0; bottom: calc(100% + var(--space-2)); z-index: 5; display: none; gap: 0.2rem; width: max-content; max-width: min(22rem, calc(100vw - 1.5rem)); padding: var(--space-2) var(--space-3); border: 1px solid var(--color-border); border-radius: 0.6rem; background: var(--color-surface-raised); color: var(--color-text); font-size: 0.78rem; line-height: 1.35; box-shadow: 0 6px 18px rgb(0 0 0 / 18%); }
+.accuracy-bubble-title { font-weight: 800; }
+/* Auf schmalen Bildschirmen liegt die Erklärung als Blatt am unteren Rand: eine Sprechblase an der
+   Ampel lief bei 320 px über den rechten Rand (gemessen: links 158 px, rechts 454 px). */
+@media (max-width: 640px) {
+  .accuracy-bubble { position: fixed; left: var(--space-3); right: var(--space-3); bottom: var(--space-3); width: auto; max-width: none; }
+}
+/* Geöffnet: per Zeigen mit der Maus, per Ansteuern mit der Tastatur (Fokus) und per Anheften
+   (Tippen/Klick, Klasse `open`). Ohne JavaScript, weil das Ereignis nicht in jedem Browser
+   als React-Ereignis ankommt (gemessen im headless-Browser am 2026-10-04). */
+.calculator-accuracy:hover .accuracy-bubble,
+.calculator-accuracy:focus-within .accuracy-bubble,
+.calculator-accuracy.open .accuracy-bubble { display: grid; }
+.accuracy-bubble b { font-weight: 800; }
+.calculator-icon-button { display: grid; place-items: center; width: 2.75rem; min-height: 2.75rem; padding: 0; }
+.calculator-icon-button svg { width: 1.15rem; height: 1.15rem; }
+.calculator-switch { display: flex; gap: 0.15rem; padding: 0.15rem; border: 1px solid var(--color-border); border-radius: 999px; background: var(--color-surface); }
+.calculator-switch button { display: grid; place-items: center; min-width: 2.75rem; min-height: 2.75rem; padding: 0; border: 0; border-radius: 999px; background: transparent; color: var(--color-text-muted); font: inherit; font-size: 0.9rem; font-weight: 800; }
+.calculator-switch button.active { background: var(--color-brand); color: white; }
+.calculator-switch .fraction-glyph { display: grid; justify-items: center; line-height: 1; font-size: 0.78rem; }
+.calculator-switch .fraction-glyph i { font-style: normal; border-top: 1px solid currentColor; padding-top: 1px; }
+.keypad { display: grid; gap: var(--space-2); }
+.keypad-key { display: grid; place-items: center; min-height: 3.25rem; padding: 0 0.3rem; border: 1px solid var(--color-border); border-radius: 0.75rem; background: var(--color-surface); color: var(--color-text); font: inherit; font-size: 1.15rem; font-weight: 650; line-height: 1; }
+.keypad-key.digit { background: var(--color-surface-raised); font-weight: 750; }
+.keypad-key.operator { color: var(--color-brand); font-size: 1.3rem; font-weight: 800; }
+.keypad-key.function, .keypad-key.constant { color: var(--color-text-muted); font-size: 0.95rem; font-weight: 700; }
+.keypad-key.equals { border-color: var(--color-brand); background: var(--color-brand); color: white; font-size: 1.35rem; }
+.keypad-key.armed { border-color: var(--color-brand); color: var(--color-brand); background: var(--color-brand-soft); }
+.keypad-key:disabled { opacity: 0.35; cursor: not-allowed; }
+.keypad-key svg { width: 1.25rem; height: 1.25rem; }
+.keypad-key .key-second { margin-bottom: 0.15rem; color: var(--color-brand); font-size: 0.62rem; font-weight: 800; line-height: 1; }
+.keypad-key .key-first { line-height: 1; }
+.keypad-gap { visibility: hidden; }
+.calculator-sheet { display: grid; gap: var(--space-3); margin-top: var(--space-3); padding: var(--space-4); border: 1px solid var(--color-border); border-radius: var(--radius-md); background: var(--color-surface); box-shadow: var(--shadow-card); }
+.calculator-sheet h3 { margin: 0; font-size: 1rem; }
+.calculator-sheet-group { display: grid; gap: var(--space-2); }
+.calculator-sheet-group > p { margin: 0; color: var(--color-text-muted); font-size: 0.72rem; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; }
+.calculator-sheet-keys { display: flex; flex-wrap: wrap; gap: var(--space-2); }
+.calculator-sheet-keys .button { min-width: 3.25rem; }
+.calculator-copy-row { display: flex; flex-wrap: wrap; gap: var(--space-2); }
+.calculator-copy-status { align-self: center; color: var(--color-success); font-size: 0.85rem; font-weight: 700; }
+
+@media (max-width: 420px) {
+  .keypad { gap: 0.35rem; }
+  .keypad-key { min-height: 2.75rem; font-size: 1rem; }
+  .calculator-display { min-height: 6.5rem; padding: var(--space-2) var(--space-3); }
+  .calculator-display .result-line, .calculator-display math { font-size: 1.5rem; }
+}
