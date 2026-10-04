@@ -13,7 +13,10 @@ export default defineConfig({
          * Vorabladen ausnehmen — er heißt sonst generisch `index.esm-*.js` und wird jedem
          * Besucher mitinstalliert (gemessen: 154 kB roh, ~46 kB gzip).
          */
-        manualChunks: (id) => (id.includes('@js-temporal/polyfill') ? 'temporal' : undefined)
+        manualChunks: (id) => {
+          if (id.includes('@js-temporal/polyfill')) return 'temporal'
+          return undefined
+        }
       }
     }
   },

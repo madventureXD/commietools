@@ -3382,13 +3382,14 @@ export const toolIndex: readonly ToolSearchEntry[] = [
     "locales": {
       "de": {
         "title": "PDFs vergleichen",
-        "summary": "Zwei PDFs lokal strukturell und textlich vergleichen.",
-        "description": "Vergleicht Seitenzahl, Seitengröße, Drehung und extrahierbaren Text zweier PDFs.",
+        "summary": "Zwei PDFs lokal strukturell und visuell vergleichen.",
+        "description": "Vergleicht Seitenzahl, Seitengröße, Drehung, Text und gerenderte Seiten zweier PDFs.",
         "terms": [
           "PDF vergleichen",
           "Unterschiede",
           "Textvergleich",
-          "Seiten vergleichen"
+          "Seiten vergleichen",
+          "Pixelvergleich"
         ],
         "tags": [
           "#pdf"
@@ -3396,13 +3397,14 @@ export const toolIndex: readonly ToolSearchEntry[] = [
       },
       "en": {
         "title": "Compare PDFs",
-        "summary": "Compare two PDFs locally by structure and text.",
-        "description": "Compares page count, dimensions, rotation and extractable text in two PDFs.",
+        "summary": "Compare two PDFs structurally and visually.",
+        "description": "Compares page count, dimensions, rotation, text and rendered pages in two PDFs.",
         "terms": [
           "compare PDF",
           "differences",
           "text comparison",
-          "pages"
+          "pages",
+          "pixel comparison"
         ],
         "tags": [
           "#pdf"
@@ -3410,13 +3412,14 @@ export const toolIndex: readonly ToolSearchEntry[] = [
       },
       "es": {
         "title": "Comparar PDF",
-        "summary": "Compara dos PDF localmente por estructura y texto.",
-        "description": "Compara páginas, dimensiones, rotación y texto extraíble de dos PDF.",
+        "summary": "Compara dos PDF estructural y visualmente.",
+        "description": "Compara páginas, dimensiones, rotación, texto y páginas renderizadas de dos PDF.",
         "terms": [
           "comparar PDF",
           "diferencias",
           "texto",
-          "páginas"
+          "páginas",
+          "píxeles"
         ],
         "tags": [
           "#pdf"
@@ -3510,7 +3513,7 @@ export const toolIndex: readonly ToolSearchEntry[] = [
       "de": {
         "title": "PDF sicher schwärzen",
         "summary": "PDF-Inhalte dauerhaft schwärzen.",
-        "description": "Entfernt Inhalte in ausgewählten Bereichen destruktiv mit MuPDF und legt schwarze Flächen darüber.",
+        "description": "Entfernt Inhalte in grafisch markierten Bereichen destruktiv mit MuPDF und legt schwarze Flächen darüber.",
         "terms": [
           "PDF schwärzen",
           "Redaktion",
@@ -3525,7 +3528,7 @@ export const toolIndex: readonly ToolSearchEntry[] = [
       "en": {
         "title": "Securely redact PDF",
         "summary": "Permanently redact PDF content.",
-        "description": "Destructively removes content in selected areas with MuPDF and paints black boxes.",
+        "description": "Destructively removes content in graphically marked areas with MuPDF and paints black boxes.",
         "terms": [
           "redact PDF",
           "remove text",
@@ -3540,7 +3543,7 @@ export const toolIndex: readonly ToolSearchEntry[] = [
       "es": {
         "title": "Censurar PDF de forma segura",
         "summary": "Censurar contenido PDF permanentemente.",
-        "description": "Elimina destructivamente el contenido de las áreas elegidas con MuPDF y coloca cuadros negros.",
+        "description": "Elimina destructivamente el contenido de áreas marcadas gráficamente con MuPDF y coloca cuadros negros.",
         "terms": [
           "censurar PDF",
           "eliminar texto",
@@ -4119,6 +4122,323 @@ export const toolIndex: readonly ToolSearchEntry[] = [
         "tags": [
           "#calcular",
           "#fecha"
+        ]
+      }
+    }
+  },
+  {
+    "id": "plotter",
+    "route": "/tools/plotter",
+    "icon": "/tools/plotter.svg",
+    "category": "calculator",
+    "suiteIds": [
+      "calculator"
+    ],
+    "executionMode": "local",
+    "resourceClass": "heavy",
+    "worksOffline": true,
+    "input": [],
+    "output": [],
+    "auxiliary": [],
+    "locales": {
+      "de": {
+        "title": "Funktionsplotter",
+        "summary": "Kurven, Wertetabelle und Nullstellen.",
+        "description": "Mehrere Funktionen gleichzeitig zeichnen, mit Wertetabelle und berechneten Nullstellen. Die Zeichenengine wird erst beim Öffnen nachgeladen. Rechnet vollständig im Browser.",
+        "terms": [
+          "Funktionsplotter",
+          "Plotter",
+          "Funktion",
+          "Kurve",
+          "Graph",
+          "Diagramm",
+          "Funktionsgraph",
+          "zeichnen",
+          "Nullstelle",
+          "Wertetabelle",
+          "Parabel",
+          "Sinus",
+          "Steigung",
+          "Schnittpunkt",
+          "Mathe",
+          "Schule",
+          "Berufsschule"
+        ],
+        "tags": [
+          "#rechnen",
+          "#mathematik"
+        ]
+      },
+      "en": {
+        "title": "Function plotter",
+        "summary": "Curves, value table and roots.",
+        "description": "Plot several functions at once, with a value table and computed roots. The drawing engine is loaded only when the tool is opened. All computation stays in the browser.",
+        "terms": [
+          "function plotter",
+          "plotter",
+          "function",
+          "curve",
+          "graph",
+          "chart",
+          "plot",
+          "draw",
+          "root",
+          "zero",
+          "value table",
+          "parabola",
+          "sine",
+          "slope",
+          "intercept",
+          "maths",
+          "school",
+          "training"
+        ],
+        "tags": [
+          "#calculate",
+          "#math"
+        ]
+      },
+      "es": {
+        "title": "Representador de funciones",
+        "summary": "Curvas, tabla de valores y raíces.",
+        "description": "Representa varias funciones a la vez, con tabla de valores y raíces calculadas. El motor de dibujo se carga solo al abrir la herramienta. Todo el cálculo ocurre en el navegador.",
+        "terms": [
+          "representador de funciones",
+          "graficador",
+          "funcion",
+          "curva",
+          "grafica",
+          "diagrama",
+          "dibujar",
+          "raiz",
+          "cero",
+          "tabla de valores",
+          "parabola",
+          "seno",
+          "pendiente",
+          "interseccion",
+          "matematicas",
+          "escuela",
+          "formacion"
+        ],
+        "tags": [
+          "#calcular",
+          "#matematicas"
+        ]
+      }
+    }
+  },
+  {
+    "id": "statistics",
+    "route": "/tools/statistics",
+    "icon": "/tools/statistics.svg",
+    "category": "calculator",
+    "suiteIds": [
+      "calculator"
+    ],
+    "executionMode": "local",
+    "resourceClass": "standard",
+    "worksOffline": true,
+    "input": [],
+    "output": [],
+    "auxiliary": [],
+    "locales": {
+      "de": {
+        "title": "Statistik",
+        "summary": "Kennwerte, Streuung, Quartile und Regression.",
+        "description": "Kennwerte einer Datenreihe — Mittelwert, Median, Quartile, Streuung in beiden Bezugsarten, Ausreißergrenzen — sowie Korrelation und Regressionsgerade für Wertepaare. Rechnet vollständig im Browser.",
+        "terms": [
+          "Statistik",
+          "Statistikrechner",
+          "Mittelwert",
+          "Durchschnitt",
+          "Median",
+          "Zentralwert",
+          "Modalwert",
+          "Modus",
+          "Quartil",
+          "Perzentil",
+          "Streuung",
+          "Varianz",
+          "Standardabweichung",
+          "Spannweite",
+          "Ausreißer",
+          "Korrelation",
+          "Regression",
+          "Trendlinie",
+          "Bestimmtheitsmaß",
+          "Datenreihe",
+          "Messreihe",
+          "Auswertung"
+        ],
+        "tags": [
+          "#rechnen",
+          "#statistik"
+        ]
+      },
+      "en": {
+        "title": "Statistics",
+        "summary": "Summary statistics, spread, quartiles and regression.",
+        "description": "Summary statistics of a data series — mean, median, quartiles, spread in both conventions, outlier fences — plus correlation and a regression line for value pairs. All computation stays in the browser.",
+        "terms": [
+          "statistics",
+          "mean",
+          "average",
+          "median",
+          "mode",
+          "quartile",
+          "percentile",
+          "spread",
+          "variance",
+          "standard deviation",
+          "range",
+          "outlier",
+          "correlation",
+          "regression",
+          "trend line",
+          "coefficient of determination",
+          "data series",
+          "measurement series",
+          "evaluation"
+        ],
+        "tags": [
+          "#calculate",
+          "#statistics"
+        ]
+      },
+      "es": {
+        "title": "Estadística",
+        "summary": "Valores característicos, dispersión, cuartiles y regresión.",
+        "description": "Valores característicos de una serie de datos — media, mediana, cuartiles, dispersión en ambas convenciones, límites de valores atípicos — y correlación y recta de regresión para pares de valores. Todo el cálculo ocurre en el navegador.",
+        "terms": [
+          "estadistica",
+          "media",
+          "promedio",
+          "mediana",
+          "moda",
+          "cuartil",
+          "percentil",
+          "dispersion",
+          "varianza",
+          "desviacion tipica",
+          "rango",
+          "valor atipico",
+          "correlacion",
+          "regresion",
+          "linea de tendencia",
+          "coeficiente de determinacion",
+          "serie de datos",
+          "mediciones",
+          "evaluacion"
+        ],
+        "tags": [
+          "#calcular",
+          "#estadistica"
+        ]
+      }
+    }
+  },
+  {
+    "id": "equations",
+    "route": "/tools/equations",
+    "icon": "/tools/equations.svg",
+    "category": "calculator",
+    "suiteIds": [
+      "calculator"
+    ],
+    "executionMode": "local",
+    "resourceClass": "standard",
+    "worksOffline": true,
+    "input": [],
+    "output": [],
+    "auxiliary": [],
+    "locales": {
+      "de": {
+        "title": "Gleichungslöser",
+        "summary": "Lineare bis kubische Gleichungen mit Lösungsweg.",
+        "description": "Lineare, quadratische und kubische Gleichungen mit vollständigem Lösungsweg: Diskriminante, Formel, eingesetzte Zahlen und Probe. Rechnet vollständig im Browser.",
+        "terms": [
+          "Gleichung",
+          "Gleichungslöser",
+          "Gleichungen lösen",
+          "lineare Gleichung",
+          "quadratische Gleichung",
+          "kubische Gleichung",
+          "Polynom",
+          "Wurzel",
+          "Nullstelle",
+          "Diskriminante",
+          "pq-Formel",
+          "Mitternachtsformel",
+          "Cardano",
+          "Lösungsweg",
+          "Algebra",
+          "Mathe",
+          "Schule",
+          "Berufsschule",
+          "Prüfung"
+        ],
+        "tags": [
+          "#rechnen",
+          "#mathematik"
+        ]
+      },
+      "en": {
+        "title": "Equation solver",
+        "summary": "Linear to cubic equations with full working.",
+        "description": "Linear, quadratic and cubic equations with the full working: discriminant, formula, substituted numbers and a check. All computation stays in the browser.",
+        "terms": [
+          "equation",
+          "equation solver",
+          "solve equations",
+          "linear equation",
+          "quadratic equation",
+          "cubic equation",
+          "polynomial",
+          "root",
+          "zero",
+          "discriminant",
+          "quadratic formula",
+          "Cardano",
+          "working",
+          "algebra",
+          "maths",
+          "school",
+          "training",
+          "exam"
+        ],
+        "tags": [
+          "#calculate",
+          "#math"
+        ]
+      },
+      "es": {
+        "title": "Resolvedor de ecuaciones",
+        "summary": "Ecuaciones lineales a cúbicas con desarrollo.",
+        "description": "Ecuaciones lineales, cuadráticas y cúbicas con el desarrollo completo: discriminante, fórmula, cifras sustituidas y comprobación. Todo el cálculo ocurre en el navegador.",
+        "terms": [
+          "ecuacion",
+          "resolvedor",
+          "resolver ecuaciones",
+          "ecuacion lineal",
+          "ecuacion cuadratica",
+          "ecuacion cubica",
+          "polinomio",
+          "raiz",
+          "cero",
+          "discriminante",
+          "formula cuadratica",
+          "Cardano",
+          "desarrollo",
+          "algebra",
+          "matematicas",
+          "escuela",
+          "formacion",
+          "examen"
+        ],
+        "tags": [
+          "#calcular",
+          "#matematicas"
         ]
       }
     }

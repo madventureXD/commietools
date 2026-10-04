@@ -26,6 +26,9 @@ import { commercialMessages } from './calculator/commercial/locales'
 import { geometryMessages } from './calculator/geometry/locales'
 import { convertMessages } from './calculator/convert/locales'
 import { datetimeMessages } from './calculator/datetime/locales'
+import { equationsMessages } from './calculator/equations/locales'
+import { statisticsMessages } from './calculator/statistics/locales'
+import { plotterMessages } from './calculator/plotter/locales'
 
 type MessageCatalog = Readonly<Record<string, string>>
 type PartialLocalizedMessages = Readonly<Record<string, MessageCatalog>>
@@ -68,5 +71,8 @@ export const toolMessages = mergeToolCatalogs([
   commercialMessages,
   geometryMessages,
   convertMessages,
-  datetimeMessages
+  datetimeMessages,
+  equationsMessages,
+  statisticsMessages,
+  plotterMessages
 ])

@@ -43,6 +43,9 @@ const Commercial = lazy(() => import('./tools/Commercial').then((module) => ({ d
 const Geometry = lazy(() => import('./tools/Geometry').then((module) => ({ default: module.Geometry })))
 const Convert = lazy(() => import('./tools/Convert').then((module) => ({ default: module.Convert })))
 const DateTime = lazy(() => import('./tools/DateTime').then((module) => ({ default: module.DateTime })))
+const Plotter = lazy(() => import('./tools/Plotter').then((module) => ({ default: module.Plotter })))
+const Statistics = lazy(() => import('./tools/Statistics').then((module) => ({ default: module.Statistics })))
+const Equations = lazy(() => import('./tools/Equations').then((module) => ({ default: module.Equations })))
 
 type Theme = 'light' | 'dark'
 type Translate = (key: string) => string
@@ -113,6 +116,9 @@ function ToolPage({ tool, t, locale, navigate }: { tool: ToolManifest; t: Transl
                         : tool.id === 'geometry' ? <Suspense fallback={<p aria-live="polite">…</p>}><Geometry t={t} locale={locale} /></Suspense>
                         : tool.id === 'convert' ? <Suspense fallback={<p aria-live="polite">…</p>}><Convert t={t} locale={locale} /></Suspense>
                           : tool.id === 'datetime' ? <Suspense fallback={<p aria-live="polite">…</p>}><DateTime t={t} /></Suspense>
+                            : tool.id === 'plotter' ? <Suspense fallback={<p aria-live="polite">…</p>}><Plotter t={t} /></Suspense>
+                              : tool.id === 'statistics' ? <Suspense fallback={<p aria-live="polite">…</p>}><Statistics t={t} locale={locale} /></Suspense>
+                                : tool.id === 'equations' ? <Suspense fallback={<p aria-live="polite">…</p>}><Equations t={t} locale={locale} /></Suspense>
               : tool.id === 'pdf-merge' ? <Suspense fallback={<p aria-live="polite">…</p>}><PdfMerge t={t} /></Suspense>
                 : tool.id === 'pdf-split' ? <Suspense fallback={<p aria-live="polite">…</p>}><PdfSplit t={t} /></Suspense>
                   : tool.id === 'pdf-organize' ? <Suspense fallback={<p aria-live="polite">…</p>}><PdfOrganize t={t} /></Suspense>

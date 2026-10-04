@@ -1,0 +1,41 @@
+export const equationsEs = {
+  'tool.equations.title': 'Resolvedor de ecuaciones',
+  'tool.equations.description': 'Ecuaciones lineales, cuadráticas y cúbicas con el desarrollo completo: discriminante, fórmula, cifras sustituidas y comprobación. Todo el cálculo ocurre en el navegador.',
+  'tool.equations.summary': 'Ecuaciones lineales a cúbicas con desarrollo.',
+  'tool.equations.terms': 'ecuacion,resolvedor,resolver ecuaciones,ecuacion lineal,ecuacion cuadratica,ecuacion cubica,polinomio,raiz,cero,discriminante,formula cuadratica,Cardano,desarrollo,algebra,matematicas,escuela,formacion,examen,#calcular,#matematicas',
+
+  'tool.equations.degree': 'Grado de la ecuación',
+  'tool.equations.degree.linear': 'Lineal (ax + b = 0)',
+  'tool.equations.degree.quadratic': 'Cuadrática (ax² + bx + c = 0)',
+  'tool.equations.degree.cubic': 'Cúbica (ax³ + bx² + cx + d = 0)',
+
+  'tool.equations.field.a': 'a',
+  'tool.equations.field.b': 'b',
+  'tool.equations.field.c': 'c',
+  'tool.equations.field.d': 'd',
+
+  'tool.equations.step.standard': 'Ecuación inicial',
+  'tool.equations.step.isolate': 'Despejar',
+  'tool.equations.step.substitute': 'Sustituir',
+  'tool.equations.step.check': 'Comprobación',
+  'tool.equations.step.discriminant': 'Discriminante',
+  'tool.equations.step.formula': 'Fórmula',
+  'tool.equations.step.vertex': 'Vértice',
+  'tool.equations.step.noReal': 'Sin soluciones reales',
+  'tool.equations.step.normalize': 'Normalizar',
+  'tool.equations.step.reduced': 'Forma reducida',
+  'tool.equations.step.cardano': 'Cardano',
+  'tool.equations.step.back': 'Retrosustitución',
+  'tool.equations.step.note': 'Caso especial',
+
+  'tool.equations.out.roots': 'Soluciones',
+  'tool.equations.out.discriminant': 'Discriminante',
+  'tool.equations.out.vertex': 'Vértice (x)',
+  'tool.equations.out.check': 'Comprobación',
+  'tool.equations.out.steps': 'Desarrollo',
+  'tool.equations.out.noRoots': 'Sin soluciones reales',
+
+  'tool.equations.formulas': 'Lineal: x = −b / a. Cuadrática: D = b² − 4ac y luego x = (−b ± √D) / (2a). Cúbica: normalizar a x³ + Bx² + Cx + D, sustituir x = y − B/3 para llegar a y³ + py + q = 0 con p = C − B²/3 y q = 2B³/27 − BC/3 + D; Δ = (q/2)² + (p/3)³. Para Δ > 0 una solución real por Cardano, para Δ = 0 una raíz doble, para Δ < 0 tres soluciones reales por la forma trigonométrica.',
+  'tool.equations.assumptions': 'Supuestos: el cálculo es en coma flotante; las raíces suelen ser irracionales, así que no hay fracción exacta. Cada raíz se pule con pasos de Newton y se comprueba sustituyendo; la comprobación aparece en el desarrollo. Un discriminante negativo no da soluciones reales (los valores complejos aparecen como nota). Un coeficiente principal ausente se rechaza en lugar de dividir en silencio.',
+  'tool.equations.sources': 'Fórmulas propias, sin sistema de álgebra computacional: Cardano y la forma trigonométrica para el casus irreducibilis son métodos estándar del álgebra. Comprobado con raíces conocidas y con la comprobación, sin nuevas dependencias. Estado 2026-10-03.'
+} as const

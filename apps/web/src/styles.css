@@ -249,6 +249,9 @@ a.button { display: inline-flex; align-items: center; justify-content: center; t
 .pdf-page-card, .pdf-organizer-card { margin: 0; display: grid; justify-items: center; align-content: start; gap: .55rem; padding: .75rem; border: 1px solid var(--border); border-radius: 12px; background: var(--surface); overflow: hidden; }
 .pdf-page-card img, .pdf-organizer-card img { display: block; max-width: 100%; height: 160px; object-fit: contain; transition: transform .15s ease; box-shadow: 0 2px 12px rgb(0 0 0 / 12%); }
 .pdf-page-card figcaption { font-weight: 700; }
+.redaction-editor { position: relative; width: min(100%, 700px); margin-inline: auto; cursor: crosshair; touch-action: none; user-select: none; border: 1px solid var(--border); background: #777; }
+.redaction-editor img { display: block; width: 100%; height: auto; pointer-events: none; }
+.redaction-box { position: absolute; background: rgb(0 0 0 / 72%); border: 2px solid var(--accent); pointer-events: none; }
 .pdf-organizer-card > span { color: var(--muted); font-size: .88rem; text-align: center; }
 .pdf-page-actions { justify-content: center; }
 .pdf-page-actions .button { min-height: 38px; padding: .45rem .6rem; font-size: .82rem; }
@@ -327,3 +330,7 @@ a.button { display: inline-flex; align-items: center; justify-content: center; t
 .anchor-grid .active { color: white; }
 .anchor-caption { margin: 0; color: var(--color-text-muted); font-size: 0.9rem; }
 
+
+/* Zeichenfläche des Funktionsplotters: die Oberfläche setzt hier ihr SVG hinein. */
+.plot-target { width: 100%; min-height: 20rem; overflow-x: auto; }
+.plot-target svg { display: block; width: 100%; height: auto; }
