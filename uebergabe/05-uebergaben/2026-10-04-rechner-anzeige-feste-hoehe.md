@@ -111,3 +111,29 @@ zu schieben).
 - Commit: **noch nicht committet**
 - `main` steht auf `43f12fb` („docs(rechner): record the accuracy light commit, the clean-checkout run
   and the push"); Arbeitsbaum: die drei oben genannten Dateien sind geändert bzw. neu
+
+---
+
+## Nachtrag 2026-10-04 — Commit, Prüfung im sauberen Auschecken, Push
+
+*Ergänzt nach Thomas' Go. Der Wortlaut oben bleibt stehen; die folgenden Angaben ersetzen den
+Git-Abschnitt.*
+
+**Commit:** `4a9f872` — „fix(rechner): keep the display height fixed and put the result on top"
+(11 Dateien, 199 Einfügungen / 37 Löschungen). Enthält zusätzlich den datierten Nachtrag im
+Ampel-Konzept („keine Bruch-Erkennung im Dezimal-Modell", Thomas' Entscheidung zum Fall `1/3+1/3`).
+Kein QM-Element enthalten (nachgeprüft). Arbeitsbaum danach sauber.
+
+**Prüfung im sauberen Auschecken** (`git worktree add --detach … HEAD`, danach `npm ci`):
+`npm ci` Exit 0, `licenses:check` grün (522 Pakete), `catalog:check` grün, **339 Tests in 18 Dateien**
+grün, `lint` grün, `build` grün mit Startbündel 136.956 B gzip und bestandenem Bundle-Audit —
+**alle vier Schritte Exit 0**. Bündeldatei `index-CQGqOIbn.js` in beiden Bäumen gleich.
+
+**Push:** `43f12fb..4a9f872  main -> main`. `main` ist danach in Sync mit `origin/main`.
+
+**Bereitstellung nachgeprüft:** `https://commietools.org/` verweist auf `assets/index-CQGqOIbn.js`, und
+die ausgelieferte Datei ist **byteweise identisch** mit dem lokalen Bau
+(SHA-256 `e61d83ac0281c8576c20198d0d843a79…`, 463.305 Bytes).
+
+**Aufgeräumt:** Auscheckverzeichnis und `node_modules` entfernt; `git worktree list` zeigt nur den
+Hauptbaum.
