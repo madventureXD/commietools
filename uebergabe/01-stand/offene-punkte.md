@@ -10,12 +10,11 @@ Diese Liste enthält bestätigte, noch nicht abgeschlossene Arbeit. Details geh�
 
 ## Hohe Priorität
 
+- [ ] PDF-Suite M8 abschließend gegen das Konzept prüfen: gerenderte Seiten zusätzlich zum Text vergleichen, Anhänge umbenennen, problematische Dateinamen härten und Reader-Interoperabilität testen.
 - [ ] Nach erfolgreicher Domainumschaltung einen sichtbaren Source-Link auf `https://github.com/madventureXD/commietools` in die Weboberfläche integrieren.
 - [ ] Mailbetrieb nach DNS-Umschaltung prüfen: MX, `autoconfig`, vier SRV-Einträge und SPF; `autoconfig` muss in Cloudflare auf „DNS only“ bleiben.
-- [ ] PDF-Suite M8/M9 gemäß erweitertem 24-Werkzeuge-Konzept umsetzen; mit dem vorhandenen
-  PDF.js-Unterbau nach dem umgesetzten eigenständigen Viewer mit Metadaten, Beschneiden,
-  Reparatur, Anhänge und Vergleich umsetzen; anschließend die risikoreicheren Werkzeuge PDF/A,
-  sichere Schwärzung und Office-Konvertierung angehen. Für jeden Schritt gilt das dokumentierte
+- [ ] PDF-Suite M9 gemäß erweitertem Konzept umsetzen: PDF/A,
+  sichere Schwärzung und Office-Konvertierung. Für jeden Schritt gilt das dokumentierte
   Open-Source-, Lizenz- und Artefaktgate; proprietäre Dienste sind kein Fallback.
 - [ ] Den PDF-Testkorpus um frei weitergebbare verschlüsselte, XFA-, Annotations- und Signatur-Beispiele sowie Reader-Interoperabilität erweitern.
 - [ ] Automatisierte Barrierefreiheitsprüfung für zentrale Komponenten und Tool-Flows ergänzen.
@@ -30,6 +29,8 @@ Diese Liste enthält bestätigte, noch nicht abgeschlossene Arbeit. Details geh�
 - [ ] Offline-Verhalten mit einem automatisierten Browser-Test absichern.
 - [ ] Content Security Policy und spätere Deployment-Header konkretisieren.
 - [ ] Größenbudgets zusätzlich pro große Tool-Engine festlegen; das Startbudget und die Sperre gegen PDF-Engines sind umgesetzt.
+- [ ] `npm run bundle:check` in den Prüflauf aufnehmen: die Startlastprüfung mit den Budgets (250 KiB Start, 110 KiB Rechenkern) läuft derzeit nur von Hand, ein Zuwachs fällt damit erst beim Nachmessen auf.
+- [ ] Startbündel im Blick behalten: Die Sprachkataloge aller Werkzeuge liegen im Startcode und sind mit den Rechner-Wellen auf ~34 kB roh gewachsen (Startbündel 191.327 → 206.547 B gzip). Wenn das weiter steigt, ist der Ausweg eine abgerufene Sprachdatei mit Ladezustand — noch nicht nötig.
 
 ## Später / bei konkretem Bedarf
 
