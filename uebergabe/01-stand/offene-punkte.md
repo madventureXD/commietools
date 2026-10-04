@@ -5,11 +5,28 @@
   geplanten Sprache umsetzen.
 - [ ] Lokales spanisches Testpaket gemäß `uebergabe/03-konzepte/2026-10-03-sprachpaket-spanisch.md`
   sprachlich und visuell gegenlesen; erst danach zur Veröffentlichung freigeben.
+  *(2026-10-04: Das Gegenlesen ist erst **nach** der Online-Stellung möglich. Bis dahin bleibt
+  `es` im Sprachschalter sichtbar und wird mitausgeliefert — abweichend von
+  `02-architektur/sprachpakete.md` §2, das ein Testpaket „niemals veröffentlicht" sieht. Die
+  Abweichung ist damit datiert festgehalten und nicht stillschweigend.)*
 
 Diese Liste enthält bestätigte, noch nicht abgeschlossene Arbeit. Details gehören in verlinkte Konzepte oder Issues, sobald solche vorhanden sind.
 
 ## Hohe Priorität
 
+- [ ] **HEAD ist nicht baubar — die Fassung in `main` baut derzeit nicht.** Gemessen am
+  2026-10-04: `apps/web/src/App.tsx` nutzt in HEAD `loadToolMessages` und `loadInterfaceMessages`
+  (3 Vorkommen), beide Exporte fehlen in HEAD jedoch vollständig (`packages/i18n/src/index.ts`
+  und `packages/tools/src/index.ts`: je 0 Vorkommen) — sie liegen nur uncommittet im Arbeitsbaum.
+  Ursache: Beim Commit der Rechner-Welle 6 wurde `App.tsx` als ganze Datei gestaged, wodurch
+  Änderungen des laufenden Sprachpaket-Umbaus ohne ihre Abhängigkeiten in HEAD geraten sind.
+  **Folge: Ein Push auf `main` würde einen nicht baubaren Stand deployen.**
+  Zwei Wege: **(a)** den Sprachpaket-Umbau vollständig committen (laut
+  `06-protokolle/2026-10-04-startpaket-sprachpakete.md` lokal freigegeben und geprüft) — oder
+  **(b)** `App.tsx` auf die vorherige Fassung zurücksetzen und nur die Aufmaß-Zeilen behalten.
+  **Lehre für jede weitere Abnahme:** den zu veröffentlichenden Stand in einem **sauberen
+  Auschecken von HEAD** prüfen, nicht im Arbeitsbaum — dort lagen alle uncommitteten Änderungen
+  vor, weshalb `check` und `build` grün waren, obwohl HEAD selbst nicht baubar ist.
 - [ ] Nach erfolgreicher Domainumschaltung einen sichtbaren Source-Link auf `https://github.com/madventureXD/commietools` in die Weboberfläche integrieren.
 - [ ] Mailbetrieb nach DNS-Umschaltung prüfen: MX, `autoconfig`, vier SRV-Einträge und SPF; `autoconfig` muss in Cloudflare auf „DNS only“ bleiben.
 - [ ] Den PDF-Testkorpus um frei weitergebbare verschlüsselte, XFA-, Annotations- und Signatur-Beispiele sowie Reader-Interoperabilität erweitern.
@@ -18,8 +35,16 @@ Diese Liste enthält bestätigte, noch nicht abgeschlossene Arbeit. Details geh�
   hinausragende Elemente je Route: `commercial` 20, `geometry` 19, `equations` 23, `aufmass` 28;
   Startseite 0. Die Seite bekommt dabei keinen waagerechten Scrollbalken, der Inhalt wird also
   **abgeschnitten** statt scrollbar. Betroffen ist die Werkzeugseiten-Vorlage insgesamt, nicht ein
-  einzelnes Werkzeug — vermutlich die Mindestbreite von `.settings-card`, `.form-grid` oder
-  `.download-row` bei schmalen Fenstern. Vor der nächsten Welle mit vielen Feldern behandeln.
+  einzelnes Werkzeug.
+  **Das ist ein offenes Abnahmekriterium, nicht nur Kosmetik:** `02-architektur/sprachpakete.md` §9
+  verlangt „Desktop sowie 320 px, 360 px und übliches Mobilformat" zu testen, und
+  `03-konzepte/2026-10-03-sprachpaket-spanisch.md` führt „Mobilansicht funktioniert ab 320 px ohne
+  abgeschnittene Texte oder Aktionen" ausdrücklich als Abnahmekriterium.
+  **Aufgabe für die Oberflächenseite (App-Shell), nicht für die einzelnen Werkzeuge.**
+  Nächster Schritt: in Edge headless bei 320 px messen, welche Regel die Mindestbreite erzwingt
+  (Kandidaten: `.settings-card`, `.form-grid`, `.download-row`, `.field` in `styles.css`), dann
+  beheben und die Messung auf allen Routen wiederholen — die Startseite zeigt, dass 320 px
+  grundsätzlich geht.
 
 ## Mittlere Priorität
 
@@ -40,6 +65,9 @@ Diese Liste enthält bestätigte, noch nicht abgeschlossene Arbeit. Details geh�
   reißen; Ausweg ist die Aufteilung der Werkzeugtexte je Sprache (etwa je Suite).
 - [ ] Bedienung per Tastatur automatisiert prüfen (seit Welle 5 offen; in Welle 6 erneut nur
   teilweise — native Formularelemente mit Beschriftungen, kein durchgespielter Tastaturlauf).
+  *(2026-10-04: Der durchgespielte Lauf ist erst **nach** der Online-Stellung möglich; bis dahin
+  wird die Suite ohne ihn ausgeliefert. Die Roadmap nennt die Barrierefreiheit ausdrücklich als
+  Voraussetzung der Phase „Rechnen" — der Punkt bleibt deshalb hier stehen, bis er belegt ist.)*
 - [ ] **PDF-Ausgabe ist auf WinAnsi beschränkt.** Zeichen außerhalb (kyrillisch, griechisch,
   chinesisch) werden transliteriert oder zu `?`. Für Deutsch, Englisch und Spanisch reicht das;
   eine Sprache mit anderer Schrift braucht eine eingebettete Schrift.
