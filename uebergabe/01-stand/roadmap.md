@@ -13,7 +13,7 @@ Die Roadmap beschreibt die derzeitige Reihenfolge, keine festen Termine.
 
 ## Phase 1 – PDF-Suite
 
-**Status:** M0 bis M7 lokal abgeschlossen; Veröffentlichung erfolgt gesammelt in einem späteren Release
+**Status:** M0 bis M7 lokal abgeschlossen; M8 funktional umgesetzt, Qualitätsgate noch offen; Veröffentlichung erfolgt gesammelt in einem späteren Release
 
 Vollständiges Umsetzungskonzept: [`../03-konzepte/2026-10-03-pdf-suite.md`](../03-konzepte/2026-10-03-pdf-suite.md)
 
@@ -25,10 +25,12 @@ Vollständiges Umsetzungskonzept: [`../03-konzepte/2026-10-03-pdf-suite.md`](../
 - M5: Sicherheit und Kompression – umgesetzt
 - M6: eigenständiger Viewer, Textextraktion und OCR – lokal umgesetzt, noch nicht veröffentlicht
 - M7: digitale Signaturen – lokal abgeschlossen; Rust-WASM, BER-/DER-CMS, inkrementelle Mehrfachsignaturen, PAdES B-B/T/LT/LTA und EU-DSS-Referenzkorpus geprüft
+- M8: Dokumentprüfung und -pflege – lokaler Viewer sowie Metadaten, Beschneiden, QPDF-Reparatur, Anhänge und Struktur-/Textvergleich umgesetzt; visueller Vergleich und Reader-Interoperabilität noch offen
+- M9: PDF/A, sichere Schwärzung und Office-Konvertierung – offen
 
 ## Phase 2 – Suite „Rechnen"
 
-**Status:** geplant; Konzept und Machbarkeit belegt, nichts umgesetzt
+**Status:** Wellen 1 bis 3 abgenommen; Welle 4 ff. offen
 **Konzept:** [`../03-konzepte/2026-10-03-taschenrechner-suite.md`](../03-konzepte/2026-10-03-taschenrechner-suite.md)
 **Entscheidung:** [ADR 0005](../04-entscheidungen/0005-mathjs-rechenkern.md) — mathjs aus kuratierten Factories
 
@@ -62,6 +64,15 @@ und dunkel · `check` und `build` grün.
 Wortbreite 8/16/32/64 und Zweierkomplement · RPN-Stapel · jede gelistete Funktion in einem Test
 aufgerufen.
 
+**Status: abgenommen am 2026-10-03.** Kern und Oberfläche stehen, Fehlschlagprobe der
+Funktionsliste belegt, Artefakt in Edge headless geprüft (zwei Fensterbreiten, hell und dunkel).
+
+**Abweichung vom Welle-1-Kriterium, offen benannt:** Der Rechenkern-Chunk liegt mit
+**102.436 B gzip über den 95 KiB** der Welle-1-Abnahme. Das Startlast-Gate in
+`scripts/bundle-audit.mjs` führt für den Rechenkern bewusst **110 KiB** („Reserve für Welle 2");
+eingehalten ist das. Die 95 KiB der Welle-1-Zeile oben sind damit überholt und sollten bei
+Gelegenheit auf den tatsächlichen Gate-Wert gezogen werden.
+
 ### Welle 3 – Werkzeuge ohne neue Abhängigkeit
 
 - Werkzeug 3 „Kaufmännisch", Werkzeug 8 „Geometrie"
@@ -69,6 +80,16 @@ aufgerufen.
 **Abnahme:** Prozent in drei Richtungen, Rabatt, Aufschlag, Marge, MwSt raus/rein, Skonto,
 Tilgungsplan · Geometrie-Formeln gegen unabhängige Nachrechnung · jede Formel mit Quelle und
 Annahmen sichtbar.
+
+**Status: abgenommen am 2026-10-03.** Beide Werkzeuge stehen mit Oberfläche, Formel, Annahmen
+und Quellen in drei Sprachen; 33 Tests gegen unabhängige Nachrechnung; Artefakt in Edge headless
+geprüft (Rabatt 119 @ 20 % → 23,80 / 95,20 · MwSt heraus 119 @ 19 % → 100,00 / 19,00 ·
+Tilgungsplan 100.000/4 %/10 Jahre → 120 Zeilen, Restschuld 0,00 · Kreis r = 2 → Fläche und
+Umfang je 4π mit Formelzeile).
+
+**Nicht enthalten, bewusst:** Effektivzins (das Konzept nennt ihn bei Nr. 10; die
+Welle-3-Abnahme verlangt ihn nicht) und Zinsfestschreibung/Sondertilgung. Beides gehört, wenn
+gebraucht, in einen eigenen Schritt.
 
 ### Welle 4 – Umrechnen und Kalender (erste neue Engine)
 

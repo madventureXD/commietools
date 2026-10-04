@@ -1,7 +1,7 @@
 # Aktueller Projektstand
 
-**Stand:** 2026-10-03  
-**Letzter geprüfter Meilenstein:** PDF-Suite M7 lokal abgeschlossen; Veröffentlichung für den nächsten Sammelrelease zurückgestellt (2026-10-03)
+**Stand:** 2026-10-04
+**Letzter geprüfter Meilenstein:** PDF-Suite M8 funktional lokal umgesetzt; Qualitätsgate und Veröffentlichung noch offen (2026-10-04)
 
 ## Umgesetzt
 
@@ -52,11 +52,19 @@
 - PDF-Text & OCR mit Seitenauswahl, vorhandener Textebene, automatischem OCR-Fallback, Deutsch/Englisch/Spanisch, Fortschritt, Abbruch und TXT-Ausgabe; Tesseract.js und Sprachmodell werden erst nach ausdrücklicher Zustimmung geladen
 - PDF mit Zertifikat signieren: lokale PAdES-B-B-Signatur mit PKCS#12/PFX und unmittelbar anschließender Eigenprüfung; Schlüssel und Passwort verlassen den Browser nicht
 - PDF-Signaturen überprüfen: mathematische CMS-Prüfung, vollständige ByteRange-Abdeckung und Erkennung nachträglicher Änderungen; Vertrauensstatus wird ohne Trust Store ausdrücklich nicht behauptet
+- PDF-Metadaten: Standard-Dokumentinfos und XMP-Eintrag lokal anzeigen und bereinigen, mit ausdrücklicher Grenze zur forensischen Anonymisierung
+- PDF-Seiten beschneiden: CropBox ausgewählter Seiten mit validierten Rändern ändern; ausgeblendete Inhalte werden nicht als sicher gelöscht ausgegeben
+- PDF reparieren und prüfen: Struktur mit QPDF normalisieren und das Ergebnis anschließend erneut auf Lesbarkeit und Seitenzahl prüfen
+- PDF-Anhänge: eingebettete Dateien lokal auflisten, extrahieren, ergänzen und entfernen
+- PDFs vergleichen: Seitenzahl, Seitengröße, Drehung und extrahierbaren Text seitenweise vergleichen
 - `pdf_signer` 0.3.2 als vendorte und nur auf M7-Routen nachgeladene Rust-WASM-Engine; BER-Kompatibilität und revisionsübergreifende Signatursuche sind lokal gehärtet, Prüfsumme, Herkunft und GPL-3.0-or-later-Lizenz registriert
 - QPDF 12.2.0 als getrennt nachgeladene Open-Source-WASM-Engine; Binärartefakt mit SHA-256, Upstream-Komponenten, festen Commits und vollständigen Lizenzen registriert
 - datensparsame Ladegrenzen: Startseite und Fremdwerkzeuge laden keine PDF-Engine; PDF-Routen, Worker und WASM werden erst bei Nutzung übertragen und nicht vorab offline gespeichert
 - automatische Startlastprüfung mit 250-KiB-Gzip-Budget und Sperre gegen statisch erreichbare PDF-Engines
 - Rechner (Suite „Rechnen", Welle 1): kuratierter mathjs-Rechenkern in eigenem dynamisch geladenen Chunk (94,3 KiB gzip), exakte Zahlenmodelle (`BigNumber` 64 Stellen, `Fraction`), Fehler als übersetzbare Codes, Verlauf als Ringpuffer, benannte Variablen, „Formel und Quelle"
+- Rechner (Suite „Rechnen", Welle 2 abgenommen): vier Rechnerarten in der Oberfläche — Standard und Brüche als Zahlenmodell, wissenschaftlich mit Winkelmodus (Bogenmaß, Grad, Gon) und 32 Tasten, Programmierer mit Anzeige-Basis, Wortbreite 8/16/32/64 und Zweierkomplement samt Darstellungs-Karte, RPN mit Token-Eingabe, Stapeltasten, **live sichtbarem Stapel und Rechenweg** je Schritt; Funktionsliste mit Aufruftest je Funktion und belegter Fehlschlagprobe; Rechenkern 102.436 B gzip
+- Kaufmännisch (Suite „Rechnen", Welle 3): Prozent in drei Richtungen, Rabatt, Aufschlag, Marge **und** Aufschlag gemeinsam mit klarer Bezugsgröße, Umsatzsteuer raus und rein, Skonto, Dreisatz, Zinseszins und Tilgungsplan; rechnet ohne neue Abhängigkeit in `BigInt` cent-genau, Plan summiert sich exakt zum Darlehen; Formeln, Annahmen und Quellen in drei Sprachen
+- Geometrie (Suite „Rechnen", Welle 3): 16 Formen und Körper von Rechteck bis Kugel; jede Ergebniszeile zeigt ihre Formel im Klartext; Formeln und Annahmen in drei Sprachen, Werte gegen unabhängige Nachrechnung geprüft
 
 ## Derzeitige Tools
 
@@ -88,6 +96,8 @@
 | PDF mit Zertifikat signieren | `pdf-certificate-sign` | PDF | lokal | PDF und PKCS#12/PFX hinein, PDF heraus |
 | PDF-Signaturen überprüfen | `pdf-signature-verify` | PDF | lokal | PDF hinein (nur Information) |
 | Rechner | `calculator` | Rechnen | lokal | keine (nur Information) |
+| Kaufmännisch | `commercial` | Rechnen | lokal | keine (nur Information) |
+| Geometrie | `geometry` | Rechnen | lokal | keine (nur Information) |
 
 ## Derzeitige Suiten
 
@@ -95,7 +105,7 @@
 - Entwicklung
 - Generatoren
 - Bilder (Bild-Metadaten, Bild skalieren, Icon-Generator, Wasserzeichen, Farbwerkzeuge)
-- Rechnen (Rechner)
+- Rechnen (Rechner, Kaufmännisch, Geometrie)
 - PDF (Viewer, Text/OCR, Zertifikatssignaturen prüfen und erstellen, Zusammenführen, Teilen, Seiten organisieren, Bilder zu PDF, PDF zu Bildern, Wasserzeichen, Seitenzahlen, sichtbar unterschreiben, Formular ausfüllen, kommentieren und markieren, schützen/entsperren, komprimieren)
 
 ## Qualität und Compliance
@@ -106,9 +116,9 @@
 - vollständige Lizenztexte: 16
 - bewahrte originale Paketdokumente: 187
 - eingebettete Binärartefakte: 2 registrierte WASM-Artefakte (QPDF und PDF Signer)
-- letzter bekannter Teststand: 175 Webtests und 50 Rust-Tests bestanden; umgebungsabhängige Netzwerk-/PKITS-Fälle nachvollziehbar übersprungen
-- Werkzeugregister: 26 Werkzeuge, 3 Sprachen, 26 Symbole, 77 deklarierte Dateitypen (`npm run catalog:check`); Spanisch ist lokal als noch gegenzulesendes Testpaket eingebunden
-- letzter bekannter Produktions-Build: bestanden; 191.327 Byte Startcode komprimiert und ohne statisch erreichbare PDF- oder Rechen-Engine; PDF-/OCR-/Signaturrouten, Worker und WASM sind vom Vorab-Cache ausgeschlossen
+- letzter bekannter Teststand: 218 Webtests in 13 Dateien bestanden (`npm run check`, gemessen 2026-10-03); Rust-Tests in diesem Lauf nicht neu gemessen — der zuletzt bekannte Stand bleibt 50
+- Werkzeugregister: 33 Werkzeuge, 3 Sprachen, 33 Symbole, 2.232 Suchbegriffe, 86 deklarierte Dateitypen (`npm run catalog:check`, gemessen 2026-10-03); Spanisch ist lokal als noch gegenzulesendes Testpaket eingebunden
+- letzter bekannter Produktions-Build: bestanden; 206.547 Byte Startcode komprimiert und ohne statisch erreichbare PDF- oder Rechen-Engine; PDF-/OCR-/Signaturrouten, Worker und WASM sind vom Vorab-Cache ausgeschlossen; nachgeladener Rechenkern 102.436 Byte gzip (gemessen 2026-10-03)
 
 Zahlen sind Momentaufnahmen. Nach Abhängigkeits-, Test- oder Tooländerungen müssen sie anhand der tatsächlichen Ausgabe aktualisiert werden.
 
