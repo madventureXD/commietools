@@ -54,9 +54,14 @@ Diese Liste enthält bestätigte, noch nicht abgeschlossene Arbeit. Details geh�
 
 ## Später / bei konkretem Bedarf
 
+- [ ] **Werkzeuge in ein eigenes Fenster auskoppeln** (Desktop-Erfahrung). M0 am 2026-10-04
+  abgeschlossen: Machbarkeit belegt, aber die Fenstergröße folgt in Edge 154 der Größe des
+  öffnenden Fensters statt der Anforderung. Konzept und Entscheidungen folgen in M1
+  (`05-uebergaben/2026-10-04-desktop-auskoppeln-m0.md`).
 - [ ] Speicheradapter für persistente lokale Nutzerdaten definieren.
 - [ ] Bei wachsender Werkzeug- und Sprachenzahl den Bundlezuwachs des Registers messen; Ausweg ist eine abgerufene Registerdatei mit Ladezustand.
-- [ ] Desktop- und Mobile-Shells evaluieren.
+- [ ] Desktop- und Mobile-Shells evaluieren. *(2026-10-04: Das Auskoppeln ist der erste Teil davon;
+  der Punkt bleibt für die übrige Shell-Frage stehen.)*
 - [ ] Erweiterungsmodell für externe Tools oder Plugins bewerten.
 
 ## Pflege
