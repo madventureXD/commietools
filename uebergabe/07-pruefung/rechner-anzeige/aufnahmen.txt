@@ -1,0 +1,5 @@
+Mobil 390 px, dunkel: Ergebnis calculator-math-block + expression-line — nach der Löschtaste calculator-math-block + expression-line
+  Anzeigehöhe 160 px (vorher 192 px mit gesetztem Ausdruck), Tastenfeld unverändert bei 1075 px
+  Bündel index-CQGqOIbn.js
+Desktop 1360 px, hell: calculator-math-block + expression-line · 160 px
+Rohe Anzeigeart: result-line + expression-line · 160 px

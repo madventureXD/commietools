@@ -176,28 +176,23 @@ export function Calculator({ t, locale }: { t: Translate; locale: string }) {
   }, [core, variables, options])
 
   /**
-   * Anzeige 1: Ausdruck und Ergebnis als **gesetzter** Satz (MathML aus dem Ausdrucksbaum).
-   * Was sich nicht setzen lässt — ein halb getippter Ausdruck, eine unbekannte Form, ein
-   * Hexadezimalwert wie `F000` —, ergibt `null` und wird zum rohen Term. Kein Fehler, kein
-   * leerer Bildschirm.
+   * Gesetzter Satz **nur des Ergebnisses** (MathML aus dem Ausdrucksbaum). Die Eingabezeile bleibt
+   * roher Text: sie bleibt damit kopierbar und immer lesbar — das Ergebnis steht darüber
+   * (Entscheidung von Thomas, 2026-10-04). Was sich nicht setzen lässt — eine unbekannte Form, ein
+   * Hexadezimalwert wie `F000` —, ergibt `null` und fällt auf den rohen Term zurück.
    */
-  const twoDim = useMemo(() => {
-    if (!core || !twoDimensional) return null
+  const twoDimResult = useMemo(() => {
+    if (!core || !twoDimensional || !resultRaw) return null
     // Der 2D-Satz kennt keine Basisschreibweise: `F000` ist für den Ausdrucksbaum ein Name.
     // Statt eine falsche Zahl zu setzen, zeigt der Programmierer dann den rohen Term.
     if (mode === 'programmer' && base !== 10) return null
-    const markup = (text: string): string | null => {
-      const trimmed = text.trim()
-      if (!trimmed) return null
-      try {
-        const node = core.calculatorFor(options).parse(trimmed)
-        return toMathML(node as never, trimmed, decimalSeparator)
-      } catch {
-        return null
-      }
+    try {
+      const node = core.calculatorFor(options).parse(resultRaw.trim())
+      return toMathML(node as never, resultRaw.trim(), decimalSeparator)
+    } catch {
+      return null
     }
-    return { expression: markup(expression), result: resultRaw ? markup(resultRaw) : null }
-  }, [core, twoDimensional, mode, base, options, expression, resultRaw, decimalSeparator])
+  }, [core, twoDimensional, mode, base, options, resultRaw, decimalSeparator])
 
   /**
    * Ergebnis in der gewählten Anzeige-Basis. Die Auswahl „Anzeige-Basis" im Programmierer-Modus
@@ -227,7 +222,7 @@ export function Calculator({ t, locale }: { t: Translate; locale: string }) {
     accuracy === 'complete' ? 'tool.calculator.accuracyStateComplete' : 'tool.calculator.accuracyStateRounded'
 
   /** Zweidimensional nur, wenn der Ausdruck **und** ein vorhandenes Ergebnis gesetzt sind. */
-  const showsTwoDim = Boolean(twoDim && twoDim.expression && (!resultRaw || twoDim.result))
+  const showsTwoDim = Boolean(twoDimResult)
 
   /** RPN-Vorschau: Stapel und Rechenweg entstehen **live**, sonst wäre der Modus blind. */
   const rpn = useMemo(() => {
@@ -684,26 +679,20 @@ export function Calculator({ t, locale }: { t: Translate; locale: string }) {
         <div className={`calculator-display${showsTwoDim ? '' : ' raw'}`}>
           {showsTwoDim ? (
             <>
-              {twoDim?.expression && (
-                <div
-                  role="math"
-                  aria-label={expression}
-                  dangerouslySetInnerHTML={{ __html: twoDim.expression }}
-                />
-              )}
-              {resultRaw && twoDim?.result && (
-                <div
-                  className="calculator-math-block"
-                  role="math"
-                  aria-label={result}
-                  dangerouslySetInnerHTML={{ __html: twoDim.result }}
-                />
-              )}
+              {/* Ergebnis zuerst, rohe Eingabezeile darunter — in beiden Anzeigearten dieselbe
+                  Reihenfolge, damit die Zeilen beim Umschalten nicht die Plätze tauschen. */}
+              <div
+                className="calculator-math-block"
+                role="math"
+                aria-label={result}
+                dangerouslySetInnerHTML={{ __html: twoDimResult as string }}
+              />
+              <p className="expression-line">{inputValue || t('tool.calculator.placeholder')}</p>
             </>
           ) : (
             <>
-              <p className="expression-line">{inputValue || t('tool.calculator.placeholder')}</p>
               {displayResult && <p className="result-line">{displayResult}</p>}
+              <p className="expression-line">{inputValue || t('tool.calculator.placeholder')}</p>
             </>
           )}
 

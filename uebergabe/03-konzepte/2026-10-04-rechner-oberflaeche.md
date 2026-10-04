@@ -471,3 +471,30 @@ Thomas hat die offenen Punkte freigegeben („nach eigenem Ermessen lösen"). En
 Raster (SWAP neben `e`, DROP allein in einer Reihe — die Null ist jetzt drei Zellen breit, beide
 stehen nebeneinander), und die Rasterprüfung konnte das nicht sehen, weil sie nur Überläufe prüft.
 Dafür gibt es jetzt eine ausdrückliche Zusicherung zur Lage der beiden Griffe.
+
+
+---
+
+## Nachtrag 2026-10-04 — feste Anzeigehöhe, getauschte Zeilenfolge
+
+*Ergänzt nach Thomas' Befund und seinen zwei Entscheidungen. Der Wortlaut oben bleibt stehen.*
+
+**Befund (gemessen):** Die Anzeigefläche wuchs mit ihrem Inhalt. Ein gesetzter Ausdruck mit
+verschachtelten Brüchen brauchte 192 px, eine einzelne Zeile 104 px — das **Tastenfeld verschob sich um
+89 px**, sobald die Löschtaste die gesetzte Form entfernte. Genau das darf nicht sein: die Anzeige ist
+der Anker über der Tastatur.
+
+**Geändert:**
+
+1. **Feste Höhe** (10rem) statt Mindesthöhe. Gemessen 160 px in jedem Zustand bei 320, 390 und
+   1360 px; was nicht hineinpasst, rollt im Kasten statt ihn zu vergrößern.
+2. **Matheschrift kleiner** (1,9 rem → 1,45 rem), damit ein gesetzter Bruch in die feste Höhe passt.
+   Die reine Zahlenzeile bleibt bei 1,9 rem. (Entscheidung von Thomas: Ergebnis kleiner, nicht Fläche
+   größer.)
+3. **Zeilenfolge getauscht:** Ergebnis oben — im zweidimensionalen Satz gesetzt, sonst als Zahlenzeile
+   —, **rohe Eingabezeile darunter**. Die gesetzte Fassung der *Eingabe* entfällt damit; das entspricht
+   der Regel dieses Konzepts, dass der zweidimensionale Satz für das Ergebnis da ist und die Eingabe
+   Text bleibt. In beiden Anzeigearten gilt dieselbe Reihenfolge.
+
+**Aufnahmen:** `07-pruefung/rechner-anzeige/` (mobil mit Ergebnis, nach der Löschtaste, Desktop hell,
+rohe Anzeigeart). **Übergabe:** `05-uebergaben/2026-10-04-rechner-anzeige-feste-hoehe.md`.

@@ -345,12 +345,17 @@ a.button { display: inline-flex; align-items: center; justify-content: center; t
 /* Rechner: Tastenfeld, Anzeige und Blatt „Weitere Funktionen" (Welle 7).
    Die Anzeige hat eine **feste Mindesthöhe**, damit das Tastenfeld beim Umschalten zwischen
    zweidimensionaler und roher Anzeige nicht springt. */
-.calculator-display { display: grid; gap: var(--space-2); align-content: center; min-height: 8rem; padding: var(--space-3) var(--space-4); border: 1px solid var(--color-border); border-radius: var(--radius-sm); background: var(--color-background); overflow: hidden; }
+/* Feste Höhe, nicht Mindesthöhe: **die Anzeige darf sich beim Rechnen nicht verändern**, sonst
+   wandert das Tastenfeld (gemessen am 2026-10-04: 104 → 192 px, Tastenfeld um 89 px verschoben).
+   Was nicht hineinpasst, rollt im Kasten statt ihn zu vergrößern. */
+.calculator-display { display: grid; gap: var(--space-2); align-content: center; height: 10rem; padding: var(--space-3) var(--space-4); border: 1px solid var(--color-border); border-radius: var(--radius-sm); background: var(--color-background); overflow-y: auto; }
 .calculator-display.raw { align-content: start; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
 .calculator-display .expression-line { margin: 0; color: var(--color-text-muted); font-size: 0.95rem; text-align: right; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-variant-numeric: tabular-nums; }
 .calculator-display .result-line { margin: 0; font-size: 1.9rem; font-weight: 750; text-align: right; font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
 .calculator-display.raw .expression-line, .calculator-display.raw .result-line { text-align: left; }
-.calculator-display math { font-size: 1.9rem; line-height: 1.35; }
+/* Kleiner als eine reine Zahlenzeile (1.9rem): ein gesetzter Bruch ist zwei- bis dreimal so hoch
+   wie eine Zeile und muss trotzdem in die feste Höhe passen (Entscheidung von Thomas, 2026-10-04). */
+.calculator-display math { font-size: 1.45rem; line-height: 1.3; }
 .calculator-math-block { display: grid; justify-items: end; gap: var(--space-1); max-width: 100%; }
 .calculator-math-block math { max-width: 100%; overflow-x: auto; }
 .calculator-flags { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-2); }

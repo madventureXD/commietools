@@ -323,3 +323,26 @@ Dezimalwert. Behoben: nach dem Modellwechsel bleibt das Ergebnis dezimal.
 
 **Nicht geprüft und damit offen:** echter Screenreader-Lauf, echter Tastaturlauf über `Tab`, sprachliche
 Gegenlesung des Spanischen, Lauf gegen die veröffentlichte Fassung.
+
+---
+
+## Nachtrag 2026-10-04 (vierter) — keine Bruch-Erkennung im Dezimal-Modell
+
+*Ergänzt nach Thomas' Entscheidung. Der Wortlaut oben bleibt stehen.*
+
+**Anlass:** Am veröffentlichten Rechner zeigt `1/3+1/3` im Modell „Dezimal (14 Stellen angezeigt)"
+den Wert `0,66666666666667` — nicht `2/3`. Gemessen am 2026-10-04: im Dezimal-Modell liegt intern
+`0,66666666666666666666666666666666…` (64 Sechsen) vor, im Bruch-Modell `2/3` mit grüner Ampel.
+
+**Entschieden (Thomas):** **Es bleibt so.** Der Rechner erkennt aus einer gerundeten Dezimalzahl
+**nicht** automatisch einen Bruch. Begründung: diese Erkennung wäre eine Vermutung — das Gerät müsste
+entscheiden, ob `0,6666…7` „2/3" bedeutet oder etwas anderes; bei krummen Werten entstünden Brüche, die
+es nicht gibt. Für einen Wahrheitsanzeiger ist das der falsche Weg. Wer den exakten Bruch will, schaltet
+auf „Bruch (exakt)" — zwei Klicks, und die Ampel wird grün.
+
+**Verworfene Alternativen** (für den Fall, dass die Frage zurückkommt): Näherungshinweis „≈ 2/3" in der
+Erklärung der Ampel · Erkennung nur bei exakt aufgehendem Bruch mit kleinem Nenner. Beide nicht gebaut.
+
+**Nicht betroffen:** Die Bruchumwandlung der Oberfläche läuft weiterhin **nur** im Bruch-Modell. Auf
+einen gerundeten Dezimalwert angewandt ergäbe sie `66666666666667/100000000000000` — ein Scheinbruch,
+der im Test ausdrücklich festgehalten ist.
