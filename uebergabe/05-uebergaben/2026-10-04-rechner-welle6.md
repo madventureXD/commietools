@@ -166,3 +166,34 @@ Klammern, Punkt vor Strich) keinen Gegenwert gebracht. Dieselbe Rechentechnik wi
 - *Hinweis zur Nachvollziehbarkeit:* Die Hashangaben in diesem Abschnitt und im
   Fortschrittsprotokoll wurden **nach** dem Dokumentations-Commit nachgetragen; der Nachtrag
   selbst ist der letzte Commit dieser Sitzung.
+
+## Nachtrag 2026-10-04: Der Stand ist abgenommen, aber **nicht auslieferbar**
+
+*Ergänzt nach der Prüfung der Auslieferungsreife; der Wortlaut oben bleibt stehen.*
+
+**Die Prüfkette dieser Übergabe lief im Arbeitsbaum** — mit allen uncommitteten Änderungen des
+parallelen Sprachpaket-Umbaus. Der Stand, der bei einem Push veröffentlicht würde, ist damit
+**nicht** belegt:
+
+- In **HEAD** nutzt `apps/web/src/App.tsx` `loadToolMessages` und `loadInterfaceMessages`
+  (3 Vorkommen); beide Exporte fehlen in HEAD vollständig (`packages/i18n/src/index.ts` und
+  `packages/tools/src/index.ts`: je 0 Vorkommen).
+- Ursache: Beim Commit dieser Welle wurde `App.tsx` als **ganze** Datei gestaged und nahm den
+  laufenden Umbau ohne dessen Abhängigkeiten mit.
+- **Folge:** HEAD ist nicht baubar; ein Push auf `main` würde einen nicht baubaren Stand
+  deployen. Das ist im Abschnitt „Prüfungen" oben **nicht** sichtbar, weil dort der Arbeitsbaum
+  gemessen wurde.
+
+Vollständig dokumentiert in `01-stand/offene-punkte.md` (Hohe Priorität, Commit `51966bc`).
+
+**Weitere auslieferungsrelevante Befunde aus derselben Prüfung:**
+
+- **320 px** ist ein offenes Abnahmekriterium (`sprachpakete.md` §9, spanisches Sprachpaket), keine
+  Kosmetik: alle Werkzeug-Routen schneiden dort ab.
+- **Spanisch** ist im Sprachschalter sichtbar, aber sprachlich nicht abgenommen — bei einer
+  Veröffentlichung wird es mitausgeliefert; die Abweichung von `sprachpakete.md` §2 ist dort
+  datiert festgehalten.
+- **Tastaturlauf** fehlt weiterhin (offen seit Welle 5).
+
+Damit gilt für den Status dieser Übergabe: **fachlich abgeschlossen, technisch nicht
+auslieferbar.**
