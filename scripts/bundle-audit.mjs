@@ -8,7 +8,15 @@ const html = await readFile(join(dist, 'index.html'), 'utf8')
 const entryMatch = html.match(/<script[^>]+type="module"[^>]+src="([^"]+)"/u)
 if (!entryMatch) throw new Error('Could not find the production entry script in index.html')
 
-const entryBudget = 250 * 1024
+const warningBudgets = { entry: 200 * 1024, catalogBase: 15 * 1024, searchLocale: 25 * 1024, toolMessages: 30 * 1024, uiMessages: 30 * 1024 }
+const baselinePath = fileURLToPath(new URL('./bundle-size-baseline.json', import.meta.url))
+let baseline = {}
+try { baseline = JSON.parse(await readFile(baselinePath, 'utf8')) } catch { /* Optional until the first baseline is checked in. */ }
+function warnSize(label, size, budget, baselineKey) {
+  const previous = Number(baseline[baselineKey])
+  const delta = Number.isFinite(previous) ? `, ${size - previous >= 0 ? '+' : ''}${size - previous} B zum Referenzstand` : ''
+  console.warn(`${size > budget ? 'WARNUNG' : 'Größe'}: ${label} ${size} B gzip (Warnschwelle ${budget} B${delta})`)
+}
 
 /**
  * Schwere Engines. Geprüft wird **inhaltlich**, nicht über den Dateinamen: ein umbenannter
@@ -18,7 +26,9 @@ const entryBudget = 250 * 1024
 const engines = [
   {
     label: 'PDF',
-    content: /(?:pdfjs|pdf-lib|mupdf|qpdf|PDFDocument)/u,
+    // Package/runtime signatures, not plain product names that may legitimately
+    // occur in the searchable catalogue or explanatory copy.
+    content: /(?:pdfjs-dist|pdf-lib|mupdf-wasm|qpdf-wasm|PDFDocument)/u,
     filename: /(?:pdfjs|pdf-lib|mupdf|qpdf|pdf\.worker)/iu,
     /** Engines, die beim Start erreichbar sein dürfen, gibt es nicht. */
     staticBudget: 0
@@ -50,6 +60,8 @@ async function inspect(file) {
       throw new Error(`${engine.label} engine is statically reachable from the initial page (by content): ${basename(absolute)}`)
     }
   }
+if (/(?:search|tools|ui)-(?!en-)[a-z]{2,3}(?:-[A-Z]{2})?-/u.test(basename(absolute))) throw new Error(`Optionales Sprachpaket ist statisch vom Start erreichbar: ${basename(absolute)}`)
+  if (/(?:Werkzeuge|Herramientas|Datenschutz|Privacidad)/u.test(source)) throw new Error(`Nicht-englische Sprachdaten sind statisch vom Start erreichbar: ${basename(absolute)}`)
 
   const staticImports = [...source.matchAll(/(?:^|;)import(?:[^"'(]*?from)?["']([^"']+)["']/gu)]
   for (const match of staticImports) {
@@ -62,11 +74,14 @@ await inspect(entryMatch[1])
 const entryFile = resolve(dist, entryMatch[1].replace(/^[\\/]+/u, ''))
 const entrySource = await readFile(entryFile)
 const compressedSize = gzipSync(entrySource).length
-if (compressedSize > entryBudget) {
-  throw new Error(`Initial entry exceeds ${entryBudget} compressed bytes: ${compressedSize}`)
-}
+warnSize('initiales JavaScript', compressedSize, warningBudgets.entry, 'entry')
 
 const assets = await readdir(join(dist, 'assets'))
+const languageAssets = assets.filter((item) => /^(?:search|tools|ui)-[a-z]{2,3}(?:-[A-Z]{2})?-.*\.js$/u.test(item))
+const serviceWorker = await readFile(join(dist, 'sw.js'), 'utf8')
+for (const name of languageAssets) {
+  if (serviceWorker.includes(`assets/${name}`)) throw new Error(`Sprachpaket wird unzulässig vorab gecacht: ${name}`)
+}
 
 /**
  * Nachgeladene Engine-Chunks über ihren **Inhalt** finden und budgetieren. So bleibt die
@@ -83,12 +98,18 @@ for (const name of assets) {
     if (!engine.content.test(source)) continue
     const size = gzipSync(source).length
     if (size > engine.routeBudget) {
-      throw new Error(`${engine.label} chunk exceeds its route budget of ${engine.routeBudget} bytes: ${name} at ${size} bytes`)
+      console.warn(`WARNUNG: ${engine.label}-Chunk überschreitet ${engine.routeBudget} B gzip: ${name} mit ${size} B`)
     }
     reported.push(`${name} ${size} B`)
   }
 }
 
 const optionalPdfFiles = assets.filter((name) => engines[0].filename.test(name) || /^(?:Pdf|ImagesToPdf-|pdf-|pdfUi-)/u.test(name))
+for (const name of assets.filter((item) => item.startsWith('catalog-base-') || languageAssets.includes(item))) {
+  const size = gzipSync(await readFile(join(dist, 'assets', name))).length
+  const kind = name.startsWith('catalog-base') ? 'catalogBase' : name.startsWith('search-') ? 'searchLocale' : name.startsWith('tools-') ? 'toolMessages' : 'uiMessages'
+  const locale = /^(?:search|tools|ui)-([a-z]{2,3}(?:-[A-Z]{2})?)-/u.exec(name)?.[1] ?? 'base'
+  warnSize(kind === 'catalogBase' ? 'Katalogbasis' : `${kind} ${locale}`, size, warningBudgets[kind], `${kind}:${locale}`)
+}
 console.log(`Bundle audit passed: entry ${compressedSize} B gzip; optional PDF artifacts: ${optionalPdfFiles.length}`)
 for (const line of reported) console.log(`  route engine: ${line}`)

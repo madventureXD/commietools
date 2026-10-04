@@ -3,6 +3,9 @@ import { PDFDocument, degrees } from 'pdf-lib'
 import { addPdfPageNumbers, addPdfWatermark, addVisiblePdfSignature, imagesToPdf, inspectPdf, mergePdfs, organizePdf, parsePageSelection, parseSplitGroups, PdfToolError, resolvePdfPagePlacement, resolvePdfPlacement, splitPdf } from '@commietools/tools/pdf/core'
 import { addPdfAnnotation, deletePdfAnnotation, fillPdfForm, inspectPdfAnnotations, inspectPdfForm } from '@commietools/tools/pdf/m4'
 import { compressionArguments, protectionArguments } from '@commietools/tools/pdf/m5'
+import { addPdfAttachments, cleanPdfMetadata, comparePdfStructure, cropPdfPages, listPdfAttachments, readPdfMetadata, removePdfAttachment, renamePdfAttachment, safeAttachmentName } from '@commietools/tools/pdf/m8'
+import { preflightPdfA, redactPdf } from '@commietools/tools/pdf/m9'
+import * as mupdf from 'mupdf'
 
 async function fixture(sizes: readonly [number, number][]) {
   const document = await PDFDocument.create()
@@ -196,5 +199,58 @@ describe('M5 QPDF operation plans', () => {
     expect(compressionArguments('lossless')).not.toContain('--optimize-images')
     expect(compressionArguments('balanced')).toEqual(expect.arrayContaining(['--optimize-images', '--jpeg-quality=82']))
     expect(compressionArguments('strong')).toEqual(expect.arrayContaining(['--optimize-images', '--jpeg-quality=65']))
+  })
+})
+
+describe('M8 document maintenance', () => {
+  it('reads and removes supported metadata', async () => {
+    const source = await fixture([[200, 300]])
+    expect((await readPdfMetadata(source)).title).toBe('CommieTools fixture')
+    expect((await readPdfMetadata(await cleanPdfMetadata(source))).title).toBe('')
+  })
+
+  it('sets a smaller crop box without changing the page count', async () => {
+    const output = await cropPdfPages(await fixture([[200, 300]]), { pages: [0], top: 10, right: 20, bottom: 30, left: 40 })
+    const loaded = await PDFDocument.load(output)
+    expect(loaded.getPage(0).getCropBox()).toMatchObject({ x: 40, y: 30, width: 140, height: 260 })
+  })
+
+  it('adds, lists and extracts an embedded attachment', async () => {
+    const payload = new TextEncoder().encode('M8 attachment')
+    const output = await addPdfAttachments(await fixture([[200, 300]]), [{ name: 'test.txt', bytes: payload, mimeType: 'text/plain' }])
+    const [attachment] = await listPdfAttachments(output)
+    expect(attachment?.name).toBe('test.txt')
+    expect(new TextDecoder().decode(attachment?.bytes)).toBe('M8 attachment')
+    const renamed = await renamePdfAttachment(output, 0, '../../unsafe:name.txt')
+    expect((await listPdfAttachments(renamed))[0]?.name).toBe('unsafe_name.txt')
+    expect(await listPdfAttachments(await removePdfAttachment(renamed, 0))).toHaveLength(0)
+    expect(safeAttachmentName('..\\..\\CON?.txt')).toBe('CON_.txt')
+    expect(safeAttachmentName('../CON')).toBe('_CON')
+    expect(safeAttachmentName('report\u202Efdp.exe')).toBe('report_fdp.exe')
+  })
+
+  it('compares geometry and extracted text independently', () => {
+    const comparison = comparePdfStructure({ pages: [{ width: 200, height: 300, rotation: 0, text: 'A' }] }, { pages: [{ width: 200, height: 300, rotation: 0, text: 'B' }] })
+    expect(comparison.pages[0]).toMatchObject({ geometryEqual: true, textEqual: false })
+  })
+})
+
+describe('M9 compliance and redaction gates', () => {
+  it('detects a declared PDF/A flavour without claiming conformance', () => {
+    const bytes = new TextEncoder().encode('%PDF-1.7\n<x:xmpmeta><pdfaid:part>2</pdfaid:part><pdfaid:conformance>B</pdfaid:conformance></x:xmpmeta>\n/OutputIntent')
+    expect(preflightPdfA(bytes)).toMatchObject({ declaredPart: '2', declaredConformance: 'B', hasXmp: true, hasOutputIntent: true, verdict: 'needs-independent-validation' })
+  })
+
+  it('applies a destructive full-page redaction', async () => {
+    const document = await PDFDocument.create()
+    const page = document.addPage([300, 300])
+    page.drawText('SECRET VALUE', { x: 40, y: 140 })
+    document.setTitle('Sensitive title')
+    const source = new Uint8Array(await document.save())
+    const annotated = addPdfAnnotation(source, { pageIndex: 0, type: 'Text', rect: [20, 20, 40, 40], contents: 'Sensitive note', author: 'Tester', color: [1, 1, 0], opacity: 1 })
+    const output = redactPdf(annotated, [{ pageIndex: 0, x: 0, y: 0, width: 300, height: 300 }], { clearMetadata: true, removePageAnnotations: true })
+    const checked = new mupdf.PDFDocument(output)
+    try { expect(checked.loadPage(0).toStructuredText('').asText()).not.toContain('SECRET VALUE'); expect(checked.loadPage(0).getAnnotations()).toHaveLength(0); expect(checked.getMetaData('info:Title') ?? '').toBe('') }
+    finally { checked.destroy() }
   })
 })

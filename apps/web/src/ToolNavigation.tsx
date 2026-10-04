@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import type { ToolCategory, ToolManifest } from '@commietools/core'
-import { MIN_QUERY_LENGTH, searchEntryById, searchTools, toolById, toolIndex, toolManifests } from '@commietools/tools'
+import type { ToolSearchEntry } from '@commietools/core'
+import { loadToolSearchIndex, MIN_QUERY_LENGTH, searchEntryById, searchTools, toolById, toolManifests } from '@commietools/tools'
 import { addRecentTool, toggleToolId, validRecentTools, validToolIds, type RecentTool, type ToolSort } from './toolNavigationState'
 
 type Translate = (key: string) => string
@@ -30,6 +31,8 @@ function writeJson(key: string, value: unknown): void {
 }
 
 export function ToolNavigation({ t, locale, activeToolId, navigate }: { t: Translate; locale: string; activeToolId?: string; navigate: (path: string) => void }) {
+  const [toolIndex, setToolIndex] = useState<readonly ToolSearchEntry[]>([])
+  const [searchReady, setSearchReady] = useState(false)
   const [open, setOpen] = useState(false)
   const [query, setQuery] = useState('')
   const [sort, setSort] = useState<ToolSort>(() => {
@@ -42,6 +45,8 @@ export function ToolNavigation({ t, locale, activeToolId, navigate }: { t: Trans
   const drawerRef = useRef<HTMLElement>(null)
   const searchRef = useRef<HTMLInputElement>(null)
   const pushedHistory = useRef(false)
+
+  useEffect(() => { let current=true;setSearchReady(false);void loadToolSearchIndex(locale as 'de'|'en'|'es').then((index)=>{if(current){setToolIndex(index);setSearchReady(true)}});return()=>{current=false} },[locale])
 
   useEffect(() => {
     if (!activeToolId || !knownIds.has(activeToolId)) return
@@ -125,7 +130,7 @@ export function ToolNavigation({ t, locale, activeToolId, navigate }: { t: Trans
   }
 
   const trimmed = query.trim()
-  const matches = useMemo(() => trimmed.length >= MIN_QUERY_LENGTH ? searchTools(toolIndex, { query: trimmed, locale, label: t }) : [], [trimmed, locale, t])
+  const matches = useMemo(() => trimmed.length >= MIN_QUERY_LENGTH ? searchTools(toolIndex, { query: trimmed, locale, label: t }) : [], [toolIndex, trimmed, locale, t])
   const visible = useMemo(() => {
     if (trimmed.length >= MIN_QUERY_LENGTH) return matches.flatMap((match) => toolById.get(match.entry.id) ?? [])
     if (sort === 'favorites') return favorites.flatMap((id) => toolById.get(id) ?? [])
@@ -147,7 +152,9 @@ export function ToolNavigation({ t, locale, activeToolId, navigate }: { t: Trans
     </div>
   }
 
-  const content = trimmed.length >= MIN_QUERY_LENGTH || sort !== 'category'
+  const content = trimmed.length >= MIN_QUERY_LENGTH && !searchReady
+    ? <div className="tool-menu-empty" role="status"><p>{t('toolMenu.search')} …</p></div>
+    : trimmed.length >= MIN_QUERY_LENGTH || sort !== 'category'
     ? visible.length ? <div className="tool-menu-list">{visible.map(toolRow)}</div> : <div className="tool-menu-empty"><p>{t(trimmed ? 'toolMenu.noResults' : sort === 'favorites' ? 'toolMenu.noFavorites' : 'toolMenu.noRecent')}</p>{trimmed && <button className="text-link" onClick={() => setQuery('')}>{t('catalog.clear')}</button>}</div>
     : <div className="tool-menu-categories">{categoryOrder.map((category) => {
       const tools = visible.filter((tool) => tool.category === category)

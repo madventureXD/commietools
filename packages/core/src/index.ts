@@ -109,3 +109,6 @@ export interface ToolSearchEntry {
   readonly auxiliary: readonly AuxiliaryFileInput[]
   readonly locales: Readonly<Record<string, ToolLocaleEntry>>
 }
+
+/** Language-neutral generated catalogue entry, always safe for the initial bundle. */
+export type ToolCatalogEntry = Omit<ToolSearchEntry, 'locales'>

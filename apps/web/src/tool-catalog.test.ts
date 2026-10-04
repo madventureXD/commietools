@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
-import { knownFormats } from '@commietools/core'
-import { supportedLocales } from '@commietools/i18n'
+import { knownFormats, type ToolSearchEntry } from '@commietools/core'
+import { supportedLocales, type Locale } from '@commietools/i18n'
 import {
   acceptAttributeFor,
   auxiliaryMimeTypes,
@@ -9,13 +9,17 @@ import {
   inputMimeTypes,
   readOnlyFormatNames,
   searchEntryById,
+  loadToolMessages,
+  loadToolSearchIndex,
   suiteManifests,
   toolById,
   toolIndex,
   toolManifests,
-  toolMessages,
   type ImageFormat
 } from '@commietools/tools'
+
+const indexes = Object.fromEntries(await Promise.all(supportedLocales.map(async (locale) => [locale, await loadToolSearchIndex(locale)]))) as Record<Locale, readonly ToolSearchEntry[]>
+const toolMessages = Object.fromEntries(await Promise.all(supportedLocales.map(async (locale) => [locale, (await loadToolMessages(locale))[locale] ?? {}])))
 
 /** Builds a byte pattern; pads to the twelve bytes the detector needs. */
 function header(...parts: Array<string | number[]>): Uint8Array {
@@ -78,22 +82,22 @@ describe('tool catalogue', () => {
   })
 
   it('keeps the searchable text of every language in the catalogue', () => {
-    for (const entry of toolIndex) {
-      expect(Object.keys(entry.locales).sort()).toEqual([...supportedLocales].sort())
-      for (const locale of supportedLocales) {
+    for (const locale of supportedLocales) {
+      for (const entry of indexes[locale]) {
+        expect(Object.keys(entry.locales).sort()).toEqual(locale === 'en' ? ['en'] : ['en', locale].sort())
         const text = entry.locales[locale]
         expect(text?.title).toBeTruthy()
         expect(text?.summary).toBeTruthy()
         expect(text?.terms.length, `${entry.id}/${locale}`).toBeGreaterThan(0)
         expect(text?.tags.length, `${entry.id}/${locale}`).toBeGreaterThan(0)
-        expect(text?.tags.every((tag) => tag.startsWith('#') && tag.length > 1)).toBe(true)
+        expect(text?.tags.every((tag: string) => tag.startsWith('#') && tag.length > 1)).toBe(true)
       }
     }
   })
 
   it('has no term twice, counting tags', () => {
-    for (const entry of toolIndex) {
-      for (const locale of supportedLocales) {
+    for (const locale of supportedLocales) {
+      for (const entry of indexes[locale]) {
         const text = entry.locales[locale] ?? { title: '', summary: '', terms: [], tags: [] }
         const all = [...text.terms, ...text.tags].map((term) => term.toLowerCase())
         expect(new Set(all).size, `${entry.id}/${locale}`).toBe(all.length)
@@ -102,10 +106,10 @@ describe('tool catalogue', () => {
   })
 
   it('finds a tool through another language, as a German user searching an English word', () => {
-    expect(toolIndex.find((entry) => entry.id === 'image-resize')?.locales.de?.terms).toContain('verkleinern')
-    expect(toolIndex.find((entry) => entry.id === 'image-resize')?.locales.en?.terms).toContain('resize')
-    expect(toolIndex.find((entry) => entry.id === 'image-metadata')?.locales.de?.tags).toContain('#datenschutz')
-    expect(toolIndex.find((entry) => entry.id === 'image-metadata')?.locales.en?.tags).toContain('#privacy')
+    expect(indexes.de.find((entry) => entry.id === 'image-resize')?.locales.de?.terms).toContain('verkleinern')
+    expect(indexes.de.find((entry) => entry.id === 'image-resize')?.locales.en?.terms).toContain('resize')
+    expect(indexes.de.find((entry) => entry.id === 'image-metadata')?.locales.de?.tags).toContain('#datenschutz')
+    expect(indexes.de.find((entry) => entry.id === 'image-metadata')?.locales.en?.tags).toContain('#privacy')
   })
 })
 

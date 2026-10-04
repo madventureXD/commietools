@@ -27,11 +27,11 @@ Every tool has a serializable manifest: identity, category, translation keys, ex
 
 Two translation keys are mandatory per tool and must exist in every locale catalogue: a one-line `summaryKey` for result lists and cards, and a `termsKey` with comma-separated search terms, where a leading `#` marks a tag.
 
-The catalogue is generated from manifests and locale catalogues rather than duplicated navigation data: `scripts/catalog-generate.mjs` writes `packages/tools/src/catalog/toolIndex.ts`, and `npm run check` fails when that file is out of date or when a declaration is incomplete (missing summary, missing terms, unknown file type, missing icon, inconsistent locale set, repeated or empty term, a hand-written `accept` list in a tool interface). The generated entries carry the searchable text of every language, so a later search can match a German query against English terms while showing results in the language the user selected.
+The catalogue is generated from manifests and locale catalogues rather than duplicated navigation data: `scripts/catalog-generate.mjs` writes the language-neutral `packages/tools/src/catalog/toolIndex.ts` plus one search and message module per language below `catalog/generated`, and `npm run check` fails when generated data is out of date or a declaration is incomplete (missing summary, missing terms, unknown file type, missing icon, inconsistent locale set, repeated or empty term, a hand-written `accept` list in a tool interface). Generated files are never edited by hand.
 
 ## Catalogue search
 
-The search is a normalised substring match, not a ranking model: `packages/tools/src/catalog/search.ts` folds case, umlauts, accents and the sharp s, then compares the query against the curated text of **every** language (terms, tags, title, summary, description) and against material derived from the declarations (declared file types with and without the dot, category, suite — the latter two resolved in the selected language). A hit that exists only in another language pays a fixed surcharge, so it ranks behind a curated hit of the selected language but ahead of a vague substring in a sentence. Each result reports what it matched on; a hit inside a long sentence is reported with the single word. Two characters are the minimum, nothing is guessed, and an empty result is stated as such. The ranking table and the surcharge live in one place in `search.ts` and are covered by tests.
+The search is a normalised substring match, not a ranking model: `packages/tools/src/catalog/search.ts` folds case, umlauts, accents and the sharp s. At runtime it searches the selected language plus English fallback; selecting English loads and searches English only. It compares terms, tags, title, summary and description as well as material derived from declarations (file types with and without the dot, category and suite). A fallback-language hit pays a fixed surcharge, so it ranks behind a curated hit in the selected language. Each result reports what it matched on. Two characters are the minimum, nothing is guessed, and an empty result appears only after the language pack is ready. The ranking table and surcharge live in `search.ts` and are covered by tests.
 
 Suites are also manifest-driven. They reference tool IDs instead of copying tool code, so one tool may appear in multiple curated suites while retaining one implementation and one update path.
 
@@ -50,6 +50,11 @@ The PWA service worker precaches the application shell and compiled assets. Tool
 ## Internationalization
 
 Shared navigation, status, category and suite translations live in `packages/i18n`. Tool-specific translations live beside each tool under its own `locales` directory. The application merges both catalogs at runtime, falls back to English, and displays an unresolved key when a translation is missing. Manifests store translation keys, never display labels. Locale and regional preferences are separate concepts so units, paper sizes and time formats can evolve independently. Layout must remain compatible with right-to-left languages.
+
+Language data is split by locale. The browser dynamically loads only the active locale and English
+fallback (English alone when selected), caches it after use, and never precaches every language.
+Compressed-size budgets are warning thresholds with a checked-in baseline; static optional
+languages or heavy processing engines in the initial import graph remain hard build errors.
 
 ## Security and privacy defaults
 

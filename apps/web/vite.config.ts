@@ -15,6 +15,14 @@ export default defineConfig({
          */
         manualChunks: (id) => {
           if (id.includes('@js-temporal/polyfill')) return 'temporal'
+          const normalized = id.replaceAll('\\', '/')
+          const searchLocale = /\/catalog\/generated\/search\/([a-z]{2,3}(?:-[A-Z]{2})?)\.ts$/u.exec(normalized)?.[1]
+          if (searchLocale) return `search-${searchLocale}`
+          const toolLocale = /\/catalog\/generated\/messages\/([a-z]{2,3}(?:-[A-Z]{2})?)\.ts$/u.exec(normalized)?.[1]
+          if (toolLocale) return `tools-${toolLocale}`
+          const uiLocale = /\/i18n\/src\/(?:common|suites)\/([a-z]{2,3}(?:-[A-Z]{2})?)\.ts$/u.exec(normalized)?.[1]
+          if (uiLocale) return `ui-${uiLocale}`
+          if (normalized.endsWith('/catalog/toolIndex.ts')) return 'catalog-base'
           return undefined
         }
       }
@@ -59,7 +67,10 @@ export default defineConfig({
           '**/tesseract-*.js',
           '**/worker.min-*.js',
           '**/pdf.worker*.mjs',
-          '**/temporal-*.js'
+          '**/temporal-*.js',
+          '**/search-*.js',
+          '**/tools-*.js',
+          '**/ui-*.js'
         ],
         runtimeCaching: [{
           urlPattern: /\/assets\/(?:Pdf|ImagesToPdf-|pdf-|pdfUi-|pdfjs-|pdf-lib-|mupdf-|qpdf-|engine-|engine_bg-|tesseract-|worker\.min-|pdf\.worker)/,
@@ -70,6 +81,10 @@ export default defineConfig({
           urlPattern: /\/assets\/temporal-/,
           handler: 'CacheFirst',
           options: { cacheName: 'commietools-calculator-engines-v1' }
+        }, {
+          urlPattern: /\/assets\/(?:search|tools|ui)-[a-z]{2,3}(?:-[A-Z]{2})?-/,
+          handler: 'CacheFirst',
+          options: { cacheName: 'commietools-language-packs-v1' }
         }]
       }
     })

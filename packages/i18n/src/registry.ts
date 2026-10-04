@@ -1,15 +1,11 @@
-import { commonDe } from './common/de'
 import { commonEn } from './common/en'
-import { commonEs } from './common/es'
-import { suitesDe } from './suites/de'
 import { suitesEn } from './suites/en'
-import { suitesEs } from './suites/es'
 
 export interface LocaleDefinition {
   label: string
   direction: 'ltr' | 'rtl'
   fallback: string
-  messages: Readonly<Record<string, string>>
+  messages?: Readonly<Record<string, string>>
 }
 
 export const defaultLocale = 'en'
@@ -19,7 +15,7 @@ export const localeRegistry = {
     label: 'Deutsch',
     direction: 'ltr',
     fallback: 'en',
-    messages: { ...commonDe, ...suitesDe }
+    messages: {}
   },
   en: {
     label: 'English',
@@ -31,7 +27,7 @@ export const localeRegistry = {
     label: 'Español',
     direction: 'ltr',
     fallback: 'en',
-    messages: { ...commonEs, ...suitesEs }
+    messages: {}
   }
 } as const satisfies Record<string, LocaleDefinition>
 

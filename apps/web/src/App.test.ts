@@ -1,6 +1,9 @@
 import { describe, expect, it } from 'vitest'
-import { createTranslator, detectLocale, localeRegistry, supportedLocales } from '@commietools/i18n'
-import { buildQrPayload, convertCase, encodeQrPayload, formatJson, getSuiteTools, getTextStatistics, suiteManifests, toolByRoute, toolMessages } from '@commietools/tools'
+import { createTranslator, detectLocale, loadInterfaceMessages, localeRegistry, supportedLocales } from '@commietools/i18n'
+import { buildQrPayload, convertCase, encodeQrPayload, formatJson, getSuiteTools, getTextStatistics, loadToolMessages, suiteManifests, toolByRoute } from '@commietools/tools'
+
+const deMessages = await loadToolMessages('de')
+const deInterface = await loadInterfaceMessages('de')
 
 describe('text statistics', () => {
   it('counts empty input', () => {
@@ -55,7 +58,7 @@ describe('QR payloads', () => {
 
 describe('hybrid translations', () => {
   it('merges platform and per-tool messages', () => {
-    const t = createTranslator('de', [toolMessages])
+    const t = createTranslator('de', [deInterface, deMessages])
     expect(t('nav.tools')).toBe('Werkzeuge')
     expect(t('tool.jsonFormatter.title')).toBe('JSON formatieren')
   })

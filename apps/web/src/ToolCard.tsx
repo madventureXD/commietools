@@ -7,7 +7,7 @@ export type Translate = (key: string) => string
 /** One tool in the catalogue: symbol, short summary, labels, optional match note. */
 export function ToolCard({ tool, t, navigate, locale, match }: { tool: ToolManifest; t: Translate; navigate: (path: string) => void; locale: string; match?: { label: string; text: string } }) {
   const entry = searchEntryById.get(tool.id)
-  const tags = entry?.locales[locale]?.tags ?? []
+  const tags = t(tool.termsKey).split(',').map((term) => term.trim()).filter((term) => term.startsWith('#'))
   return (
     <article className="catalog-card">
       {entry && <span className="card-icon" aria-hidden="true" style={{ maskImage: `url(${entry.icon})`, WebkitMaskImage: `url(${entry.icon})` }} />}

@@ -1,5 +1,6 @@
-import { useMemo } from 'react'
-import { MIN_QUERY_LENGTH, searchTools, toolById, toolIndex, toolManifests } from '@commietools/tools'
+import { useEffect, useMemo, useState } from 'react'
+import type { ToolSearchEntry } from '@commietools/core'
+import { loadToolSearchIndex, MIN_QUERY_LENGTH, searchTools, toolById, toolManifests } from '@commietools/tools'
 import { ToolCard, type Translate } from './ToolCard'
 
 /**
@@ -7,9 +8,12 @@ import { ToolCard, type Translate } from './ToolCard'
  * from two characters on it shows matches with the reason they matched.
  */
 export function CatalogSection({ t, locale, navigate, query, onQuery }: { t: Translate; locale: string; navigate: (path: string) => void; query: string; onQuery: (value: string) => void }) {
+  const [toolIndex, setToolIndex] = useState<readonly ToolSearchEntry[]>([])
+  const [searchReady, setSearchReady] = useState(false)
+  useEffect(() => { let current=true;setSearchReady(false);void loadToolSearchIndex(locale as 'de'|'en'|'es').then((index)=>{if(current){setToolIndex(index);setSearchReady(true)}});return()=>{current=false} },[locale])
   const trimmed = query.trim()
   const isSearching = trimmed.length >= MIN_QUERY_LENGTH
-  const results = useMemo(() => searchTools(toolIndex, { query: trimmed, locale, label: t }), [trimmed, locale, t])
+  const results = useMemo(() => searchTools(toolIndex, { query: trimmed, locale, label: t }), [toolIndex, trimmed, locale, t])
 
   return (
     <section className="section" id="tools">
@@ -22,7 +26,7 @@ export function CatalogSection({ t, locale, navigate, query, onQuery }: { t: Tra
         {query !== '' && <button className="text-link" onClick={() => onQuery('')}>{t('catalog.clear')}</button>}
       </div>
       <p className="search-hint">{t('catalog.searchHint')}</p>
-      {isSearching ? (
+      {isSearching && !searchReady ? <p className="search-count" role="status">{t('catalog.search')} …</p> : isSearching ? (
         results.length > 0 ? (
           <>
             <p className="search-count" aria-live="polite"><strong>{results.length}</strong> {t('catalog.results')}</p>

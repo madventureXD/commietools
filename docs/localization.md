@@ -8,14 +8,16 @@ that checklist is complete.
 
 ## Adding a language
 
-Adding a language is intentionally limited to four steps:
+Adding a language follows these steps:
 
-1. Register it in `packages/i18n/src/registry.ts`, including its native label, writing direction, fallback and imports.
+1. Register it in `packages/i18n/src/registry.ts`, including its native label, writing direction and fallback.
 2. Add `packages/i18n/src/common/<locale>.ts`.
 3. Add `packages/i18n/src/suites/<locale>.ts`.
-4. Optionally add tool translations below each tool's `locales` directory and register them in that tool's local locale index.
+4. Add it to the lazy interface loader in `packages/i18n/src/index.ts`.
+5. Add complete tool translations below every tool's `locales` directory and register them in each tool's local locale index.
+6. Run `npm run catalog:generate`; it creates separate search and tool-message modules for the locale.
 
-The web application must not be changed. Its language selector, browser-language matching, persisted preference, HTML `lang` attribute and `ltr`/`rtl` direction are all derived from the registry.
+The web application must not be changed for a new language. Its language selector, browser-language matching, persisted preference, HTML `lang` attribute and `ltr`/`rtl` direction are derived from the registry.
 
 ## Ownership
 
@@ -32,7 +34,7 @@ Every tool carries two mandatory keys in **every** locale file:
 - `tool.<x>.summary` — one line for cards and search results, at most 120 characters, shorter than the description.
 - `tool.<x>.terms` — comma-separated search terms. A leading `#` marks a tag, which is shown as a label on the tool card.
 
-Rules the catalogue check enforces: both keys exist in every language, terms are neither empty nor repeated (case-insensitively), and at least one tag exists. `npm run catalog:generate` writes the searchable text of all languages into the generated register; `npm run check` fails when that register is out of date.
+Rules the catalogue check enforces: both keys exist in every language, terms are neither empty nor repeated (case-insensitively), and at least one tag exists. `npm run catalog:generate` writes one generated search and tool-message module per language; `npm run check` fails when generated data is out of date.
 
 Two conventions make the German terms work in practice:
 
@@ -43,7 +45,7 @@ Adding a language therefore also means adding these two keys to the new locale f
 
 ## Fallback behavior
 
-Each registry entry declares a fallback. English is the current default. Tool catalogs are partial by design: when a selected locale does not contain a tool key, its fallback value is used. If no catalog in the fallback chain contains the key, the key itself is shown so omissions remain visible during development.
+Each registry entry declares a fallback. English is the current default. At runtime only the selected language and English fallback are loaded; selecting English loads English alone. Public language packs are complete, while the fallback protects against runtime omissions. If neither loaded catalog contains a key, the key itself is shown so omissions remain visible during development.
 
 ## Example registry entry
 
@@ -52,7 +54,7 @@ fr: {
   label: 'Français',
   direction: 'ltr',
   fallback: 'en',
-  messages: { ...commonFr, ...suitesFr }
+  messages: {}
 }
 ```
 

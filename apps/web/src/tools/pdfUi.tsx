@@ -126,6 +126,30 @@ export async function extractPdfText(bytes: Uint8Array, pages?: readonly number[
   }
 }
 
+export async function comparePdfRendering(left: Uint8Array, right: Uint8Array, channelTolerance = 16): Promise<number[]> {
+  const { GlobalWorkerOptions, getDocument } = await import('pdfjs-dist')
+  GlobalWorkerOptions.workerSrc = workerUrl
+  const leftTask = getDocument({ data: left.slice() }), rightTask = getDocument({ data: right.slice() })
+  try {
+    const [a, b] = await Promise.all([leftTask.promise, rightTask.promise])
+    const count = Math.max(a.numPages, b.numPages), ratios: number[] = []
+    for (let number = 1; number <= count; number += 1) {
+      if (number > a.numPages || number > b.numPages) { ratios.push(1); continue }
+      const [ap, bp] = await Promise.all([a.getPage(number), b.getPage(number)])
+      const av0 = ap.getViewport({ scale: 1 }), bv0 = bp.getViewport({ scale: 1 })
+      if (Math.abs(av0.width - bv0.width) > .01 || Math.abs(av0.height - bv0.height) > .01) { ratios.push(1); ap.cleanup(); bp.cleanup(); continue }
+      const scale = Math.min(1, 700 / Math.max(av0.width, av0.height)), av = ap.getViewport({ scale }), bv = bp.getViewport({ scale })
+      const width = Math.max(1, Math.ceil(av.width)), height = Math.max(1, Math.ceil(av.height))
+      const render = async (page: typeof ap, viewport: typeof av) => { const canvas=document.createElement('canvas');canvas.width=width;canvas.height=height;const context=canvas.getContext('2d',{willReadFrequently:true});if(!context)throw new PdfToolError('unsupported','Canvas unavailable');context.fillStyle='#fff';context.fillRect(0,0,width,height);await page.render({canvas,canvasContext:context,viewport,background:'#ffffff'}).promise;return context.getImageData(0,0,width,height).data }
+      const [ad, bd] = await Promise.all([render(ap,av), render(bp,bv)])
+      let different = 0
+      for (let i=0;i<ad.length;i+=4) if (Math.max(Math.abs(ad[i]!-bd[i]!),Math.abs(ad[i+1]!-bd[i+1]!),Math.abs(ad[i+2]!-bd[i+2]!)) > channelTolerance) different += 1
+      ratios.push(different/(width*height)); ap.cleanup(); bp.cleanup()
+    }
+    a.cleanup(); b.cleanup(); return ratios
+  } finally { await Promise.all([leftTask.destroy(),rightTask.destroy()]) }
+}
+
 export async function renderPdfPagePreview(bytes: Uint8Array, pageNumber: number, scale: number, rotation: number): Promise<Blob> {
   const { GlobalWorkerOptions, getDocument } = await import('pdfjs-dist')
   GlobalWorkerOptions.workerSrc = workerUrl

@@ -23,7 +23,8 @@
   getippten Listen — die Prüfung lehnt `accept="…"` ab.
 - Abhängigkeiten nur mit dokumentierter Notwendigkeit und geprüfter Lizenz ergänzen.
 - Datenschutz-, Offline- und Barrierefreiheitsfolgen mitbedenken.
-- **Datensparsamkeit gilt auch für Downloads:** Eine Route lädt nur Shell, aktive Sprache und die
+- **Datensparsamkeit gilt auch für Downloads:** Eine Route lädt nur Shell, aktive Sprache, Englisch
+  als Rückfall und die
   tatsächlich benötigten Tool-Module. Große Engines, Sprachmodelle, Worker, Schriften und Beispiele
   werden erst bei konkreter Nutzung nachgeladen. Suite-Zugehörigkeit allein darf keinen Download
   auslösen.

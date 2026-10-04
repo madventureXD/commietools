@@ -96,3 +96,7 @@ export async function unlockPdf(bytes: Uint8Array, password: string): Promise<Ui
 export async function compressPdf(bytes: Uint8Array, mode: PdfCompressionMode): Promise<Uint8Array> {
   return runQpdf(bytes, compressionArguments(mode))
 }
+
+export async function repairPdfWithQpdf(bytes: Uint8Array): Promise<Uint8Array> {
+  return runQpdf(bytes, ['--object-streams=generate', '--recompress-flate', '--remove-unreferenced-resources=auto'])
+}

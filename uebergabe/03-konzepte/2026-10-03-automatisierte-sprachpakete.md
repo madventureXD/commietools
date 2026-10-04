@@ -1,5 +1,11 @@
 # Konzept: Automatisierte Sprachpakete
 
+> Stand 4. Oktober 2026: Die Laufzeitarchitektur ist umgesetzt. Suche, Werkzeugtexte und gemeinsame
+> Oberflächentexte werden sprachweise geladen; aktiv sind nur die gewählte Sprache und Englisch als
+> Rückfall. Die verbindliche Erstellungs- und Prüfanweisung steht in
+> `uebergabe/02-architektur/sprachpakete.md`, die technische Umsetzung in
+> `uebergabe/03-konzepte/2026-10-04-sprachgetrennte-suchpakete.md`.
+
 **Status:** beschlossen, noch nicht umgesetzt
 **Datum:** 2026-10-03
 

@@ -32,7 +32,8 @@ Verbindliche Reihenfolge:
 CommieTools lädt nur, was für die aktuell aufgerufene Funktion notwendig ist. Das ist eine
 verbindliche Architekturregel und keine nachträgliche Leistungsoptimierung.
 
-- Die Startseite enthält nur App-Shell, Katalog, UI-Grundlagen und die aktive Sprache.
+- Die Startseite enthält nur App-Shell, sprachneutrale Katalogbasis und UI-Grundlagen; danach werden
+  die aktive Sprache und Englisch als Rückfall geladen (bei Englisch nur Englisch).
 - Jede Werkzeugoberfläche wird erst beim Öffnen ihrer Route geladen.
 - Große Engines werden direkt vom nutzenden Werkzeug importiert und nicht über den allgemeinen
   Paket-Einstiegspunkt reexportiert.
@@ -51,6 +52,9 @@ verzögert geladenen PDF-Oberflächen verwendet werden.
 
 ### Neues Tool
 
+Die vollständige Arbeits- und Prüfanweisung steht in
+[`werkzeug-erstellen.md`](werkzeug-erstellen.md). Die folgende Tabelle ist die Kurzfassung.
+
 Ein Tool besitzt eine eindeutige ID, ein Manifest, toolnahe Logik und bei Bedarf eigene Übersetzungen. Es verwendet gemeinsame UI-Komponenten und wird nicht durch fest codierte Navigation dupliziert.
 
 Pflichtangaben, ohne die `npm run check` scheitert:
@@ -64,7 +68,7 @@ Pflichtangaben, ohne die `npm run check` scheitert:
 | `files` | ebenda | `input`, `auxiliary` (`{ role, mimeTypes }`), `output` als MIME-Typen aus `knownFormats`; Pflicht bei den Kategorien `image` und `pdf`, sonst freiwillig |
 | Symbol | `apps/web/public/tools/<id>.svg` | Strichzeichnung, `stroke="currentColor"`, 24×24 |
 
-Danach `npm run catalog:generate` ausführen. Die Suche findet das Werkzeug danach über seine Begriffe, Schlagwörter, Titel, Beschreibungen, Dateitypen, Kategorie und Suite — ohne weitere Anmeldung.
+Danach `npm run catalog:generate` ausführen. Die Suche findet das Werkzeug danach über seine Begriffe, Schlagwörter, Titel, Beschreibungen, Dateitypen, Kategorie und Suite — ohne weitere Anmeldung. Der Generator erzeugt getrennte Such- und Textpakete je Sprache; erzeugte Dateien werden nie von Hand bearbeitet.
 
 ### Vorhandenes Tool verbessern
 

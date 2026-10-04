@@ -60,7 +60,9 @@ Werkzeuge müssen vor dem Zusammenführen alle bereits veröffentlichten Sprache
 - `packages/tools/src/<bereich>/<werkzeug>/locales/<locale>.ts`: werkzeugeigene Texte;
 - lokaler `locales/index.ts`: Zuordnung der Sprachkennung zum Katalog;
 - `packages/i18n/src/registry.ts`: einzige Quelle für auswählbare Sprachen;
-- `toolIndex.ts`: nur erzeugtes Ergebnis, niemals von Hand übersetzen.
+- `packages/i18n/src/index.ts`: verzögerter Lader für gemeinsame Texte der aktiven Sprache;
+- `packages/tools/src/catalog/generated/`: erzeugte Such- und Werkzeugtextpakete je Sprache;
+- `toolIndex.ts`: erzeugte sprachneutrale Katalogbasis, niemals von Hand bearbeiten.
 
 Schlüssel bleiben sprachneutral und stabil. Übersetzungen dürfen weder Anzeigetexte in Komponenten
 noch sprachabhängige Verzweigungen in Werkzeuglogik erzeugen.
@@ -109,12 +111,16 @@ noch sprachabhängige Verzweigungen in Werkzeuglogik erzeugen.
   ist vor der Übersetzung zu entscheiden, ob Pluralregeln beziehungsweise `Intl` nötig sind.
 - Übersetzungen enthalten kein HTML. Hervorhebung und Verlinkung bleiben Aufgabe der Komponente.
 
-## 8. Suche und Katalog
+## 8. Suche, Katalog und Ladepolitik
 
 - Titel, Kurzbeschreibung, Beschreibung und Suchbegriffe jeder veröffentlichten Sprache gehen in
-  das erzeugte Register ein.
-- Ein Treffer wird in der ausgewählten Sprache dargestellt, auch wenn ein Begriff aus einer
-  anderen Sprache den Treffer ausgelöst hat.
+  deren eigenes erzeugtes Suchpaket ein.
+- Im Browser werden ausschließlich das Such- und Textpaket der aktiven Sprache sowie Englisch als
+  Rückfall geladen. Bei Englisch wird nur Englisch geladen. Andere Sprachpakete dürfen nicht über
+  die statische Startkette oder den Vorabcache erreichbar sein.
+- Ein Treffer wird in der ausgewählten Sprache dargestellt. Englische Begriffe bleiben über den
+  mitgeladenen Rückfall auffindbar; Begriffe einer dritten, nicht aktiven Sprache werden bewusst
+  nicht geladen und nicht durchsucht.
 - Begriffe müssen einzeln auffindbar sein und dürfen nach der Suchnormalisierung nicht doppelt
   vorkommen.
 - Regionale Varianten und gebräuchliche Fremdwörter können Suchsynonyme sein. Irreführende,
@@ -133,7 +139,10 @@ noch sprachabhängige Verzweigungen in Werkzeuglogik erzeugen.
 - Platzhaltergleichheit und maximale Länge von `summary` prüfen;
 - jeden Werkzeugtitel und jeden einzelnen Suchbegriff auffindbar testen;
 - Katalogerzeugung, Typprüfung, gesamte Testsuite, Produktions-Build und Bundle-Prüfung ausführen;
-- Bundlezuwachs je Sprache dokumentieren.
+- Bundlezuwachs je Sprache dokumentieren. Die Größenbudgets sind Warnschwellen, keine feste
+  Freigabegrenze: Eine Überschreitung muss untersucht und begründet werden, lässt den Build aber
+  nicht allein deshalb scheitern. Statische Fremdsprachen oder schwere Engines im Startpaket
+  bleiben dagegen harte Architekturfehler.
 
 ### Sprachlich
 
