@@ -132,6 +132,8 @@ jeder Messung das Dokument frisch geladen wird.
 
 ## Git
 
-- Commit: `<folgt>` (diese Übergabe und `offene-punkte.md`)
+- Commit: `789faef` — „docs(desktop): record the M0 feasibility finding for detachable tool
+  windows" (diese Übergabe und `offene-punkte.md`). Das Konzept zu M1 liegt in
+  `03-konzepte/2026-10-04-desktop-auskoppeln.md`.
 - Arbeitsbaum: nach dem Commit sauber; **nicht gepusht** — ein Push auf `main` löst das
   Cloudflare-Pages-Deployment aus und erfolgt nur auf ausdrücklichen Auftrag.
