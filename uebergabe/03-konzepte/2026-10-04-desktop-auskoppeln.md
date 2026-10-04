@@ -125,3 +125,14 @@ tatsächlich eignet — welche das sind, wird in M5 einzeln entschieden.
 
 **Technisch entschieden (nicht Produktfrage):** Die Wunschgröße je Werkzeug gehört ins Manifest,
 damit sie prüfbar ist. Das erfordert den Katalogumbau in M4.
+
+**Nachtrag 2026-10-04 (M3/M5):** M4 in dieser Form **entfällt**. Die Messung zeigt, dass der Browser
+die übergebene Fenstergröße in Chromium ignoriert; eine Manifestzahl hätte keine Wirkung. An ihre
+Stelle tritt die **gemessene** Größe des Werkzeugs im Hauptfenster und eine Größen-Hilfe im
+ausgekoppelten Fenster, die nur erscheint, wenn die Größe abweicht. Der Katalogumbau entfällt damit.
+
+5. **Der Auskoppel-Knopf bleibt bei jedem Werkzeug** (Thomas, 2026-10-04). Keine Auswahl „geeigneter"
+   Werkzeuge, keine Liste. Begründung: Der Rahmen sitzt zentral in `ToolPage`, es gibt keinen
+   Sonderfall je Werkzeug; der Knopf erscheint ohnehin nur, wo die Schnittstelle brauchbar ist; eine
+   Auswahl bräuchte eine gepflegte Liste mit Begründung je Werkzeug — Aufwand ohne belegten Nutzen.
+   Der Nachweis steht in M5 (alle 41 Routen).
