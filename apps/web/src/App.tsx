@@ -31,7 +31,14 @@ const PdfViewer = lazy(() => import('./tools/PdfViewer').then((module) => ({ def
 const PdfTextOcr = lazy(() => import('./tools/PdfTextOcr').then((module) => ({ default: module.PdfTextOcr })))
 const PdfCertificateSign = lazy(() => import('./tools/PdfCertificateTools').then((module) => ({ default: module.PdfCertificateSign })))
 const PdfSignatureVerify = lazy(() => import('./tools/PdfCertificateTools').then((module) => ({ default: module.PdfSignatureVerify })))
+const PdfMetadataTool = lazy(() => import('./tools/PdfMaintenanceTools').then((module) => ({ default: module.PdfMetadataTool })))
+const PdfCropTool = lazy(() => import('./tools/PdfMaintenanceTools').then((module) => ({ default: module.PdfCropTool })))
+const PdfRepairTool = lazy(() => import('./tools/PdfMaintenanceTools').then((module) => ({ default: module.PdfRepairTool })))
+const PdfAttachmentsTool = lazy(() => import('./tools/PdfMaintenanceTools').then((module) => ({ default: module.PdfAttachmentsTool })))
+const PdfCompareTool = lazy(() => import('./tools/PdfMaintenanceTools').then((module) => ({ default: module.PdfCompareTool })))
 const Calculator = lazy(() => import('./tools/Calculator').then((module) => ({ default: module.Calculator })))
+const Commercial = lazy(() => import('./tools/Commercial').then((module) => ({ default: module.Commercial })))
+const Geometry = lazy(() => import('./tools/Geometry').then((module) => ({ default: module.Geometry })))
 
 type Theme = 'light' | 'dark'
 type Translate = (key: string) => string
@@ -98,6 +105,8 @@ function ToolPage({ tool, t, locale, navigate }: { tool: ToolManifest; t: Transl
                 : tool.id === 'image-watermark' ? <ImageWatermark t={t} locale={locale} />
                   : tool.id === 'color-tools' ? <ColorTools t={t} />
                     : tool.id === 'calculator' ? <Suspense fallback={<p aria-live="polite">…</p>}><Calculator t={t} /></Suspense>
+                      : tool.id === 'commercial' ? <Suspense fallback={<p aria-live="polite">…</p>}><Commercial t={t} locale={locale} /></Suspense>
+                        : tool.id === 'geometry' ? <Suspense fallback={<p aria-live="polite">…</p>}><Geometry t={t} locale={locale} /></Suspense>
               : tool.id === 'pdf-merge' ? <Suspense fallback={<p aria-live="polite">…</p>}><PdfMerge t={t} /></Suspense>
                 : tool.id === 'pdf-split' ? <Suspense fallback={<p aria-live="polite">…</p>}><PdfSplit t={t} /></Suspense>
                   : tool.id === 'pdf-organize' ? <Suspense fallback={<p aria-live="polite">…</p>}><PdfOrganize t={t} /></Suspense>
@@ -113,7 +122,12 @@ function ToolPage({ tool, t, locale, navigate }: { tool: ToolManifest; t: Transl
                                       : tool.id === 'pdf-viewer' ? <Suspense fallback={<p aria-live="polite">…</p>}><PdfViewer t={t} /></Suspense>
                                         : tool.id === 'pdf-text-ocr' ? <Suspense fallback={<p aria-live="polite">…</p>}><PdfTextOcr t={t} /></Suspense>
                                           : tool.id === 'pdf-certificate-sign' ? <Suspense fallback={<p aria-live="polite">…</p>}><PdfCertificateSign t={t} /></Suspense>
-                                            : <Suspense fallback={<p aria-live="polite">…</p>}><PdfSignatureVerify t={t} /></Suspense>
+                                            : tool.id === 'pdf-signature-verify' ? <Suspense fallback={<p aria-live="polite">…</p>}><PdfSignatureVerify t={t} /></Suspense>
+                                              : tool.id === 'pdf-metadata' ? <Suspense fallback={<p aria-live="polite">…</p>}><PdfMetadataTool t={t} /></Suspense>
+                                                : tool.id === 'pdf-crop' ? <Suspense fallback={<p aria-live="polite">…</p>}><PdfCropTool t={t} /></Suspense>
+                                                  : tool.id === 'pdf-repair' ? <Suspense fallback={<p aria-live="polite">…</p>}><PdfRepairTool t={t} /></Suspense>
+                                                    : tool.id === 'pdf-attachments' ? <Suspense fallback={<p aria-live="polite">…</p>}><PdfAttachmentsTool t={t} /></Suspense>
+                                                      : <Suspense fallback={<p aria-live="polite">…</p>}><PdfCompareTool t={t} /></Suspense>
   const icon = searchEntryById.get(tool.id)?.icon
   return <main className="detail-page"><button className="text-link back" onClick={() => navigate('/')}>← {t('tool.back')}</button><article className="tool-shell"><header className="tool-header"><div>{icon && <span className="card-icon" aria-hidden="true" style={{ maskImage: `url(${icon})`, WebkitMaskImage: `url(${icon})` }} />}<p className="category">{t(`category.${tool.category}`)}</p><h1>{t(tool.titleKey)}</h1><p>{t(tool.descriptionKey)}</p></div><LocalBadge>{t('status.local')}</LocalBadge></header><div className="tool-content">{content}</div></article></main>
 }

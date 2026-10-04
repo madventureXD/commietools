@@ -1,11 +1,14 @@
 import { describe, expect, it } from 'vitest'
-import { evaluate, evaluateRpn, toBase, toFraction, toWord, withVariable } from '@commietools/tools/calculator/core'
+import { calculatorErrorCodes, evaluate, evaluateRpn, toBase, toFraction, toWord, withVariable } from '@commietools/tools/calculator/core'
 import {
   calculatorAngleProbes,
   calculatorFunctions,
   calculatorProbes,
   calculatorWordSizes
 } from '@commietools/tools/calculator/functions'
+import { toolMessages } from '@commietools/tools'
+import { supportedLocales } from '@commietools/i18n'
+import { appendSnippet, splitRpnTokens } from './calculator-ui'
 
 /**
  * Der Rechner-Kern. Drei Dinge werden hier bewiesen:
@@ -136,6 +139,12 @@ describe('Programmierer-Modus', () => {
     expect(oct.ok, String(oct.error)).toBe(true)
     // Die Darstellung darf die Zahl nicht verändern.
     expect(toBase('255', 10, { number: 'BigNumber' }).display).toBe('255')
+    // Konkrete Schreibweise: mathjs hängte mit `wordSize` im Format ein `i64` an (`0xffi64`),
+    // das die Eingabe-Notation beschreibt und in einer Anzeige nichts zu suchen hat.
+    expect(hex.display).toBe('0xff')
+    expect(toBase('255', 2, { number: 'BigNumber' }).display).toBe('0b11111111')
+    expect(toBase('255', 8, { number: 'BigNumber' }).display).toBe('0o377')
+    expect(hex.display).not.toContain('i64')
   })
 
   it('reduces to every word size as twos complement', () => {
@@ -193,5 +202,56 @@ describe('RPN-Stapel', () => {
   it('binds variables in the stack', () => {
     const scope = withVariable({}, 'breite', '4', { number: 'BigNumber' })
     expect(evaluateRpn(['breite', '3', '*'], { number: 'BigNumber' }, scope).display).toBe('12')
+  })
+
+  it('shows the stack after every step', () => {
+    // Ohne den Zwischenstand könnte die Oberfläche den Rechenweg nicht zeigen, ohne ihn selbst
+    // nachzurechnen — hier liegt er im Ergebnis.
+    const result = evaluateRpn(['3', '4', '+', '5', '*'], { number: 'BigNumber' })
+    expect(result.steps.map((step) => step.stack)).toEqual([['7'], ['35']])
+    expect(result.stack).toEqual(['35'])
+  })
+
+  it('keeps the stack readable when an operation fails', () => {
+    // Ein zweites „+" hat keinen zweiten Operanden: der bis dahin erreichte Stapel bleibt sichtbar.
+    const result = evaluateRpn(['1', '2', '+', '+'], { number: 'BigNumber' })
+    expect(result.ok).toBe(false)
+    expect(result.error).toBe('stackUnderflow')
+    expect(result.stack).toEqual(['3'])
+  })
+})
+
+describe('Bedienung', () => {
+  it('splits the RPN input at whitespace and keeps the decimal comma', () => {
+    expect(splitRpnTokens('3 4 +')).toEqual(['3', '4', '+'])
+    expect(splitRpnTokens('  3   4   +  ')).toEqual(['3', '4', '+'])
+    expect(splitRpnTokens('3,5 2 *')).toEqual(['3,5', '2', '*'])
+    expect(splitRpnTokens('   ')).toEqual([])
+  })
+
+  it('appends a key without welding it to the previous token', () => {
+    expect(appendSnippet('', 'sin(')).toBe('sin(')
+    expect(appendSnippet('2+3', 'sin(')).toBe('2+3 sin(')
+    expect(appendSnippet('2+', 'sin(')).toBe('2+sin(')
+    expect(appendSnippet('sin(', 'pi')).toBe('sin(pi')
+    expect(appendSnippet('2 ', 'bitAnd')).toBe('2 bitAnd')
+    expect(appendSnippet('4 5', '+')).toBe('4 5+')
+  })
+})
+
+describe('Fehlertexte', () => {
+  it('translates every error code of the core in every language', () => {
+    for (const locale of supportedLocales) {
+      for (const code of calculatorErrorCodes) {
+        expect(toolMessages[locale]?.[`tool.calculator.error.${code}`], `${locale}/${code}`).toBeTruthy()
+      }
+    }
+  })
+
+  it('covers the angle mode in the fraction model as well', () => {
+    // Das Bruchmodell darf den Winkelmodus nicht stillschweigend abschalten.
+    const result = evaluate('sin(30)', { number: 'Fraction', angleMode: 'deg' })
+    expect(result.ok, String(result.error)).toBe(true)
+    expect(result.display).toBe('0.5')
   })
 })

@@ -9,10 +9,14 @@
     "./calculator/core": "./src/calculator/core.ts",
     "./calculator/functions": "./src/calculator/functions.ts",
     "./calculator/history": "./src/calculator/history.ts",
+    "./calculator/commercial": "./src/calculator/commercial.ts",
+    "./calculator/geometry": "./src/calculator/geometry.ts",
     "./pdf/core": "./src/pdf/core.ts",
     "./pdf/m4": "./src/pdf/m4.ts",
     "./pdf/m5": "./src/pdf/m5.ts",
-    "./pdf/m7": "./src/pdf/m7.ts"
+    "./pdf/m7": "./src/pdf/m7.ts",
+    "./pdf/m8": "./src/pdf/m8.ts",
+    "./pdf/m9": "./src/pdf/m9.ts"
   },
   "dependencies": {
     "@commietools/core": "0.1.0",

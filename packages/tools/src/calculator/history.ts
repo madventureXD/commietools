@@ -16,8 +16,19 @@ export interface HistoryEntry {
   readonly at: number
 }
 
+/** Rechnerart der Oberfläche. Der Rechenkern kennt diese Einteilung nicht — sie ist Bedienung. */
+export type CalculatorUiMode = 'standard' | 'scientific' | 'programmer' | 'rpn'
+
 export interface CalculatorSettings {
   readonly fractionMode: boolean
+  readonly mode: CalculatorUiMode
+  readonly angleMode: 'rad' | 'deg' | 'grad'
+  /** Anzeige-Basis des Programmierer-Modus. */
+  readonly base: 2 | 8 | 10 | 16
+  /** Wortbreite in Bit, Zweierkomplement. */
+  readonly wordBits: number
+  /** Mit Vorzeichen (`intN`) oder ohne (`uintN`). */
+  readonly signed: boolean
 }
 
 export const HISTORY_LIMIT = 200
@@ -28,7 +39,14 @@ const KEYS = {
   settings: 'calculator.settings'
 } as const
 
-const DEFAULT_SETTINGS: CalculatorSettings = { fractionMode: false }
+const DEFAULT_SETTINGS: CalculatorSettings = {
+  fractionMode: false,
+  mode: 'standard',
+  angleMode: 'rad',
+  base: 16,
+  wordBits: 32,
+  signed: true
+}
 
 export async function readHistory(): Promise<readonly HistoryEntry[]> {
   const stored = await get<HistoryEntry[]>(KEYS.history)

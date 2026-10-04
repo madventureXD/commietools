@@ -40,6 +40,22 @@ export type CalculatorErrorCode =
   | 'stackLeftover'
   | 'wordRange'
 
+/**
+ * Alle Fehlerklassen zur Laufzeit — der Sprachkatalog muss für jede einen Text führen. Ohne
+ * diese Liste wäre ein neuer Fehlercode in der Oberfläche ein Schlüssel ohne Text.
+ */
+export const calculatorErrorCodes = [
+  'empty',
+  'syntax',
+  'unknownName',
+  'zeroDivision',
+  'outOfRange',
+  'unsupported',
+  'stackUnderflow',
+  'stackLeftover',
+  'wordRange'
+] as const satisfies readonly CalculatorErrorCode[]
+
 export interface Calculation {
   readonly ok: boolean
   /** Anzeigefertiger Wert; bei Fehlern leer. */
@@ -81,7 +97,14 @@ function applyAngleMode(math: MathJsInstance, angleMode: AngleMode): void {
     sin: math.sin, cos: math.cos, tan: math.tan,
     asin: math.asin, acos: math.acos, atan: math.atan
   }
-  const toRad = (x: unknown) => math.unit(x as never, unit).to('rad')
+  /**
+   * `unit(...)` nimmt einen Bruch (`Fraction`) nicht an — im Bruchmodell käme sonst
+   * „unsupported“ heraus, obwohl die Rechnung gültig ist. Ein Bruch wird deshalb für die
+   * Winkelumrechnung in eine Dezimalzahl gehoben; das Ergebnis einer Winkelfunktion ist
+   * ohnehin im Allgemeinen kein Bruch (sin 30° = 0,5, sin 45° = 0,707…).
+   */
+  const asUnitValue = (x: unknown) => (math.isFraction(x as never) ? math.bignumber(x as never) : x)
+  const toRad = (x: unknown) => math.unit(asUnitValue(x) as never, unit).to('rad')
   // Zwei Fallen auf einmal: `toNumber(unit)` liefert ein **rohes** Decimal-Objekt, auf dem
   // `format(…, { precision })` nicht rundet, und `.value` gäbe den Wert in der Basiseinheit
   // (rad) zurück. Deshalb `toNumber(unit)` und dann in eine mathjs-Zahl wandeln.
@@ -261,8 +284,10 @@ export function toBase(
     const notation = BASE_NOTATION[base]
     if (!notation) return result
     // `format` braucht den Wert, nicht die Zeichenkette: aus dem Rohwert neu einlesen.
+    // Kein `wordSize` im Format: mathjs hängt sonst die Wortbreite als Suffix an (`0xffi64`) —
+    // das Suffix beschreibt die Eingabe-Notation, nicht den Wert.
     const value = math.evaluate(result.raw)
-    const text = math.format(value, { notation, precision: DISPLAY_PRECISION, wordSize: 64 })
+    const text = math.format(value, { notation, precision: DISPLAY_PRECISION })
     return { ok: true, display: text, raw: text, error: null }
   } catch {
     return { ok: false, display: '', raw: '', error: 'unsupported' }
@@ -296,15 +321,22 @@ export function toWord(
 const RPN_OPERATORS = new Set(['+', '-', '*', '/', '^', 'mod'])
 const RPN_UNARY = new Set(['neg', 'sqrt', 'inv', 'fact'])
 
-/** Ein RPN-Schritt für den sichtbaren Rechenweg. */
+/**
+ * Ein RPN-Schritt für den sichtbaren Rechenweg.
+ * `stack` ist der Stapel **nach** dem Schritt — erst damit lässt sich der Rechenweg in der
+ * Oberfläche Schritt für Schritt zeigen, ohne die Rechenregeln dort ein zweites Mal zu haben.
+ */
 export interface RpnStep {
   readonly expression: string
   readonly result: string
+  readonly stack: readonly string[]
 }
 
 export interface RpnResult extends Calculation {
   /** Der Stapel nach jedem Schritt — macht den Rechenweg nachvollziehbar. */
   readonly steps: readonly RpnStep[]
+  /** Der Stapel am Ende: genau ein Wert, sonst `stackLeftover`. */
+  readonly stack: readonly string[]
 }
 
 /**
@@ -319,7 +351,7 @@ export function evaluateRpn(
 ): RpnResult {
   const stack: string[] = []
   const steps: RpnStep[] = []
-  const fail = (error: CalculatorErrorCode): RpnResult => ({ ok: false, display: '', raw: '', error, steps })
+  const fail = (error: CalculatorErrorCode): RpnResult => ({ ok: false, display: '', raw: '', error, steps, stack: [...stack] })
 
   for (const token of tokens) {
     const entry = normalizeDecimalInput(token.trim())
@@ -331,9 +363,9 @@ export function evaluateRpn(
       const left = stack.pop() as string
       const expression = `${left} ${entry} ${right}`
       const step = evaluate(expression, options, scope)
-      if (!step.ok) return { ...step, steps }
+      if (!step.ok) return { ...step, steps, stack: [...stack] }
       stack.push(step.raw)
-      steps.push({ expression, result: step.display })
+      steps.push({ expression, result: step.display, stack: [...stack] })
       continue
     }
 
@@ -346,20 +378,20 @@ export function evaluateRpn(
         : entry === 'inv' ? `1/(${operand})`
         : `factorial(${operand})`
       const step = evaluate(expression, options, scope)
-      if (!step.ok) return { ...step, steps }
+      if (!step.ok) return { ...step, steps, stack: [...stack] }
       stack.push(step.raw)
-      steps.push({ expression, result: step.display })
+      steps.push({ expression, result: step.display, stack: [...stack] })
       continue
     }
 
     const value = evaluate(entry, options, scope)
-    if (!value.ok) return { ...value, steps }
+    if (!value.ok) return { ...value, steps, stack: [...stack] }
     stack.push(value.raw)
   }
 
   // Ein Ergebnis heißt genau ein Wert auf dem Stapel: sonst wurde etwas vergessen.
   if (stack.length !== 1) return fail('stackLeftover')
   const display = evaluate(stack[0] as string, options, scope)
-  if (!display.ok) return { ...display, steps }
-  return { ok: true, display: display.display, raw: display.raw, error: null, steps }
+  if (!display.ok) return { ...display, steps, stack: [...stack] }
+  return { ok: true, display: display.display, raw: display.raw, error: null, steps, stack: [...stack] }
 }

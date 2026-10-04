@@ -3112,6 +3112,319 @@ export const toolIndex: readonly ToolSearchEntry[] = [
     }
   },
   {
+    "id": "pdf-metadata",
+    "route": "/tools/pdf-metadata",
+    "icon": "/tools/pdf-metadata.svg",
+    "category": "pdf",
+    "suiteIds": [
+      "pdf"
+    ],
+    "executionMode": "local",
+    "resourceClass": "standard",
+    "worksOffline": true,
+    "input": [
+      "application/pdf"
+    ],
+    "output": [
+      "application/pdf"
+    ],
+    "auxiliary": [],
+    "locales": {
+      "de": {
+        "title": "PDF-Metadaten",
+        "summary": "PDF-Metadaten lokal anzeigen und bereinigen.",
+        "description": "Zeigt Dokumenteigenschaften und entfernt unterstützte Metadaten lokal.",
+        "terms": [
+          "PDF Metadaten entfernen",
+          "Autor",
+          "Titel",
+          "XMP",
+          "Datenschutz"
+        ],
+        "tags": [
+          "#pdf"
+        ]
+      },
+      "en": {
+        "title": "PDF metadata",
+        "summary": "View and clean PDF metadata locally.",
+        "description": "Shows document properties and removes supported metadata locally.",
+        "terms": [
+          "PDF metadata",
+          "remove author",
+          "title",
+          "XMP",
+          "privacy"
+        ],
+        "tags": [
+          "#pdf"
+        ]
+      },
+      "es": {
+        "title": "Metadatos PDF",
+        "summary": "Ver y limpiar metadatos PDF localmente.",
+        "description": "Muestra las propiedades y elimina localmente los metadatos compatibles.",
+        "terms": [
+          "metadatos PDF",
+          "autor",
+          "título",
+          "XMP",
+          "privacidad"
+        ],
+        "tags": [
+          "#pdf"
+        ]
+      }
+    }
+  },
+  {
+    "id": "pdf-crop",
+    "route": "/tools/pdf-crop",
+    "icon": "/tools/pdf-crop.svg",
+    "category": "pdf",
+    "suiteIds": [
+      "pdf"
+    ],
+    "executionMode": "local",
+    "resourceClass": "standard",
+    "worksOffline": true,
+    "input": [
+      "application/pdf"
+    ],
+    "output": [
+      "application/pdf"
+    ],
+    "auxiliary": [],
+    "locales": {
+      "de": {
+        "title": "PDF-Seiten beschneiden",
+        "summary": "PDF-Seiten lokal beschneiden.",
+        "description": "Ändert den sichtbaren Seitenbereich ausgewählter PDF-Seiten.",
+        "terms": [
+          "PDF beschneiden",
+          "CropBox",
+          "Rand entfernen",
+          "Seitenformat"
+        ],
+        "tags": [
+          "#pdf"
+        ]
+      },
+      "en": {
+        "title": "Crop PDF pages",
+        "summary": "Crop PDF page margins locally.",
+        "description": "Changes the visible area of selected PDF pages.",
+        "terms": [
+          "crop PDF",
+          "CropBox",
+          "remove margin",
+          "page size"
+        ],
+        "tags": [
+          "#pdf"
+        ]
+      },
+      "es": {
+        "title": "Recortar páginas PDF",
+        "summary": "Recorta los márgenes de un PDF localmente.",
+        "description": "Cambia el área visible de las páginas seleccionadas.",
+        "terms": [
+          "recortar PDF",
+          "margen",
+          "CropBox",
+          "páginas"
+        ],
+        "tags": [
+          "#pdf"
+        ]
+      }
+    }
+  },
+  {
+    "id": "pdf-repair",
+    "route": "/tools/pdf-repair",
+    "icon": "/tools/pdf-repair.svg",
+    "category": "pdf",
+    "suiteIds": [
+      "pdf"
+    ],
+    "executionMode": "local",
+    "resourceClass": "heavy",
+    "worksOffline": true,
+    "input": [
+      "application/pdf"
+    ],
+    "output": [
+      "application/pdf"
+    ],
+    "auxiliary": [],
+    "locales": {
+      "de": {
+        "title": "PDF reparieren und prüfen",
+        "summary": "PDF lokal strukturell prüfen und normalisieren.",
+        "description": "Normalisiert die PDF-Struktur mit QPDF und prüft, ob sie anschließend lesbar ist.",
+        "terms": [
+          "PDF reparieren",
+          "PDF prüfen",
+          "QPDF",
+          "defekte PDF"
+        ],
+        "tags": [
+          "#pdf"
+        ]
+      },
+      "en": {
+        "title": "Repair and validate PDF",
+        "summary": "Validate and normalise a PDF locally.",
+        "description": "Normalises the PDF structure with QPDF and verifies that it remains readable.",
+        "terms": [
+          "repair PDF",
+          "validate PDF",
+          "QPDF",
+          "broken PDF"
+        ],
+        "tags": [
+          "#pdf"
+        ]
+      },
+      "es": {
+        "title": "Reparar y validar PDF",
+        "summary": "Valida y normaliza un PDF localmente.",
+        "description": "Normaliza la estructura con QPDF y comprueba que siga siendo legible.",
+        "terms": [
+          "reparar PDF",
+          "validar PDF",
+          "QPDF",
+          "PDF dañado"
+        ],
+        "tags": [
+          "#pdf"
+        ]
+      }
+    }
+  },
+  {
+    "id": "pdf-attachments",
+    "route": "/tools/pdf-attachments",
+    "icon": "/tools/pdf-attachments.svg",
+    "category": "pdf",
+    "suiteIds": [
+      "pdf"
+    ],
+    "executionMode": "local",
+    "resourceClass": "standard",
+    "worksOffline": true,
+    "input": [
+      "application/pdf"
+    ],
+    "output": [
+      "application/pdf"
+    ],
+    "auxiliary": [],
+    "locales": {
+      "de": {
+        "title": "PDF-Anhänge",
+        "summary": "Eingebettete PDF-Dateien lokal verwalten.",
+        "description": "Listet, extrahiert und ergänzt eingebettete Dateien in einer PDF.",
+        "terms": [
+          "PDF Anhänge",
+          "Dateien einbetten",
+          "Attachment extrahieren"
+        ],
+        "tags": [
+          "#pdf"
+        ]
+      },
+      "en": {
+        "title": "PDF attachments",
+        "summary": "Manage embedded PDF files locally.",
+        "description": "Lists, extracts and adds files embedded in a PDF.",
+        "terms": [
+          "PDF attachments",
+          "embed file",
+          "extract attachment"
+        ],
+        "tags": [
+          "#pdf"
+        ]
+      },
+      "es": {
+        "title": "Archivos adjuntos PDF",
+        "summary": "Gestiona archivos incrustados localmente.",
+        "description": "Enumera, extrae y añade archivos incrustados en un PDF.",
+        "terms": [
+          "adjuntos PDF",
+          "incrustar archivo",
+          "extraer adjunto"
+        ],
+        "tags": [
+          "#pdf"
+        ]
+      }
+    }
+  },
+  {
+    "id": "pdf-compare",
+    "route": "/tools/pdf-compare",
+    "icon": "/tools/pdf-compare.svg",
+    "category": "pdf",
+    "suiteIds": [
+      "pdf"
+    ],
+    "executionMode": "local",
+    "resourceClass": "heavy",
+    "worksOffline": true,
+    "input": [
+      "application/pdf"
+    ],
+    "output": [],
+    "auxiliary": [],
+    "locales": {
+      "de": {
+        "title": "PDFs vergleichen",
+        "summary": "Zwei PDFs lokal strukturell und textlich vergleichen.",
+        "description": "Vergleicht Seitenzahl, Seitengröße, Drehung und extrahierbaren Text zweier PDFs.",
+        "terms": [
+          "PDF vergleichen",
+          "Unterschiede",
+          "Textvergleich",
+          "Seiten vergleichen"
+        ],
+        "tags": [
+          "#pdf"
+        ]
+      },
+      "en": {
+        "title": "Compare PDFs",
+        "summary": "Compare two PDFs locally by structure and text.",
+        "description": "Compares page count, dimensions, rotation and extractable text in two PDFs.",
+        "terms": [
+          "compare PDF",
+          "differences",
+          "text comparison",
+          "pages"
+        ],
+        "tags": [
+          "#pdf"
+        ]
+      },
+      "es": {
+        "title": "Comparar PDF",
+        "summary": "Compara dos PDF localmente por estructura y texto.",
+        "description": "Compara páginas, dimensiones, rotación y texto extraíble de dos PDF.",
+        "terms": [
+          "comparar PDF",
+          "diferencias",
+          "texto",
+          "páginas"
+        ],
+        "tags": [
+          "#pdf"
+        ]
+      }
+    }
+  },
+  {
     "id": "calculator",
     "route": "/tools/calculator",
     "icon": "/tools/calculator.svg",
@@ -3128,8 +3441,8 @@ export const toolIndex: readonly ToolSearchEntry[] = [
     "locales": {
       "de": {
         "title": "Rechner",
-        "summary": "Rechnet exakt mit Brüchen und Dezimalzahlen.",
-        "description": "Exakter Taschenrechner mit Brüchen und Dezimalzahlen, Verlauf und benannten Variablen. Rechnet vollständig im Browser.",
+        "summary": "Rechnet exakt – wissenschaftlich, mit Wortbreite und RPN.",
+        "description": "Exakter Taschenrechner mit Brüchen und Dezimalzahlen, wissenschaftlichen Funktionen, Winkelmodi, Programmierer-Modus mit Wortbreite sowie RPN-Stapel. Rechnet vollständig im Browser.",
         "terms": [
           "Rechner",
           "Taschenrechner",
@@ -3151,7 +3464,28 @@ export const toolIndex: readonly ToolSearchEntry[] = [
           "Rechenweg",
           "Verlauf",
           "Taschenrechner online",
-          "kopfrechnen"
+          "kopfrechnen",
+          "wissenschaftlich",
+          "Trigonometrie",
+          "Sinus",
+          "Kosinus",
+          "Tangens",
+          "Winkel",
+          "Grad",
+          "Bogenmaß",
+          "Gon",
+          "Logarithmus",
+          "RPN",
+          "umgekehrte polnische Notation",
+          "Stapel",
+          "Bitoperation",
+          "Zweierkomplement",
+          "Wortbreite",
+          "Hexadezimal",
+          "Binär",
+          "Oktal",
+          "Programmiererrechner",
+          "Dualsystem"
         ],
         "tags": [
           "#rechnen",
@@ -3160,8 +3494,8 @@ export const toolIndex: readonly ToolSearchEntry[] = [
       },
       "en": {
         "title": "Calculator",
-        "summary": "Calculates exactly with fractions and decimals.",
-        "description": "Exact calculator with fractions and decimals, history and named variables. All computation stays in the browser.",
+        "summary": "Calculates exactly – scientific, with word size and RPN.",
+        "description": "Exact calculator with fractions and decimals, scientific functions, angle modes, a programmer mode with word size and an RPN stack. All computation stays in the browser.",
         "terms": [
           "calculator",
           "taschenrechner",
@@ -3180,7 +3514,28 @@ export const toolIndex: readonly ToolSearchEntry[] = [
           "arithmetic",
           "history",
           "variables",
-          "maths"
+          "maths",
+          "scientific",
+          "trigonometry",
+          "sine",
+          "cosine",
+          "tangent",
+          "angle",
+          "degrees",
+          "radians",
+          "gradians",
+          "logarithm",
+          "RPN",
+          "reverse polish notation",
+          "stack",
+          "bitwise operation",
+          "twos complement",
+          "word size",
+          "hexadecimal",
+          "binary",
+          "octal",
+          "programmer calculator",
+          "base conversion"
         ],
         "tags": [
           "#calculate",
@@ -3189,8 +3544,8 @@ export const toolIndex: readonly ToolSearchEntry[] = [
       },
       "es": {
         "title": "Calculadora",
-        "summary": "Calcula con exactitud usando fracciones y decimales.",
-        "description": "Calculadora exacta con fracciones y decimales, historial y variables con nombre. Todo el cálculo ocurre en el navegador.",
+        "summary": "Calcula con exactitud: científica, con palabra y RPN.",
+        "description": "Calculadora exacta con fracciones y decimales, funciones científicas, modos de ángulo, modo programador con tamaño de palabra y pila RPN. Todo el cálculo ocurre en el navegador.",
         "terms": [
           "calculadora",
           "calcular",
@@ -3207,7 +3562,283 @@ export const toolIndex: readonly ToolSearchEntry[] = [
           "potencia",
           "aritmetica",
           "historial",
-          "variables"
+          "variables",
+          "cientifica",
+          "trigonometria",
+          "seno",
+          "coseno",
+          "tangente",
+          "angulo",
+          "grados",
+          "radianes",
+          "logaritmo",
+          "RPN",
+          "notacion polaca inversa",
+          "pila",
+          "operacion de bits",
+          "complemento a dos",
+          "tamano de palabra",
+          "hexadecimal",
+          "binario",
+          "octal",
+          "calculadora de programador"
+        ],
+        "tags": [
+          "#calcular",
+          "#matematicas"
+        ]
+      }
+    }
+  },
+  {
+    "id": "commercial",
+    "route": "/tools/commercial",
+    "icon": "/tools/commercial.svg",
+    "category": "calculator",
+    "suiteIds": [
+      "calculator"
+    ],
+    "executionMode": "local",
+    "resourceClass": "standard",
+    "worksOffline": true,
+    "input": [],
+    "output": [],
+    "auxiliary": [],
+    "locales": {
+      "de": {
+        "title": "Kaufmännisch",
+        "summary": "Prozent, Marge, MwSt, Skonto und Tilgungsplan – cent-genau.",
+        "description": "Kaufmännisches Rechnen in Cent-genauigkeit: Prozent in drei Richtungen, Rabatt, Aufschlag, Marge, Umsatzsteuer raus und rein, Skonto, Dreisatz, Zinseszins und Tilgungsplan. Rechnet vollständig im Browser.",
+        "terms": [
+          "Kaufmännisch",
+          "kaufmännisches Rechnen",
+          "Prozent",
+          "Prozentrechnung",
+          "Rabatt",
+          "Skonto",
+          "Aufschlag",
+          "Marge",
+          "Handelsspanne",
+          "Rohertrag",
+          "MwSt",
+          "Mehrwertsteuer",
+          "Umsatzsteuer",
+          "netto",
+          "brutto",
+          "Zins",
+          "Zinseszins",
+          "Tilgung",
+          "Tilgungsplan",
+          "Annuität",
+          "Darlehen",
+          "Kredit",
+          "Dreisatz",
+          "Rechnung",
+          "Buchhaltung",
+          "Handwerk",
+          "Kalkulation"
+        ],
+        "tags": [
+          "#rechnen",
+          "#kaufmännisch"
+        ]
+      },
+      "en": {
+        "title": "Commercial calculator",
+        "summary": "Percentage, margin, VAT, cash discount and schedule – to the cent.",
+        "description": "Commercial arithmetic accurate to the cent: percentages in three directions, discount, markup, margin, VAT added and removed, cash discount, rule of three, compound interest and an amortisation schedule. All computation stays in the browser.",
+        "terms": [
+          "commercial",
+          "commercial arithmetic",
+          "percentage",
+          "percent",
+          "discount",
+          "cash discount",
+          "markup",
+          "margin",
+          "gross profit",
+          "VAT",
+          "sales tax",
+          "net",
+          "gross",
+          "interest",
+          "compound interest",
+          "repayment",
+          "amortisation",
+          "annuity",
+          "loan",
+          "credit",
+          "rule of three",
+          "invoice",
+          "accounting",
+          "trades",
+          "costing"
+        ],
+        "tags": [
+          "#calculate",
+          "#commercial"
+        ]
+      },
+      "es": {
+        "title": "Cálculo comercial",
+        "summary": "Porcentaje, margen, IVA, pronto pago y plan al céntimo.",
+        "description": "Cálculo comercial con precisión de céntimos: porcentajes en tres direcciones, descuento, recargo, margen, IVA añadido y quitado, descuento por pronto pago, regla de tres, interés compuesto y plan de amortización. Todo el cálculo ocurre en el navegador.",
+        "terms": [
+          "comercial",
+          "calculo comercial",
+          "porcentaje",
+          "por ciento",
+          "descuento",
+          "pronto pago",
+          "recargo",
+          "margen",
+          "beneficio bruto",
+          "IVA",
+          "impuesto",
+          "neto",
+          "bruto",
+          "interes",
+          "interes compuesto",
+          "amortizacion",
+          "anualidad",
+          "prestamo",
+          "credito",
+          "regla de tres",
+          "factura",
+          "contabilidad",
+          "costes"
+        ],
+        "tags": [
+          "#calcular",
+          "#comercial"
+        ]
+      }
+    }
+  },
+  {
+    "id": "geometry",
+    "route": "/tools/geometry",
+    "icon": "/tools/geometry.svg",
+    "category": "calculator",
+    "suiteIds": [
+      "calculator"
+    ],
+    "executionMode": "local",
+    "resourceClass": "standard",
+    "worksOffline": true,
+    "input": [],
+    "output": [],
+    "auxiliary": [],
+    "locales": {
+      "de": {
+        "title": "Geometrie",
+        "summary": "Fläche, Umfang, Volumen und Oberfläche – mit Formel.",
+        "description": "Flächen, Umfänge, Volumen und Oberflächen von 16 Formen und Körpern — vom Rechteck bis zur Kugel. Jede Ergebniszeile zeigt ihre Formel. Rechnet vollständig im Browser.",
+        "terms": [
+          "Geometrie",
+          "Fläche",
+          "Flächeninhalt",
+          "Umfang",
+          "Volumen",
+          "Oberfläche",
+          "Mantel",
+          "Diagonale",
+          "Hypotenuse",
+          "Rechteck",
+          "Quadrat",
+          "Dreieck",
+          "Kreis",
+          "Kreisring",
+          "Trapez",
+          "Parallelogramm",
+          "Raute",
+          "Vieleck",
+          "Quader",
+          "Würfel",
+          "Zylinder",
+          "Kegel",
+          "Pyramide",
+          "Kugel",
+          "Pythagoras",
+          "Dachfläche",
+          "Materialbedarf",
+          "Handwerk"
+        ],
+        "tags": [
+          "#rechnen",
+          "#geometrie"
+        ]
+      },
+      "en": {
+        "title": "Geometry",
+        "summary": "Area, perimeter, volume and surface – with formula.",
+        "description": "Areas, perimeters, volumes and surfaces of 16 shapes and solids — from the rectangle to the sphere. Every result row shows its formula. All computation stays in the browser.",
+        "terms": [
+          "geometry",
+          "area",
+          "perimeter",
+          "volume",
+          "surface",
+          "lateral area",
+          "diagonal",
+          "hypotenuse",
+          "rectangle",
+          "square",
+          "triangle",
+          "circle",
+          "annulus",
+          "trapezoid",
+          "parallelogram",
+          "rhombus",
+          "polygon",
+          "cuboid",
+          "cube",
+          "cylinder",
+          "cone",
+          "pyramid",
+          "sphere",
+          "Pythagoras",
+          "roof area",
+          "material",
+          "trades"
+        ],
+        "tags": [
+          "#calculate",
+          "#geometry"
+        ]
+      },
+      "es": {
+        "title": "Geometría",
+        "summary": "Área, perímetro, volumen y superficie, con fórmula.",
+        "description": "Áreas, perímetros, volúmenes y superficies de 16 figuras y cuerpos, del rectángulo a la esfera. Cada resultado muestra su fórmula. Todo el cálculo ocurre en el navegador.",
+        "terms": [
+          "geometria",
+          "area",
+          "perimetro",
+          "volumen",
+          "superficie",
+          "superficie lateral",
+          "diagonal",
+          "hipotenusa",
+          "rectangulo",
+          "cuadrado",
+          "triangulo",
+          "circulo",
+          "corona circular",
+          "trapecio",
+          "paralelogramo",
+          "rombo",
+          "poligono",
+          "ortoedro",
+          "cubo",
+          "cilindro",
+          "cono",
+          "piramide",
+          "esfera",
+          "Pitagoras",
+          "superficie de tejado",
+          "material",
+          "oficios"
         ],
         "tags": [
           "#calcular",

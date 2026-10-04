@@ -211,10 +211,47 @@ export const toolManifests: readonly ToolManifest[] = [
     files: { input: ['application/pdf'] }
   },
   {
+    id: 'pdf-metadata', route: '/tools/pdf-metadata', category: 'pdf',
+    titleKey: 'tool.pdfMetadata.title', descriptionKey: 'tool.pdfMetadata.description', summaryKey: 'tool.pdfMetadata.summary', termsKey: 'tool.pdfMetadata.terms',
+    executionMode: 'local', resourceClass: 'standard', worksOffline: true, files: { input: ['application/pdf'], output: ['application/pdf'] }
+  },
+  {
+    id: 'pdf-crop', route: '/tools/pdf-crop', category: 'pdf',
+    titleKey: 'tool.pdfCrop.title', descriptionKey: 'tool.pdfCrop.description', summaryKey: 'tool.pdfCrop.summary', termsKey: 'tool.pdfCrop.terms',
+    executionMode: 'local', resourceClass: 'standard', worksOffline: true, files: { input: ['application/pdf'], output: ['application/pdf'] }
+  },
+  {
+    id: 'pdf-repair', route: '/tools/pdf-repair', category: 'pdf',
+    titleKey: 'tool.pdfRepair.title', descriptionKey: 'tool.pdfRepair.description', summaryKey: 'tool.pdfRepair.summary', termsKey: 'tool.pdfRepair.terms',
+    executionMode: 'local', resourceClass: 'heavy', worksOffline: true, files: { input: ['application/pdf'], output: ['application/pdf'] }
+  },
+  {
+    id: 'pdf-attachments', route: '/tools/pdf-attachments', category: 'pdf',
+    titleKey: 'tool.pdfAttachments.title', descriptionKey: 'tool.pdfAttachments.description', summaryKey: 'tool.pdfAttachments.summary', termsKey: 'tool.pdfAttachments.terms',
+    executionMode: 'local', resourceClass: 'standard', worksOffline: true, files: { input: ['application/pdf'], output: ['application/pdf'] }
+  },
+  {
+    id: 'pdf-compare', route: '/tools/pdf-compare', category: 'pdf',
+    titleKey: 'tool.pdfCompare.title', descriptionKey: 'tool.pdfCompare.description', summaryKey: 'tool.pdfCompare.summary', termsKey: 'tool.pdfCompare.terms',
+    executionMode: 'local', resourceClass: 'heavy', worksOffline: true, files: { input: ['application/pdf'] }
+  },
+  {
     id: 'calculator', route: '/tools/calculator', category: 'calculator',
     titleKey: 'tool.calculator.title', descriptionKey: 'tool.calculator.description',
     summaryKey: 'tool.calculator.summary', termsKey: 'tool.calculator.terms',
     executionMode: 'local', resourceClass: 'heavy', worksOffline: true
+  },
+  {
+    id: 'commercial', route: '/tools/commercial', category: 'calculator',
+    titleKey: 'tool.commercial.title', descriptionKey: 'tool.commercial.description',
+    summaryKey: 'tool.commercial.summary', termsKey: 'tool.commercial.terms',
+    executionMode: 'local', resourceClass: 'standard', worksOffline: true
+  },
+  {
+    id: 'geometry', route: '/tools/geometry', category: 'calculator',
+    titleKey: 'tool.geometry.title', descriptionKey: 'tool.geometry.description',
+    summaryKey: 'tool.geometry.summary', termsKey: 'tool.geometry.terms',
+    executionMode: 'local', resourceClass: 'standard', worksOffline: true
   }
 ]
 
@@ -223,6 +260,6 @@ export const suiteManifests: readonly SuiteManifest[] = [
   { id: 'developer', route: '/suites/developer', titleKey: 'suite.developer.title', descriptionKey: 'suite.developer.description', toolIds: ['json-formatter'] },
   { id: 'generators', route: '/suites/generators', titleKey: 'suite.generators.title', descriptionKey: 'suite.generators.description', toolIds: ['qr-code-generator'] },
   { id: 'image', route: '/suites/image', titleKey: 'suite.image.title', descriptionKey: 'suite.image.description', toolIds: ['image-metadata', 'image-resize', 'icon-generator', 'image-watermark', 'color-tools'] },
-  { id: 'pdf', route: '/suites/pdf', titleKey: 'suite.pdf.title', descriptionKey: 'suite.pdf.description', toolIds: ['pdf-viewer', 'pdf-text-ocr', 'pdf-signature-verify', 'pdf-certificate-sign', 'pdf-merge', 'pdf-split', 'pdf-organize', 'images-to-pdf', 'pdf-to-images', 'pdf-watermark', 'pdf-page-numbers', 'pdf-visible-signature', 'pdf-form-fill', 'pdf-annotate', 'pdf-security', 'pdf-compress'] },
-  { id: 'calculator', route: '/suites/calculator', titleKey: 'suite.calculator.title', descriptionKey: 'suite.calculator.description', toolIds: ['calculator'] }
+  { id: 'pdf', route: '/suites/pdf', titleKey: 'suite.pdf.title', descriptionKey: 'suite.pdf.description', toolIds: ['pdf-viewer', 'pdf-text-ocr', 'pdf-signature-verify', 'pdf-certificate-sign', 'pdf-metadata', 'pdf-crop', 'pdf-repair', 'pdf-attachments', 'pdf-compare', 'pdf-merge', 'pdf-split', 'pdf-organize', 'images-to-pdf', 'pdf-to-images', 'pdf-watermark', 'pdf-page-numbers', 'pdf-visible-signature', 'pdf-form-fill', 'pdf-annotate', 'pdf-security', 'pdf-compress'] },
+  { id: 'calculator', route: '/suites/calculator', titleKey: 'suite.calculator.title', descriptionKey: 'suite.calculator.description', toolIds: ['calculator', 'commercial', 'geometry'] }
 ]
