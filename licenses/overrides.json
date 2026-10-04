@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "note": "Pakete, die im package.json kein license-Feld deklarieren und deren Lizenz deshalb nicht aus package-lock.json gelesen werden kann. Jeder Eintrag gilt nur für genau eine Name-Version-Kombination und muss den SHA-256 der Lizenzdatei mitführen. Ändert sich die Datei oder kommt eine neue Fassung des Pakets, greift der Eintrag nicht mehr und die Prüfung scheitert bewusst. Kein Sammel-Ausweg: jeder Eintrag braucht einen eigenen datierten Beschluss und einen ADR.",
+  "overrides": [
+    {
+      "name": "@pip-it-up/core",
+      "version": "0.2.0",
+      "expression": "MIT",
+      "reason": "Das Paket deklariert im package.json kein license-Feld; die Lizenz steht ausschließlich in der beigelegten LICENSE-Datei.",
+      "evidence": {
+        "path": "node_modules/@pip-it-up/core/LICENSE",
+        "sha256": "195d9f904c217ae523b6abdcc8b3b606abc5070b32d1c08bb2cd8d0ff4c6023d",
+        "firstLine": "MIT License",
+        "copyright": "Copyright (c) 2026 Saurabh Shakya and contributors"
+      },
+      "decidedAt": "2026-10-04",
+      "decision": "uebergabe/04-entscheidungen/0008-lizenzfeld-fehlt-bei-pip-it-up.md"
+    }
+  ]
+}

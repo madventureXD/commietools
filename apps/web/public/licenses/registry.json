@@ -5,7 +5,7 @@
     "license": "AGPL-3.0-only",
     "source": "LICENSE"
   },
-  "lockfileSha256": "22949f362c6853e51db8eef92a3976687df7dad856ef0c79881f3d736f01117a",
+  "lockfileSha256": "a9988324892b97c91e055475dc699d3df087aee46fc354b77c8eb3dad20690bc",
   "policy": {
     "allowedExpressions": [
       "(MIT AND Zlib)",
@@ -38,8 +38,8 @@
     ]
   },
   "summary": {
-    "packages": 522,
-    "runtime": 101,
+    "packages": 523,
+    "runtime": 102,
     "development": 421,
     "optional": 93,
     "licenseExpressions": [
@@ -347,6 +347,10 @@
     "ba8b485276d2a2d1062ce653a3f73c0ea538ddd3847341becf279201daceb4ed": {
       "sha256": "ba8b485276d2a2d1062ce653a3f73c0ea538ddd3847341becf279201daceb4ed",
       "text": "MIT License\n\nCopyright (c) 2017 Photopea\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\nSOFTWARE."
+    },
+    "195d9f904c217ae523b6abdcc8b3b606abc5070b32d1c08bb2cd8d0ff4c6023d": {
+      "sha256": "195d9f904c217ae523b6abdcc8b3b606abc5070b32d1c08bb2cd8d0ff4c6023d",
+      "text": "MIT License\n\nCopyright (c) 2026 Saurabh Shakya and contributors\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\nSOFTWARE."
     },
     "2b2fc14abd19f24c9aebb0bccf53a66d7923a23a636f3532417affc07db72ccd": {
       "sha256": "2b2fc14abd19f24c9aebb0bccf53a66d7923a23a636f3532417affc07db72ccd",
@@ -1050,6 +1054,7 @@
       "name": "@apideck/better-ajv-errors",
       "version": "0.3.7",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -1069,6 +1074,7 @@
       "name": "@babel/code-frame",
       "version": "7.29.7",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -1088,6 +1094,7 @@
       "name": "@babel/compat-data",
       "version": "7.29.7",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -1107,6 +1114,7 @@
       "name": "@babel/core",
       "version": "7.29.7",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -1126,6 +1134,7 @@
       "name": "@babel/generator",
       "version": "7.29.8",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -1145,6 +1154,7 @@
       "name": "@babel/helper-annotate-as-pure",
       "version": "7.29.7",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -1164,6 +1174,7 @@
       "name": "@babel/helper-compilation-targets",
       "version": "7.29.7",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -1183,6 +1194,7 @@
       "name": "@babel/helper-create-class-features-plugin",
       "version": "7.29.7",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -1202,6 +1214,7 @@
       "name": "@babel/helper-create-regexp-features-plugin",
       "version": "7.29.7",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -1221,6 +1234,7 @@
       "name": "@babel/helper-define-polyfill-provider",
       "version": "0.6.8",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -1240,6 +1254,7 @@
       "name": "@babel/helper-globals",
       "version": "7.29.7",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -1259,6 +1274,7 @@
       "name": "@babel/helper-member-expression-to-functions",
       "version": "7.29.7",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -1278,6 +1294,7 @@
       "name": "@babel/helper-module-imports",
       "version": "7.29.7",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -1297,6 +1314,7 @@
       "name": "@babel/helper-module-transforms",
       "version": "7.29.7",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -1316,6 +1334,7 @@
       "name": "@babel/helper-optimise-call-expression",
       "version": "7.29.7",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -1335,6 +1354,7 @@
       "name": "@babel/helper-plugin-utils",
       "version": "7.29.7",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -1354,6 +1374,7 @@
       "name": "@babel/helper-remap-async-to-generator",
       "version": "7.29.7",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -1373,6 +1394,7 @@
       "name": "@babel/helper-replace-supers",
       "version": "7.29.7",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -1392,6 +1414,7 @@
       "name": "@babel/helper-skip-transparent-expression-wrappers",
       "version": "7.29.7",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -1411,6 +1434,7 @@
       "name": "@babel/helper-string-parser",
       "version": "7.29.7",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -1430,6 +1454,7 @@
       "name": "@babel/helper-validator-identifier",
       "version": "7.29.7",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -1449,6 +1474,7 @@
       "name": "@babel/helper-validator-option",
       "version": "7.29.7",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -1468,6 +1494,7 @@
       "name": "@babel/helper-wrap-function",
       "version": "7.29.7",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -1487,6 +1514,7 @@
       "name": "@babel/helpers",
       "version": "7.29.7",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -1506,6 +1534,7 @@
       "name": "@babel/parser",
       "version": "7.29.9",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -1525,6 +1554,7 @@
       "name": "@babel/plugin-bugfix-firefox-class-in-computed-class-key",
       "version": "7.29.7",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -1544,6 +1574,7 @@
       "name": "@babel/plugin-bugfix-safari-class-field-initializer-scope",
       "version": "7.29.7",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -1563,6 +1594,7 @@
       "name": "@babel/plugin-bugfix-safari-id-destructuring-collision-in-function-expression",
       "version": "7.29.7",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -1582,6 +1614,7 @@
       "name": "@babel/plugin-bugfix-safari-rest-destructuring-rhs-array",
       "version": "7.29.7",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -1601,6 +1634,7 @@
       "name": "@babel/plugin-bugfix-v8-spread-parameters-in-optional-chaining",
       "version": "7.29.7",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -1620,6 +1654,7 @@
       "name": "@babel/plugin-bugfix-v8-static-class-fields-redefine-readonly",
       "version": "7.29.7",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -1639,6 +1674,7 @@
       "name": "@babel/plugin-proposal-private-property-in-object",
       "version": "7.21.0-placeholder-for-preset-env.2",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -1658,6 +1694,7 @@
       "name": "@babel/plugin-syntax-import-assertions",
       "version": "7.29.7",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -1677,6 +1714,7 @@
       "name": "@babel/plugin-syntax-import-attributes",
       "version": "7.29.7",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -1696,6 +1734,7 @@
       "name": "@babel/plugin-syntax-unicode-sets-regex",
       "version": "7.18.6",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -1715,6 +1754,7 @@
       "name": "@babel/plugin-transform-arrow-functions",
       "version": "7.29.7",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -1734,6 +1774,7 @@
       "name": "@babel/plugin-transform-async-generator-functions",
       "version": "7.29.7",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -1753,6 +1794,7 @@
       "name": "@babel/plugin-transform-async-to-generator",
       "version": "7.29.7",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -1772,6 +1814,7 @@
       "name": "@babel/plugin-transform-block-scoped-functions",
       "version": "7.29.7",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -1791,6 +1834,7 @@
       "name": "@babel/plugin-transform-block-scoping",
       "version": "7.29.7",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -1810,6 +1854,7 @@
       "name": "@babel/plugin-transform-class-properties",
       "version": "7.29.7",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -1829,6 +1874,7 @@
       "name": "@babel/plugin-transform-class-static-block",
       "version": "7.29.7",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -1848,6 +1894,7 @@
       "name": "@babel/plugin-transform-classes",
       "version": "7.29.7",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -1867,6 +1914,7 @@
       "name": "@babel/plugin-transform-computed-properties",
       "version": "7.29.7",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -1886,6 +1934,7 @@
       "name": "@babel/plugin-transform-destructuring",
       "version": "7.29.7",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -1905,6 +1954,7 @@
       "name": "@babel/plugin-transform-dotall-regex",
       "version": "7.29.7",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -1924,6 +1974,7 @@
       "name": "@babel/plugin-transform-duplicate-keys",
       "version": "7.29.7",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -1943,6 +1994,7 @@
       "name": "@babel/plugin-transform-duplicate-named-capturing-groups-regex",
       "version": "7.29.7",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -1962,6 +2014,7 @@
       "name": "@babel/plugin-transform-dynamic-import",
       "version": "7.29.7",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -1981,6 +2034,7 @@
       "name": "@babel/plugin-transform-explicit-resource-management",
       "version": "7.29.7",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -2000,6 +2054,7 @@
       "name": "@babel/plugin-transform-exponentiation-operator",
       "version": "7.29.7",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -2019,6 +2074,7 @@
       "name": "@babel/plugin-transform-export-namespace-from",
       "version": "7.29.7",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -2038,6 +2094,7 @@
       "name": "@babel/plugin-transform-for-of",
       "version": "7.29.7",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -2057,6 +2114,7 @@
       "name": "@babel/plugin-transform-function-name",
       "version": "7.29.7",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -2076,6 +2134,7 @@
       "name": "@babel/plugin-transform-json-strings",
       "version": "7.29.7",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -2095,6 +2154,7 @@
       "name": "@babel/plugin-transform-literals",
       "version": "7.29.7",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -2114,6 +2174,7 @@
       "name": "@babel/plugin-transform-logical-assignment-operators",
       "version": "7.29.7",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -2133,6 +2194,7 @@
       "name": "@babel/plugin-transform-member-expression-literals",
       "version": "7.29.7",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -2152,6 +2214,7 @@
       "name": "@babel/plugin-transform-modules-amd",
       "version": "7.29.7",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -2171,6 +2234,7 @@
       "name": "@babel/plugin-transform-modules-commonjs",
       "version": "7.29.7",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -2190,6 +2254,7 @@
       "name": "@babel/plugin-transform-modules-systemjs",
       "version": "7.29.8",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -2209,6 +2274,7 @@
       "name": "@babel/plugin-transform-modules-umd",
       "version": "7.29.7",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -2228,6 +2294,7 @@
       "name": "@babel/plugin-transform-named-capturing-groups-regex",
       "version": "7.29.7",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -2247,6 +2314,7 @@
       "name": "@babel/plugin-transform-new-target",
       "version": "7.29.7",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -2266,6 +2334,7 @@
       "name": "@babel/plugin-transform-nullish-coalescing-operator",
       "version": "7.29.7",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -2285,6 +2354,7 @@
       "name": "@babel/plugin-transform-numeric-separator",
       "version": "7.29.7",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -2304,6 +2374,7 @@
       "name": "@babel/plugin-transform-object-rest-spread",
       "version": "7.29.7",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -2323,6 +2394,7 @@
       "name": "@babel/plugin-transform-object-super",
       "version": "7.29.7",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -2342,6 +2414,7 @@
       "name": "@babel/plugin-transform-optional-catch-binding",
       "version": "7.29.7",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -2361,6 +2434,7 @@
       "name": "@babel/plugin-transform-optional-chaining",
       "version": "7.29.7",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -2380,6 +2454,7 @@
       "name": "@babel/plugin-transform-parameters",
       "version": "7.29.7",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -2399,6 +2474,7 @@
       "name": "@babel/plugin-transform-private-methods",
       "version": "7.29.7",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -2418,6 +2494,7 @@
       "name": "@babel/plugin-transform-private-property-in-object",
       "version": "7.29.7",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -2437,6 +2514,7 @@
       "name": "@babel/plugin-transform-property-literals",
       "version": "7.29.7",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -2456,6 +2534,7 @@
       "name": "@babel/plugin-transform-react-jsx-self",
       "version": "7.29.7",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -2475,6 +2554,7 @@
       "name": "@babel/plugin-transform-react-jsx-source",
       "version": "7.29.7",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -2494,6 +2574,7 @@
       "name": "@babel/plugin-transform-regenerator",
       "version": "7.29.8",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -2513,6 +2594,7 @@
       "name": "@babel/plugin-transform-regexp-modifiers",
       "version": "7.29.7",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -2532,6 +2614,7 @@
       "name": "@babel/plugin-transform-reserved-words",
       "version": "7.29.7",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -2551,6 +2634,7 @@
       "name": "@babel/plugin-transform-shorthand-properties",
       "version": "7.29.7",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -2570,6 +2654,7 @@
       "name": "@babel/plugin-transform-spread",
       "version": "7.29.8",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -2589,6 +2674,7 @@
       "name": "@babel/plugin-transform-sticky-regex",
       "version": "7.29.7",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -2608,6 +2694,7 @@
       "name": "@babel/plugin-transform-template-literals",
       "version": "7.29.7",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -2627,6 +2714,7 @@
       "name": "@babel/plugin-transform-typeof-symbol",
       "version": "7.29.7",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -2646,6 +2734,7 @@
       "name": "@babel/plugin-transform-unicode-escapes",
       "version": "7.29.7",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -2665,6 +2754,7 @@
       "name": "@babel/plugin-transform-unicode-property-regex",
       "version": "7.29.7",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -2684,6 +2774,7 @@
       "name": "@babel/plugin-transform-unicode-regex",
       "version": "7.29.7",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -2703,6 +2794,7 @@
       "name": "@babel/plugin-transform-unicode-sets-regex",
       "version": "7.29.7",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -2722,6 +2814,7 @@
       "name": "@babel/preset-env",
       "version": "7.29.7",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -2741,6 +2834,7 @@
       "name": "@babel/preset-modules",
       "version": "0.1.6-no-external-plugins",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -2760,6 +2854,7 @@
       "name": "@babel/runtime",
       "version": "7.29.7",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -2779,6 +2874,7 @@
       "name": "@babel/template",
       "version": "7.29.7",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -2798,6 +2894,7 @@
       "name": "@babel/traverse",
       "version": "7.29.8",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -2817,6 +2914,7 @@
       "name": "@babel/types",
       "version": "7.29.8",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -2836,6 +2934,7 @@
       "name": "@canvas/image-data",
       "version": "1.1.0",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -2850,6 +2949,7 @@
       "name": "@emnapi/runtime",
       "version": "1.11.3",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -2864,6 +2964,7 @@
       "name": "@esbuild/aix-ppc64",
       "version": "0.28.2",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -2878,6 +2979,7 @@
       "name": "@esbuild/android-arm",
       "version": "0.28.2",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -2892,6 +2994,7 @@
       "name": "@esbuild/android-arm64",
       "version": "0.28.2",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -2906,6 +3009,7 @@
       "name": "@esbuild/android-x64",
       "version": "0.28.2",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -2920,6 +3024,7 @@
       "name": "@esbuild/darwin-arm64",
       "version": "0.28.2",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -2934,6 +3039,7 @@
       "name": "@esbuild/darwin-x64",
       "version": "0.28.2",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -2948,6 +3054,7 @@
       "name": "@esbuild/freebsd-arm64",
       "version": "0.28.2",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -2962,6 +3069,7 @@
       "name": "@esbuild/freebsd-x64",
       "version": "0.28.2",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -2976,6 +3084,7 @@
       "name": "@esbuild/linux-arm",
       "version": "0.28.2",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -2990,6 +3099,7 @@
       "name": "@esbuild/linux-arm64",
       "version": "0.28.2",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -3004,6 +3114,7 @@
       "name": "@esbuild/linux-ia32",
       "version": "0.28.2",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -3018,6 +3129,7 @@
       "name": "@esbuild/linux-loong64",
       "version": "0.28.2",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -3032,6 +3144,7 @@
       "name": "@esbuild/linux-mips64el",
       "version": "0.28.2",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -3046,6 +3159,7 @@
       "name": "@esbuild/linux-ppc64",
       "version": "0.28.2",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -3060,6 +3174,7 @@
       "name": "@esbuild/linux-riscv64",
       "version": "0.28.2",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -3074,6 +3189,7 @@
       "name": "@esbuild/linux-s390x",
       "version": "0.28.2",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -3088,6 +3204,7 @@
       "name": "@esbuild/linux-x64",
       "version": "0.28.2",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -3102,6 +3219,7 @@
       "name": "@esbuild/netbsd-arm64",
       "version": "0.28.2",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -3116,6 +3234,7 @@
       "name": "@esbuild/netbsd-x64",
       "version": "0.28.2",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -3130,6 +3249,7 @@
       "name": "@esbuild/openbsd-arm64",
       "version": "0.28.2",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -3144,6 +3264,7 @@
       "name": "@esbuild/openbsd-x64",
       "version": "0.28.2",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -3158,6 +3279,7 @@
       "name": "@esbuild/openharmony-arm64",
       "version": "0.28.2",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -3172,6 +3294,7 @@
       "name": "@esbuild/sunos-x64",
       "version": "0.28.2",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -3186,6 +3309,7 @@
       "name": "@esbuild/win32-arm64",
       "version": "0.28.2",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -3200,6 +3324,7 @@
       "name": "@esbuild/win32-ia32",
       "version": "0.28.2",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -3214,6 +3339,7 @@
       "name": "@esbuild/win32-x64",
       "version": "0.28.2",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -3228,6 +3354,7 @@
       "name": "@img/colour",
       "version": "1.1.0",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -3247,6 +3374,7 @@
       "name": "@img/sharp-darwin-arm64",
       "version": "0.35.5",
       "licenseExpression": "Apache-2.0",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "Apache-2.0"
       ],
@@ -3261,6 +3389,7 @@
       "name": "@img/sharp-darwin-x64",
       "version": "0.35.5",
       "licenseExpression": "Apache-2.0",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "Apache-2.0"
       ],
@@ -3275,6 +3404,7 @@
       "name": "@img/sharp-freebsd-wasm32",
       "version": "0.35.5",
       "licenseExpression": "Apache-2.0",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "Apache-2.0"
       ],
@@ -3289,6 +3419,7 @@
       "name": "@img/sharp-libvips-darwin-arm64",
       "version": "1.3.4",
       "licenseExpression": "LGPL-3.0-or-later",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "LGPL-3.0-or-later"
       ],
@@ -3303,6 +3434,7 @@
       "name": "@img/sharp-libvips-darwin-x64",
       "version": "1.3.4",
       "licenseExpression": "LGPL-3.0-or-later",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "LGPL-3.0-or-later"
       ],
@@ -3317,6 +3449,7 @@
       "name": "@img/sharp-libvips-linux-arm",
       "version": "1.3.4",
       "licenseExpression": "LGPL-3.0-or-later",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "LGPL-3.0-or-later"
       ],
@@ -3331,6 +3464,7 @@
       "name": "@img/sharp-libvips-linux-arm64",
       "version": "1.3.4",
       "licenseExpression": "LGPL-3.0-or-later",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "LGPL-3.0-or-later"
       ],
@@ -3345,6 +3479,7 @@
       "name": "@img/sharp-libvips-linux-ppc64",
       "version": "1.3.4",
       "licenseExpression": "LGPL-3.0-or-later",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "LGPL-3.0-or-later"
       ],
@@ -3359,6 +3494,7 @@
       "name": "@img/sharp-libvips-linux-riscv64",
       "version": "1.3.4",
       "licenseExpression": "LGPL-3.0-or-later",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "LGPL-3.0-or-later"
       ],
@@ -3373,6 +3509,7 @@
       "name": "@img/sharp-libvips-linux-s390x",
       "version": "1.3.4",
       "licenseExpression": "LGPL-3.0-or-later",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "LGPL-3.0-or-later"
       ],
@@ -3387,6 +3524,7 @@
       "name": "@img/sharp-libvips-linux-x64",
       "version": "1.3.4",
       "licenseExpression": "LGPL-3.0-or-later",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "LGPL-3.0-or-later"
       ],
@@ -3401,6 +3539,7 @@
       "name": "@img/sharp-libvips-linuxmusl-arm64",
       "version": "1.3.4",
       "licenseExpression": "LGPL-3.0-or-later",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "LGPL-3.0-or-later"
       ],
@@ -3415,6 +3554,7 @@
       "name": "@img/sharp-libvips-linuxmusl-x64",
       "version": "1.3.4",
       "licenseExpression": "LGPL-3.0-or-later",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "LGPL-3.0-or-later"
       ],
@@ -3429,6 +3569,7 @@
       "name": "@img/sharp-linux-arm",
       "version": "0.35.5",
       "licenseExpression": "Apache-2.0",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "Apache-2.0"
       ],
@@ -3443,6 +3584,7 @@
       "name": "@img/sharp-linux-arm64",
       "version": "0.35.5",
       "licenseExpression": "Apache-2.0",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "Apache-2.0"
       ],
@@ -3457,6 +3599,7 @@
       "name": "@img/sharp-linux-ppc64",
       "version": "0.35.5",
       "licenseExpression": "Apache-2.0",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "Apache-2.0"
       ],
@@ -3471,6 +3614,7 @@
       "name": "@img/sharp-linux-riscv64",
       "version": "0.35.5",
       "licenseExpression": "Apache-2.0",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "Apache-2.0"
       ],
@@ -3485,6 +3629,7 @@
       "name": "@img/sharp-linux-s390x",
       "version": "0.35.5",
       "licenseExpression": "Apache-2.0",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "Apache-2.0"
       ],
@@ -3499,6 +3644,7 @@
       "name": "@img/sharp-linux-x64",
       "version": "0.35.5",
       "licenseExpression": "Apache-2.0",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "Apache-2.0"
       ],
@@ -3513,6 +3659,7 @@
       "name": "@img/sharp-linuxmusl-arm64",
       "version": "0.35.5",
       "licenseExpression": "Apache-2.0",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "Apache-2.0"
       ],
@@ -3527,6 +3674,7 @@
       "name": "@img/sharp-linuxmusl-x64",
       "version": "0.35.5",
       "licenseExpression": "Apache-2.0",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "Apache-2.0"
       ],
@@ -3541,6 +3689,7 @@
       "name": "@img/sharp-wasm32",
       "version": "0.35.5",
       "licenseExpression": "Apache-2.0 AND LGPL-3.0-or-later AND MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "Apache-2.0",
         "LGPL-3.0-or-later",
@@ -3557,6 +3706,7 @@
       "name": "@img/sharp-webcontainers-wasm32",
       "version": "0.35.5",
       "licenseExpression": "Apache-2.0",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "Apache-2.0"
       ],
@@ -3571,6 +3721,7 @@
       "name": "@img/sharp-win32-arm64",
       "version": "0.35.5",
       "licenseExpression": "Apache-2.0 AND LGPL-3.0-or-later",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "Apache-2.0",
         "LGPL-3.0-or-later"
@@ -3586,6 +3737,7 @@
       "name": "@img/sharp-win32-ia32",
       "version": "0.35.5",
       "licenseExpression": "Apache-2.0 AND LGPL-3.0-or-later",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "Apache-2.0",
         "LGPL-3.0-or-later"
@@ -3601,6 +3753,7 @@
       "name": "@img/sharp-win32-x64",
       "version": "0.35.5",
       "licenseExpression": "Apache-2.0 AND LGPL-3.0-or-later",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "Apache-2.0",
         "LGPL-3.0-or-later"
@@ -3616,6 +3769,7 @@
       "name": "@isaacs/cliui",
       "version": "9.0.0",
       "licenseExpression": "BlueOak-1.0.0",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "BlueOak-1.0.0"
       ],
@@ -3635,6 +3789,7 @@
       "name": "@jridgewell/gen-mapping",
       "version": "0.3.13",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -3654,6 +3809,7 @@
       "name": "@jridgewell/remapping",
       "version": "2.3.5",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -3673,6 +3829,7 @@
       "name": "@jridgewell/resolve-uri",
       "version": "3.1.2",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -3692,6 +3849,7 @@
       "name": "@jridgewell/source-map",
       "version": "0.3.11",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -3711,6 +3869,7 @@
       "name": "@jridgewell/sourcemap-codec",
       "version": "1.6.0",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -3730,6 +3889,7 @@
       "name": "@jridgewell/trace-mapping",
       "version": "0.3.31",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -3749,6 +3909,7 @@
       "name": "@js-temporal/polyfill",
       "version": "0.5.1",
       "licenseExpression": "ISC",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "ISC"
       ],
@@ -3768,6 +3929,7 @@
       "name": "@napi-rs/canvas",
       "version": "1.0.10",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -3782,6 +3944,7 @@
       "name": "@napi-rs/canvas-android-arm64",
       "version": "1.0.10",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -3796,6 +3959,7 @@
       "name": "@napi-rs/canvas-darwin-arm64",
       "version": "1.0.10",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -3810,6 +3974,7 @@
       "name": "@napi-rs/canvas-darwin-x64",
       "version": "1.0.10",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -3824,6 +3989,7 @@
       "name": "@napi-rs/canvas-linux-arm-gnueabihf",
       "version": "1.0.10",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -3838,6 +4004,7 @@
       "name": "@napi-rs/canvas-linux-arm64-gnu",
       "version": "1.0.10",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -3852,6 +4019,7 @@
       "name": "@napi-rs/canvas-linux-arm64-musl",
       "version": "1.0.10",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -3866,6 +4034,7 @@
       "name": "@napi-rs/canvas-linux-riscv64-gnu",
       "version": "1.0.10",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -3880,6 +4049,7 @@
       "name": "@napi-rs/canvas-linux-x64-gnu",
       "version": "1.0.10",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -3894,6 +4064,7 @@
       "name": "@napi-rs/canvas-linux-x64-musl",
       "version": "1.0.10",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -3908,6 +4079,7 @@
       "name": "@napi-rs/canvas-win32-arm64-msvc",
       "version": "1.0.10",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -3922,6 +4094,7 @@
       "name": "@napi-rs/canvas-win32-x64-msvc",
       "version": "1.0.10",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -3936,6 +4109,7 @@
       "name": "@napi-rs/lzma-linux-x64-gnu",
       "version": "1.5.1",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -3950,6 +4124,7 @@
       "name": "@neslinesli93/qpdf-wasm",
       "version": "0.3.0",
       "licenseExpression": "ISC",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "ISC"
       ],
@@ -3964,6 +4139,7 @@
       "name": "@pdf-lib/standard-fonts",
       "version": "1.0.0",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -3983,6 +4159,7 @@
       "name": "@pdf-lib/upng",
       "version": "1.0.1",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -3999,9 +4176,30 @@
       ]
     },
     {
+      "name": "@pip-it-up/core",
+      "version": "0.2.0",
+      "licenseExpression": "MIT",
+      "licenseSource": "reviewed-override",
+      "licenseIds": [
+        "MIT"
+      ],
+      "dependencyType": "runtime",
+      "optional": false,
+      "author": null,
+      "repository": "https://github.com/Shakya47/pip-it-up",
+      "homepage": "https://github.com/Shakya47/pip-it-up/tree/main/packages/core#readme",
+      "documents": [
+        {
+          "name": "LICENSE",
+          "documentId": "195d9f904c217ae523b6abdcc8b3b606abc5070b32d1c08bb2cd8d0ff4c6023d"
+        }
+      ]
+    },
+    {
       "name": "@quansync/fs",
       "version": "1.1.0",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -4021,6 +4219,7 @@
       "name": "@rolldown/pluginutils",
       "version": "1.0.0-rc.3",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -4040,6 +4239,7 @@
       "name": "@rollup/plugin-babel",
       "version": "6.1.0",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -4059,6 +4259,7 @@
       "name": "@rollup/plugin-node-resolve",
       "version": "16.0.3",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -4078,6 +4279,7 @@
       "name": "@rollup/plugin-replace",
       "version": "6.0.3",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -4097,6 +4299,7 @@
       "name": "@rollup/plugin-terser",
       "version": "1.0.0",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -4116,6 +4319,7 @@
       "name": "@rollup/pluginutils",
       "version": "5.4.0",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -4135,6 +4339,7 @@
       "name": "@rollup/rollup-android-arm-eabi",
       "version": "4.64.0",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -4149,6 +4354,7 @@
       "name": "@rollup/rollup-android-arm64",
       "version": "4.64.0",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -4163,6 +4369,7 @@
       "name": "@rollup/rollup-darwin-arm64",
       "version": "4.64.0",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -4177,6 +4384,7 @@
       "name": "@rollup/rollup-darwin-x64",
       "version": "4.64.0",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -4191,6 +4399,7 @@
       "name": "@rollup/rollup-freebsd-arm64",
       "version": "4.64.0",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -4205,6 +4414,7 @@
       "name": "@rollup/rollup-freebsd-x64",
       "version": "4.64.0",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -4219,6 +4429,7 @@
       "name": "@rollup/rollup-linux-arm-gnueabihf",
       "version": "4.64.0",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -4233,6 +4444,7 @@
       "name": "@rollup/rollup-linux-arm-musleabihf",
       "version": "4.64.0",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -4247,6 +4459,7 @@
       "name": "@rollup/rollup-linux-arm64-gnu",
       "version": "4.64.0",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -4261,6 +4474,7 @@
       "name": "@rollup/rollup-linux-arm64-musl",
       "version": "4.64.0",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -4275,6 +4489,7 @@
       "name": "@rollup/rollup-linux-loong64-gnu",
       "version": "4.64.0",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -4289,6 +4504,7 @@
       "name": "@rollup/rollup-linux-loong64-musl",
       "version": "4.64.0",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -4303,6 +4519,7 @@
       "name": "@rollup/rollup-linux-ppc64-gnu",
       "version": "4.64.0",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -4317,6 +4534,7 @@
       "name": "@rollup/rollup-linux-ppc64-musl",
       "version": "4.64.0",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -4331,6 +4549,7 @@
       "name": "@rollup/rollup-linux-riscv64-gnu",
       "version": "4.64.0",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -4345,6 +4564,7 @@
       "name": "@rollup/rollup-linux-riscv64-musl",
       "version": "4.64.0",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -4359,6 +4579,7 @@
       "name": "@rollup/rollup-linux-s390x-gnu",
       "version": "4.64.0",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -4373,6 +4594,7 @@
       "name": "@rollup/rollup-linux-x64-gnu",
       "version": "4.64.0",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -4387,6 +4609,7 @@
       "name": "@rollup/rollup-linux-x64-musl",
       "version": "4.64.0",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -4401,6 +4624,7 @@
       "name": "@rollup/rollup-openbsd-x64",
       "version": "4.64.0",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -4415,6 +4639,7 @@
       "name": "@rollup/rollup-openharmony-arm64",
       "version": "4.64.0",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -4429,6 +4654,7 @@
       "name": "@rollup/rollup-win32-arm64-msvc",
       "version": "4.64.0",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -4443,6 +4669,7 @@
       "name": "@rollup/rollup-win32-ia32-msvc",
       "version": "4.64.0",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -4457,6 +4684,7 @@
       "name": "@rollup/rollup-win32-x64-gnu",
       "version": "4.64.0",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -4471,6 +4699,7 @@
       "name": "@rollup/rollup-win32-x64-msvc",
       "version": "4.64.0",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -4485,6 +4714,7 @@
       "name": "@standard-schema/spec",
       "version": "1.1.0",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -4504,6 +4734,7 @@
       "name": "@trickfilm400/rollup-plugin-off-main-thread",
       "version": "3.0.0-pre1",
       "licenseExpression": "Apache-2.0",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "Apache-2.0"
       ],
@@ -4523,6 +4754,7 @@
       "name": "@types/babel__core",
       "version": "7.20.5",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -4542,6 +4774,7 @@
       "name": "@types/babel__generator",
       "version": "7.27.0",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -4561,6 +4794,7 @@
       "name": "@types/babel__template",
       "version": "7.4.4",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -4580,6 +4814,7 @@
       "name": "@types/babel__traverse",
       "version": "7.28.0",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -4599,6 +4834,7 @@
       "name": "@types/chai",
       "version": "5.2.3",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -4618,6 +4854,7 @@
       "name": "@types/deep-eql",
       "version": "4.0.2",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -4637,6 +4874,7 @@
       "name": "@types/estree",
       "version": "1.0.9",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -4656,6 +4894,7 @@
       "name": "@types/react",
       "version": "19.3.0",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -4675,6 +4914,7 @@
       "name": "@types/react-dom",
       "version": "19.3.0",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -4694,6 +4934,7 @@
       "name": "@types/resolve",
       "version": "1.20.2",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -4713,6 +4954,7 @@
       "name": "@types/trusted-types",
       "version": "2.0.7",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -4732,6 +4974,7 @@
       "name": "@vite-pwa/assets-generator",
       "version": "1.0.4",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -4751,6 +4994,7 @@
       "name": "@vitejs/plugin-react",
       "version": "5.2.0",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -4770,6 +5014,7 @@
       "name": "@vitest/expect",
       "version": "4.1.11",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -4789,6 +5034,7 @@
       "name": "@vitest/mocker",
       "version": "4.1.11",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -4808,6 +5054,7 @@
       "name": "@vitest/pretty-format",
       "version": "4.1.11",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -4827,6 +5074,7 @@
       "name": "@vitest/runner",
       "version": "4.1.11",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -4846,6 +5094,7 @@
       "name": "@vitest/snapshot",
       "version": "4.1.11",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -4865,6 +5114,7 @@
       "name": "@vitest/spy",
       "version": "4.1.11",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -4884,6 +5134,7 @@
       "name": "@vitest/utils",
       "version": "4.1.11",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -4903,6 +5154,7 @@
       "name": "acorn",
       "version": "8.18.0",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -4922,6 +5174,7 @@
       "name": "ajv",
       "version": "8.20.0",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -4941,6 +5194,7 @@
       "name": "array-buffer-byte-length",
       "version": "1.0.2",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -4960,6 +5214,7 @@
       "name": "arraybuffer.prototype.slice",
       "version": "1.0.4",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -4979,6 +5234,7 @@
       "name": "assertion-error",
       "version": "2.0.1",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -4998,6 +5254,7 @@
       "name": "async",
       "version": "3.2.6",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -5017,6 +5274,7 @@
       "name": "async-function",
       "version": "1.0.0",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -5036,6 +5294,7 @@
       "name": "at-least-node",
       "version": "1.0.0",
       "licenseExpression": "ISC",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "ISC"
       ],
@@ -5055,6 +5314,7 @@
       "name": "available-typed-arrays",
       "version": "1.0.7",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -5074,6 +5334,7 @@
       "name": "babel-plugin-polyfill-corejs2",
       "version": "0.4.17",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -5093,6 +5354,7 @@
       "name": "babel-plugin-polyfill-corejs3",
       "version": "0.14.2",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -5112,6 +5374,7 @@
       "name": "babel-plugin-polyfill-regenerator",
       "version": "0.6.8",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -5131,6 +5394,7 @@
       "name": "balanced-match",
       "version": "1.0.2",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -5150,6 +5414,7 @@
       "name": "balanced-match",
       "version": "4.0.4",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -5169,6 +5434,7 @@
       "name": "baseline-browser-mapping",
       "version": "2.11.27",
       "licenseExpression": "Apache-2.0",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "Apache-2.0"
       ],
@@ -5188,6 +5454,7 @@
       "name": "bmp-js",
       "version": "0.1.0",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -5207,6 +5474,7 @@
       "name": "brace-expansion",
       "version": "2.1.7",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -5226,6 +5494,7 @@
       "name": "brace-expansion",
       "version": "5.0.12",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -5245,6 +5514,7 @@
       "name": "browserslist",
       "version": "4.29.3",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -5264,6 +5534,7 @@
       "name": "buffer-from",
       "version": "1.1.2",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -5283,6 +5554,7 @@
       "name": "cac",
       "version": "6.7.14",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -5302,6 +5574,7 @@
       "name": "call-bind",
       "version": "1.0.9",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -5321,6 +5594,7 @@
       "name": "call-bind-apply-helpers",
       "version": "1.0.2",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -5340,6 +5614,7 @@
       "name": "call-bound",
       "version": "1.0.4",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -5359,6 +5634,7 @@
       "name": "caniuse-lite",
       "version": "1.0.30001814",
       "licenseExpression": "CC-BY-4.0",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "CC-BY-4.0"
       ],
@@ -5378,6 +5654,7 @@
       "name": "chai",
       "version": "6.3.0",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -5397,6 +5674,7 @@
       "name": "colorette",
       "version": "2.0.20",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -5416,6 +5694,7 @@
       "name": "commander",
       "version": "2.20.3",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -5435,6 +5714,7 @@
       "name": "common-tags",
       "version": "1.8.2",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -5454,6 +5734,7 @@
       "name": "complex.js",
       "version": "2.4.3",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -5473,6 +5754,7 @@
       "name": "consola",
       "version": "3.4.2",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -5492,6 +5774,7 @@
       "name": "convert-source-map",
       "version": "2.0.0",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -5511,6 +5794,7 @@
       "name": "core-js-compat",
       "version": "3.50.0",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -5530,6 +5814,7 @@
       "name": "cross-spawn",
       "version": "7.0.6",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -5549,6 +5834,7 @@
       "name": "crypto-random-string",
       "version": "2.0.0",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -5568,6 +5854,7 @@
       "name": "csstype",
       "version": "3.2.3",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -5587,6 +5874,7 @@
       "name": "data-view-buffer",
       "version": "1.0.2",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -5606,6 +5894,7 @@
       "name": "data-view-byte-length",
       "version": "1.0.2",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -5625,6 +5914,7 @@
       "name": "data-view-byte-offset",
       "version": "1.0.1",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -5644,6 +5934,7 @@
       "name": "debug",
       "version": "4.4.3",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -5663,6 +5954,7 @@
       "name": "decimal.js",
       "version": "10.6.0",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -5682,6 +5974,7 @@
       "name": "decode-bmp",
       "version": "0.2.1",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -5696,6 +5989,7 @@
       "name": "decode-ico",
       "version": "0.4.1",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -5710,6 +6004,7 @@
       "name": "deepmerge",
       "version": "4.3.1",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -5729,6 +6024,7 @@
       "name": "define-data-property",
       "version": "1.1.4",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -5748,6 +6044,7 @@
       "name": "define-properties",
       "version": "1.2.1",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -5767,6 +6064,7 @@
       "name": "defu",
       "version": "6.1.7",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -5786,6 +6084,7 @@
       "name": "detect-libc",
       "version": "2.1.2",
       "licenseExpression": "Apache-2.0",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "Apache-2.0"
       ],
@@ -5805,6 +6104,7 @@
       "name": "dunder-proto",
       "version": "1.0.1",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -5824,6 +6124,7 @@
       "name": "ejs",
       "version": "3.1.10",
       "licenseExpression": "Apache-2.0",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "Apache-2.0"
       ],
@@ -5843,6 +6144,7 @@
       "name": "electron-to-chromium",
       "version": "1.5.444",
       "licenseExpression": "ISC",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "ISC"
       ],
@@ -5862,6 +6164,7 @@
       "name": "es-abstract",
       "version": "1.24.2",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -5881,6 +6184,7 @@
       "name": "es-abstract-get",
       "version": "1.0.0",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -5900,6 +6204,7 @@
       "name": "es-define-property",
       "version": "1.0.1",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -5919,6 +6224,7 @@
       "name": "es-errors",
       "version": "1.3.0",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -5938,6 +6244,7 @@
       "name": "es-module-lexer",
       "version": "2.3.2",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -5957,6 +6264,7 @@
       "name": "es-object-atoms",
       "version": "1.1.2",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -5976,6 +6284,7 @@
       "name": "es-set-tostringtag",
       "version": "2.1.0",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -5995,6 +6304,7 @@
       "name": "es-to-primitive",
       "version": "1.3.4",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -6014,6 +6324,7 @@
       "name": "esbuild",
       "version": "0.28.2",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -6033,6 +6344,7 @@
       "name": "escalade",
       "version": "3.2.0",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -6052,6 +6364,7 @@
       "name": "escape-latex",
       "version": "1.2.0",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -6071,6 +6384,7 @@
       "name": "estree-walker",
       "version": "2.0.2",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -6090,6 +6404,7 @@
       "name": "estree-walker",
       "version": "3.0.3",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -6109,6 +6424,7 @@
       "name": "esutils",
       "version": "2.0.3",
       "licenseExpression": "BSD-2-Clause",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "BSD-2-Clause"
       ],
@@ -6128,6 +6444,7 @@
       "name": "eta",
       "version": "4.6.0",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -6147,6 +6464,7 @@
       "name": "expect-type",
       "version": "1.4.0",
       "licenseExpression": "Apache-2.0",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "Apache-2.0"
       ],
@@ -6166,6 +6484,7 @@
       "name": "fast-deep-equal",
       "version": "3.1.3",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -6185,6 +6504,7 @@
       "name": "fast-json-stable-stringify",
       "version": "2.1.0",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -6204,6 +6524,7 @@
       "name": "fast-uri",
       "version": "3.1.8",
       "licenseExpression": "BSD-3-Clause",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "BSD-3-Clause"
       ],
@@ -6223,6 +6544,7 @@
       "name": "fdir",
       "version": "6.5.0",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -6242,6 +6564,7 @@
       "name": "filelist",
       "version": "1.0.6",
       "licenseExpression": "Apache-2.0",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "Apache-2.0"
       ],
@@ -6256,6 +6579,7 @@
       "name": "for-each",
       "version": "0.3.5",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -6275,6 +6599,7 @@
       "name": "foreground-child",
       "version": "3.3.1",
       "licenseExpression": "ISC",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "ISC"
       ],
@@ -6294,6 +6619,7 @@
       "name": "fraction.js",
       "version": "5.3.4",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -6313,6 +6639,7 @@
       "name": "fs-extra",
       "version": "9.1.0",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -6332,6 +6659,7 @@
       "name": "fsevents",
       "version": "2.3.3",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -6346,6 +6674,7 @@
       "name": "function-bind",
       "version": "1.1.2",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -6365,6 +6694,7 @@
       "name": "function.prototype.name",
       "version": "1.2.0",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -6384,6 +6714,7 @@
       "name": "functions-have-names",
       "version": "1.2.3",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -6403,6 +6734,7 @@
       "name": "generator-function",
       "version": "2.0.1",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -6422,6 +6754,7 @@
       "name": "gensync",
       "version": "1.0.0-beta.2",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -6441,6 +6774,7 @@
       "name": "get-intrinsic",
       "version": "1.3.0",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -6460,6 +6794,7 @@
       "name": "get-own-enumerable-property-symbols",
       "version": "3.0.2",
       "licenseExpression": "ISC",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "ISC"
       ],
@@ -6479,6 +6814,7 @@
       "name": "get-proto",
       "version": "1.0.1",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -6498,6 +6834,7 @@
       "name": "get-symbol-description",
       "version": "1.1.0",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -6517,6 +6854,7 @@
       "name": "glob",
       "version": "11.1.0",
       "licenseExpression": "BlueOak-1.0.0",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "BlueOak-1.0.0"
       ],
@@ -6536,6 +6874,7 @@
       "name": "globalthis",
       "version": "1.0.4",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -6555,6 +6894,7 @@
       "name": "glur",
       "version": "2.0.0",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -6574,6 +6914,7 @@
       "name": "gopd",
       "version": "1.2.0",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -6593,6 +6934,7 @@
       "name": "graceful-fs",
       "version": "4.2.11",
       "licenseExpression": "ISC",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "ISC"
       ],
@@ -6612,6 +6954,7 @@
       "name": "has-bigints",
       "version": "1.1.0",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -6631,6 +6974,7 @@
       "name": "has-property-descriptors",
       "version": "1.0.2",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -6650,6 +6994,7 @@
       "name": "has-proto",
       "version": "1.2.0",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -6669,6 +7014,7 @@
       "name": "has-symbols",
       "version": "1.1.0",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -6688,6 +7034,7 @@
       "name": "has-tostringtag",
       "version": "1.0.2",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -6707,6 +7054,7 @@
       "name": "hasown",
       "version": "2.0.4",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -6726,6 +7074,7 @@
       "name": "ico-endec",
       "version": "0.1.6",
       "licenseExpression": "MPL-2.0",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MPL-2.0"
       ],
@@ -6745,6 +7094,7 @@
       "name": "idb",
       "version": "7.1.1",
       "licenseExpression": "ISC",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "ISC"
       ],
@@ -6764,6 +7114,7 @@
       "name": "idb-keyval",
       "version": "6.3.0",
       "licenseExpression": "Apache-2.0",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "Apache-2.0"
       ],
@@ -6783,6 +7134,7 @@
       "name": "internal-slot",
       "version": "1.1.0",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -6802,6 +7154,7 @@
       "name": "is-array-buffer",
       "version": "3.0.5",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -6821,6 +7174,7 @@
       "name": "is-async-function",
       "version": "2.1.1",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -6840,6 +7194,7 @@
       "name": "is-bigint",
       "version": "1.1.0",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -6859,6 +7214,7 @@
       "name": "is-boolean-object",
       "version": "1.2.2",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -6878,6 +7234,7 @@
       "name": "is-callable",
       "version": "1.2.7",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -6897,6 +7254,7 @@
       "name": "is-core-module",
       "version": "2.17.0",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -6916,6 +7274,7 @@
       "name": "is-data-view",
       "version": "1.0.2",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -6935,6 +7294,7 @@
       "name": "is-date-object",
       "version": "1.1.0",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -6954,6 +7314,7 @@
       "name": "is-document.all",
       "version": "1.0.0",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -6973,6 +7334,7 @@
       "name": "is-finalizationregistry",
       "version": "1.1.1",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -6992,6 +7354,7 @@
       "name": "is-generator-function",
       "version": "1.1.2",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -7011,6 +7374,7 @@
       "name": "is-map",
       "version": "2.0.3",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -7030,6 +7394,7 @@
       "name": "is-module",
       "version": "1.0.0",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -7044,6 +7409,7 @@
       "name": "is-negative-zero",
       "version": "2.0.3",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -7063,6 +7429,7 @@
       "name": "is-number-object",
       "version": "1.1.1",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -7082,6 +7449,7 @@
       "name": "is-obj",
       "version": "1.0.1",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -7101,6 +7469,7 @@
       "name": "is-regex",
       "version": "1.2.1",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -7120,6 +7489,7 @@
       "name": "is-regexp",
       "version": "1.0.0",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -7134,6 +7504,7 @@
       "name": "is-set",
       "version": "2.0.3",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -7153,6 +7524,7 @@
       "name": "is-shared-array-buffer",
       "version": "1.0.4",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -7172,6 +7544,7 @@
       "name": "is-stream",
       "version": "2.0.1",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -7191,6 +7564,7 @@
       "name": "is-string",
       "version": "1.1.1",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -7210,6 +7584,7 @@
       "name": "is-symbol",
       "version": "1.1.1",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -7229,6 +7604,7 @@
       "name": "is-typed-array",
       "version": "1.1.15",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -7248,6 +7624,7 @@
       "name": "is-url",
       "version": "1.2.4",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -7262,6 +7639,7 @@
       "name": "is-weakmap",
       "version": "2.0.2",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -7281,6 +7659,7 @@
       "name": "is-weakref",
       "version": "1.1.1",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -7300,6 +7679,7 @@
       "name": "is-weakset",
       "version": "2.0.4",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -7319,6 +7699,7 @@
       "name": "isarray",
       "version": "2.0.5",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -7338,6 +7719,7 @@
       "name": "isexe",
       "version": "2.0.0",
       "licenseExpression": "ISC",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "ISC"
       ],
@@ -7357,6 +7739,7 @@
       "name": "jackspeak",
       "version": "4.2.3",
       "licenseExpression": "BlueOak-1.0.0",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "BlueOak-1.0.0"
       ],
@@ -7376,6 +7759,7 @@
       "name": "jake",
       "version": "10.9.4",
       "licenseExpression": "Apache-2.0",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "Apache-2.0"
       ],
@@ -7390,6 +7774,7 @@
       "name": "javascript-natural-sort",
       "version": "0.7.1",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -7404,6 +7789,7 @@
       "name": "jiti",
       "version": "2.7.0",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -7423,6 +7809,7 @@
       "name": "js-tokens",
       "version": "4.0.0",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -7442,6 +7829,7 @@
       "name": "jsbi",
       "version": "4.3.2",
       "licenseExpression": "Apache-2.0",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "Apache-2.0"
       ],
@@ -7461,6 +7849,7 @@
       "name": "jsesc",
       "version": "3.1.0",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -7475,6 +7864,7 @@
       "name": "json-schema-traverse",
       "version": "1.0.0",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -7494,6 +7884,7 @@
       "name": "json5",
       "version": "2.2.3",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -7513,6 +7904,7 @@
       "name": "jsonfile",
       "version": "6.2.1",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -7532,6 +7924,7 @@
       "name": "jsonpointer",
       "version": "5.0.1",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -7551,6 +7944,7 @@
       "name": "leven",
       "version": "3.1.0",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -7570,6 +7964,7 @@
       "name": "lodash.debounce",
       "version": "4.0.8",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -7589,6 +7984,7 @@
       "name": "lru-cache",
       "version": "11.5.3",
       "licenseExpression": "BlueOak-1.0.0",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "BlueOak-1.0.0"
       ],
@@ -7608,6 +8004,7 @@
       "name": "lru-cache",
       "version": "5.1.1",
       "licenseExpression": "ISC",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "ISC"
       ],
@@ -7627,6 +8024,7 @@
       "name": "magic-string",
       "version": "0.30.21",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -7646,6 +8044,7 @@
       "name": "math-intrinsics",
       "version": "1.1.0",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -7665,6 +8064,7 @@
       "name": "mathjs",
       "version": "15.2.0",
       "licenseExpression": "Apache-2.0",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "Apache-2.0"
       ],
@@ -7688,6 +8088,7 @@
       "name": "minimatch",
       "version": "10.2.6",
       "licenseExpression": "BlueOak-1.0.0",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "BlueOak-1.0.0"
       ],
@@ -7707,6 +8108,7 @@
       "name": "minimatch",
       "version": "5.1.9",
       "licenseExpression": "ISC",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "ISC"
       ],
@@ -7726,6 +8128,7 @@
       "name": "minipass",
       "version": "7.1.3",
       "licenseExpression": "BlueOak-1.0.0",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "BlueOak-1.0.0"
       ],
@@ -7745,6 +8148,7 @@
       "name": "ms",
       "version": "2.1.3",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -7764,6 +8168,7 @@
       "name": "multimath",
       "version": "3.0.0",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -7783,6 +8188,7 @@
       "name": "mupdf",
       "version": "1.28.1",
       "licenseExpression": "AGPL-3.0-or-later",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "AGPL-3.0-or-later"
       ],
@@ -7802,6 +8208,7 @@
       "name": "nanoid",
       "version": "3.3.19",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -7821,6 +8228,7 @@
       "name": "node-fetch",
       "version": "2.7.0",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -7840,6 +8248,7 @@
       "name": "node-releases",
       "version": "2.0.57",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -7859,6 +8268,7 @@
       "name": "object-inspect",
       "version": "1.13.4",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -7878,6 +8288,7 @@
       "name": "object-keys",
       "version": "1.1.1",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -7897,6 +8308,7 @@
       "name": "object.assign",
       "version": "4.1.7",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -7916,6 +8328,7 @@
       "name": "obug",
       "version": "2.2.1",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -7935,6 +8348,7 @@
       "name": "opencollective-postinstall",
       "version": "2.0.3",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -7954,6 +8368,7 @@
       "name": "own-keys",
       "version": "1.0.2",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -7973,6 +8388,7 @@
       "name": "package-json-from-dist",
       "version": "1.0.1",
       "licenseExpression": "BlueOak-1.0.0",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "BlueOak-1.0.0"
       ],
@@ -7992,6 +8408,7 @@
       "name": "pako",
       "version": "1.0.11",
       "licenseExpression": "(MIT AND Zlib)",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT",
         "Zlib"
@@ -8012,6 +8429,7 @@
       "name": "path-key",
       "version": "3.1.1",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -8031,6 +8449,7 @@
       "name": "path-parse",
       "version": "1.0.7",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -8050,6 +8469,7 @@
       "name": "path-scurry",
       "version": "2.0.2",
       "licenseExpression": "BlueOak-1.0.0",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "BlueOak-1.0.0"
       ],
@@ -8069,6 +8489,7 @@
       "name": "pathe",
       "version": "2.0.3",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -8088,6 +8509,7 @@
       "name": "pdf-lib",
       "version": "1.17.1",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -8107,6 +8529,7 @@
       "name": "pdfjs-dist",
       "version": "6.3.289",
       "licenseExpression": "Apache-2.0",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "Apache-2.0"
       ],
@@ -8126,6 +8549,7 @@
       "name": "pica",
       "version": "10.0.3",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -8145,6 +8569,7 @@
       "name": "picocolors",
       "version": "1.1.1",
       "licenseExpression": "ISC",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "ISC"
       ],
@@ -8164,6 +8589,7 @@
       "name": "picomatch",
       "version": "4.0.7",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -8183,6 +8609,7 @@
       "name": "possible-typed-array-names",
       "version": "1.1.0",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -8202,6 +8629,7 @@
       "name": "postcss",
       "version": "8.5.28",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -8221,6 +8649,7 @@
       "name": "pretty-bytes",
       "version": "5.6.0",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -8240,6 +8669,7 @@
       "name": "pretty-bytes",
       "version": "6.1.1",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -8259,6 +8689,7 @@
       "name": "qr-code-styling",
       "version": "1.9.2",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -8278,6 +8709,7 @@
       "name": "qrcode-generator",
       "version": "1.5.2",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -8292,6 +8724,7 @@
       "name": "quansync",
       "version": "1.0.0",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -8311,6 +8744,7 @@
       "name": "react",
       "version": "19.3.0",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -8330,6 +8764,7 @@
       "name": "react-dom",
       "version": "19.3.0",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -8349,6 +8784,7 @@
       "name": "react-refresh",
       "version": "0.18.0",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -8368,6 +8804,7 @@
       "name": "reflect.getprototypeof",
       "version": "1.0.10",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -8387,6 +8824,7 @@
       "name": "regenerate",
       "version": "1.4.2",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -8401,6 +8839,7 @@
       "name": "regenerate-unicode-properties",
       "version": "10.3.0",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -8415,6 +8854,7 @@
       "name": "regenerator-runtime",
       "version": "0.13.11",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -8434,6 +8874,7 @@
       "name": "regexp.prototype.flags",
       "version": "1.5.4",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -8453,6 +8894,7 @@
       "name": "regexpu-core",
       "version": "6.5.2",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -8467,6 +8909,7 @@
       "name": "regjsgen",
       "version": "0.8.0",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -8481,6 +8924,7 @@
       "name": "regjsparser",
       "version": "0.13.3",
       "licenseExpression": "BSD-2-Clause",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "BSD-2-Clause"
       ],
@@ -8500,6 +8944,7 @@
       "name": "require-from-string",
       "version": "2.0.2",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -8519,6 +8964,7 @@
       "name": "resolve",
       "version": "1.22.12",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -8538,6 +8984,7 @@
       "name": "rollup",
       "version": "4.64.0",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -8557,6 +9004,7 @@
       "name": "safe-array-concat",
       "version": "1.1.4",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -8576,6 +9024,7 @@
       "name": "safe-push-apply",
       "version": "1.0.0",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -8595,6 +9044,7 @@
       "name": "safe-regex-test",
       "version": "1.1.0",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -8614,6 +9064,7 @@
       "name": "scheduler",
       "version": "0.28.0",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -8633,6 +9084,7 @@
       "name": "seedrandom",
       "version": "3.0.5",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -8647,6 +9099,7 @@
       "name": "semver",
       "version": "6.3.1",
       "licenseExpression": "ISC",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "ISC"
       ],
@@ -8666,6 +9119,7 @@
       "name": "semver",
       "version": "7.8.5",
       "licenseExpression": "ISC",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "ISC"
       ],
@@ -8685,6 +9139,7 @@
       "name": "serialize-javascript",
       "version": "7.1.2",
       "licenseExpression": "BSD-3-Clause",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "BSD-3-Clause"
       ],
@@ -8704,6 +9159,7 @@
       "name": "set-function-length",
       "version": "1.2.2",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -8723,6 +9179,7 @@
       "name": "set-function-name",
       "version": "2.0.2",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -8742,6 +9199,7 @@
       "name": "set-proto",
       "version": "1.0.0",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -8761,6 +9219,7 @@
       "name": "sharp",
       "version": "0.35.5",
       "licenseExpression": "Apache-2.0",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "Apache-2.0"
       ],
@@ -8780,6 +9239,7 @@
       "name": "sharp-ico",
       "version": "0.1.5",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -8799,6 +9259,7 @@
       "name": "shebang-command",
       "version": "2.0.0",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -8818,6 +9279,7 @@
       "name": "shebang-regex",
       "version": "3.0.0",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -8837,6 +9299,7 @@
       "name": "side-channel",
       "version": "1.1.1",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -8856,6 +9319,7 @@
       "name": "side-channel-list",
       "version": "1.0.1",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -8875,6 +9339,7 @@
       "name": "side-channel-map",
       "version": "1.0.1",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -8894,6 +9359,7 @@
       "name": "side-channel-weakmap",
       "version": "1.0.2",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -8913,6 +9379,7 @@
       "name": "siginfo",
       "version": "2.0.0",
       "licenseExpression": "ISC",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "ISC"
       ],
@@ -8932,6 +9399,7 @@
       "name": "signal-exit",
       "version": "4.1.0",
       "licenseExpression": "ISC",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "ISC"
       ],
@@ -8951,6 +9419,7 @@
       "name": "smob",
       "version": "1.6.2",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -8970,6 +9439,7 @@
       "name": "source-map",
       "version": "0.6.1",
       "licenseExpression": "BSD-3-Clause",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "BSD-3-Clause"
       ],
@@ -8989,6 +9459,7 @@
       "name": "source-map",
       "version": "0.8.0",
       "licenseExpression": "BSD-3-Clause",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "BSD-3-Clause"
       ],
@@ -9008,6 +9479,7 @@
       "name": "source-map-js",
       "version": "1.2.2",
       "licenseExpression": "BSD-3-Clause",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "BSD-3-Clause"
       ],
@@ -9027,6 +9499,7 @@
       "name": "source-map-support",
       "version": "0.5.21",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -9046,6 +9519,7 @@
       "name": "spdx-license-list",
       "version": "6.12.0",
       "licenseExpression": "CC0-1.0",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "CC0-1.0"
       ],
@@ -9065,6 +9539,7 @@
       "name": "stackback",
       "version": "0.0.2",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -9079,6 +9554,7 @@
       "name": "std-env",
       "version": "4.3.0",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -9098,6 +9574,7 @@
       "name": "stop-iteration-iterator",
       "version": "1.1.0",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -9117,6 +9594,7 @@
       "name": "string.prototype.matchall",
       "version": "4.1.0",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -9136,6 +9614,7 @@
       "name": "string.prototype.trim",
       "version": "1.2.11",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -9155,6 +9634,7 @@
       "name": "string.prototype.trimend",
       "version": "1.0.10",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -9174,6 +9654,7 @@
       "name": "string.prototype.trimstart",
       "version": "1.0.8",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -9193,6 +9674,7 @@
       "name": "stringify-object",
       "version": "3.3.0",
       "licenseExpression": "BSD-2-Clause",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "BSD-2-Clause"
       ],
@@ -9212,6 +9694,7 @@
       "name": "strip-comments",
       "version": "2.0.1",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -9231,6 +9714,7 @@
       "name": "supports-preserve-symlinks-flag",
       "version": "1.0.0",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -9250,6 +9734,7 @@
       "name": "temp-dir",
       "version": "2.0.0",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -9269,6 +9754,7 @@
       "name": "tempy",
       "version": "0.6.0",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -9288,6 +9774,7 @@
       "name": "terser",
       "version": "5.51.2",
       "licenseExpression": "BSD-2-Clause",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "BSD-2-Clause"
       ],
@@ -9307,6 +9794,7 @@
       "name": "tesseract.js",
       "version": "7.0.0",
       "licenseExpression": "Apache-2.0",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "Apache-2.0"
       ],
@@ -9326,6 +9814,7 @@
       "name": "tesseract.js-core",
       "version": "7.0.0",
       "licenseExpression": "Apache-2.0",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "Apache-2.0"
       ],
@@ -9345,6 +9834,7 @@
       "name": "tiny-emitter",
       "version": "2.1.0",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -9364,6 +9854,7 @@
       "name": "tinybench",
       "version": "2.9.0",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -9383,6 +9874,7 @@
       "name": "tinyexec",
       "version": "1.3.1",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -9402,6 +9894,7 @@
       "name": "tinyglobby",
       "version": "0.2.17",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -9421,6 +9914,7 @@
       "name": "tinyrainbow",
       "version": "3.2.0",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -9440,6 +9934,7 @@
       "name": "to-data-view",
       "version": "1.1.0",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -9454,6 +9949,7 @@
       "name": "tr46",
       "version": "0.0.3",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -9468,6 +9964,7 @@
       "name": "tslib",
       "version": "1.14.1",
       "licenseExpression": "0BSD",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "0BSD"
       ],
@@ -9487,6 +9984,7 @@
       "name": "tslib",
       "version": "2.8.1",
       "licenseExpression": "0BSD",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "0BSD"
       ],
@@ -9501,6 +9999,7 @@
       "name": "type-fest",
       "version": "0.16.0",
       "licenseExpression": "(MIT OR CC0-1.0)",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT",
         "CC0-1.0"
@@ -9521,6 +10020,7 @@
       "name": "typed-array-buffer",
       "version": "1.0.3",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -9540,6 +10040,7 @@
       "name": "typed-array-byte-length",
       "version": "1.0.3",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -9559,6 +10060,7 @@
       "name": "typed-array-byte-offset",
       "version": "1.0.5",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -9578,6 +10080,7 @@
       "name": "typed-array-length",
       "version": "1.0.8",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -9597,6 +10100,7 @@
       "name": "typed-function",
       "version": "4.2.2",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -9616,6 +10120,7 @@
       "name": "typescript",
       "version": "5.9.3",
       "licenseExpression": "Apache-2.0",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "Apache-2.0"
       ],
@@ -9635,6 +10140,7 @@
       "name": "unbox-primitive",
       "version": "1.1.0",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -9654,6 +10160,7 @@
       "name": "unconfig",
       "version": "7.5.0",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -9673,6 +10180,7 @@
       "name": "unconfig-core",
       "version": "7.5.0",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -9692,6 +10200,7 @@
       "name": "unicode-canonical-property-names-ecmascript",
       "version": "2.0.1",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -9706,6 +10215,7 @@
       "name": "unicode-match-property-ecmascript",
       "version": "2.0.0",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -9720,6 +10230,7 @@
       "name": "unicode-match-property-value-ecmascript",
       "version": "2.2.1",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -9734,6 +10245,7 @@
       "name": "unicode-property-aliases-ecmascript",
       "version": "2.2.0",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -9748,6 +10260,7 @@
       "name": "unique-string",
       "version": "2.0.0",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -9767,6 +10280,7 @@
       "name": "universalify",
       "version": "2.0.1",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -9786,6 +10300,7 @@
       "name": "upath",
       "version": "1.2.0",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -9805,6 +10320,7 @@
       "name": "update-browserslist-db",
       "version": "1.3.3",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -9824,6 +10340,7 @@
       "name": "vite",
       "version": "7.3.6",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -9843,6 +10360,7 @@
       "name": "vite-plugin-pwa",
       "version": "1.3.0",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -9862,6 +10380,7 @@
       "name": "vitest",
       "version": "4.1.11",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -9881,6 +10400,7 @@
       "name": "wasm-feature-detect",
       "version": "1.9.0",
       "licenseExpression": "Apache-2.0",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "Apache-2.0"
       ],
@@ -9900,6 +10420,7 @@
       "name": "webidl-conversions",
       "version": "3.0.1",
       "licenseExpression": "BSD-2-Clause",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "BSD-2-Clause"
       ],
@@ -9919,6 +10440,7 @@
       "name": "whatwg-url",
       "version": "5.0.0",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -9938,6 +10460,7 @@
       "name": "which",
       "version": "2.0.2",
       "licenseExpression": "ISC",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "ISC"
       ],
@@ -9957,6 +10480,7 @@
       "name": "which-boxed-primitive",
       "version": "1.1.1",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -9976,6 +10500,7 @@
       "name": "which-builtin-type",
       "version": "1.2.1",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -9995,6 +10520,7 @@
       "name": "which-collection",
       "version": "1.0.2",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -10014,6 +10540,7 @@
       "name": "which-typed-array",
       "version": "1.1.24",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -10033,6 +10560,7 @@
       "name": "why-is-node-running",
       "version": "2.3.0",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -10052,6 +10580,7 @@
       "name": "workbox-background-sync",
       "version": "7.4.1",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -10071,6 +10600,7 @@
       "name": "workbox-broadcast-update",
       "version": "7.4.1",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -10090,6 +10620,7 @@
       "name": "workbox-build",
       "version": "7.4.1",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -10109,6 +10640,7 @@
       "name": "workbox-cacheable-response",
       "version": "7.4.1",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -10128,6 +10660,7 @@
       "name": "workbox-core",
       "version": "7.4.1",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -10147,6 +10680,7 @@
       "name": "workbox-expiration",
       "version": "7.4.1",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -10166,6 +10700,7 @@
       "name": "workbox-google-analytics",
       "version": "7.4.1",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -10185,6 +10720,7 @@
       "name": "workbox-navigation-preload",
       "version": "7.4.1",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -10204,6 +10740,7 @@
       "name": "workbox-precaching",
       "version": "7.4.1",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -10223,6 +10760,7 @@
       "name": "workbox-range-requests",
       "version": "7.4.1",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -10242,6 +10780,7 @@
       "name": "workbox-recipes",
       "version": "7.4.1",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -10261,6 +10800,7 @@
       "name": "workbox-routing",
       "version": "7.4.1",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -10280,6 +10820,7 @@
       "name": "workbox-strategies",
       "version": "7.4.1",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -10299,6 +10840,7 @@
       "name": "workbox-streams",
       "version": "7.4.1",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -10318,6 +10860,7 @@
       "name": "workbox-sw",
       "version": "7.4.1",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -10337,6 +10880,7 @@
       "name": "workbox-window",
       "version": "7.4.1",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],
@@ -10356,6 +10900,7 @@
       "name": "yallist",
       "version": "3.1.1",
       "licenseExpression": "ISC",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "ISC"
       ],
@@ -10375,6 +10920,7 @@
       "name": "zlibjs",
       "version": "0.3.1",
       "licenseExpression": "MIT",
+      "licenseSource": "lockfile",
       "licenseIds": [
         "MIT"
       ],

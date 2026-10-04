@@ -8,6 +8,7 @@ const mode = process.argv[2] ?? 'check'
 const lockPath = join(root, 'package-lock.json')
 const policyPath = join(root, 'licenses', 'policy.json')
 const artifactsPath = join(root, 'licenses', 'artifacts.json')
+const overridesPath = join(root, 'licenses', 'overrides.json')
 const registryPath = join(root, 'licenses', 'registry.json')
 const publicRegistryPath = join(root, 'apps', 'web', 'public', 'licenses', 'registry.json')
 const noticesPath = join(root, 'THIRD_PARTY_NOTICES.md')
@@ -76,6 +77,7 @@ function buildRegistry() {
   const lock = JSON.parse(lockText)
   const policy = readJson(policyPath)
   const artifactConfig = readJson(artifactsPath)
+  const overrides = existsSync(overridesPath) ? readJson(overridesPath) : { overrides: [] }
   const internalManifests = [
     'package.json',
     'apps/web/package.json',
@@ -99,8 +101,31 @@ function buildRegistry() {
     if (!packagePath.startsWith('node_modules/')) continue
     const name = packageNameFromPath(packagePath)
     if (name.startsWith('@commietools/')) continue
-    const expression = lockEntry.license
-    if (!expression) fail(`${name}@${lockEntry.version ?? 'unknown'} has no license expression in package-lock.json`)
+    // Die Lizenz kommt aus package-lock.json. Fehlt sie dort, greift nur ein
+    // einzeln beschlossener Eintrag aus licenses/overrides.json, und der muss
+    // den SHA-256 der Lizenzdatei treffen. Eine neue Paketfassung oder eine
+    // geänderte Lizenzdatei lässt den Eintrag bewusst verfallen.
+    let expression = lockEntry.license
+    let licenseSource = 'lockfile'
+    if (!expression) {
+      const override = (overrides.overrides ?? []).find((entry) => entry.name === name && entry.version === lockEntry.version)
+      if (!override) {
+        fail(`${name}@${lockEntry.version ?? 'unknown'} has no license expression in package-lock.json and no reviewed override in licenses/overrides.json`)
+      }
+      const evidenceFile = join(root, ...String(override.evidence?.path ?? '').split('/'))
+      if (!override.evidence?.path || !existsSync(evidenceFile)) {
+        fail(`override for ${name}@${lockEntry.version} names a missing evidence file`)
+      }
+      const evidenceHash = sha256(canonicalText(readFileSync(evidenceFile, 'utf8').trim()))
+      if (evidenceHash !== override.evidence.sha256) {
+        fail(`override for ${name}@${lockEntry.version} is stale: ${override.evidence.path} no longer hashes to the recorded value`)
+      }
+      if (!policy.allowedExpressions.includes(override.expression)) {
+        fail(`override for ${name}@${lockEntry.version} uses unreviewed license expression ${override.expression}`)
+      }
+      expression = override.expression
+      licenseSource = 'reviewed-override'
+    }
     if (!policy.allowedExpressions.includes(expression)) fail(`${name}@${lockEntry.version} uses unreviewed license expression ${expression}`)
     expressions.add(expression)
 
@@ -114,6 +139,7 @@ function buildRegistry() {
       name,
       version: lockEntry.version,
       licenseExpression: expression,
+      licenseSource,
       licenseIds: ids,
       dependencyType: lockEntry.dev ? 'development' : 'runtime',
       optional: Boolean(lockEntry.optional),
@@ -205,7 +231,7 @@ function notices(registry) {
     '',
     '| Package | Version | Use | License |',
     '| --- | --- | --- | --- |',
-    ...registry.packages.map((entry) => `| ${entry.name.replace(/\|/g, '\\|')} | ${entry.version} | ${entry.dependencyType}${entry.optional ? ', optional' : ''} | ${entry.licenseExpression.replace(/\|/g, '\\|')} |`),
+    ...registry.packages.map((entry) => `| ${entry.name.replace(/\|/g, '\\|')} | ${entry.version} | ${entry.dependencyType}${entry.optional ? ', optional' : ''} | ${entry.licenseExpression.replace(/\|/g, '\\|')}${entry.licenseSource === 'reviewed-override' ? ' (from package LICENSE, reviewed)' : ''} |`),
     '',
     '## Embedded binary artifacts',
     '',
