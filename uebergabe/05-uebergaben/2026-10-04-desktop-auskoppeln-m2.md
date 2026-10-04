@@ -118,3 +118,28 @@ bleibt (Instanz-Nachweis).
 - Arbeitsbaum: **sauber**
 - **Nicht gepusht** — ein Push auf `main` löst das Cloudflare-Pages-Deployment aus und erfolgt nur
   auf ausdrücklichen Auftrag.
+
+## Zusatz 2026-10-04 (nach Beginn von M3) — die React-Bindung wurde doch gebraucht
+
+*Der obige Wortlaut bleibt stehen. Dieser Abschnitt berichtigt ihn, weil die Annahme sich als falsch
+erwiesen hat.*
+
+Die Übergabe hielt fest: „Aufgenommen wird nur `@pip-it-up/core`, nicht die React-Bindung." **Das
+gilt nicht mehr.** Beim Lesen der API zu Beginn von M3 zeigte sich, dass die Kernbibliothek
+DOM-orientiert arbeitet (`contentEl`, `originEl`) und die Portal-Frage für React gerade **nicht**
+löst — genau die Frage, die M0 als Risiko aufgedeckt hat. Die React-Fassung beschreibt dagegen
+ausdrücklich: „Uses an immortal SwitchingPortal internally to migrate DOM nodes while keeping the
+React component tree and state intact without remounting", führt `copyStyles: 'sync'` über einen
+`MutationObserver` und bietet mit `renderUnsupported` und `fallback: 'none'` genau die in M1
+beschlossene Regel „kein Knopf ohne Vordergrund". ADR 0007 sieht die Aufnahme ausdrücklich vor
+(„und, wenn React-Bindungen gebraucht werden, `@pip-it-up/react`").
+
+Aufgenommen am 2026-10-04: `@pip-it-up/react` 0.2.0. Auch dieses Paket deklariert **kein**
+`license`-Feld; die Prüfung verweigerte korrekt („has no license expression … and no reviewed
+override"). Es gilt derselbe Weg wie in ADR 0008, mit einem **zweiten Einzeleintrag** in
+`licenses/overrides.json`. Beleg: die `LICENSE`-Datei des Pakets, gelesen am 2026-10-04 — MIT,
+„Copyright (c) 2026 Saurabh Shakya and contributors", Text **identisch** mit dem der Kernbibliothek
+(gleicher SHA-256 `195d9f90…6023d`).
+
+Prüfstand danach: `licenses:check` grün (**524** Pakete, 16 Lizenztexte, 189 Dokumente), Katalog
+41 Werkzeuge / 3 Sprachen, 339 Tests in 18 Dateien, `npm run check` grün.

@@ -5,7 +5,7 @@
     "license": "AGPL-3.0-only",
     "source": "LICENSE"
   },
-  "lockfileSha256": "a9988324892b97c91e055475dc699d3df087aee46fc354b77c8eb3dad20690bc",
+  "lockfileSha256": "ebb9410674de16cf9dd6ed0e9f120ecb03493dc6331467fc163c6cf84fec6eef",
   "policy": {
     "allowedExpressions": [
       "(MIT AND Zlib)",
@@ -38,8 +38,8 @@
     ]
   },
   "summary": {
-    "packages": 523,
-    "runtime": 102,
+    "packages": 524,
+    "runtime": 103,
     "development": 421,
     "optional": 93,
     "licenseExpressions": [
@@ -4188,6 +4188,26 @@
       "author": null,
       "repository": "https://github.com/Shakya47/pip-it-up",
       "homepage": "https://github.com/Shakya47/pip-it-up/tree/main/packages/core#readme",
+      "documents": [
+        {
+          "name": "LICENSE",
+          "documentId": "195d9f904c217ae523b6abdcc8b3b606abc5070b32d1c08bb2cd8d0ff4c6023d"
+        }
+      ]
+    },
+    {
+      "name": "@pip-it-up/react",
+      "version": "0.2.0",
+      "licenseExpression": "MIT",
+      "licenseSource": "reviewed-override",
+      "licenseIds": [
+        "MIT"
+      ],
+      "dependencyType": "runtime",
+      "optional": false,
+      "author": null,
+      "repository": "https://github.com/Shakya47/pip-it-up",
+      "homepage": "https://github.com/Shakya47/pip-it-up/tree/main/packages/react#readme",
       "documents": [
         {
           "name": "LICENSE",

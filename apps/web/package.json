@@ -17,6 +17,7 @@
     "@commietools/tools": "0.1.0",
     "@commietools/ui": "0.1.0",
     "@pip-it-up/core": "^0.2.0",
+    "@pip-it-up/react": "^0.2.0",
     "@vite-pwa/assets-generator": "^1.0.0",
     "pdfjs-dist": "^6.3.289",
     "qr-code-styling": "^1.9.2",
