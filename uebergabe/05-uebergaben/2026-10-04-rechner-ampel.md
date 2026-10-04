@@ -139,3 +139,40 @@ rot mit Modellwechsel, 320 px, 390 px, Graustufen.
   Welle 7 (`keypad.ts`, `render.ts`, `App.tsx`, `calculator-core.test.ts`, `package.json`,
   `functions.ts`, `history.ts`) liegen daneben im selben Arbeitsbaum — ein Commit muss sie mitnehmen,
   sonst ist `HEAD` nicht baubar.
+
+---
+
+## Nachtrag 2026-10-04 — Commit, Prüfung im sauberen Auschecken, Push
+
+*Ergänzt nach den Freigaben „Commit", „Sauber checken … Danach push". Der Wortlaut oben bleibt stehen;
+die folgenden Angaben ersetzen den Git-Abschnitt.*
+
+**Commit:** `c98128c` — „feat(rechner): on-screen keypad, 2D display and an accuracy light"
+(54 Dateien, 3.754 Einfügungen / 167 Löschungen). Welle 7 und Ampel bewusst in **einem** Commit, weil
+beide `Calculator.tsx` und `styles.css` teilen. Kein QM-Element enthalten (nachgeprüft mit
+`git show --name-only`). Arbeitsbaum danach sauber — der geprüfte Stand ist damit inhaltsgleich mit `HEAD`.
+
+**`QM/` gesperrt:** Das fremde Prüfaudit im Wurzelverzeichnis steht jetzt in `.gitignore` (Zeile 15).
+Vorher war es **nicht** ignoriert: ein `git add -A` hätte es mitgenommen und beim Push öffentlich
+gemacht (das Repository ist öffentlich). Nachgewiesen: `git check-ignore -v QM/00-bericht.md` greift,
+`git status` zeigt es nicht mehr, ein vollständiges `git add -A` würde 0 Einträge daraus aufnehmen.
+
+**Prüfung im sauberen Auschecken** (`git worktree add --detach … HEAD`, danach `npm ci`):
+`licenses:check` grün (522 Pakete), `catalog:check` grün, Typecheck und **339 Tests in 18 Dateien** grün,
+`lint` grün, `build` grün mit Startbündel 136.967 B gzip und bestandenem Bundle-Audit — **alles Exit 0**.
+Die Bündeldatei ist in beiden Bäumen dieselbe (`index-Dub8g7OX.js`).
+
+**Der Zeilenenden-Fall ist gemessen und entschärft:** im Auschecken hat `licenses/registry.json`
+10.394 CRLF-Paare, im Arbeitsbaum keine (das Repository hat keine `.gitattributes`, `core.autocrlf`
+steht auf `true`). Die Prüfung scheitert daran **nicht** — sie vergleicht über `canonicalText()`, das
+`\r\n` zuvor vereinheitlicht. Das ist der Fix aus `870866c`; er hält. **Kein Eingriff nötig.**
+
+**Push:** `5aa16a7..c98128c  main -> main` nach `github.com/madventureXD/commietools`. Damit sind auch
+die beiden älteren Doku-Commits (`0a75323`, `f25cc82`) veröffentlicht.
+
+**Bereitstellung nachgeprüft, nicht angenommen:** `https://commietools.org/` verweist auf
+`assets/index-Dub8g7OX.js`, und die ausgelieferte Datei ist **byteweise identisch** mit dem lokalen Bau
+(SHA-256 `6b1886bf9278cfea72173db1be0b86f1…`, 463.305 Bytes). Der neue Stand ist also wirklich online.
+
+**Aufgeräumt:** sauberes Auschecken und `node_modules` wieder entfernt (`git worktree list` zeigt nur
+noch den Hauptbaum).
