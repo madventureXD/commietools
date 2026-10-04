@@ -403,6 +403,118 @@ sich genommen **kein** Hindernis gewesen; sie hätte lediglich die dokumentierte
 
 Der Satz „scheidet aus zwei Gründen aus" oben ist damit auf einen Grund zurückzuführen.
 
+## Nachtrag 2026-10-04, Faber: Bestandsaufnahme nach Welle 5 und Lösungsklassen a–d
+
+**Grund:** Dieses Konzept entstand am 2026-10-03, **vor** der Rechner-Suite (Wellen 1–5, abgenommen
+am 2026-10-04). Ein Teil der Vorschläge ist inzwischen erledigt oder in anderen Werkzeugen
+aufgegangen; die Aufwandsangaben S/M/L oben sind überholt und werden durch die Lösungsklassen
+unten ersetzt. Der Text oben bleibt unverändert stehen.
+
+**Auftrag im Wortlaut (Thomas, 2026-10-04):** „Ich möchte, dass jedes Tool im Konzept nun geprüft
+wird auf: a) Lösung einfach, da bereits notwendige OpenSource Lösung erprobt im Projekt.
+b) Lösung Mittel, OpenSource Lösung wäre vorhanden, Integration noch nicht erprobt.
+c) Lösung schwierig, keine OpenSource Lösung vorhanden. Eigene Toolerstellung wäre erforderlich.
+d) Lösung überholt, das Tool existiert bereits."
+
+### Grundlage für Klasse a — was im Projekt erprobt ist
+
+Im Betrieb (aus `packages/tools/package.json`, `apps/web/package.json`, `THIRD_PARTY_NOTICES.md`
+gelesen am 2026-10-04): `mathjs` 15.2.0 (kuratiert, dynamisch geladen, 102.436 B gzip),
+`@js-temporal/polyfill` 0.5.1, `pdf-lib` 1.17.1, `pdfjs-dist` 6.3.289, `mupdf` 1.28.1,
+`@neslinesli93/qpdf-wasm` 0.3.0, `pdf_signer` 0.3.2 (vendort), `tesseract.js` 7.0.0,
+`pica` 10.0.3, `idb-keyval` 6.3.0, `qr-code-styling`. **Eigenbauten:** ICO-Container, EXIF-Leser,
+SVG-Zeichner (Funktionsplotter). **Sprachen:** drei (Deutsch, Englisch, Spanisch).
+
+Lizenzrahmen unverändert (`licenses/policy.json`): MIT, ISC, Apache-2.0, BSD-2/3-Clause, CC0-1.0,
+CC-BY-4.0, MPL-2.0, LGPL-3.0-or-later, 0BSD, BlueOak-1.0.0, AGPL-3.0-or-later; GPL nur nach
+Prüfung (`reviewRequired`). **Eine vorhandene Lösung mit ungeprüfter Lizenz ist keine vorhandene
+Lösung** und rechtfertigt kein „b".
+
+### Klasse je Vorschlag
+
+**a) Einfach — erprobte Lösung im Projekt (15):** 1 Maßketten · 2 Flächen · 4 Beton · 5 Pflaster ·
+6 Dach · 8 Holzfeuchte · 9 Fliesen · 10 Farbe · 11 Trockenbau · 12 Bodenbelag · 17 Metall ·
+19 Foto-Beschrifter · 20 Protokoll · 23 Prüffristen · 24 Reifen
+
+**b) Mittel — OSS vorhanden, Integration unerprobt (2):** 7 Zuschnittoptimierer · 22 Aufmaß-Skizze
+
+**c) Schwierig — keine OSS-Lösung, Eigenbau (5):** 13 Leitungsquerschnitt · 14 Beleuchtung ·
+15 Rohrdimensionierung · 16 Heizlast · 18 Gewinde
+
+**d) Überholt — existiert bereits (1):** 3 Umrechner technische Größen — vollständig im Werkzeug
+„Umrechnen" (Welle 4: zwölf Größen, Winkel, Zahlensysteme, Zollbrüche, Kalender).
+
+**Außerhalb der Skala (1):** 21 Normen-Nachschlagewerk — bleibt gestrichen. Das Hindernis ist
+rechtlich (Q2), nicht technisch; keine der vier Klassen trifft zu.
+
+### Einzelnachweise zu den Zuordnungen
+
+- **1, 2 — aufgegangen in Welle 6 „Aufmaß".** Die Aufmaßzeile (Bezeichnung, Maßkette oder Formel,
+  Ergebnis mit Einheit) ist genau Vorschlag 2, einschließlich Trapez; Vorschlag 1 ist die
+  Maßkette darin. Sie sind damit **erledigt, sobald Welle 6 steht** — nicht vorher. Deshalb noch
+  Klasse a und nicht d.
+- **1, 2, 4–6, 9–12, 17, 24:** reine Rechnung auf dem vorhandenen Rechenkern. **Keine neue
+  Abhängigkeit** — damit entfallen `fraction.js`, `decimal.js`, `js-quantities`, `unitmath`,
+  `convert-units` ersatzlos. Bei 4, 5, 8, 11, 12, 24 sind hersteller- oder erfahrungsabhängige
+  Werte (Mischungsverhältnis, Steinformat, Rohdichte, Profilabstand, Verschnitt, Drehmoment)
+  **Eingabefeld**, nicht fest verdrahtet.
+- **8, 13, 14, 18 — die Klasse sagt nichts über den Aufwand aus.** Der Aufwand liegt nicht im
+  Code, sondern in der **Datenaufgabe**: je Wert eine frei zugängliche Quelle, keine übernommene
+  Tabelle (Q2). Bei 13, 14, 18 kommt die geschützte Normtabelle hinzu.
+- **19:** Canvas, `pdf-lib`, eigener EXIF-Leser und die Wasserzeichen-Bausteine sind erprobt.
+  Offen und zu **messen**: Speichergrenzen bei vielen großen Fotos.
+- **20:** Die Unterschrifts-Zeichenfläche (Maus/Stift/Touch) liegt bereits in
+  `apps/web/src/tools/PdfPlacementTools.tsx` — sie ist **herauszuziehen**, dann braucht es weder
+  `perfect-freehand` noch `signature_pad`. Fristen nach BGB §§ 187/188/193 sind in
+  `packages/tools/src/calculator/dates.ts` umgesetzt und wiederverwendbar.
+- **23:** `idb-keyval` (2,4 KiB gzip gemessen) und die Fristenlogik sind vorhanden. Die Grenze
+  bleibt: Ohne Server kann das Werkzeug nicht erinnern — nur „beim Öffnen anzeigen" und Export.
+- **7:** `maxrects-packer`/`binpackingjs` sind MIT und browserfähig, aber nicht geprüft. **Kippt
+  nach c**, wenn sie Guillotine-Schnitt und Sägeschnitt-Verlust nicht abbilden — dann ist die
+  Heuristik Eigenbau. Vor jeder Entscheidung messen, nicht annehmen.
+- **22:** `konva` (MIT) ist vorhanden, aber Größe und Gate sind ungemessen. Der eigene SVG-Weg ist
+  im Plotter erprobt; ob die Skizze damit gebaut wird, ist eine offene Entscheidung.
+- **Alle Größengaben oben sind Registry-Hinweise, keine Messungen.** Der mathjs-Fall belegt, wie
+  irreführend das ist: 9,2 MB Registry gegen 89,5 KiB gzip kuratiert. Vor jeder Aufnahme messen.
+
+### Rahmen, den das Konzept oben noch nicht kennt
+
+- **Kategorie und Suite fehlen.** `ToolCategory` in `packages/core` kennt heute
+  `text | pdf | image | developer | generator | calculator`. Für dieses Vorhaben kommt **`craft`**
+  hinzu (Suite-Titel „Handwerk") samt Suite-Texten in `packages/i18n/src/suites/{de,en,es}.ts`.
+- **Katalogpflicht je Werkzeug:** `summary` (eine Zeile, ≤ 120 Zeichen) und `terms` in **jeder**
+  Sprache, Symbol unter `apps/web/public/tools/<id>.svg`, `files`-Deklaration, `catalog:generate`.
+- **Drei Sprachen**, nicht zwei. Jede Werkzeugarbeit ist dreifach.
+- **Aufwand.** Die S/M/L-Klassen oben sind zu optimistisch. Die Roadmap hält es selbst fest: Der
+  größte Unsicherheitsfaktor ist „die Anzahl der Sprachen, die Prüfpflichten und die Katalogpflege
+  je Werkzeug", nicht die Rechenlogik. Die Rechner-Suite brauchte 11–18 Sitzungen für neun
+  Werkzeuge.
+
+### Wellen (neu, Vorschlag — keine Entscheidung)
+
+- **Welle A — Bau, Rohbau, Holz:** 4 Beton, 6 Dach, 8 Holzfeuchte, 17 Metall. Alle Klasse a;
+  Datenaufgabe bei 8.
+- **Welle B — Ausbau:** 9 Fliesen, 10 Farbe, 11 Trockenbau, 12 Bodenbelag. Alle Klasse a.
+- **Welle C — GaLaBau und Fahrzeug:** 5 Pflaster, 24 Reifen. Klasse a.
+- **Welle D — Dokumentation:** 19 Foto-Beschrifter, 20 Protokoll, 23 Prüffristen. Klasse a,
+  nutzt vorhandene Bausteine; 20 braucht das Herausziehen der Zeichenfläche.
+- **Welle E — technische Gewerke:** 13, 14, 15, 16, 18. **Erst nach Klärung der Normfrage (Q2)**
+  und mit belegter Datenbasis. Das ist die einzige Welle mit echtem Rechtsrisiko.
+- **Einzeln:** 7 (nach Messung), 22 (großer Baustein).
+- **Nicht:** 21. **Erledigt:** 3 (d), 1 und 2 mit Welle 6.
+
+### Offene Punkte nach diesem Nachtrag
+
+- [ ] **Zuschnittoptimierer messen**, bevor über 7 entschieden wird: Bilden die beiden MIT-Pakete
+      Guillotine-Schnitt und Sägeschnitt-Verlust ab? Sonst Klasse c.
+- [ ] **Speichergrenzen des Foto-Beschrifters messen** (19), mehrere große Fotos gleichzeitig.
+- [ ] **Normfrage (Q2) entscheiden**, bevor Welle E beginnt: welche Belastungs-, Lux- und
+      Gewindewerte aus welchen frei zugänglichen Quellen, und wie wird die Herkunft im Werkzeug
+      sichtbar?
+- [ ] **Zeichenfläche aus `PdfPlacementTools.tsx` herausziehen** (20) — als gemeinsamer Baustein
+      statt einer zweiten Umsetzung.
+- [ ] **Suite-/Kategorieentscheidung `craft`** in `packages/core` und `packages/i18n` nachziehen.
+
 ## Quellen
 
 - Registry-Inventar: `npm-inventar.mjs` über 40 Kandidaten, 2026-10-03 (Lizenzfeld, Version,

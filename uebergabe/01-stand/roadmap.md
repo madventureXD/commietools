@@ -30,7 +30,7 @@ Vollständiges Umsetzungskonzept: [`../03-konzepte/2026-10-03-pdf-suite.md`](../
 
 ## Phase 2 – Suite „Rechnen"
 
-**Status:** Wellen 1 bis 5 abgenommen; Welle 6 ff. offen
+**Status:** Wellen 1 bis 6 abgenommen — Phase abgeschlossen (2026-10-04)
 **Konzept:** [`../03-konzepte/2026-10-03-taschenrechner-suite.md`](../03-konzepte/2026-10-03-taschenrechner-suite.md)
 **Entscheidung:** [ADR 0005](../04-entscheidungen/0005-mathjs-rechenkern.md) — mathjs aus kuratierten Factories
 
@@ -132,14 +132,21 @@ Plotter mit mehreren Kurven, Wertetabelle, Nullstellen (erfüllt; Polstellen wer
 Nullstelle gemeldet) · Datenoptionen einzeln geprüft (entfallen mit der Engine) · **Bedienung per
 Tastatur: nicht durchgespielt** — offener Punkt.
 
-### Welle 6 – Aufmaß
+### Welle 6 – Aufmaß — **abgenommen 2026-10-04**
 
 - Werkzeug 9 „Aufmaß": Aufmaßzeilen (Mengenermittlung) und Positionen (Menge × Preis), getrennt ·
   eigener Speicherbereich · Ausgabe CSV/PDF/Text · sichtbare Rechenwege
 
-**Abnahme:** Mengenblatt ist nachrechenbar (jede Position zeigt ihre Maße) · Flächen, Längen und
-Stückzahlen getrennt summiert · Export in allen drei Formaten geprüft · Preise und Kundendaten
-liegen **nicht** im Rechner-Verlauf.
+**Abnahme:** Mengenblatt ist nachrechenbar (erfüllt: jede Position zeigt ihre Maße) · Flächen,
+Längen und Stückzahlen getrennt summiert (erfüllt: je Einheit, nie über Einheiten hinweg) ·
+Export in allen drei Formaten geprüft (erfüllt: CSV und Text in Test **und** Browser, PDF
+außerhalb des Browsers erzeugt und mit einem fremden Leser zurückgelesen) · Preise und
+Kundendaten liegen **nicht** im Rechner-Verlauf (erfüllt: eigener Bereich `aufmass.sheet.v1`).
+
+**Abweichung vom Entwurf, offen benannt:** Die Fachlogik nutzt **nicht** den mathjs-Rechenkern,
+sondern einen eigenen kleinen Vorrangparser in `BigInt` (dasselbe Verfahren wie `commercial.ts`).
+Damit bleibt sie engine-frei und ohne Browser prüfbar; für Maßketten hätte der Kern keinen
+Gegenwert gebracht. **Keine neue Abhängigkeit.**
 
 ### Nicht in dieser Phase
 

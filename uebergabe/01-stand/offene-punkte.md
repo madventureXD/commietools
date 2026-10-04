@@ -14,6 +14,12 @@ Diese Liste enthält bestätigte, noch nicht abgeschlossene Arbeit. Details geh�
 - [ ] Mailbetrieb nach DNS-Umschaltung prüfen: MX, `autoconfig`, vier SRV-Einträge und SPF; `autoconfig` muss in Cloudflare auf „DNS only“ bleiben.
 - [ ] Den PDF-Testkorpus um frei weitergebbare verschlüsselte, XFA-, Annotations- und Signatur-Beispiele sowie Reader-Interoperabilität erweitern.
 - [ ] Automatisierte Barrierefreiheitsprüfung für zentrale Komponenten und Tool-Flows ergänzen.
+- [ ] **Werkzeugseiten schneiden bei 320 px ab (gemessen 2026-10-04).** Über den Viewport
+  hinausragende Elemente je Route: `commercial` 20, `geometry` 19, `equations` 23, `aufmass` 28;
+  Startseite 0. Die Seite bekommt dabei keinen waagerechten Scrollbalken, der Inhalt wird also
+  **abgeschnitten** statt scrollbar. Betroffen ist die Werkzeugseiten-Vorlage insgesamt, nicht ein
+  einzelnes Werkzeug — vermutlich die Mindestbreite von `.settings-card`, `.form-grid` oder
+  `.download-row` bei schmalen Fenstern. Vor der nächsten Welle mit vielen Feldern behandeln.
 
 ## Mittlere Priorität
 
@@ -25,14 +31,19 @@ Diese Liste enthält bestätigte, noch nicht abgeschlossene Arbeit. Details geh�
 - [ ] Offline-Verhalten mit einem automatisierten Browser-Test absichern.
 - [ ] Content Security Policy und spätere Deployment-Header konkretisieren.
 - [ ] Größenbudgets zusätzlich pro große Tool-Engine festlegen; das Startbudget und die Sperre gegen PDF-Engines sind umgesetzt.
-- [ ] `npm run bundle:check` in den Prüflauf aufnehmen: die Startlastprüfung mit den Budgets (250 KiB Start, 110 KiB Rechenkern) läuft derzeit nur von Hand, ein Zuwachs fällt damit erst beim Nachmessen auf.
-- [ ] **Startbündel im Blick behalten — jetzt mit Reserve 29 kB:** Die Sprachkataloge aller
-  Werkzeuge liegen im Startcode. Stand nach Welle 5: 191.327 → 206.547 → **226.708 B gzip**
-  (Budget 250 KiB). Der Zuwachs kommt aus drei Werkzeugen × drei Sprachen und dem Katalog mit
-  2646 Suchbegriffen. Eine weitere Welle dieser Größe reißt das Budget: **vor Welle 6** ist der
-  Ausweg fällig — Sprachdateien und/oder Register abgerufen mit Ladezustand.
-- [ ] Bedienung per Tastatur automatisiert prüfen (Welle-5-Abnahme; bislang nur native
-  Formularelemente mit Beschriftungen, kein durchgespielter Tastaturlauf).
+- [ ] **Werkzeugtexte je Sprache im Blick behalten — Reserve 4,3 KiB.** Mit dem umgesetzten
+  Sprachpaket-Umbau ist das Startbündel entspannt (136.959 von 204.800 B gzip); das frühere
+  Budgetproblem „vor Welle 6 den Ausweg bauen“ ist damit **erledigt**, ebenso der Punkt zur
+  Aufnahme von `bundle:check` in den Prüflauf (die Größenkontrolle läuft im Build). An ihre
+  Stelle tritt die neue Warnschwelle aus `sprachgetrennte-suchpakete`: **Werkzeugtexte Deutsch
+  26.403 von 30.720 B gzip** nach Welle 6. Eine weitere Werkzeugwelle dieser Größe kann sie
+  reißen; Ausweg ist die Aufteilung der Werkzeugtexte je Sprache (etwa je Suite).
+- [ ] Bedienung per Tastatur automatisiert prüfen (seit Welle 5 offen; in Welle 6 erneut nur
+  teilweise — native Formularelemente mit Beschriftungen, kein durchgespielter Tastaturlauf).
+- [ ] **PDF-Ausgabe ist auf WinAnsi beschränkt.** Zeichen außerhalb (kyrillisch, griechisch,
+  chinesisch) werden transliteriert oder zu `?`. Für Deutsch, Englisch und Spanisch reicht das;
+  eine Sprache mit anderer Schrift braucht eine eingebettete Schrift.
+- [ ] Verhalten von Aufmaß bei sehr vielen Zeilen (mehrere hundert) und an Speichergrenzen messen.
 
 ## Später / bei konkretem Bedarf
 
