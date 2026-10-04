@@ -195,5 +195,28 @@ Vollständig dokumentiert in `01-stand/offene-punkte.md` (Hohe Priorität, Commi
   datiert festgehalten.
 - **Tastaturlauf** fehlt weiterhin (offen seit Welle 5).
 
-Damit gilt für den Status dieser Übergabe: **fachlich abgeschlossen, technisch nicht
-auslieferbar.**
+Damit gilt für den Status dieser Übergabe: **fachlich abgeschlossen, technisch nicht auslieferbar.**
+
+## Nachtrag 2026-10-04 (zweiter): Der Auslieferungsbefund ist erledigt — die Übergabe ist auslieferbar
+
+*Der Abschnitt „Nachtrag 2026-10-04" oben bleibt im Wortlaut stehen; diese Zeilen berichtigen ihn,
+weil sein Befund inzwischen behoben ist.*
+
+- **HEAD baut wieder.** Die fehlenden Exporte sind mit dem vollständig eingecheckten
+  Sprachpaket-Umbau vorhanden (`loadInterfaceMessages` und `loadToolMessages`: je 1 Vorkommen in
+  HEAD, `App.tsx` nutzt sie). Arbeitsbaum und HEAD sind **identisch** (0 offene Änderungen).
+- **Nachgeprüft statt angenommen:** `npm run check` → **301 Tests in 16 Dateien bestanden**;
+  `npm run build` → bestanden (exit 0), Bundle-Audit bestanden, Start-JavaScript 136.961 B gzip.
+  Damit ist der veröffentlichte Stand geprüft — nicht mehr nur der Arbeitsbaum.
+- **320 px ist behoben:** laut `06-protokolle/2026-10-04-release-vorbereitung.md` besteht ein
+  reproduzierbarer Edge-Lauf alle **41 Werkzeugrouten** bei exakt 320 px; in `a47d725` wurden
+  dafür `min-width: 0`-Regeln für `.stack`, `.settings-card`, `.form-grid` und `.field` ergänzt.
+  **Ich habe diese Messung nicht selbst wiederholt** — sie wird auf Grundlage des Protokolls
+  übernommen.
+- **Der Befund ist aus `01-stand/offene-punkte.md` entfernt** (ebenso der 320-px-Punkt); die
+  Liste ist damit wieder die verbindliche Aufgabenliste, ohne meinen Eintrag.
+- **Weiterhin offen bleibt nur, was Thomas bewusst nach hinten gelegt hat:** das sprachliche
+  Gegenlesen des spanischen Pakets **nach** der Online-Stellung und der durchgespielte
+  Tastaturlauf. Beides ist dort datiert vermerkt.
+
+**Korrigierter Status dieser Übergabe: fachlich abgeschlossen und auslieferbar.**
