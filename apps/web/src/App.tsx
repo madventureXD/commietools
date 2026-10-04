@@ -1,4 +1,4 @@
-import { lazy, Suspense, useEffect, useMemo, useState } from 'react'
+import { lazy, Suspense, useEffect, useMemo, useRef, useState } from 'react'
 import type { SuiteManifest, ToolManifest } from '@commietools/core'
 import { createTranslator, detectLocale, isLocale, loadInterfaceMessages, localeRegistry, supportedLocales, type Locale } from '@commietools/i18n'
 import { convertCase, formatJson, getSuiteTools, getTextStatistics, loadToolMessages, MIN_QUERY_LENGTH, searchEntryById, suiteByRoute, suiteManifests, toolByRoute, type CaseMode } from '@commietools/tools'
@@ -150,11 +150,47 @@ function ToolPage({ tool, t, locale, navigate }: { tool: ToolManifest; t: Transl
   // Fenster und kommt beim Schliessen unveraendert zurueck. Ohne Unterstuetzung
   // (Safari, mobil) verschwindet der Knopf, statt etwas Halbes anzubieten.
   const pipId = `tool-${tool.id}`
+  // Groesse, die das Werkzeug im Hauptfenster hat, bevor es hinauswandert.
+  // Kein Wert aus einem Katalog, sondern gemessen - sie stimmt auch dann, wenn
+  // sich ein Werkzeug spaeter aendert.
+  const zielGroesse = useRef({ w: 0, h: 0 })
+  const [passtGroesse, setPasstGroesse] = useState<boolean | null>(null)
+  function merkeGroesse() {
+    const el = document.querySelector('.tool-content')
+    if (el instanceof HTMLElement) zielGroesse.current = { w: el.clientWidth, h: el.clientHeight }
+  }
+  // Nicht "welcher Browser", sondern "ist die Groesse angekommen" - eine
+  // Faehigkeitspruefung zur Laufzeit, die von selbst verschwindet, wenn ein
+  // Browser das Verhalten korrigiert.
+  function vergleicheGroesse() {
+    const w = window.documentPictureInPicture?.window
+    const ziel = zielGroesse.current
+    if (!w || ziel.w <= 0) { setPasstGroesse(null); return }
+    const nah = (a: number, b: number) => Math.abs(a - b) <= 24
+    setPasstGroesse(nah(w.innerWidth, ziel.w) && nah(w.innerHeight, ziel.h))
+  }
+  // Der Klick muss im ausgekoppelten Fenster fallen - nur dort gilt er als
+  // Erlaubnis fuer resizeTo. Deshalb steht dieser Knopf im ausgewanderten Inhalt.
+  function passeGroesseAn() {
+    const w = window.documentPictureInPicture?.window
+    const ziel = zielGroesse.current
+    if (!w || ziel.w <= 0) return
+    // resizeTo setzt die AEUSSERE Fenstergroesse, gefordert ist die innere.
+    // Der gemessene Rahmen des Fensters wird deshalb eingerechnet (Rahmenbreite
+    // und Titelleiste) - sonst fehlen genau diese Pixel.
+    const rahmenBreite = Math.max(0, w.outerWidth - w.innerWidth)
+    const rahmenHoehe = Math.max(0, w.outerHeight - w.innerHeight)
+    try { w.resizeTo(ziel.w + rahmenBreite, ziel.h + rahmenHoehe) } catch { /* ohne Nutzergeste nicht erlaubt */ }
+    window.setTimeout(vergleicheGroesse, 800)
+  }
   // Ein Knopf, eine Stelle: Er bleibt im Hauptfenster stehen und steuert das Fenster ueber
   // die Kennung. So ist der Rueckweg immer erreichbar - auch waehrend das Werkzeug draussen ist.
-  const detachTrigger = <PipTrigger pipId={pipId} renderOpen={t('tool.detach')} renderClose={t('tool.detach.return')} openLabel={t('tool.detach')} closeLabel={t('tool.detach.return')} className="button detach" />
+  const detachTrigger = <PipTrigger pipId={pipId} renderOpen={t('tool.detach')} renderClose={t('tool.detach.return')} openLabel={t('tool.detach')} closeLabel={t('tool.detach.return')} className="button detach" onClickCapture={merkeGroesse} />
   const detachPlaceholder = <div className="pip-placeholder stack"><p className="privacy-note">{t('tool.detach.placeholder')}</p><p>{t('tool.detach.placeholderHint')}</p></div>
-  return <main className="detail-page"><button className="text-link back" onClick={() => navigate('/')}>← {t('tool.back')}</button><article className="tool-shell"><div className="tool-shell-bar">{detachTrigger}</div><PipWrapper id={pipId} fallback="none" placeholder={detachPlaceholder}><header className="tool-header"><div>{icon && <span className="card-icon" aria-hidden="true" style={{ maskImage: `url(${icon})`, WebkitMaskImage: `url(${icon})` }} />}<p className="category">{t(`category.${tool.category}`)}</p><h1>{t(tool.titleKey)}</h1><p>{t(tool.descriptionKey)}</p></div><div className="tool-header-side"><LocalBadge>{t('status.local')}</LocalBadge></div></header><div className="tool-content">{content}</div></PipWrapper></article></main>
+  const groessenHilfe = passtGroesse === false
+    ? <div className="pip-fit"><p className="scan-note">{t('tool.detach.fitHint')}</p><Button onClick={passeGroesseAn} className="detach">{t('tool.detach.fit')}</Button></div>
+    : null
+  return <main className="detail-page"><button className="text-link back" onClick={() => navigate('/')}>← {t('tool.back')}</button><article className="tool-shell"><div className="tool-shell-bar">{detachTrigger}</div><PipWrapper id={pipId} fallback="none" placeholder={detachPlaceholder} onOpenChange={(offen) => { if (offen) window.setTimeout(vergleicheGroesse, 900); else setPasstGroesse(null) }}>{groessenHilfe}<header className="tool-header"><div>{icon && <span className="card-icon" aria-hidden="true" style={{ maskImage: `url(${icon})`, WebkitMaskImage: `url(${icon})` }} />}<p className="category">{t(`category.${tool.category}`)}</p><h1>{t(tool.titleKey)}</h1><p>{t(tool.descriptionKey)}</p></div><div className="tool-header-side"><LocalBadge>{t('status.local')}</LocalBadge></div></header><div className="tool-content">{content}</div></PipWrapper></article></main>
 }
 
 function SuitePage({ suite, t, locale, navigate }: { suite: SuiteManifest; t: Translate; locale: string; navigate: (path: string) => void }) {

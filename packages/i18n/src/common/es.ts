@@ -16,6 +16,8 @@ export const commonEs = {
   'tool.detach': 'Desacoplar en su propia ventana', 'tool.detach.return': 'Volver a la ventana principal',
   'tool.detach.placeholder': 'Esta herramienta se ejecuta en su propia ventana.',
   'tool.detach.placeholderHint': 'Puedes seguir trabajando allí; la ventana permanece por encima de todo lo demás si quieres.',
+  'tool.detach.fit': 'Ajustar al tamaño de la herramienta',
+  'tool.detach.fitHint': 'La ventana es más grande o más pequeña que la herramienta. Un clic la ajusta.',
   'save.fileName': 'Nombre del archivo', 'save.saveAs': 'Guardar como…', 'save.download': 'Descargar', 'save.saving': 'Ahorro…',
   'save.saved': 'Archivo guardado.', 'save.cancelled': 'Ahorro cancelado.', 'save.downloadStarted': 'Descarga iniciada.',
   'save.error': 'No se pudo guardar el archivo. Por favor inténtalo de nuevo.',

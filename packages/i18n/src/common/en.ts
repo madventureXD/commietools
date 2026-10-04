@@ -16,6 +16,8 @@ export const commonEn = {
   'tool.detach': 'Detach into its own window', 'tool.detach.return': 'Return to the main window',
   'tool.detach.placeholder': 'This tool is running in its own window.',
   'tool.detach.placeholderHint': 'Keep working there; the window stays on top of everything else if you want it to.',
+  'tool.detach.fit': 'Fit to the tool size',
+  'tool.detach.fitHint': 'The window is larger or smaller than the tool. One click fits it.',
   'save.fileName': 'File name', 'save.saveAs': 'Save as…', 'save.download': 'Download', 'save.saving': 'Saving…',
   'save.saved': 'File saved.', 'save.cancelled': 'Saving cancelled.', 'save.downloadStarted': 'Download started.',
   'save.error': 'The file could not be saved. Please try again.',

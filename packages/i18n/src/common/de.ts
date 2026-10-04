@@ -16,6 +16,8 @@ export const commonDe = {
   'tool.detach': 'In eigenes Fenster auskoppeln', 'tool.detach.return': 'Zurück ins Hauptfenster',
   'tool.detach.placeholder': 'Dieses Werkzeug läuft in einem eigenen Fenster.',
   'tool.detach.placeholderHint': 'Du kannst dort weiterarbeiten; das Fenster bleibt auf Wunsch über allen anderen.',
+  'tool.detach.fit': 'Auf Werkzeuggröße setzen',
+  'tool.detach.fitHint': 'Das Fenster ist größer oder kleiner als das Werkzeug. Ein Klick passt es an.',
   'save.fileName': 'Dateiname', 'save.saveAs': 'Speichern unter …', 'save.download': 'Herunterladen', 'save.saving': 'Wird gespeichert …',
   'save.saved': 'Datei gespeichert.', 'save.cancelled': 'Speichern abgebrochen.', 'save.downloadStarted': 'Download gestartet.',
   'save.error': 'Die Datei konnte nicht gespeichert werden. Bitte versuche es erneut.',
