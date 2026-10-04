@@ -1291,5 +1291,69 @@ export const searchLocale: Readonly<Record<string, ToolLocaleEntry>> = {
       "#oficios",
       "#tejado"
     ]
+  },
+  "metal-weight": {
+    "title": "Peso del metal",
+    "summary": "Peso de perfiles metálicos a partir de medidas, longitud y densidad.",
+    "description": "Peso de perfiles redondos, cuadrados, planos, tubos, angulares y hexagonales de acero, acero inoxidable, aluminio, cobre, latón y otros materiales, con sección, masa por metro y masa total. Calcula por completo en el navegador.",
+    "terms": [
+      "peso del metal",
+      "peso del acero",
+      "peso",
+      "barra redonda",
+      "barra cuadrada",
+      "pletina",
+      "chapa",
+      "tubo",
+      "tubo redondo",
+      "tubo cuadrado",
+      "tubo rectangular",
+      "perfil angular",
+      "angular",
+      "hexágono",
+      "entrecaras",
+      "sección",
+      "perfil",
+      "densidad",
+      "acero",
+      "acero inoxidable",
+      "aluminio",
+      "cobre",
+      "latón",
+      "bronce",
+      "cinc",
+      "plomo",
+      "titanio",
+      "cerrajería",
+      "oficio"
+    ],
+    "tags": [
+      "#oficios",
+      "#metal"
+    ]
+  },
+  "wood": {
+    "title": "Humedad y peso de la madera",
+    "summary": "Humedad, masa seca y peso de la madera según medidas y especie.",
+    "description": "Humedad de la madera a partir de la masa húmeda y la masa seca, masa seca para una humedad objetivo y peso de la madera de construcción a partir de medidas y especie, con las densidades del Instituto Forestal de Baviera. Calcula por completo en el navegador.",
+    "terms": [
+      "humedad de la madera",
+      "humedad",
+      "masa seca",
+      "peso de la madera",
+      "peso",
+      "especie de madera",
+      "densidad",
+      "madera estructural",
+      "madera aserrada",
+      "viga",
+      "tabla",
+      "carpintero",
+      "oficio"
+    ],
+    "tags": [
+      "#oficios",
+      "#madera"
+    ]
   }
 }

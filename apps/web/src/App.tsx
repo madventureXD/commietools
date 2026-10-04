@@ -50,6 +50,8 @@ const Equations = lazy(() => import('./tools/Equations').then((module) => ({ def
 const Aufmass = lazy(() => import('./tools/Aufmass').then((module) => ({ default: module.Aufmass })))
 const Concrete = lazy(() => import('./tools/Concrete').then((module) => ({ default: module.Concrete })))
 const Roof = lazy(() => import('./tools/Roof').then((module) => ({ default: module.Roof })))
+const MetalWeight = lazy(() => import('./tools/MetalWeight').then((module) => ({ default: module.MetalWeight })))
+const Wood = lazy(() => import('./tools/Wood').then((module) => ({ default: module.Wood })))
 
 type Theme = 'light' | 'dark'
 type Translate = (key: string) => string
@@ -126,6 +128,8 @@ function ToolPage({ tool, t, locale, navigate }: { tool: ToolManifest; t: Transl
                                   : tool.id === 'aufmass' ? <Suspense fallback={<p aria-live="polite">…</p>}><Aufmass t={t} locale={locale} /></Suspense>
                                   : tool.id === 'concrete' ? <Suspense fallback={<p aria-live="polite">…</p>}><Concrete t={t} locale={locale} /></Suspense>
                                   : tool.id === 'roof' ? <Suspense fallback={<p aria-live="polite">…</p>}><Roof t={t} locale={locale} /></Suspense>
+                                  : tool.id === 'metal-weight' ? <Suspense fallback={<p aria-live="polite">…</p>}><MetalWeight t={t} locale={locale} /></Suspense>
+                                  : tool.id === 'wood' ? <Suspense fallback={<p aria-live="polite">…</p>}><Wood t={t} locale={locale} /></Suspense>
               : tool.id === 'pdf-merge' ? <Suspense fallback={<p aria-live="polite">…</p>}><PdfMerge t={t} /></Suspense>
                 : tool.id === 'pdf-split' ? <Suspense fallback={<p aria-live="polite">…</p>}><PdfSplit t={t} /></Suspense>
                   : tool.id === 'pdf-organize' ? <Suspense fallback={<p aria-live="polite">…</p>}><PdfOrganize t={t} /></Suspense>

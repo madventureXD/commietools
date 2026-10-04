@@ -122,6 +122,10 @@ einem eigenen Fenster); die elf zugehörigen Commits liegen lokal vor `origin/ma
 | Gleichungslöser | `equations` | Rechnen | lokal | keine (nur Information) |
 | Zeit und Datum | `datetime` | Rechnen | lokal | keine (nur Information) |
 | Aufmaß | `aufmass` | Rechnen | lokal | CSV, PDF und Text heraus |
+| Beton, Mörtel und Estrich | `concrete` | Handwerk | lokal | keine (nur Information) |
+| Dach | `roof` | Handwerk | lokal | keine (nur Information) |
+| Metallgewicht | `metal-weight` | Handwerk | lokal | keine (nur Information) |
+| Holzfeuchte und Holzgewicht | `wood` | Handwerk | lokal | keine (nur Information) |
 
 ## Derzeitige Suiten
 
@@ -130,6 +134,7 @@ einem eigenen Fenster); die elf zugehörigen Commits liegen lokal vor `origin/ma
 - Generatoren
 - Bilder (Bild-Metadaten, Bild skalieren, Icon-Generator, Wasserzeichen, Farbwerkzeuge)
 - Rechnen (Rechner, Umrechnen, Kaufmännisch, Zeit und Datum, Funktionsplotter, Statistik, Gleichungslöser, Geometrie, Aufmaß)
+- Handwerk (Beton/Mörtel/Estrich, Dach, Metallgewicht, Holzfeuchte und Holzgewicht) — Welle A der Handwerkerwerkzeuge, abgenommen am 2026-10-04
 - PDF (Viewer, Text/OCR, Zertifikatssignaturen prüfen und erstellen, Zusammenführen, Teilen, Seiten organisieren, Bilder zu PDF, PDF zu Bildern, Wasserzeichen, Seitenzahlen, sichtbar unterschreiben, Formular ausfüllen, kommentieren und markieren, schützen/entsperren, komprimieren, Metadaten, Beschneiden, Reparatur, Anhänge, Vergleich, PDF/A-Vorcheck und sichere Schwärzung)
 
 ## Qualität und Compliance
@@ -140,15 +145,17 @@ einem eigenen Fenster); die elf zugehörigen Commits liegen lokal vor `origin/ma
 - vollständige Lizenztexte: 16
 - bewahrte originale Paketdokumente: 189
 - eingebettete Binärartefakte: 2 registrierte WASM-Artefakte (QPDF und PDF Signer)
-- letzter bekannter Teststand: 339 Webtests in 18 Dateien bestanden (`npm run check`, gemessen 2026-10-04); Rust-Tests in diesem Lauf nicht neu gemessen — der zuletzt bekannte Stand bleibt 50
-- Werkzeugregister: 41 Werkzeuge, 3 Sprachen, 41 Symbole, 2.730 Suchbegriffe, 92 deklarierte Dateitypen (`npm run catalog:generate`, gemessen 2026-10-04); Spanisch wird als noch gegenzulesendes Testpaket mitausgeliefert
+- letzter bekannter Teststand: 375 Webtests in 22 Dateien bestanden (`npm run check`, gemessen 2026-10-04); Rust-Tests in diesem Lauf nicht neu gemessen — der zuletzt bekannte Stand bleibt 50
+- Werkzeugregister: 45 Werkzeuge, 3 Sprachen, 45 Symbole, 3.018 Suchbegriffe, 92 deklarierte Dateitypen (`npm run catalog:generate`, gemessen 2026-10-04); Spanisch wird als noch gegenzulesendes Testpaket mitausgeliefert
 - Produktions-Build: bestanden. **Veröffentlicht** (Sammelrelease, ohne Auskoppeln): 136.967 Byte
-  Startcode komprimiert. **Aktueller Arbeitsstand** (mit Auskoppeln, noch nicht gepusht):
-  **145.559 Byte** von 204.800 (Reserve rund 59 kB; +8.598 Byte durch die Auskoppel-Bibliothek),
+  Startcode komprimiert. **Aktueller Arbeitsstand** (mit Auskoppeln und Welle A der
+  Handwerkerwerkzeuge, noch nicht gepusht): **145.931 Byte** von 204.800 (Reserve rund 59 kB),
   gemessen 2026-10-04. Sprachgetrennte Such- und Werkzeugtextpakete mit verzögertem Laden, ohne
   statisch erreichbare PDF- oder Rechen-Engine; PDF-/OCR-/Signaturrouten, Worker und WASM sind vom
-  Vorab-Cache ausgeschlossen; nachgeladener Rechenkern 103.709 Byte gzip, Katalogbasis 1.100 Byte,
-  Werkzeugtexte Deutsch 26.972 von 30.720 Byte (gemessen 2026-10-04)
+  Vorab-Cache ausgeschlossen; nachgeladener Rechenkern 103.708 Byte gzip, Katalogbasis 1.163 Byte,
+  Werkzeugtexte Deutsch 32.080 von 30.720 Byte und Spanisch 31.130 (**beide über der Warnschwelle —
+  begründet in `05-uebergaben/2026-10-04-welle-a-handwerkerwerkzeuge.md`**), Englisch 29.264 Byte
+  (gemessen 2026-10-04)
 
 Zahlen sind Momentaufnahmen. Nach Abhängigkeits-, Test- oder Tooländerungen müssen sie anhand der tatsächlichen Ausgabe aktualisiert werden.
 

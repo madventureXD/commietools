@@ -1353,5 +1353,72 @@ export const searchLocale: Readonly<Record<string, ToolLocaleEntry>> = {
       "#trades",
       "#roof"
     ]
+  },
+  "metal-weight": {
+    "title": "Metal weight",
+    "summary": "Weight of metal profiles from dimensions, length and material density.",
+    "description": "Weight of round, square, flat, tube, angle and hex profiles in steel, stainless steel, aluminium, copper, brass and further materials — with cross-section, mass per metre and total mass. Runs entirely in the browser.",
+    "terms": [
+      "metal weight",
+      "steel weight",
+      "weight",
+      "round bar",
+      "square bar",
+      "flat bar",
+      "plate",
+      "tube",
+      "round tube",
+      "square tube",
+      "rectangular tube",
+      "angle profile",
+      "angle iron",
+      "hexagon",
+      "across flats",
+      "cross section",
+      "profile",
+      "density",
+      "steel",
+      "stainless steel",
+      "aluminium",
+      "copper",
+      "brass",
+      "bronze",
+      "zinc",
+      "lead",
+      "titanium",
+      "metalwork",
+      "locksmith",
+      "trade"
+    ],
+    "tags": [
+      "#trades",
+      "#metal"
+    ]
+  },
+  "wood": {
+    "title": "Wood moisture and weight",
+    "summary": "Wood moisture, oven-dry mass and weight from dimensions and species.",
+    "description": "Wood moisture from wet and oven-dry mass, oven-dry mass for a target moisture, and the weight of timber from dimensions and species — with the densities of the Bavarian State Institute of Forestry. Runs entirely in the browser.",
+    "terms": [
+      "wood moisture",
+      "moisture content",
+      "oven dry mass",
+      "dry mass",
+      "timber weight",
+      "weight",
+      "wood species",
+      "density",
+      "structural timber",
+      "sawn timber",
+      "beam",
+      "board",
+      "joiner",
+      "carpenter",
+      "trade"
+    ],
+    "tags": [
+      "#trades",
+      "#wood"
+    ]
   }
 }

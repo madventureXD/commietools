@@ -311,6 +311,18 @@ export const toolManifests: readonly ToolManifest[] = [
     titleKey: 'tool.roof.title', descriptionKey: 'tool.roof.description',
     summaryKey: 'tool.roof.summary', termsKey: 'tool.roof.terms',
     executionMode: 'local', resourceClass: 'standard', worksOffline: true
+  },
+  {
+    id: 'metal-weight', route: '/tools/metal-weight', category: 'craft',
+    titleKey: 'tool.metal.title', descriptionKey: 'tool.metal.description',
+    summaryKey: 'tool.metal.summary', termsKey: 'tool.metal.terms',
+    executionMode: 'local', resourceClass: 'standard', worksOffline: true
+  },
+  {
+    id: 'wood', route: '/tools/wood', category: 'craft',
+    titleKey: 'tool.wood.title', descriptionKey: 'tool.wood.description',
+    summaryKey: 'tool.wood.summary', termsKey: 'tool.wood.terms',
+    executionMode: 'local', resourceClass: 'standard', worksOffline: true
   }
 ]
 
@@ -321,5 +333,5 @@ export const suiteManifests: readonly SuiteManifest[] = [
   { id: 'image', route: '/suites/image', titleKey: 'suite.image.title', descriptionKey: 'suite.image.description', toolIds: ['image-metadata', 'image-resize', 'icon-generator', 'image-watermark', 'color-tools'] },
   { id: 'pdf', route: '/suites/pdf', titleKey: 'suite.pdf.title', descriptionKey: 'suite.pdf.description', toolIds: ['pdf-viewer', 'pdf-text-ocr', 'pdf-signature-verify', 'pdf-certificate-sign', 'pdf-a-preflight', 'pdf-redact', 'pdf-metadata', 'pdf-crop', 'pdf-repair', 'pdf-attachments', 'pdf-compare', 'pdf-merge', 'pdf-split', 'pdf-organize', 'images-to-pdf', 'pdf-to-images', 'pdf-watermark', 'pdf-page-numbers', 'pdf-visible-signature', 'pdf-form-fill', 'pdf-annotate', 'pdf-security', 'pdf-compress'] },
   { id: 'calculator', route: '/suites/calculator', titleKey: 'suite.calculator.title', descriptionKey: 'suite.calculator.description', toolIds: ['calculator', 'convert', 'commercial', 'datetime', 'plotter', 'statistics', 'equations', 'geometry', 'aufmass'] },
-  { id: 'craft', route: '/suites/craft', titleKey: 'suite.craft.title', descriptionKey: 'suite.craft.description', toolIds: ['concrete', 'roof'] }
+  { id: 'craft', route: '/suites/craft', titleKey: 'suite.craft.title', descriptionKey: 'suite.craft.description', toolIds: ['concrete', 'roof', 'metal-weight', 'wood'] }
 ]

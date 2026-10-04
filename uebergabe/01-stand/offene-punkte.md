@@ -35,7 +35,7 @@ Diese Liste enthält bestätigte, noch nicht abgeschlossene Arbeit. Details geh�
 - [ ] Größenbudgets zusätzlich pro große Tool-Engine festlegen; das Startbudget und die Sperre gegen PDF-Engines sind umgesetzt.
 - [ ] **Werkzeugtexte je Sprache im Blick behalten — Reserve 4,3 KiB.** Mit dem umgesetzten
   Sprachpaket-Umbau ist das Startbündel entspannt (136.961 von 204.800 B gzip); das frühere
-  Budgetproblem „vor Welle 6 den Ausweg bauen“ ist damit **erledigt**, ebenso der Punkt zur
+  Budgetproblem „vor Welle 6 den Ausweg bauen" ist damit **erledigt**, ebenso der Punkt zur
   Aufnahme von `bundle:check` in den Prüflauf (die Größenkontrolle läuft im Build). An ihre
   Stelle tritt die neue Warnschwelle aus `sprachgetrennte-suchpakete`: **Werkzeugtexte Deutsch
   26.403 von 30.720 B gzip** nach Welle 6. Eine weitere Werkzeugwelle dieser Größe kann sie
@@ -45,6 +45,12 @@ Diese Liste enthält bestätigte, noch nicht abgeschlossene Arbeit. Details geh�
   `docs/ui-system.md` einen übersetzten zugänglichen Namen. Damit ist die Reserve von rund 4,3 KiB
   vor der Umsetzung neu zu messen; gegebenenfalls wird die Aufteilung der Werkzeugtexte je Sprache
   zur Voraussetzung dieser Welle statt zu einem Folgeschritt.)*
+  *(Nachtrag 2026-10-04, Welle A der Handwerkerwerkzeuge: Die Schwelle ist **gerissen** — Deutsch
+  **32.080 B** und Spanisch **31.130 B** gegen 30.720 B, Englisch 29.264 B darunter. Ursache ist der
+  Umfang der vier neuen Handwerkswerkzeuge in drei Sprachen, nicht ein Fehler; der Build bricht zu
+  Recht nicht ab. Der oben genannte Ausweg — Aufteilung der Werkzeugtexte je Sprache, etwa je
+  Suite — ist damit **vor Welle B** zu bauen. Begründung im Einzelnen:
+  `05-uebergaben/2026-10-04-welle-a-handwerkerwerkzeuge.md`.)*
 - [ ] Bedienung per Tastatur automatisiert prüfen (seit Welle 5 offen; in Welle 6 erneut nur
   teilweise — native Formularelemente mit Beschriftungen, kein durchgespielter Tastaturlauf).
   *(2026-10-04: Der durchgespielte Lauf ist erst **nach** der Online-Stellung möglich; bis dahin

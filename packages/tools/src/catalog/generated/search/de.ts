@@ -1393,5 +1393,79 @@ export const searchLocale: Readonly<Record<string, ToolLocaleEntry>> = {
       "#handwerk",
       "#dach"
     ]
+  },
+  "metal-weight": {
+    "title": "Metallgewicht",
+    "summary": "Gewicht von Metallprofilen aus Abmessung, Länge und Werkstoffdichte.",
+    "description": "Gewicht von Rund-, Vierkant-, Flach-, Rohr-, Winkel- und Sechskantprofilen aus Stahl, Edelstahl, Aluminium, Kupfer, Messing und weiteren Werkstoffen — mit Querschnittsfläche, Masse je Meter und Gesamtmasse. Rechnet vollständig im Browser.",
+    "terms": [
+      "Metallgewicht",
+      "Stahlgewicht",
+      "Gewicht",
+      "Rundstahl",
+      "Rundmaterial",
+      "Vierkant",
+      "Flachstahl",
+      "Blech",
+      "Rohr",
+      "Rundrohr",
+      "Quadratrohr",
+      "Rechteckrohr",
+      "Winkelprofil",
+      "Winkelstahl",
+      "Sechskant",
+      "Schlüsselweite",
+      "Querschnitt",
+      "Profil",
+      "Dichte",
+      "Stahl",
+      "Edelstahl",
+      "V2A",
+      "Aluminium",
+      "Kupfer",
+      "Messing",
+      "Bronze",
+      "Zink",
+      "Blei",
+      "Titan",
+      "Metallbau",
+      "Schlosser",
+      "Handwerk"
+    ],
+    "tags": [
+      "#handwerk",
+      "#metall"
+    ]
+  },
+  "wood": {
+    "title": "Holzfeuchte und Holzgewicht",
+    "summary": "Holzfeuchte, Darrmasse und Gewicht aus Maßen und Holzart.",
+    "description": "Holzfeuchte aus Nass- und Darrgewicht, Darrmasse aus einer Ziel-Feuchte und das Gewicht von Bauholz aus Maßen und Holzart — mit den Rohdichten der Bayerischen Landesanstalt für Wald und Forstwirtschaft. Rechnet vollständig im Browser.",
+    "terms": [
+      "Holzfeuchte",
+      "Holzfeuchtigkeit",
+      "Feuchtegehalt",
+      "Darrgewicht",
+      "Darrmasse",
+      "Trockenmasse",
+      "Holzgewicht",
+      "Gewicht",
+      "Holzart",
+      "Rohdichte",
+      "Bauholz",
+      "Schnittholz",
+      "Balken",
+      "Brett",
+      "Kantholz",
+      "Dachstuhl",
+      "Zimmerer",
+      "Schreiner",
+      "Tischler",
+      "Handwerk"
+    ],
+    "tags": [
+      "#handwerk",
+      "#holz"
+    ]
   }
 }

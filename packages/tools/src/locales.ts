@@ -33,6 +33,8 @@ import { aufmassMessages } from './calculator/aufmass/locales'
 import { craftCommonMessages } from './craft/common/locales'
 import { concreteMessages } from './craft/concrete/locales'
 import { roofMessages } from './craft/roof/locales'
+import { metalMessages } from './craft/metal/locales'
+import { woodMessages } from './craft/wood/locales'
 
 type MessageCatalog = Readonly<Record<string, string>>
 type PartialLocalizedMessages = Readonly<Record<string, MessageCatalog>>
@@ -82,5 +84,7 @@ export const toolMessages = mergeToolCatalogs([
   aufmassMessages,
   craftCommonMessages,
   concreteMessages,
-  roofMessages
+  roofMessages,
+  metalMessages,
+  woodMessages
 ])
