@@ -26,11 +26,11 @@ Vollständiges Umsetzungskonzept: [`../03-konzepte/2026-10-03-pdf-suite.md`](../
 - M6: eigenständiger Viewer, Textextraktion und OCR – lokal umgesetzt, noch nicht veröffentlicht
 - M7: digitale Signaturen – lokal abgeschlossen; Rust-WASM, BER-/DER-CMS, inkrementelle Mehrfachsignaturen, PAdES B-B/T/LT/LTA und EU-DSS-Referenzkorpus geprüft
 - M8: Dokumentprüfung und -pflege – lokaler Viewer sowie Metadaten, Beschneiden, QPDF-Reparatur, Anhänge und Struktur-/Textvergleich umgesetzt; visueller Vergleich und Reader-Interoperabilität noch offen
-- M9: PDF/A, sichere Schwärzung und Office-Konvertierung – offen
+- M9: sichere Schwärzung lokal umgesetzt; PDF/A nur als klar begrenzter Vorcheck; echte PDF/A-Validierung/-Konvertierung und Office-Konvertierung bleiben am Local-First-Qualitätsgate gesperrt
 
 ## Phase 2 – Suite „Rechnen"
 
-**Status:** Wellen 1 bis 3 abgenommen; Welle 4 ff. offen
+**Status:** Wellen 1 bis 4 abgenommen; Welle 5 ff. offen
 **Konzept:** [`../03-konzepte/2026-10-03-taschenrechner-suite.md`](../03-konzepte/2026-10-03-taschenrechner-suite.md)
 **Entscheidung:** [ADR 0005](../04-entscheidungen/0005-mathjs-rechenkern.md) — mathjs aus kuratierten Factories
 
@@ -102,6 +102,20 @@ gebraucht, in einen eigenen Schritt.
 ethiopic, chinese, dangi) ausdrücklich als „nicht unterstützt" gekennzeichnet und **nicht**
 stillschweigend falsch · `monthCode` für den Rückweg · Datumsarithmetik inklusive Monats- und
 Jahresgrenzen.
+
+**Status: abgenommen am 2026-10-03.** Beide Werkzeuge stehen mit Oberfläche, Formel, Annahmen und
+Quellen in drei Sprachen; `@js-temporal/polyfill` 0.5.1 (ISC) wird **nur nach Feature-Abfrage**
+geladen und ist als eigener Chunk vom Vorabladen ausgenommen. 28 Tests; Artefakt in Edge headless
+geprüft.
+
+**Korrektur zum Kalenderbefund (2026-10-03):** Die Annahme „vier der 18 Kalender im Polyfill
+defekt" (coptic, ethiopic, chinese, dangi) **bestätigt sich mit 0.5.1 nicht**. Gemessen gehen
+alle 18 Kalender beide Wege; der Rückweg wird zusätzlich über `monthCode` gebildet. Ein Test
+prüft das dauerhaft. Der Rückweg bleibt in einem `try/catch` und meldet im Fehlerfall
+„nicht unterstützt" — **kein geratenes Datum**.
+
+**Nicht enthalten, bewusst:** Feiertage je Bundesland (die Abnahme verlangt sie nicht; sie
+brauchen einen Kalender je Land) und Zeitdauern über Zeitzonen hinweg.
 
 ### Welle 5 – Mathematik (zweite neue Engine)
 

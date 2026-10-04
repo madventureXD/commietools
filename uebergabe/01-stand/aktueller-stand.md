@@ -57,6 +57,8 @@
 - PDF reparieren und prüfen: Struktur mit QPDF normalisieren und das Ergebnis anschließend erneut auf Lesbarkeit und Seitenzahl prüfen
 - PDF-Anhänge: eingebettete Dateien lokal auflisten, extrahieren, ergänzen und entfernen
 - PDFs vergleichen: Seitenzahl, Seitengröße, Drehung und extrahierbaren Text seitenweise vergleichen
+- PDF/A-Vorcheck: lokale Erkennung der PDF/A-Kennung, XMP, Ausgabeprofile, Verschlüsselung, JavaScript und eingebetteten Dateien; ausdrücklich keine Konformitätsaussage oder Konvertierung
+- PDF sicher schwärzen: ausgewählte Rechtecke werden mit der offiziellen MuPDF-Redaktionsfunktion destruktiv entfernt, schwarz überdeckt und als neue Datei gespeichert
 - `pdf_signer` 0.3.2 als vendorte und nur auf M7-Routen nachgeladene Rust-WASM-Engine; BER-Kompatibilität und revisionsübergreifende Signatursuche sind lokal gehärtet, Prüfsumme, Herkunft und GPL-3.0-or-later-Lizenz registriert
 - QPDF 12.2.0 als getrennt nachgeladene Open-Source-WASM-Engine; Binärartefakt mit SHA-256, Upstream-Komponenten, festen Commits und vollständigen Lizenzen registriert
 - datensparsame Ladegrenzen: Startseite und Fremdwerkzeuge laden keine PDF-Engine; PDF-Routen, Worker und WASM werden erst bei Nutzung übertragen und nicht vorab offline gespeichert
@@ -64,6 +66,9 @@
 - Rechner (Suite „Rechnen", Welle 1): kuratierter mathjs-Rechenkern in eigenem dynamisch geladenen Chunk (94,3 KiB gzip), exakte Zahlenmodelle (`BigNumber` 64 Stellen, `Fraction`), Fehler als übersetzbare Codes, Verlauf als Ringpuffer, benannte Variablen, „Formel und Quelle"
 - Rechner (Suite „Rechnen", Welle 2 abgenommen): vier Rechnerarten in der Oberfläche — Standard und Brüche als Zahlenmodell, wissenschaftlich mit Winkelmodus (Bogenmaß, Grad, Gon) und 32 Tasten, Programmierer mit Anzeige-Basis, Wortbreite 8/16/32/64 und Zweierkomplement samt Darstellungs-Karte, RPN mit Token-Eingabe, Stapeltasten, **live sichtbarem Stapel und Rechenweg** je Schritt; Funktionsliste mit Aufruftest je Funktion und belegter Fehlschlagprobe; Rechenkern 102.436 B gzip
 - Kaufmännisch (Suite „Rechnen", Welle 3): Prozent in drei Richtungen, Rabatt, Aufschlag, Marge **und** Aufschlag gemeinsam mit klarer Bezugsgröße, Umsatzsteuer raus und rein, Skonto, Dreisatz, Zinseszins und Tilgungsplan; rechnet ohne neue Abhängigkeit in `BigInt` cent-genau, Plan summiert sich exakt zum Darlehen; Formeln, Annahmen und Quellen in drei Sprachen
+- Umrechnen (Suite „Rechnen", Welle 4): Einheiten in zwölf Größen, Winkel, Zahlensysteme 2–36 in `BigInt`, Zollbrüche und 18 Kalender; Umrechnungsfaktoren werden zur Laufzeit aus der Einheitenbibliothek **gemessen** statt abgeschrieben; Kalender vorwärts über `Intl`, Rückweg über `Temporal` mit `monthCode`
+- Zeit und Datum (Suite „Rechnen", Welle 4): Datumsabstand, Verschieben über Monats- und Jahresgrenzen, Arbeitstage, Kalenderwoche nach ISO 8601, Fristen nach BGB §§ 187/188/193 und Zeitdauern für den Stundenzettel
+- `@js-temporal/polyfill` 0.5.1 als **nur nach Feature-Abfrage** nachgeladene Engine; eigener Chunk, vom Vorabcache ausgenommen und im Laufzeitcache (gemessen 154 kB roh)
 - Geometrie (Suite „Rechnen", Welle 3): 16 Formen und Körper von Rechteck bis Kugel; jede Ergebniszeile zeigt ihre Formel im Klartext; Formeln und Annahmen in drei Sprachen, Werte gegen unabhängige Nachrechnung geprüft
 
 ## Derzeitige Tools
@@ -98,6 +103,8 @@
 | Rechner | `calculator` | Rechnen | lokal | keine (nur Information) |
 | Kaufmännisch | `commercial` | Rechnen | lokal | keine (nur Information) |
 | Geometrie | `geometry` | Rechnen | lokal | keine (nur Information) |
+| Umrechnen | `convert` | Rechnen | lokal | keine (nur Information) |
+| Zeit und Datum | `datetime` | Rechnen | lokal | keine (nur Information) |
 
 ## Derzeitige Suiten
 
@@ -105,19 +112,19 @@
 - Entwicklung
 - Generatoren
 - Bilder (Bild-Metadaten, Bild skalieren, Icon-Generator, Wasserzeichen, Farbwerkzeuge)
-- Rechnen (Rechner, Kaufmännisch, Geometrie)
+- Rechnen (Rechner, Umrechnen, Kaufmännisch, Zeit und Datum, Geometrie)
 - PDF (Viewer, Text/OCR, Zertifikatssignaturen prüfen und erstellen, Zusammenführen, Teilen, Seiten organisieren, Bilder zu PDF, PDF zu Bildern, Wasserzeichen, Seitenzahlen, sichtbar unterschreiben, Formular ausfüllen, kommentieren und markieren, schützen/entsperren, komprimieren)
 
 ## Qualität und Compliance
 
 - Projekt und interne Pakete: `AGPL-3.0-only`
 - Lizenzübersicht in der Webanwendung: `/licenses`
-- erfasste externe Pakete: 520
+- erfasste externe Pakete: 522
 - vollständige Lizenztexte: 16
-- bewahrte originale Paketdokumente: 187
+- bewahrte originale Paketdokumente: 188
 - eingebettete Binärartefakte: 2 registrierte WASM-Artefakte (QPDF und PDF Signer)
-- letzter bekannter Teststand: 218 Webtests in 13 Dateien bestanden (`npm run check`, gemessen 2026-10-03); Rust-Tests in diesem Lauf nicht neu gemessen — der zuletzt bekannte Stand bleibt 50
-- Werkzeugregister: 33 Werkzeuge, 3 Sprachen, 33 Symbole, 2.232 Suchbegriffe, 86 deklarierte Dateitypen (`npm run catalog:check`, gemessen 2026-10-03); Spanisch ist lokal als noch gegenzulesendes Testpaket eingebunden
+- letzter bekannter Teststand: 248 Webtests in 14 Dateien bestanden (`npm run check`, gemessen 2026-10-03); Rust-Tests in diesem Lauf nicht neu gemessen — der zuletzt bekannte Stand bleibt 50
+- Werkzeugregister: 37 Werkzeuge, 3 Sprachen, 37 Symbole, 2.458 Suchbegriffe, 89 deklarierte Dateitypen (`npm run catalog:check`, gemessen 2026-10-03); Spanisch ist lokal als noch gegenzulesendes Testpaket eingebunden
 - letzter bekannter Produktions-Build: bestanden; 206.547 Byte Startcode komprimiert und ohne statisch erreichbare PDF- oder Rechen-Engine; PDF-/OCR-/Signaturrouten, Worker und WASM sind vom Vorab-Cache ausgeschlossen; nachgeladener Rechenkern 102.436 Byte gzip (gemessen 2026-10-03)
 
 Zahlen sind Momentaufnahmen. Nach Abhängigkeits-, Test- oder Tooländerungen müssen sie anhand der tatsächlichen Ausgabe aktualisiert werden.
