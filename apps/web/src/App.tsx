@@ -36,9 +36,13 @@ const PdfCropTool = lazy(() => import('./tools/PdfMaintenanceTools').then((modul
 const PdfRepairTool = lazy(() => import('./tools/PdfMaintenanceTools').then((module) => ({ default: module.PdfRepairTool })))
 const PdfAttachmentsTool = lazy(() => import('./tools/PdfMaintenanceTools').then((module) => ({ default: module.PdfAttachmentsTool })))
 const PdfCompareTool = lazy(() => import('./tools/PdfMaintenanceTools').then((module) => ({ default: module.PdfCompareTool })))
+const PdfAPreflightTool = lazy(() => import('./tools/PdfComplianceTools').then((module) => ({ default: module.PdfAPreflightTool })))
+const PdfRedactTool = lazy(() => import('./tools/PdfComplianceTools').then((module) => ({ default: module.PdfRedactTool })))
 const Calculator = lazy(() => import('./tools/Calculator').then((module) => ({ default: module.Calculator })))
 const Commercial = lazy(() => import('./tools/Commercial').then((module) => ({ default: module.Commercial })))
 const Geometry = lazy(() => import('./tools/Geometry').then((module) => ({ default: module.Geometry })))
+const Convert = lazy(() => import('./tools/Convert').then((module) => ({ default: module.Convert })))
+const DateTime = lazy(() => import('./tools/DateTime').then((module) => ({ default: module.DateTime })))
 
 type Theme = 'light' | 'dark'
 type Translate = (key: string) => string
@@ -107,6 +111,8 @@ function ToolPage({ tool, t, locale, navigate }: { tool: ToolManifest; t: Transl
                     : tool.id === 'calculator' ? <Suspense fallback={<p aria-live="polite">…</p>}><Calculator t={t} /></Suspense>
                       : tool.id === 'commercial' ? <Suspense fallback={<p aria-live="polite">…</p>}><Commercial t={t} locale={locale} /></Suspense>
                         : tool.id === 'geometry' ? <Suspense fallback={<p aria-live="polite">…</p>}><Geometry t={t} locale={locale} /></Suspense>
+                        : tool.id === 'convert' ? <Suspense fallback={<p aria-live="polite">…</p>}><Convert t={t} locale={locale} /></Suspense>
+                          : tool.id === 'datetime' ? <Suspense fallback={<p aria-live="polite">…</p>}><DateTime t={t} /></Suspense>
               : tool.id === 'pdf-merge' ? <Suspense fallback={<p aria-live="polite">…</p>}><PdfMerge t={t} /></Suspense>
                 : tool.id === 'pdf-split' ? <Suspense fallback={<p aria-live="polite">…</p>}><PdfSplit t={t} /></Suspense>
                   : tool.id === 'pdf-organize' ? <Suspense fallback={<p aria-live="polite">…</p>}><PdfOrganize t={t} /></Suspense>
@@ -127,7 +133,9 @@ function ToolPage({ tool, t, locale, navigate }: { tool: ToolManifest; t: Transl
                                                 : tool.id === 'pdf-crop' ? <Suspense fallback={<p aria-live="polite">…</p>}><PdfCropTool t={t} /></Suspense>
                                                   : tool.id === 'pdf-repair' ? <Suspense fallback={<p aria-live="polite">…</p>}><PdfRepairTool t={t} /></Suspense>
                                                     : tool.id === 'pdf-attachments' ? <Suspense fallback={<p aria-live="polite">…</p>}><PdfAttachmentsTool t={t} /></Suspense>
-                                                      : <Suspense fallback={<p aria-live="polite">…</p>}><PdfCompareTool t={t} /></Suspense>
+                                                      : tool.id === 'pdf-compare' ? <Suspense fallback={<p aria-live="polite">…</p>}><PdfCompareTool t={t} /></Suspense>
+                                                        : tool.id === 'pdf-a-preflight' ? <Suspense fallback={<p aria-live="polite">…</p>}><PdfAPreflightTool t={t} /></Suspense>
+                                                          : <Suspense fallback={<p aria-live="polite">…</p>}><PdfRedactTool t={t} /></Suspense>
   const icon = searchEntryById.get(tool.id)?.icon
   return <main className="detail-page"><button className="text-link back" onClick={() => navigate('/')}>← {t('tool.back')}</button><article className="tool-shell"><header className="tool-header"><div>{icon && <span className="card-icon" aria-hidden="true" style={{ maskImage: `url(${icon})`, WebkitMaskImage: `url(${icon})` }} />}<p className="category">{t(`category.${tool.category}`)}</p><h1>{t(tool.titleKey)}</h1><p>{t(tool.descriptionKey)}</p></div><LocalBadge>{t('status.local')}</LocalBadge></header><div className="tool-content">{content}</div></article></main>
 }

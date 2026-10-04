@@ -3425,6 +3425,135 @@ export const toolIndex: readonly ToolSearchEntry[] = [
     }
   },
   {
+    "id": "pdf-a-preflight",
+    "route": "/tools/pdf-a-preflight",
+    "icon": "/tools/pdf-a-preflight.svg",
+    "category": "pdf",
+    "suiteIds": [
+      "pdf"
+    ],
+    "executionMode": "local",
+    "resourceClass": "standard",
+    "worksOffline": true,
+    "input": [
+      "application/pdf"
+    ],
+    "output": [],
+    "auxiliary": [],
+    "locales": {
+      "de": {
+        "title": "PDF/A-Vorcheck",
+        "summary": "PDF/A-Kennung lokal vorprüfen.",
+        "description": "Liest die PDF/A-Kennung und prüft einige offensichtliche technische Merkmale lokal.",
+        "terms": [
+          "PDF/A prüfen",
+          "Archiv PDF",
+          "Langzeitarchivierung",
+          "veraPDF",
+          "XMP"
+        ],
+        "tags": [
+          "#pdf"
+        ]
+      },
+      "en": {
+        "title": "PDF/A preflight",
+        "summary": "Preflight a PDF/A declaration locally.",
+        "description": "Reads the PDF/A declaration and checks some obvious technical features locally.",
+        "terms": [
+          "validate PDF/A",
+          "archive PDF",
+          "long-term preservation",
+          "veraPDF",
+          "XMP"
+        ],
+        "tags": [
+          "#pdf"
+        ]
+      },
+      "es": {
+        "title": "Precomprobación PDF/A",
+        "summary": "Precomprobar una declaración PDF/A.",
+        "description": "Lee la declaración PDF/A y comprueba localmente algunas características técnicas evidentes.",
+        "terms": [
+          "validar PDF/A",
+          "archivo",
+          "conservación",
+          "veraPDF",
+          "XMP"
+        ],
+        "tags": [
+          "#pdf"
+        ]
+      }
+    }
+  },
+  {
+    "id": "pdf-redact",
+    "route": "/tools/pdf-redact",
+    "icon": "/tools/pdf-redact.svg",
+    "category": "pdf",
+    "suiteIds": [
+      "pdf"
+    ],
+    "executionMode": "local",
+    "resourceClass": "heavy",
+    "worksOffline": true,
+    "input": [
+      "application/pdf"
+    ],
+    "output": [
+      "application/pdf"
+    ],
+    "auxiliary": [],
+    "locales": {
+      "de": {
+        "title": "PDF sicher schwärzen",
+        "summary": "PDF-Inhalte dauerhaft schwärzen.",
+        "description": "Entfernt Inhalte in ausgewählten Bereichen destruktiv mit MuPDF und legt schwarze Flächen darüber.",
+        "terms": [
+          "PDF schwärzen",
+          "Redaktion",
+          "Text entfernen",
+          "Datenschutz",
+          "MuPDF"
+        ],
+        "tags": [
+          "#pdf"
+        ]
+      },
+      "en": {
+        "title": "Securely redact PDF",
+        "summary": "Permanently redact PDF content.",
+        "description": "Destructively removes content in selected areas with MuPDF and paints black boxes.",
+        "terms": [
+          "redact PDF",
+          "remove text",
+          "privacy",
+          "MuPDF",
+          "blackout"
+        ],
+        "tags": [
+          "#pdf"
+        ]
+      },
+      "es": {
+        "title": "Censurar PDF de forma segura",
+        "summary": "Censurar contenido PDF permanentemente.",
+        "description": "Elimina destructivamente el contenido de las áreas elegidas con MuPDF y coloca cuadros negros.",
+        "terms": [
+          "censurar PDF",
+          "eliminar texto",
+          "privacidad",
+          "MuPDF"
+        ],
+        "tags": [
+          "#pdf"
+        ]
+      }
+    }
+  },
+  {
     "id": "calculator",
     "route": "/tools/calculator",
     "icon": "/tools/calculator.svg",
@@ -3711,6 +3840,285 @@ export const toolIndex: readonly ToolSearchEntry[] = [
         "tags": [
           "#calcular",
           "#comercial"
+        ]
+      }
+    }
+  },
+  {
+    "id": "convert",
+    "route": "/tools/convert",
+    "icon": "/tools/convert.svg",
+    "category": "calculator",
+    "suiteIds": [
+      "calculator"
+    ],
+    "executionMode": "local",
+    "resourceClass": "standard",
+    "worksOffline": true,
+    "input": [],
+    "output": [],
+    "auxiliary": [],
+    "locales": {
+      "de": {
+        "title": "Umrechnen",
+        "summary": "Einheiten, Winkel, Basen, Zoll und Kalender.",
+        "description": "Einheiten (Länge, Fläche, Volumen, Masse, Temperatur, Druck, Kraft, Energie, Leistung, Geschwindigkeit), Winkel, Zahlensysteme von 2 bis 36, Zollbrüche und 18 Kalender. Rechnet vollständig im Browser.",
+        "terms": [
+          "Umrechnen",
+          "Einheiten",
+          "Einheitenrechner",
+          "Umrechnung",
+          "Länge",
+          "Fläche",
+          "Volumen",
+          "Masse",
+          "Gewicht",
+          "Temperatur",
+          "Druck",
+          "Kraft",
+          "Drehmoment",
+          "Energie",
+          "Leistung",
+          "Geschwindigkeit",
+          "Winkel",
+          "Grad",
+          "Bogenmaß",
+          "Gon",
+          "Zahlensystem",
+          "Binär",
+          "Oktal",
+          "Hexadezimal",
+          "Basis",
+          "Zoll",
+          "Zollbruch",
+          "Millimeter",
+          "Maß",
+          "Kalender",
+          "Kalenderumrechnung",
+          "jüdischer Kalender",
+          "islamischer Kalender",
+          "ISO-Woche"
+        ],
+        "tags": [
+          "#rechnen",
+          "#umrechnen"
+        ]
+      },
+      "en": {
+        "title": "Convert",
+        "summary": "Units, angles, bases, inches and calendars.",
+        "description": "Units (length, area, volume, mass, temperature, pressure, force, energy, power, speed), angles, number bases from 2 to 36, inch fractions and 18 calendars. All computation stays in the browser.",
+        "terms": [
+          "convert",
+          "converter",
+          "units",
+          "unit converter",
+          "conversion",
+          "length",
+          "area",
+          "volume",
+          "mass",
+          "weight",
+          "temperature",
+          "pressure",
+          "force",
+          "torque",
+          "energy",
+          "power",
+          "speed",
+          "angle",
+          "degrees",
+          "radians",
+          "gradians",
+          "number base",
+          "binary",
+          "octal",
+          "hexadecimal",
+          "base",
+          "inch",
+          "inch fraction",
+          "millimetre",
+          "measure",
+          "calendar",
+          "calendar conversion",
+          "hebrew calendar",
+          "islamic calendar",
+          "ISO week"
+        ],
+        "tags": [
+          "#calculate",
+          "#convert"
+        ]
+      },
+      "es": {
+        "title": "Convertir",
+        "summary": "Unidades, ángulos, bases, pulgadas y calendarios.",
+        "description": "Unidades (longitud, superficie, volumen, masa, temperatura, presión, fuerza, energía, potencia, velocidad), ángulos, sistemas numéricos del 2 al 36, fracciones de pulgada y 18 calendarios. Todo el cálculo ocurre en el navegador.",
+        "terms": [
+          "convertir",
+          "unidades",
+          "conversor",
+          "conversion",
+          "longitud",
+          "superficie",
+          "volumen",
+          "masa",
+          "peso",
+          "temperatura",
+          "presion",
+          "fuerza",
+          "par",
+          "energia",
+          "potencia",
+          "velocidad",
+          "angulo",
+          "grados",
+          "radianes",
+          "gon",
+          "sistema numerico",
+          "binario",
+          "octal",
+          "hexadecimal",
+          "base",
+          "pulgada",
+          "fraccion de pulgada",
+          "milimetro",
+          "medida",
+          "calendario",
+          "conversion de calendario",
+          "calendario hebreo",
+          "calendario islamico",
+          "semana ISO"
+        ],
+        "tags": [
+          "#calcular",
+          "#convertir"
+        ]
+      }
+    }
+  },
+  {
+    "id": "datetime",
+    "route": "/tools/datetime",
+    "icon": "/tools/datetime.svg",
+    "category": "calculator",
+    "suiteIds": [
+      "calculator"
+    ],
+    "executionMode": "local",
+    "resourceClass": "standard",
+    "worksOffline": true,
+    "input": [],
+    "output": [],
+    "auxiliary": [],
+    "locales": {
+      "de": {
+        "title": "Zeit und Datum",
+        "summary": "Abstand, Arbeitstage, Fristen und Zeitdauern.",
+        "description": "Datumsabstand, Datum verschieben, Arbeitstage, Kalenderwoche und Wochentag, Fristen nach BGB und Zeitdauern für den Stundenzettel. Rechnet vollständig im Browser.",
+        "terms": [
+          "Zeit",
+          "Datum",
+          "Datumsrechner",
+          "Datumsdifferenz",
+          "Abstand",
+          "Tage",
+          "Wochen",
+          "Monate",
+          "Jahre",
+          "Arbeitstage",
+          "Werktage",
+          "Kalenderwoche",
+          "ISO-Woche",
+          "Wochentag",
+          "Frist",
+          "Fristenrechner",
+          "Fristende",
+          "Fristbeginn",
+          "BGB",
+          "Zugang",
+          "Zeitdauer",
+          "Stunden",
+          "Minuten",
+          "Stundenzettel",
+          "Arbeitszeit",
+          "Überstunden"
+        ],
+        "tags": [
+          "#rechnen",
+          "#datum"
+        ]
+      },
+      "en": {
+        "title": "Time and date",
+        "summary": "Difference, working days, deadlines and durations.",
+        "description": "Date difference, shifting dates, working days, calendar week and weekday, deadlines under the German civil code and durations for a timesheet. All computation stays in the browser.",
+        "terms": [
+          "time",
+          "date",
+          "date calculator",
+          "date difference",
+          "distance",
+          "days",
+          "weeks",
+          "months",
+          "years",
+          "working days",
+          "business days",
+          "calendar week",
+          "ISO week",
+          "weekday",
+          "deadline",
+          "deadline calculator",
+          "due date",
+          "period",
+          "notice",
+          "German civil code",
+          "duration",
+          "hours",
+          "minutes",
+          "timesheet",
+          "working time",
+          "overtime"
+        ],
+        "tags": [
+          "#calculate",
+          "#date"
+        ]
+      },
+      "es": {
+        "title": "Tiempo y fecha",
+        "summary": "Diferencia, días laborables, plazos y duraciones.",
+        "description": "Diferencia entre fechas, desplazar una fecha, días laborables, semana del calendario y día de la semana, plazos según el código civil alemán y duraciones para la hoja de horas. Todo el cálculo ocurre en el navegador.",
+        "terms": [
+          "tiempo",
+          "fecha",
+          "calculadora de fechas",
+          "diferencia de fechas",
+          "distancia",
+          "dias",
+          "semanas",
+          "meses",
+          "anos",
+          "dias laborables",
+          "dias habiles",
+          "semana del calendario",
+          "semana ISO",
+          "dia de la semana",
+          "plazo",
+          "calculadora de plazos",
+          "vencimiento",
+          "periodo",
+          "duracion",
+          "horas",
+          "minutos",
+          "hoja de horas",
+          "jornada",
+          "horas extra"
+        ],
+        "tags": [
+          "#calcular",
+          "#fecha"
         ]
       }
     }

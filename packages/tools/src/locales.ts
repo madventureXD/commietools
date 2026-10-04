@@ -19,10 +19,13 @@ import { pdfM5Messages } from './pdf/m5/locales'
 import { pdfM6Messages } from './pdf/m6/locales'
 import { pdfM7Messages } from './pdf/m7/locales'
 import { pdfM8Messages } from './pdf/m8/locales'
+import { pdfM9Messages } from './pdf/m9/locales'
 import { calculatorMessages } from './calculator/locales'
 import { calcCommonMessages } from './calculator/common/locales'
 import { commercialMessages } from './calculator/commercial/locales'
 import { geometryMessages } from './calculator/geometry/locales'
+import { convertMessages } from './calculator/convert/locales'
+import { datetimeMessages } from './calculator/datetime/locales'
 
 type MessageCatalog = Readonly<Record<string, string>>
 type PartialLocalizedMessages = Readonly<Record<string, MessageCatalog>>
@@ -59,8 +62,11 @@ export const toolMessages = mergeToolCatalogs([
   pdfM6Messages,
   pdfM7Messages,
   pdfM8Messages,
+  pdfM9Messages,
   calculatorMessages,
   calcCommonMessages,
   commercialMessages,
-  geometryMessages
+  geometryMessages,
+  convertMessages,
+  datetimeMessages
 ])

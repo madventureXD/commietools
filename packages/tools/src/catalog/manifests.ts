@@ -236,6 +236,16 @@ export const toolManifests: readonly ToolManifest[] = [
     executionMode: 'local', resourceClass: 'heavy', worksOffline: true, files: { input: ['application/pdf'] }
   },
   {
+    id: 'pdf-a-preflight', route: '/tools/pdf-a-preflight', category: 'pdf',
+    titleKey: 'tool.pdfA.title', descriptionKey: 'tool.pdfA.description', summaryKey: 'tool.pdfA.summary', termsKey: 'tool.pdfA.terms',
+    executionMode: 'local', resourceClass: 'standard', worksOffline: true, files: { input: ['application/pdf'] }
+  },
+  {
+    id: 'pdf-redact', route: '/tools/pdf-redact', category: 'pdf',
+    titleKey: 'tool.pdfRedact.title', descriptionKey: 'tool.pdfRedact.description', summaryKey: 'tool.pdfRedact.summary', termsKey: 'tool.pdfRedact.terms',
+    executionMode: 'local', resourceClass: 'heavy', worksOffline: true, files: { input: ['application/pdf'], output: ['application/pdf'] }
+  },
+  {
     id: 'calculator', route: '/tools/calculator', category: 'calculator',
     titleKey: 'tool.calculator.title', descriptionKey: 'tool.calculator.description',
     summaryKey: 'tool.calculator.summary', termsKey: 'tool.calculator.terms',
@@ -245,6 +255,18 @@ export const toolManifests: readonly ToolManifest[] = [
     id: 'commercial', route: '/tools/commercial', category: 'calculator',
     titleKey: 'tool.commercial.title', descriptionKey: 'tool.commercial.description',
     summaryKey: 'tool.commercial.summary', termsKey: 'tool.commercial.terms',
+    executionMode: 'local', resourceClass: 'standard', worksOffline: true
+  },
+  {
+    id: 'convert', route: '/tools/convert', category: 'calculator',
+    titleKey: 'tool.convert.title', descriptionKey: 'tool.convert.description',
+    summaryKey: 'tool.convert.summary', termsKey: 'tool.convert.terms',
+    executionMode: 'local', resourceClass: 'standard', worksOffline: true
+  },
+  {
+    id: 'datetime', route: '/tools/datetime', category: 'calculator',
+    titleKey: 'tool.datetime.title', descriptionKey: 'tool.datetime.description',
+    summaryKey: 'tool.datetime.summary', termsKey: 'tool.datetime.terms',
     executionMode: 'local', resourceClass: 'standard', worksOffline: true
   },
   {
@@ -260,6 +282,6 @@ export const suiteManifests: readonly SuiteManifest[] = [
   { id: 'developer', route: '/suites/developer', titleKey: 'suite.developer.title', descriptionKey: 'suite.developer.description', toolIds: ['json-formatter'] },
   { id: 'generators', route: '/suites/generators', titleKey: 'suite.generators.title', descriptionKey: 'suite.generators.description', toolIds: ['qr-code-generator'] },
   { id: 'image', route: '/suites/image', titleKey: 'suite.image.title', descriptionKey: 'suite.image.description', toolIds: ['image-metadata', 'image-resize', 'icon-generator', 'image-watermark', 'color-tools'] },
-  { id: 'pdf', route: '/suites/pdf', titleKey: 'suite.pdf.title', descriptionKey: 'suite.pdf.description', toolIds: ['pdf-viewer', 'pdf-text-ocr', 'pdf-signature-verify', 'pdf-certificate-sign', 'pdf-metadata', 'pdf-crop', 'pdf-repair', 'pdf-attachments', 'pdf-compare', 'pdf-merge', 'pdf-split', 'pdf-organize', 'images-to-pdf', 'pdf-to-images', 'pdf-watermark', 'pdf-page-numbers', 'pdf-visible-signature', 'pdf-form-fill', 'pdf-annotate', 'pdf-security', 'pdf-compress'] },
-  { id: 'calculator', route: '/suites/calculator', titleKey: 'suite.calculator.title', descriptionKey: 'suite.calculator.description', toolIds: ['calculator', 'commercial', 'geometry'] }
+  { id: 'pdf', route: '/suites/pdf', titleKey: 'suite.pdf.title', descriptionKey: 'suite.pdf.description', toolIds: ['pdf-viewer', 'pdf-text-ocr', 'pdf-signature-verify', 'pdf-certificate-sign', 'pdf-a-preflight', 'pdf-redact', 'pdf-metadata', 'pdf-crop', 'pdf-repair', 'pdf-attachments', 'pdf-compare', 'pdf-merge', 'pdf-split', 'pdf-organize', 'images-to-pdf', 'pdf-to-images', 'pdf-watermark', 'pdf-page-numbers', 'pdf-visible-signature', 'pdf-form-fill', 'pdf-annotate', 'pdf-security', 'pdf-compress'] },
+  { id: 'calculator', route: '/suites/calculator', titleKey: 'suite.calculator.title', descriptionKey: 'suite.calculator.description', toolIds: ['calculator', 'convert', 'commercial', 'datetime', 'geometry'] }
 ]

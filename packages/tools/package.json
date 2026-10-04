@@ -11,6 +11,9 @@
     "./calculator/history": "./src/calculator/history.ts",
     "./calculator/commercial": "./src/calculator/commercial.ts",
     "./calculator/geometry": "./src/calculator/geometry.ts",
+    "./calculator/units": "./src/calculator/units.ts",
+    "./calculator/dates": "./src/calculator/dates.ts",
+    "./calculator/calendars": "./src/calculator/calendars.ts",
     "./pdf/core": "./src/pdf/core.ts",
     "./pdf/m4": "./src/pdf/m4.ts",
     "./pdf/m5": "./src/pdf/m5.ts",
@@ -20,6 +23,7 @@
   },
   "dependencies": {
     "@commietools/core": "0.1.0",
+    "@js-temporal/polyfill": "^0.5.1",
     "@neslinesli93/qpdf-wasm": "^0.3.0",
     "idb-keyval": "^6.3.0",
     "mathjs": "^15.2.0",
