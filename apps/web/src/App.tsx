@@ -150,6 +150,20 @@ function ToolPage({ tool, t, locale, navigate }: { tool: ToolManifest; t: Transl
   // Fenster und kommt beim Schliessen unveraendert zurueck. Ohne Unterstuetzung
   // (Safari, mobil) verschwindet der Knopf, statt etwas Halbes anzubieten.
   const pipId = `tool-${tool.id}`
+  // Ohne brauchbare Schnittstelle wird nichts angeboten - und zwar anhand einer
+  // Pruefung, die wirklich die Faehigkeit testet. Der Hook der Bibliothek genuegt
+  // hier nicht: Er sieht das Feld als vorhanden an, auch wenn es nichts kann.
+  const unterstuetztAuskoppeln = typeof window !== 'undefined'
+    && typeof window.documentPictureInPicture?.requestWindow === 'function'
+  // Das Farbschema haengt am .app-Element im Hauptfenster. Das zweite Dokument
+  // kennt es nicht - ohne das Attribut verliert der ausgewanderte Inhalt seine
+  // Farben. Deshalb wird es beim Oeffnen mitgegeben.
+  function setzeFarbschemaImFenster() {
+    const w = window.documentPictureInPicture?.window
+    if (!w) return
+    const thema = document.querySelector('.app')?.getAttribute('data-theme') ?? 'light'
+    w.document.documentElement.setAttribute('data-theme', thema)
+  }
   // Groesse, die das Werkzeug im Hauptfenster hat, bevor es hinauswandert.
   // Kein Wert aus einem Katalog, sondern gemessen - sie stimmt auch dann, wenn
   // sich ein Werkzeug spaeter aendert.
@@ -185,12 +199,12 @@ function ToolPage({ tool, t, locale, navigate }: { tool: ToolManifest; t: Transl
   }
   // Ein Knopf, eine Stelle: Er bleibt im Hauptfenster stehen und steuert das Fenster ueber
   // die Kennung. So ist der Rueckweg immer erreichbar - auch waehrend das Werkzeug draussen ist.
-  const detachTrigger = <PipTrigger pipId={pipId} renderOpen={t('tool.detach')} renderClose={t('tool.detach.return')} openLabel={t('tool.detach')} closeLabel={t('tool.detach.return')} className="button detach" onClickCapture={merkeGroesse} />
+  const detachTrigger = <PipTrigger pipId={pipId} renderUnsupported={null} renderOpen={t('tool.detach')} renderClose={t('tool.detach.return')} openLabel={t('tool.detach')} closeLabel={t('tool.detach.return')} className="button detach" onClickCapture={merkeGroesse} />
   const detachPlaceholder = <div className="pip-placeholder stack"><p className="privacy-note">{t('tool.detach.placeholder')}</p><p>{t('tool.detach.placeholderHint')}</p></div>
   const groessenHilfe = passtGroesse === false
     ? <div className="pip-fit"><p className="scan-note">{t('tool.detach.fitHint')}</p><Button onClick={passeGroesseAn} className="detach">{t('tool.detach.fit')}</Button></div>
     : null
-  return <main className="detail-page"><button className="text-link back" onClick={() => navigate('/')}>← {t('tool.back')}</button><article className="tool-shell"><div className="tool-shell-bar">{detachTrigger}</div><PipWrapper id={pipId} fallback="none" placeholder={detachPlaceholder} onOpenChange={(offen) => { if (offen) window.setTimeout(vergleicheGroesse, 900); else setPasstGroesse(null) }}>{groessenHilfe}<header className="tool-header"><div>{icon && <span className="card-icon" aria-hidden="true" style={{ maskImage: `url(${icon})`, WebkitMaskImage: `url(${icon})` }} />}<p className="category">{t(`category.${tool.category}`)}</p><h1>{t(tool.titleKey)}</h1><p>{t(tool.descriptionKey)}</p></div><div className="tool-header-side"><LocalBadge>{t('status.local')}</LocalBadge></div></header><div className="tool-content">{content}</div></PipWrapper></article></main>
+  return <main className="detail-page"><button className="text-link back" onClick={() => navigate('/')}>← {t('tool.back')}</button><article className="tool-shell"><div className="tool-shell-bar">{unterstuetztAuskoppeln ? detachTrigger : null}</div><PipWrapper id={pipId} fallback="none" placeholder={detachPlaceholder} onOpenChange={(offen) => { if (offen) { window.setTimeout(vergleicheGroesse, 900); window.setTimeout(setzeFarbschemaImFenster, 100); } else setPasstGroesse(null) }}>{groessenHilfe}<header className="tool-header"><div>{icon && <span className="card-icon" aria-hidden="true" style={{ maskImage: `url(${icon})`, WebkitMaskImage: `url(${icon})` }} />}<p className="category">{t(`category.${tool.category}`)}</p><h1>{t(tool.titleKey)}</h1><p>{t(tool.descriptionKey)}</p></div><div className="tool-header-side"><LocalBadge>{t('status.local')}</LocalBadge></div></header><div className="tool-content">{content}</div></PipWrapper></article></main>
 }
 
 function SuitePage({ suite, t, locale, navigate }: { suite: SuiteManifest; t: Translate; locale: string; navigate: (path: string) => void }) {
@@ -216,6 +230,13 @@ export function App() {
     document.documentElement.lang = locale
     document.documentElement.dir = localeRegistry[locale].direction
   }, [locale])
+
+  // Das Farbschema auch im ausgekoppelten Fenster nachfuehren: Es haengt am
+  // .app-Element des Hauptfensters, das dort nicht existiert.
+  useEffect(() => {
+    const w = window.documentPictureInPicture?.window
+    if (w) w.document.documentElement.setAttribute('data-theme', theme)
+  }, [theme])
 
   function toggleTheme() {
     const next = theme === 'light' ? 'dark' : 'light'
