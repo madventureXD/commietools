@@ -36,6 +36,24 @@ Bedienelemente war der fertige Rechenkern für Nutzer nicht erreichbar.
   Fehlertexte** für `stackUnderflow`, `stackLeftover`, `wordRange`
 - `apps/web/src/calculator-core.test.ts` – 29 Tests (vorher 21)
 
+## Entscheidungen und Annahmen
+
+- **Vier Rechnerarten in einer Oberfläche** (Standard, wissenschaftlich, Programmierer, RPN) statt
+  vier Werkzeuge — sie teilen sich denselben Rechenkern, und ein Wechsel soll den Verlauf nicht
+  verlieren.
+- **Der Bruchmodell-Zustand verträgt den Winkelmodus nicht** — das war ein echter Fehler aus der
+  vorigen Welle, behoben in `applyAngleMode`: Der Winkelmodus wird auf das Zahlenmodell angewandt,
+  nicht auf das Bruchmodell.
+- **Der RPN-Stapel wird je Schritt sichtbar**, nicht nur das Ergebnis: `RpnStep` trägt den Stapel
+  nach dem Schritt, die Fehlerrückgabe liefert ihn mit. Ein Rechenweg ohne Zwischenstände ist kein
+  Rechenweg.
+- **Die Ergebniskarte ist tabellarisch** (`<dl>`) statt einer Zeile mit Trennzeichen — bei mehreren
+  Ausgabewerten (Wortbreite, Basis, Zweierkomplement) war die Zeile nicht lesbar.
+- **Kein `wordSize` im Ausgabeformat der Basisumrechnung:** mathjs hängt die Wortbreite als Suffix
+  an (`0xffi64`). Erst die Browserprüfung am alten Zwischenspeicher hat das aufgedeckt.
+
+*Nachtrag 2026-10-04: Dieser Abschnitt fehlte und wurde bei der Vorlagenprüfung ergänzt — der übrige Text ist unverändert.*
+
 ## Zwei echte Fehler, die diese Sitzung fand und behob
 
 1. **`toBase` zeigte `0xffi64`** — mathjs hängt bei gesetztem `wordSize` im Format die Wortbreite

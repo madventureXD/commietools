@@ -1,30 +1,45 @@
-# Rechner-Suite, Welle 5 — Mathematik (Gleichungslöser, Statistik, Funktionsplotter)
+# Übergabe: Suite „Rechnen" — Welle 5 (Gleichungslöser, Statistik, Funktionsplotter)
 
 **Datum:** 2026-10-04
-**Auftrag:** Welle 5 der Suite „Rechnen": Gleichungslöser, Statistik, Funktionsplotter.
-**Status:** fertig und im Artefakt belegt.
+**Bearbeitet durch:** Faber (Hermes Team 2), auf Anweisung von Thomas
+**Auftrag:** Thomas, 2026-10-04: „Welle 5 Go" — Fortsetzung der Rechner-Suite, parallel zur
+PDF-Arbeit von ChatGPT
+**Status:** abgeschlossen und im Artefakt geprüft — **Welle 5 ist abgenommen**
 
-## Was gebaut wurde
+## Ziel der Sitzung
 
-Drei Werkzeuge, je Sprache in drei Sprachen, mit Icons, Katalogeinträgen und Tests.
+Werkzeug 7 „Gleichungslöser", Werkzeug 6 „Statistik" und Werkzeug 5 „Funktionsplotter" der Suite
+„Rechnen" bauen — in drei Sprachen, mit Symbolen, Katalogeinträgen und Tests — und im Artefakt
+belegen.
 
-**Gleichungslöser** (`equations`) — linear, quadratisch, kubisch, jeweils mit vollständigem
-Lösungsweg: Ausgangsgleichung, Normieren, Substitution, reduzierte Form, Diskriminante,
-Cardano-Fall, Rückweg, Probe. Quadratisch zeigt zusätzlich den Scheitelpunkt. Eigene Formeln,
-kein Computeralgebra-System.
+**Abnahmekriterien der Roadmap und ihr Beleg:**
 
-**Statistik** (`statistics`) — Kennwerte einer Reihe (Anzahl, Summe, Mittelwert, Median, Modus,
-Quartile, IQR, kleinster/größter Wert, Spannweite, Varianz und Standardabweichung **in beiden
-Bezugsarten**, Ausreißergrenzen) und Regression für Wertepaare (Steigung, Achsenabschnitt,
-Korrelation, Bestimmtheitsmaß). Daneben eine Sortierung mit Rang.
+| Abnahmekriterium | Beleg |
+| --- | --- |
+| Lineare, quadratische und kubische Gleichungen mit Lösungsweg | Sechs Schritte bis zur Cardano-Fallunterscheidung; im Browser x³ − 6x² + 11x − 6 = 0 → 1 · 2 · 3, Probe 0 · 0 · 0 |
+| Statistik-Kennwerte gegen Nachrechnung | Browserlauf „1 2 3 4 abc" → Mittelwert 2,5 · IQR 1,5 · s 1,29099444874 · σ 1,11803398875; Regression y = 0,8x + 0,6, r² 0,64 — nachgerechnet |
+| Plotter mit mehreren Kurven, Wertetabelle, Nullstellen | Zwei Kurven gleichzeitig, 3 Kurvenzüge, Nullstellen −2 und 2, Wertetabelle mit 9 Zeilen |
+| Datenoptionen einzeln geprüft (`sampler`-Falle) | **Entfällt** — die Falle war eine Eigenschaft von `function-plot`, und die Engine trägt nicht (siehe unten) |
+| Bedienung auch per Tastatur | **Nicht erfüllt** — nur native Formularelemente mit Beschriftungen, kein durchgespielter Tastaturlauf; offener Punkt |
 
-**Funktionsplotter** (`plotter`) — mehrere Funktionen gleichzeitig, Wertetabelle, berechnete
-Nullstellen, Achsen mit lesbaren Schritten, heller und dunkler Modus.
+## Ergebnis
+
+Drei Werkzeuge, in drei Sprachen, mit Symbolen, Katalogeinträgen und Tests.
+
+- **Gleichungslöser** (`equations`) — linear, quadratisch, kubisch. Eigene Formeln, kein
+  Computeralgebra-System. Lösungsweg: Ausgangsgleichung, Normieren, Substitution, reduzierte Form,
+  Diskriminante, Cardano-Fall, Rückweg, Probe; quadratisch zusätzlich mit Scheitelpunkt.
+- **Statistik** (`statistics`) — Anzahl, Summe, Mittelwert, Median, Modus, Quartile (lineare
+  Interpolation, wie in Tabellenkalkulationen), IQR, kleinster/größter Wert, Spannweite, Varianz
+  und Standardabweichung **in beiden Bezugsarten** (n−1 und n), Ausreißergrenzen, Sortierung mit
+  Rang; für Wertepaare Regression mit Steigung, Achsenabschnitt, Korrelation und Bestimmtheitsmaß.
+- **Funktionsplotter** (`plotter`) — mehrere Funktionen gleichzeitig, Wertetabelle, berechnete
+  Nullstellen, Achsen mit lesbaren Schritten, heller und dunkler Modus.
 
 ## Die eine Abweichung vom Konzept — mit Grund
 
-Die Roadmap führte „zweite neue Engine: `function-plot` (MIT, ~64 KiB gzip)" und eine
-„sampler-Falle" als Prüfpunkt. **`function-plot` ist wieder entfernt.** Grund ist die
+Die Roadmap führte „zweite neue Engine: `function-plot` (MIT, ~64 KiB gzip)" und die
+`sampler`-Falle als Prüfpunkt. **`function-plot` ist wieder entfernt.** Der Grund ist die
 Lizenzprüfung, nicht der Aufwand:
 
 ```
@@ -34,86 +49,118 @@ License audit failed: interval-arithmetic uses unreviewed license expression BSL
 
 `BSL-1.0` steht in der Projektpolitik weder in der Freigabe noch in der Prüfliste. Die
 Lizenzordnung wird nicht nebenbei geändert, also trägt die Engine nicht — und damit erübrigt sich
-die sampler-Falle, denn sie war eine Eigenschaft dieser Engine.
+die `sampler`-Falle, denn sie war eine Eigenschaft dieser Engine.
 
-Stattdessen ein **eigener Zeichner**: `plotter.ts` erzeugt reine Geometrie (Kurvenzüge in
-Zeichenkoordinaten, Gitter, Beschriftungen, Nullstellen, Wertetabelle), die Oberfläche setzt
-daraus SVG zusammen. Nebeneffekte, die willkommen sind:
+Stattdessen ein **eigener Zeichner** (`packages/tools/src/calculator/plotter.ts`): Er erzeugt reine
+Geometrie (Kurvenzüge in Zeichenkoordinaten, Gitter, Beschriftungen, Nullstellen, Wertetabelle),
+die Oberfläche setzt daraus SVG zusammen. Nebeneffekte, die willkommen sind:
 
-- keine 64 KiB Engine, kein zusätzlicher Chunk, kein Vorabladen-Thema;
+- keine 64 KiB Engine, kein zusätzlicher Chunk, kein Vorablade-Thema;
 - die Zeichnung ist **ohne Browser prüfbar**, weil nur Zahlen entstehen;
 - Wertetabelle und Nullstellen rechnet derselbe Rechenkern (`calculator/core`) wie der Rechner —
   kein zweiter Ausdrucksauswerter, der anders rechnen könnte.
 
-**Wenn `BSL-1.0` in die Politik aufgenommen werden soll** (es ist eine einfache permissive
-Lizenz), ist das eine Entscheidung am Lizenzgate — dann kann `function-plot` zurückkommen. Der
-eigene Zeichner ist davon unabhängig lauffähig.
+**Wenn `BSL-1.0` in die Politik aufgenommen werden soll** (eine einfache permissive Lizenz), ist
+das eine Entscheidung am Lizenzgate — dann kann `function-plot` zurückkommen. Der eigene Zeichner
+bleibt davon unabhängig lauffähig.
 
 ## Vier echte Fehler, gefunden und behoben
 
 1. **Vorzeichen im kubischen Rückweg.** Die Kandidaten sind y-Werte der Normalform; der Rückweg
-   `x = y − B/3` stand als `y + B/3` im Code. Der Fehler fiel **nicht** auf: Die Tests für
-   Δ > 0 und Δ = 0 hatten zufällig `B = 0` (shift 0), und die Probe prüft nur, ob der gefundene
-   Wert eine Nullstelle ist — nicht, ob es die *richtige* ist. Erst der Fall mit shift ≠ 0
-   (x³ − 6x² + 11x − 6 = 0) brachte {−1, −2, −3} statt {1, 2, 3}. Jetzt wird zentral einmal
+   `x = y − B/3` stand als `y + B/3` im Code. Der Fehler fiel **nicht** auf: Die Tests für Δ > 0
+   und Δ = 0 hatten zufällig `B = 0` (Versatz 0), und die Probe prüft nur, ob der gefundene Wert
+   eine Nullstelle ist — nicht, ob es die *richtige* ist. Erst der Fall mit Versatz
+   (x³ − 6x² + 11x − 6 = 0) brachte {−1, −2, −3} statt {1, 2, 3}. Jetzt wird zentral **einmal**
    zurückgerechnet, mit Kommentar.
 2. **Exakte Rastertreffer übersehen.** Nullstellen wurden nur über `previous * current < 0`
-   erkannt. Trifft das Raster eine Wurzel exakt (f(−2) = 0, etwa bei x² − 4), ist das Produkt 0
-   und damit nicht kleiner als 0 — die Nullstelle fehlte. Jetzt werden exakte Treffer gesondert
-   erfasst.
+   erkannt. Trifft das Raster eine Wurzel exakt (f(−2) = 0, etwa bei x² − 4), ist das Produkt 0 und
+   damit nicht kleiner als 0 — die Nullstelle fehlte. Jetzt werden exakte Treffer gesondert
+   erfasst, und eine Polstellenprüfung hält `1/x` aus der Nullstellenliste heraus.
 3. **Suchbegriff-Rauschen.** „Ausbildung" in den Suchbegriffen macht „bild" zum Treffer für
-   Gleichungslöser und Plotter (Teilwortsuche). Der vorhandene Test
-   „keeps the catalogue order when scores are equal" hat es gemeldet; die Begriffe heißen jetzt
-   „Berufsschule".
+   Gleichungslöser und Plotter (Teilwortsuche). Der vorhandene Test „keeps the catalogue order when
+   scores are equal" hat es gemeldet; die Begriffe heißen jetzt „Berufsschule".
 4. **Lesbare Formeln.** „x = y − B/3 = y − -2" und „x³ + (-6)x² + (11)x + (-6) = 0" waren formal
    richtig und schlecht zu lesen. Jetzt `shiftText` („y + 2") und `polynomialText`
    („x³ − 6x² + 11x − 6 = 0").
 
-## Messwerte
+## Geänderte Bereiche
 
-| Größe | vorher (Welle 4) | jetzt |
+- `packages/tools/src/calculator/equations.ts` — neu, Gleichungslöser (272 Zeilen)
+- `packages/tools/src/calculator/statistics.ts` — neu, Kennwerte und Regression (197 Zeilen)
+- `packages/tools/src/calculator/plotter.ts` — neu, eigener Zeichner (Geometrie, Wertetabelle,
+  Nullstellen)
+- `packages/tools/src/calculator/{equations,statistics,plotter}/locales/{de,en,es,index}.ts` — neu,
+  je drei Sprachen
+- `packages/tools/src/locales.ts` — neun Sprachkataloge registriert
+- `packages/tools/package.json` — Exporte für die drei neuen Kernmodule
+- `packages/tools/src/catalog/manifests.ts` — drei Werkzeuge, Suite-Werkzeugliste erweitert
+- `packages/tools/src/catalog/toolIndex.ts` — erzeugt: 40 Werkzeuge / 3 Sprachen / 2646 Begriffe
+- `apps/web/src/tools/{Equations,Statistics,Plotter}.tsx` — neu, Oberflächen
+- `apps/web/src/math-tools.test.ts` — neu, 33 Tests für die drei Kerne
+- `apps/web/public/tools/{equations,statistics,plotter}.svg` — neu, Symbole
+- `apps/web/src/App.tsx`, `apps/web/src/styles.css` — Routen und Zeichenfläche (geteilte Dateien)
+- `apps/web/vite.config.ts` — Plotter-Chunk wieder entfernt (mit der Engine entfiel er)
+
+## Entscheidungen und Annahmen
+
+- **Eigener Zeichner statt `function-plot`** — die mitgezogene `BSL-1.0`-Abhängigkeit trägt nicht,
+  und die Lizenzordnung wird nicht nebenbei geändert.
+- **Wertetabelle und Nullstellen über den Rechenkern**, nicht über einen zweiten Auswerter — sonst
+  gäbe es zwei Rechenwege für denselben Ausdruck, die sich unterscheiden können.
+- **Quartile nach linearer Interpolation** (Typ 7, wie `QUANTIL` in Tabellenkalkulationen) — es
+  gibt mehrere übliche Verfahren, diese Wahl ist eine **Annahme** und steht im Werkzeug als solche
+  beschriftet.
+- **Varianz und Standardabweichung in beiden Bezugsarten** werden gezeigt statt eine auszuwählen —
+  der häufigste Stolperstein beim Nachrechnen.
+- **Kubische Wurzeln in Gleitkomma mit Newton-Polierung** statt exakt: Die Probe zeigt Beträge
+  unter 1e-6, eine Fehlerschranke über viele Gleichungen ist **nicht** gemessen (siehe offene
+  Punkte).
+
+## Prüfungen
+
+| Prüfung | Ergebnis |
+| --- | --- |
+| `npm run check` (Lizenz, Katalog, Typen, Tests) | bestanden — 522 Lizenzpakete, 40 Werkzeuge / 3 Sprachen / 40 Symbole / 89 Dateitypen, 281 Tests in 15 Dateien |
+| `npm run build` | bestanden |
+| `npm run bundle-audit` | bestanden — Startbündel 226.708 B gzip (Budget 250 KiB), Rechenkern 102.437 B (Gate 110 KiB) |
+| Artefaktprüfung im Browser (Edge headless über CDP, Port 4174) | bestanden — `C:\hermes-team2\tmp\ct-verify\verify_welle5.py`, Service Worker und Vorabcache umgangen |
+| Anzeige in dunkel und schmal (390 px) | bestanden |
+
+Messwerte gegen die vorige Welle:
+
+| Größe | Welle 4 | Welle 5 |
 | --- | --- | --- |
 | Tests | 248 in 14 Dateien | **281 in 15 Dateien** |
-| Katalog | 37 Werkzeuge / 89 Dateitypen | **40 Werkzeuge / 40 Icons / 89 Dateitypen** |
+| Katalog | 37 Werkzeuge / 89 Dateitypen | **40 Werkzeuge / 40 Symbole / 2646 Begriffe / 89 Dateitypen** |
 | Lizenzen | 522 Pakete | **522 Pakete** (function-plot samt Anhang wieder entfernt) |
-| Startbündel | 216.392 B gzip | **226.708 B gzip** (Budget 250 KiB) |
-| Rechenkern | 102.437 B | **102.437 B** (Gate 110 KiB) |
-| Vorabladen | 56 Einträge | **62 Einträge (2363,60 KiB)** |
+| Startbündel | 216.392 B gzip | **226.708 B gzip** (+10,3 kB) |
+| Rechenkern | 102.437 B | **102.437 B** |
+| Vorabladen | 56 Einträge | **62 Einträge (2363,44 KiB)** |
 
-Der Katalog steht bei 2646 Suchbegriffen. **Das Startbündel ist um 10,3 kB gewachsen** — siehe
-offene Punkte.
+## Offene Punkte und Risiken
 
-## Artefaktprüfung (Edge headless, Port 4174, Build aus dem Arbeitsbaum)
+- [ ] **Startbündel-Reserve schrumpft auf ~29 kB:** 191.327 → 206.547 → 226.708 B gzip. Eine
+  weitere Welle dieser Größe reißt das Budget von 250 KiB. **Vor Welle 6 fällig:** Sprachdateien
+  und/oder Register abgerufen mit Ladezustand statt im Startcode.
+- [ ] **Tastaturbedienung nicht durchgespielt** — Teil der Welle-5-Abnahme und bislang offen.
+- [ ] **Keine Fehlerschranke für die kubischen Wurzeln** — nur Einzelproben unter 1e-6.
+- [ ] **`BSL-1.0` nicht bewertet** — Entscheidung liegt bei Thomas; bis dahin bleibt der eigene
+  Zeichner.
+- [ ] **`bundle:check` läuft nur von Hand** — ein Zuwachs fällt erst beim Nachmessen auf, nicht im
+  Prüflauf.
 
-Skript `C:\hermes-team2\tmp\ct-verify\verify_welle5.py`; Service Worker umgangen, Vorab-Cache
-deaktiviert.
+## Empfohlener nächster Schritt
 
-- **Gleichungslöser, kubisch** x³ − 6x² + 11x − 6 = 0 → „x = 1 · x = 2 · x = 3",
-  Δ = −0,037037037037, Probe „0 · 0 · 0"; sechs Schritte bis zur Cardano-Fallunterscheidung
-  sichtbar (`casus irreducibilis`).
-- **Statistik** „1 2 3 4 abc" → Anzahl 4, Summe 10, Mittelwert 2,5, Median 2,5, IQR 1,5,
-  σ (Grundgesamtheit) 1,11803398875, s (Stichprobe) 1,29099444874, Varianzen 1,25 und
-  1,66666666667, Ausreißergrenzen −0,5 und 5,5; gemeldet: „Nicht gelesen (übersprungen): abc".
-- **Regression** (1,1) (2,3) (3,2) (4,5) (5,4) → Steigung 0,8, Achsenabschnitt 0,6,
-  r = 0,8, r² = 0,64 (gegen Nachrechnung geprüft).
-- **Plotter** „x^2 - 4" und „1/x" über −4…4 → SVG vorhanden, **3 Kurvenzüge** (x² − 4 in einem
-  Zug, 1/x in zwei Ästen), 16 Achsenlinien, Nullstellen „x = −2" und „x = 2" — die Polstelle von
-  1/x wird **nicht** als Nullstelle gemeldet; Wertetabelle mit 9 Zeilen.
-- **Dunkel und schmal** (390 px): Thema wechselt, Zeichnung bleibt.
+1. **Vor Welle 6 das Startbündel entspannen** (Sprachdateien und Register abgerufen, mit
+   Ladezustand) — sonst reißt die nächste Welle das Budget.
+2. Danach **Welle 6 (Aufmaß)**: Aufmaßzeilen und Positionen getrennt, eigener Speicherbereich,
+   Ausgabe CSV/PDF/Text, sichtbare Rechenwege.
+3. Nebenbei entscheiden, ob `BSL-1.0` in `licenses/policy.json` aufgenommen wird.
 
-## Nicht geprüft
+## Git
 
-- Die Tastaturbedienung ist nicht im Artefakt durchgespielt (die Abnahme nennt sie). Die
-  Formulare sind native `form`/`input`-Elemente mit Beschriftungen; ein automatisierter
-  Tastaturlauf fehlt weiterhin (steht schon in den offenen Punkten).
-- Rechengenauigkeit der kubischen Wurzeln jenseits der Proben: Cardano und die trigonometrische
-  Form rechnen in Gleitkomma, danach poliert ein Newton-Schritt. Die Probe zeigt Beträge unter
-  1e-6, eine Fehlerschranke über viele Gleichungen hinweg ist **nicht** gemessen.
-
-## Commits
-
-`Welle 5` — Code; dazu die Doku in einem zweiten Commit. Geteilte Dateien (`App.tsx`,
-`manifests.ts`, generierter Katalog, `styles.css`, `vite.config.ts`, `tool-catalog.test.ts`) sind
-mitgenommen, weil sie die parallele PDF-Arbeit bereits enthalten; deren Quelldateien
-(`pdf/m5.ts`, `pdf/m8.ts`, `pdfUi.tsx`, PDF-Tests, PDF-Komponenten) sind **unangetastet** und
-nicht committet.
+- Commits: `cb3045c` (Welle 5, Code) und `a8ee4b8` (Wortlaut und Doku) — **nicht gepusht**
+- Geteilte Dateien (`App.tsx`, `manifests.ts`, generierter Katalog, `styles.css`, `vite.config.ts`,
+  `tool-catalog.test.ts`) sind mitgenommen, weil sie die parallele PDF-Arbeit bereits enthalten;
+  deren Quelldateien (`pdf/m5.ts`, `pdf/m8.ts`, `pdfUi.tsx`, PDF-Tests, PDF-Komponenten) sind
+  **unangetastet** und nicht committet.

@@ -4,6 +4,16 @@
 **Bearbeitet durch:** Faber (Hermes Agent, Rolle: Werkzeuge und Kontrolle)
 **Status:** abgeschlossen und im Artefakt geprüft — **Welle 4 ist abgenommen**
 
+## Ziel der Sitzung
+
+Werkzeug 2 „Umrechnen" und Werkzeug 4 „Zeit und Datum" der Suite „Rechnen" bauen: Einheiten in
+zwölf Größen, Winkel, Zahlensysteme 2–36, Zollbrüche und 18 Kalender; Datumsabstand, Verschieben
+über Monats- und Jahresgrenzen, Arbeitstage, Kalenderwoche nach ISO 8601, Fristen nach
+BGB §§ 187/188/193 und Zeitdauern für den Stundenzettel — in drei Sprachen, mit Symbolen,
+Katalogeinträgen und Tests, im Artefakt belegt.
+
+*Nachtrag 2026-10-04: Dieser Abschnitt fehlte und wurde bei der Vorlagenprüfung ergänzt — der übrige Text ist unverändert.*
+
 ## Ergebnis
 
 **Umrechnen (`convert`)** — fünf Arten in einem Werkzeug:
@@ -24,6 +34,28 @@
 - Kalenderwoche nach ISO 8601 mit Wochentag, Tag im Jahr, Schaltjahr
 - **Fristen nach BGB** §§ 187, 188, 193
 - Zeitdauern für den Stundenzettel (`1:30`, `1,5h`, `90min`, `2h 15m`)
+
+## Geänderte Bereiche
+
+- `packages/tools/src/calculator/units.ts` — Einheitenumrechnung, Winkel, Zahlensysteme 2–36 in
+  `BigInt`, Zollbrüche (über die mathjs-Unit-API statt über den Parser)
+- `packages/tools/src/calculator/calendars.ts` — 18 Kalender, Anzeige über `Intl`, Rückweg über
+  `Temporal` mit `monthCode`
+- `packages/tools/src/calculator/dates.ts` — Datumsabstand, Verschieben, Arbeitstage, ISO-Woche,
+  Fristen nach BGB §§ 187/188/193
+- `packages/tools/src/calculator/{convert,datetime}/locales/{de,en,es,index}.ts` — neu
+- `packages/tools/src/locales.ts` — Registrierung
+- `packages/tools/package.json` — Exporte `./calculator/{units,calendars,dates}` und die
+  Abhängigkeit `@js-temporal/polyfill@0.5.1`
+- `packages/tools/src/catalog/manifests.ts` — Werkzeuge `convert` und `datetime`, Suite-Liste
+- `packages/tools/src/catalog/toolIndex.ts` — erzeugt
+- `apps/web/src/tools/{Convert,DateTime}.tsx` — neu, Oberflächen
+- `apps/web/src/convert-datetime.test.ts` — neu, 28 Tests
+- `apps/web/public/tools/{convert,datetime}.svg` — neu, Symbole
+- `apps/web/src/App.tsx` — Routen, `apps/web/vite.config.ts` — `temporal-*.js` aus dem Vorabcache
+  ausgenommen und als Laufzeit-Chunk geführt
+
+*Nachtrag 2026-10-04: Dieser Abschnitt fehlte und wurde bei der Vorlagenprüfung ergänzt — der übrige Text ist unverändert.*
 
 ## Entscheidungen — und warum
 
