@@ -126,3 +126,12 @@ Punkte stehen in `01-stand/offene-punkte.md` und im Fortschrittsprotokoll.
   `ba0647e` · `73847de` · `467b45c` · `e948954` (M3–M5 und Übergaben) · M7 (dieser Commit)
 - Arbeitsbaum: sauber bis auf `COPYRIGHT`/`LICENSE` (Zeilenenden-Artefakt, Inhalt identisch)
 - **Nicht gepusht** — alle Commits dieses Vorhabens liegen lokal vor `origin/main`.
+
+## Zusatz 2026-10-04 (nach dem Schreiben dieser Übergabe) — der Commit ist gesetzt
+
+*Ergänzt, nichts überschrieben.*
+
+Der Dokumentationssatz wurde als **`3548b17`** commitet („docs(desktop): document the detach rules in
+the UI system and close M7") — sechs Dateien, 267 Einfügungen, **kein Code**: geprüft mit
+`git show --stat` über den Inhalt des Commits, nicht nur über die Dateiliste. Arbeitsbaum danach:
+sauber bis auf `COPYRIGHT`/`LICENSE` (Zeilenenden-Artefakt, `git diff` leer). **Nicht gepusht.**

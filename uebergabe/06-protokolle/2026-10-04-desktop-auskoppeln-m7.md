@@ -45,9 +45,10 @@ wurden der bestehende Stand, seine Dokumentation und die Pflichtprüfungen.
 
 ## Relevante Verweise
 
-- Commit: dieser Schritt (Dokumentation) — Hash im Git-Abschnitt der Übergabe
+- Commit: `3548b17` — „docs(desktop): document the detach rules in the UI system and close M7"
 - Konzept: `uebergabe/03-konzepte/2026-10-04-desktop-auskoppeln.md` (Arbeitspakete M0–M7)
-- ADR: `0007-pip-it-up-auskoppeln.md`, `0008-lizenzfeld-fehlt-bei-pip-it-up.md`
+- ADR: `uebergabe/04-entscheidungen/0007-pip-it-up-auskoppeln.md`,
+  `uebergabe/04-entscheidungen/0008-lizenzfeld-fehlt-bei-pip-it-up.md`
 - Übergabe: `uebergabe/05-uebergaben/2026-10-04-desktop-auskoppeln-m7.md`
 
 ## Folgemaßnahmen
