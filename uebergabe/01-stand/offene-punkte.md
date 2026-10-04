@@ -54,10 +54,11 @@ Diese Liste enthält bestätigte, noch nicht abgeschlossene Arbeit. Details geh�
 
 ## Später / bei konkretem Bedarf
 
-- [ ] **Werkzeuge in ein eigenes Fenster auskoppeln** (Desktop-Erfahrung). M0 am 2026-10-04
-  abgeschlossen: Machbarkeit belegt, aber die Fenstergröße folgt in Edge 154 der Größe des
-  öffnenden Fensters statt der Anforderung. Konzept und Entscheidungen folgen in M1
-  (`05-uebergaben/2026-10-04-desktop-auskoppeln-m0.md`).
+- [x] **Werkzeuge in ein eigenes Fenster auskoppeln** (Desktop-Erfahrung). M0–M5 am 2026-10-04
+  abgeschlossen: Auskoppeln funktioniert mit Zustandserhalt in beide Richtungen, Größen-Hilfe im
+  Fenster, Ehrlichkeits- und Farbschema-Nachweis; **41 von 41 Werkzeug-Routen belegt**. Offen:
+  Firefox-Messung, Desktop-Breiten, `docs/ui-system.md`
+  (`05-uebergaben/2026-10-04-desktop-auskoppeln-m3-m5.md`).
 - [ ] Speicheradapter für persistente lokale Nutzerdaten definieren.
 - [ ] Bei wachsender Werkzeug- und Sprachenzahl den Bundlezuwachs des Registers messen; Ausweg ist eine abgerufene Registerdatei mit Ladezustand.
 - [ ] Desktop- und Mobile-Shells evaluieren. *(2026-10-04: Das Auskoppeln ist der erste Teil davon;
