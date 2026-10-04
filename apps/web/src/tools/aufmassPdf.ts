@@ -26,20 +26,47 @@ export interface AufmassPdfLabels {
   readonly totals: string
 }
 
-/** Alles außerhalb von WinAnsi durch `?` ersetzen — keine kaputte Datei, keine stille Lüge. */
+/**
+ * Zeichen außerhalb von WinAnsi ersetzen — keine kaputte Datei, keine stille Lüge.
+ *
+ * WinAnsi ist nicht Latin-1: Der Bereich 0x80–0x9F ist belegt (CP1252). Diese Codes roh
+ * durchzureichen scheitert jedoch an `pdf-lib`, das die Standardfont selbst kodiert — ein
+ * Versuch mit `String.fromCharCode(0x97)` für den Gedankenstrich hat die Erzeugung sofort
+ * abgebrochen. Deshalb wird auf **sichtbare ASCII-Entsprechungen** abgebildet: Der Titel
+ * „Bad EG — Nord" steht dann als „Bad EG - Nord" im PDF, nicht als „Bad EG ? Nord".
+ */
+const TRANSLITERATION: Readonly<Record<string, string>> = {
+  '—': '-', '–': '-', '−': '-', '…': '...', '•': '*', '·': '*',
+  '„': '"', '“': '"', '”': '"', '‚': "'", '‘': "'", '’': "'", '´': "'",
+  '€': 'EUR', '‰': 'o/oo', '™': '(TM)', 'Š': 'S', 'š': 's', 'Ž': 'Z', 'ž': 'z',
+  'Œ': 'OE', 'œ': 'oe', 'Ÿ': 'Y', '†': '+', '‡': '++', 'ˆ': '^'
+}
+
 function winAnsi(text: string): string {
   let result = ''
   for (const character of text) {
-    result += (character.codePointAt(0) ?? 0) <= 0xff ? character : '?'
+    const code = character.codePointAt(0) ?? 0
+    if (code <= 0xff && !(code >= 0x80 && code <= 0x9f)) {
+      result += character
+      continue
+    }
+    result += TRANSLITERATION[character] ?? '?'
   }
   return result
 }
 
-/** Zahl in der Schreibweise der Sprache, ohne Tausenderzeichen in der Datei. */
+/** Maßzahl mit drei Nachkommastellen — dieselbe Genauigkeit wie in der Oberfläche. */
+function measure(text: string, locale: string): string {
+  const value = Number(text)
+  if (!Number.isFinite(value)) return text
+  return new Intl.NumberFormat(locale, { minimumFractionDigits: 3, maximumFractionDigits: 3 }).format(value)
+}
+
+/** Geldbetrag mit zwei Nachkommastellen; ohne Tausenderzeichen, damit die Datei ruhig bleibt. */
 function number(text: string, locale: string): string {
   const value = Number(text)
   if (!Number.isFinite(value)) return text
-  return new Intl.NumberFormat(locale, { minimumFractionDigits: 2, maximumFractionDigits: 3 }).format(value)
+  return new Intl.NumberFormat(locale, { minimumFractionDigits: 2, maximumFractionDigits: 2, useGrouping: false }).format(value)
 }
 
 export async function buildAufmassPdf(
@@ -92,14 +119,14 @@ export async function buildAufmassPdf(
     ensure(lineHeight * 3)
     write(section.label || labels.rows, 12, true)
     for (const row of section.rows) {
-      const value = row.display ? ` = ${number(row.display, locale)} ${unitLabel(row.unit)}` : ''
+      const value = row.display ? ` = ${measure(row.display, locale)} ${unitLabel(row.unit)}` : ''
       write(`${row.label}: ${row.expression}${value}`, 10, false, 12)
     }
     for (const position of section.positions) {
       const from = position.sourceExpression ? ` (${position.sourceExpression})` : ''
       const amount = position.amountDisplay ? number(position.amountDisplay, locale) : '—'
       write(
-        `${position.label}: ${number(position.quantityDisplay, locale)} ${unitLabel(position.unit)}${from} × ${number(position.unitPrice, locale)} = ${amount}`,
+        `${position.label}: ${measure(position.quantityDisplay, locale)} ${unitLabel(position.unit)}${from} × ${number(position.unitPrice, locale)} = ${amount}`,
         10,
         false,
         12
@@ -110,7 +137,7 @@ export async function buildAufmassPdf(
   }
 
   const quantities = (Object.keys(document.totalsByUnit) as MeasureUnit[])
-    .map((unit) => `${number(document.totalsByUnit[unit] ?? '', locale)} ${unitLabel(unit)}`)
+    .map((unit) => `${measure(document.totalsByUnit[unit] ?? '', locale)} ${unitLabel(unit)}`)
     .join('   ')
   if (quantities) {
     ensure(lineHeight * 2)
