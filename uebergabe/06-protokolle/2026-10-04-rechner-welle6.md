@@ -42,7 +42,7 @@ Handwerker-Vorschläge.
 
 ## Relevante Verweise
 
-- Commit/PR: `7121281` (Welle 6, Code); Dokumentations-Commit folgt unmittelbar danach
+- Commit/PR: `7121281` (Welle 6, Code), `3739f69` (PDF-Ausgabe), `c758284` (Wortlaut und Doku)
 - Konzept: `03-konzepte/2026-10-03-taschenrechner-suite.md` (Entwurf Werkzeug 9),
   `03-konzepte/2026-10-03-handwerkerwerkzeuge.md` (Nachtrag zur Klassenzuordnung)
 - ADR: keines — es wurde keine neue Abhängigkeit aufgenommen und keine Architekturfrage

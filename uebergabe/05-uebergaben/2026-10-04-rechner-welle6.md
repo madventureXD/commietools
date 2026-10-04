@@ -157,9 +157,12 @@ Klammern, Punkt vor Strich) keinen Gegenwert gebracht. Dieselbe Rechentechnik wi
 
 ## Git
 
-- Commit: `7121281` (Welle 6, Code) und der Dokumentations-Commit
+- Commits: `7121281` (Welle 6, Code) · `3739f69` (PDF-Ausgabe der Welle) · `c758284` (Wortlaut und Doku)
+- **Nicht gepusht.** `main` löst das Cloudflare-Pages-Deployment aus.
 - Arbeitsbaum: Der Commit enthält **nur** die Dateien dieser Welle. Die Änderungen des laufenden
   Umbaus (App-Shell, `packages/i18n`, `docs/`, `scripts/`, Sprachpakete) lagen bereits
   uncommittet im Baum und wurden **nicht** mitgenommen; die erzeugten Katalogpakete unter
   `catalog/generated/` gehören zum Werkzeug und sind enthalten.
-- **Nicht gepusht.** `main` löst das Cloudflare-Pages-Deployment aus.
+- *Hinweis zur Nachvollziehbarkeit:* Die Hashangaben in diesem Abschnitt und im
+  Fortschrittsprotokoll wurden **nach** dem Dokumentations-Commit nachgetragen; der Nachtrag
+  selbst ist der letzte Commit dieser Sitzung.
