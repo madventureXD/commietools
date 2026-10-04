@@ -28,6 +28,10 @@ function sha256(value) {
   return createHash('sha256').update(value).digest('hex')
 }
 
+function canonicalText(value) {
+  return value.replace(/\r\n/gu, '\n')
+}
+
 function packageNameFromPath(path) {
   const tail = path.split('node_modules/').at(-1)
   if (!tail) return ''
@@ -165,7 +169,9 @@ function buildRegistry() {
       license: policy.projectLicense,
       source: 'LICENSE'
     },
-    lockfileSha256: sha256(lockText),
+    // Git may materialise the same lockfile with CRLF or LF depending on the checkout.
+    // Hash its canonical text so a clean Windows worktree verifies the committed registry.
+    lockfileSha256: sha256(canonicalText(lockText)),
     policy: {
       allowedExpressions: [...policy.allowedExpressions].sort(),
       reviewRequired: [...policy.reviewRequired].sort()
@@ -227,7 +233,7 @@ if (mode === 'generate') {
 } else if (mode === 'check') {
   for (const [path, expected] of [[registryPath, registryText], [publicRegistryPath, registryText], [noticesPath, noticesText], [licensePath, `${projectLicenseText}\n`], [copyrightPath, copyrightText]]) {
     if (!existsSync(path)) fail(`missing generated file ${path.slice(root.length + 1)}`)
-    if (readFileSync(path, 'utf8') !== expected) fail(`${path.slice(root.length + 1)} is incomplete or stale; run npm run licenses:generate`)
+    if (canonicalText(readFileSync(path, 'utf8')) !== canonicalText(expected)) fail(`${path.slice(root.length + 1)} is incomplete or stale; run npm run licenses:generate`)
   }
   console.log(`License audit passed: ${registry.summary.packages} packages, ${registry.summary.licenseIds.length} complete license texts, ${Object.keys(registry.documents).length} preserved package documents.`)
 } else {

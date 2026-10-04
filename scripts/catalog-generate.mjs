@@ -236,6 +236,7 @@ const messageLoaderCases = languages.map((language) => `  ${JSON.stringify(langu
 const loadersText = `${banner}import type { ToolSearchEntry } from '@commietools/core'\nimport { toolIndex } from '../toolIndex'\n\nconst searchLoaders = {\n${loaderCases}\n} as const\nconst messageLoaders = {\n${messageLoaderCases}\n} as const\nexport type GeneratedLocale = keyof typeof searchLoaders\nconst searchCache = new Map<string, Promise<readonly ToolSearchEntry[]>>()\nconst messageCache = new Map<string, Promise<Readonly<Record<string, Readonly<Record<string, string>>>>>>()\n\nexport function loadToolSearchIndex(locale: GeneratedLocale): Promise<readonly ToolSearchEntry[]> {\n  const key = locale === 'en' ? 'en' : \`\${locale}+en\`\n  const cached = searchCache.get(key); if (cached) return cached\n  const promise = Promise.all([searchLoaders.en(), locale === 'en' ? searchLoaders.en() : searchLoaders[locale]()]).then(([english, selected]) => toolIndex.map((entry) => ({ ...entry, locales: locale === 'en' ? { en: english.searchLocale[entry.id]! } : { [locale]: selected.searchLocale[entry.id]!, en: english.searchLocale[entry.id]! } })))\n  searchCache.set(key, promise); return promise\n}\n\nexport function loadToolMessages(locale: GeneratedLocale): Promise<Readonly<Record<string, Readonly<Record<string, string>>>>> {\n  const key = locale === 'en' ? 'en' : \`\${locale}+en\`\n  const cached = messageCache.get(key); if (cached) return cached\n  const promise = Promise.all([messageLoaders.en(), locale === 'en' ? messageLoaders.en() : messageLoaders[locale]()]).then(([english, selected]) => locale === 'en' ? { en: english.messages } : { en: english.messages, [locale]: selected.messages })\n  messageCache.set(key, promise); return promise\n}\n`
 
 const declaredFileTypes = (entry) => entry.input.length + entry.output.length + entry.auxiliary.reduce((total, extra) => total + extra.mimeTypes.length, 0)
+const canonicalText = (value) => value.replace(/\r\n/gu, '\n')
 
 if (mode === 'generate') {
   mkdirSync(searchDir, { recursive: true }); mkdirSync(messagesDir, { recursive: true })
@@ -247,8 +248,8 @@ if (mode === 'generate') {
   console.log(`${entries.length} tools, ${languages.length} languages (${languages.join(', ')}), ${termCount} search terms, ${entries.reduce((total, entry) => total + declaredFileTypes(entry), 0)} declared file types`)
 } else if (mode === 'check') {
   if (!existsSync(outputPath)) fail(`${toPosix(outputPath)} is missing - run npm run catalog:generate`)
-  const current = readFileSync(outputPath, 'utf8')
-  if (current !== fileText) {
+  const current = canonicalText(readFileSync(outputPath, 'utf8'))
+  if (current !== canonicalText(fileText)) {
     const currentLines = current.split('\n')
     const expectedLines = fileText.split('\n')
     const index = currentLines.findIndex((line, position) => line !== expectedLines[position])
@@ -259,10 +260,10 @@ if (mode === 'generate') {
   }
   for (const language of languages) {
     for (const [path, expected] of [[join(searchDir, `${language}.ts`), searchFiles[language]], [join(messagesDir, `${language}.ts`), messageFiles[language]]]) {
-      if (!existsSync(path) || readFileSync(path, 'utf8') !== expected) fail(`${toPosix(path)} is out of date - run npm run catalog:generate`)
+      if (!existsSync(path) || canonicalText(readFileSync(path, 'utf8')) !== canonicalText(expected)) fail(`${toPosix(path)} is out of date - run npm run catalog:generate`)
     }
   }
-  if (!existsSync(loadersPath) || readFileSync(loadersPath, 'utf8') !== loadersText) fail(`${toPosix(loadersPath)} is out of date - run npm run catalog:generate`)
+  if (!existsSync(loadersPath) || canonicalText(readFileSync(loadersPath, 'utf8')) !== canonicalText(loadersText)) fail(`${toPosix(loadersPath)} is out of date - run npm run catalog:generate`)
   console.log(`Catalogue check passed: ${entries.length} tools, ${languages.length} languages (${languages.join(', ')}), ${entries.length} icons, ${entries.reduce((total, entry) => total + declaredFileTypes(entry), 0)} declared file types`)
 } else {
   fail(`unknown mode "${mode}" - use generate or check`)

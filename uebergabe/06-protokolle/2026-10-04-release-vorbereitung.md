@@ -11,6 +11,10 @@
   Tabellen werden als solche erkannt.
 - Alle 41 Werkzeugrouten bestehen den 320-px-Lauf.
 - Das bereits online sichtbare Impressum bleibt unverändert; Anschrift und Kontakt sind vorhanden.
+- Die saubere Checkout-Prüfung deckte zeilenendenabhängige Vergleiche in Lizenz- und
+  Katalogprüfung auf. Hashes und generierte Texte werden nun als kanonischer LF-Text verglichen,
+  damit derselbe Commit unter Windows mit CRLF und in einem frischen Checkout mit LF identisch
+  geprüft wird.
 
 ## Noch auszuführen
 
