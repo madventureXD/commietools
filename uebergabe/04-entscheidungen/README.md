@@ -19,6 +19,7 @@ Wird eine Entscheidung ersetzt, bleiben beide Dateien erhalten und verweisen geg
 - [`0004-m7-signatur-sicherheitsgate.md`](0004-m7-signatur-sicherheitsgate.md): Kryptografische PDF-Signaturen bleiben bis zu einer sicher prüfbaren Browser-Engine gesperrt — angenommen.
 - [`0005-mathjs-rechenkern.md`](0005-mathjs-rechenkern.md): mathjs aus kuratierten Factories als Rechenkern der Suite „Rechnen" — angenommen.
 - [`0006-voller-wert-und-genauigkeitsampel.md`](0006-voller-wert-und-genauigkeitsampel.md): Der Rechenkern gibt den vollen Wert getrennt aus; die Genauigkeitsampel vergleicht Zeichenketten — angenommen.
+- [`0007-pip-it-up-auskoppeln.md`](0007-pip-it-up-auskoppeln.md): `@pip-it-up/core` (MIT) trägt das Auskoppeln von Werkzeugen in ein eigenes Fenster — angenommen.
 
 Die allgemeine Architekturgrundlage ist in [`../../docs/architecture.md`](../../docs/architecture.md) dokumentiert.
 

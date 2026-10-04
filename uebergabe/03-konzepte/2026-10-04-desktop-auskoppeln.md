@@ -108,17 +108,20 @@ ein Fork bleibt jederzeit möglich. Beides gehört in den Aufnahme-ADR.
 | M7 | Dokumentation und Übergabe | `docs/ui-system.md` fortschreiben, Stand, Übergabe | Abschnittsprüfung grün |
 
 **Offen und ehrlich:** Aufwände in Sitzungen nenne ich erst nach M3. Der teure Einzelschritt ist M3
-(er entscheidet über die Portal-Frage); M5 skaliert mit den Werkzeugen, die sich eignen — das ist
-Gegenstand der Entscheidung unten.
+(er entscheidet über die Portal-Frage); M5 skaliert mit den Werkzeugen, für die sich das Auskoppeln
+tatsächlich eignet — welche das sind, wird in M5 einzeln entschieden.
 
-## Entscheidungen, die Thomas treffen muss
+## Getroffene Entscheidungen (2026-10-04, Thomas)
 
-Die folgenden vier Punkte sind Produktentscheidungen. Meine Empfehlung steht jeweils dabei, die
-Begründung liegt im Text dieses Konzepts.
+1. **Reichweite: nur Werkzeugseiten.** Der Katalog ist Durchgang, kein Arbeitsplatz; ihn
+   einzubeziehen würde den Umbau verdoppeln.
+2. **Ersetzen, nicht spiegeln.** Das Hauptfenster zeigt einen Platzhalter mit dem Hinweis, dass das
+   Werkzeug im eigenen Fenster läuft, und eine Möglichkeit zum Zurückholen. Begründung: eine
+   Instanz, ein Zustand, ein Rechenlauf — und damit auch nur eine Stelle, an der Eingaben liegen.
+3. **Ohne Vordergrund wird nichts angeboten.** Wo die Schnittstelle fehlt (Safari, mobil), erscheint
+   kein Auskoppel-Knopf. Ein Knopf, der etwas Halbes liefert, ist schlechter als keiner.
+4. **Die Bibliothek wird aufgenommen** (`@pip-it-up/core`, MIT). Festgehalten in
+   [`../04-entscheidungen/0007-pip-it-up-auskoppeln.md`](../04-entscheidungen/0007-pip-it-up-auskoppeln.md).
 
-1. **Reichweite** — nur Werkzeugseiten oder auch Katalog und Suche auskoppelbar?
-2. **Ersetzen oder Spiegeln** — läuft das Werkzeug im Hauptfenster als Platzhalter weiter (Ersetzen),
-   oder zeigen beide Fenster dasselbe (Spiegeln)?
-3. **Verhalten ohne Vordergrund** (Safari und jeder Browser ohne die Schnittstelle) — Knopf
-   ausblenden oder Fenster ohne Vordergrund anbieten?
-4. **Aufnahme der Bibliothek** — `@pip-it-up/core`/`-react` aufnehmen oder einen anderen Weg gehen?
+**Technisch entschieden (nicht Produktfrage):** Die Wunschgröße je Werkzeug gehört ins Manifest,
+damit sie prüfbar ist. Das erfordert den Katalogumbau in M4.
