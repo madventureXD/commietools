@@ -29,6 +29,7 @@ import { datetimeMessages } from './calculator/datetime/locales'
 import { equationsMessages } from './calculator/equations/locales'
 import { statisticsMessages } from './calculator/statistics/locales'
 import { plotterMessages } from './calculator/plotter/locales'
+import { aufmassMessages } from './calculator/aufmass/locales'
 
 type MessageCatalog = Readonly<Record<string, string>>
 type PartialLocalizedMessages = Readonly<Record<string, MessageCatalog>>
@@ -74,5 +75,6 @@ export const toolMessages = mergeToolCatalogs([
   datetimeMessages,
   equationsMessages,
   statisticsMessages,
-  plotterMessages
+  plotterMessages,
+  aufmassMessages
 ])

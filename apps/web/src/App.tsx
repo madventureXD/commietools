@@ -1,7 +1,7 @@
 import { lazy, Suspense, useEffect, useMemo, useState } from 'react'
 import type { SuiteManifest, ToolManifest } from '@commietools/core'
-import { createTranslator, detectLocale, isLocale, localeRegistry, supportedLocales, type Locale } from '@commietools/i18n'
-import { convertCase, formatJson, getSuiteTools, getTextStatistics, MIN_QUERY_LENGTH, searchEntryById, suiteByRoute, suiteManifests, toolByRoute, toolMessages, type CaseMode } from '@commietools/tools'
+import { createTranslator, detectLocale, isLocale, loadInterfaceMessages, localeRegistry, supportedLocales, type Locale } from '@commietools/i18n'
+import { convertCase, formatJson, getSuiteTools, getTextStatistics, loadToolMessages, MIN_QUERY_LENGTH, searchEntryById, suiteByRoute, suiteManifests, toolByRoute, type CaseMode } from '@commietools/tools'
 import { Button, LocalBadge } from '@commietools/ui'
 import { CatalogSection } from './CatalogSection'
 import { LicensePage } from './LicensePage'
@@ -46,6 +46,7 @@ const DateTime = lazy(() => import('./tools/DateTime').then((module) => ({ defau
 const Plotter = lazy(() => import('./tools/Plotter').then((module) => ({ default: module.Plotter })))
 const Statistics = lazy(() => import('./tools/Statistics').then((module) => ({ default: module.Statistics })))
 const Equations = lazy(() => import('./tools/Equations').then((module) => ({ default: module.Equations })))
+const Aufmass = lazy(() => import('./tools/Aufmass').then((module) => ({ default: module.Aufmass })))
 
 type Theme = 'light' | 'dark'
 type Translate = (key: string) => string
@@ -119,6 +120,7 @@ function ToolPage({ tool, t, locale, navigate }: { tool: ToolManifest; t: Transl
                             : tool.id === 'plotter' ? <Suspense fallback={<p aria-live="polite">…</p>}><Plotter t={t} /></Suspense>
                               : tool.id === 'statistics' ? <Suspense fallback={<p aria-live="polite">…</p>}><Statistics t={t} locale={locale} /></Suspense>
                                 : tool.id === 'equations' ? <Suspense fallback={<p aria-live="polite">…</p>}><Equations t={t} locale={locale} /></Suspense>
+                                  : tool.id === 'aufmass' ? <Suspense fallback={<p aria-live="polite">…</p>}><Aufmass t={t} locale={locale} /></Suspense>
               : tool.id === 'pdf-merge' ? <Suspense fallback={<p aria-live="polite">…</p>}><PdfMerge t={t} /></Suspense>
                 : tool.id === 'pdf-split' ? <Suspense fallback={<p aria-live="polite">…</p>}><PdfSplit t={t} /></Suspense>
                   : tool.id === 'pdf-organize' ? <Suspense fallback={<p aria-live="polite">…</p>}><PdfOrganize t={t} /></Suspense>
@@ -156,8 +158,11 @@ export function App() {
   const [theme, setTheme] = useState<Theme>(preferredTheme)
   const [pathname, navigate] = usePathname()
   const [query, setQuery] = useState('')
+  const [toolMessages, setToolMessages] = useState<Readonly<Partial<Record<string, Readonly<Record<string, string>>>>>>({})
+  const [interfaceMessages, setInterfaceMessages] = useState<Readonly<Partial<Record<string, Readonly<Record<string, string>>>>>>({})
+  useEffect(() => { let current = true; void Promise.all([loadToolMessages(locale),loadInterfaceMessages(locale)]).then(([tools,ui]) => { if (current) { setToolMessages(tools); setInterfaceMessages(ui) } }); return () => { current = false } }, [locale])
   const searching = query.trim().length >= MIN_QUERY_LENGTH
-  const t: Translate = createTranslator(locale, [toolMessages])
+  const t: Translate = createTranslator(locale, [interfaceMessages, toolMessages])
   const activeTool = toolByRoute.get(pathname)
   const activeSuite = suiteByRoute.get(pathname)
 

@@ -276,6 +276,13 @@ export const toolManifests: readonly ToolManifest[] = [
     executionMode: 'local', resourceClass: 'heavy', worksOffline: true
   },
   {
+    id: 'aufmass', route: '/tools/aufmass', category: 'calculator',
+    titleKey: 'tool.aufmass.title', descriptionKey: 'tool.aufmass.description',
+    summaryKey: 'tool.aufmass.summary', termsKey: 'tool.aufmass.terms',
+    executionMode: 'local', resourceClass: 'standard', worksOffline: true,
+    files: { output: ['text/csv', 'application/pdf', 'text/plain'] }
+  },
+  {
     id: 'statistics', route: '/tools/statistics', category: 'calculator',
     titleKey: 'tool.statistics.title', descriptionKey: 'tool.statistics.description',
     summaryKey: 'tool.statistics.summary', termsKey: 'tool.statistics.terms',
@@ -301,5 +308,5 @@ export const suiteManifests: readonly SuiteManifest[] = [
   { id: 'generators', route: '/suites/generators', titleKey: 'suite.generators.title', descriptionKey: 'suite.generators.description', toolIds: ['qr-code-generator'] },
   { id: 'image', route: '/suites/image', titleKey: 'suite.image.title', descriptionKey: 'suite.image.description', toolIds: ['image-metadata', 'image-resize', 'icon-generator', 'image-watermark', 'color-tools'] },
   { id: 'pdf', route: '/suites/pdf', titleKey: 'suite.pdf.title', descriptionKey: 'suite.pdf.description', toolIds: ['pdf-viewer', 'pdf-text-ocr', 'pdf-signature-verify', 'pdf-certificate-sign', 'pdf-a-preflight', 'pdf-redact', 'pdf-metadata', 'pdf-crop', 'pdf-repair', 'pdf-attachments', 'pdf-compare', 'pdf-merge', 'pdf-split', 'pdf-organize', 'images-to-pdf', 'pdf-to-images', 'pdf-watermark', 'pdf-page-numbers', 'pdf-visible-signature', 'pdf-form-fill', 'pdf-annotate', 'pdf-security', 'pdf-compress'] },
-  { id: 'calculator', route: '/suites/calculator', titleKey: 'suite.calculator.title', descriptionKey: 'suite.calculator.description', toolIds: ['calculator', 'convert', 'commercial', 'datetime', 'plotter', 'statistics', 'equations', 'geometry'] }
+  { id: 'calculator', route: '/suites/calculator', titleKey: 'suite.calculator.title', descriptionKey: 'suite.calculator.description', toolIds: ['calculator', 'convert', 'commercial', 'datetime', 'plotter', 'statistics', 'equations', 'geometry', 'aufmass'] }
 ]
