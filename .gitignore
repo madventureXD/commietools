@@ -7,4 +7,7 @@ coverage/
 *.tsbuildinfo
 .DS_Store
 Thumbs.db
+.codex-remote-attachments/
+tmp/
+work/
 
