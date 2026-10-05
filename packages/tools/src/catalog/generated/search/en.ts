@@ -1665,5 +1665,45 @@ export const searchLocale: Readonly<Record<string, ToolLocaleEntry>> = {
       "#paving",
       "#craft"
     ]
+  },
+  "tires": {
+    "title": "Tyres and torque",
+    "summary": "Convert and compare tyre size, rolling distance and tightening torque.",
+    "description": "Read a tyre size and compare it with a reference: sidewall height, outer diameter, circumference, revolutions per kilometre, wheel rpm and the deviation of the speed actually travelled. Plus the tightening torque in Nm, ft·lb and kgf·m with its tolerance range. Runs entirely in the browser.",
+    "terms": [
+      "tyre",
+      "tire",
+      "tyre size",
+      "tire size",
+      "205/55",
+      "R16",
+      "rim",
+      "inch",
+      "sidewall",
+      "aspect ratio",
+      "outer diameter",
+      "rolling circumference",
+      "circumference",
+      "wheel rpm",
+      "speedometer",
+      "speedometer reading",
+      "speed deviation",
+      "torque",
+      "tightening torque",
+      "wheel bolt",
+      "wheel nut",
+      "Nm",
+      "torque wrench",
+      "ft·lb",
+      "kgf·m",
+      "retrofit",
+      "winter tyres",
+      "all-season tyres",
+      "vehicle"
+    ],
+    "tags": [
+      "#tyres",
+      "#craft"
+    ]
   }
 }

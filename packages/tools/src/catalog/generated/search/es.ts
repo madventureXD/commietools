@@ -1596,5 +1596,45 @@ export const searchLocale: Readonly<Record<string, ToolLocaleEntry>> = {
       "#pavimento",
       "#artesania"
     ]
+  },
+  "tires": {
+    "title": "Neumáticos y par de apriete",
+    "summary": "Convertir y comparar medida de neumático, desarrollo y par de apriete.",
+    "description": "Interpretar una medida de neumático y compararla con una de referencia: altura de flanco, diámetro exterior, circunferencia, vueltas por kilómetro, régimen de giro de la rueda y la desviación de la velocidad realmente recorrida. Además el par de apriete en Nm, ft·lb y kgf·m con su margen de tolerancia. Calcula por completo en el navegador.",
+    "terms": [
+      "neumático",
+      "llanta",
+      "medida de neumático",
+      "205/55",
+      "R16",
+      "llanta metálica",
+      "pulgada",
+      "altura de flanco",
+      "perfil",
+      "diámetro exterior",
+      "circunferencia de rodadura",
+      "desarrollo",
+      "circunferencia",
+      "régimen de rueda",
+      "cuentakilómetros",
+      "velocímetro",
+      "desviación de velocidad",
+      "par",
+      "par de apriete",
+      "tornillo de rueda",
+      "tuerca de rueda",
+      "Nm",
+      "llave dinamométrica",
+      "ft·lb",
+      "kgf·m",
+      "equivalencia",
+      "neumáticos de invierno",
+      "todo tiempo",
+      "vehículo"
+    ],
+    "tags": [
+      "#neumaticos",
+      "#artesania"
+    ]
   }
 }

@@ -1,0 +1,11 @@
+
+=== Lauf 2026-10-05T18:29:25.800Z auf http://localhost:4193 ===
+10-reifen-standard-dunkel | Titel „Reifen und Drehmoment" · 112,75 mm Flankenhöhe · 631,9 mm Durchmesser · 1,9852 m Umfang · 503,73 U/km · 839,6 U/min U/min · Bezug 1,9933 m · Abweichung -0,41 % · gefahren 99,59 km/h · 88,51 ft·lb · 12,24 kgf·m · 114 Nm bis 126 Nm · Bündel index-CkgOEk6U.js
+11-reifen-bezug-kleiner-dunkel | Bezug 185/60 R14 (kleiner als die eigene Größe): Abweichung 9,401 %, gefahren 109,4 km/h bei 100 km/h Anzeige
+12-reifen-toleranz-null-dunkel | Toleranz 0 %: Bereich 120 Nm bis 120 Nm — beide Grenzen fallen auf den Wert
+13-reifen-fehlerfall | Fehlermeldung: „Das Anzugsmoment muss zwischen 1 und 2000 Nm liegen."
+14-reifen-hell-390 | 195/65 R15 gegen sich selbst: Abweichung 0 %, gefahren 100 km/h · Überbreite 0 px · Reifen und Drehmoment
+15-katalog-handwerk-zehn | Karten 61 · Handwerk mit zehn Werkzeugen · HandwerkReifen und DrehmomentReifengröße, Abrollweg und Anzugsmoment umrechnen und vergleichen.#reifen#handwerk●Lokal verarbeitetTool öffnen →
+16-suche-anzugsmoment | 1 Treffer, gefiltert · 1 Karten
+17-suche-pflastersteine | 1 Treffer, 1 Karte — das Pflasterwerkzeug bleibt auffindbar
+18-suche-gegenprobe | „zzzqqq": 0 Karten, Leermeldung „Kein Werkzeug passt zu dieser Suche. Versuch es mit einem anderen Wort oder einer Dateiendung wie webp."

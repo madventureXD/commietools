@@ -1722,5 +1722,45 @@ export const searchLocale: Readonly<Record<string, ToolLocaleEntry>> = {
       "#pflaster",
       "#handwerk"
     ]
+  },
+  "tires": {
+    "title": "Reifen und Drehmoment",
+    "summary": "Reifengröße, Abrollweg und Anzugsmoment umrechnen und vergleichen.",
+    "description": "Reifengröße auswerten und mit einer Bezugsgröße vergleichen: Flankenhöhe, Außendurchmesser, Umfang, Umdrehungen je Kilometer, Raddrehzahl und die Abweichung der gefahrenen Geschwindigkeit. Dazu der Anzugswert in Nm, ft·lb und kgf·m mit Toleranzbereich. Rechnet vollständig im Browser.",
+    "terms": [
+      "Reifen",
+      "Reifengröße",
+      "Reifenbezeichnung",
+      "205/55",
+      "R16",
+      "Felge",
+      "Zoll",
+      "Flankenhöhe",
+      "Querschnitt",
+      "Außendurchmesser",
+      "Abrollumfang",
+      "Umfang",
+      "Raddrehzahl",
+      "Tacho",
+      "Tachoanzeige",
+      "Geschwindigkeitsabweichung",
+      "Drehmoment",
+      "Anzugsmoment",
+      "Anzugsdrehmoment",
+      "Radschraube",
+      "Radmutter",
+      "Nm",
+      "Drehmomentschlüssel",
+      "ft·lb",
+      "kgf·m",
+      "Umrüstung",
+      "Winterreifen",
+      "Ganzjahresreifen",
+      "Fahrzeug"
+    ],
+    "tags": [
+      "#reifen",
+      "#handwerk"
+    ]
   }
 }
