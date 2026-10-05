@@ -21,6 +21,22 @@ Diese Liste enthält bestätigte, noch nicht abgeschlossene Arbeit. Details geh�
 
 ## Mittlere Priorität
 
+- [ ] **Werkzeugtexte je Sprache aufteilen** (etwa je Suite). Stand 2026-10-04 nach der Aufteilung
+  des Rechners in vier Werkzeuge: Deutsch 32.672 und Spanisch 31.645 Byte über der Warnschwelle
+  30.720; Englisch liegt mit 29.787 darunter. Die drei neuen Werkzeuge vergrößern die Summe um rund
+  0,5 kB je Sprache — der eigentliche Anteil kommt aus den früheren Wellen.
+- [ ] **Abweichung bei der Rechenkern-Größe klären:** ADR 0005 nennt 89,5 KiB gzip, die Nachmessung
+  derselben Factory-Liste ergibt 100,6 KiB (esbuild, gzip -9, mathjs 15.2.0, 2026-10-04). Ziel,
+  Liste und Werkzeugliste als Ursache ausgeschlossen; die Zahl wird im Projekt zitiert und sollte
+  stimmen. Messskript: `work/rechner-mathjs-messung.mjs`.
+- [ ] **Vier Rechner: 200 % Zoom und Screenreader-Namen** prüfen (beim Beleglauf am 2026-10-04
+  bewusst ausgelassen, dort wurden zwei Fensterbreiten und die Rückleseprüfung gefahren).
+- [ ] **Startgröße im Blick behalten:** drei neue Katalogeinträge je Sprache kosten 9,3 kB gzip im
+  Startbündel (146.220 von 204.800). Bei den nächsten Werkzeugwellen neu messen; Ausweg bleibt die
+  abgerufene Registerdatei.
+- [ ] Entschieden, aber noch nicht gebaut: der **alte Verlaufsbereich `calculator.*`** liegt im
+  Gerät, hat aber keine Anzeige und keinen Löschweg. Entweder eine sichtbare Aufräummöglichkeit
+  anbieten oder den Punkt schließen.
 - [ ] Für Mehrfachausgaben nach gesonderter Größen- und Lizenzprüfung **Alle speichern …** per
   Ordnerauswahl und/oder ZIP-Fallback ergänzen; Einzel-Speichern mit frei wählbarem Namen und Ort
   ist bereits einheitlich umgesetzt.

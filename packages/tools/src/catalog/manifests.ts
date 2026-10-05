@@ -252,6 +252,24 @@ export const toolManifests: readonly ToolManifest[] = [
     executionMode: 'local', resourceClass: 'heavy', worksOffline: true
   },
   {
+    id: 'scientific-calculator', route: '/tools/scientific-calculator', category: 'calculator',
+    titleKey: 'tool.scientificCalculator.title', descriptionKey: 'tool.scientificCalculator.description',
+    summaryKey: 'tool.scientificCalculator.summary', termsKey: 'tool.scientificCalculator.terms',
+    executionMode: 'local', resourceClass: 'heavy', worksOffline: true
+  },
+  {
+    id: 'programmer-calculator', route: '/tools/programmer-calculator', category: 'calculator',
+    titleKey: 'tool.programmerCalculator.title', descriptionKey: 'tool.programmerCalculator.description',
+    summaryKey: 'tool.programmerCalculator.summary', termsKey: 'tool.programmerCalculator.terms',
+    executionMode: 'local', resourceClass: 'heavy', worksOffline: true
+  },
+  {
+    id: 'rpn-calculator', route: '/tools/rpn-calculator', category: 'calculator',
+    titleKey: 'tool.rpnCalculator.title', descriptionKey: 'tool.rpnCalculator.description',
+    summaryKey: 'tool.rpnCalculator.summary', termsKey: 'tool.rpnCalculator.terms',
+    executionMode: 'local', resourceClass: 'heavy', worksOffline: true
+  },
+  {
     id: 'commercial', route: '/tools/commercial', category: 'calculator',
     titleKey: 'tool.commercial.title', descriptionKey: 'tool.commercial.description',
     summaryKey: 'tool.commercial.summary', termsKey: 'tool.commercial.terms',
@@ -332,6 +350,6 @@ export const suiteManifests: readonly SuiteManifest[] = [
   { id: 'generators', route: '/suites/generators', titleKey: 'suite.generators.title', descriptionKey: 'suite.generators.description', toolIds: ['qr-code-generator'] },
   { id: 'image', route: '/suites/image', titleKey: 'suite.image.title', descriptionKey: 'suite.image.description', toolIds: ['image-metadata', 'image-resize', 'icon-generator', 'image-watermark', 'color-tools'] },
   { id: 'pdf', route: '/suites/pdf', titleKey: 'suite.pdf.title', descriptionKey: 'suite.pdf.description', toolIds: ['pdf-viewer', 'pdf-text-ocr', 'pdf-signature-verify', 'pdf-certificate-sign', 'pdf-a-preflight', 'pdf-redact', 'pdf-metadata', 'pdf-crop', 'pdf-repair', 'pdf-attachments', 'pdf-compare', 'pdf-merge', 'pdf-split', 'pdf-organize', 'images-to-pdf', 'pdf-to-images', 'pdf-watermark', 'pdf-page-numbers', 'pdf-visible-signature', 'pdf-form-fill', 'pdf-annotate', 'pdf-security', 'pdf-compress'] },
-  { id: 'calculator', route: '/suites/calculator', titleKey: 'suite.calculator.title', descriptionKey: 'suite.calculator.description', toolIds: ['calculator', 'convert', 'commercial', 'datetime', 'plotter', 'statistics', 'equations', 'geometry', 'aufmass'] },
+  { id: 'calculator', route: '/suites/calculator', titleKey: 'suite.calculator.title', descriptionKey: 'suite.calculator.description', toolIds: ['calculator', 'scientific-calculator', 'programmer-calculator', 'rpn-calculator', 'convert', 'commercial', 'datetime', 'plotter', 'statistics', 'equations', 'geometry', 'aufmass'] },
   { id: 'craft', route: '/suites/craft', titleKey: 'suite.craft.title', descriptionKey: 'suite.craft.description', toolIds: ['concrete', 'roof', 'metal-weight', 'wood'] }
 ]

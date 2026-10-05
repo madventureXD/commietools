@@ -91,14 +91,16 @@ describe('calculator accuracy light', () => {
   })
 
   it('führt die Ampeltexte in jeder Sprache', () => {
+    // Der Rahmen trägt die Ampelschlüssel gemeinsam (`tool.calc.*`) — seit der Aufteilung in vier
+    // Rechenarten (2026-10-04) gibt es sie **einmal**, nicht je Werkzeug.
     const keys = [
-      'tool.calculator.accuracyLabel',
-      'tool.calculator.accuracyStateComplete',
-      'tool.calculator.accuracyStateRounded',
-      'tool.calculator.accuracyOpen',
-      'tool.calculator.accuracyComplete',
-      'tool.calculator.accuracyRounded',
-      'tool.calculator.accuracyModel'
+      'tool.calc.accuracyLabel',
+      'tool.calc.accuracyStateComplete',
+      'tool.calc.accuracyStateRounded',
+      'tool.calc.accuracyOpen',
+      'tool.calc.accuracyComplete',
+      'tool.calc.accuracyRounded',
+      'tool.calc.accuracyModel'
     ]
     for (const locale of supportedLocales) {
       for (const key of keys) {

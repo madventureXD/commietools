@@ -243,9 +243,11 @@ describe('Bedienung', () => {
 
 describe('Fehlertexte', () => {
   it('translates every error code of the core in every language', () => {
+    // Die Fehlerklassen liegen im **gemeinsamen Rahmen** (`tool.calc.error.*`): dieselbe Liste
+    // gilt für alle vier Rechenarten, seit sie getrennt sind (2026-10-04).
     for (const locale of supportedLocales) {
       for (const code of calculatorErrorCodes) {
-        expect(toolMessages[locale]?.[`tool.calculator.error.${code}`], `${locale}/${code}`).toBeTruthy()
+        expect(toolMessages[locale]?.[`tool.calc.error.${code}`], `${locale}/${code}`).toBeTruthy()
       }
     }
   })

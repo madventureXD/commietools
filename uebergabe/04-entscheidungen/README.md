@@ -21,6 +21,7 @@ Wird eine Entscheidung ersetzt, bleiben beide Dateien erhalten und verweisen geg
 - [`0006-voller-wert-und-genauigkeitsampel.md`](0006-voller-wert-und-genauigkeitsampel.md): Der Rechenkern gibt den vollen Wert getrennt aus; die Genauigkeitsampel vergleicht Zeichenketten — angenommen.
 - [`0007-pip-it-up-auskoppeln.md`](0007-pip-it-up-auskoppeln.md): `@pip-it-up/core` (MIT) trägt das Auskoppeln von Werkzeugen in ein eigenes Fenster — angenommen.
 - [`0008-lizenzfeld-fehlt-bei-pip-it-up.md`](0008-lizenzfeld-fehlt-bei-pip-it-up.md): Lizenzangabe aus der Paketdatei über einen hashbelegten Einzeleintrag, wo das Lockfile sie nicht liefert — angenommen.
+- [`0009-ein-werkzeug-je-rechenart.md`](0009-ein-werkzeug-je-rechenart.md): Der Rechner wird in vier Werkzeuge geteilt; sie teilen einen gemeinsamen Rahmen, je ein Tastenfeld und je einen Speicherbereich — angenommen.
 
 Die allgemeine Architekturgrundlage ist in [`../../docs/architecture.md`](../../docs/architecture.md) dokumentiert.
 

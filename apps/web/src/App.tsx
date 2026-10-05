@@ -40,6 +40,9 @@ const PdfCompareTool = lazy(() => import('./tools/PdfMaintenanceTools').then((mo
 const PdfAPreflightTool = lazy(() => import('./tools/PdfComplianceTools').then((module) => ({ default: module.PdfAPreflightTool })))
 const PdfRedactTool = lazy(() => import('./tools/PdfComplianceTools').then((module) => ({ default: module.PdfRedactTool })))
 const Calculator = lazy(() => import('./tools/Calculator').then((module) => ({ default: module.Calculator })))
+const ScientificCalculator = lazy(() => import('./tools/ScientificCalculator').then((module) => ({ default: module.ScientificCalculator })))
+const ProgrammerCalculator = lazy(() => import('./tools/ProgrammerCalculator').then((module) => ({ default: module.ProgrammerCalculator })))
+const RpnCalculator = lazy(() => import('./tools/RpnCalculator').then((module) => ({ default: module.RpnCalculator })))
 const Commercial = lazy(() => import('./tools/Commercial').then((module) => ({ default: module.Commercial })))
 const Geometry = lazy(() => import('./tools/Geometry').then((module) => ({ default: module.Geometry })))
 const Convert = lazy(() => import('./tools/Convert').then((module) => ({ default: module.Convert })))
@@ -118,6 +121,9 @@ function ToolPage({ tool, t, locale, navigate }: { tool: ToolManifest; t: Transl
                 : tool.id === 'image-watermark' ? <ImageWatermark t={t} locale={locale} />
                   : tool.id === 'color-tools' ? <ColorTools t={t} />
                     : tool.id === 'calculator' ? <Suspense fallback={<p aria-live="polite">…</p>}><Calculator t={t} locale={locale} /></Suspense>
+                      : tool.id === 'scientific-calculator' ? <Suspense fallback={<p aria-live="polite">…</p>}><ScientificCalculator t={t} locale={locale} /></Suspense>
+                        : tool.id === 'programmer-calculator' ? <Suspense fallback={<p aria-live="polite">…</p>}><ProgrammerCalculator t={t} locale={locale} /></Suspense>
+                          : tool.id === 'rpn-calculator' ? <Suspense fallback={<p aria-live="polite">…</p>}><RpnCalculator t={t} locale={locale} /></Suspense>
                       : tool.id === 'commercial' ? <Suspense fallback={<p aria-live="polite">…</p>}><Commercial t={t} locale={locale} /></Suspense>
                         : tool.id === 'geometry' ? <Suspense fallback={<p aria-live="polite">…</p>}><Geometry t={t} locale={locale} /></Suspense>
                         : tool.id === 'convert' ? <Suspense fallback={<p aria-live="polite">…</p>}><Convert t={t} locale={locale} /></Suspense>

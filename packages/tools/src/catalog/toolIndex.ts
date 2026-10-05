@@ -665,6 +665,51 @@ export const toolIndex: readonly ToolCatalogEntry[] = [
     "auxiliary": []
   },
   {
+    "id": "scientific-calculator",
+    "route": "/tools/scientific-calculator",
+    "icon": "/tools/scientific-calculator.svg",
+    "category": "calculator",
+    "suiteIds": [
+      "calculator"
+    ],
+    "executionMode": "local",
+    "resourceClass": "heavy",
+    "worksOffline": true,
+    "input": [],
+    "output": [],
+    "auxiliary": []
+  },
+  {
+    "id": "programmer-calculator",
+    "route": "/tools/programmer-calculator",
+    "icon": "/tools/programmer-calculator.svg",
+    "category": "calculator",
+    "suiteIds": [
+      "calculator"
+    ],
+    "executionMode": "local",
+    "resourceClass": "heavy",
+    "worksOffline": true,
+    "input": [],
+    "output": [],
+    "auxiliary": []
+  },
+  {
+    "id": "rpn-calculator",
+    "route": "/tools/rpn-calculator",
+    "icon": "/tools/rpn-calculator.svg",
+    "category": "calculator",
+    "suiteIds": [
+      "calculator"
+    ],
+    "executionMode": "local",
+    "resourceClass": "heavy",
+    "worksOffline": true,
+    "input": [],
+    "output": [],
+    "auxiliary": []
+  },
+  {
     "id": "commercial",
     "route": "/tools/commercial",
     "icon": "/tools/commercial.svg",

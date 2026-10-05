@@ -21,6 +21,10 @@ import { pdfM7Messages } from './pdf/m7/locales'
 import { pdfM8Messages } from './pdf/m8/locales'
 import { pdfM9Messages } from './pdf/m9/locales'
 import { calculatorMessages } from './calculator/locales'
+import { calcShellMessages } from './calculator/shell/locales'
+import { scientificMessages } from './calculator/scientific/locales'
+import { programmerMessages } from './calculator/programmer/locales'
+import { rpnMessages } from './calculator/rpn/locales'
 import { calcCommonMessages } from './calculator/common/locales'
 import { commercialMessages } from './calculator/commercial/locales'
 import { geometryMessages } from './calculator/geometry/locales'
@@ -73,6 +77,10 @@ export const toolMessages = mergeToolCatalogs([
   pdfM8Messages,
   pdfM9Messages,
   calculatorMessages,
+  calcShellMessages,
+  scientificMessages,
+  programmerMessages,
+  rpnMessages,
   calcCommonMessages,
   commercialMessages,
   geometryMessages,

@@ -2,7 +2,6 @@ import { describe, expect, it } from 'vitest'
 import { evaluate, evaluateRpn } from '@commietools/tools/calculator/core'
 import { calculatorFactoryNames } from '@commietools/tools/calculator/functions'
 import {
-  KEYPADS,
   SHEET_GROUPS,
   appendRpnToken,
   dropRpnToken,
@@ -13,16 +12,23 @@ import {
   resolveKey,
   swapRpnTokens,
   type KeypadBase,
-  type KeypadMode
+  type KeypadLayout
 } from '@commietools/tools/calculator/keypad'
+import { ALL_KEYPADS } from '@commietools/tools/calculator/keypads'
+import { PROGRAMMER_KEYPAD } from '@commietools/tools/calculator/keypads/programmer'
+import { RPN_KEYPAD } from '@commietools/tools/calculator/keypads/rpn'
+import { SCIENTIFIC_KEYPAD } from '@commietools/tools/calculator/keypads/scientific'
+import { STANDARD_KEYPAD } from '@commietools/tools/calculator/keypads/standard'
 import { toMathML } from '@commietools/tools/calculator/render'
 import { calculatorFor } from '@commietools/tools/calculator/core'
 import { appendHexDigit, appendSnippet, splitRpnTokens } from './calculator-ui'
 
-const MODES: readonly KeypadMode[] = ['standard', 'scientific', 'programmer', 'rpn']
-
 /**
- * Bedien-Teile des Rechners: Tastenfeld-Daten und der 2D-Satz.
+ * Bedien-Teile der vier Rechenarten: Tastenfeld-Daten und der 2D-Satz.
+ *
+ * Jede Rechenart hat ihr **eigenes** Tastenfeld (`keypads/<rechenart>.ts`) — seit der Aufteilung
+ * vom 2026-10-04 lädt eine Werkzeugroute nur ihr eigenes. Geprüft wird deshalb weiterhin über
+ * **alle** Felder: keine Rechenart darf eine tote Taste führen.
  *
  * Der wichtigste Test ist der erste: eine Taste, deren Ausdruck der Kern nicht lesen kann, ist
  * eine **tote Taste**. Genau das war der alte Programmierer-Stand — ` bitAnd ` und ` leftShift `
@@ -85,30 +91,31 @@ describe('Tastenfeld', () => {
     }
 
     const deadKeys: string[] = []
-    for (const mode of MODES) {
-      for (const definition of keypadKeys(mode)) {
+    for (const layout of ALL_KEYPADS) {
+      const isRpn = layout === RPN_KEYPAD
+      for (const definition of keypadKeys(layout)) {
         for (const snippet of [definition.snippet, definition.secondSnippet]) {
           if (!snippet) continue
-          if (mode === 'rpn') {
+          if (isRpn) {
             const tokens = rpnProbe(snippet)
             if (tokens === null) {
-              deadKeys.push(`${mode}/${definition.id}: ${JSON.stringify(snippet)} — keine Probe möglich`)
+              deadKeys.push(`rpn/${definition.id}: ${JSON.stringify(snippet)} — keine Probe möglich`)
               continue
             }
             const outcome = evaluateRpn(tokens, { number: 'BigNumber' })
             if (!outcome.ok) {
-              deadKeys.push(`${mode}/${definition.id}: ${JSON.stringify(snippet)} → ${tokens.join(' ')} → ${String(outcome.error)}`)
+              deadKeys.push(`rpn/${definition.id}: ${JSON.stringify(snippet)} → ${tokens.join(' ')} → ${String(outcome.error)}`)
             }
             continue
           }
           const probe = probeFor(snippet)
           if (probe === null) {
-            deadKeys.push(`${mode}/${definition.id}: ${JSON.stringify(snippet)} — keine Probe möglich`)
+            deadKeys.push(`${definition.id}: ${JSON.stringify(snippet)} — keine Probe möglich`)
             continue
           }
           const result = evaluate(probe, { number: 'BigNumber' })
           if (!result.ok) {
-            deadKeys.push(`${mode}/${definition.id}: ${JSON.stringify(snippet)} → ${probe} → ${String(result.error)}`)
+            deadKeys.push(`${definition.id}: ${JSON.stringify(snippet)} → ${probe} → ${String(result.error)}`)
           }
         }
       }
@@ -125,14 +132,14 @@ describe('Tastenfeld', () => {
      * überhaupt existiert.
      */
     const loaded = new Set(calculatorFactoryNames)
-    const missing = keypadFunctionNames().filter((name) => !loaded.has(`${name}Dependencies`))
+    const missing = keypadFunctionNames(ALL_KEYPADS).filter((name) => !loaded.has(`${name}Dependencies`))
     expect(missing).toEqual([])
   })
 
   it('führt im Blatt nur Funktionen mit geladener Factory', () => {
     const loaded = new Set(calculatorFactoryNames)
     for (const group of SHEET_GROUPS) {
-      expect(group.titleKey.startsWith('tool.calculator.sheet.'), group.titleKey).toBe(true)
+      expect(group.titleKey.startsWith('tool.calc.sheet.'), group.titleKey).toBe(true)
       for (const entry of group.entries) {
         const match = /^([a-zA-Z][a-zA-Z0-9]*)\(/u.exec(entry.snippet)
         if (!match?.[1]) continue
@@ -147,8 +154,7 @@ describe('Tastenfeld', () => {
      * nächsten Reihe — im Bild ist die Tastatur dann verschoben, ohne dass ein Test anschlägt.
      * Die Simulation zählt die Zellen so, wie CSS Grid sie vergibt (`rowSpan`, `colSpan`).
      */
-    const fits = (mode: KeypadMode): string | null => {
-      const layout = KEYPADS[mode]
+    const fits = (layout: KeypadLayout): string | null => {
       const occupied = new Set<string>()
       let row = 0
       let column = 0
@@ -169,8 +175,8 @@ describe('Tastenfeld', () => {
       }
       return null
     }
-    for (const mode of MODES) {
-      expect(fits(mode), mode).toBeNull()
+    for (const layout of ALL_KEYPADS) {
+      expect(fits(layout), `${layout.columns} Spalten`).toBeNull()
     }
   })
 
@@ -181,7 +187,7 @@ describe('Tastenfeld', () => {
      * Deshalb diese ausdrückliche Zusicherung: beide Griffe in **derselben** Reihe, direkt
      * nebeneinander.
      */
-    const layout = KEYPADS.rpn
+    const layout = RPN_KEYPAD
     const occupied = new Set<string>()
     const places = new Map<string, { row: number; column: number }>()
     let row = 0
@@ -209,7 +215,7 @@ describe('Tastenfeld', () => {
   })
 
   it('zeigt die zweite Belegung nur auf Tasten, die eine haben', () => {
-    const scientific = keypadKeys('scientific')
+    const scientific = keypadKeys(SCIENTIFIC_KEYPAD)
     const withSecond = scientific.filter((definition) => hasSecondPlane(definition))
     expect(withSecond.map((definition) => definition.id)).toEqual([
       'sin', 'cos', 'tan', 'power', 'factorial', 'sqrt', 'square', 'tenPow', 'ln', 'log'
@@ -224,7 +230,7 @@ describe('Tastenfeld', () => {
   })
 
   it('schaltet Zifferntasten je Basis ab, statt sie nur blass zu zeigen', () => {
-    const programmer = keypadKeys('programmer')
+    const programmer = keypadKeys(PROGRAMMER_KEYPAD)
     const find = (id: string) => programmer.find((definition) => definition.id === id)
     const enabled = (id: string, base: KeypadBase) => {
       const definition = find(id)
@@ -246,6 +252,17 @@ describe('Tastenfeld', () => {
     expect(appendRpnToken('3', '4')).toBe('3 4')
     expect(appendRpnToken('3 4 ', '+')).toBe('3 4 +')
     expect(appendRpnToken('3 4', '*').split(/\s+/u)).toEqual(['3', '4', '*'])
+  })
+
+  it('gibt dem Standardrechner ein eigenes Feld mit Blatt und Klammern', () => {
+    // Entscheidung 2026-10-04: der Standardrechner bekommt das Blatt `⋯`; damit die sechste
+    // Reihe keine Lücke hat, stehen dort die Klammern — dieselben Tasten wie im Programmierer.
+    const ids = keypadKeys(STANDARD_KEYPAD).map((entry) => entry.id)
+    expect(ids).toContain('more')
+    expect(ids).toContain('openParen')
+    expect(ids).toContain('closeParen')
+    expect(ids).toContain('digit0')
+    expect(STANDARD_KEYPAD.columns).toBe(4)
   })
 })
 
@@ -296,7 +313,6 @@ describe('2D-Satz', () => {
   })
 })
 
-
 /**
  * Tastenfolgen statt einzelner Tasten.
  *
@@ -306,27 +322,27 @@ describe('2D-Satz', () => {
  * „Der Ausdruck ist nicht lesbar". Erst eine Folge zeigt, was der Nutzer wirklich tippt.
  */
 /** Drückt Tasten aufeinander und gibt den entstehenden Ausdruck zurück. */
-const pressSequence = (mode: KeypadMode, tokens: readonly string[]): string => {
-    const keys = keypadKeys(mode)
-    return tokens.reduce((current, token) => {
-      const definition = keys.find((entry) => entry.label === token || entry.id === token)
-      if (!definition) throw new Error(`Keine Taste „${token}" in ${mode}`)
-      const { snippet } = resolveKey(definition, false)
-  return mode === 'rpn' ? appendRpnToken(current, snippet) : appendSnippet(current, snippet)
+const pressSequence = (layout: KeypadLayout, tokens: readonly string[]): string => {
+  const keys = keypadKeys(layout)
+  return tokens.reduce((current, token) => {
+    const definition = keys.find((entry) => entry.label === token || entry.id === token)
+    if (!definition) throw new Error(`Keine Taste „${token}"`)
+    const { snippet } = resolveKey(definition, false)
+    return layout === RPN_KEYPAD ? appendRpnToken(current, snippet) : appendSnippet(current, snippet)
   }, '')
 }
 
 describe('Tastenfolgen', () => {
   it('hält mehrstellige Zahlen zusammen', () => {
-    expect(pressSequence('standard', ['1', '2'])).toBe('12')
-    expect(pressSequence('programmer', ['6', '1', '4', '4', '0'])).toBe('61440')
+    expect(pressSequence(STANDARD_KEYPAD, ['1', '2'])).toBe('12')
+    expect(pressSequence(PROGRAMMER_KEYPAD, ['6', '1', '4', '4', '0'])).toBe('61440')
     const outcome = evaluate('61440', { number: 'BigNumber' })
     expect(outcome.ok).toBe(true)
     expect(outcome.raw).toBe('61440')
   })
 
   it('rechnet 1/3 + 1/6 über die Tasten zu 0,5', () => {
-    const expression = pressSequence('standard', ['1', '÷', '3', '+', '1', '÷', '6'])
+    const expression = pressSequence(STANDARD_KEYPAD, ['1', '÷', '3', '+', '1', '÷', '6'])
     expect(expression).toBe('1/3+1/6')
     const outcome = evaluate(expression, { number: 'BigNumber' })
     expect(outcome.ok).toBe(true)
@@ -334,7 +350,7 @@ describe('Tastenfolgen', () => {
   })
 
   it('schreibt das deutsche Komma und liest es richtig', () => {
-    const expression = pressSequence('standard', ['3', 'decimal', '5', '×', '2'])
+    const expression = pressSequence(STANDARD_KEYPAD, ['3', 'decimal', '5', '×', '2'])
     expect(expression).toBe('3,5*2')
     const outcome = evaluate(expression, { number: 'BigNumber', decimalSeparator: ',' })
     expect(outcome.ok).toBe(true)
@@ -342,20 +358,19 @@ describe('Tastenfolgen', () => {
   })
 
   it('trennt Zahl und Funktionsname — sonst läse der Kern `2e`', () => {
-    const expression = pressSequence('scientific', ['2', '×', 'e'])
+    const expression = pressSequence(SCIENTIFIC_KEYPAD, ['2', '×', 'e'])
     expect(expression).toBe('2*e')
     expect(evaluate(expression, { number: 'BigNumber' }).ok).toBe(true)
   })
 
   it('rechnet eine RPN-Folge in der richtigen Reihenfolge', () => {
-    const expression = pressSequence('rpn', ['3', '4', '+', '5', '×'])
+    const expression = pressSequence(RPN_KEYPAD, ['3', '4', '+', '5', '×'])
     expect(expression).toBe('3 4 + 5 *')
     const outcome = evaluateRpn(splitRpnTokens(expression), { number: 'BigNumber' })
     expect(outcome.ok).toBe(true)
     expect(outcome.raw).toBe('35')
   })
 })
-
 
 /**
  * Stapelgriffe und Ziffernbuchstaben.
@@ -380,7 +395,7 @@ describe('Stapelgriffe und Ziffernbuchstaben', () => {
   it('macht aus SWAP auf der Folge eine lesbare Rechnung', () => {
     // Der Fall, für den SWAP gedacht ist: die letzten beiden **Werte** stehen in falscher
     // Reihenfolge — tauschen, dann rechnen.
-    const vertauscht = swapRpnTokens(pressSequence('rpn', ['4', '3']))
+    const vertauscht = swapRpnTokens(pressSequence(RPN_KEYPAD, ['4', '3']))
     expect(vertauscht).toBe('3 4')
     const expression = appendRpnToken(vertauscht, '+')
     expect(expression).toBe('3 4 +')
@@ -402,7 +417,7 @@ describe('Stapelgriffe und Ziffernbuchstaben', () => {
   })
 
   it('führt SWAP und DROP als Tasten der RPN-Rechenart', () => {
-    const keys = keypadKeys('rpn')
+    const keys = keypadKeys(RPN_KEYPAD)
     expect(keys.map((entry) => entry.id)).toContain('rpnSwap')
     expect(keys.map((entry) => entry.id)).toContain('rpnDrop')
     // Die Stapelgriffe tragen keinen Schnipsel, sie arbeiten auf der Folge.

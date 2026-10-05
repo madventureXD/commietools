@@ -1,0 +1,38 @@
+Beleg Rechner-Aufteilung, 2026-10-05T07:06:16.841Z
+  Standard: /tools/calculator @ 1360 px dunkel
+    Titel „Rechner" · 23 Tasten · Umschalter Dezimal (14 Stellen angezeigt)|Bruch (exakt)
+    Bild standard-1360.png (87 kB)
+    Ergebnis „0,5" = erwartete „0,5" ✓  Bündel index-DpdKTlMj.js
+  Wissenschaftlich: /tools/scientific-calculator @ 1360 px dunkel
+    Titel „Wissenschaftlicher Rechner" · 37 Tasten · Umschalter Dezimal (14 Stellen angezeigt)|Bruch (exakt) ; Bogenmaß (rad)|Grad (°)|Gon (grad)
+    Bild wissenschaftlich-1360.png (111 kB)
+    Ergebnis „0,5" = erwartete „0,5" ✓  Bündel index-DpdKTlMj.js
+    Bild programmierer-1360.png (115 kB)
+  Programmierer @ 1360 px: Ergebnis „0xff" (erwartet „0xff"), Darstellungen: DarstellungenHEX0xffDEC255OCT0o377BIN0b1111111132 Bit · mit Vorzeichen255
+    Wortbreite 8 Bit, mit Vorzeichen: 8 Bit · mit Vorzeichen-1 (erwartet „−1")
+  RPN: /tools/rpn-calculator @ 1360 px dunkel
+    Titel „RPN-Rechner" · 28 Tasten · Umschalter 
+    Bild rpn-1360.png (91 kB)
+    Ergebnis „35" = erwartete „35" ✓  Bündel index-DpdKTlMj.js
+  Standard: /tools/calculator @ 390 px hell
+    Titel „Rechner" · 23 Tasten · Umschalter Dezimal (14 Stellen angezeigt)|Bruch (exakt)
+    Bild standard-390.png (69 kB)
+    Ergebnis „0,5" = erwartete „0,5" ✓  Bündel index-DpdKTlMj.js
+  Wissenschaftlich: /tools/scientific-calculator @ 390 px hell
+    Titel „Wissenschaftlicher Rechner" · 37 Tasten · Umschalter Dezimal (14 Stellen angezeigt)|Bruch (exakt) ; Bogenmaß (rad)|Grad (°)|Gon (grad)
+    Bild wissenschaftlich-390.png (86 kB)
+    Ergebnis „0,5" = erwartete „0,5" ✓  Bündel index-DpdKTlMj.js
+    Bild programmierer-390.png (93 kB)
+  Programmierer @ 390 px: Ergebnis „0xff" (erwartet „0xff"), Darstellungen: DarstellungenHEX0xffDEC255OCT0o377BIN0b1111111132 Bit · mit Vorzeichen255
+    Wortbreite 8 Bit, mit Vorzeichen: 8 Bit · mit Vorzeichen-1 (erwartet „−1")
+  RPN: /tools/rpn-calculator @ 390 px hell
+    Titel „RPN-Rechner" · 28 Tasten · Umschalter 
+    Bild rpn-390.png (78 kB)
+    Ergebnis „35" = erwartete „35" ✓  Bündel index-DpdKTlMj.js
+  Rechnerart-Umschalter auf standard: keiner ✓
+  Rechnerart-Umschalter auf scientific: keiner ✓
+  Rechnerart-Umschalter auf programmer: keiner ✓
+  Rechnerart-Umschalter auf rpn: keiner ✓
+
+Ergebnis: 8 Proben über 4 Routen und 2 Fensterbreiten, alle Werte zurückgelesen und geprüft.
+Erwartungen (unabhängig hergeleitet): 1/3+1/6=0,5 · sin(30°)=0,5 · 255=0xff₁₆=0b11111111₂, int8 = −1 · 3 4 + 5 * =35

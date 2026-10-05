@@ -1,5 +1,8 @@
 /**
- * Tastenfeld des Rechners — **reine Daten**, keine Oberfläche und keine Anzeigetexte.
+ * Gemeinsame Bausteine der vier Tastenfelder — **reine Daten und reine Funktionen**, keine
+ * Oberfläche und keine Anzeigetexte. Die Belegungen selbst liegen je Rechenart in `keypads/`;
+ * jede Werkzeugroute lädt damit nur ihr eigenes Feld (Entscheidung 2026-10-04: ein Werkzeug je
+ * Rechenart).
  *
  * Drei Regeln, die hier festgehalten sind (Konzept `2026-10-04-rechner-oberflaeche.md`):
  *
@@ -12,10 +15,7 @@
  *    jede hier angebotene Funktion in `calculatorFunctions` steht.
  */
 
-/** Rechenarten der Oberfläche. Der Rechenkern kennt diese Einteilung nicht — sie ist Bedienung. */
-export type KeypadMode = 'standard' | 'scientific' | 'programmer' | 'rpn'
-
-/** Zahlensysteme des Programmierer-Modus, wie im Kern. */
+/** Zahlensysteme des Programmierer-Rechners, wie im Kern. */
 export type KeypadBase = 2 | 8 | 10 | 16
 
 export type KeyRole = 'digit' | 'operator' | 'function' | 'action' | 'equals' | 'constant'
@@ -46,14 +46,13 @@ export interface KeyDefinition {
 export type KeyRow = readonly (KeyDefinition | null)[]
 
 export interface KeypadLayout {
-  readonly mode: KeypadMode
   readonly columns: number
   readonly rows: readonly KeyRow[]
 }
 
-const key = (definition: KeyDefinition): KeyDefinition => definition
+export const key = (definition: KeyDefinition): KeyDefinition => definition
 
-const digit = (value: string, minBase?: KeypadBase): KeyDefinition =>
+export const digit = (value: string, minBase?: KeypadBase): KeyDefinition =>
   key({ id: `digit${value}`, label: value, snippet: value, role: 'digit', minBase })
 
 /**
@@ -61,13 +60,16 @@ const digit = (value: string, minBase?: KeypadBase): KeyDefinition =>
  * **Ohne** Typannotation, damit TypeScript die einzelnen Schlüssel kennt: `Record<string, …>`
  * machte aus jedem Zugriff ein `KeyDefinition | undefined`, und ein `spread` verlor dann die
  * Pflichtfelder.
+ *
+ * Die zugänglichen Namen liegen im **gemeinsamen Rahmen** (`tool.calc.key.*`) — sie sind für
+ * alle vier Rechenarten dieselben und werden nur einmal übersetzt.
  */
-const SYMBOLS = {
-  clear: key({ id: 'clear', label: 'AC', snippet: '', role: 'action', ariaKey: 'tool.calculator.key.clear' }),
-  backspace: key({ id: 'backspace', label: '⌫', snippet: '', role: 'action', ariaKey: 'tool.calculator.key.backspace' }),
-  more: key({ id: 'more', label: '⋯', snippet: '', role: 'action', ariaKey: 'tool.calculator.key.more' }),
-  representations: key({ id: 'representations', label: '≡', snippet: '', role: 'action', ariaKey: 'tool.calculator.key.representations' }),
-  second: key({ id: 'second', label: '2nd', snippet: '', role: 'action', ariaKey: 'tool.calculator.key.second' }),
+export const SYMBOLS = {
+  clear: key({ id: 'clear', label: 'AC', snippet: '', role: 'action', ariaKey: 'tool.calc.key.clear' }),
+  backspace: key({ id: 'backspace', label: '⌫', snippet: '', role: 'action', ariaKey: 'tool.calc.key.backspace' }),
+  more: key({ id: 'more', label: '⋯', snippet: '', role: 'action', ariaKey: 'tool.calc.key.more' }),
+  representations: key({ id: 'representations', label: '≡', snippet: '', role: 'action', ariaKey: 'tool.calc.key.representations' }),
+  second: key({ id: 'second', label: '2nd', snippet: '', role: 'action', ariaKey: 'tool.calc.key.second' }),
   percent: key({ id: 'percent', label: '%', snippet: '%', role: 'function' }),
   divide: key({ id: 'divide', label: '÷', snippet: '/', role: 'operator' }),
   multiply: key({ id: 'multiply', label: '×', snippet: '*', role: 'operator' }),
@@ -80,7 +82,7 @@ const SYMBOLS = {
   closeParen: key({ id: 'closeParen', label: ')', snippet: ')', role: 'function' }),
   pi: key({ id: 'pi', label: 'π', snippet: 'pi', role: 'constant' }),
   e: key({ id: 'e', label: 'e', snippet: 'e', role: 'constant' }),
-  ans: key({ id: 'ans', label: 'ANS', snippet: '', role: 'action', ariaKey: 'tool.calculator.key.ans' }),
+  ans: key({ id: 'ans', label: 'ANS', snippet: '', role: 'action', ariaKey: 'tool.calc.key.ans' }),
   mod: key({ id: 'mod', label: 'mod', snippet: ' mod ', role: 'operator' }),
   // Bitoperationen: `<<` und `>>` sind echte Operatoren, `bitAnd` und Verwandte sind
   // **Funktionen**. Gemessen am 2026-10-04: `12 bitAnd 10` ist ein Fehler, `1 << 4` ergibt 16,
@@ -93,105 +95,6 @@ const SYMBOLS = {
   leftShift: key({ id: 'leftShift', label: '<<', snippet: '<<', role: 'operator' }),
   rightShift: key({ id: 'rightShift', label: '>>', snippet: '>>', role: 'operator' }),
   inverse: key({ id: 'inverse', label: '1/x', snippet: '1/(', role: 'function' })
-}
-
-/** Wissenschaftliche Tasten mit zweiter Belegung. Jede zweite Funktion ist gegen die
- *  kuratierten Factories geprüft: `asin acos atan nthRoot cbrt combinations exp log2` gibt es. */
-const SCIENTIFIC: readonly KeyDefinition[] = [
-  key({ id: 'sin', label: 'sin', snippet: 'sin(', secondLabel: 'sin⁻¹', secondSnippet: 'asin(', role: 'function' }),
-  key({ id: 'cos', label: 'cos', snippet: 'cos(', secondLabel: 'cos⁻¹', secondSnippet: 'acos(', role: 'function' }),
-  key({ id: 'tan', label: 'tan', snippet: 'tan(', secondLabel: 'tan⁻¹', secondSnippet: 'atan(', role: 'function' }),
-  key({ id: 'power', label: 'xʸ', snippet: '^', secondLabel: 'ⁿ√x', secondSnippet: 'nthRoot(', role: 'function' }),
-  key({ id: 'factorial', label: 'n!', snippet: 'factorial(', secondLabel: 'C(n,k)', secondSnippet: 'combinations(', role: 'function' }),
-  key({ id: 'sqrt', label: '√', snippet: 'sqrt(', secondLabel: '∛', secondSnippet: 'cbrt(', role: 'function' }),
-  key({ id: 'square', label: 'x²', snippet: '^2', secondLabel: 'x³', secondSnippet: '^3', role: 'function' }),
-  key({ id: 'tenPow', label: '10ˣ', snippet: '10^', secondLabel: '2ˣ', secondSnippet: '2^', role: 'function' }),
-  key({ id: 'ln', label: 'ln', snippet: 'log(', secondLabel: 'eˣ', secondSnippet: 'exp(', role: 'function' }),
-  key({ id: 'log', label: 'log', snippet: 'log10(', secondLabel: 'log₂', secondSnippet: 'log2(', role: 'function' })
-]
-
-/** Tasten der RPN-Eingabe. Hier stehen **Tokens** des RPN-Kerns (`evaluateRpn`) und keine
- *  Ausdrucks-Schnipsel: `sqrt(` wäre als Token unlesbar, `sqrt` ist richtig. Klammern und Prozent
- *  gibt es in der RPN nicht — sie fehlen deshalb, statt als tote Tasten dazustehen. */
-const RPN: readonly KeyDefinition[] = [
-  key({ id: 'rpnNegate', label: '±', snippet: 'neg', role: 'function' }),
-  key({ id: 'rpnInverse', label: '1/x', snippet: 'inv', role: 'function' }),
-  key({ id: 'rpnSqrt', label: '√', snippet: 'sqrt', role: 'function' }),
-  key({ id: 'rpnFactorial', label: 'n!', snippet: 'fact', role: 'function' }),
-  // Eigene Potenztaste ohne zweite Belegung: `nthRoot(` ist ein Ausdruck, kein RPN-Token.
-  key({ id: 'rpnPower', label: 'xʸ', snippet: '^', role: 'operator' })
-]
-
-/**
- * Stapelgriffe der RPN-Eingabe. Sie tragen keinen Schnipsel, sondern arbeiten auf der Token-Folge
- * (`dropRpnToken`, `swapRpnTokens`). `SWAP` und `DROP` sind die eingeführten Abkürzungen der
- * Stapelrechner — genormte Kürzel werden nicht übersetzt.
- */
-const RPN_EDIT: readonly KeyDefinition[] = [
-  key({ id: 'rpnSwap', label: 'SWAP', snippet: '', role: 'action', ariaKey: 'tool.calculator.key.swap' }),
-  key({ id: 'rpnDrop', label: 'DROP', snippet: '', role: 'action', ariaKey: 'tool.calculator.key.drop' })
-]
-
-const NUMERIC_ROWS: readonly KeyRow[] = [
-  [digit('7'), digit('8'), digit('9')],
-  [digit('4'), digit('5'), digit('6')],
-  [digit('1'), digit('2'), digit('3')],
-  [SYMBOLS.sign, digit('0'), SYMBOLS.decimal]
-]
-
-export const KEYPADS: Record<KeypadMode, KeypadLayout> = {
-  standard: {
-    mode: 'standard',
-    columns: 4,
-    rows: [
-      [SYMBOLS.clear, SYMBOLS.backspace, SYMBOLS.percent, SYMBOLS.divide],
-      [digit('7'), digit('8'), digit('9'), SYMBOLS.multiply],
-      [digit('4'), digit('5'), digit('6'), SYMBOLS.minus],
-      [digit('1'), digit('2'), digit('3'), SYMBOLS.plus],
-      [SYMBOLS.sign, digit('0'), SYMBOLS.decimal, SYMBOLS.equals]
-    ]
-  },
-  scientific: {
-    mode: 'scientific',
-    columns: 5,
-    rows: [
-      [SYMBOLS.second, SYMBOLS.openParen, SYMBOLS.closeParen, SYMBOLS.pi, SYMBOLS.e],
-      [SCIENTIFIC[0] ?? null, SCIENTIFIC[1] ?? null, SCIENTIFIC[2] ?? null, SCIENTIFIC[3] ?? null, SCIENTIFIC[4] ?? null],
-      [SCIENTIFIC[5] ?? null, SCIENTIFIC[6] ?? null, SCIENTIFIC[7] ?? null, SCIENTIFIC[8] ?? null, SCIENTIFIC[9] ?? null],
-      [SYMBOLS.clear, SYMBOLS.backspace, SYMBOLS.more, SYMBOLS.divide, SYMBOLS.multiply],
-      [digit('7'), digit('8'), digit('9'), SYMBOLS.minus, key({ ...SYMBOLS.equals, rowSpan: 3 })],
-      [digit('4'), digit('5'), digit('6'), SYMBOLS.plus, null],
-      [digit('1'), digit('2'), digit('3'), SYMBOLS.percent, null],
-      [SYMBOLS.sign, digit('0'), SYMBOLS.decimal, SYMBOLS.ans, null]
-    ]
-  },
-  programmer: {
-    mode: 'programmer',
-    columns: 6,
-    rows: [
-      [SYMBOLS.bitAnd, SYMBOLS.bitOr, SYMBOLS.bitXor, SYMBOLS.bitNot, SYMBOLS.leftShift, SYMBOLS.rightShift],
-      [SYMBOLS.clear, SYMBOLS.backspace, SYMBOLS.openParen, SYMBOLS.closeParen, SYMBOLS.mod, SYMBOLS.divide],
-      [digit('7', 8), digit('8', 10), digit('9', 10), digit('A', 16), digit('B', 16), SYMBOLS.multiply],
-      [digit('4', 8), digit('5', 8), digit('6', 8), digit('C', 16), digit('D', 16), SYMBOLS.minus],
-      [digit('1'), digit('2', 8), digit('3', 8), digit('E', 16), digit('F', 16), SYMBOLS.plus],
-      [digit('0'), digit('00'), SYMBOLS.more, SYMBOLS.representations, SYMBOLS.sign, SYMBOLS.equals]
-    ]
-  },
-  rpn: {
-    mode: 'rpn',
-    columns: 5,
-    rows: [
-      [SYMBOLS.backspace, SYMBOLS.clear, RPN[1] ?? null, RPN[2] ?? null, SYMBOLS.divide],
-      [RPN[0] ?? null, RPN[3] ?? null, RPN[4] ?? null, SYMBOLS.mod, SYMBOLS.multiply],
-      [digit('7'), digit('8'), digit('9'), SYMBOLS.minus, key({ ...SYMBOLS.equals, rowSpan: 3 })],
-      [digit('4'), digit('5'), digit('6'), SYMBOLS.plus],
-      [digit('1'), digit('2'), digit('3'), SYMBOLS.decimal],
-      // Die Null ist drei Zellen breit: so ist die Reihe voll und die beiden Stapelgriffe stehen
-      // in der letzten Reihe nebeneinander, statt einzeln zu verrutschen.
-      [key({ ...digit('0'), colSpan: 3 }), SYMBOLS.pi, SYMBOLS.e],
-      [RPN_EDIT[0] ?? null, RPN_EDIT[1] ?? null]
-    ]
-  }
 }
 
 /** Belegung einer Taste im aktuellen Zustand — mit zweiter Ebene, wenn `2nd` aktiv ist. */
@@ -207,14 +110,13 @@ export function hasSecondPlane(definition: KeyDefinition): boolean {
   return Boolean(definition.secondLabel && definition.secondSnippet)
 }
 
-/** Alle Tasten einer Rechenart in Reihenfolge — für Tests und für die Vollzähligkeit. */
-export function keypadKeys(mode: KeypadMode): readonly KeyDefinition[] {
-  const layout = KEYPADS[mode]
+/** Alle Tasten eines Feldes in Reihenfolge — für Tests und für die Vollzähligkeit. */
+export function keypadKeys(layout: KeypadLayout): readonly KeyDefinition[] {
   return layout.rows.flatMap((row) => row.filter((entry): entry is KeyDefinition => entry !== null))
 }
 
 /**
- * Ist die Taste in der gewählten Basis bedienbar? Im Programmierer-Modus haben `A`–`F` in DEC,
+ * Ist die Taste in der gewählten Basis bedienbar? Im Programmierer-Rechner haben `A`–`F` in DEC,
  * OCT und BIN keine Ziffernbedeutung; in BIN bleibt von `8`/`9` und `2`–`7` nichts übrig (B2).
  */
 export function isKeyEnabled(definition: KeyDefinition, base?: KeypadBase): boolean {
@@ -274,10 +176,14 @@ export interface SheetGroup {
 /**
  * Das Blatt `⋯` führt **nur**, was die kuratierte Factory-Liste hergibt (ADR 0005, gemessen
  * 2026-10-04). Deshalb fehlen hier `tau`, `phi`, `i`, `arg`, `isPrime`, `mean` und `std`.
+ *
+ * Es gehört zum **gemeinsamen Rahmen**: seit der Aufteilung erreicht jede der vier Rechenarten
+ * das Blatt über die Taste `⋯` — auch der Standardrechner, der es vorher nicht hatte
+ * (Entscheidung 2026-10-04).
  */
 export const SHEET_GROUPS: readonly SheetGroup[] = [
   {
-    titleKey: 'tool.calculator.sheet.inverse',
+    titleKey: 'tool.calc.sheet.inverse',
     entries: [
       { label: 'asin', snippet: 'asin(' },
       { label: 'acos', snippet: 'acos(' },
@@ -286,7 +192,7 @@ export const SHEET_GROUPS: readonly SheetGroup[] = [
     ]
   },
   {
-    titleKey: 'tool.calculator.sheet.hyperbolic',
+    titleKey: 'tool.calc.sheet.hyperbolic',
     entries: [
       { label: 'sinh', snippet: 'sinh(' },
       { label: 'cosh', snippet: 'cosh(' },
@@ -297,7 +203,7 @@ export const SHEET_GROUPS: readonly SheetGroup[] = [
     ]
   },
   {
-    titleKey: 'tool.calculator.sheet.rounding',
+    titleKey: 'tool.calc.sheet.rounding',
     entries: [
       { label: 'abs', snippet: 'abs(' },
       { label: 'round', snippet: 'round(' },
@@ -308,7 +214,7 @@ export const SHEET_GROUPS: readonly SheetGroup[] = [
     ]
   },
   {
-    titleKey: 'tool.calculator.sheet.numberTheory',
+    titleKey: 'tool.calc.sheet.numberTheory',
     entries: [
       { label: 'P(n,k)', snippet: 'permutations(' },
       { label: 'gcd', snippet: 'gcd(' },
@@ -317,7 +223,7 @@ export const SHEET_GROUPS: readonly SheetGroup[] = [
     ]
   },
   {
-    titleKey: 'tool.calculator.sheet.lists',
+    titleKey: 'tool.calc.sheet.lists',
     entries: [
       { label: 'max', snippet: 'max(' },
       { label: 'min', snippet: 'min(' },
@@ -325,7 +231,7 @@ export const SHEET_GROUPS: readonly SheetGroup[] = [
     ]
   },
   {
-    titleKey: 'tool.calculator.sheet.constants',
+    titleKey: 'tool.calc.sheet.constants',
     entries: [
       { label: 'π', snippet: 'pi' },
       { label: 'e', snippet: 'e' }
@@ -334,14 +240,14 @@ export const SHEET_GROUPS: readonly SheetGroup[] = [
 ]
 
 /**
- * Funktionsnamen, die im Tastenfeld und im Blatt vorkommen — der Test stellt sie gegen
+ * Funktionsnamen, die in den Tastenfeldern und im Blatt vorkommen — der Test stellt sie gegen
  * `calculatorFunctions`. So fällt eine Taste auf eine nicht geladene Factory hier auf und nicht
  * erst beim Nutzer (eine fehlende Factory bricht erst zur Laufzeit, ADR 0005).
  */
-export function keypadFunctionNames(): readonly string[] {
+export function keypadFunctionNames(layouts: readonly KeypadLayout[]): readonly string[] {
   const names = new Set<string>()
-  for (const mode of Object.keys(KEYPADS) as KeypadMode[]) {
-    for (const definition of keypadKeys(mode)) {
+  for (const layout of layouts) {
+    for (const definition of keypadKeys(layout)) {
       for (const snippet of [definition.snippet, definition.secondSnippet]) {
         const match = snippet ? /^([a-zA-Z][a-zA-Z0-9]*)\(/u.exec(snippet) : null
         if (match?.[1]) names.add(match[1])

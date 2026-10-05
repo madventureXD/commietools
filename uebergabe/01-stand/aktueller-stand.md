@@ -68,6 +68,7 @@ einem eigenen Fenster); die elf zugehörigen Commits liegen lokal vor `origin/ma
 - automatische Startlastprüfung mit 200-KiB-Gzip-Warnschwelle; Größenüberschreitungen warnen, Architekturverstöße wie statisch erreichbare PDF- oder Rechen-Engines brechen den Prüflauf weiterhin ab
 - Rechner (Suite „Rechnen", Welle 1): kuratierter mathjs-Rechenkern in eigenem dynamisch geladenen Chunk (94,3 KiB gzip), exakte Zahlenmodelle (`BigNumber` 64 Stellen, `Fraction`), Fehler als übersetzbare Codes, Verlauf als Ringpuffer, benannte Variablen, „Formel und Quelle"
 - Rechner (Suite „Rechnen", Welle 2 abgenommen): vier Rechnerarten in der Oberfläche — Standard und Brüche als Zahlenmodell, wissenschaftlich mit Winkelmodus (Bogenmaß, Grad, Gon) und 32 Tasten, Programmierer mit Anzeige-Basis, Wortbreite 8/16/32/64 und Zweierkomplement samt Darstellungs-Karte, RPN mit Token-Eingabe, Stapeltasten, **live sichtbarem Stapel und Rechenweg** je Schritt; Funktionsliste mit Aufruftest je Funktion und belegter Fehlschlagprobe; Rechenkern 102.436 B gzip
+- *Zusatz 2026-10-04: Die vier Rechnerarten stehen seit der Aufteilung (ADR 0009) nicht mehr in **einem** Werkzeug, sondern als **vier Werkzeuge** — Rechner, wissenschaftlicher Rechner, Programmiererrechner und RPN-Rechner — mit einem gemeinsamen Rahmen (`apps/web/src/tools/calculator-frame.tsx`), je einem eigenen Tastenfeld, je einem eigenen Verlauf und ohne Rechenart-Umschalter; der Rechenkern bleibt geteilt. Der Eintrag oben bleibt als Stand der Welle 2 stehen. Messwerte und Belege: `05-uebergaben/2026-10-04-rechner-vier-werkzeuge.md`.*
 - Kaufmännisch (Suite „Rechnen", Welle 3): Prozent in drei Richtungen, Rabatt, Aufschlag, Marge **und** Aufschlag gemeinsam mit klarer Bezugsgröße, Umsatzsteuer raus und rein, Skonto, Dreisatz, Zinseszins und Tilgungsplan; rechnet ohne neue Abhängigkeit in `BigInt` cent-genau, Plan summiert sich exakt zum Darlehen; Formeln, Annahmen und Quellen in drei Sprachen
 - Umrechnen (Suite „Rechnen", Welle 4): Einheiten in zwölf Größen, Winkel, Zahlensysteme 2–36 in `BigInt`, Zollbrüche und 18 Kalender; Umrechnungsfaktoren werden zur Laufzeit aus der Einheitenbibliothek **gemessen** statt abgeschrieben; Kalender vorwärts über `Intl`, Rückweg über `Temporal` mit `monthCode`
 - Zeit und Datum (Suite „Rechnen", Welle 4): Datumsabstand, Verschieben über Monats- und Jahresgrenzen, Arbeitstage, Kalenderwoche nach ISO 8601, Fristen nach BGB §§ 187/188/193 und Zeitdauern für den Stundenzettel
@@ -145,16 +146,17 @@ einem eigenen Fenster); die elf zugehörigen Commits liegen lokal vor `origin/ma
 - vollständige Lizenztexte: 16
 - bewahrte originale Paketdokumente: 189
 - eingebettete Binärartefakte: 2 registrierte WASM-Artefakte (QPDF und PDF Signer)
-- letzter bekannter Teststand: 375 Webtests in 22 Dateien bestanden (`npm run check`, gemessen 2026-10-04); Rust-Tests in diesem Lauf nicht neu gemessen — der zuletzt bekannte Stand bleibt 50
-- Werkzeugregister: 45 Werkzeuge, 3 Sprachen, 45 Symbole, 3.018 Suchbegriffe, 92 deklarierte Dateitypen (`npm run catalog:generate`, gemessen 2026-10-04); Spanisch wird als noch gegenzulesendes Testpaket mitausgeliefert
+- letzter bekannter Teststand: 380 Webtests in 23 Dateien bestanden (`npm run check`, gemessen 2026-10-04); Rust-Tests in diesem Lauf nicht neu gemessen — der zuletzt bekannte Stand bleibt 50
+- Werkzeugregister: 48 Werkzeuge, 3 Sprachen, 48 Symbole, 3.164 Suchbegriffe, 92 deklarierte Dateitypen (`npm run catalog:generate`, gemessen 2026-10-04); Spanisch wird als noch gegenzulesendes Testpaket mitausgeliefert
 - Produktions-Build: bestanden. **Veröffentlicht** (Sammelrelease, ohne Auskoppeln): 136.967 Byte
-  Startcode komprimiert. **Aktueller Arbeitsstand** (mit Auskoppeln und Welle A der
-  Handwerkerwerkzeuge, noch nicht gepusht): **145.931 Byte** von 204.800 (Reserve rund 59 kB),
-  gemessen 2026-10-04. Sprachgetrennte Such- und Werkzeugtextpakete mit verzögertem Laden, ohne
-  statisch erreichbare PDF- oder Rechen-Engine; PDF-/OCR-/Signaturrouten, Worker und WASM sind vom
-  Vorab-Cache ausgeschlossen; nachgeladener Rechenkern 103.708 Byte gzip, Katalogbasis 1.163 Byte,
-  Werkzeugtexte Deutsch 32.080 von 30.720 Byte und Spanisch 31.130 (**beide über der Warnschwelle —
-  begründet in `05-uebergaben/2026-10-04-welle-a-handwerkerwerkzeuge.md`**), Englisch 29.264 Byte
+  Startcode komprimiert. **Aktueller Arbeitsstand** (mit Auskoppeln, Welle A der
+  Handwerkerwerkzeuge und der Aufteilung des Rechners in vier Werkzeuge, noch nicht gepusht):
+  **146.220 Byte** von 204.800 (Reserve rund 58 kB), gemessen 2026-10-04. Sprachgetrennte Such- und
+  Werkzeugtextpakete mit verzögertem Laden, ohne statisch erreichbare PDF- oder Rechen-Engine;
+  PDF-/OCR-/Signaturrouten, Worker und WASM sind vom Vorab-Cache ausgeschlossen; nachgeladener
+  Rechenkern 103.709 Byte gzip, Katalogbasis 1.212 Byte,
+  Werkzeugtexte Deutsch 32.672 von 30.720 Byte und Spanisch 31.645 (**beide über der Warnschwelle —
+  begründet in `05-uebergaben/2026-10-04-rechner-vier-werkzeuge.md`**), Englisch 29.787 Byte
   (gemessen 2026-10-04)
 
 Zahlen sind Momentaufnahmen. Nach Abhängigkeits-, Test- oder Tooländerungen müssen sie anhand der tatsächlichen Ausgabe aktualisiert werden.
