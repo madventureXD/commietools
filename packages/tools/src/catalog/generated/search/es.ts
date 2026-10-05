@@ -1562,5 +1562,39 @@ export const searchLocale: Readonly<Record<string, ToolLocaleEntry>> = {
       "#pavimento",
       "#artesania"
     ]
+  },
+  "paving": {
+    "title": "Pavimento y movimiento de tierras",
+    "summary": "Adoquines, cama de asiento, juntas y excavación según superficie y sección.",
+    "description": "Adoquines, palés, cama de asiento, material de juntas y el movimiento de tierras correspondiente a partir de superficie, formato, ancho de junta y sección — con volumen de excavación y volumen esponjado para contenedores y viajes. Calcula por completo en el navegador.",
+    "terms": [
+      "pavimento",
+      "adoquines",
+      "adoquinado",
+      "baldosas",
+      "adoquín",
+      "urbanización",
+      "jardinería",
+      "movimiento de tierras",
+      "excavación",
+      "zahorra",
+      "base",
+      "cama de asiento",
+      "gravilla",
+      "arena",
+      "material de juntas",
+      "ancho de junta",
+      "módulo",
+      "palé",
+      "pendiente",
+      "superficie pavimentada",
+      "esponjamiento",
+      "tierra excavada",
+      "miniexcavadora"
+    ],
+    "tags": [
+      "#pavimento",
+      "#artesania"
+    ]
   }
 }

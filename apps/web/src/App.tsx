@@ -60,6 +60,7 @@ const Tiles = lazy(() => import('./tools/Tiles').then((module) => ({ default: mo
 const Paint = lazy(() => import('./tools/Paint').then((module) => ({ default: module.Paint })))
 const Drywall = lazy(() => import('./tools/Drywall').then((module) => ({ default: module.Drywall })))
 const Flooring = lazy(() => import('./tools/Flooring').then((module) => ({ default: module.Flooring })))
+const Paving = lazy(() => import('./tools/Paving').then((module) => ({ default: module.Paving })))
 
 type Theme = 'light' | 'dark'
 type Translate = (key: string) => string
@@ -173,6 +174,7 @@ function ToolPage({ tool, t, locale, navigate, ready }: { tool: ToolManifest; t:
                                   : tool.id === 'paint' ? <Suspense fallback={<p aria-live="polite">…</p>}><Paint t={t} locale={locale} /></Suspense>
                                   : tool.id === 'drywall' ? <Suspense fallback={<p aria-live="polite">…</p>}><Drywall t={t} locale={locale} /></Suspense>
                                   : tool.id === 'flooring' ? <Suspense fallback={<p aria-live="polite">…</p>}><Flooring t={t} locale={locale} /></Suspense>
+                                  : tool.id === 'paving' ? <Suspense fallback={<p aria-live="polite">…</p>}><Paving t={t} locale={locale} /></Suspense>
               : tool.id === 'pdf-merge' ? <Suspense fallback={<p aria-live="polite">…</p>}><PdfMerge t={t} /></Suspense>
                 : tool.id === 'pdf-split' ? <Suspense fallback={<p aria-live="polite">…</p>}><PdfSplit t={t} /></Suspense>
                   : tool.id === 'pdf-organize' ? <Suspense fallback={<p aria-live="polite">…</p>}><PdfOrganize t={t} /></Suspense>

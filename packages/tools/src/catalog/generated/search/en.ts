@@ -1629,5 +1629,41 @@ export const searchLocale: Readonly<Record<string, ToolLocaleEntry>> = {
       "#flooring",
       "#craft"
     ]
+  },
+  "paving": {
+    "title": "Paving and earthworks",
+    "summary": "Paving stones, bedding, joint material and excavation from area and build-up.",
+    "description": "Stones, pallets, bedding, joint material and the earthworks that go with them, from area, stone format, joint width and build-up — including excavation volume and the loosened volume for skips and trips. Runs entirely in the browser.",
+    "terms": [
+      "paving",
+      "pavers",
+      "paving stones",
+      "block paving",
+      "flags",
+      "cobbles",
+      "landscaping",
+      "groundworks",
+      "excavation",
+      "sub-base",
+      "base course",
+      "bedding",
+      "grit",
+      "sand",
+      "joint material",
+      "joint width",
+      "module",
+      "pallet",
+      "fall",
+      "slope",
+      "paved area",
+      "build-up",
+      "bulking",
+      "excavated soil",
+      "minidigger"
+    ],
+    "tags": [
+      "#paving",
+      "#craft"
+    ]
   }
 }

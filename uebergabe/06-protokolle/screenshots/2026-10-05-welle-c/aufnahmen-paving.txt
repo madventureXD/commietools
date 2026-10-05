@@ -1,0 +1,11 @@
+
+=== Lauf 2026-10-05T18:19:56.419Z auf http://localhost:4193 ===
+01-pflaster-standard-dunkel | Titel „Pflaster und Erdarbeiten" · Kategorie „Handwerk" · 40 m² · 47,13 Steine/m² · 1942 Steine · 5 Paletten · Bettung 1,6 m³ = 2,56 t · Fugenmaterial 230,4 kg · Aushub 0,4 m tief: 16 m³ → 20 m³ · Bündel index-Bahufba1.js
+02-pflaster-ohne-fuge-dunkel | Fugenbreite 0 mm: 2060 Steine statt 1942 · Fugenmaterial 0 kg — das Rastermaß entscheidet über die Bestellung
+03-pflaster-auflockerung-dunkel | Auflockerungsfaktor 1: Haufwerk 16 m³ = Bodenvolumen; mit 1,25 waren es 20 m³
+04-pflaster-fehlerfall | Fehlermeldung: „Das Steinformat muss zwischen 4 und 120 cm je Kante liegen."
+05-pflaster-hell-390 | 10 × 3 m: 1457 Steine · 4 Paletten · Haufwerk 15 m³ · Überbreite 0 px
+06-katalog-handwerk-neun | Karten 60 · Handwerk mit neun Werkzeugen sichtbar · HandwerkPflaster und ErdarbeitenPflastersteine, Bettung, Fugenmaterial und Aushub aus Fläche und Aufbau.#pflaster#handwerk●Lokal verarbeitetTool öffnen →
+07-suche-pflastersteine | 1 Treffer, gefiltert · 1 Karten
+08-suche-aushub | 1 Treffer: HandwerkPflaster und ErdarbeitenPflastersteine, Bettung, Fugenmaterial und Aushub aus Fläche und Auf
+09-suche-gegenprobe | „zzzqqq": 0 Karten, Leermeldung „Kein Werkzeug passt zu dieser Suche. Versuch es mit einem anderen Wort oder einer Dateiendung wie webp."

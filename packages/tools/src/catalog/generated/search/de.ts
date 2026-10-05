@@ -1686,5 +1686,41 @@ export const searchLocale: Readonly<Record<string, ToolLocaleEntry>> = {
       "#bodenbelag",
       "#handwerk"
     ]
+  },
+  "paving": {
+    "title": "Pflaster und Erdarbeiten",
+    "summary": "Pflastersteine, Bettung, Fugenmaterial und Aushub aus Fläche und Aufbau.",
+    "description": "Steine, Paletten, Bettung, Fugenmaterial und der zugehörige Erdbau aus Fläche, Steinformat, Fugenbreite und Aufbau — mit Aushubvolumen und aufgelockerter Masse für Container und Fahrten. Rechnet vollständig im Browser.",
+    "terms": [
+      "Pflaster",
+      "Pflastersteine",
+      "Pflasterarbeiten",
+      "Betonstein",
+      "Verbundstein",
+      "Platten",
+      "Kopfsteinpflaster",
+      "GaLaBau",
+      "Tiefbau",
+      "Erdarbeiten",
+      "Aushub",
+      "Tragschicht",
+      "Bettung",
+      "Splitt",
+      "Sand",
+      "Fugenmaterial",
+      "Fugenbreite",
+      "Rastermaß",
+      "Palette",
+      "Gefälle",
+      "Pflasterfläche",
+      "Unterbau",
+      "Auflockerung",
+      "Bodenaushub",
+      "Bagger"
+    ],
+    "tags": [
+      "#pflaster",
+      "#handwerk"
+    ]
   }
 }
