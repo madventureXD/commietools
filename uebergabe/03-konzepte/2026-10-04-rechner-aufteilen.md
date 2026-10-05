@@ -283,6 +283,13 @@ RPN-Modus auch „Bruch (exakt)" an. Die Stapelrechnung läuft jetzt im Dezimalm
 Gegenstand der sieben Entscheidungen; es ist in der Übergabe als Abweichung benannt. Soll der
 RPN-Rechner den Umschalter zurückbekommen, ist es eine Zeile im `CalculatorFrameSpec`.
 
+### Thomas' Entscheidung zu den drei Abweichungen (2026-10-04)
+
+Auf Vorlage aller drei Punkte: **Klammern ja · DEZ/BRUCH beibehalten · Bruch-Umschalter im RPN
+nein.** Damit bleibt der gebaute Stand unverändert — es ist nichts nachzubauen, und die drei
+Punkte sind keine offenen Fragen mehr. Der Standardrechner behält `(` und `)`, die Kennzeichen
+bleiben kurz, und der RPN-Rechner rechnet weiterhin im Dezimalmodell.
+
 ### Was die Messung aus Abschnitt 2 bestätigt hat
 
 Der Rechenkern blieb **ein** Modul; die Route lädt unverändert die Vereinigung aller Factories

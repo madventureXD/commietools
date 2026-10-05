@@ -131,9 +131,10 @@ Rechnerart-Umschaltleiste. Bilder und Protokoll: `07-pruefung/rechner-vier-werkz
       30.720 B). Die Aufteilung der Werkzeugtexte je Sprache bleibt der vorgesehene Ausweg.
 - [ ] **Start-JavaScript +9.259 B** durch drei zusätzliche Katalogeinträge je Sprache — gewollt,
       aber im Blick zu behalten (146.220 von 204.800 B).
-- [ ] **RPN ohne Zahlenmodell-Umschalter:** der alte Gesamtrechner bot im RPN-Modus auch „Bruch
-      (exakt)". Der RPN-Rechner rechnet jetzt im Dezimalmodell. Nicht eigens entschieden —
-      mitgeteilt, damit es nicht als Versehen durchgeht.
+- [x] **RPN ohne Zahlenmodell-Umschalter** — *entschieden am 2026-10-04 (Thomas: „bruch Umschalter
+      nein")*: der RPN-Rechner rechnet im Dezimalmodell, ein Umschalter kommt nicht zurück. Die
+      beiden anderen Abweichungen sind ebenfalls bestätigt: **Klammern ja, DEZ/BRUCH beibehalten**.
+      Es ist nichts nachzubauen.
 - [ ] **Rekonstruierbarkeit der Teile:** `Calculator.tsx` wurde inhaltlich ersetzt; die alte Fassung
       liegt in der Git-Historie (`4a9f872`), nicht mehr im Baum.
 - [ ] Kein Push erfolgt (Cloudflare-Bereitstellung); Veröffentlichung nur auf Auftrag.
