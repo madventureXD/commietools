@@ -1,0 +1,10 @@
+
+=== Lauf 2026-10-05T18:03:05.773Z auf http://localhost:4193 ===
+27-bodenbelag-standard-dunkel | Titel „Parkett, Laminat und Bodenbelag" · Kategorie „Handwerk" · 20 m² · Zuschlag 1 m² · Bedarf 21 m² · 11 × 2 m² Pakete · Verschnitt 2 m² · Dämmung 21 m² (2 × 15 m²) · Sockelleisten 8 × 2,4 m = 19,2 m · Bündel index-DTqKcsJJ.js
+28-bodenbelag-diagonal-dunkel | Diagonalverband, 12 %: Bedarf 22,4 m² · 12 × 2 m² Pakete · Verschnitt 4 m² statt 2 m² — die Verlegeart entscheidet über den Zuschlag
+29-bodenbelag-fehlerfall | Fehlermeldung: „Die Paketfläche muss zwischen 0,5 und 10 m² liegen."
+30-bodenbelag-hell-390 | 3 × 2,5 m: Bodenfläche 7,5 m² · 4 × 2 m² · 1 × 15 m² · 5 × 2,4 m Leisten · Überbreite 0 px
+31-katalog-handwerk-acht | Karten 59 · Handwerk sichtbar mit acht Werkzeugen · HandwerkParkett, Laminat und BodenbelagPakete, Verschnitt, Dämmung und Sockelleisten für schwimmende Böden.#bodenbelag#handwerk●Lokal verarbeitetTool öffnen →
+32-suche-laminat | 1 Treffer, gefiltert · 1 Karten
+33-suche-trittschall | 1 Treffer: HandwerkParkett, Laminat und BodenbelagPakete, Verschnitt, Dämmung und Sockelleisten für schwimmende
+34-suche-gegenprobe | „zzzqqq": 0 Karten, Leermeldung „Kein Werkzeug passt zu dieser Suche. Versuch es mit einem anderen Wort oder einer Dateiendung wie webp."

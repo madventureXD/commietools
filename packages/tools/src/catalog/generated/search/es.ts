@@ -1525,5 +1525,42 @@ export const searchLocale: Readonly<Record<string, ToolLocaleEntry>> = {
       "#pladur",
       "#artesania"
     ]
+  },
+  "flooring": {
+    "title": "Parquet, laminado y pavimento",
+    "summary": "Paquetes, recortes, aislante y rodapié para suelos flotantes.",
+    "description": "Paquetes, recortes, aislamiento acústico y rodapié para un suelo flotante — el margen sigue al tipo de colocación y los recortes aparecen como cifra propia en lugar de un porcentaje global. Calcula por completo en el navegador.",
+    "terms": [
+      "parquet",
+      "laminado",
+      "vinílico",
+      "vinilo",
+      "pavimento",
+      "suelo",
+      "colocador",
+      "tipo de colocación",
+      "a junta corrida",
+      "trabado",
+      "desplazado",
+      "diagonal",
+      "paquete",
+      "superficie del paquete",
+      "recorte",
+      "desperdicio",
+      "merma",
+      "aislamiento acústico",
+      "base aislante",
+      "aislante",
+      "banda perimetral",
+      "rodapié",
+      "zócalo",
+      "perfil de transición",
+      "renovación",
+      "reforma"
+    ],
+    "tags": [
+      "#pavimento",
+      "#artesania"
+    ]
   }
 }

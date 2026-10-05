@@ -1,4 +1,4 @@
-Funktionsprüfung Werkzeugtitel außerhalb der Werkzeugrouten, 2026-10-05T17:56:43.423Z
+Funktionsprüfung Werkzeugtitel außerhalb der Werkzeugrouten, 2026-10-05T18:05:06.154Z
 Grundlage: http://localhost:4193
 
 === Startseite `/` — Katalogkarten
@@ -22,7 +22,7 @@ Grundlage: http://localhost:4193
 === Werkzeugroute `/tools/calculator` — Gegenprobe
   Titel: „Rechner"
 
-=== Werkzeugrouten — 51 Routen aus dem Register
+=== Werkzeugrouten — 52 Routen aus dem Register
   /tools/aufmass: 31 Textknoten, 0 Schlüsselnamen
   /tools/calculator: 52 Textknoten, 0 Schlüsselnamen
   /tools/case-converter: 13 Textknoten, 0 Schlüsselnamen
@@ -33,6 +33,7 @@ Grundlage: http://localhost:4193
   /tools/datetime: 25 Textknoten, 0 Schlüsselnamen
   /tools/drywall: 37 Textknoten, 0 Schlüsselnamen
   /tools/equations: 23 Textknoten, 0 Schlüsselnamen
+  /tools/flooring: 30 Textknoten, 0 Schlüsselnamen
   /tools/geometry: 35 Textknoten, 0 Schlüsselnamen
   /tools/icon-generator: 46 Textknoten, 0 Schlüsselnamen
   /tools/image-metadata: 21 Textknoten, 0 Schlüsselnamen

@@ -1,0 +1,42 @@
+export const flooringDe = {
+  'tool.flooring.title': 'Parkett, Laminat und Bodenbelag',
+  'tool.flooring.description': 'Pakete, Verschnitt, Trittschalldämmung und Sockelleisten für einen schwimmend verlegten Boden — der Zuschlag folgt der Verlegeart, und der Verschnitt steht als eigene Zahl statt als pauschaler Prozentsatz. Rechnet vollständig im Browser.',
+  'tool.flooring.summary': 'Pakete, Verschnitt, Dämmung und Sockelleisten für schwimmende Böden.',
+  'tool.flooring.terms': 'Parkett,Laminat,Klickvinyl,Vinyl,Bodenbelag,Fußboden,Bodenleger,Verlegeart,Kreuzverband,Versatz,Halbverband,Drittelverband,Diagonalverband,Paket,Paketfläche,Verschnitt,Trittschalldämmung,Trittschall,Dämmunterlage,Randdämmstreifen,Sockelleiste,Leiste,Übergangsprofil,Renovierung,Bodenaufbau,#bodenbelag,#handwerk',
+
+  'tool.flooring.length': 'Raumlänge (m)',
+  'tool.flooring.breadth': 'Raumbreite (m)',
+  'tool.flooring.pattern': 'Verlegeart',
+  'tool.flooring.pattern.parallel': 'Kreuzverband (Fugen durchlaufend)',
+  'tool.flooring.pattern.staggered': 'Versatz (Halb- oder Drittelverband)',
+  'tool.flooring.pattern.diagonal': 'Diagonalverband',
+  'tool.flooring.surcharge': 'Zuschlag (%)',
+  'tool.flooring.packageArea': 'Paketfläche (m²)',
+  'tool.flooring.underlayRoll': 'Rollenfläche Trittschalldämmung (m²)',
+  'tool.flooring.underlayOverlap': 'Überlappung der Dämmung (%)',
+  'tool.flooring.trimPiece': 'Stücklänge Sockelleiste (m)',
+  'tool.flooring.settings': 'Belag, Dämmung und Leisten',
+
+  'tool.flooring.out.area': 'Bodenfläche',
+  'tool.flooring.out.surcharge': 'Zuschlag',
+  'tool.flooring.out.required': 'Bedarf',
+  'tool.flooring.out.packages': 'Pakete',
+  'tool.flooring.out.offcut': 'Verschnitt (gekaufte Fläche minus Bodenfläche)',
+  'tool.flooring.out.underlay': 'Trittschalldämmung',
+  'tool.flooring.out.underlayRolls': 'Rollen Dämmung',
+  'tool.flooring.out.perimeter': 'Umfang',
+  'tool.flooring.out.trimPieces': 'Sockelleisten (Stück)',
+  'tool.flooring.out.trimMeters': 'Sockelleisten (m)',
+
+  'tool.flooring.error.length': 'Die Raumlänge muss zwischen 0,2 und 200 m liegen.',
+  'tool.flooring.error.breadth': 'Die Raumbreite muss zwischen 0,2 und 200 m liegen.',
+  'tool.flooring.error.package': 'Die Paketfläche muss zwischen 0,5 und 10 m² liegen.',
+  'tool.flooring.error.surcharge': 'Der Zuschlag muss zwischen 0 und 30 Prozent liegen.',
+  'tool.flooring.error.roll': 'Die Rollenfläche der Dämmung muss zwischen 1 und 60 m² liegen.',
+  'tool.flooring.error.overlap': 'Die Überlappung muss zwischen 0 und 20 Prozent liegen.',
+  'tool.flooring.error.trim': 'Die Stücklänge der Sockelleiste muss zwischen 0,5 und 5 m liegen.',
+
+  'tool.flooring.assumptions': 'Annahmen: Die Bodenfläche ist Länge mal Breite; der Raum wird als Rechteck gerechnet. Der Zuschlag folgt der Verlegeart und ist ein Erfahrungswert: im Kreuzverband wird fast jedes Reststück weiterverwendet, im Halb- und Drittelversatz entstehen an den Rändern zwangsläufig kurze Stücke, im Diagonalverband zusätzlich Dreieckschnitte an jeder Wand — deshalb steigt der Satz. Pakete werden immer aufgerundet, ein angebrochenes Paket bleibt ein Paket. Die Trittschalldämmung wird mit einem Überlappungszuschlag gerechnet (Stöße und Ränder) und in ganzen Rollen ausgegeben. Die Sockelleisten laufen über den vollen Umfang; Türöffnungen sind **nicht** abgezogen, das Ergebnis liegt damit auf der sicheren Seite. **Nicht enthalten, bewusst:** geklebtes Parkett (braucht Kleber und ein anderes Vorgehen) und schwimmend verlegte Dämmverbundsysteme mit eigener Fläche.',
+  'tool.flooring.sources': 'Vorschlagswerte: Die Zuschläge je Verlegeart sind im Projektkonzept „Handwerkerwerkzeuge" ausdrücklich als Erfahrungswerte ohne belegte Fachquelle geführt; sie sind in der Oberfläche so gekennzeichnet und überschreibbar. Paketfläche, Rollenfläche der Dämmung, Überlappung und Stücklänge der Sockelleiste sind hersteller- und produkabhängig und deshalb Felder mit Vorschlag, keine festen Werte. Keine Normtabelle und keine Normaussage: Das ist eine Bedarfsrechnung zum Vorbemessen.',
+  'tool.flooring.roundNote': 'Gerechnet wird auf zwölf gültige Stellen, angezeigt in der Sprache des Nutzers. Pakete, Rollen und Leistenstücke werden immer aufgerundet.'
+} as const

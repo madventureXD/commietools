@@ -133,9 +133,18 @@ for (const name of assets.filter((item) => item.startsWith('tools-') && item.end
   else if (size > entry.largest) { entry.largest = size; entry.largestName = name }
   toolTextTotals.set(locale, entry)
 }
+/**
+ * Die **Summe** aller Werkzeugtextpakete je Sprache ist keine Last eines Besuchs — ein Besuch
+ * lädt genau ein Werkzeug. Sie ist eine Kontrolle gegen ausufernde Einzelpakete. Jede Datei
+ * trägt einen eigenen gzip-Kopf, die Summe wächst also schon mit der Zahl der Pakete; eine
+ * feste Obergrenze wird damit mit jedem neuen Werkzeug enger, ohne dass etwas größer wird.
+ * Deshalb ist die Schwelle **je Paket** gerechnet (850 B gzip; gemessen am 2026-10-05: 779/703/766 B
+ * je Paket). Entscheidung und Messwerte: ADR 0011.
+ */
+const toolMessagesTotalPerPackage = 850
 for (const [locale, total] of toolTextTotals) {
   warnSize(`toolMessages ${locale} je Route (gemeinsam ${total.common} + größtes Werkzeug ${total.largest})`, total.common + total.largest, warningBudgets.toolMessages, `toolMessagesRoute:${locale}`)
-  warnSize(`toolMessages ${locale} gesamt (${total.count} Pakete)`, total.bytes, 40 * 1024, `toolMessagesTotal:${locale}`)
+  warnSize(`toolMessages ${locale} gesamt (${total.count} Pakete, ${toolMessagesTotalPerPackage} B je Paket)`, total.bytes, toolMessagesTotalPerPackage * total.count, `toolMessagesTotal:${locale}`)
 }
 console.log(`Bundle audit passed: entry ${compressedSize} B gzip; optional PDF artifacts: ${optionalPdfFiles.length}`)
 for (const line of reported) console.log(`  route engine: ${line}`)

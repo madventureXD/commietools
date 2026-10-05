@@ -25,6 +25,7 @@
     "./craft/wood": "./src/craft/wood.ts",
     "./craft/tiles": "./src/craft/tiles.ts",
     "./craft/drywall": "./src/craft/drywall.ts",
+    "./craft/flooring": "./src/craft/flooring.ts",
     "./craft/paint": "./src/craft/paint.ts",
     "./calculator/keypad": "./src/calculator/keypad.ts",
     "./calculator/keypads": "./src/calculator/keypads/index.ts",

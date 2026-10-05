@@ -42,6 +42,7 @@ import { woodMessages } from './craft/wood/locales'
 import { tilesMessages } from './craft/tiles/locales'
 import { paintMessages } from './craft/paint/locales'
 import { drywallMessages } from './craft/drywall/locales'
+import { flooringMessages } from './craft/flooring/locales'
 
 type MessageCatalog = Readonly<Record<string, string>>
 type PartialLocalizedMessages = Readonly<Record<string, MessageCatalog>>
@@ -100,5 +101,6 @@ export const toolMessages = mergeToolCatalogs([
   woodMessages,
   tilesMessages,
   paintMessages,
-  drywallMessages
+  drywallMessages,
+  flooringMessages
 ])

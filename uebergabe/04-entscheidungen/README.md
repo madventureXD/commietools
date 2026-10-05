@@ -23,6 +23,7 @@ Wird eine Entscheidung ersetzt, bleiben beide Dateien erhalten und verweisen geg
 - [`0008-lizenzfeld-fehlt-bei-pip-it-up.md`](0008-lizenzfeld-fehlt-bei-pip-it-up.md): Lizenzangabe aus der Paketdatei über einen hashbelegten Einzeleintrag, wo das Lockfile sie nicht liefert — angenommen.
 - [`0009-ein-werkzeug-je-rechenart.md`](0009-ein-werkzeug-je-rechenart.md): Der Rechner wird in vier Werkzeuge geteilt; sie teilen einen gemeinsamen Rahmen, je ein Tastenfeld und je einen Speicherbereich — angenommen.
 - [`0010-werkzeugtexte-je-werkzeug.md`](0010-werkzeugtexte-je-werkzeug.md): Werkzeugtexte liegen je Werkzeug und je Sprache, dazu ein gemeinsames Paket je Sprache; Katalogtexte im Suchpaket, Textlader in eigener Datei — angenommen.
+- [`0011-werkzeugtextsumme-je-paket.md`](0011-werkzeugtextsumme-je-paket.md): Die Summe der Werkzeugtextpakete wird je Paket gemessen (850 B), nicht gegen eine feste Obergrenze — angenommen.
 
 Die allgemeine Architekturgrundlage ist in [`../../docs/architecture.md`](../../docs/architecture.md) dokumentiert.
 

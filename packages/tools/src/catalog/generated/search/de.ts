@@ -1650,5 +1650,41 @@ export const searchLocale: Readonly<Record<string, ToolLocaleEntry>> = {
       "#trockenbau",
       "#handwerk"
     ]
+  },
+  "flooring": {
+    "title": "Parkett, Laminat und Bodenbelag",
+    "summary": "Pakete, Verschnitt, Dämmung und Sockelleisten für schwimmende Böden.",
+    "description": "Pakete, Verschnitt, Trittschalldämmung und Sockelleisten für einen schwimmend verlegten Boden — der Zuschlag folgt der Verlegeart, und der Verschnitt steht als eigene Zahl statt als pauschaler Prozentsatz. Rechnet vollständig im Browser.",
+    "terms": [
+      "Parkett",
+      "Laminat",
+      "Klickvinyl",
+      "Vinyl",
+      "Bodenbelag",
+      "Fußboden",
+      "Bodenleger",
+      "Verlegeart",
+      "Kreuzverband",
+      "Versatz",
+      "Halbverband",
+      "Drittelverband",
+      "Diagonalverband",
+      "Paket",
+      "Paketfläche",
+      "Verschnitt",
+      "Trittschalldämmung",
+      "Trittschall",
+      "Dämmunterlage",
+      "Randdämmstreifen",
+      "Sockelleiste",
+      "Leiste",
+      "Übergangsprofil",
+      "Renovierung",
+      "Bodenaufbau"
+    ],
+    "tags": [
+      "#bodenbelag",
+      "#handwerk"
+    ]
   }
 }

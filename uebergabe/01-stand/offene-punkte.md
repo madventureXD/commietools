@@ -3,12 +3,19 @@
 - [ ] Anbieterneutralen Übersetzungsablauf mit Google Cloud Translation Advanced gemäß
   `uebergabe/03-konzepte/2026-10-03-automatisierte-sprachpakete.md` erst bei der nächsten
   geplanten Sprache umsetzen.
-- [ ] Veröffentlichtes spanisches Testpaket gemäß `uebergabe/03-konzepte/2026-10-03-sprachpaket-spanisch.md`
-  online sprachlich und visuell gegenlesen.
+- [ ] **Veröffentlichtes spanisches Testpaket gemäß `uebergabe/03-konzepte/2026-10-03-sprachpaket-spanisch.md`
+  online sprachlich und visuell gegenlesen.**
   *(2026-10-04: Das Gegenlesen ist erst **nach** der Online-Stellung möglich. Bis dahin bleibt
   `es` im Sprachschalter sichtbar und wird mitausgeliefert — abweichend von
   `02-architektur/sprachpakete.md` §2, das ein Testpaket „niemals veröffentlicht" sieht. Die
   Abweichung ist damit datiert festgehalten und nicht stillschweigend.)*
+  *(Zusatz 2026-10-05: Der Rückstand wächst mit jeder Welle — acht Handwerk-Werkzeuge der Wellen A
+  und B sind in Spanisch noch nicht gegengelesen. Das ist keine Regression, sondern die bekannte
+  offene sprachliche Abnahme.)*
+- [ ] **Welle C des Handwerker-Konzepts:** Pflaster-/Erdarbeitenrechner (Vorschlag 5) und
+  Reifen-/Drehmomentrechner (24) — beide Klasse a, keine neue Abhängigkeit zu erwarten.
+  *(2026-10-05: Welle A und B sind abgeschlossen, die Suite „Handwerk" umfasst acht Werkzeuge;
+  Übergabe `05-uebergaben/2026-10-05-welle-b-handwerkerwerkzeuge.md`.)*
 
 Diese Liste enthält bestätigte, noch nicht abgeschlossene Arbeit. Details gehören in verlinkte Konzepte oder Issues, sobald solche vorhanden sind.
 
@@ -84,6 +91,12 @@ Diese Liste enthält bestätigte, noch nicht abgeschlossene Arbeit. Details geh�
   Recht nicht ab. Der oben genannte Ausweg — Aufteilung der Werkzeugtexte je Sprache, etwa je
   Suite — ist damit **vor Welle B** zu bauen. Begründung im Einzelnen:
   `05-uebergaben/2026-10-04-welle-a-handwerkerwerkzeuge.md`.)*
+  *(Zusatz 2026-10-05, Welle B: Der Punkt ist **erledigt**. Die Werkzeugtexte liegen je Werkzeug und
+  je Sprache (ADR 0010); die Last einer Route ist mit 5.199 B von 30.720 B unverändert niedrig. Die
+  **Summe** aller Pakete war mit dem vierten Werkzeug gerissen (Deutsch 41.309 B gegen 40.960 B) und
+  wird seit **ADR 0011** je Paket gemessen (850 B × 53 Pakete = 45.050 B) — sie ist keine
+  Besucherlast, sondern eine Kontrolle gegen ausufernde Einzelpakete. Die entscheidende Kennzahl
+  bleibt die Last je Route gegen eine feste Schwelle.)*
 - [ ] Bedienung per Tastatur automatisiert prüfen (seit Welle 5 offen; in Welle 6 erneut nur
   teilweise — native Formularelemente mit Beschriftungen, kein durchgespielter Tastaturlauf).
   *(2026-10-04: Der durchgespielte Lauf ist erst **nach** der Online-Stellung möglich; bis dahin

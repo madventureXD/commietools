@@ -1593,5 +1593,41 @@ export const searchLocale: Readonly<Record<string, ToolLocaleEntry>> = {
       "#drywall",
       "#craft"
     ]
+  },
+  "flooring": {
+    "title": "Parquet, laminate and flooring",
+    "summary": "Packs, offcuts, underlay and skirting for floating floors.",
+    "description": "Packs, offcuts, impact sound insulation and skirting for a floating floor — the allowance follows the laying pattern, and the offcut is shown as its own figure instead of a flat percentage. Runs entirely in the browser.",
+    "terms": [
+      "parquet",
+      "laminate",
+      "click vinyl",
+      "vinyl",
+      "flooring",
+      "floor",
+      "layer",
+      "laying pattern",
+      "straight lay",
+      "staggered",
+      "offset",
+      "diagonal lay",
+      "pack",
+      "pack size",
+      "offcut",
+      "waste",
+      "impact sound insulation",
+      "acoustic underlay",
+      "underlay",
+      "edge insulation strip",
+      "skirting",
+      "baseboard",
+      "transition profile",
+      "renovation",
+      "floor build-up"
+    ],
+    "tags": [
+      "#flooring",
+      "#craft"
+    ]
   }
 }

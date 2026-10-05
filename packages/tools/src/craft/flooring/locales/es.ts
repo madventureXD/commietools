@@ -1,0 +1,42 @@
+export const flooringEs = {
+  'tool.flooring.title': 'Parquet, laminado y pavimento',
+  'tool.flooring.description': 'Paquetes, recortes, aislamiento acústico y rodapié para un suelo flotante — el margen sigue al tipo de colocación y los recortes aparecen como cifra propia en lugar de un porcentaje global. Calcula por completo en el navegador.',
+  'tool.flooring.summary': 'Paquetes, recortes, aislante y rodapié para suelos flotantes.',
+  'tool.flooring.terms': 'parquet,laminado,vinílico,vinilo,pavimento,suelo,colocador,tipo de colocación,a junta corrida,trabado,desplazado,diagonal,paquete,superficie del paquete,recorte,desperdicio,merma,aislamiento acústico,base aislante,aislante,banda perimetral,rodapié,zócalo,perfil de transición,renovación,reforma,#pavimento,#artesania',
+
+  'tool.flooring.length': 'Longitud de la sala (m)',
+  'tool.flooring.breadth': 'Anchura de la sala (m)',
+  'tool.flooring.pattern': 'Tipo de colocación',
+  'tool.flooring.pattern.parallel': 'A junta corrida (juntas continuas)',
+  'tool.flooring.pattern.staggered': 'Desplazado (medio o tercio)',
+  'tool.flooring.pattern.diagonal': 'En diagonal',
+  'tool.flooring.surcharge': 'Margen (%)',
+  'tool.flooring.packageArea': 'Superficie del paquete (m²)',
+  'tool.flooring.underlayRoll': 'Superficie del rollo de aislante (m²)',
+  'tool.flooring.underlayOverlap': 'Solape del aislante (%)',
+  'tool.flooring.trimPiece': 'Longitud de la pieza de rodapié (m)',
+  'tool.flooring.settings': 'Pavimento, aislante y rodapié',
+
+  'tool.flooring.out.area': 'Superficie del suelo',
+  'tool.flooring.out.surcharge': 'Margen',
+  'tool.flooring.out.required': 'Superficie necesaria',
+  'tool.flooring.out.packages': 'Paquetes',
+  'tool.flooring.out.offcut': 'Recortes (superficie comprada menos superficie del suelo)',
+  'tool.flooring.out.underlay': 'Aislamiento acústico',
+  'tool.flooring.out.underlayRolls': 'Rollos de aislante',
+  'tool.flooring.out.perimeter': 'Perímetro',
+  'tool.flooring.out.trimPieces': 'Rodapié (piezas)',
+  'tool.flooring.out.trimMeters': 'Rodapié (m)',
+
+  'tool.flooring.error.length': 'La longitud de la sala debe estar entre 0,2 y 200 m.',
+  'tool.flooring.error.breadth': 'La anchura de la sala debe estar entre 0,2 y 200 m.',
+  'tool.flooring.error.package': 'La superficie del paquete debe estar entre 0,5 y 10 m².',
+  'tool.flooring.error.surcharge': 'El margen debe estar entre 0 y 30 por ciento.',
+  'tool.flooring.error.roll': 'La superficie del rollo de aislante debe estar entre 1 y 60 m².',
+  'tool.flooring.error.overlap': 'El solape debe estar entre 0 y 20 por ciento.',
+  'tool.flooring.error.trim': 'La longitud de la pieza de rodapié debe estar entre 0,5 y 5 m.',
+
+  'tool.flooring.assumptions': 'Supuestos: la superficie es longitud por anchura; la sala se toma como un rectángulo. El margen sigue al tipo de colocación y es un valor de experiencia: a junta corrida casi todos los recortes se reaprovechan, en medio o tercio desplazado aparecen inevitablemente piezas cortas en los bordes y en diagonal se añaden cortes triangulares en cada pared, por eso sube el porcentaje. Los paquetes se redondean siempre hacia arriba: un paquete abierto sigue siendo un paquete. El aislante se calcula con un margen de solape (uniones y bordes) y se entrega en rollos completos. El rodapié recorre todo el perímetro; los huecos de puerta **no** se descuentan, así que el resultado queda del lado seguro. **No incluido, a propósito:** parquet encolado (necesita adhesivo y otro procedimiento) y sistemas flotantes con aislante de superficie propia.',
+  'tool.flooring.sources': 'Valores propuestos: los márgenes por tipo de colocación están recogidos en el concepto del proyecto «Handwerkerwerkzeuge» expresamente como valores de experiencia sin fuente técnica citada; en la interfaz se indican como tales y se pueden modificar. La superficie del paquete, la del rollo de aislante, el solape y la longitud de la pieza de rodapié dependen del fabricante y del producto, por eso son campos con propuesta y no valores fijos. Sin tablas de normas y sin afirmaciones sobre normas: es un cálculo de necesidad para predimensionar.',
+  'tool.flooring.roundNote': 'Se calcula con doce cifras significativas y se muestra en el idioma del usuario. Los paquetes, rollos y piezas de rodapié se redondean siempre hacia arriba.'
+} as const

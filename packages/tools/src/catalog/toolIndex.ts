@@ -937,5 +937,20 @@ export const toolIndex: readonly ToolCatalogEntry[] = [
     "input": [],
     "output": [],
     "auxiliary": []
+  },
+  {
+    "id": "flooring",
+    "route": "/tools/flooring",
+    "icon": "/tools/flooring.svg",
+    "category": "craft",
+    "suiteIds": [
+      "craft"
+    ],
+    "executionMode": "local",
+    "resourceClass": "standard",
+    "worksOffline": true,
+    "input": [],
+    "output": [],
+    "auxiliary": []
   }
 ]
