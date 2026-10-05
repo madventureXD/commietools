@@ -46,6 +46,14 @@ Diese Liste enthält bestätigte, noch nicht abgeschlossene Arbeit. Details geh�
   aus der Welle-5-Übergabe; die Prüfung deckte zugleich Lücken in den Wellen 2 und 4 auf). Nicht
   angefasst — eigener Auftrag: fehlende Abschnitte **ergänzen, nie überschreiben**, mit datiertem
   Hinweis.
+  *Zusatz 2026-10-04 (Rechner-Aufteilung): Die Prüfung der Rechner-Übergaben fand zwei weitere
+  Fälle — `05-uebergaben/2026-10-04-rechner-tastenfeld-umgesetzt.md` (sechs Pflichtabschnitte
+  fehlen als Überschrift) und `05-uebergaben/2026-10-04-sammelrelease-sprachen-pdf-rechner.md`
+  (drei). **Wichtig zur Einordnung:** der Inhalt ist vorhanden, er steht nur unter anderen
+  Überschriften („Was jetzt da ist" statt „Ergebnis", „Ziel" statt „Ziel der Sitzung", „Betroffene
+  Bereiche" statt „Geänderte Bereiche" …). Es sind also **keine leeren** Übergaben — die Prüfung
+  ist eine Überschriftenprüfung, und wer die Akte gewohnt ist, findet die Angaben nicht dort, wo
+  sie stehen müssen.*
 - [ ] Offline-Verhalten mit einem automatisierten Browser-Test absichern.
 - [ ] Content Security Policy und spätere Deployment-Header konkretisieren.
 - [ ] Größenbudgets zusätzlich pro große Tool-Engine festlegen; das Startbudget und die Sperre gegen PDF-Engines sind umgesetzt.

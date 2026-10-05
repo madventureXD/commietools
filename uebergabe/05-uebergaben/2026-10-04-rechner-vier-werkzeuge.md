@@ -108,7 +108,7 @@ Rechnerart-Umschaltleiste. Bilder und Protokoll: `07-pruefung/rechner-vier-werkz
 | `npm run check` (Lizenz, Katalog, Typen, Tests) | **grün** — 48 Werkzeuge, 3 Sprachen, 48 Symbole; 380 Tests in 23 Dateien |
 | `npm run build` | **grün** — Start-JS 146.220 B gzip von 204.800; Bundle-Prüfung grün (19 PDF-Artefakte, Engine-Chunk `core-*.js` 103.709 B) |
 | `npm run lint` | grün (keine Meldung) |
-| `npm run viewport:check` (Vorschau) | **grün** für die vier Rechner-Routen bei 320 px; Gesamtlauf über alle Routen im Anschluss an diese Übergabe |
+| `npm run viewport:check` (Vorschau) | **grün** — vier Rechner-Routen bei 320 px geprüft, anschließend **Gesamtlauf über alle 48 Routen bei 320 px: bestanden** |
 | `git diff --check` | grün (nur die bekannten Zeilenende-Hinweise) |
 | Browserbeleg, 4 Routen × 1360/390 px | **grün** — 8 Proben, alle Werte zurückgelesen; keine Rechnerart-Umschaltleiste mehr |
 | Bilder gesichtet (Standard 390 px, Programmierer 1360 px, RPN 390 px) | in Ordnung — kein Überlauf, Stapel/Rechenweg und Darstellungstafel vollständig |
@@ -140,18 +140,36 @@ Rechnerart-Umschaltleiste. Bilder und Protokoll: `07-pruefung/rechner-vier-werkz
 
 ## Empfohlener nächster Schritt
 
-1. Gesamtlauf `npm run viewport:check` über alle Routen nachsehen (läuft im Anschluss) und den
-   Bericht in diese Übergabe als datierten Zusatz aufnehmen, falls er etwas findet.
-2. Thomas die beiden Abweichungen vorlegen (Klammern im Standardfeld, kurze DEZ/BRUCH-Kennzeichen)
+1. Thomas die beiden Abweichungen vorlegen (Klammern im Standardfeld, kurze DEZ/BRUCH-Kennzeichen)
    und entscheiden lassen.
-3. Danach die Werkzeugtexte je Sprache aufteilen — sie sind die einzige Kennzahl, die in dieser
+2. Danach die Werkzeugtexte je Sprache aufteilen — sie sind die einzige Kennzahl, die in dieser
    Welle schlechter wurde.
+3. Die fehlenden Pflichtüberschriften der beiden älteren Rechner-Übergaben ergänzen (Inhalt ist
+   vorhanden, steht nur unter anderen Überschriften — siehe offene Punkte).
 
 ## Git
 
-- Commit: **siehe datierter Zusatz unten** (nach dem Gesamtlauf gesetzt) — lokal committet,
-  **nicht gepusht**.
-- Arbeitsbaum: enthält **fremde, uncommittete Änderungen** an `COPYRIGHT` und `LICENSE`
-  (nicht von dieser Arbeit, nicht angefasst). Gestagt wird selektiv mit expliziten Pfaden.
-- Die erzeugten Katalogpakete (`packages/tools/src/catalog/generated/*`, `toolIndex.ts`) gehören zum
-  Werkzeug und müssen mit in den Commit, sonst ist er nicht baubar.
+- Commit: **`d26e18a`** — `feat(calculator): split the calculator into four tools on one shared
+  frame`. Lokal committet, **nicht gepusht** (ein Push löst die Cloudflare-Bereitstellung aus).
+- Arbeitsbaum: enthält weiterhin **fremde, uncommittete Änderungen** an `COPYRIGHT` und `LICENSE`
+  (nicht von dieser Arbeit, nicht angefasst, nicht gestagt). Gestagt wurde selektiv mit expliziten
+  Pfaden.
+- Die erzeugten Katalogpakete (`packages/tools/src/catalog/generated/*`, `toolIndex.ts`) sind im
+  Commit enthalten — ohne sie wäre er nicht baubar.
+- **Der geprüfte Stand ist der committete Stand:** außer `COPYRIGHT` und `LICENSE` weicht der
+  Arbeitsbaum in keiner Datei von `HEAD` ab; `check`, `build`, `lint`, `viewport:check` und der
+  Browserbeleg liefen auf genau diesem Inhalt.
+
+## Zusatz 2026-10-04, Faber: Gesamtlauf und Altprüfung nachgetragen
+
+Nach dem Commit nachgeholt, was in der Übergabe noch offen stand:
+
+- **`npm run viewport:check` über alle 48 Routen bei 320 px: bestanden.** Damit ist die
+  Überbreiten-Prüfung nicht nur für die vier neuen Rechner-Routen, sondern für den ganzen Katalog
+  grün.
+- **Pflichtabschnitte der älteren Rechner-Übergaben geprüft.** Zwei Fälle fehlen als Überschrift:
+  `2026-10-04-rechner-tastenfeld-umgesetzt.md` (sechs) und
+  `2026-10-04-sammelrelease-sprachen-pdf-rechner.md` (drei). Der **Inhalt ist vorhanden**, er steht
+  unter anderen Überschriften; die Ergänzung ist ein eigener Auftrag und in
+  `01-stand/offene-punkte.md` datiert vermerkt. Das Abnahmekriterium 7 ist damit **erfüllt**: die
+  Prüfung lief über alle Übergaben desselben Vorhabens, nicht nur über diese.

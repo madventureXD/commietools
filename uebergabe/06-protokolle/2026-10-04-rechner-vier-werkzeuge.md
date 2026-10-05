@@ -50,8 +50,9 @@ Speicherbereiche, Tests. Gemessen wurde vorher, was der Rechenkern je Rechenart 
 
 ## Relevante Verweise
 
-- Commit/PR: lokal committet (siehe Übergabe), **nicht gepusht** — ein Push löst die
-  Cloudflare-Bereitstellung aus und erfolgt nur auf ausdrücklichen Auftrag.
+- Commit/PR: **`d26e18a`** `feat(calculator): split the calculator into four tools on one shared
+  frame` — lokal committet, **nicht gepusht**. Ein Push löst die Cloudflare-Bereitstellung aus und
+  erfolgt nur auf ausdrücklichen Auftrag.
 - Konzept: `03-konzepte/2026-10-04-rechner-aufteilen.md`
 - ADR: `04-entscheidungen/0009-ein-werkzeug-je-rechenart.md`
 - Übergabe: `05-uebergaben/2026-10-04-rechner-vier-werkzeuge.md`

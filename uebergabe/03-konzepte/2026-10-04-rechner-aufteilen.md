@@ -263,7 +263,7 @@ sich beim Bauen genauer gezeigt hat.
 | 4 · `check` + `build` grün, Katalog regeneriert, Startgröße gemessen | erfüllt — Startgröße **+9,3 kB gzip** (146.220 von 204.800), Engine geteilt und unverändert |
 | 5 · Funktionsnamen im Aufruftest | erfüllt — `keypadFunctionNames(ALL_KEYPADS)` gegen die kuratierten Factories |
 | 6 · Werkzeugtexte je Sprache gemessen und Lage benannt | erfüllt — Deutsch 32.672, Spanisch 31.645, Englisch 29.787 (Warnschwelle 30.720) |
-| 7 · Übergabe nach Vorlage, alte Rechner-Übergaben mitgeprüft | erfüllt für die neue Übergabe; die **Altprüfung** der früheren Rechner-Übergaben steht noch aus (offener Punkt) |
+| 7 · Übergabe nach Vorlage, alte Rechner-Übergaben mitgeprüft | erfüllt — die neue Übergabe hat alle Pflichtabschnitte; die Prüfung lief über **alle** Rechner-Übergaben und fand in zwei älteren Fällen fehlende Pflicht**überschriften** (Inhalt vorhanden, steht unter anderen Überschriften); datiert in `01-stand/offene-punkte.md` vermerkt |
 
 ### Zwei Abweichungen, die nicht im Konzept standen
 
