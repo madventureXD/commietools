@@ -33,7 +33,7 @@ export function CatalogSection({ t, locale, navigate, query, onQuery }: { t: Tra
             <div className="catalog-grid">
               {results.map((match) => {
                 const tool = toolById.get(match.entry.id)
-                return tool ? <ToolCard key={tool.id} tool={tool} t={t} locale={locale} navigate={navigate} match={{ label: t('catalog.foundVia'), text: match.matched }} /> : null
+                return tool ? <ToolCard key={tool.id} tool={tool} t={t} locale={locale} navigate={navigate} index={toolIndex} match={{ label: t('catalog.foundVia'), text: match.matched }} /> : null
               })}
             </div>
           </>
@@ -42,7 +42,7 @@ export function CatalogSection({ t, locale, navigate, query, onQuery }: { t: Tra
         )
       ) : (
         <div className="catalog-grid">
-          {toolManifests.map((tool) => <ToolCard key={tool.id} tool={tool} t={t} locale={locale} navigate={navigate} />)}
+          {toolManifests.map((tool) => <ToolCard key={tool.id} tool={tool} t={t} locale={locale} navigate={navigate} index={toolIndex} />)}
         </div>
       )}
     </section>

@@ -1,0 +1,25 @@
+Funktionsprüfung Werkzeugtitel außerhalb der Werkzeugrouten, 2026-10-05T14:46:03.537Z
+Grundlage: http://localhost:4189
+
+=== Startseite `/` — Katalogkarten
+  Katalogkarten: 8 Texte gelesen, 0 davon Schlüsselnamen
+      „Textstatistik"
+      „Groß-/Kleinschreibung"
+      „JSON formatieren"
+
+=== Startseite `/` — Werkzeugschublade
+  Schublade: 8 Texte gelesen, 0 davon Schlüsselnamen
+      „PDFs zusammenführen"
+      „PDF teilen"
+      „PDF-Seiten organisieren"
+
+=== Suiten-Seite `/suites/calculator` — Werkzeugkarten
+  Suitenkarten: 6 Texte gelesen, 0 davon Schlüsselnamen
+      „Rechner"
+      „Wissenschaftlicher Rechner"
+      „Programmiererrechner"
+
+=== Werkzeugroute `/tools/calculator` — Gegenprobe
+  Titel: „Rechner"
+
+Ergebnis: keine Schlüsselnamen gefunden

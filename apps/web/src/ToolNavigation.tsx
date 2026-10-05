@@ -2,6 +2,7 @@ import { useEffect, useMemo, useRef, useState } from 'react'
 import type { ToolCategory, ToolManifest } from '@commietools/core'
 import type { ToolSearchEntry } from '@commietools/core'
 import { loadToolSearchIndex, MIN_QUERY_LENGTH, searchEntryById, searchTools, toolById, toolManifests } from '@commietools/tools'
+import { toolTextsFrom } from './tool-texts'
 import { addRecentTool, toggleToolId, validRecentTools, validToolIds, type RecentTool, type ToolSort } from './toolNavigationState'
 
 type Translate = (key: string) => string
@@ -131,13 +132,18 @@ export function ToolNavigation({ t, locale, activeToolId, navigate }: { t: Trans
 
   const trimmed = query.trim()
   const matches = useMemo(() => trimmed.length >= MIN_QUERY_LENGTH ? searchTools(toolIndex, { query: trimmed, locale, label: t }) : [], [toolIndex, trimmed, locale, t])
+  /**
+   * Titel aus dem **Suchpaket** — das Textpaket wird erst auf einer Werkzeugroute geladen
+   * (2026-10-05). Über `t(tool.titleKey)` stünden in der Schublade die Schlüsselnamen.
+   */
+  const titleOf = (tool: ToolManifest) => toolTextsFrom(toolIndex, tool, locale, t).title
   const visible = useMemo(() => {
     if (trimmed.length >= MIN_QUERY_LENGTH) return matches.flatMap((match) => toolById.get(match.entry.id) ?? [])
     if (sort === 'favorites') return favorites.flatMap((id) => toolById.get(id) ?? [])
     if (sort === 'recent') return recent.flatMap((item) => toolById.get(item.id) ?? [])
-    if (sort === 'az') return [...toolManifests].sort((left, right) => t(left.titleKey).localeCompare(t(right.titleKey), locale))
+    if (sort === 'az') return [...toolManifests].sort((left, right) => titleOf(left).localeCompare(titleOf(right), locale))
     return toolManifests
-  }, [favorites, locale, matches, recent, sort, t, trimmed])
+  }, [favorites, locale, matches, recent, sort, t, trimmed, toolIndex])
 
   const toolRow = (tool: ToolManifest) => {
     const entry = searchEntryById.get(tool.id)
@@ -146,7 +152,7 @@ export function ToolNavigation({ t, locale, activeToolId, navigate }: { t: Trans
     return <div className={`tool-menu-row${activeToolId === tool.id ? ' active' : ''}`} key={tool.id}>
       <button className="tool-menu-open button-reset" onClick={() => openTool(tool)} aria-current={activeToolId === tool.id ? 'page' : undefined}>
         {entry?.icon && <span className="tool-menu-icon" aria-hidden="true" style={{ maskImage: `url(${entry.icon})`, WebkitMaskImage: `url(${entry.icon})` }} />}
-        <span><strong>{t(tool.titleKey)}</strong><small>{match ? `${t('catalog.foundVia')} ${match.matched}` : t(`category.${tool.category}`)}</small></span>
+        <span><strong>{titleOf(tool)}</strong><small>{match ? `${t('catalog.foundVia')} ${match.matched}` : t(`category.${tool.category}`)}</small></span>
       </button>
       <button className="tool-menu-favorite button-reset" onClick={() => toggleFavorite(tool.id)} aria-label={t(favorite ? 'toolMenu.removeFavorite' : 'toolMenu.addFavorite')} aria-pressed={favorite}>{favorite ? '★' : '☆'}</button>
     </div>

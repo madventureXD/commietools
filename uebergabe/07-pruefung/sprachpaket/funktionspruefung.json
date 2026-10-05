@@ -1,0 +1,32 @@
+[
+  {
+    "label": "Katalogkarten",
+    "total": 8,
+    "bad": 0,
+    "sample": [
+      "Textstatistik",
+      "Groß-/Kleinschreibung",
+      "JSON formatieren"
+    ]
+  },
+  {
+    "label": "Schublade",
+    "total": 8,
+    "bad": 0,
+    "sample": [
+      "PDFs zusammenführen",
+      "PDF teilen",
+      "PDF-Seiten organisieren"
+    ]
+  },
+  {
+    "label": "Suitenkarten",
+    "total": 6,
+    "bad": 0,
+    "sample": [
+      "Rechner",
+      "Wissenschaftlicher Rechner",
+      "Programmiererrechner"
+    ]
+  }
+]
