@@ -1,0 +1,20 @@
+01-fliesen-standard-dunkel | Titel „Fliesen, Kleber und Fugenmörtel" · Kategorie „Handwerk" · 21 m² · 234 · 133,33 m · Kleber 80 kg (4 × 25 kg über der benötigten Menge: 20 kg) · Fugenmörtel 5,1 kg (1 × 25 kg über der benötigten Menge: 19,9 kg) · Bündel index-DED1U2Vc.js
+01-fliesen-standard-dunkel.png 372 kB
+02-fliesen-diagonal-dunkel | Diagonalverband, 12 %: 249 Fliesen · Reserve 26
+02-fliesen-diagonal-dunkel.png 371 kB
+03-fliesen-fehlerfall | Fehlermeldung: „Die Fugenbreite muss zwischen 0 und 30 mm liegen."
+03-fliesen-fehlerfall.png 272 kB
+04-fliesen-stossfugenlos-dunkel | Fuge 0 mm: Fugenmörtel 0 kg · Fugenlänge 133,33 m (bleibt die geometrische Größe)
+04-fliesen-stossfugenlos-dunkel.png 371 kB
+05-fliesen-masse-hell-390 | 3 × 2 m, 60 × 60 cm: 18 Fliesen · Fläche 6,3 m² · Kleber 24 kg · Überbreite 0 px
+05-fliesen-masse-hell-390.png 332 kB
+06-katalog-fliesen | Karten 56 · Handwerk sichtbar · HandwerkFliesen, Kleber und FugenmörtelFliesen, Kleber und Fugenmörtel aus Fläche, Format, Fuge und Verlegeart.#fliesen#handwerk●Lokal verarbeitetTool öffnen →
+06-katalog-fliesen.png 1739 kB
+07-suche-fugenmoertel | 1 Treffer, gefiltert · 1 Karten, darunter „Fliesen, Kleber und Fugenmörtel"
+07-suche-fugenmoertel.png 235 kB
+08-suche-zahnkelle | 1 Treffer: HandwerkFliesen, Kleber und FugenmörtelFliesen, Kleber und Fugenmörtel aus Fläche, Format, Fuge und Verlegeart.#fliesen#
+08-suche-zahnkelle.png 234 kB
+09-suche-tag-fliesen | 1 Treffer über das Tag: HandwerkFliesen, Kleber und FugenmörtelFliesen, Kleber und Fugenmörtel aus Fläche, Format, Fuge und Verlegeart.#fliesen#
+09-suche-tag-fliesen.png 234 kB
+10-suche-gegenprobe | „zzzqqq": 0 Karten, Leermeldung „Kein Werkzeug passt zu dieser Suche. Versuch es mit einem anderen Wort oder einer Dateiendung wie webp."
+10-suche-gegenprobe.png 198 kB

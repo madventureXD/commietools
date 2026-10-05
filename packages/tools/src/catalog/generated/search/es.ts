@@ -1426,5 +1426,39 @@ export const searchLocale: Readonly<Record<string, ToolLocaleEntry>> = {
       "#oficios",
       "#madera"
     ]
+  },
+  "tiles": {
+    "title": "Azulejos, adhesivo y mortero de juntas",
+    "summary": "Azulejos, adhesivo y mortero de juntas según superficie, formato y junta.",
+    "description": "Cantidad de azulejos, longitud de juntas, adhesivo según la llana dentada y mortero de juntas según el volumen de la junta a partir de superficie, formato, ancho de junta y tipo de colocación — con la reserva por el tipo de colocación y bolsas calculadas por separado. Calcula por completo en el navegador.",
+    "terms": [
+      "azulejos",
+      "baldosas",
+      "calculadora de azulejos",
+      "adhesivo",
+      "adhesivo para azulejos",
+      "mortero de juntas",
+      "junta",
+      "ancho de junta",
+      "llana dentada",
+      "dentado",
+      "tipo de colocación",
+      "a junta corrida",
+      "a junta trabada",
+      "diagonal",
+      "merma",
+      "desperdicio",
+      "recorte",
+      "baño",
+      "cocina",
+      "baldosa de suelo",
+      "azulejo de pared",
+      "formato",
+      "gres porcelánico"
+    ],
+    "tags": [
+      "#azulejos",
+      "#artesania"
+    ]
   }
 }

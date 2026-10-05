@@ -1,5 +1,5 @@
-Funktionsprüfung Werkzeugtitel außerhalb der Werkzeugrouten, 2026-10-05T15:29:20.201Z
-Grundlage: http://localhost:4191
+Funktionsprüfung Werkzeugtitel außerhalb der Werkzeugrouten, 2026-10-05T17:41:55.996Z
+Grundlage: http://localhost:4193
 
 === Startseite `/` — Katalogkarten
   Katalogkarten: 8 Texte gelesen, 0 davon Schlüsselnamen
@@ -21,5 +21,56 @@ Grundlage: http://localhost:4191
 
 === Werkzeugroute `/tools/calculator` — Gegenprobe
   Titel: „Rechner"
+
+=== Werkzeugrouten — 49 Routen aus dem Register
+  /tools/aufmass: 31 Textknoten, 0 Schlüsselnamen
+  /tools/calculator: 52 Textknoten, 0 Schlüsselnamen
+  /tools/case-converter: 13 Textknoten, 0 Schlüsselnamen
+  /tools/color-tools: 55 Textknoten, 0 Schlüsselnamen
+  /tools/commercial: 31 Textknoten, 0 Schlüsselnamen
+  /tools/concrete: 41 Textknoten, 0 Schlüsselnamen
+  /tools/convert: 44 Textknoten, 0 Schlüsselnamen
+  /tools/datetime: 25 Textknoten, 0 Schlüsselnamen
+  /tools/equations: 23 Textknoten, 0 Schlüsselnamen
+  /tools/geometry: 35 Textknoten, 0 Schlüsselnamen
+  /tools/icon-generator: 46 Textknoten, 0 Schlüsselnamen
+  /tools/image-metadata: 21 Textknoten, 0 Schlüsselnamen
+  /tools/image-resize: 15 Textknoten, 0 Schlüsselnamen
+  /tools/image-watermark: 39 Textknoten, 0 Schlüsselnamen
+  /tools/images-to-pdf: 11 Textknoten, 0 Schlüsselnamen
+  /tools/json-formatter: 13 Textknoten, 0 Schlüsselnamen
+  /tools/metal-weight: 38 Textknoten, 0 Schlüsselnamen
+  /tools/pdf-a-preflight: 10 Textknoten, 0 Schlüsselnamen
+  /tools/pdf-annotate: 11 Textknoten, 0 Schlüsselnamen
+  /tools/pdf-attachments: 9 Textknoten, 0 Schlüsselnamen
+  /tools/pdf-certificate-sign: 14 Textknoten, 0 Schlüsselnamen
+  /tools/pdf-compare: 13 Textknoten, 0 Schlüsselnamen
+  /tools/pdf-compress: 10 Textknoten, 0 Schlüsselnamen
+  /tools/pdf-crop: 9 Textknoten, 0 Schlüsselnamen
+  /tools/pdf-form-fill: 11 Textknoten, 0 Schlüsselnamen
+  /tools/pdf-merge: 11 Textknoten, 0 Schlüsselnamen
+  /tools/pdf-metadata: 10 Textknoten, 0 Schlüsselnamen
+  /tools/pdf-organize: 11 Textknoten, 0 Schlüsselnamen
+  /tools/pdf-page-numbers: 11 Textknoten, 0 Schlüsselnamen
+  /tools/pdf-redact: 10 Textknoten, 0 Schlüsselnamen
+  /tools/pdf-repair: 10 Textknoten, 0 Schlüsselnamen
+  /tools/pdf-security: 13 Textknoten, 0 Schlüsselnamen
+  /tools/pdf-signature-verify: 11 Textknoten, 0 Schlüsselnamen
+  /tools/pdf-split: 11 Textknoten, 0 Schlüsselnamen
+  /tools/pdf-text-ocr: 10 Textknoten, 0 Schlüsselnamen
+  /tools/pdf-to-images: 11 Textknoten, 0 Schlüsselnamen
+  /tools/pdf-viewer: 10 Textknoten, 0 Schlüsselnamen
+  /tools/pdf-visible-signature: 12 Textknoten, 0 Schlüsselnamen
+  /tools/pdf-watermark: 11 Textknoten, 0 Schlüsselnamen
+  /tools/plotter: 23 Textknoten, 0 Schlüsselnamen
+  /tools/programmer-calculator: 73 Textknoten, 0 Schlüsselnamen
+  /tools/qr-code-generator: 50 Textknoten, 0 Schlüsselnamen
+  /tools/roof: 30 Textknoten, 0 Schlüsselnamen
+  /tools/rpn-calculator: 55 Textknoten, 0 Schlüsselnamen
+  /tools/scientific-calculator: 71 Textknoten, 0 Schlüsselnamen
+  /tools/statistics: 22 Textknoten, 0 Schlüsselnamen
+  /tools/text-statistics: 13 Textknoten, 0 Schlüsselnamen
+  /tools/tiles: 42 Textknoten, 0 Schlüsselnamen
+  /tools/wood: 20 Textknoten, 0 Schlüsselnamen
 
 Ergebnis: keine Schlüsselnamen gefunden

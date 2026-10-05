@@ -1495,5 +1495,36 @@ export const searchLocale: Readonly<Record<string, ToolLocaleEntry>> = {
       "#trades",
       "#wood"
     ]
+  },
+  "tiles": {
+    "title": "Tiles, adhesive and grout",
+    "summary": "Tiles, adhesive and grout from area, format, joint and laying pattern.",
+    "description": "Tile count, joint length, adhesive by trowel notch and grout by joint volume from area, format, joint width and laying pattern — with the pattern waste allowance and separate bag counts. Runs entirely in the browser.",
+    "terms": [
+      "tiles",
+      "tile calculator",
+      "adhesive",
+      "tile adhesive",
+      "grout",
+      "joint",
+      "joint width",
+      "notch",
+      "notched trowel",
+      "laying pattern",
+      "straight lay",
+      "offset lay",
+      "diagonal lay",
+      "waste allowance",
+      "offcut",
+      "bathroom",
+      "floor tile",
+      "wall tile",
+      "format",
+      "porcelain"
+    ],
+    "tags": [
+      "#tiles",
+      "#craft"
+    ]
   }
 }

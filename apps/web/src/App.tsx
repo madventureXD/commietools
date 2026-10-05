@@ -56,6 +56,7 @@ const Concrete = lazy(() => import('./tools/Concrete').then((module) => ({ defau
 const Roof = lazy(() => import('./tools/Roof').then((module) => ({ default: module.Roof })))
 const MetalWeight = lazy(() => import('./tools/MetalWeight').then((module) => ({ default: module.MetalWeight })))
 const Wood = lazy(() => import('./tools/Wood').then((module) => ({ default: module.Wood })))
+const Tiles = lazy(() => import('./tools/Tiles').then((module) => ({ default: module.Tiles })))
 
 type Theme = 'light' | 'dark'
 type Translate = (key: string) => string
@@ -165,6 +166,7 @@ function ToolPage({ tool, t, locale, navigate, ready }: { tool: ToolManifest; t:
                                   : tool.id === 'roof' ? <Suspense fallback={<p aria-live="polite">…</p>}><Roof t={t} locale={locale} /></Suspense>
                                   : tool.id === 'metal-weight' ? <Suspense fallback={<p aria-live="polite">…</p>}><MetalWeight t={t} locale={locale} /></Suspense>
                                   : tool.id === 'wood' ? <Suspense fallback={<p aria-live="polite">…</p>}><Wood t={t} locale={locale} /></Suspense>
+                                  : tool.id === 'tiles' ? <Suspense fallback={<p aria-live="polite">…</p>}><Tiles t={t} locale={locale} /></Suspense>
               : tool.id === 'pdf-merge' ? <Suspense fallback={<p aria-live="polite">…</p>}><PdfMerge t={t} /></Suspense>
                 : tool.id === 'pdf-split' ? <Suspense fallback={<p aria-live="polite">…</p>}><PdfSplit t={t} /></Suspense>
                   : tool.id === 'pdf-organize' ? <Suspense fallback={<p aria-live="polite">…</p>}><PdfOrganize t={t} /></Suspense>
@@ -278,9 +280,38 @@ export function App() {
    */
   useEffect(() => { let current = true; void loadInterfaceMessages(locale).then((ui) => { if (current) setInterfaceMessages(ui) }); return () => { current = false } }, [locale])
   const searching = query.trim().length >= MIN_QUERY_LENGTH
-  const t: Translate = createTranslator(locale, [interfaceMessages, toolMessages])
   const activeTool = toolByRoute.get(pathname)
   const activeSuite = suiteByRoute.get(pathname)
+  /**
+   * **Die Katalogtexte des aktiven Werkzeugs gehören in den Übersetzer der Werkzeugroute.**
+   * `title`, `summary`, `description` und `terms` liegen seit der Aufteilung (2026-10-05) im
+   * **Suchpaket** und damit **nicht** mehr im Textpaket des Werkzeugs. Oberflächen, die sie über
+   * `t('tool.<x>.summary')` ausgeben, zeigten deshalb den Schlüsselnamen statt Text — gefunden am
+   * 2026-10-05 im Beleg zu „Fliesen, Kleber und Fugenmörtel" (zwölf Werkzeuge betroffen).
+   * Der Suchindex ist auf jeder Seite geladen (die Werkzeugschublade steckt im Kopfbereich);
+   * hier werden nur die vier Schlüssel **dieses** Werkzeugs in den Übersetzer gehängt.
+   */
+  const [catalogueKeys, setCatalogueKeys] = useState<Readonly<Record<string, Readonly<Record<string, string>>>>>({})
+  useEffect(() => {
+    if (!activeTool) { setCatalogueKeys({}); return undefined }
+    let current = true
+    void loadToolSearchIndex(locale).then((entries) => {
+      if (!current) return
+      const text = entries.find((entry) => entry.id === activeTool.id)?.locales[locale]
+      setCatalogueKeys(text
+        ? {
+            [locale]: {
+              [activeTool.titleKey]: text.title,
+              [activeTool.summaryKey]: text.summary,
+              [activeTool.descriptionKey]: text.description,
+              [activeTool.termsKey]: [...text.terms, ...text.tags].join(', ')
+            }
+          }
+        : {})
+    })
+    return () => { current = false }
+  }, [activeTool, locale])
+  const t: Translate = createTranslator(locale, [interfaceMessages, toolMessages, catalogueKeys])
   /**
    * Die Werkzeugtexte werden **an die Werkzeugroute gebunden** geholt. Bis sie da sind, zeigt die
    * Werkzeugseite den Ladehinweis statt der Schlüsselnamen — `createTranslator` gibt für einen

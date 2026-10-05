@@ -892,5 +892,20 @@ export const toolIndex: readonly ToolCatalogEntry[] = [
     "input": [],
     "output": [],
     "auxiliary": []
+  },
+  {
+    "id": "tiles",
+    "route": "/tools/tiles",
+    "icon": "/tools/tiles.svg",
+    "category": "craft",
+    "suiteIds": [
+      "craft"
+    ],
+    "executionMode": "local",
+    "resourceClass": "standard",
+    "worksOffline": true,
+    "input": [],
+    "output": [],
+    "auxiliary": []
   }
 ]

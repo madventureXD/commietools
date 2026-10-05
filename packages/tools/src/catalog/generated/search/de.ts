@@ -1548,5 +1548,38 @@ export const searchLocale: Readonly<Record<string, ToolLocaleEntry>> = {
       "#handwerk",
       "#holz"
     ]
+  },
+  "tiles": {
+    "title": "Fliesen, Kleber und Fugenmörtel",
+    "summary": "Fliesen, Kleber und Fugenmörtel aus Fläche, Format, Fuge und Verlegeart.",
+    "description": "Fliesenbedarf, Fugenlänge, Kleber nach Zahnung und Fugenmörtel nach Fugenvolumen aus Fläche, Format, Fugenbreite und Verlegeart — mit Reserve durch den Musterzuschlag und getrennten Sackzahlen. Rechnet vollständig im Browser.",
+    "terms": [
+      "Fliesen",
+      "Fliesenrechner",
+      "Kleber",
+      "Fliesenkleber",
+      "Fugenmörtel",
+      "Fuge",
+      "Fugenbreite",
+      "Zahnung",
+      "Zahnkelle",
+      "Verlegeart",
+      "Kreuzverband",
+      "Halbverband",
+      "Diagonalverband",
+      "Diagonalschnitt",
+      "Verschnitt",
+      "Zuschlag",
+      "Bad",
+      "Kitchen",
+      "Bodenfliese",
+      "Wandfliese",
+      "Format",
+      "Feinsteinzeug"
+    ],
+    "tags": [
+      "#fliesen",
+      "#handwerk"
+    ]
   }
 }
