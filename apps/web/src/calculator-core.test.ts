@@ -6,11 +6,11 @@ import {
   calculatorProbes,
   calculatorWordSizes
 } from '@commietools/tools/calculator/functions'
-import { loadToolMessages } from '@commietools/tools'
+import { loadAllToolTexts } from '@commietools/tools/text-loaders'
 import { supportedLocales } from '@commietools/i18n'
 import { appendSnippet, splitRpnTokens } from './calculator-ui'
 
-const toolMessages = Object.fromEntries(await Promise.all(supportedLocales.map(async (locale) => [locale, (await loadToolMessages(locale))[locale] ?? {}])))
+const toolMessages = Object.fromEntries(await Promise.all(supportedLocales.map(async (locale) => [locale, (await loadAllToolTexts(locale))[locale] ?? {}])))
 
 /**
  * Der Rechner-Kern. Drei Dinge werden hier bewiesen:

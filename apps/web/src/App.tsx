@@ -1,13 +1,14 @@
 import { lazy, Suspense, useEffect, useMemo, useRef, useState } from 'react'
 import type { SuiteManifest, ToolManifest, ToolSearchEntry } from '@commietools/core'
 import { createTranslator, detectLocale, isLocale, loadInterfaceMessages, localeRegistry, supportedLocales, type Locale } from '@commietools/i18n'
-import { convertCase, formatJson, getSuiteTools, getTextStatistics, loadToolMessages, loadToolSearchIndex, MIN_QUERY_LENGTH, searchEntryById, suiteByRoute, suiteManifests, toolByRoute, type CaseMode } from '@commietools/tools'
+import { convertCase, formatJson, getSuiteTools, getTextStatistics, loadToolSearchIndex, MIN_QUERY_LENGTH, searchEntryById, suiteByRoute, suiteManifests, toolByRoute, type CaseMode } from '@commietools/tools'
 import { Button, LocalBadge } from '@commietools/ui'
 import { PipTrigger, PipWrapper } from '@pip-it-up/react'
 import { CatalogSection } from './CatalogSection'
 import { LicensePage } from './LicensePage'
 import { LegalNoticePage } from './LegalNoticePage'
 import { ToolCard } from './ToolCard'
+import { toolTextsFrom } from './tool-texts'
 import { ToolNavigation } from './ToolNavigation'
 import { ImageMetadata } from './tools/ImageMetadata'
 import { ImageResize } from './tools/ImageResize'
@@ -111,6 +112,29 @@ function JsonFormatterTool({ t }: { t: Translate }) {
 }
 
 function ToolPage({ tool, t, locale, navigate, ready }: { tool: ToolManifest; t: Translate; locale: Locale; navigate: (path: string) => void; ready: boolean }) {
+  /**
+   * Titel und Beschreibung stehen im **Suchpaket** (2026-10-05) — es ist auf jeder Seite geladen,
+   * weil die Werkzeugschublade im Kopfbereich steckt; das Textpaket dieses Werkzeugs enthält sie
+   * deshalb nicht mehr. `loadToolSearchIndex` liefert die zwischengespeicherte Zusage.
+   */
+  const [toolCatalogue, setToolCatalogue] = useState<readonly ToolSearchEntry[]>([])
+  useEffect(() => {
+    let current = true
+    void loadToolSearchIndex(locale).then((entries) => { if (current) setToolCatalogue(entries) })
+    return () => { current = false }
+  }, [locale])
+  const toolsKopf = toolTextsFrom(toolCatalogue, tool, locale, t)
+  // Groesse, die das Werkzeug im Hauptfenster hat, bevor es hinauswandert.
+  // Kein Wert aus einem Katalog, sondern gemessen - sie stimmt auch dann, wenn
+  // sich ein Werkzeug spaeter aendert.
+  //
+  // **Alle Haken stehen vor dem Ladehinweis-Rückgabewert.** Standen sie darunter, liefen sie im
+  // ersten Durchlauf nicht und im zweiten schon: React bricht das mit „Rendered more hooks than
+  // during the previous render" ab. Der Fehler war vorhanden, seit die Kopfzeile den Ladehinweis
+  // zeigt — er fiel erst auf, als ein zusätzlicher Zustand (`toolCatalogue`) den zweiten
+  // Durchlauf mit demselben Hakenbestand auslöste.
+  const zielGroesse = useRef({ w: 0, h: 0 })
+  const [passtGroesse, setPasstGroesse] = useState<boolean | null>(null)
   // Ohne die Texte dieser Sprache stünden die Schlüsselnamen auf der Seite (`createTranslator`
   // gibt einen unbekannten Schlüssel unverändert zurück). Deshalb erst der Ladehinweis.
   if (!ready) {
@@ -183,11 +207,6 @@ function ToolPage({ tool, t, locale, navigate, ready }: { tool: ToolManifest; t:
     const thema = document.querySelector('.app')?.getAttribute('data-theme') ?? 'light'
     w.document.documentElement.setAttribute('data-theme', thema)
   }
-  // Groesse, die das Werkzeug im Hauptfenster hat, bevor es hinauswandert.
-  // Kein Wert aus einem Katalog, sondern gemessen - sie stimmt auch dann, wenn
-  // sich ein Werkzeug spaeter aendert.
-  const zielGroesse = useRef({ w: 0, h: 0 })
-  const [passtGroesse, setPasstGroesse] = useState<boolean | null>(null)
   function merkeGroesse() {
     const el = document.querySelector('.tool-content')
     if (el instanceof HTMLElement) zielGroesse.current = { w: el.clientWidth, h: el.clientHeight }
@@ -223,7 +242,7 @@ function ToolPage({ tool, t, locale, navigate, ready }: { tool: ToolManifest; t:
   const groessenHilfe = passtGroesse === false
     ? <div className="pip-fit"><p className="scan-note">{t('tool.detach.fitHint')}</p><Button onClick={passeGroesseAn} className="detach">{t('tool.detach.fit')}</Button></div>
     : null
-  return <main className="detail-page"><button className="text-link back" onClick={() => navigate('/')}>← {t('tool.back')}</button><article className="tool-shell"><div className="tool-shell-bar">{unterstuetztAuskoppeln ? detachTrigger : null}</div><PipWrapper id={pipId} fallback="none" placeholder={detachPlaceholder} onOpenChange={(offen) => { if (offen) { window.setTimeout(vergleicheGroesse, 900); window.setTimeout(setzeFarbschemaImFenster, 100); } else setPasstGroesse(null) }}>{groessenHilfe}<header className="tool-header"><div>{icon && <span className="card-icon" aria-hidden="true" style={{ maskImage: `url(${icon})`, WebkitMaskImage: `url(${icon})` }} />}<p className="category">{t(`category.${tool.category}`)}</p><h1>{t(tool.titleKey)}</h1><p>{t(tool.descriptionKey)}</p></div><div className="tool-header-side"><LocalBadge>{t('status.local')}</LocalBadge></div></header><div className="tool-content">{content}</div></PipWrapper></article></main>
+  return <main className="detail-page"><button className="text-link back" onClick={() => navigate('/')}>← {t('tool.back')}</button><article className="tool-shell"><div className="tool-shell-bar">{unterstuetztAuskoppeln ? detachTrigger : null}</div><PipWrapper id={pipId} fallback="none" placeholder={detachPlaceholder} onOpenChange={(offen) => { if (offen) { window.setTimeout(vergleicheGroesse, 900); window.setTimeout(setzeFarbschemaImFenster, 100); } else setPasstGroesse(null) }}>{groessenHilfe}<header className="tool-header"><div>{icon && <span className="card-icon" aria-hidden="true" style={{ maskImage: `url(${icon})`, WebkitMaskImage: `url(${icon})` }} />}<p className="category">{t(`category.${tool.category}`)}</p><h1>{toolsKopf.title}</h1><p>{toolsKopf.description}</p></div><div className="tool-header-side"><LocalBadge>{t('status.local')}</LocalBadge></div></header><div className="tool-content">{content}</div></PipWrapper></article></main>
 }
 
 function SuitePage({ suite, t, locale, navigate }: { suite: SuiteManifest; t: Translate; locale: string; navigate: (path: string) => void }) {
@@ -249,6 +268,7 @@ export function App() {
   const [toolMessages, setToolMessages] = useState<Readonly<Partial<Record<string, Readonly<Record<string, string>>>>>>({})
   /** Die Sprache, deren Werkzeugtexte geladen sind — `null`, solange keine geladen ist. */
   const [toolTextsLocale, setToolTextsLocale] = useState<Locale | null>(null)
+  const [toolTextsTool, setToolTextsTool] = useState<string | null>(null)
   const [interfaceMessages, setInterfaceMessages] = useState<Readonly<Partial<Record<string, Readonly<Record<string, string>>>>>>({})
   /**
    * **Nur die Texte der Oberfläche werden beim Start geholt** (Entscheidung 2026-10-05). Die Texte
@@ -269,11 +289,16 @@ export function App() {
   useEffect(() => {
     if (!activeTool) return undefined
     let current = true
-    void loadToolMessages(locale).then((tools) => {
-      if (!current) return
-      setToolMessages(tools)
-      setToolTextsLocale(locale)
-    })
+    // Die Textlader liegen in einem eigenen Chunk (Verweiskarte über 147 Pakete, ~2,6 kB gzip):
+    // die Startseite soll sie nicht mitladen. Sie werden erst hier geholt.
+    void import('@commietools/tools/text-loaders')
+      .then(({ loadToolTexts }) => loadToolTexts(locale, activeTool.id))
+      .then((tools) => {
+        if (!current) return
+        setToolMessages(tools)
+        setToolTextsLocale(locale)
+        setToolTextsTool(activeTool.id)
+      })
     return () => { current = false }
   }, [activeTool, locale])
 
@@ -302,5 +327,5 @@ export function App() {
     requestAnimationFrame(() => document.getElementById('suites')?.scrollIntoView())
   }
 
-  return <div className="app" data-theme={theme}><header className="site-header"><div className="header-leading"><ToolNavigation t={t} locale={locale} activeToolId={activeTool?.id} navigate={navigate} /><button className="brand button-reset" onClick={() => navigate('/')} aria-label={t('app.name')}><span className="brand-mark" aria-hidden="true">★</span><span>Commie<span>Tools</span></span></button></div><nav aria-label="Main navigation"><button className="button-reset" onClick={() => navigate('/')}>{t('nav.tools')}</button><button className="button-reset" onClick={goToSuites}>{t('nav.suites')}</button></nav><div className="header-actions"><select className="language-select" value={locale} aria-label={t('action.language')} onChange={(event) => { if (isLocale(event.target.value)) setLocale(event.target.value) }}>{supportedLocales.map((code) => <option key={code} value={code}>{localeRegistry[code].label}</option>)}</select><Button onClick={toggleTheme} aria-label={t('action.theme')}><span aria-hidden="true">{theme === 'light' ? '☾' : '☀'}</span></Button></div></header>{pathname === '/licenses' ? <LicensePage t={t} navigate={navigate} /> : pathname === '/impressum' ? <LegalNoticePage t={t} navigate={navigate} /> : activeTool ? <ToolPage tool={activeTool} t={t} locale={locale} navigate={navigate} ready={toolTextsLocale === locale} /> : activeSuite ? <SuitePage suite={activeSuite} t={t} locale={locale} navigate={navigate} /> : <main><section className="hero"><p className="eyebrow">CommieTools.org</p><h1>{t('app.tagline')}</h1><p className="hero-copy">{t('app.promise')}</p><div className="badges"><LocalBadge>{t('status.local')}</LocalBadge><LocalBadge>{t('status.offline')}</LocalBadge></div></section><section className="section" id="tools"><CatalogSection t={t} locale={locale} navigate={navigate} query={query} onQuery={setQuery} /></section>{!searching && <section className="section" id="suites"><div className="section-heading"><div><p className="eyebrow">02</p><h2>{t('suite.heading')}</h2></div><p>{t('suite.intro')}</p></div><div className="catalog-grid suites">{suiteManifests.map((suite) => <article className="catalog-card suite-card" key={suite.id}><p className="category">Suite</p><h3>{t(suite.titleKey)}</h3><p>{t(suite.descriptionKey)}</p><div className="card-footer"><span>{suite.toolIds.length} {t('suite.tools')}</span><button className="text-link" onClick={() => navigate(suite.route)}>{t('suite.open')} →</button></div></article>)}</div></section>}</main>}<footer className="site-footer"><span>© 2026 CommieTools contributors · AGPL-3.0-only</span><div className="footer-links"><button className="text-link" onClick={() => navigate('/impressum')}>{t('footer.legal')}</button><button className="text-link" onClick={() => navigate('/licenses')}>{t('footer.licenses')}</button></div></footer></div>
+  return <div className="app" data-theme={theme}><header className="site-header"><div className="header-leading"><ToolNavigation t={t} locale={locale} activeToolId={activeTool?.id} navigate={navigate} /><button className="brand button-reset" onClick={() => navigate('/')} aria-label={t('app.name')}><span className="brand-mark" aria-hidden="true">★</span><span>Commie<span>Tools</span></span></button></div><nav aria-label="Main navigation"><button className="button-reset" onClick={() => navigate('/')}>{t('nav.tools')}</button><button className="button-reset" onClick={goToSuites}>{t('nav.suites')}</button></nav><div className="header-actions"><select className="language-select" value={locale} aria-label={t('action.language')} onChange={(event) => { if (isLocale(event.target.value)) setLocale(event.target.value) }}>{supportedLocales.map((code) => <option key={code} value={code}>{localeRegistry[code].label}</option>)}</select><Button onClick={toggleTheme} aria-label={t('action.theme')}><span aria-hidden="true">{theme === 'light' ? '☾' : '☀'}</span></Button></div></header>{pathname === '/licenses' ? <LicensePage t={t} navigate={navigate} /> : pathname === '/impressum' ? <LegalNoticePage t={t} navigate={navigate} /> : activeTool ? <ToolPage tool={activeTool} t={t} locale={locale} navigate={navigate} ready={toolTextsLocale === locale && toolTextsTool === activeTool.id} /> : activeSuite ? <SuitePage suite={activeSuite} t={t} locale={locale} navigate={navigate} /> : <main><section className="hero"><p className="eyebrow">CommieTools.org</p><h1>{t('app.tagline')}</h1><p className="hero-copy">{t('app.promise')}</p><div className="badges"><LocalBadge>{t('status.local')}</LocalBadge><LocalBadge>{t('status.offline')}</LocalBadge></div></section><section className="section" id="tools"><CatalogSection t={t} locale={locale} navigate={navigate} query={query} onQuery={setQuery} /></section>{!searching && <section className="section" id="suites"><div className="section-heading"><div><p className="eyebrow">02</p><h2>{t('suite.heading')}</h2></div><p>{t('suite.intro')}</p></div><div className="catalog-grid suites">{suiteManifests.map((suite) => <article className="catalog-card suite-card" key={suite.id}><p className="category">Suite</p><h3>{t(suite.titleKey)}</h3><p>{t(suite.descriptionKey)}</p><div className="card-footer"><span>{suite.toolIds.length} {t('suite.tools')}</span><button className="text-link" onClick={() => navigate(suite.route)}>{t('suite.open')} →</button></div></article>)}</div></section>}</main>}<footer className="site-footer"><span>© 2026 CommieTools contributors · AGPL-3.0-only</span><div className="footer-links"><button className="text-link" onClick={() => navigate('/impressum')}>{t('footer.legal')}</button><button className="text-link" onClick={() => navigate('/licenses')}>{t('footer.licenses')}</button></div></footer></div>
 }

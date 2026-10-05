@@ -1,13 +1,16 @@
 {
-  "entry": 136961,
-  "catalogBase:base": 1100,
-  "searchLocale:de": 7833,
-  "searchLocale:en": 6820,
-  "searchLocale:es": 7179,
-  "toolMessages:de": 26403,
-  "toolMessages:en": 23849,
-  "toolMessages:es": 25451,
-  "uiMessages:de": 2335,
-  "uiMessages:en": 2049,
-  "uiMessages:es": 2351
+  "entry": 146417,
+  "catalogBase:base": 1212,
+  "searchLocale:de": 9284,
+  "searchLocale:en": 8145,
+  "searchLocale:es": 8485,
+  "toolMessagesRoute:de": 5199,
+  "toolMessagesRoute:en": 4685,
+  "toolMessagesRoute:es": 5207,
+  "toolMessagesTotal:de": 35102,
+  "toolMessagesTotal:en": 31559,
+  "toolMessagesTotal:es": 34535,
+  "uiMessages:de": 2568,
+  "uiMessages:en": 2268,
+  "uiMessages:es": 2588
 }

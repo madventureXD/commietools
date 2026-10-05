@@ -105,11 +105,37 @@ for (const name of assets) {
 }
 
 const optionalPdfFiles = assets.filter((name) => engines[0].filename.test(name) || /^(?:Pdf|ImagesToPdf-|pdf-|pdfUi-)/u.test(name))
-for (const name of assets.filter((item) => item.startsWith('catalog-base-') || languageAssets.includes(item))) {
+for (const name of assets.filter((item) => item.startsWith('catalog-base-') || (languageAssets.includes(item) && !item.startsWith('tools-')))) {
   const size = gzipSync(await readFile(join(dist, 'assets', name))).length
-  const kind = name.startsWith('catalog-base') ? 'catalogBase' : name.startsWith('search-') ? 'searchLocale' : name.startsWith('tools-') ? 'toolMessages' : 'uiMessages'
-  const locale = /^(?:search|tools|ui)-([a-z]{2,3}(?:-[A-Z]{2})?)-/u.exec(name)?.[1] ?? 'base'
+  const kind = name.startsWith('catalog-base') ? 'catalogBase' : name.startsWith('search-') ? 'searchLocale' : 'uiMessages'
+  const locale = /^(?:search|ui)-([a-z]{2,3}(?:-[A-Z]{2})?)-/u.exec(name)?.[1] ?? 'base'
   warnSize(kind === 'catalogBase' ? 'Katalogbasis' : `${kind} ${locale}`, size, warningBudgets[kind], `${kind}:${locale}`)
+}
+/**
+ * Die Werkzeugtexte liegen **je Werkzeug** (2026-10-05): 49 Pakete je Sprache (gemeinsame Texte
+ * plus ein Paket je Werkzeug). Zwei Kennzahlen, weil eine allein in die Irre führt:
+ *
+ * 1. **Was eine Werkzeugroute lädt**: gemeinsames Paket + größtes Werkzeugpaket. Das ist die
+ *    Last, die ein Besuch tatsächlich zahlt — sie wird gegen die alte Schwelle geprüft.
+ * 2. **Summe je Sprache** (alle 49 Pakete): rein informativ mit eigener, weiterer Schwelle. Sie
+ *    wächst gegenüber einem Einzelpaket allein durch den gzip-Kopf je Datei (gemessen +28 %) und
+ *    sagt nichts über die Last eines Besuchs.
+ */
+const toolTextTotals = new Map()
+for (const name of assets.filter((item) => item.startsWith('tools-') && item.endsWith('.js'))) {
+  const locale = /^tools-([a-z]{2,3}(?:-[A-Z]{2})?)-/u.exec(name)?.[1]
+  if (!locale) continue
+  const entry = toolTextTotals.get(locale) ?? { bytes: 0, count: 0, common: 0, largest: 0, largestName: '' }
+  const size = gzipSync(await readFile(join(dist, 'assets', name))).length
+  entry.bytes += size
+  entry.count += 1
+  if (name.startsWith(`tools-${locale}-common-`)) entry.common = size
+  else if (size > entry.largest) { entry.largest = size; entry.largestName = name }
+  toolTextTotals.set(locale, entry)
+}
+for (const [locale, total] of toolTextTotals) {
+  warnSize(`toolMessages ${locale} je Route (gemeinsam ${total.common} + größtes Werkzeug ${total.largest})`, total.common + total.largest, warningBudgets.toolMessages, `toolMessagesRoute:${locale}`)
+  warnSize(`toolMessages ${locale} gesamt (${total.count} Pakete)`, total.bytes, 40 * 1024, `toolMessagesTotal:${locale}`)
 }
 console.log(`Bundle audit passed: entry ${compressedSize} B gzip; optional PDF artifacts: ${optionalPdfFiles.length}`)
 for (const line of reported) console.log(`  route engine: ${line}`)

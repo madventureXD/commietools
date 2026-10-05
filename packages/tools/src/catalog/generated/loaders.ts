@@ -9,25 +9,12 @@ const searchLoaders = {
   "en": () => import('./search/en'),
   "es": () => import('./search/es'),
 } as const
-const messageLoaders = {
-  "de": () => import('./messages/de'),
-  "en": () => import('./messages/en'),
-  "es": () => import('./messages/es'),
-} as const
 export type GeneratedLocale = keyof typeof searchLoaders
 const searchCache = new Map<string, Promise<readonly ToolSearchEntry[]>>()
-const messageCache = new Map<string, Promise<Readonly<Record<string, Readonly<Record<string, string>>>>>>()
 
 export function loadToolSearchIndex(locale: GeneratedLocale): Promise<readonly ToolSearchEntry[]> {
   const key = locale === 'en' ? 'en' : `${locale}+en`
   const cached = searchCache.get(key); if (cached) return cached
   const promise = Promise.all([searchLoaders.en(), locale === 'en' ? searchLoaders.en() : searchLoaders[locale]()]).then(([english, selected]) => toolIndex.map((entry) => ({ ...entry, locales: locale === 'en' ? { en: english.searchLocale[entry.id]! } : { [locale]: selected.searchLocale[entry.id]!, en: english.searchLocale[entry.id]! } })))
   searchCache.set(key, promise); return promise
-}
-
-export function loadToolMessages(locale: GeneratedLocale): Promise<Readonly<Record<string, Readonly<Record<string, string>>>>> {
-  const key = locale === 'en' ? 'en' : `${locale}+en`
-  const cached = messageCache.get(key); if (cached) return cached
-  const promise = Promise.all([messageLoaders.en(), locale === 'en' ? messageLoaders.en() : messageLoaders[locale]()]).then(([english, selected]) => locale === 'en' ? { en: english.messages } : { en: english.messages, [locale]: selected.messages })
-  messageCache.set(key, promise); return promise
 }

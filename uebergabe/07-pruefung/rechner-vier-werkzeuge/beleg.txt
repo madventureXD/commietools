@@ -1,34 +1,34 @@
-Beleg Rechner-Aufteilung, 2026-10-05T14:20:00.344Z
+Beleg Rechner-Aufteilung, 2026-10-05T15:29:49.793Z
   Standard: /tools/calculator @ 1360 px dunkel
     Titel „Rechner" · 23 Tasten · Umschalter Dezimal (14 Stellen angezeigt)|Bruch (exakt)
     Bild standard-1360.png (87 kB)
-    Ergebnis „0,5" = erwartete „0,5" ✓  Bündel index-Etbiy7q_.js
+    Ergebnis „0,5" = erwartete „0,5" ✓  Bündel index-Bck5hY__.js
   Wissenschaftlich: /tools/scientific-calculator @ 1360 px dunkel
     Titel „Wissenschaftlicher Rechner" · 37 Tasten · Umschalter Dezimal (14 Stellen angezeigt)|Bruch (exakt) ; Bogenmaß (rad)|Grad (°)|Gon (grad)
     Bild wissenschaftlich-1360.png (111 kB)
-    Ergebnis „0,5" = erwartete „0,5" ✓  Bündel index-Etbiy7q_.js
+    Ergebnis „0,5" = erwartete „0,5" ✓  Bündel index-Bck5hY__.js
     Bild programmierer-1360.png (115 kB)
   Programmierer @ 1360 px: Ergebnis „0xff" (erwartet „0xff"), Darstellungen: DarstellungenHEX0xffDEC255OCT0o377BIN0b1111111132 Bit · mit Vorzeichen255
     Wortbreite 8 Bit, mit Vorzeichen: 8 Bit · mit Vorzeichen-1 (erwartet „−1")
   RPN: /tools/rpn-calculator @ 1360 px dunkel
     Titel „RPN-Rechner" · 28 Tasten · Umschalter 
     Bild rpn-1360.png (97 kB)
-    Ergebnis „35" = erwartete „35" ✓  Bündel index-Etbiy7q_.js
+    Ergebnis „35" = erwartete „35" ✓  Bündel index-Bck5hY__.js
   Standard: /tools/calculator @ 390 px hell
     Titel „Rechner" · 23 Tasten · Umschalter Dezimal (14 Stellen angezeigt)|Bruch (exakt)
     Bild standard-390.png (73 kB)
-    Ergebnis „0,5" = erwartete „0,5" ✓  Bündel index-Etbiy7q_.js
+    Ergebnis „0,5" = erwartete „0,5" ✓  Bündel index-Bck5hY__.js
   Wissenschaftlich: /tools/scientific-calculator @ 390 px hell
     Titel „Wissenschaftlicher Rechner" · 37 Tasten · Umschalter Dezimal (14 Stellen angezeigt)|Bruch (exakt) ; Bogenmaß (rad)|Grad (°)|Gon (grad)
     Bild wissenschaftlich-390.png (91 kB)
-    Ergebnis „0,5" = erwartete „0,5" ✓  Bündel index-Etbiy7q_.js
+    Ergebnis „0,5" = erwartete „0,5" ✓  Bündel index-Bck5hY__.js
     Bild programmierer-390.png (98 kB)
   Programmierer @ 390 px: Ergebnis „0xff" (erwartet „0xff"), Darstellungen: DarstellungenHEX0xffDEC255OCT0o377BIN0b1111111132 Bit · mit Vorzeichen255
     Wortbreite 8 Bit, mit Vorzeichen: 8 Bit · mit Vorzeichen-1 (erwartet „−1")
   RPN: /tools/rpn-calculator @ 390 px hell
     Titel „RPN-Rechner" · 28 Tasten · Umschalter 
     Bild rpn-390.png (83 kB)
-    Ergebnis „35" = erwartete „35" ✓  Bündel index-Etbiy7q_.js
+    Ergebnis „35" = erwartete „35" ✓  Bündel index-Bck5hY__.js
   Rechnerart-Umschalter auf standard: keiner ✓
   Rechnerart-Umschalter auf scientific: keiner ✓
   Rechnerart-Umschalter auf programmer: keiner ✓

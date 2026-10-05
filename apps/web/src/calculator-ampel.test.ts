@@ -1,11 +1,11 @@
 import { describe, expect, it } from 'vitest'
 import { calculatorFor, evaluate } from '@commietools/tools/calculator/core'
-import { loadToolMessages } from '@commietools/tools'
+import { loadAllToolTexts } from '@commietools/tools/text-loaders'
 import { supportedLocales } from '@commietools/i18n'
 import { accuracyOf } from './calculator-ui'
 
 const toolMessages = Object.fromEntries(
-  await Promise.all(supportedLocales.map(async (locale) => [locale, (await loadToolMessages(locale))[locale] ?? {}]))
+  await Promise.all(supportedLocales.map(async (locale) => [locale, (await loadAllToolTexts(locale))[locale] ?? {}]))
 )
 
 /**

@@ -15,6 +15,7 @@ import type { ToolManifest, ToolSearchEntry } from '@commietools/core'
 export interface ToolTexts {
   readonly title: string
   readonly summary: string
+  readonly description: string
   readonly tags: readonly string[]
 }
 
@@ -29,6 +30,7 @@ export function toolTextsFrom(
   return {
     title: text?.title ?? t(tool.titleKey),
     summary: text?.summary ?? t(tool.summaryKey),
+    description: text?.description ?? t(tool.descriptionKey),
     tags: text?.tags ?? []
   }
 }

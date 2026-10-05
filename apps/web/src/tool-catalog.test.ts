@@ -9,7 +9,6 @@ import {
   inputMimeTypes,
   readOnlyFormatNames,
   searchEntryById,
-  loadToolMessages,
   loadToolSearchIndex,
   suiteManifests,
   toolById,
@@ -17,9 +16,10 @@ import {
   toolManifests,
   type ImageFormat
 } from '@commietools/tools'
+import { loadAllToolTexts } from '@commietools/tools/text-loaders'
 
 const indexes = Object.fromEntries(await Promise.all(supportedLocales.map(async (locale) => [locale, await loadToolSearchIndex(locale)]))) as Record<Locale, readonly ToolSearchEntry[]>
-const toolMessages = Object.fromEntries(await Promise.all(supportedLocales.map(async (locale) => [locale, (await loadToolMessages(locale))[locale] ?? {}])))
+const toolMessages = Object.fromEntries(await Promise.all(supportedLocales.map(async (locale) => [locale, (await loadAllToolTexts(locale))[locale] ?? {}])))
 
 /** Builds a byte pattern; pads to the twelve bytes the detector needs. */
 function header(...parts: Array<string | number[]>): Uint8Array {
@@ -67,15 +67,15 @@ describe('tool catalogue', () => {
 
   it('holds a short summary and search terms in every supported language', () => {
     /**
-     * Kurztext und Suchbegriffe stehen seit 2026-10-05 **nur noch im Suchpaket**; das Textpaket
-     * führt sie nicht mehr, weil die Werkzeugoberfläche sie nie anzeigt. Die **Beschreibung**
-     * bleibt im Textpaket — die Werkzeugkopfzeile braucht sie.
+     * **Alle vier** Katalogtexte — Titel, Beschreibung, Kurztext und Suchbegriffe — stehen seit
+     * 2026-10-05 im Suchpaket. Es ist auf jeder Seite geladen (die Werkzeugschublade steckt im
+     * Kopfbereich); das Textpaket eines Werkzeugs führt nur noch dessen eigene Oberflächentexte.
      */
     for (const tool of toolManifests) {
       for (const locale of supportedLocales) {
         const entry = indexes[locale].find((candidate) => candidate.id === tool.id)
         const summary = entry?.locales[locale]?.summary
-        const description = toolMessages[locale]?.[tool.descriptionKey]
+        const description = entry?.locales[locale]?.description
         const terms = entry?.locales[locale]?.terms
         expect(summary, `${tool.id}/${locale}`).toBeTruthy()
         expect(description, `${tool.id}/${locale}`).toBeTruthy()
@@ -89,18 +89,21 @@ describe('tool catalogue', () => {
 
   it('keeps the catalogue keys out of the tool text package', () => {
     /**
-     * Die Gegenprobe zur Aufteilung: Titel, Beschreibung, Kurztext und Suchbegriffe liegen im
-     * Suchpaket. Im Textpaket dürfen **Kurztext und Suchbegriffe** nicht mehr auftauchen — sonst
-     * zahlt jede Werkzeugroute die Suchtexte ein zweites Mal. Titel und Beschreibung bleiben
-     * erlaubt (Kopfzeile).
+     * Die Gegenprobe zur Aufteilung: **keiner** der vier Katalogschlüssel darf im Textpaket
+     * stehen — sonst zahlt jede Werkzeugroute die Katalogtexte ein zweites Mal. Die Quelle ist
+     * das Suchpaket, und dort müssen sie stehen.
      */
     for (const locale of supportedLocales) {
       const keys = Object.keys(toolMessages[locale] ?? {})
       for (const tool of toolManifests) {
-        expect(keys.includes(tool.summaryKey), `${tool.id}/${locale}: ${tool.summaryKey}`).toBe(false)
-        expect(keys.includes(tool.termsKey), `${tool.id}/${locale}: ${tool.termsKey}`).toBe(false)
-        expect(keys.includes(tool.titleKey), `${tool.id}/${locale}: ${tool.titleKey}`).toBe(true)
-        expect(keys.includes(tool.descriptionKey), `${tool.id}/${locale}: ${tool.descriptionKey}`).toBe(true)
+        for (const key of [tool.titleKey, tool.descriptionKey, tool.summaryKey, tool.termsKey]) {
+          expect(keys.includes(key), `${tool.id}/${locale}: ${key} steht im Textpaket`).toBe(false)
+        }
+        const text = indexes[locale].find((candidate) => candidate.id === tool.id)?.locales[locale]
+        expect(text?.title, `${tool.id}/${locale}: Titel im Suchpaket`).toBeTruthy()
+        expect(text?.description, `${tool.id}/${locale}: Beschreibung im Suchpaket`).toBeTruthy()
+        expect(text?.summary, `${tool.id}/${locale}: Kurztext im Suchpaket`).toBeTruthy()
+        expect(text?.terms.length, `${tool.id}/${locale}: Suchbegriffe im Suchpaket`).toBeGreaterThan(0)
       }
     }
   })

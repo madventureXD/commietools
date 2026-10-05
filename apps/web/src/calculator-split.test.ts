@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest'
 import type { ToolSearchEntry } from '@commietools/core'
-import { loadToolMessages, loadToolSearchIndex } from '@commietools/tools'
+import { loadToolSearchIndex } from '@commietools/tools'
+import { loadAllToolTexts, loadCommonToolTexts, loadToolTexts } from '@commietools/tools/text-loaders'
 import { supportedLocales } from '@commietools/i18n'
 
 /**
@@ -41,7 +42,7 @@ const FRAME_KEYS = [
 ] as const
 
 const toolMessages = Object.fromEntries(
-  await Promise.all(supportedLocales.map(async (locale) => [locale, (await loadToolMessages(locale))[locale] ?? {}]))
+  await Promise.all(supportedLocales.map(async (locale) => [locale, (await loadAllToolTexts(locale))[locale] ?? {}]))
 )
 
 describe('Rechner: vier Werkzeuge und ein gemeinsamer Rahmen', () => {
@@ -53,34 +54,41 @@ describe('Rechner: vier Werkzeuge und ein gemeinsamer Rahmen', () => {
     }
   })
 
-  it('hält jedes Werkzeug unter der Abnahmegrenze eigener Schlüssel', () => {
+  it('hält jedes Werkzeug unter der Abnahmegrenze eigener Schlüssel', async () => {
+    /**
+     * Seit 2026-10-05 liegen die Texte **je Werkzeug** in eigenen Paketen
+     * (`messages/<sprache>/<werkzeug>.ts`). Geprüft wird deshalb am Paket selbst: es darf nur
+     * Schlüssel **dieses** Werkzeugs führen (kein fremdes Werkzeug) und höchstens `limit` davon.
+     * Die Rahmen- und Bereichstexte kommen aus dem gemeinsamen Paket und zählen nicht mit.
+     */
+    const common = Object.fromEntries(await Promise.all(supportedLocales.map(async (locale) => [locale, (await loadCommonToolTexts(locale))[locale] ?? {}])))
     for (const locale of supportedLocales) {
-      const keys = Object.keys(toolMessages[locale] ?? {})
       for (const tool of TOOLS) {
-        const own = keys.filter((key) => key.startsWith(tool.prefix))
-        // Mindestens Titel, Beschreibung und Rechenregeln stehen im **Textpaket**. Kurztext und
-        // Suchbegriffe liegen seit 2026-10-05 im Suchpaket und werden im Test darüber geprüft.
-        expect(own.length, `${locale}: ${tool.prefix} hat ${own.length} Schlüssel`).toBeGreaterThanOrEqual(3)
-        expect(own.length, `${locale}: ${tool.prefix} hat ${own.length} Schlüssel`).toBeLessThanOrEqual(tool.limit)
+        const pack = (await loadToolTexts(locale, tool.id))[locale] ?? {}
+        const own = Object.keys(pack).filter((key) => !(key in (common[locale] ?? {})))
+        expect(own.length, `${locale}: ${tool.id} hat ${own.length} eigene Schlüssel`).toBeLessThanOrEqual(tool.limit)
+        for (const key of own) {
+          expect(key.startsWith(tool.prefix), `${locale}: ${tool.id} führt fremden Schlüssel ${key}`).toBe(true)
+        }
       }
     }
   })
 
   it('führt Titel, Kurzbeschreibung und Suchbegriffe je Werkzeug und Sprache', async () => {
     /**
-     * Titel und Beschreibung stehen im Textpaket, **Kurztext und Suchbegriffe nur im Suchpaket**
-     * (Aufteilung 2026-10-05) — deshalb wird je Schlüssel an der richtigen Quelle geprüft.
+     * **Alle vier Katalogtexte stehen im Suchpaket** (2026-10-05): Karten, Werkzeugschublade,
+     * Suiten-Seite und Werkzeugkopfzeile lesen sie von dort — eine Quelle, ein Paket, das auf
+     * jeder Seite ohnehin geladen wird.
      */
     const indexes = Object.fromEntries(
       await Promise.all(supportedLocales.map(async (locale) => [locale, await loadToolSearchIndex(locale)]))
     ) as Record<string, readonly ToolSearchEntry[]>
     for (const locale of supportedLocales) {
       for (const tool of TOOLS) {
-        const messages = toolMessages[locale] ?? {}
         const entry = indexes[locale]?.find((candidate: ToolSearchEntry) => candidate.id === tool.id)
-        const title = messages[`${tool.prefix}title`] ?? entry?.locales[locale]?.title
+        const title = entry?.locales[locale]?.title
         const summary = entry?.locales[locale]?.summary
-        const description = messages[`${tool.prefix}description`]
+        const description = entry?.locales[locale]?.description
         const list: string[] = [...(entry?.locales[locale]?.terms ?? []), ...(entry?.locales[locale]?.tags ?? [])]
         expect(title, `${locale}: ${tool.prefix}title`).toBeTruthy()
         expect(description, `${locale}: ${tool.prefix}description`).toBeTruthy()

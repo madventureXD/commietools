@@ -18,8 +18,9 @@ export default defineConfig({
           const normalized = id.replaceAll('\\', '/')
           const searchLocale = /\/catalog\/generated\/search\/([a-z]{2,3}(?:-[A-Z]{2})?)\.ts$/u.exec(normalized)?.[1]
           if (searchLocale) return `search-${searchLocale}`
-          const toolLocale = /\/catalog\/generated\/messages\/([a-z]{2,3}(?:-[A-Z]{2})?)\.ts$/u.exec(normalized)?.[1]
-          if (toolLocale) return `tools-${toolLocale}`
+          // Je Werkzeug ein eigenes Paket (2026-10-05): `messages/<sprache>/<werkzeug>.ts`.
+          const toolText = /\/catalog\/generated\/messages\/([a-z]{2,3}(?:-[A-Z]{2})?)\/([A-Za-z0-9_-]+)\.ts$/u.exec(normalized)
+          if (toolText) return `tools-${toolText[1]}-${toolText[2]}`
           const uiLocale = /\/i18n\/src\/(?:common|suites)\/([a-z]{2,3}(?:-[A-Z]{2})?)\.ts$/u.exec(normalized)?.[1]
           if (uiLocale) return `ui-${uiLocale}`
           if (normalized.endsWith('/catalog/toolIndex.ts')) return 'catalog-base'

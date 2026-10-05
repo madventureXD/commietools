@@ -1,5 +1,5 @@
-Funktionsprüfung Werkzeugtitel außerhalb der Werkzeugrouten, 2026-10-05T14:46:03.537Z
-Grundlage: http://localhost:4189
+Funktionsprüfung Werkzeugtitel außerhalb der Werkzeugrouten, 2026-10-05T15:29:20.201Z
+Grundlage: http://localhost:4191
 
 === Startseite `/` — Katalogkarten
   Katalogkarten: 8 Texte gelesen, 0 davon Schlüsselnamen

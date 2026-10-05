@@ -1,8 +1,9 @@
 import { describe, expect, it } from 'vitest'
 import { createTranslator, detectLocale, loadInterfaceMessages, localeRegistry, supportedLocales } from '@commietools/i18n'
-import { buildQrPayload, convertCase, encodeQrPayload, formatJson, getSuiteTools, getTextStatistics, loadToolMessages, suiteManifests, toolByRoute } from '@commietools/tools'
+import { buildQrPayload, convertCase, encodeQrPayload, formatJson, getSuiteTools, getTextStatistics, suiteManifests, toolByRoute } from '@commietools/tools'
+import { loadAllToolTexts } from '@commietools/tools/text-loaders'
 
-const deMessages = await loadToolMessages('de')
+const deMessages = await loadAllToolTexts('de')
 const deInterface = await loadInterfaceMessages('de')
 
 describe('text statistics', () => {
@@ -60,7 +61,9 @@ describe('hybrid translations', () => {
   it('merges platform and per-tool messages', () => {
     const t = createTranslator('de', [deInterface, deMessages])
     expect(t('nav.tools')).toBe('Werkzeuge')
-    expect(t('tool.jsonFormatter.title')).toBe('JSON formatieren')
+    // Ein Schlüssel der Werkzeugoberfläche — Titel und Beschreibung liegen seit 2026-10-05 im
+    // Suchpaket, das die Werkzeugseite ohnehin lädt.
+    expect(t('tool.jsonFormatter.input')).toBe('JSON eingeben')
   })
 
   it('falls back to English and exposes missing keys', () => {
