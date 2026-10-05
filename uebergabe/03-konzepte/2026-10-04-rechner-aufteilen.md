@@ -286,5 +286,5 @@ RPN-Rechner den Umschalter zurückbekommen, ist es eine Zeile im `CalculatorFram
 ### Was die Messung aus Abschnitt 2 bestätigt hat
 
 Der Rechenkern blieb **ein** Modul; die Route lädt unverändert die Vereinigung aller Factories
-(Engine-Chunk 103.709 Byte im Bau). Die ausgelieferte Startgröße wuchs ausschließlich durch die
+(Engine-Chunk 103.708 Byte im Bau). Die ausgelieferte Startgröße wuchs ausschließlich durch die
 **drei zusätzlichen Katalogeinträge je Sprache** (+9,3 kB gzip) — nicht durch die Rechenarten.

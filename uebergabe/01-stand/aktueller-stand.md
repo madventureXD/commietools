@@ -154,7 +154,7 @@ einem eigenen Fenster); die elf zugehörigen Commits liegen lokal vor `origin/ma
   **146.220 Byte** von 204.800 (Reserve rund 58 kB), gemessen 2026-10-04. Sprachgetrennte Such- und
   Werkzeugtextpakete mit verzögertem Laden, ohne statisch erreichbare PDF- oder Rechen-Engine;
   PDF-/OCR-/Signaturrouten, Worker und WASM sind vom Vorab-Cache ausgeschlossen; nachgeladener
-  Rechenkern 103.709 Byte gzip, Katalogbasis 1.212 Byte,
+  Rechenkern 103.708 Byte gzip, Katalogbasis 1.212 Byte,
   Werkzeugtexte Deutsch 32.672 von 30.720 Byte und Spanisch 31.645 (**beide über der Warnschwelle —
   begründet in `05-uebergaben/2026-10-04-rechner-vier-werkzeuge.md`**), Englisch 29.787 Byte
   (gemessen 2026-10-04)

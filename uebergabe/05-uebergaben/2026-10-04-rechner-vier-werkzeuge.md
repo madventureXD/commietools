@@ -106,7 +106,7 @@ Rechnerart-Umschaltleiste. Bilder und Protokoll: `07-pruefung/rechner-vier-werkz
 | Prüfung | Ergebnis |
 |---|---|
 | `npm run check` (Lizenz, Katalog, Typen, Tests) | **grün** — 48 Werkzeuge, 3 Sprachen, 48 Symbole; 380 Tests in 23 Dateien |
-| `npm run build` | **grün** — Start-JS 146.220 B gzip von 204.800; Bundle-Prüfung grün (19 PDF-Artefakte, Engine-Chunk `core-*.js` 103.709 B) |
+| `npm run build` | **grün** — Start-JS 146.220 B gzip von 204.800; Bundle-Prüfung grün (19 PDF-Artefakte, Engine-Chunk `core-*.js` 103.708 B) |
 | `npm run lint` | grün (keine Meldung) |
 | `npm run viewport:check` (Vorschau) | **grün** — vier Rechner-Routen bei 320 px geprüft, anschließend **Gesamtlauf über alle 48 Routen bei 320 px: bestanden** |
 | `git diff --check` | grün (nur die bekannten Zeilenende-Hinweise) |
