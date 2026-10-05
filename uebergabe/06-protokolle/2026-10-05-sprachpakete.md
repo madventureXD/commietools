@@ -41,7 +41,7 @@ frischem Browserprofil (`work/sprachpaket-netzbeleg.cjs`).
 
 ## Relevante Verweise
 
-- Commit: `<nach dem Commit eingesetzt>`, lokal, **nicht gepusht**
+- Commit: **`320443e`**, lokal, **nicht gepusht**
 - Übergabe: `05-uebergaben/2026-10-05-sprachpakete-beim-oeffnen-laden.md`
 - Regelergänzung: `02-architektur/sprachpakete.md`
 - Belege: `07-pruefung/sprachpaket/beleg.txt`

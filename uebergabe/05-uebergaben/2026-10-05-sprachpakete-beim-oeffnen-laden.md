@@ -117,7 +117,8 @@ Screenreader-Namen weiterhin offen (bestehender Punkt).
 
 ## Git
 
-- Commit: `<nach dem Commit eingesetzt>` — lokal, **nicht gepusht**.
+- Commit: **`320443e`** — `perf(i18n): load tool texts on the tool route and drop the duplicated
+  catalogue keys`. Lokal, **nicht gepusht**.
 - Arbeitsbaum: unverändert die fremden Änderungen an `COPYRIGHT` und `LICENSE` (nicht angefasst,
   nicht gestagt).
 - Die erzeugten Katalogpakete gehören mit in den Commit.
