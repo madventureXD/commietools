@@ -12,10 +12,22 @@
   *(Zusatz 2026-10-05: Der Rückstand wächst mit jeder Welle — acht Handwerk-Werkzeuge der Wellen A
   und B sind in Spanisch noch nicht gegengelesen. Das ist keine Regression, sondern die bekannte
   offene sprachliche Abnahme.)*
+  *(Zusatz 2026-10-05, Welle C: **zehn** Handwerk-Werkzeuge sind es inzwischen; die beiden neuen
+  (Pflaster, Reifen) kommen hinzu. Empfehlung: das Gegenlesen in **einem** Durchgang für die ganze
+  Suite, nicht zehn Einzelläufe.)*
 - [ ] **Welle C des Handwerker-Konzepts:** Pflaster-/Erdarbeitenrechner (Vorschlag 5) und
   Reifen-/Drehmomentrechner (24) — beide Klasse a, keine neue Abhängigkeit zu erwarten.
   *(2026-10-05: Welle A und B sind abgeschlossen, die Suite „Handwerk" umfasst acht Werkzeuge;
   Übergabe `05-uebergaben/2026-10-05-welle-b-handwerkerwerkzeuge.md`.)*
+  *(Zusatz 2026-10-05: **erledigt** — beide Werkzeuge gebaut, geprüft und belegt; Suite „Handwerk"
+  mit zehn Werkzeugen, Register 54, 440 Tests in 30 Dateien. Commits `b80f527` und `3972f59`,
+  Übergabe `05-uebergaben/2026-10-05-welle-c-handwerkerwerkzeuge.md`. **Nicht gepusht.**)*
+- [ ] **Stilerscheinung in den aufklappbaren Abschnitten der Handwerk-Werkzeuge prüfen:** Bei
+  Pflaster und Reifen sitzt die erste Feldspalte auf der Zeile der Zusammenfassung, das
+  Eingabefeld darunter. Lesbar und richtig zugeordnet, aber unschön. Ursache wird im gemeinsamen
+  Aufbau (`details > summary` plus `.form-grid`) vermutet, noch nicht gegen ein Werkzeug der
+  Wellen A/B verglichen — bewusst nicht nebenbei geändert, um keine Stiländerung an allen zwölf
+  Werkzeugflächen mit einer Werkzeugwelle zu vermischen.
 
 Diese Liste enthält bestätigte, noch nicht abgeschlossene Arbeit. Details gehören in verlinkte Konzepte oder Issues, sobald solche vorhanden sind.
 

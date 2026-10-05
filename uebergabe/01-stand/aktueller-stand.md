@@ -10,6 +10,14 @@ Sprachpaket-Aufteilung vom 2026-10-05 hatte zwölf Werkzeugflächen sichtbar bes
 stand als Schlüsselname in der Seite); repariert, mit Wächtertest und erweiterter
 Funktionsprüfung. Entscheidung zur Textsumme: ADR 0011. Alles lokal, **nicht gepusht** —
 Einzelheiten in `05-uebergaben/2026-10-05-welle-b-handwerkerwerkzeuge.md`.
+**Zusatz 2026-10-05 (Faber), Welle C:** Suite „Handwerk" **vollständig** — die beiden
+verbliebenen Werkzeuge der Lösungsklasse a sind gebaut: **Pflaster und Erdarbeiten** (`paving`) und
+**Reifen und Drehmoment** (`tires`). Die Suite umfasst damit **zehn Werkzeuge**, das Register
+**54 Werkzeuge**, **440 Tests in 30 Dateien**, Startlast 146.993 B gzip von 204.800. Beim
+Pflasterwerkzeug rechnet das Werkzeug im Rastermaß (Stein plus Fuge), beim Reifenwerkzeug wird kein
+Anzugsmoment vorgeschlagen — nur Einheiten und Toleranzbereich. Alles lokal, **nicht gepusht**;
+Einzelheiten in `05-uebergaben/2026-10-05-welle-c-handwerkerwerkzeuge.md` und
+`06-protokolle/2026-10-05-welle-c-gesamtbericht.md`.
 **Lokal fertiggestellt, noch nicht veröffentlicht:** Desktop-Auskoppeln M0–M7 (Werkzeuge laufen in
 einem eigenen Fenster); die elf zugehörigen Commits liegen lokal vor `origin/main`.
 
@@ -139,6 +147,8 @@ einem eigenen Fenster); die elf zugehörigen Commits liegen lokal vor `origin/ma
 | Farbe, Tapeten und Beschichtung | `paint` | Handwerk | lokal | keine (nur Information) |
 | Trockenbau | `drywall` | Handwerk | lokal | keine (nur Information) |
 | Parkett, Laminat und Bodenbelag | `flooring` | Handwerk | lokal | keine (nur Information) |
+| Pflaster und Erdarbeiten | `paving` | Handwerk | lokal | keine (nur Information) |
+| Reifen und Drehmoment | `tires` | Handwerk | lokal | keine (nur Information) |
 
 ## Derzeitige Suiten
 
@@ -149,6 +159,7 @@ einem eigenen Fenster); die elf zugehörigen Commits liegen lokal vor `origin/ma
 - Rechnen (Rechner, Umrechnen, Kaufmännisch, Zeit und Datum, Funktionsplotter, Statistik, Gleichungslöser, Geometrie, Aufmaß)
 - Handwerk (Beton/Mörtel/Estrich, Dach, Metallgewicht, Holzfeuchte und Holzgewicht) — Welle A der Handwerkerwerkzeuge, abgenommen am 2026-10-04
   *Zusatz 2026-10-05: um die Welle B erweitert — Fliesen/Kleber/Fugenmörtel, Farbe/Tapeten/Beschichtung, Trockenbau, Parkett/Laminat/Bodenbelag. Die Suite umfasst damit **acht Werkzeuge**.*
+  *Zusatz 2026-10-05 (Welle C): um die beiden letzten Werkzeuge der Klasse a erweitert — Pflaster/Erdarbeiten und Reifen/Drehmoment. Die Suite umfasst damit **zehn Werkzeuge** und ist nach dem Konzept vollständig.*
 - PDF (Viewer, Text/OCR, Zertifikatssignaturen prüfen und erstellen, Zusammenführen, Teilen, Seiten organisieren, Bilder zu PDF, PDF zu Bildern, Wasserzeichen, Seitenzahlen, sichtbar unterschreiben, Formular ausfüllen, kommentieren und markieren, schützen/entsperren, komprimieren, Metadaten, Beschneiden, Reparatur, Anhänge, Vergleich, PDF/A-Vorcheck und sichere Schwärzung)
 
 ## Qualität und Compliance
@@ -161,8 +172,10 @@ einem eigenen Fenster); die elf zugehörigen Commits liegen lokal vor `origin/ma
 - eingebettete Binärartefakte: 2 registrierte WASM-Artefakte (QPDF und PDF Signer)
 - letzter bekannter Teststand: 381 Webtests in 23 Dateien bestanden (`npm run check`, gemessen 2026-10-05); Rust-Tests in diesem Lauf nicht neu gemessen — der zuletzt bekannte Stand bleibt 50
   *Zusatz 2026-10-05 (Welle B): **426 Webtests in 28 Dateien** bestanden (`npm run check`); Rust-Tests unverändert nicht neu gemessen.*
+  *Zusatz 2026-10-05 (Welle C): **440 Webtests in 30 Dateien** bestanden (`npm run check`), `lint` und `build` grün; Rust-Tests unverändert nicht neu gemessen.*
 - Werkzeugregister: 48 Werkzeuge, 3 Sprachen, 48 Symbole, 3.164 Suchbegriffe, 92 deklarierte Dateitypen (`npm run catalog:generate`, gemessen 2026-10-05); Spanisch wird als noch gegenzulesendes Testpaket mitausgeliefert
   *Zusatz 2026-10-05 (Welle B): **52 Werkzeuge, 52 Symbole, 3.464 Suchbegriffe**, 92 Dateitypen (`npm run catalog:generate`); Startlast 146.867 B gzip von 204.800. Die Summenschwelle der Werkzeugtexte wird seit ADR 0011 je Paket gemessen (850 B × 53 Pakete); Deutsch liegt bei 41.309 B, Englisch 37.278 B, Spanisch 40.626 B, Last je Route unverändert 5.199 B von 30.720.*
+  *Zusatz 2026-10-05 (Welle C): **54 Werkzeuge, 54 Symbole, 3.636 Suchbegriffe**, 92 Dateitypen; Startlast **146.993 B gzip** von 204.800. Textsumme je Paket (850 B × 55 Pakete = 46.750 B): Deutsch 44.366, Englisch 40.121, Spanisch 43.627; Last je Route unverändert 5.199 B (de) / 4.685 B (en) / 5.207 B (es) von 30.720.*
 - Sprachpakete: **Werkzeugtexte liegen je Werkzeug und je Sprache** und werden erst auf dessen
   Route geholt (2026-10-05, ADR 0010); die Startseite lädt nur Oberflächentexte und das Suchpaket.
   Titel, Beschreibung, Kurztext und Suchbegriffe stehen **nur** im Suchpaket — Karten, Schublade,
