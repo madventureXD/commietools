@@ -1,0 +1,10 @@
+
+=== Lauf 2026-10-05T17:55:59.169Z auf http://localhost:4193 ===
+19-trockenbau-standard-dunkel | Titel „Trockenbau" · Kategorie „Handwerk" · 31,2 m² − 3,5 m² = 27,7 m² · 10 Bahnen · 20 Platten · Verschnitt 22,3 m² · 21 Ständer, 14 CW / 6 UW · 693 Schrauben · Spachtel 9,7 kg (1 × 25 kg über der benötigten Menge: 15,31 kg) · Band 36,01 m · Bündel index-BKMTuuM0.js
+20-trockenbau-plattenmass-dunkel | Plattenlänge 2,60 m: 10 Platten statt 20 · Verschnitt 4,8 m² statt 22,3 m² — das Plattenmaß entscheidet über den Verschnitt
+21-trockenbau-doppelt-dunkel | Doppelt beplankt: 20 Platten · 1386 Schrauben · Spachtel 19,39 kg (1 × 25 kg über der benötigten Menge: 5,61 kg)
+22-trockenbau-fehlerfall | Fehlermeldung: „Die Abzüge sind größer als die Wandfläche — es bleibt nichts zu beplanken. Bitte Öffnungen und Maße prüfen."
+23-trockenbau-hell-390 | 6 m × 2,5 m ohne Öffnungen: 5 Bahnen · 10 Platten · 11 Ständer · Überbreite 0 px
+24-katalog-trockenbau | Karten 58 · Handwerk sichtbar · HandwerkTrockenbauPlatten, Profile, Schrauben und Spachtelmasse für Trockenbauwände.#trockenbau#handwerk●Lokal verarbeitetTool öffnen →
+25-suche-rigips | 1 Treffer, gefiltert · 1 Karten
+26-suche-gegenprobe | „zzzqqq": 0 Karten, Leermeldung „Kein Werkzeug passt zu dieser Suche. Versuch es mit einem anderen Wort oder einer Dateiendung wie webp."

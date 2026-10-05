@@ -353,6 +353,12 @@ export const toolManifests: readonly ToolManifest[] = [
     titleKey: 'tool.paint.title', descriptionKey: 'tool.paint.description',
     summaryKey: 'tool.paint.summary', termsKey: 'tool.paint.terms',
     executionMode: 'local', resourceClass: 'standard', worksOffline: true
+  },
+  {
+    id: 'drywall', route: '/tools/drywall', category: 'craft',
+    titleKey: 'tool.drywall.title', descriptionKey: 'tool.drywall.description',
+    summaryKey: 'tool.drywall.summary', termsKey: 'tool.drywall.terms',
+    executionMode: 'local', resourceClass: 'standard', worksOffline: true
   }
 ]
 
@@ -363,5 +369,5 @@ export const suiteManifests: readonly SuiteManifest[] = [
   { id: 'image', route: '/suites/image', titleKey: 'suite.image.title', descriptionKey: 'suite.image.description', toolIds: ['image-metadata', 'image-resize', 'icon-generator', 'image-watermark', 'color-tools'] },
   { id: 'pdf', route: '/suites/pdf', titleKey: 'suite.pdf.title', descriptionKey: 'suite.pdf.description', toolIds: ['pdf-viewer', 'pdf-text-ocr', 'pdf-signature-verify', 'pdf-certificate-sign', 'pdf-a-preflight', 'pdf-redact', 'pdf-metadata', 'pdf-crop', 'pdf-repair', 'pdf-attachments', 'pdf-compare', 'pdf-merge', 'pdf-split', 'pdf-organize', 'images-to-pdf', 'pdf-to-images', 'pdf-watermark', 'pdf-page-numbers', 'pdf-visible-signature', 'pdf-form-fill', 'pdf-annotate', 'pdf-security', 'pdf-compress'] },
   { id: 'calculator', route: '/suites/calculator', titleKey: 'suite.calculator.title', descriptionKey: 'suite.calculator.description', toolIds: ['calculator', 'scientific-calculator', 'programmer-calculator', 'rpn-calculator', 'convert', 'commercial', 'datetime', 'plotter', 'statistics', 'equations', 'geometry', 'aufmass'] },
-  { id: 'craft', route: '/suites/craft', titleKey: 'suite.craft.title', descriptionKey: 'suite.craft.description', toolIds: ['concrete', 'roof', 'metal-weight', 'wood', 'tiles', 'paint'] }
+  { id: 'craft', route: '/suites/craft', titleKey: 'suite.craft.title', descriptionKey: 'suite.craft.description', toolIds: ['concrete', 'roof', 'metal-weight', 'wood', 'tiles', 'paint', 'drywall'] }
 ]

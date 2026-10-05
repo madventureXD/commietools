@@ -1494,5 +1494,36 @@ export const searchLocale: Readonly<Record<string, ToolLocaleEntry>> = {
       "#pintura",
       "#artesania"
     ]
+  },
+  "drywall": {
+    "title": "Tabiquería seca",
+    "summary": "Placas, perfiles, tornillos y pasta de juntas para tabiques secos.",
+    "description": "Placas, montantes y canales, tornillos, pasta de juntas y cinta para una pared de tabique seco — placas contadas por franjas verticales, con los recortes indicados aparte en lugar de un margen global. Calcula por completo en el navegador.",
+    "terms": [
+      "tabique seco",
+      "pladur",
+      "cartón yeso",
+      "placa de yeso",
+      "laminado",
+      "trasdosado",
+      "montante",
+      "canal",
+      "perfil CW",
+      "perfil UW",
+      "separación entre montantes",
+      "estructura",
+      "tornillos",
+      "pasta de juntas",
+      "cinta de juntas",
+      "cinta de refuerzo",
+      "recorte",
+      "desperdicio",
+      "interiorismo",
+      "tabique"
+    ],
+    "tags": [
+      "#pladur",
+      "#artesania"
+    ]
   }
 }

@@ -1617,5 +1617,38 @@ export const searchLocale: Readonly<Record<string, ToolLocaleEntry>> = {
       "#farben",
       "#handwerk"
     ]
+  },
+  "drywall": {
+    "title": "Trockenbau",
+    "summary": "Platten, Profile, Schrauben und Spachtelmasse für Trockenbauwände.",
+    "description": "Platten, CW- und UW-Profile, Schrauben, Spachtelmasse und Fugendeckstreifen für eine Trockenbauwand — Platten in Bahnen gestellt und je Bahn aufgerundet, mit ausgewiesenem Verschnitt statt eines pauschalen Zuschlags. Rechnet vollständig im Browser.",
+    "terms": [
+      "Trockenbau",
+      "Trockenbauwand",
+      "Gipskarton",
+      "Gipskartonplatte",
+      "Gipsfaser",
+      "Rigips",
+      "Beplankung",
+      "doppelte Beplankung",
+      "CW-Profil",
+      "UW-Profil",
+      "Ständerwerk",
+      "Ständerabstand",
+      "Unterkonstruktion",
+      "Schrauben",
+      "Spachtelmasse",
+      "Fugenmasse",
+      "Fugendeckstreifen",
+      "Bewehrungsstreifen",
+      "Verschnitt",
+      "Ausbau",
+      "Innenausbau",
+      "Ständerwand"
+    ],
+    "tags": [
+      "#trockenbau",
+      "#handwerk"
+    ]
   }
 }

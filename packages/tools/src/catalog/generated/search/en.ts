@@ -1560,5 +1560,38 @@ export const searchLocale: Readonly<Record<string, ToolLocaleEntry>> = {
       "#paint",
       "#craft"
     ]
+  },
+  "drywall": {
+    "title": "Drywall",
+    "summary": "Boards, studs, screws and joint compound for drywall walls.",
+    "description": "Boards, studs and tracks, screws, joint compound and joint tape for a drywall wall — boards counted in vertical strips with the cut-offs shown as a separate figure instead of a blanket allowance. Runs entirely in the browser.",
+    "terms": [
+      "drywall",
+      "plasterboard",
+      "gypsum board",
+      "sheetrock",
+      "stud wall",
+      "partition",
+      "lining",
+      "framing",
+      "stud",
+      "stud spacing",
+      "track",
+      "CW profile",
+      "UW profile",
+      "screws",
+      "joint compound",
+      "filler",
+      "joint tape",
+      "scrim tape",
+      "offcut",
+      "cut-off",
+      "interior fit-out",
+      "batten wall"
+    ],
+    "tags": [
+      "#drywall",
+      "#craft"
+    ]
   }
 }
