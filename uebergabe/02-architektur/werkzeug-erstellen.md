@@ -24,6 +24,10 @@ Werkzeugmenü und Offline-Betrieb erscheint.
 - Symbol als `apps/web/public/tools/<id>.svg`, 24×24, `currentColor`, verständliche Strichgrafik.
 - Eine Locale-Datei für **jede veröffentlichte Sprache**. Pflicht sind Titel, Beschreibung,
   Karten-Kurztext, Suchbegriffe/Tags und alle sichtbaren Zustände, Aktionen, Fehler und Hinweise.
+  **Zusatz 2026-10-05:** Titel, Beschreibung, Kurztext und Suchbegriffe gehen **nicht** in das
+  Textpaket der Werkzeugoberfläche, sondern ausschließlich in das erzeugte **Suchpaket** der
+  Sprache (ADR 0010). Die Werkzeugkopfzeile liest Titel und Beschreibung von dort
+  (`apps/web/src/tool-texts.ts`); fehlt die Quelle, zeigt die Seite die Sprachschlüssel statt Text.
 - Unit-Tests für Fachlogik und Fehlerfälle sowie mindestens ein Katalog-/Integrationstest.
 
 Schwere Bibliotheken dürfen nicht über den allgemeinen Einstiegspunkt `@commietools/tools`
@@ -53,6 +57,19 @@ Der Generator baut die sprachneutrale Katalogbasis sowie getrennte Such- und Wer
 unter `packages/tools/src/catalog/generated/`. Diese Dateien nie von Hand korrigieren. Änderungen
 gehören in Manifest oder Locale-Quelldatei. Neue Abhängigkeiten erfordern zusätzlich eine
 aktualisierte Lizenzdatenbank.
+
+**Zusatz 2026-10-05 (ADR 0010): der Absatz oben nennt zwei Paketarten, es sind heute drei.** Der
+Generator erzeugt: das **Suchpaket** je Sprache (`generated/search/<sprache>.ts` — Titel, Kurztext,
+Beschreibung, Suchbegriffe, Schlagwörter; wird auf **jeder** Seite geladen), das **gemeinsame
+Werkzeugtextpaket** je Sprache (`generated/messages/<sprache>/common.ts` — Rahmen- und
+Bereichstexte wie `tool.calc.*`, `tool.craft.*`) und **je Werkzeug und Sprache ein eigenes**
+Textpaket (`generated/messages/<sprache>/<werkzeugkennung>.ts`, erst auf dessen Route geholt). Die
+Zuordnung Werkzeug → Paket liegt in `generated/textLoaders.ts` außerhalb des Startbündels. Ein neues
+Werkzeug vergrößert damit kein fremdes Paket mehr — es braucht aber beide Katalogschlüssel in jeder
+veröffentlichten Sprache, sonst greift `catalog:check`. Der Generator **entfernt veraltete
+Paketdateien**, und `catalog:check` meldet liegengebliebene (etwa nach Umbenennen eines Werkzeugs).
+Gemessen 2026-10-05: 49 Pakete je Sprache (48 Werkzeuge + `common`), 147 nachgeladene Module. Der
+Wortlaut oben bleibt als früherer Stand stehen; verbindlich ist dieser Zusatz.
 
 ## 5. Abnahme
 

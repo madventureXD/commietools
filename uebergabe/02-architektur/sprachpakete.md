@@ -64,6 +64,13 @@ Werkzeuge müssen vor dem Zusammenführen alle bereits veröffentlichten Sprache
 - `packages/tools/src/catalog/generated/`: erzeugte Such- und Werkzeugtextpakete je Sprache;
 - `toolIndex.ts`: erzeugte sprachneutrale Katalogbasis, niemals von Hand bearbeiten.
 
+**Nachtrag 2026-10-05 (dritter), Faber: die Pfadangabe `generated/` oben ist zu grob — es sind drei
+Arten von Paketen (ADR 0010).** Verbindlich sind die Pfade in den beiden Nachträgen unten, hier nur
+die Zeile als Wegweiser: `generated/search/<sprache>.ts`, `generated/messages/<sprache>/common.ts`,
+`generated/messages/<sprache>/<werkzeugkennung>.ts`, dazu der Textlader
+`generated/textLoaders.ts`. Die Zeile oben bleibt stehen, sie beschreibt die Herkunft dieser Dateien
+weiter richtig — nur nicht die Aufteilung.
+
 Schlüssel bleiben sprachneutral und stabil. Übersetzungen dürfen weder Anzeigetexte in Komponenten
 noch sprachabhängige Verzweigungen in Werkzeuglogik erzeugen.
 

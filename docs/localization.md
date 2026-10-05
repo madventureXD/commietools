@@ -17,6 +17,12 @@ Adding a language follows these steps:
 5. Add complete tool translations below every tool's `locales` directory and register them in each tool's local locale index.
 6. Run `npm run catalog:generate`; it creates separate search and tool-message modules for the locale.
 
+**Update 2026-10-05 (ADR 0010):** it is no longer one module per language. The generator writes one
+search module per language (`catalog/generated/search/<locale>.ts`), one shared tool-message module
+per language (`catalog/generated/messages/<locale>/common.ts`) and one tool-message module per tool
+and language (`catalog/generated/messages/<locale>/<toolId>.ts`), fetched on that tool's route only.
+The sentence above dates from before that decision.
+
 The web application must not be changed for a new language. Its language selector, browser-language matching, persisted preference, HTML `lang` attribute and `ltr`/`rtl` direction are derived from the registry.
 
 ## Ownership
@@ -35,6 +41,12 @@ Every tool carries two mandatory keys in **every** locale file:
 - `tool.<x>.terms` — comma-separated search terms. A leading `#` marks a tag, which is shown as a label on the tool card.
 
 Rules the catalogue check enforces: both keys exist in every language, terms are neither empty nor repeated (case-insensitively), and at least one tag exists. `npm run catalog:generate` writes one generated search and tool-message module per language; `npm run check` fails when generated data is out of date.
+
+**Update 2026-10-05 (ADR 0010):** "one generated search and tool-message module per language" is out
+of date. The search module per language carries the catalogue keys; the tool-message side is split
+into a shared module per language plus **one module per tool and language**, so a new tool adds a
+package instead of growing a shared one. `catalog:check` also fails when a generated package is left
+behind after a tool is renamed or removed.
 
 Two conventions make the German terms work in practice:
 

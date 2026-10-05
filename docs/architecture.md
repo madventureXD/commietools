@@ -29,6 +29,15 @@ Two translation keys are mandatory per tool and must exist in every locale catal
 
 The catalogue is generated from manifests and locale catalogues rather than duplicated navigation data: `scripts/catalog-generate.mjs` writes the language-neutral `packages/tools/src/catalog/toolIndex.ts` plus one search and message module per language below `catalog/generated`, and `npm run check` fails when generated data is out of date or a declaration is incomplete (missing summary, missing terms, unknown file type, missing icon, inconsistent locale set, repeated or empty term, a hand-written `accept` list in a tool interface). Generated files are never edited by hand.
 
+**Update 2026-10-05 (ADR 0010):** the tool-message side is no longer "one module per language". The
+generator writes one **search** module per language (`catalog/generated/search/<locale>.ts`, holding
+the catalogue keys — title, summary, description, terms, tags — loaded on every page), one **shared**
+tool-message module per language (`catalog/generated/messages/<locale>/common.ts`) and one
+tool-message module **per tool and language** (`catalog/generated/messages/<locale>/<toolId>.ts`),
+fetched on that tool's route only. The tool → package map lives in `catalog/generated/textLoaders.ts`
+outside the start bundle. `catalog:check` additionally fails on generated packages left behind after
+a tool is renamed or removed. The sentence above dates from before that decision.
+
 ## Catalogue search
 
 The search is a normalised substring match, not a ranking model: `packages/tools/src/catalog/search.ts` folds case, umlauts, accents and the sharp s. At runtime it searches the selected language plus English fallback; selecting English loads and searches English only. It compares terms, tags, title, summary and description as well as material derived from declarations (file types with and without the dot, category and suite). A fallback-language hit pays a fixed surcharge, so it ranks behind a curated hit in the selected language. Each result reports what it matched on. Two characters are the minimum, nothing is guessed, and an empty result appears only after the language pack is ready. The ranking table and surcharge live in `search.ts` and are covered by tests.
