@@ -1,0 +1,20 @@
+
+=== Lauf 2026-10-05T17:47:52.690Z auf http://localhost:4193 ===
+11-farbe-standard-dunkel | Titel „Farbe, Tapeten und Beschichtung" · Kategorie „Handwerk" · 28,8 m² − 3,5 m² = 25,3 m² · 2,5 m → 19 Bahnen, 5 Rollen · Farbe 7,23 l (2 × 5 l) · Bündel index-5sPwp7xt.js
+12-farbe-rapport-dunkel | Gerader Rapport 0,64 m: Zuschnitt 2,56 m Ansatzschritt: 0,64 m (Ansatzschritt (Zeile „Ansatzschritt" fehlt)) · Bahnen 19 · Rollen 7 statt 5
+13-farbe-fehlerfall | Fehlermeldung: „Die Abzüge sind größer als die Wandfläche — es bleibt nichts zu streichen. Bitte Abzüge und Maße prüfen."
+14-farbe-hell-390 | 8 m Umfang, 1 Tür, 1 Anstrich: 18 m² · Farbe 2,57 l (1 × 5 l) · 5 Rollen · Überbreite 0 px
+15-katalog-farbe | Karten 57 · Handwerk sichtbar · HandwerkFarbe, Tapeten und BeschichtungWandfläche, Farbbedarf und Tapetenbahnen mit Rapport aus Maßen.#farben#handwerk●Lokal verarbeitetTool öffnen →
+16-suche-rapport | 1 Treffer, gefiltert · 1 Karten
+17-suche-tag-handwerk | 6 Treffer über das Tag · 6 Karten der Suite
+18-suche-gegenprobe | „zzzqqq": 0 Karten, Leermeldung „Kein Werkzeug passt zu dieser Suche. Versuch es mit einem anderen Wort oder einer Dateiendung wie webp."
+
+=== Lauf 2026-10-05T17:48:26.249Z auf http://localhost:4193 ===
+11-farbe-standard-dunkel | Titel „Farbe, Tapeten und Beschichtung" · Kategorie „Handwerk" · 28,8 m² − 3,5 m² = 25,3 m² · 2,5 m → 19 Bahnen, 5 Rollen · Farbe 7,23 l (2 × 5 l) · Bündel index-5sPwp7xt.js
+12-farbe-rapport-dunkel | Gerader Rapport 0,64 m: 2,56 m Ansatzschritt: 0,64 m (die Zeile trägt den Ansatzschritt) · Bahnen 19 · Rollen 7 statt 5
+13-farbe-fehlerfall | Fehlermeldung: „Die Abzüge sind größer als die Wandfläche — es bleibt nichts zu streichen. Bitte Abzüge und Maße prüfen."
+14-farbe-hell-390 | 8 m Umfang, 1 Tür, 1 Anstrich: 18 m² · Farbe 2,57 l (1 × 5 l) · 5 Rollen · Überbreite 0 px
+15-katalog-farbe | Karten 57 · Handwerk sichtbar · HandwerkFarbe, Tapeten und BeschichtungWandfläche, Farbbedarf und Tapetenbahnen mit Rapport aus Maßen.#farben#handwerk●Lokal verarbeitetTool öffnen →
+16-suche-rapport | 1 Treffer, gefiltert · 1 Karten
+17-suche-tag-handwerk | 6 Treffer über das Tag · 6 Karten der Suite
+18-suche-gegenprobe | „zzzqqq": 0 Karten, Leermeldung „Kein Werkzeug passt zu dieser Suche. Versuch es mit einem anderen Wort oder einer Dateiendung wie webp."

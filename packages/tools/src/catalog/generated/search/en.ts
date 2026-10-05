@@ -1526,5 +1526,39 @@ export const searchLocale: Readonly<Record<string, ToolLocaleEntry>> = {
       "#tiles",
       "#craft"
     ]
+  },
+  "paint": {
+    "title": "Paint, wallpaper and coating",
+    "summary": "Wall area, paint and wallpaper drops with repeat from measurements.",
+    "description": "Wall area with deductions, paint by coverage and number of coats, and wallpaper in drops with pattern repeat — including cut length, drops per roll, rolls and the offcut area. Runs entirely in the browser.",
+    "terms": [
+      "paint",
+      "painting",
+      "coats",
+      "paint quantity",
+      "emulsion",
+      "coverage",
+      "litres",
+      "tin",
+      "wallpaper",
+      "wallpaper calculator",
+      "drops",
+      "pattern repeat",
+      "offset",
+      "match",
+      "roll width",
+      "roll length",
+      "lining paper",
+      "wall area",
+      "deduction",
+      "window",
+      "door",
+      "renovation",
+      "refurbishment"
+    ],
+    "tags": [
+      "#paint",
+      "#craft"
+    ]
   }
 }

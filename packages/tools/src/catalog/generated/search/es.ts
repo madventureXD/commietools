@@ -1460,5 +1460,39 @@ export const searchLocale: Readonly<Record<string, ToolLocaleEntry>> = {
       "#azulejos",
       "#artesania"
     ]
+  },
+  "paint": {
+    "title": "Pintura, papel pintado y revestimiento",
+    "summary": "Superficie de pared, pintura y paños de papel con rapport desde medidas.",
+    "description": "Superficie de pared con descuentos, pintura según rendimiento y manos, y papel pintado por paños con rapport — con longitud de corte, paños por rollo, número de rollos y merma indicada aparte. Calcula por completo en el navegador.",
+    "terms": [
+      "pintura",
+      "pintar",
+      "manos",
+      "cantidad de pintura",
+      "pintura plástica",
+      "rendimiento",
+      "litros",
+      "cubo",
+      "papel pintado",
+      "calculadora de papel pintado",
+      "paños",
+      "rapport",
+      "desfase",
+      "repetición",
+      "ancho del rollo",
+      "longitud del rollo",
+      "papel liso",
+      "superficie de pared",
+      "descuento",
+      "ventana",
+      "puerta",
+      "renovación",
+      "reforma"
+    ],
+    "tags": [
+      "#pintura",
+      "#artesania"
+    ]
   }
 }

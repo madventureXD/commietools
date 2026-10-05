@@ -1581,5 +1581,41 @@ export const searchLocale: Readonly<Record<string, ToolLocaleEntry>> = {
       "#fliesen",
       "#handwerk"
     ]
+  },
+  "paint": {
+    "title": "Farbe, Tapeten und Beschichtung",
+    "summary": "Wandfläche, Farbbedarf und Tapetenbahnen mit Rapport aus Maßen.",
+    "description": "Wandfläche mit Abzügen, Farbbedarf nach Ergiebigkeit und Anstrichen sowie Tapetenbedarf in Bahnen mit Rapportversatz — mit Zuschnittlänge, Bahnen je Rolle, Rollenzahl und ausgewiesenem Verschnitt. Rechnet vollständig im Browser.",
+    "terms": [
+      "Farbe",
+      "Anstrich",
+      "Streichen",
+      "Farbbedarf",
+      "Wandfarbe",
+      "Dispersionsfarbe",
+      "Ergiebigkeit",
+      "Liter",
+      "Gebinde",
+      "Tapete",
+      "Tapetenrechner",
+      "Bahnen",
+      "Rapport",
+      "Versatz",
+      "Muster",
+      "Bahnbreite",
+      "Rollenlänge",
+      "Raufaser",
+      "Vliestapete",
+      "Wandfläche",
+      "Abzug",
+      "Fenster",
+      "Tür",
+      "Renovierung",
+      "Sanierung"
+    ],
+    "tags": [
+      "#farben",
+      "#handwerk"
+    ]
   }
 }
