@@ -115,10 +115,51 @@ Screenreader-Namen weiterhin offen (bestehender Punkt).
 3. Dann zurück zur Handwerk-Suite (Welle B: Fliesen, Farbe, Trockenbau, Bodenbelag) — der
    Textsplit, der dort als Vorbedingung notiert war, ist mit diesem Schritt erledigt.
 
+## Zusatz 2026-10-05 (zweiter), Faber: Hebel 1 hatte die Startseite zerlegt — gefunden bei der Vorabprüfung
+
+**Der Fehler:** `ToolCard` (Katalogkarten, Suiten-Liste) und `ToolNavigation` (die Werkzeugschublade
+auf **jeder** Seite) lasen Titel, Kurztext und Schlagwörter über `t(tool.titleKey)` — also aus dem
+Textpaket, das seit Hebel 1 erst auf einer Werkzeugroute geholt wird. Auf der Startseite und den
+Suiten-Seiten standen dadurch **Schlüsselnamen** statt Text: im Beleg **22 Stellen**
+(„tool.textStats.title", „tool.pdfMerge.title" …). Die Schlagwörter auf den Karten verschwanden
+ganz, weil auch `tool.termsKey` nicht mehr im Paket liegt.
+
+**Warum meine eigenen Belege es nicht gesehen haben** (das ist der eigentliche Befund):
+
+| Beleg | Was er prüft | Warum er blind war |
+|---|---|---|
+| Netzbeleg | welcher Verkehr anfällt | prüft Verkehr, nicht Text |
+| Rechner-Beleg | Werte auf **Werkzeugrouten** | dort **wird** das Textpaket geladen |
+| `viewport:check` | Überbreite bei 320 px | prüft Breiten, nicht Inhalte |
+| `npm run check` | Typen, Tests, Katalogregeln | die Tests lesen die Pakete direkt, nicht die gerenderte Seite |
+
+Erst die von Thomas verlangte **Vorabprüfung der Funktion** hat es aufgedeckt. Neues Skript:
+`work/sprachpaket-funktionspruefung.cjs` — es liest auf vier Orten die sichtbaren Texte und meldet
+jeden, der wie ein Sprachschlüssel aussieht (Beleg:
+`07-pruefung/sprachpaket/funktionspruefung.txt`).
+
+**Die Behebung** (Commit `4caa7b8`): Titel, Kurztext und Schlagwörter kommen jetzt aus dem
+**Suchpaket** — über den neuen Baustein `apps/web/src/tool-texts.ts`. Karten, Schublade und
+Suiten-Seite geben ihren geladenen Suchindex mit; die Suiten-Seite lädt ihn dafür selbst. Nach dem
+Umbau: **0 Schlüsselnamen** auf Startseite, Schublade, Suiten-Seite und Werkzeugroute; der
+Netzbeleg bleibt unverändert günstig (Startseite ohne Textpaket).
+
+**Folge für Hebel 2 — die Aufteilung wird dadurch einfacher:** Der Suchindex wird ohnehin auf jeder
+Seite geladen (die Schublade steckt im Kopfbereich). Wenn die Werkzeugkopfzeile Titel und
+Beschreibung ebenfalls von dort nimmt, braucht das Textpaket **weder Titel noch Beschreibung** —
+je Werkzeug bleiben nur seine eigenen Oberflächentexte übrig. Damit sinkt die Last einer
+Werkzeugroute auf: gemeinsame Werkzeugtexte (rund 10 kB roh) **plus** die Texte **eines**
+Werkzeugs (0,2–9 kB roh) statt heute 27 kB gzip für alle 48.
+
+**Lehre für die Prüfkette** (in den Skill übernommen): Wer den Ladezeitpunkt von Texten ändert,
+muss **die gerenderten Texte** prüfen, nicht nur Verkehr, Breiten und Typen. Ein Beleg, der die
+betroffene Seite nicht ansieht, beweist für sie nichts.
+
 ## Git
 
 - Commit: **`320443e`** — `perf(i18n): load tool texts on the tool route and drop the duplicated
-  catalogue keys`. Lokal, **nicht gepusht**.
+  catalogue keys`; **`4caa7b8`** — `fix(catalogue): read tool titles and summaries from the search
+  package` (die Behebung des oben beschriebenen Fehlers). Lokal, **nicht gepusht**.
 - Arbeitsbaum: unverändert die fremden Änderungen an `COPYRIGHT` und `LICENSE` (nicht angefasst,
   nicht gestagt).
 - Die erzeugten Katalogpakete gehören mit in den Commit.
