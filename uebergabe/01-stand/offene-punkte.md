@@ -29,7 +29,9 @@ Diese Liste enthält bestätigte, noch nicht abgeschlossene Arbeit. Details geh�
   26.847, Englisch 25.023 Byte. Erreicht durch zwei Schritte: Kurztext und Suchbegriffe liegen nur
   noch im Suchpaket (Doppelung entfernt, rund 15 % des Textpakets), und das Textpaket wird erst auf
   einer Werkzeugroute geholt statt beim Start (Startseite spart 52.211 B gzip; Netzbeleg in
-  `07-pruefung/sprachpaket/beleg.txt`). **Offen bleibt Hebel 2:** die Aufteilung je **Werkzeug** —
+  `07-pruefung/sprachpaket/beleg.txt`). **Hebel 2 ist am 2026-10-05 umgesetzt** (ADR 0010): je
+  Werkzeug und je Sprache ein Paket, dazu ein gemeinsames Paket je Sprache; Beleg
+  `07-pruefung/hebel2/beleg.txt`. Nicht mehr offen ist damit die Aufteilung je **Werkzeug** —
   erst damit wächst kein Paket mehr mit einem fremden Werkzeug. Siehe
   `05-uebergaben/2026-10-05-sprachpakete-beim-oeffnen-laden.md`.*
 - [ ] **Abweichung bei der Rechenkern-Größe klären:** ADR 0005 nennt 89,5 KiB gzip, die Nachmessung

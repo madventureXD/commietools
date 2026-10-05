@@ -210,8 +210,36 @@ Werkzeuge vorliegen. `catalog:check` scheitert weiterhin, wenn ein Titel-, Besch
 oder Begriffsschlüssel in einer Sprache fehlt; zwei Tests halten die Grenze fest
 (`apps/web/src/tool-catalog.test.ts`: „hält die Katalogschlüssel aus dem Textpaket").
 
-**Noch offen:** die Aufteilung des Textpakets **je Werkzeug** (statt je Sprache über alle
-Werkzeuge). Erst damit wächst kein Paket mehr mit einem fremden Werkzeug.
+## Nachtrag 2026-10-05 (zweiter), Faber: das Textpaket liegt **je Werkzeug** und **je Sprache**
+
+Abschnitt 8 („Suche, Katalog und Ladepolitik") gilt in der Sache weiter, die Pakete sind aber
+kleiner geschnitten (ADR 0010):
+
+- **Suchpaket** (`generated/search/<sprache>.ts`) — Titel, Kurztext, Beschreibung, Suchbegriffe,
+  Schlagwörter. Auf **jeder** Seite geladen (Katalog, Suche, Werkzeugschublade).
+- **Gemeinsame Werkzeugtexte** (`generated/messages/<sprache>/common.ts`) — Rahmen- und
+  Bereichstexte ohne Werkzeugbezug (`tool.calc.*`, `tool.calcCommon.*`, `tool.pdf.*`,
+  `tool.pdfPlacement.*`, `tool.craft.*`). Auf jeder Werkzeugroute.
+- **Werkzeugtexte** (`generated/messages/<sprache>/<werkzeug>.ts`) — die sichtbaren Texte **eines**
+  Werkzeugs. Nur auf dessen Route.
+- **Textlader** (`generated/textLoaders.ts`) — die Verweiskarte über alle Pakete, in einer eigenen
+  Datei, damit sie nicht im Startbündel liegt.
+
+**Titel und Beschreibung stehen seitdem im Suchpaket**, nicht mehr im Textpaket: die Kopfzeile liest
+sie von dort (`apps/web/src/tool-texts.ts`), mit Rückfall auf die Sprachschlüssel.
+
+**Gemessen** (Beleg: `07-pruefung/hebel2/beleg.txt`): Werkzeugroute Textlast 52.333 → 6.813 B gzip
+(Rechner, deutsch + englisch), gemeinsames Paket 3.349 B gzip, größtes Werkzeugpaket 1.850 B gzip,
+Startbündel unverändert 146.408 B gzip.
+
+**Pflicht bleibt unverändert:** vollständig ist ein Sprachpaket erst, wenn **alle drei Teile** für
+alle Werkzeuge vorliegen. `catalog:check` scheitert bei fehlenden Katalogschlüsseln und bei
+liegengebliebenen Paketdateien; die Prüfungen in `apps/web/src/tool-catalog.test.ts` und
+`calculator-split.test.ts` halten die Grenzen fest.
+
+**Ehrlicher Preis:** die Summe aller Pakete je Sprache wächst um 28 % (deutsch 27.310 → 35.102 B
+gzip), weil jede der 49 Dateien einen eigenen gzip-Kopf trägt. Die Last eines Besuchs sinkt
+trotzdem, weil ein Besuch **ein** Werkzeug lädt, nicht 49.
 
 ## 12. Abbruchkriterien
 
