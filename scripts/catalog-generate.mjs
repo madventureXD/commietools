@@ -230,7 +230,17 @@ const entries = toolManifests.map((tool) => {
 const baseEntries = entries.map(({ locales: _locales, ...entry }) => entry)
 const fileText = `${banner}import type { ToolCatalogEntry } from '@commietools/core'\n\nexport const toolIndex: readonly ToolCatalogEntry[] = ${JSON.stringify(baseEntries, null, 2)}\n`
 const searchFiles = Object.fromEntries(languages.map((language) => [language, `${banner}import type { ToolLocaleEntry } from '@commietools/core'\n\nexport const searchLocale: Readonly<Record<string, ToolLocaleEntry>> = ${JSON.stringify(Object.fromEntries(entries.map((entry) => [entry.id, entry.locales[language]])), null, 2)}\n`]))
-const messageFiles = Object.fromEntries(languages.map((language) => [language, `${banner}export const messages: Readonly<Record<string, string>> = ${JSON.stringify(catalogues[language], null, 2)}\n`]))
+// Titel und Beschreibung bleiben im Textpaket — die Werkzeugkopfzeile braucht sie. **Kurztext und
+// Suchbegriffe gehören nicht hinein:** sie stehen im Suchpaket und werden in der
+// Werkzeugoberfläche nie angezeigt. Gemessen 2026-10-05: je Sprache rund 15 % des Pakets
+// (Deutsch 17.475 von 116.788 Byte roh). Die Regel steht in
+// `uebergabe/02-architektur/sprachpakete.md`.
+const searchOnlyKeys = new Set(toolManifests.flatMap((tool) => [tool.summaryKey, tool.termsKey]))
+const toolTextCatalogues = Object.fromEntries(languages.map((language) => [
+  language,
+  Object.fromEntries(Object.entries(catalogues[language]).filter(([key]) => !searchOnlyKeys.has(key)))
+]))
+const toolTextFiles = Object.fromEntries(languages.map((language) => [language, `${banner}export const messages: Readonly<Record<string, string>> = ${JSON.stringify(toolTextCatalogues[language], null, 2)}\n`]))
 const loaderCases = languages.map((language) => `  ${JSON.stringify(language)}: () => import('./search/${language}'),`).join('\n')
 const messageLoaderCases = languages.map((language) => `  ${JSON.stringify(language)}: () => import('./messages/${language}'),`).join('\n')
 const loadersText = `${banner}import type { ToolSearchEntry } from '@commietools/core'\nimport { toolIndex } from '../toolIndex'\n\nconst searchLoaders = {\n${loaderCases}\n} as const\nconst messageLoaders = {\n${messageLoaderCases}\n} as const\nexport type GeneratedLocale = keyof typeof searchLoaders\nconst searchCache = new Map<string, Promise<readonly ToolSearchEntry[]>>()\nconst messageCache = new Map<string, Promise<Readonly<Record<string, Readonly<Record<string, string>>>>>>()\n\nexport function loadToolSearchIndex(locale: GeneratedLocale): Promise<readonly ToolSearchEntry[]> {\n  const key = locale === 'en' ? 'en' : \`\${locale}+en\`\n  const cached = searchCache.get(key); if (cached) return cached\n  const promise = Promise.all([searchLoaders.en(), locale === 'en' ? searchLoaders.en() : searchLoaders[locale]()]).then(([english, selected]) => toolIndex.map((entry) => ({ ...entry, locales: locale === 'en' ? { en: english.searchLocale[entry.id]! } : { [locale]: selected.searchLocale[entry.id]!, en: english.searchLocale[entry.id]! } })))\n  searchCache.set(key, promise); return promise\n}\n\nexport function loadToolMessages(locale: GeneratedLocale): Promise<Readonly<Record<string, Readonly<Record<string, string>>>>> {\n  const key = locale === 'en' ? 'en' : \`\${locale}+en\`\n  const cached = messageCache.get(key); if (cached) return cached\n  const promise = Promise.all([messageLoaders.en(), locale === 'en' ? messageLoaders.en() : messageLoaders[locale]()]).then(([english, selected]) => locale === 'en' ? { en: english.messages } : { en: english.messages, [locale]: selected.messages })\n  messageCache.set(key, promise); return promise\n}\n`
@@ -241,7 +251,7 @@ const canonicalText = (value) => value.replace(/\r\n/gu, '\n')
 if (mode === 'generate') {
   mkdirSync(searchDir, { recursive: true }); mkdirSync(messagesDir, { recursive: true })
   writeFileSync(outputPath, fileText, 'utf8')
-  for (const language of languages) { writeFileSync(join(searchDir, `${language}.ts`), searchFiles[language], 'utf8'); writeFileSync(join(messagesDir, `${language}.ts`), messageFiles[language], 'utf8') }
+  for (const language of languages) { writeFileSync(join(searchDir, `${language}.ts`), searchFiles[language], 'utf8'); writeFileSync(join(messagesDir, `${language}.ts`), toolTextFiles[language], 'utf8') }
   writeFileSync(loadersPath, loadersText, 'utf8')
   const termCount = entries.reduce((total, entry) => total + Object.values(entry.locales).reduce((sum, locale) => sum + locale.terms.length + locale.tags.length, 0), 0)
   console.log(`Catalogue written: ${toPosix(outputPath)}`)
@@ -259,7 +269,7 @@ if (mode === 'generate') {
     fail(`${toPosix(outputPath)} is out of date - run npm run catalog:generate\n  ${hint}`)
   }
   for (const language of languages) {
-    for (const [path, expected] of [[join(searchDir, `${language}.ts`), searchFiles[language]], [join(messagesDir, `${language}.ts`), messageFiles[language]]]) {
+    for (const [path, expected] of [[join(searchDir, `${language}.ts`), searchFiles[language]], [join(messagesDir, `${language}.ts`), toolTextFiles[language]]]) {
       if (!existsSync(path) || canonicalText(readFileSync(path, 'utf8')) !== canonicalText(expected)) fail(`${toPosix(path)} is out of date - run npm run catalog:generate`)
     }
   }

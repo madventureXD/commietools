@@ -187,6 +187,32 @@ Jedes Sprachpaket trägt genau einen nachvollziehbaren Status:
 Ein Statuswechsel wird im Konzept oder Fortschrittsprotokoll festgehalten. „Technisch vollständig“
 ist nicht gleichbedeutend mit „sprachlich freigegeben“.
 
+## Nachtrag 2026-10-05, Faber: die Werkzeugtexte liegen in **zwei** Paketen
+
+Abschnitt 2 („Vollständigkeit und Freigabe", Punkt 3: „für jeden Werkzeugkatalog alle sichtbaren
+Texte sowie `summary` und `terms`") gilt in der Sache weiter, verteilt sich aber seit dem
+2026-10-05 auf **zwei** erzeugte Pakete je Sprache:
+
+- **Suchpaket** (`packages/tools/src/catalog/generated/search/<sprache>.ts`) — Titel, Kurztext,
+  Beschreibung, Suchbegriffe und Schlagwörter. Es wird im Startvorgang geholt: Katalog und Suche
+  brauchen es.
+- **Textpaket** (`packages/tools/src/catalog/generated/messages/<sprache>.ts`) — alle sichtbaren
+  Texte der Werkzeugoberflächen, darunter **Titel und Beschreibung** (Kopfzeile), aber **ohne**
+  Kurztext und Suchbegriffe. Es wird **erst auf einer Werkzeugroute** geholt.
+
+**Warum:** Die Doppelung kostete je Sprache rund 15 % des Textpakets (Deutsch 17.475 von 116.788
+Byte roh), und das Textpaket wurde beim Start geladen, obwohl nur Werkzeugrouten es brauchen.
+Gemessen mit frischem Browserprofil: Startseite 171.867 B gzip ohne Textpaket, Werkzeugroute
+335.032 B mit (Beleg: `07-pruefung/sprachpaket/beleg.txt`).
+
+**Pflicht bleibt unverändert:** Ein Sprachpaket ist erst vollständig, wenn **beide** Teile für alle
+Werkzeuge vorliegen. `catalog:check` scheitert weiterhin, wenn ein Titel-, Beschreibungs-, Kurztext-
+oder Begriffsschlüssel in einer Sprache fehlt; zwei Tests halten die Grenze fest
+(`apps/web/src/tool-catalog.test.ts`: „hält die Katalogschlüssel aus dem Textpaket").
+
+**Noch offen:** die Aufteilung des Textpakets **je Werkzeug** (statt je Sprache über alle
+Werkzeuge). Erst damit wächst kein Paket mehr mit einem fremden Werkzeug.
+
 ## 12. Abbruchkriterien
 
 Nicht freigeben bei fehlenden Schlüsseln, sichtbarem Fallback, ungeprüfter Maschinenübersetzung,

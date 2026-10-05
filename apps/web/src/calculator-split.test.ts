@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest'
-import { loadToolMessages } from '@commietools/tools'
+import type { ToolSearchEntry } from '@commietools/core'
+import { loadToolMessages, loadToolSearchIndex } from '@commietools/tools'
 import { supportedLocales } from '@commietools/i18n'
 
 /**
@@ -19,10 +20,10 @@ import { supportedLocales } from '@commietools/i18n'
  */
 const FRAME_PREFIX = 'tool.calc.'
 const TOOLS = [
-  { prefix: 'tool.calculator.', limit: 60, title: 'Rechner' },
-  { prefix: 'tool.scientificCalculator.', limit: 60, title: 'Wissenschaftlicher Rechner' },
-  { prefix: 'tool.programmerCalculator.', limit: 60, title: 'Programmiererrechner' },
-  { prefix: 'tool.rpnCalculator.', limit: 60, title: 'RPN-Rechner' }
+  { id: 'calculator', prefix: 'tool.calculator.', limit: 60, title: 'Rechner' },
+  { id: 'scientific-calculator', prefix: 'tool.scientificCalculator.', limit: 60, title: 'Wissenschaftlicher Rechner' },
+  { id: 'programmer-calculator', prefix: 'tool.programmerCalculator.', limit: 60, title: 'Programmiererrechner' },
+  { id: 'rpn-calculator', prefix: 'tool.rpnCalculator.', limit: 60, title: 'RPN-Rechner' }
 ] as const
 
 /** Die Schlüssel des Rahmens, ohne die keine der vier Rechenarten bedienbar wäre. */
@@ -57,28 +58,35 @@ describe('Rechner: vier Werkzeuge und ein gemeinsamer Rahmen', () => {
       const keys = Object.keys(toolMessages[locale] ?? {})
       for (const tool of TOOLS) {
         const own = keys.filter((key) => key.startsWith(tool.prefix))
-        // Pflicht je Werkzeug: Titel, Beschreibung, Kurzbeschreibung, Suchbegriffe, Rechenregeln.
-        expect(own.length, `${locale}: ${tool.prefix} hat ${own.length} Schlüssel`).toBeGreaterThanOrEqual(5)
+        // Mindestens Titel, Beschreibung und Rechenregeln stehen im **Textpaket**. Kurztext und
+        // Suchbegriffe liegen seit 2026-10-05 im Suchpaket und werden im Test darüber geprüft.
+        expect(own.length, `${locale}: ${tool.prefix} hat ${own.length} Schlüssel`).toBeGreaterThanOrEqual(3)
         expect(own.length, `${locale}: ${tool.prefix} hat ${own.length} Schlüssel`).toBeLessThanOrEqual(tool.limit)
       }
     }
   })
 
-  it('führt Titel, Kurzbeschreibung und Suchbegriffe je Werkzeug und Sprache', () => {
+  it('führt Titel, Kurzbeschreibung und Suchbegriffe je Werkzeug und Sprache', async () => {
+    /**
+     * Titel und Beschreibung stehen im Textpaket, **Kurztext und Suchbegriffe nur im Suchpaket**
+     * (Aufteilung 2026-10-05) — deshalb wird je Schlüssel an der richtigen Quelle geprüft.
+     */
+    const indexes = Object.fromEntries(
+      await Promise.all(supportedLocales.map(async (locale) => [locale, await loadToolSearchIndex(locale)]))
+    ) as Record<string, readonly ToolSearchEntry[]>
     for (const locale of supportedLocales) {
       for (const tool of TOOLS) {
         const messages = toolMessages[locale] ?? {}
-        const title = messages[`${tool.prefix}title`]
-        const summary = messages[`${tool.prefix}summary`]
-        const terms = messages[`${tool.prefix}terms`]
+        const entry = indexes[locale]?.find((candidate: ToolSearchEntry) => candidate.id === tool.id)
+        const title = messages[`${tool.prefix}title`] ?? entry?.locales[locale]?.title
+        const summary = entry?.locales[locale]?.summary
+        const description = messages[`${tool.prefix}description`]
+        const list: string[] = [...(entry?.locales[locale]?.terms ?? []), ...(entry?.locales[locale]?.tags ?? [])]
         expect(title, `${locale}: ${tool.prefix}title`).toBeTruthy()
+        expect(description, `${locale}: ${tool.prefix}description`).toBeTruthy()
         expect(summary, `${locale}: ${tool.prefix}summary`).toBeTruthy()
         // `summary` bleibt eine Zeile und höchstens 120 Zeichen (Regularium für Sprachpakete).
         expect((summary ?? '').length, `${locale}: ${tool.prefix}summary`).toBeLessThanOrEqual(120)
-        const list: string[] = String(terms ?? '')
-          .split(',')
-          .map((term: string) => term.trim())
-          .filter(Boolean)
         expect(list.length, `${locale}: ${tool.prefix}terms`).toBeGreaterThan(3)
         expect(list.some((term) => term.startsWith('#')), `${locale}: ${tool.prefix}terms ohne Tag`).toBe(true)
         const normalized = list.map((term) => term.toLowerCase())

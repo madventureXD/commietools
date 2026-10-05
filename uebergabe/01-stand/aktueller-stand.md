@@ -146,18 +146,22 @@ einem eigenen Fenster); die elf zugehörigen Commits liegen lokal vor `origin/ma
 - vollständige Lizenztexte: 16
 - bewahrte originale Paketdokumente: 189
 - eingebettete Binärartefakte: 2 registrierte WASM-Artefakte (QPDF und PDF Signer)
-- letzter bekannter Teststand: 380 Webtests in 23 Dateien bestanden (`npm run check`, gemessen 2026-10-04); Rust-Tests in diesem Lauf nicht neu gemessen — der zuletzt bekannte Stand bleibt 50
-- Werkzeugregister: 48 Werkzeuge, 3 Sprachen, 48 Symbole, 3.164 Suchbegriffe, 92 deklarierte Dateitypen (`npm run catalog:generate`, gemessen 2026-10-04); Spanisch wird als noch gegenzulesendes Testpaket mitausgeliefert
+- letzter bekannter Teststand: 381 Webtests in 23 Dateien bestanden (`npm run check`, gemessen 2026-10-05); Rust-Tests in diesem Lauf nicht neu gemessen — der zuletzt bekannte Stand bleibt 50
+- Werkzeugregister: 48 Werkzeuge, 3 Sprachen, 48 Symbole, 3.164 Suchbegriffe, 92 deklarierte Dateitypen (`npm run catalog:generate`, gemessen 2026-10-05); Spanisch wird als noch gegenzulesendes Testpaket mitausgeliefert
+- Sprachpakete: **Werkzeugtexte werden erst auf einer Werkzeugroute geholt** (2026-10-05); die
+  Startseite lädt nur Oberflächentexte und das Suchpaket. Kurztext und Suchbegriffe stehen **nur**
+  im Suchpaket, Titel und Beschreibung im Textpaket (Kopfzeile). Netzbeleg mit frischem Profil:
+  Startseite 171.867 B gzip in 7 Dateien, Werkzeugroute 335.032 B in 13
+  (`07-pruefung/sprachpaket/beleg.txt`)
 - Produktions-Build: bestanden. **Veröffentlicht** (Sammelrelease, ohne Auskoppeln): 136.967 Byte
   Startcode komprimiert. **Aktueller Arbeitsstand** (mit Auskoppeln, Welle A der
-  Handwerkerwerkzeuge und der Aufteilung des Rechners in vier Werkzeuge, noch nicht gepusht):
-  **146.220 Byte** von 204.800 (Reserve rund 58 kB), gemessen 2026-10-04. Sprachgetrennte Such- und
+  Handwerkerwerkzeuge, vier Rechnern und der Sprachpaket-Aufteilung, noch nicht gepusht):
+  **146.297 Byte** von 204.800 (Reserve rund 58 kB), gemessen 2026-10-05. Sprachgetrennte Such- und
   Werkzeugtextpakete mit verzögertem Laden, ohne statisch erreichbare PDF- oder Rechen-Engine;
   PDF-/OCR-/Signaturrouten, Worker und WASM sind vom Vorab-Cache ausgeschlossen; nachgeladener
-  Rechenkern 103.708 Byte gzip, Katalogbasis 1.212 Byte,
-  Werkzeugtexte Deutsch 32.672 von 30.720 Byte und Spanisch 31.645 (**beide über der Warnschwelle —
-  begründet in `05-uebergaben/2026-10-04-rechner-vier-werkzeuge.md`**), Englisch 29.787 Byte
-  (gemessen 2026-10-04)
+  Rechenkern 103.708 Byte gzip, Katalogbasis 1.212 Byte, Werkzeugtexte Deutsch 27.310, Englisch
+  25.023 und Spanisch 26.847 Byte — **alle drei unter der Warnschwelle von 30.720 Byte**
+  (gemessen 2026-10-05)
 
 Zahlen sind Momentaufnahmen. Nach Abhängigkeits-, Test- oder Tooländerungen müssen sie anhand der tatsächlichen Ausgabe aktualisiert werden.
 

@@ -1,0 +1,36 @@
+Netzbeleg Sprachpakete, 2026-10-05T14:19:20.248Z
+Grundlage: http://localhost:4188
+
+=== Startseite: /
+   146060 B gzip  assets/index-Etbiy7q_.js
+     9279 B gzip  assets/search-de-CBWc4PJ9.js
+     8145 B gzip  assets/search-en-BSBSSiGB.js
+     2566 B gzip  assets/ui-de-awxLUCHZ.js
+     2357 B gzip  assets/workbox-window.prod.es5-BBnX5xw4.js
+     2268 B gzip  assets/ui-en-Cr4OtdLr.js
+     1192 B gzip  assets/catalog-base-B66EuloF.js
+  Summe der geholten JavaScript-Dateien: 171867 B gzip
+  ✓ nicht geholt: nichts mit „tools-de-"
+  ✓ nicht geholt: nichts mit „tools-en-"
+
+=== Werkzeugroute (Rechner): /tools/calculator
+   146060 B gzip  assets/index-Etbiy7q_.js
+   103467 B gzip  assets/core-BqC9j_0U.js
+    27236 B gzip  assets/tools-de-SuYrRIT8.js
+    24975 B gzip  assets/tools-en-oem61kt0.js
+     9279 B gzip  assets/search-de-CBWc4PJ9.js
+     8145 B gzip  assets/search-en-BSBSSiGB.js
+     6666 B gzip  assets/calculator-frame-UyQLocmu.js
+     2566 B gzip  assets/ui-de-awxLUCHZ.js
+     2357 B gzip  assets/workbox-window.prod.es5-BBnX5xw4.js
+     2268 B gzip  assets/ui-en-Cr4OtdLr.js
+     1192 B gzip  assets/catalog-base-B66EuloF.js
+      448 B gzip  assets/Calculator-DWjslYRE.js
+      373 B gzip  assets/index-CJeYhRol.js
+  Summe der geholten JavaScript-Dateien: 335032 B gzip
+  ✓ geholt: assets/tools-de-SuYrRIT8.js
+
+Ergebnis:
+  Startseite: 7 JavaScript-Dateien, 171867 B gzip, Werkzeug-Textpaket nicht geholt
+  Werkzeugroute (Rechner): 13 JavaScript-Dateien, 335032 B gzip, Werkzeug-Textpaket geholt
+  Ersparnis der Startseite durch die Aufteilung: 163165 B gzip gegenüber der Werkzeugroute

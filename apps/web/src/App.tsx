@@ -110,7 +110,12 @@ function JsonFormatterTool({ t }: { t: Translate }) {
   return <div className="stack"><div className="inline-field"><label htmlFor="indentation">{t('tool.jsonFormatter.indentation')}</label><select id="indentation" value={indentation} onChange={(event) => setIndentation(Number(event.target.value))}><option value="2">2</option><option value="4">4</option></select></div><div className="tool-grid"><TextArea label={t('tool.jsonFormatter.input')} value={text} onChange={setText} /><div><TextArea label={t('tool.result')} value={result.value} readOnly />{result.error && <p className="error" role="alert">{t('tool.jsonFormatter.invalid')}</p>}</div></div></div>
 }
 
-function ToolPage({ tool, t, locale, navigate }: { tool: ToolManifest; t: Translate; locale: Locale; navigate: (path: string) => void }) {
+function ToolPage({ tool, t, locale, navigate, ready }: { tool: ToolManifest; t: Translate; locale: Locale; navigate: (path: string) => void; ready: boolean }) {
+  // Ohne die Texte dieser Sprache stünden die Schlüsselnamen auf der Seite (`createTranslator`
+  // gibt einen unbekannten Schlüssel unverändert zurück). Deshalb erst der Ladehinweis.
+  if (!ready) {
+    return <main className="detail-page"><p aria-live="polite">…</p></main>
+  }
   const content = tool.id === 'text-statistics' ? <TextStatisticsTool t={t} />
     : tool.id === 'case-converter' ? <CaseConverterTool t={t} locale={locale} />
       : tool.id === 'json-formatter' ? <JsonFormatterTool t={t} />
@@ -232,12 +237,35 @@ export function App() {
   const [pathname, navigate] = usePathname()
   const [query, setQuery] = useState('')
   const [toolMessages, setToolMessages] = useState<Readonly<Partial<Record<string, Readonly<Record<string, string>>>>>>({})
+  /** Die Sprache, deren Werkzeugtexte geladen sind — `null`, solange keine geladen ist. */
+  const [toolTextsLocale, setToolTextsLocale] = useState<Locale | null>(null)
   const [interfaceMessages, setInterfaceMessages] = useState<Readonly<Partial<Record<string, Readonly<Record<string, string>>>>>>({})
-  useEffect(() => { let current = true; void Promise.all([loadToolMessages(locale),loadInterfaceMessages(locale)]).then(([tools,ui]) => { if (current) { setToolMessages(tools); setInterfaceMessages(ui) } }); return () => { current = false } }, [locale])
+  /**
+   * **Nur die Texte der Oberfläche werden beim Start geholt** (Entscheidung 2026-10-05). Die Texte
+   * der Werkzeugoberflächen kommen erst auf einer Werkzeugroute — Startseite, Katalog und Suiten
+   * brauchen sie nicht: Karten und Suiten lesen Titel und Kurztext aus dem **Suchpaket**. Damit
+   * wächst die Startlast nicht mehr mit jedem neuen Werkzeug.
+   */
+  useEffect(() => { let current = true; void loadInterfaceMessages(locale).then((ui) => { if (current) setInterfaceMessages(ui) }); return () => { current = false } }, [locale])
   const searching = query.trim().length >= MIN_QUERY_LENGTH
   const t: Translate = createTranslator(locale, [interfaceMessages, toolMessages])
   const activeTool = toolByRoute.get(pathname)
   const activeSuite = suiteByRoute.get(pathname)
+  /**
+   * Die Werkzeugtexte werden **an die Werkzeugroute gebunden** geholt. Bis sie da sind, zeigt die
+   * Werkzeugseite den Ladehinweis statt der Schlüsselnamen — `createTranslator` gibt für einen
+   * unbekannten Schlüssel den Schlüssel selbst zurück.
+   */
+  useEffect(() => {
+    if (!activeTool) return undefined
+    let current = true
+    void loadToolMessages(locale).then((tools) => {
+      if (!current) return
+      setToolMessages(tools)
+      setToolTextsLocale(locale)
+    })
+    return () => { current = false }
+  }, [activeTool, locale])
 
   useEffect(() => {
     localStorage.setItem('commietools-locale', locale)
@@ -264,5 +292,5 @@ export function App() {
     requestAnimationFrame(() => document.getElementById('suites')?.scrollIntoView())
   }
 
-  return <div className="app" data-theme={theme}><header className="site-header"><div className="header-leading"><ToolNavigation t={t} locale={locale} activeToolId={activeTool?.id} navigate={navigate} /><button className="brand button-reset" onClick={() => navigate('/')} aria-label={t('app.name')}><span className="brand-mark" aria-hidden="true">★</span><span>Commie<span>Tools</span></span></button></div><nav aria-label="Main navigation"><button className="button-reset" onClick={() => navigate('/')}>{t('nav.tools')}</button><button className="button-reset" onClick={goToSuites}>{t('nav.suites')}</button></nav><div className="header-actions"><select className="language-select" value={locale} aria-label={t('action.language')} onChange={(event) => { if (isLocale(event.target.value)) setLocale(event.target.value) }}>{supportedLocales.map((code) => <option key={code} value={code}>{localeRegistry[code].label}</option>)}</select><Button onClick={toggleTheme} aria-label={t('action.theme')}><span aria-hidden="true">{theme === 'light' ? '☾' : '☀'}</span></Button></div></header>{pathname === '/licenses' ? <LicensePage t={t} navigate={navigate} /> : pathname === '/impressum' ? <LegalNoticePage t={t} navigate={navigate} /> : activeTool ? <ToolPage tool={activeTool} t={t} locale={locale} navigate={navigate} /> : activeSuite ? <SuitePage suite={activeSuite} t={t} locale={locale} navigate={navigate} /> : <main><section className="hero"><p className="eyebrow">CommieTools.org</p><h1>{t('app.tagline')}</h1><p className="hero-copy">{t('app.promise')}</p><div className="badges"><LocalBadge>{t('status.local')}</LocalBadge><LocalBadge>{t('status.offline')}</LocalBadge></div></section><section className="section" id="tools"><CatalogSection t={t} locale={locale} navigate={navigate} query={query} onQuery={setQuery} /></section>{!searching && <section className="section" id="suites"><div className="section-heading"><div><p className="eyebrow">02</p><h2>{t('suite.heading')}</h2></div><p>{t('suite.intro')}</p></div><div className="catalog-grid suites">{suiteManifests.map((suite) => <article className="catalog-card suite-card" key={suite.id}><p className="category">Suite</p><h3>{t(suite.titleKey)}</h3><p>{t(suite.descriptionKey)}</p><div className="card-footer"><span>{suite.toolIds.length} {t('suite.tools')}</span><button className="text-link" onClick={() => navigate(suite.route)}>{t('suite.open')} →</button></div></article>)}</div></section>}</main>}<footer className="site-footer"><span>© 2026 CommieTools contributors · AGPL-3.0-only</span><div className="footer-links"><button className="text-link" onClick={() => navigate('/impressum')}>{t('footer.legal')}</button><button className="text-link" onClick={() => navigate('/licenses')}>{t('footer.licenses')}</button></div></footer></div>
+  return <div className="app" data-theme={theme}><header className="site-header"><div className="header-leading"><ToolNavigation t={t} locale={locale} activeToolId={activeTool?.id} navigate={navigate} /><button className="brand button-reset" onClick={() => navigate('/')} aria-label={t('app.name')}><span className="brand-mark" aria-hidden="true">★</span><span>Commie<span>Tools</span></span></button></div><nav aria-label="Main navigation"><button className="button-reset" onClick={() => navigate('/')}>{t('nav.tools')}</button><button className="button-reset" onClick={goToSuites}>{t('nav.suites')}</button></nav><div className="header-actions"><select className="language-select" value={locale} aria-label={t('action.language')} onChange={(event) => { if (isLocale(event.target.value)) setLocale(event.target.value) }}>{supportedLocales.map((code) => <option key={code} value={code}>{localeRegistry[code].label}</option>)}</select><Button onClick={toggleTheme} aria-label={t('action.theme')}><span aria-hidden="true">{theme === 'light' ? '☾' : '☀'}</span></Button></div></header>{pathname === '/licenses' ? <LicensePage t={t} navigate={navigate} /> : pathname === '/impressum' ? <LegalNoticePage t={t} navigate={navigate} /> : activeTool ? <ToolPage tool={activeTool} t={t} locale={locale} navigate={navigate} ready={toolTextsLocale === locale} /> : activeSuite ? <SuitePage suite={activeSuite} t={t} locale={locale} navigate={navigate} /> : <main><section className="hero"><p className="eyebrow">CommieTools.org</p><h1>{t('app.tagline')}</h1><p className="hero-copy">{t('app.promise')}</p><div className="badges"><LocalBadge>{t('status.local')}</LocalBadge><LocalBadge>{t('status.offline')}</LocalBadge></div></section><section className="section" id="tools"><CatalogSection t={t} locale={locale} navigate={navigate} query={query} onQuery={setQuery} /></section>{!searching && <section className="section" id="suites"><div className="section-heading"><div><p className="eyebrow">02</p><h2>{t('suite.heading')}</h2></div><p>{t('suite.intro')}</p></div><div className="catalog-grid suites">{suiteManifests.map((suite) => <article className="catalog-card suite-card" key={suite.id}><p className="category">Suite</p><h3>{t(suite.titleKey)}</h3><p>{t(suite.descriptionKey)}</p><div className="card-footer"><span>{suite.toolIds.length} {t('suite.tools')}</span><button className="text-link" onClick={() => navigate(suite.route)}>{t('suite.open')} →</button></div></article>)}</div></section>}</main>}<footer className="site-footer"><span>© 2026 CommieTools contributors · AGPL-3.0-only</span><div className="footer-links"><button className="text-link" onClick={() => navigate('/impressum')}>{t('footer.legal')}</button><button className="text-link" onClick={() => navigate('/licenses')}>{t('footer.licenses')}</button></div></footer></div>
 }

@@ -66,17 +66,41 @@ describe('tool catalogue', () => {
   })
 
   it('holds a short summary and search terms in every supported language', () => {
+    /**
+     * Kurztext und Suchbegriffe stehen seit 2026-10-05 **nur noch im Suchpaket**; das Textpaket
+     * führt sie nicht mehr, weil die Werkzeugoberfläche sie nie anzeigt. Die **Beschreibung**
+     * bleibt im Textpaket — die Werkzeugkopfzeile braucht sie.
+     */
     for (const tool of toolManifests) {
       for (const locale of supportedLocales) {
-        const summary = toolMessages[locale]?.[tool.summaryKey]
+        const entry = indexes[locale].find((candidate) => candidate.id === tool.id)
+        const summary = entry?.locales[locale]?.summary
         const description = toolMessages[locale]?.[tool.descriptionKey]
-        const terms = toolMessages[locale]?.[tool.termsKey]
+        const terms = entry?.locales[locale]?.terms
         expect(summary, `${tool.id}/${locale}`).toBeTruthy()
         expect(description, `${tool.id}/${locale}`).toBeTruthy()
-        expect(terms, `${tool.id}/${locale}`).toBeTruthy()
+        expect(terms?.length ?? 0, `${tool.id}/${locale}`).toBeGreaterThan(0)
         expect(summary?.length, `${tool.id}/${locale}`).toBeLessThanOrEqual(120)
         expect(summary, `${tool.id}/${locale}`).not.toBe(description)
         expect(summary?.trim().split(' ').length, `${tool.id}/${locale}`).toBeLessThan(description?.trim().split(' ').length ?? 0)
+      }
+    }
+  })
+
+  it('keeps the catalogue keys out of the tool text package', () => {
+    /**
+     * Die Gegenprobe zur Aufteilung: Titel, Beschreibung, Kurztext und Suchbegriffe liegen im
+     * Suchpaket. Im Textpaket dürfen **Kurztext und Suchbegriffe** nicht mehr auftauchen — sonst
+     * zahlt jede Werkzeugroute die Suchtexte ein zweites Mal. Titel und Beschreibung bleiben
+     * erlaubt (Kopfzeile).
+     */
+    for (const locale of supportedLocales) {
+      const keys = Object.keys(toolMessages[locale] ?? {})
+      for (const tool of toolManifests) {
+        expect(keys.includes(tool.summaryKey), `${tool.id}/${locale}: ${tool.summaryKey}`).toBe(false)
+        expect(keys.includes(tool.termsKey), `${tool.id}/${locale}: ${tool.termsKey}`).toBe(false)
+        expect(keys.includes(tool.titleKey), `${tool.id}/${locale}: ${tool.titleKey}`).toBe(true)
+        expect(keys.includes(tool.descriptionKey), `${tool.id}/${locale}: ${tool.descriptionKey}`).toBe(true)
       }
     }
   })
