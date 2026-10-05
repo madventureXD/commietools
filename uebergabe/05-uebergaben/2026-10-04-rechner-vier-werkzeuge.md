@@ -163,6 +163,10 @@ Rechnerart-Umschaltleiste. Bilder und Protokoll: `07-pruefung/rechner-vier-werkz
 
 ## Zusatz 2026-10-04, Faber: Gesamtlauf und Altprüfung nachgetragen
 
+*Datumsnachtrag: Konzept und Entscheidungen fielen auf den **2026-10-04**, Umsetzung, Prüfläufe und
+Commits auf den **2026-10-05**. Die Datei ist nach dem Tag der Beauftragung benannt; die Commits
+tragen das Datum der Umsetzung.*
+
 Nach dem Commit nachgeholt, was in der Übergabe noch offen stand:
 
 - **`npm run viewport:check` über alle 48 Routen bei 320 px: bestanden.** Damit ist die
