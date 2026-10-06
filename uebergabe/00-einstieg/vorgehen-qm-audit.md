@@ -82,7 +82,7 @@ Legende: ✓ erledigt · ◐ erledigt mit offener Restforderung · ○ offen
 Protokoll: `06-protokolle/2026-10-06-r1-*.md`, `…-m9-004-lopdf-anhebung.md`, `…-m8-001-ocr-und-abnahme.md` ·
 Übergabe: `05-uebergaben/2026-10-06-r1-sanierungsleitfaden.md`
 
-### R2 — Ergebnisrichtigkeit und Exportgrenzen (P1) — **begonnen**
+### R2 — Ergebnisrichtigkeit und Exportgrenzen (P1) — **abgeschlossen 2026-10-06** (7 Karten)
 
 | Karte | Kurz | Stand |
 |---|---|---|
@@ -94,7 +94,7 @@ Protokoll: `06-protokolle/2026-10-06-r1-*.md`, `…-m9-004-lopdf-anhebung.md`, `
 | M6-002 | RPN-Tastenfeld setzt mehrstellige Zahlen nicht zusammen | ✓ Eingabereducer mit getrenntem Zahlentoken; Tastenfolgen im Browser belegt (2026-10-06) |
 | M8-004 | CSV-Freitext als Tabellenformel exportiert | ✓ typisierte Zellen (Text/Zahl), führender Apostroph, Hinweis in der Oberfläche; **Abnahme bewusst ohne Tabellenprogramm** (Thomas, 2026-10-06) — unabhängige Python-Gegenprobe bleibt maßgeblich |
 
-### R3 — Datei-Aufträge, Ressourcen, Offline (P1) — nicht begonnen
+### R3 — Datei-Aufträge, Ressourcen, Offline (P1) — **teilweise: 2 erledigt, 4 mit Restforderung**
 
 | Karte | Kurz | Stand |
 |---|---|---|
