@@ -293,6 +293,26 @@ Diese Liste enthält bestätigte, noch nicht abgeschlossene Arbeit. Details geh�
   der Punkt bleibt für die übrige Shell-Frage stehen.)*
 - [ ] Erweiterungsmodell für externe Tools oder Plugins bewerten.
 
+## R1 — Sanierungsleitfaden des QM-Audits (ab 2026-10-06)
+
+- [ ] **M9-004:** lopdf in beiden Crates von 0.36.0 auf ≥0.42.0 anheben und die WASM neu bauen
+  (die bekannte Schwachstelle ist erst ab 0.42.0 behoben). API-Brüche sind zu erwarten; danach
+  Signatur und Prüfung erneut belegen.
+- [ ] **OCR-Ursache klären:** Das OCR-Werkzeug meldet für eine gültige Bildseite „Die PDF konnte
+  nicht verarbeitet werden." Der Fehlschlag tritt **auch ohne CSP** auf, und der PDF-Viewer liest
+  dieselbe Datei fehlerfrei — die CSP ist nicht die Ursache. Hängt an der Abnahme von M8-001.
+- [ ] **Vier Lizenzfragen zur Entscheidung** (stehen mit Grund und Datum in `licenses/rust-review.json`):
+  `zlib-rs` (Lizenz „Zlib" nicht in der Richtlinie), `unicode-ident` („Unicode-3.0" fehlt),
+  `pdf_signer` 0.3.2 (GPL-3.0-or-later, bereits ausgeliefert — bewusst so lassen?), und ob die
+  Originaltexte der fünf Pakete ohne Hinweisdatei aus den Repositories nachgetragen werden sollen.
+- [ ] **13 ältere Übergaben ergänzen:** In `uebergabe/05-uebergaben/` fehlen bei 13 Dateien
+  Pflichtabschnitte der Vorlage (betroffen: 2026-10-03-cloudflare-pages, -datensparsame-ladegrenzen,
+  -faber-cloudflare-dns, -pdf-m0-m1, -pdf-m2, -pdf-m3, -pdf-m4, -pdf-m5, -pdf-m6,
+  2026-10-04-rechner-tastenfeld-umgesetzt, -sammelrelease-sprachen-pdf-rechner). Fehlende
+  Abschnitte **ergänzen, nie überschreiben**, mit datiertem Nachtragshinweis.
+- [ ] **Entscheidung offen:** Soll die Signatur-Engine einen automatischen Test bekommen? Die
+  Abnahme ist belegt (vier Fälle plus Sichtkontrolle), aber in der Testsuite nicht verankert.
+
 ## Pflege
 
 - Erledigte Punkte mit Verweis auf Commit oder ADR in ein Fortschrittsprotokoll übernehmen und anschließend hier entfernen.
