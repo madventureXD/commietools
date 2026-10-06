@@ -179,6 +179,12 @@ export function CalculatorFrame({ spec, t, locale }: { spec: CalculatorFrameSpec
   const [resultFull, setResultFull] = useState('')
   /** Wahr, wenn für diese Rechnung automatisch das andere Zahlenmodell gerechnet hat. */
   const [autoModel, setAutoModel] = useState(false)
+  /**
+   * Wahr, wenn die **Anzeige** auf `0` gerundet wurde, der Wert aber nicht null ist (Karte
+   * M4-002). Die Kennzeichnung ist der Hinweis am Ergebnis — **keine** neue Ampelstufe
+   * (Entscheidung von Thomas am 2026-10-06).
+   */
+  const [displayRoundedToZero, setDisplayRoundedToZero] = useState(false)
   /** Ampel: angeheftet per Klick (Tippen). Maus und Tastatur öffnen über CSS — siehe `styles.css`. */
   const [accuracyPinned, setAccuracyPinned] = useState(false)
   const [errorKey, setErrorKey] = useState('')
@@ -257,6 +263,7 @@ export function CalculatorFrame({ spec, t, locale }: { spec: CalculatorFrameSpec
     setResultRaw('')
     setResultFull('')
     setAutoModel(false)
+    setDisplayRoundedToZero(false)
     setErrorKey('')
   }, [])
 
@@ -350,13 +357,16 @@ export function CalculatorFrame({ spec, t, locale }: { spec: CalculatorFrameSpec
        * die Zahl kein exakter Bruch mehr: `toFraction` machte aus dem gerundeten `1.4142135623731`
        * den Scheinbruch `14142135623731/10000000000000` — eine Genauigkeit, die es nicht gibt.
        */
-      const display =
-        settings.fractionMode && !usedOtherModel
-          ? core.toFraction(calculation.raw, options).display
-          : calculation.display
+      /**
+       * Im Bruchmodell ist die Anzeige der Bruch aus dem echten Wert — dort wird nie genullt.
+       * Das Kennzeichen gilt deshalb nur für die Anzeige, die direkt vom Rechenkern kommt.
+       */
+      const usedFraction = settings.fractionMode && !usedOtherModel
+      const display = usedFraction ? core.toFraction(calculation.raw, options).display : calculation.display
       setResult(display)
       setResultRaw(calculation.raw)
       setResultFull(calculation.full)
+      setDisplayRoundedToZero(!usedFraction && calculation.displayRoundedToZero)
       setAutoModel(usedOtherModel)
       setErrorKey('')
       setCopyStatus('')
@@ -780,6 +790,11 @@ export function CalculatorFrame({ spec, t, locale }: { spec: CalculatorFrameSpec
               </dl>
               {/* Sichtbar ohne Öffnen: der stille Modellwechsel darf nicht übersehen werden. */}
               {autoModel && <p className="scan-note">{t('tool.calc.accuracyModel')}</p>}
+              {/* Kennzeichnung der Anzeige-Nullung (Karte M4-002): Die Anzeige zeigt 0, der Wert
+                  ist es nicht — der Hinweis steht am Ergebnis, es gibt keine neue Ampelstufe. */}
+              {displayRoundedToZero && (
+                <p className="scan-note" data-display-zero="true">{t('tool.calc.displayZero')}</p>
+              )}
             </>
           )}
         </div>

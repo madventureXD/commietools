@@ -16,6 +16,7 @@ export const calcShellEn = {
   'tool.calc.accuracyComplete': 'The value shown is the calculator\u2019s complete value.',
   'tool.calc.accuracyRounded': 'The calculator holds more digits than are shown here.',
   'tool.calc.accuracyModel': 'The decimal model was used automatically for this calculation.',
+  'tool.calc.displayZero': 'Shown as 0 because the value is below the display precision. It is not zero and is preserved in full.',
 
   'tool.calc.display': 'Display',
   'tool.calc.display2d': 'Two-dimensional',

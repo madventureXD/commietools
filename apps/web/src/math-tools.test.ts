@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { evaluate } from '@commietools/tools/calculator/core'
+import { evaluate, evaluateRpn, toBase, toFraction } from '@commietools/tools/calculator/core'
 import { evaluatePolynomial, polynomialText, round12, shiftText, solve, worstCheck } from '@commietools/tools/calculator/equations'
 import { parseNumbers, parsePairs, quantile, regress, regressionText, summarise } from '@commietools/tools/calculator/statistics'
 import { buildGeometry, findRoots, niceTicks, sampleTable, segmentToPath, valueAt } from '@commietools/tools/calculator/plotter'
@@ -269,6 +269,39 @@ describe('Vollwert gegen Anzeige-Nullung (Abnahme M4-002)', () => {
     expect(evaluate('13983816', { number: 'BigNumber' }).display).toBe('13983816')
     expect(evaluate('2 + 3', { number: 'BigNumber' }).display).toBe('5')
     expect(evaluate('sin(0)', { number: 'BigNumber' }).display).toBe('0')
+  })
+
+  it('kennzeichnet die Anzeige-Nullung am Ergebnis, ohne den Wert zu verfälschen', () => {
+    // Die Nullung ist keine stille Approximation mehr: Sie geht als Kennzeichen mit heraus
+    // (Entscheidung von Thomas am 2026-10-06 — Hinweis am Ergebnis, keine neue Ampelstufe).
+    const restfehler = evaluate('sin(pi)', { number: 'BigNumber' })
+    expect(restfehler.display).toBe('0')
+    expect(restfehler.displayRoundedToZero).toBe(true)
+    expect(restfehler.raw).not.toBe('0')
+    expect(restfehler.full).not.toBe('0')
+
+    // Unter der Anzeigeschwelle wird gekennzeichnet, die exakte Null nicht.
+    expect(evaluate('1e-14', { number: 'BigNumber' }).displayRoundedToZero).toBe(true)
+    expect(evaluate('-1e-14', { number: 'BigNumber' }).displayRoundedToZero).toBe(true)
+    expect(evaluate('1e-300', { number: 'BigNumber' }).displayRoundedToZero).toBe(true)
+    expect(evaluate('0', { number: 'BigNumber' }).displayRoundedToZero).toBe(false)
+    expect(evaluate('2 - 2', { number: 'BigNumber' }).displayRoundedToZero).toBe(false)
+
+    // Regelfälle, Fehlerwege und die übrigen Kernwege bleiben ungekennzeichnet.
+    expect(evaluate('2 + 3', { number: 'BigNumber' }).displayRoundedToZero).toBe(false)
+    expect(evaluate('1/3 + 1/6', { number: 'Fraction' }).displayRoundedToZero).toBe(false)
+    expect(evaluate('', { number: 'BigNumber' }).displayRoundedToZero).toBe(false)
+    expect(toBase('2 + 3', 16, { number: 'BigNumber' }).displayRoundedToZero).toBe(false)
+    expect(toFraction('1/100000000000000', { number: 'Fraction' }).displayRoundedToZero).toBe(false)
+  })
+
+  it('reicht das Kennzeichen im RPN-Rechner durch', () => {
+    const rpn = evaluateRpn(['1e-300'], { number: 'BigNumber' })
+    expect(rpn.ok, String(rpn.error)).toBe(true)
+    expect(rpn.display).toBe('0')
+    expect(rpn.displayRoundedToZero).toBe(true)
+    // Gegenprobe: eine gewöhnliche Rechnung bleibt ungekennzeichnet.
+    expect(evaluateRpn(['2', '3', '+'], { number: 'BigNumber' }).displayRoundedToZero).toBe(false)
   })
 })
 

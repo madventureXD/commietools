@@ -31,6 +31,7 @@ export const messages: Readonly<Record<string, string>> = {
   "tool.calc.accuracyComplete": "El valor mostrado es el valor completo de la calculadora.",
   "tool.calc.accuracyRounded": "La calculadora guarda más cifras de las que se ven aquí.",
   "tool.calc.accuracyModel": "Para este cálculo se usó automáticamente el modelo decimal.",
+  "tool.calc.displayZero": "Se muestra 0 porque el valor está por debajo de la precisión de visualización. No es cero y se conserva completo.",
   "tool.calc.display": "Vista",
   "tool.calc.display2d": "Bidimensional",
   "tool.calc.displayRaw": "Término sin formato",

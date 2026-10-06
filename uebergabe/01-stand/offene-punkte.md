@@ -418,6 +418,14 @@ Diese Liste enthält bestätigte, noch nicht abgeschlossene Arbeit. Details geh�
   Umsetzung offen: `Calculation` braucht dafür ein Kennzeichen (heute ist `anzeigeNull` in `core.ts`
   lokal und nicht Teil des Ergebnisses), die Rechner-Oberfläche den Hinweis und alle drei Sprachen
   den Text.
+  *(2026-10-06, **umgesetzt:** `Calculation.displayRoundedToZero` als Pflichtfeld — in allen
+  Rückgabewegen des Kerns belegt, im RPN-Rechner durchgereicht; Hinweis am Ergebnis
+  (`data-display-zero`) im Rahmen; `tool.calc.displayZero` in de/en/es. Das Bruchmodell bleibt
+  ausgenommen, dort wird nie genullt. Belegt: **667 Tests** (665 → 667), Mutationsgegenprobe
+  (genau die zwei neuen Tests rot), vier Browserfälle am ausgelieferten Build, Aufnahmen in
+  `06-protokolle/screenshots/2026-10-06-m4-002/`. Zuwachs des gemeinsamen Sprachpakets je Sprache
+  +50 bis +57 B gzip, Startbündel unverändert. Bericht:
+  `06-protokolle/2026-10-06-m4-002-anzeigenullung-kennzeichnung.md`. **Nicht gepusht.**)*
 - [ ] **Verlauf und ANS mit echten kleinen Werten prüfen:** sie hängen an `raw`; `1e-14` steht dort
   jetzt als `1e-14` statt `0`. Gewollte Folge, aber die Oberfläche ist darauf nicht geprüft.
 - [ ] Offen in R2 außerdem: M4-003 und die weiteren Karten des Pakets (7 Gruppen).
@@ -440,6 +448,9 @@ Diese Liste enthält bestätigte, noch nicht abgeschlossene Arbeit. Details geh�
   2026-10-06 nicht mehr zutreffend. M4-003 ist erledigt; offen sind in R2 noch **M6-001, M6-002,
   M8-004** sowie die beiden Entscheidungen aus M3-002 (Importvertrag) und M4-002 (Kennzeichnung der
   Anzeige-Nullung).
+  *(Nachtrag 2026-10-06: Beide Entscheidungen sind **gefallen und umgesetzt** — Importvertrag
+  abgenommen (M3-002), Kennzeichnung der Anzeige-Nullung gebaut (M4-002). Der Satz oben bleibt als
+  damaliger Stand stehen.)*
 
 - [x] **M6-001 — JSON-Formatierung verändert Zahlenwerte ohne Hinweis: erledigt** *(Nachtrag
   2026-10-06)*. `JSON.parse` + `JSON.stringify` schrieb das Dokument aus Werten neu: aus

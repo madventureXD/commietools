@@ -88,7 +88,7 @@ Protokoll: `06-protokolle/2026-10-06-r1-*.md`, `…-m9-004-lopdf-anhebung.md`, `
 |---|---|---|
 | M3-002 | Statistik liest lokalisierte Zahlen falsch | ✓ neue Grammatik; **Importvertrag abgenommen (Thomas, 2026-10-06)**: Komma = Dezimalzeichen, Semikolon trennt Listen |
 | M4-001 | RPN verkettet Brüche ohne Klammern | ✓ `geschuetzterOperand`, Abnahmefall 3/2 |
-| M4-002 | Anzeige-Nullschwelle vernichtet Vollwert | ◐ `raw`/`full` echt; **Kennzeichnung der Anzeige-Nullung offen** |
+| M4-002 | Anzeige-Nullschwelle vernichtet Vollwert | ✓ `raw`/`full` echt; **Anzeige-Nullung am Ergebnis gekennzeichnet** (2026-10-06) |
 | M4-003 | Plotter ersetzt `x` auch in Funktionsnamen | ✓ Scope-Bindung, `raw` statt `display`; Abnahmefälle im Browser belegt (2026-10-06) |
 | M6-001 | JSON-Formatierung verändert Zahlenwerte | ✓ Textedits auf dem Originaltext, Fehlerstelle mit Zeile/Spalte; Werkzeug aus dem Startbündel gelöst (ADR 0012) |
 | M6-002 | RPN-Tastenfeld setzt mehrstellige Zahlen nicht zusammen | ✓ Eingabereducer mit getrenntem Zahlentoken; Tastenfolgen im Browser belegt (2026-10-06) |
@@ -216,6 +216,10 @@ R1, M9-004) — vor einer neuen Welle dort nachsehen statt neu zu stolpern.
    nicht committet; solange die Bindung besteht, ist jeder Commit für sich `licenses:check`-rot.)*
 2. **Importvertrag der Statistik** (M3-002) — ausdrücklich abzunehmen.
 3. **Kennzeichnung der Anzeige-Nullung** (M4-002) — fehlt.
+   *(Nachtrag 2026-10-06: **erledigt.** `Calculation` trägt `displayRoundedToZero`, die Oberfläche
+   zeigt unter dem Ergebnis den Hinweis, de/en/es sind ergänzt. Belegt mit 667 Tests,
+   Mutationsgegenprobe und vier Browserfällen; Protokoll
+   `06-protokolle/2026-10-06-m4-002-anzeigenullung-kennzeichnung.md`.)*
 4. **Fünf Lizenzfragen** (`zlib-rs`, `unicode-ident`, `pdf_signer` GPL-3.0-or-later,
    Originaltexte für sechs Pakete ohne Hinweisdatei, u. a. `alloc-stdlib`).
 5. **Fünf fremde Advisory-Treffer** (`crossbeam-epoch`, `rsa` ohne Fix-Version, `rustls`,
@@ -231,7 +235,7 @@ R1, M9-004) — vor einer neuen Welle dort nachsehen statt neu zu stolpern.
 | # | Frage | Entscheidung |
 |---|---|---|
 | 1 | Importvertrag der Statistik (M3-002) | **abgenommen**: Komma = Dezimalzeichen, Semikolon trennt Listen |
-| 2 | Kennzeichnung der Anzeige-Nullung (M4-002) | **Hinweis am Ergebnis**, keine neue Ampelstufe |
+| 2 | Kennzeichnung der Anzeige-Nullung (M4-002) | **Hinweis am Ergebnis**, keine neue Ampelstufe — umgesetzt am 2026-10-06 |
 | 3 | Tabellenprogramm-Probe (M8-004) | **bewusst fallen gelassen**, Karte ohne sie abgeschlossen |
 | 4 | Kontrast der Aktionsbeschriftung (M7-001) | **behoben**: Markenrot bleibt, Schriftfarbe je Schema |
 | 5 | Push | **zurückgestellt** (main = Produktionsbranch) |

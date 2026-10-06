@@ -77,6 +77,13 @@ export interface Calculation {
    * Weiterrechnen: dafür bleibt `raw` zuständig. Bei Fehlern leer.
    */
   readonly full: string
+  /**
+   * Wahr, wenn die **Anzeige** auf `0` gerundet wurde — die Taschenrechner-Konvention für
+   * Restfehler unterhalb der Anzeigepräzision. `raw` und `full` tragen in diesem Fall den
+   * echten Wert; die Oberfläche muss die Nullung sichtbar kennzeichnen (Karte M4-002,
+   * Entscheidung von Thomas am 2026-10-06: Hinweis am Ergebnis, keine neue Ampelstufe).
+   */
+  readonly displayRoundedToZero: boolean
   readonly error: CalculatorErrorCode | null
 }
 
@@ -212,8 +219,10 @@ function formatValue(math: MathJsInstance, value: unknown, precision: number = D
  * gegebenenfalls nur als eng begründete Anzeigeapproximation mit Kennzeichnung"), verlangt aber,
  * dass `raw` und `full` den echten Wert tragen — und genau das tun sie jetzt.
  *
- * **Offen:** Die von der Karte geforderte *Kennzeichnung* dieser Approximation gibt es noch
- * nicht; sie wäre eine Anzeige-Entscheidung (Ampel oder Hinweis am Ergebnis).
+ * Die von der Karte geforderte *Kennzeichnung* dieser Approximation liegt seit dem 2026-10-06
+ * im Ergebnis selbst (`displayRoundedToZero`): Jede Stelle, die rechnet, gibt das Kennzeichen mit
+ * heraus, und die Oberfläche zeigt darauf einen Hinweis am Ergebnis — **keine** neue Ampelstufe
+ * (Entscheidung von Thomas). Damit ist die Nullung nie mehr eine stille Approximation.
  */
 function anzeigeNull(math: MathJsInstance, value: unknown): boolean {
   try {
@@ -236,7 +245,7 @@ export function evaluate(
   scope: Record<string, unknown> = {}
 ): Calculation {
   const trimmed = expression.trim()
-  if (!trimmed) return { ok: false, display: '', raw: '', full: '', error: 'empty' }
+  if (!trimmed) return { ok: false, display: '', raw: '', full: '', displayRoundedToZero: false, error: 'empty' }
 
   const math = calculatorFor(options)
   try {
@@ -261,15 +270,24 @@ export function evaluate(
     // mathjs wirft bei einer Division durch null nicht immer: im BigNumber-Modell kommt
     // `Infinity` heraus. Ein solches Ergebnis ist keine gültige Rechnung.
     if (/^(?:-?Infinity|NaN)$/u.test(raw)) {
-      return { ok: false, display: '', raw: '', full: '', error: 'outOfRange' }
+      return { ok: false, display: '', raw: '', full: '', displayRoundedToZero: false, error: 'outOfRange' }
     }
     // Nur die ANZEIGE bekommt die Taschenrechner-Nullung; `raw` und `full` tragen den echten Wert
-    // und damit den ehrlichen Vergleich der Genauigkeitsampel (ADR 0006, Karte M4-002).
-    const angezeigt = anzeigeNull(math, value) ? '0' : raw
-    return { ok: true, display: localizeNumber(angezeigt, options.decimalSeparator), raw, full, error: null }
+    // und damit den ehrlichen Vergleich der Genauigkeitsampel (ADR 0006, Karte M4-002). Ob genullt
+    // wurde, geht als Kennzeichen mit — sonst wäre die Nullung wieder still.
+    const genullt = anzeigeNull(math, value)
+    const angezeigt = genullt ? '0' : raw
+    return {
+      ok: true,
+      display: localizeNumber(angezeigt, options.decimalSeparator),
+      raw,
+      full,
+      displayRoundedToZero: genullt,
+      error: null
+    }
   } catch (error) {
     const message = error instanceof Error ? error.message : String(error)
-    return { ok: false, display: '', raw: '', full: '', error: classify(message) }
+    return { ok: false, display: '', raw: '', full: '', displayRoundedToZero: false, error: classify(message) }
   }
 }
 
@@ -287,10 +305,11 @@ export function toFraction(expression: string, options: CalculatorOptions = {}):
     const text = math.format(fraction)
     const display = localizeNumber(text, options.decimalSeparator)
     // Eine ganze Zahl bleibt eine Zahl: „3/1“ wäre im Rechner verwirrend.
-    if (/^-?\d+$/u.test(text)) return { ok: true, display, raw: text, full: text, error: null }
-    return { ok: true, display, raw: text, full: text, error: null }
+    // Der Bruch ist eine eigene Darstellung des echten Werts — hier wird nie auf null gerundet.
+    if (/^-?\d+$/u.test(text)) return { ok: true, display, raw: text, full: text, displayRoundedToZero: false, error: null }
+    return { ok: true, display, raw: text, full: text, displayRoundedToZero: false, error: null }
   } catch {
-    return { ok: false, display: '', raw: '', full: '', error: 'unsupported' }
+    return { ok: false, display: '', raw: '', full: '', displayRoundedToZero: false, error: 'unsupported' }
   }
 }
 
@@ -359,9 +378,9 @@ export function toBase(
     const text = math.format(value, { notation, precision: DISPLAY_PRECISION })
     // In einer anderen Basis ist die Schreibweise die ganze Zahl; die Ampel bleibt dort aus,
     // weil schon die Anzeige-Basis eine eigene Einstellung ist.
-    return { ok: true, display: localizeNumber(text, options.decimalSeparator), raw: text, full: text, error: null }
+    return { ok: true, display: localizeNumber(text, options.decimalSeparator), raw: text, full: text, displayRoundedToZero: false, error: null }
   } catch {
-    return { ok: false, display: '', raw: '', full: '', error: 'unsupported' }
+    return { ok: false, display: '', raw: '', full: '', displayRoundedToZero: false, error: 'unsupported' }
   }
 }
 
@@ -382,10 +401,10 @@ export function toWord(
     const value = BigInt(result.raw)
     const reduced = signed ? BigInt.asIntN(bits, value) : BigInt.asUintN(bits, value)
     const text = reduced.toString()
-    return { ok: true, display: text, raw: text, full: text, error: null }
+    return { ok: true, display: text, raw: text, full: text, displayRoundedToZero: false, error: null }
   } catch {
     // Kein ganzer Wert (etwa ein Bruch) — die Wortbreite ergibt dann keinen Sinn.
-    return { ok: false, display: '', raw: '', full: '', error: 'wordRange' }
+    return { ok: false, display: '', raw: '', full: '', displayRoundedToZero: false, error: 'wordRange' }
   }
 }
 
@@ -434,7 +453,7 @@ export function evaluateRpn(
 ): RpnResult {
   const stack: string[] = []
   const steps: RpnStep[] = []
-  const fail = (error: CalculatorErrorCode): RpnResult => ({ ok: false, display: '', raw: '', full: '', error, steps, stack: [...stack] })
+  const fail = (error: CalculatorErrorCode): RpnResult => ({ ok: false, display: '', raw: '', full: '', displayRoundedToZero: false, error, steps, stack: [...stack] })
 
   for (const token of tokens) {
     const entry = normalizeDecimalInput(token.trim())
@@ -476,5 +495,7 @@ export function evaluateRpn(
   if (stack.length !== 1) return fail('stackLeftover')
   const display = evaluate(stack[0] as string, options, scope)
   if (!display.ok) return { ...display, steps, stack: [...stack] }
-  return { ok: true, display: display.display, raw: display.raw, full: display.full, error: null, steps, stack: [...stack] }
+  // Das Kennzeichen der Anzeige-Nullung kommt vom letzten Wert des Stapels — sonst wäre die
+  // Nullung ausgerechnet im RPN-Rechner wieder still.
+  return { ok: true, display: display.display, raw: display.raw, full: display.full, displayRoundedToZero: display.displayRoundedToZero, error: null, steps, stack: [...stack] }
 }

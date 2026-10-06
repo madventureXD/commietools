@@ -31,6 +31,7 @@ export const messages: Readonly<Record<string, string>> = {
   "tool.calc.accuracyComplete": "Der gezeigte Wert ist der vollständige Wert des Rechners.",
   "tool.calc.accuracyRounded": "Der Rechner hält mehr Stellen, als hier stehen.",
   "tool.calc.accuracyModel": "Für diese Rechnung wurde automatisch das Dezimal-Modell benutzt.",
+  "tool.calc.displayZero": "Angezeigt wird 0, weil der Wert unter der Anzeigepräzision liegt. Er ist nicht null und bleibt vollständig erhalten.",
   "tool.calc.display": "Darstellung",
   "tool.calc.display2d": "Zweidimensional",
   "tool.calc.displayRaw": "Roher Term",
