@@ -381,6 +381,16 @@ Diese Liste enthält bestätigte, noch nicht abgeschlossene Arbeit. Details geh�
   `06-protokolle/2026-10-06-m3-002-statistik-eingabe.md`. **Offen: die Karte verlangt, die
   Änderung des dokumentierten Importvertrags ausdrücklich abzunehmen** — der Hilfetext hat sich
   geändert. **Nicht gepusht.**
+- [ ] **Lizenzregister bindet die Quellrevision an `git rev-parse HEAD` — Entscheidung nötig.**
+  `scripts/license-audit.mjs` schreibt in `licenses/registry.json` die Revision von HEAD und
+  vergleicht beim Prüfen den **Dateiinhalt** mit einem frisch erzeugten Stand. Ein **committetes**
+  Register enthält damit zwangsläufig die Revision seines Vorgänger-Commits, und `licenses:check`
+  ist **nach jedem Commit rot** — auch in einem frischen Checkout von HEAD. Grün ist nur der
+  Arbeitsbaum nach einem `licenses:generate`-Lauf. Gemessen am 2026-10-06 (M3-002). Betrifft jede
+  künftige Prüfung und die Regel „geprüft wird der Stand, der veröffentlicht wird"; deshalb
+  **nicht eigenmächtig** geändert (Regeländerung an der Prüfkette). Regel wäre etwa: die Revision
+  nicht im Register führen, sie beim Anzeigen aus dem Build setzen, oder einen Vorfahren als
+  gültig akzeptieren.
 - [ ] **M4-001 — RPN verbindet formatierte Brüche ohne Klammern zu falschen Ausdrücken** (nächste Karte).
 - [ ] Offen in R2 außerdem: M4-002, und die weiteren Karten des Pakets (7 Gruppen).
 
