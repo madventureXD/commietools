@@ -2,6 +2,14 @@
   "hinweis": "Ausdrückliche Entscheidungen zu Rust-Komponenten, deren Lizenz nicht von licenses/policy.json gedeckt ist oder die keinen Originalhinweis mitliefern. Jeder Eintrag braucht Grund und Datum; die Lizenzprüfung lässt ohne Eintrag nichts durch.",
   "review": [
     {
+      "name": "alloc-stdlib",
+      "version": "0.2.4",
+      "license": "BSD-3-Clause",
+      "reason": "Neu im Graphen mit lopdf 0.45.0 (M9-004, 2026-10-06); zuvor nicht enthalten. Das Paket liefert keine Hinweisdatei mit (Registry-Ordner enthält nur Cargo.toml, README, src, tests), die Lizenz stammt aus den Metadaten. BSD-3-Clause ist permissiv, steht aber nicht in licenses/policy.json. Originaltext aus dem Repository nachzutragen — dieselbe offene Frage wie bei den übrigen Paketen ohne Hinweisdatei.",
+      "needsDecision": true,
+      "recorded": "2026-10-06"
+    },
+    {
       "name": "zlib-rs",
       "version": "0.6.8",
       "license": "Zlib",

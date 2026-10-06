@@ -113,6 +113,39 @@ Mit **M9-004** weitermachen (lopdf anheben, WASM neu bauen, Signatur und Prüfun
 unabhängig von den vier Lizenzfragen durchführbar. Danach die OCR-Ursache klären, weil davon die
 Abnahme von M8-001 abhängt. Die vier Lizenzfragen dem Auftraggeber zur Entscheidung vorlegen.
 
+## Nachtrag 2026-10-06 (zweite Sitzung): M9-004 abgeschlossen
+
+*Ergänzung, kein Ersatz — der Wortlaut oben bleibt stehen.*
+
+**M9-004 ist erledigt und belegt.** lopdf wurde in Manifest und beiden Locks von 0.36.0 auf
+**0.42.0** angehoben (nicht 0.45.0 — begründete Entscheidung, siehe unten), die WASM neu gebaut
+und alle drei Abnahmepunkte der Karte gefahren. Bericht:
+`06-protokolle/2026-10-06-m9-004-lopdf-anhebung.md`, Aufnahmen in
+`06-protokolle/screenshots/2026-10-06-m9004/`.
+
+- **Binärbetroffenheit erstmals experimentell belegt.** Grenzkorpus außerhalb des Browsers
+  (Release-Build, beide Stände in einer Wegwerf-Umgebung): lopdf 0.36.0 endet ab Tiefe 1000 mit
+  Stack-Overflow-Abort, 0.42.0 liefert ab Tiefe 100 einen kontrollierten Fehler und stürzt bei
+  keiner geprüften Tiefe (bis 50000) ab. Grenze im Quelltext: `MAX_NESTING_DEPTH = 100`.
+- **Signaturkorpus vor/nach identisch** über 0.36.0, 0.42.0 und 0.45.0. Die zwei zunächst
+  gemeldeten „Abweichungen" lagen an der **Erwartung meines Belegskripts**, nicht am Produkt
+  (ein Nachlauf lässt die ByteRange das Dokument nicht mehr vollständig abdecken); die Erwartung
+  ist im Skript berichtigt und die Herkunft dort vermerkt.
+- **Advisoryscan** über alle 302 Pakete beider Locks: `lopdf` **0 Treffer**. Fünf Treffer in
+  anderen Paketen (`crossbeam-epoch`, `rsa`, `rustls`, `ttf-parser`) sind als eigener offener
+  Punkt eingetragen — nicht Teil dieser Karte.
+- **Entschieden gegen 0.45.0** (Messung, nicht Geschmack): 0.45 zieht die RustCrypto-1.0-Generation
+  zusätzlich herein (zwei `sha2`-Versionen im Graphen, WASM +362 KB statt +142 KB). 0.42.0 ist die
+  von der Karte genannte Fix-Version und der kleinste hinreichende Eingriff.
+- **Nebenfund:** der ausgelieferte Hinweisordner `apps/web/public/licenses/notices/rust` sammelt
+  Leichen nicht mehr enthaltener Komponenten (21 gefunden, u. a. `lopdf-0.36.0`/`-0.45.0`);
+  Zustand bereinigt, fehlende Aufräumregel als offener Punkt eingetragen.
+- **Neu zu entscheiden:** `alloc-stdlib 0.2.4` (BSD-3-Clause) kam mit lopdf ≥0.42 in den Graphen,
+  liefert keine Hinweisdatei mit und steht in `rust-review.json` — damit sind es **fünf**
+  Lizenzfragen statt vier.
+
+**Offen in R1 bleibt allein die OCR-Ursache** (aus M8-001). R2–R10 sind unbearbeitet.
+
 ## Git
 
 - Ausgangsstand: `a041ee0` (Basis der Auditvorschläge), davor ausgeliefert: `0b0b05c`.

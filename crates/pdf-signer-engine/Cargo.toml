@@ -36,7 +36,7 @@ name = "gen_assets"
 required-features = ["testkit"]
 
 [dependencies]
-lopdf = "0.36"
+lopdf = "0.42"
 thiserror = "2"
 flate2 = "1"
 # Richer visible appearances: embedded TrueType fonts and PNG/JPEG logos.

@@ -15,6 +15,11 @@ serde = { version = "1", features = ["derive"] }
 serde-wasm-bindgen = "0.6"
 getrandom = { version = "0.2", features = ["js"] }
 getrandom03 = { package = "getrandom", version = "0.3", features = ["wasm_js"] }
+# lopdf >= 0.42 zieht ueber rand 0.10 getrandom 0.4 herein; ohne das Feature
+# "wasm_js" bricht der wasm32-unknown-unknown-Bau ab (getrandom 0.4.3, backend.rs).
+# Das Crate selbst wird nicht aufgerufen - die Abhaengigkeit dient der
+# Feature-Vereinheitlichung im Graphen, wie bei getrandom 0.2 und 0.3 darueber.
+getrandom04 = { package = "getrandom", version = "0.4", features = ["wasm_js"] }
 
 [profile.release]
 opt-level = "s"

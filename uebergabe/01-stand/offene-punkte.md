@@ -295,9 +295,24 @@ Diese Liste enthält bestätigte, noch nicht abgeschlossene Arbeit. Details geh�
 
 ## R1 — Sanierungsleitfaden des QM-Audits (ab 2026-10-06)
 
-- [ ] **M9-004:** lopdf in beiden Crates von 0.36.0 auf ≥0.42.0 anheben und die WASM neu bauen
+- [x] **M9-004:** lopdf in beiden Crates von 0.36.0 auf ≥0.42.0 anheben und die WASM neu bauen
   (die bekannte Schwachstelle ist erst ab 0.42.0 behoben). API-Brüche sind zu erwarten; danach
   Signatur und Prüfung erneut belegen.
+  *(2026-10-06, **erledigt und belegt:** angehoben auf **0.42.0** in Manifest und beiden Locks.
+  Kein API-Bruch (`cargo check` wasm32 + nativ je Exit 0), 50 Rust-Tests grün. **Entschieden
+  gegen 0.45.0**, weil dieses die RustCrypto-1.0-Generation zusätzlich hereinzieht (zwei
+  `sha2`-Versionen im Graphen, WASM +362 KB statt +142 KB) — 0.42.0 ist die von der Karte
+  genannte Fix-Version und der kleinste hinreichende Eingriff. Eine mitgezogene Abhängigkeit
+  blockierte den Bau: lopdf ≥0.42 zieht über `rand 0.10` das `getrandom 0.4.3` herein, das für
+  `wasm32-unknown-unknown` ohne `wasm_js` nicht baut; im etablierten Projektmuster als direkte
+  Abhängigkeit der WASM-Hülle ergänzt. **Abnahme vollständig:** Grenzkorpus außerhalb des
+  Browsers (0.36 stürzt ab Tiefe 1000 ab — Binärbetroffenheit damit experimentell belegt;
+  0.42 liefert ab Tiefe 100 kontrollierte Fehler und stürzt bei keiner Tiefe ab; echtes
+  signiertes PDF lädt weiter), Signaturkorpus vor/nach mit identischem Ergebnis über 0.36/0.42/0.45,
+  Advisoryscan über 302 Pakete beider Locks mit **lopdf 0 Treffern**. Liefernachweise im selben
+  Paket erneuert (176 Komponenten, 171 mit Originalhinweis). Bericht:
+  `06-protokolle/2026-10-06-m9-004-lopdf-anhebung.md`, Aufnahmen in
+  `06-protokolle/screenshots/2026-10-06-m9004/`. **Nicht gepusht.**)*
 - [ ] **OCR-Ursache klären:** Das OCR-Werkzeug meldet für eine gültige Bildseite „Die PDF konnte
   nicht verarbeitet werden." Der Fehlschlag tritt **auch ohne CSP** auf, und der PDF-Viewer liest
   dieselbe Datei fehlerfrei — die CSP ist nicht die Ursache. Hängt an der Abnahme von M8-001.
@@ -305,6 +320,21 @@ Diese Liste enthält bestätigte, noch nicht abgeschlossene Arbeit. Details geh�
   `zlib-rs` (Lizenz „Zlib" nicht in der Richtlinie), `unicode-ident` („Unicode-3.0" fehlt),
   `pdf_signer` 0.3.2 (GPL-3.0-or-later, bereits ausgeliefert — bewusst so lassen?), und ob die
   Originaltexte der fünf Pakete ohne Hinweisdatei aus den Repositories nachgetragen werden sollen.
+  *(2026-10-06, Zusatz aus M9-004: es sind **sechs** Pakete ohne Hinweisdatei — `alloc-stdlib 0.2.4`
+  (BSD-3-Clause) kam mit lopdf ≥0.42 neu in den Graphen und steht ebenfalls in `rust-review.json`.
+  Damit sind es **fünf** Lizenzfragen.)*
+- [ ] **Fünf Advisory-Treffer außerhalb von lopdf bewerten** (gefunden am 2026-10-06 beim
+  Advisoryscan zu M9-004 über 302 Pakete beider Rust-Locks, `work/m9004-advisoryscan-beleg.txt`):
+  `crossbeam-epoch 0.9.18` (RUSTSEC-2026-0204, ungültige Zeigerdereferenzierung in `fmt::Pointer`),
+  `rsa 0.9.10` (RUSTSEC-2023-0071, Marvin-Attack — **keine Fix-Version verfügbar**, nur Mitigation),
+  `rustls 0.23.40` (RUSTSEC-2026-0285 / GHSA-2mjx-qc3c-rqvc; nur mit dem optionalen
+  `https`-Feature im Graph) und `ttf-parser 0.25.1` (RUSTSEC-2026-0192, **unmaintained** —
+  Wartungswarnung, kein Loch). Nicht Teil der Karte M9-004; Bewertung und Entscheidung stehen aus.
+- [ ] **Aufräumregel für den ausgelieferten Hinweisordner:** `apps/web/public/licenses/notices/rust`
+  sammelt Hinweise nicht mehr enthaltener Komponenten an — gefunden am 2026-10-06 mit **21 Leichen**
+  (u. a. `lopdf-0.36.0`, `lopdf-0.45.0`, `sha2-0.11.0`), während `licenses/notices/rust` korrekt
+  aufgeräumt war. `licenses:check` prüft diesen Pfad nicht. Zustand bereinigt; die Regel im
+  Generator und eine Prüfung fehlen weiterhin.
 - [ ] **13 ältere Übergaben ergänzen:** In `uebergabe/05-uebergaben/` fehlen bei 13 Dateien
   Pflichtabschnitte der Vorlage (betroffen: 2026-10-03-cloudflare-pages, -datensparsame-ladegrenzen,
   -faber-cloudflare-dns, -pdf-m0-m1, -pdf-m2, -pdf-m3, -pdf-m4, -pdf-m5, -pdf-m6,

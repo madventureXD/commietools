@@ -1,12 +1,12 @@
 {
   "schemaVersion": 1,
-  "erzeugt": "2026-10-06T12:05:00.717Z",
+  "erzeugt": "2026-10-06T13:35:12.041Z",
   "grundlage": {
     "zielprofil": "wasm32-unknown-unknown",
     "manifest": "crates/pdf-signer-wasm/Cargo.toml",
-    "lockfile": "a8c1585d26d70005",
-    "engineLockfile": "92d365a96edcaade",
-    "wasmAusgabe": "675c7dd4e0e63cee",
+    "lockfile": "a01a62b5c6835fce",
+    "engineLockfile": "321d36be5880aad4",
+    "wasmAusgabe": "4c051d96d47c42da",
     "werkzeuge": {
       "rustc": "rustc 1.99.0 (b940084d7 2026-09-28)",
       "cargo": "cargo 1.99.0 (5f94df478 2026-08-27)",
@@ -14,8 +14,8 @@
     },
     "hinweis": "Bindet die Liste an Werkzeugstand und Ausgabe; ändert sich eine Größe, ist die Liste neu zu erzeugen."
   },
-  "anzahl": 174,
-  "mitOriginalhinweis": 169,
+  "anzahl": 176,
+  "mitOriginalhinweis": 171,
   "komponenten": [
     {
       "name": "adler2",
@@ -161,17 +161,6 @@
       ]
     },
     {
-      "name": "bytecount",
-      "version": "0.6.9",
-      "license": "Apache-2.0/MIT",
-      "repository": "https://github.com/llogiq/bytecount",
-      "edition": "2018",
-      "noticeFiles": [
-        "notices/rust/bytecount-0.6.9/LICENSE.Apache2",
-        "notices/rust/bytecount-0.6.9/LICENSE.MIT"
-      ]
-    },
-    {
       "name": "cbc",
       "version": "0.1.2",
       "license": "MIT OR Apache-2.0",
@@ -191,6 +180,17 @@
       "noticeFiles": [
         "notices/rust/cfg-if-1.0.5/LICENSE-APACHE",
         "notices/rust/cfg-if-1.0.5/LICENSE-MIT"
+      ]
+    },
+    {
+      "name": "chacha20",
+      "version": "0.10.2",
+      "license": "MIT OR Apache-2.0",
+      "repository": "https://github.com/RustCrypto/stream-ciphers",
+      "edition": "2024",
+      "noticeFiles": [
+        "notices/rust/chacha20-0.10.2/LICENSE-APACHE",
+        "notices/rust/chacha20-0.10.2/LICENSE-MIT"
       ]
     },
     {
@@ -627,6 +627,17 @@
       ]
     },
     {
+      "name": "getrandom",
+      "version": "0.4.3",
+      "license": "MIT OR Apache-2.0",
+      "repository": "https://github.com/rust-random/getrandom",
+      "edition": "2024",
+      "noticeFiles": [
+        "notices/rust/getrandom-0.4.3/LICENSE-APACHE",
+        "notices/rust/getrandom-0.4.3/LICENSE-MIT"
+      ]
+    },
+    {
       "name": "group",
       "version": "0.13.0",
       "license": "MIT/Apache-2.0",
@@ -831,12 +842,12 @@
     },
     {
       "name": "lopdf",
-      "version": "0.36.0",
+      "version": "0.42.0",
       "license": "MIT",
       "repository": "https://github.com/J-F-Liu/lopdf.git",
-      "edition": "2021",
+      "edition": "2024",
       "noticeFiles": [
-        "notices/rust/lopdf-0.36.0/LICENSE"
+        "notices/rust/lopdf-0.42.0/LICENSE"
       ]
     },
     {
@@ -910,16 +921,6 @@
         "notices/rust/multiversion_no_op-1.0.0/COPYRIGHT",
         "notices/rust/multiversion_no_op-1.0.0/LICENSE-APACHE",
         "notices/rust/multiversion_no_op-1.0.0/LICENSE-MIT"
-      ]
-    },
-    {
-      "name": "nom_locate",
-      "version": "5.0.0",
-      "license": "MIT",
-      "repository": "https://github.com/fflorent/nom_locate",
-      "edition": "2018",
-      "noticeFiles": [
-        "notices/rust/nom_locate-5.0.0/LICENSE"
       ]
     },
     {
@@ -1241,6 +1242,18 @@
     },
     {
       "name": "rand_core",
+      "version": "0.10.1",
+      "license": "MIT OR Apache-2.0",
+      "repository": "https://github.com/rust-random/rand_core",
+      "edition": "2024",
+      "noticeFiles": [
+        "notices/rust/rand_core-0.10.1/COPYRIGHT",
+        "notices/rust/rand_core-0.10.1/LICENSE-APACHE",
+        "notices/rust/rand_core-0.10.1/LICENSE-MIT"
+      ]
+    },
+    {
+      "name": "rand_core",
       "version": "0.6.4",
       "license": "MIT OR Apache-2.0",
       "repository": "https://github.com/rust-random/rand",
@@ -1261,6 +1274,18 @@
         "notices/rust/rand_core-0.9.5/COPYRIGHT",
         "notices/rust/rand_core-0.9.5/LICENSE-APACHE",
         "notices/rust/rand_core-0.9.5/LICENSE-MIT"
+      ]
+    },
+    {
+      "name": "rand",
+      "version": "0.10.3",
+      "license": "MIT OR Apache-2.0",
+      "repository": "https://github.com/rust-random/rand",
+      "edition": "2024",
+      "noticeFiles": [
+        "notices/rust/rand-0.10.3/COPYRIGHT",
+        "notices/rust/rand-0.10.3/LICENSE-APACHE",
+        "notices/rust/rand-0.10.3/LICENSE-MIT"
       ]
     },
     {

@@ -5,7 +5,7 @@
     "license": "AGPL-3.0-only",
     "source": "LICENSE",
     "repository": "https://github.com/madventureXD/commietools",
-    "revision": "a041ee0efda6b07687b3586977bb0d90bf1c89a8"
+    "revision": "0a4ecead36853aee2c5321be99da294b1de0aa72"
   },
   "lockfileSha256": "ebb9410674de16cf9dd6ed0e9f120ecb03493dc6331467fc163c6cf84fec6eef",
   "policy": {
@@ -133,13 +133,13 @@
       "name": "PDF Signer WebAssembly engine",
       "version": "0.3.2",
       "fileName": "engine_bg.wasm",
-      "size": 1415062,
-      "sha256": "f72b606dbfef146779ae5d0a213d305f86fcb7e71a2175572610bb1469bcea19",
+      "size": 1557077,
+      "sha256": "4c051d96d47c42da62aac5c4ac636e512e325a71e9643db7e782cf3e27ae75a0",
       "licenseIds": [
         "GPL-3.0-or-later"
       ],
       "source": "https://github.com/StrategicProjects/pdf_signer/tree/6cc0218100d9ffc038f8dccee3b707e5bd136100",
-      "build": "https://github.com/madventureXD/commietools/blob/a041ee0efda6b07687b3586977bb0d90bf1c89a8/crates/pdf-signer-wasm/README.md",
+      "build": "https://github.com/madventureXD/commietools/blob/0a4ecead36853aee2c5321be99da294b1de0aa72/crates/pdf-signer-wasm/README.md",
       "components": [
         {
           "name": "pdf_signer",
@@ -10961,9 +10961,9 @@
   ],
   "rust": {
     "summary": {
-      "components": 174,
-      "withNotices": 169,
-      "reviewed": 7
+      "components": 176,
+      "withNotices": 171,
+      "reviewed": 8
     },
     "zielprofil": "wasm32-unknown-unknown",
     "komponenten": [
@@ -11184,23 +11184,6 @@
         ]
       },
       {
-        "name": "bytecount",
-        "version": "0.6.9",
-        "license": "Apache-2.0/MIT",
-        "repository": "https://github.com/llogiq/bytecount",
-        "noticeMissing": false,
-        "notices": [
-          {
-            "name": "LICENSE.Apache2",
-            "pfad": "/licenses/notices/rust/bytecount-0.6.9/LICENSE.Apache2"
-          },
-          {
-            "name": "LICENSE.MIT",
-            "pfad": "/licenses/notices/rust/bytecount-0.6.9/LICENSE.MIT"
-          }
-        ]
-      },
-      {
         "name": "cbc",
         "version": "0.1.2",
         "license": "MIT OR Apache-2.0",
@@ -11231,6 +11214,23 @@
           {
             "name": "LICENSE-MIT",
             "pfad": "/licenses/notices/rust/cfg-if-1.0.5/LICENSE-MIT"
+          }
+        ]
+      },
+      {
+        "name": "chacha20",
+        "version": "0.10.2",
+        "license": "MIT OR Apache-2.0",
+        "repository": "https://github.com/RustCrypto/stream-ciphers",
+        "noticeMissing": false,
+        "notices": [
+          {
+            "name": "LICENSE-APACHE",
+            "pfad": "/licenses/notices/rust/chacha20-0.10.2/LICENSE-APACHE"
+          },
+          {
+            "name": "LICENSE-MIT",
+            "pfad": "/licenses/notices/rust/chacha20-0.10.2/LICENSE-MIT"
           }
         ]
       },
@@ -11877,6 +11877,23 @@
         ]
       },
       {
+        "name": "getrandom",
+        "version": "0.4.3",
+        "license": "MIT OR Apache-2.0",
+        "repository": "https://github.com/rust-random/getrandom",
+        "noticeMissing": false,
+        "notices": [
+          {
+            "name": "LICENSE-APACHE",
+            "pfad": "/licenses/notices/rust/getrandom-0.4.3/LICENSE-APACHE"
+          },
+          {
+            "name": "LICENSE-MIT",
+            "pfad": "/licenses/notices/rust/getrandom-0.4.3/LICENSE-MIT"
+          }
+        ]
+      },
+      {
         "name": "group",
         "version": "0.13.0",
         "license": "MIT/Apache-2.0",
@@ -12204,14 +12221,14 @@
       },
       {
         "name": "lopdf",
-        "version": "0.36.0",
+        "version": "0.42.0",
         "license": "MIT",
         "repository": "https://github.com/J-F-Liu/lopdf.git",
         "noticeMissing": false,
         "notices": [
           {
             "name": "LICENSE",
-            "pfad": "/licenses/notices/rust/lopdf-0.36.0/LICENSE"
+            "pfad": "/licenses/notices/rust/lopdf-0.42.0/LICENSE"
           }
         ]
       },
@@ -12342,19 +12359,6 @@
           {
             "name": "LICENSE-MIT",
             "pfad": "/licenses/notices/rust/multiversion_no_op-1.0.0/LICENSE-MIT"
-          }
-        ]
-      },
-      {
-        "name": "nom_locate",
-        "version": "5.0.0",
-        "license": "MIT",
-        "repository": "https://github.com/fflorent/nom_locate",
-        "noticeMissing": false,
-        "notices": [
-          {
-            "name": "LICENSE",
-            "pfad": "/licenses/notices/rust/nom_locate-5.0.0/LICENSE"
           }
         ]
       },
@@ -12835,6 +12839,27 @@
       },
       {
         "name": "rand_core",
+        "version": "0.10.1",
+        "license": "MIT OR Apache-2.0",
+        "repository": "https://github.com/rust-random/rand_core",
+        "noticeMissing": false,
+        "notices": [
+          {
+            "name": "COPYRIGHT",
+            "pfad": "/licenses/notices/rust/rand_core-0.10.1/COPYRIGHT"
+          },
+          {
+            "name": "LICENSE-APACHE",
+            "pfad": "/licenses/notices/rust/rand_core-0.10.1/LICENSE-APACHE"
+          },
+          {
+            "name": "LICENSE-MIT",
+            "pfad": "/licenses/notices/rust/rand_core-0.10.1/LICENSE-MIT"
+          }
+        ]
+      },
+      {
+        "name": "rand_core",
         "version": "0.6.4",
         "license": "MIT OR Apache-2.0",
         "repository": "https://github.com/rust-random/rand",
@@ -12872,6 +12897,27 @@
           {
             "name": "LICENSE-MIT",
             "pfad": "/licenses/notices/rust/rand_core-0.9.5/LICENSE-MIT"
+          }
+        ]
+      },
+      {
+        "name": "rand",
+        "version": "0.10.3",
+        "license": "MIT OR Apache-2.0",
+        "repository": "https://github.com/rust-random/rand",
+        "noticeMissing": false,
+        "notices": [
+          {
+            "name": "COPYRIGHT",
+            "pfad": "/licenses/notices/rust/rand-0.10.3/COPYRIGHT"
+          },
+          {
+            "name": "LICENSE-APACHE",
+            "pfad": "/licenses/notices/rust/rand-0.10.3/LICENSE-APACHE"
+          },
+          {
+            "name": "LICENSE-MIT",
+            "pfad": "/licenses/notices/rust/rand-0.10.3/LICENSE-MIT"
           }
         ]
       },

@@ -97,7 +97,7 @@ function __wbg_get_imports() {
             const ret = getObject(arg0).crypto;
             return addHeapObject(ret);
         },
-        __wbg_getRandomValues_a608c4436c19407a: function() { return handleError(function (arg0, arg1) {
+        __wbg_getRandomValues_436a51d0629d84e1: function() { return handleError(function (arg0, arg1) {
             globalThis.crypto.getRandomValues(getArrayU8FromWasm0(arg0, arg1));
         }, arguments); },
         __wbg_getRandomValues_c44a50d8cfdaebeb: function() { return handleError(function (arg0, arg1) {
