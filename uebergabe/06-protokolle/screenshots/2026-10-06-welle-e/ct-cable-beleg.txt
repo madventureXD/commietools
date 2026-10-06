@@ -1,0 +1,8 @@
+--- 1. Werkzeug geöffnet ---
+   Adresse: /tools/cable
+   Überschrift: "Leitungsquerschnitt und Spannungsfall"
+--- 2. Auflagen nachweisen ---
+   Feld cable-ampacity: INPUT
+   Vorplanungs-Hinweis: {"notizen":["Ergebnis einer Vorplanung. Es ersetzt keine Elektrofachkraft und keine nach den anerkannten Regeln der Technik erstellte Auslegung."],"treffer":["Ergebnis einer Vorplanung. Es ersetzt keine Elektrofachkraft und keine nach den anerkannten Regeln der Technik erstellte Auslegung."]}
+--- Szene A einphasig ---
+   geklickt: Rechnen ("RechnerRechnen")

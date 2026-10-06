@@ -1,0 +1,33 @@
+--- 1. Werkzeug geöffnet ---
+   Sprache: "de"
+   Überschrift: "Rohrdimensionierung, Volumenstrom und Druckverlust"
+--- 2. Beispielwerte setzen ---
+   Leistung: "10"
+   Spreizung: "10"
+   Wassertemperatur: "20"
+   Rohrart: "copper"
+   Nennweite: "cu-15x10"
+   Wanddicke (aus Nennweite): "1"
+   geklickt: Berechnen ("Berechnen")
+   Ergebniszeilen: [{"label":"Innendurchmesser","wert":"13 mm"},{"label":"Dichte ρ (Stoffdaten)","wert":"998,2 kg/m³"},{"label":"kin. Viskosität ν (Stoffdaten)","wert":"0,000001003 m²/s"},{"label":"Massenstrom ṁ","wert":"0,23889 kg/s"},{"label":"Volumenstrom V̇","wert":"0,8616 m³/h"},{"label":"Rohrquerschnitt A","wert":"0,000132732 m²"},{"label":"Strömungsgeschwindigkeit w","wert":"1,803 m/s"},{"label":"Reynoldszahl Re","wert":"23.369,5"},{"label":"Strömungszustand","wert":"turbulent"},{"label":"Rohrreibungszahl λ (Haaland-Näherung)","wert":"0,024975"},{"label":"Druckverlustgefälle R","wert":"3.117,204 Pa/m"}]
+--- 3. Ergebnisse gegen unabhängige Nachrechnung ---
+   Nachrechnung: V̇=0.861560 m³/h, w=1.803045 m/s, Re=23369.48, λ=0.02497513, R=3117.204 Pa/m
+   OK   Innendurchmesser [mm]: Werkzeug 13, nachgerechnet 13 (Toleranz 0.001)
+   OK   Volumenstrom [m³/h]: Werkzeug 0.8616, nachgerechnet 0.8615603643175009 (Toleranz 0.001)
+   OK   Geschwindigkeit [m/s]: Werkzeug 1.803, nachgerechnet 1.8030452433028858 (Toleranz 0.001)
+   OK   Reynoldszahl: Werkzeug 23369.5, nachgerechnet 23369.479723766217 (Toleranz 0.1)
+   OK   Rohrreibungszahl: Werkzeug 0.024975, nachgerechnet 0.024975131230299635 (Toleranz 0.000001)
+   OK   Druckverlustgefälle [Pa/m]: Werkzeug 3117.204, nachgerechnet 3117.2041475515534 (Toleranz 0.01)
+   OK   Massenstrom [kg/s]: Werkzeug 0.23889, nachgerechnet 0.23889154323936931 (Toleranz 0.00001)
+--- 4. Richtwert-Hinweis und DN-Vorschlag ---
+   Richtwert-Hinweis: "Hinweis: Die Geschwindigkeit liegt über dem Richtwertband (1,0 bis 1,5 m/s). Das ist ein Hinweis, kein Verbot — größere Nennweite senkt die Geschwindigkeit."
+   DN-Vorschlag: "DN-Vorschlag: 18 × 1,0 mm — ID 16 mm, w = 1,19 m/sVorschlag: die kleinste Nennweite dieser Rohrart, deren Geschwindigkeit den oberen Richtwert nicht überschreitet. Der Richtwert ist Planungspraxis, kein Grenzwert."
+--- 5. Quellenblock ---
+   Abrufdatum 2026-10-06: true, Kupfer-Handel: true, Wasser-Quelle: true
+   kein Normtext-Volltext von Dritt-Host (lador.ru): true
+--- 6. Netzverkehr ---
+   Anfragen gesamt: 92, an fremde Hosts: 0
+   Seitenfehler: []
+   Aufnahme: C:\Users\madve\AppData\Local\Temp\ct-pipes\pipes-1360.png
+
+BELEG GRÜN

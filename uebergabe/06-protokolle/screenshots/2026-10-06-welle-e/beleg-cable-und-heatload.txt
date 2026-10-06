@@ -1,0 +1,50 @@
+############ Werkzeug 13 — Leitungsquerschnitt und Spannungsfall
+--- 1. Auflagen (Q2-Entscheidung) ---
+   Strombelastbarkeit ist ein Feld: INPUT/text (Auflage: keine Tabelle im Werkzeug)
+   Hinweis „Wert aus Ihrer Tabelle oder Norm entnehmen": true
+   Werkzeug sagt selbst, dass es keine Tabelle enthält: true
+--- 2. Beispiel einphasig, 230 V, 16 A, 30 m, Kupfer, Beleuchtung (Grenze 3 %), Belastbarkeit 20 A ---
+   Rechnen: "Rechnen"
+   Ergebnistabelle:
+     ["WERTE","FORMEL UND QUELLE"]
+     ["Spannungsfall ΔU: 6,857 V 2,5 mm²","ΔU = 2 · L · I / (κ · A)"]
+     ["Spannungsfall in Prozent der Nennspannung: 2,981 %","ΔU% = ΔU / U · 100"]
+     ["Benötigter Querschnitt (aus dem Spannungsfall): 2,484 mm²","A_erf = b · L · I / (κ · ΔU_zulässig)"]
+     ["Nächstgrößerer genormter Querschnitt: 2,5 mm²","A_gewählt = kleinste Normstufe ≥ A_erf"]
+     ["Auslastung der Strombelastbarkeit: 80 %","Auslastung = I / I_zul · 100"]
+   gelesen: {"querschnitt":2.5,"prozent":2.981,"auslastung":80}
+   erwartet: Querschnitt 2,5 mm² · Spannungsfall 2,98 % · Auslastung 80 %
+   Querschnitt stimmt: true
+   Auslastung stimmt: true
+   Vorplanungs-Hinweis: true · ersetzt keine Elektrofachkraft: true
+############ Werkzeug 16 — Heizlast-Überschlag je Raum
+--- 1. Auflagen ---
+   Außen-Auslegungstemperatur startet leer: ja
+   Abgrenzung nennt DIN EN 12831: true
+   Werkzeug nennt sich Überschlag: true
+--- 2. Ein Raum: 20 m², Höhe 2,5 m, Luftwechsel 0,5/h, eine Außenwand 20 m² mit U = 1,65, innen 20 °C, außen −10 °C ---
+   U-Wert gesetzt: "1,65"
+   Tabelle:
+     ["BAUTEIL","FLÄCHE IN M²","U-WERT IN W/M²K","QUELLE","BAUTEIL ENTFERNEN"]
+     ["Bauteil wählen Mauerwerk, monolithisch: 36,5 cm Vollziegel, verputzt (vor 1918) — 1,65 Fachwerk: 16 cm Holzständer-Gefach, Lehmputz (vor 1918) — 1,66 Mauerwerk: 38 cm Bimshohlblocksteine, verputzt (1947–78) — 1,14 Maue
+   Tabelle:
+     ["RAUM","ΔT","TRANSMISSION","LÜFTUNG","SUMME RAUM"]
+     ["Wohnzimmer","30 K","990 W","251,3 W","1.241,3 W"]
+     ["Summe Gebäude","—","990 W","251,3 W","1.241,3 W"]
+   Ergebnistabelle: [["RAUM","ΔT","TRANSMISSION","LÜFTUNG","SUMME RAUM"],["Wohnzimmer","30 K","990 W","251,3 W","1.241,3 W"],["Summe Gebäude","—","990 W","251,3 W","1.241,3 W"]]
+   gelesen: Transmission 990 W · Lüftung 251.3 W · Summe 1241.3 W
+   erwartet: Transmission 990 W · Lüftung rund 255 W · Summe rund 1245 W
+   Transmission stimmt: true
+   Lüftung im erwarteten Bereich: true
+--- Netzverkehr ---
+   Anfragen gesamt: 37, an fremde Hosts: 0
+   Seitenfehler: []
+--- Zusammenfassung ---
+   Feld statt Tabelle: ja
+   Querschnitt 2,5 (erwartet 2,5): ✓
+   Auslastung 80 % : ✓
+   Vorplanungshinweis: ✓
+   Außentemperatur leer beim Start: ✓
+   Abgrenzung DIN EN 12831: ✓
+   Transmission 990 W: ✓ (gelesen 990)
+   Lüftung ~255 W: ✓ (gelesen 251.3)

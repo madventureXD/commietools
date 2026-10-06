@@ -1,0 +1,32 @@
+--- 1. Werkzeug geöffnet ---
+   Überschrift: "Heizlast-Überschlag je Raum"
+   Untertitel: "Ein Überschlag aus Beispielwerten — ausdrücklich KEINE normgerechte Heizlastberechnung nach DIN EN 12831."
+   Abgrenzungsblock: "Abgrenzung — bitte lesenDieses Werkzeug rechnet einen Überschlag aus frei zugänglichen Beispiel- und Erfahrungswerten. Es ist KEINE normgerechte Heizlastberechnung nach DIN EN 12831. Es fehlen unter anderem Wärmebrücken-Zuschläge und solare Gewinne, und die Außen-Auslegungstemperatur ist ortsabhängig selbst zu wählen. Das Ergebnis ersetzt keine Fachplanung und keine Auslegung durch eine Fachkraft."
+--- 2. Außen-Auslegungstemperatur startet leer ---
+   Feldwert beim Öffnen: ""
+--- 3. Raum mit Beispielwerten füllen ---
+   Außentemperatur: "-10"
+   Bezeichnung: "kein Feld [data-role=\\\"room-name\\\"] #0 (gefunden: 0)"
+   Grundfläche: "kein Feld [data-role=\\\"room-area\\\"] #0 (gefunden: 0)"
+   Raumhöhe: "kein Feld [data-role=\\\"room-height\\\"] #0 (gefunden: 0)"
+   Innentemperatur: "kein Feld [data-role=\\\"room-temp\\\"] #0 (gefunden: 0)"
+   Luftwechsel: "kein Feld [data-role=\\\"room-air\\\"] #0 (gefunden: 0)"
+   geklickt: Bauteil hinzufügen ("Bauteil hinzufügen")
+   Bauteile im Formular: 2
+   Bauteil 1 (oberste Geschossdecke): "kein Feld [data-role=\\\"surface-kind\\\"] #0 (gefunden: 0)"
+   Bauteil 1 U-Wert übernommen: null
+   Bauteil 2 (Fenster Einfachglas): "kein Feld [data-role=\\\"surface-kind\\\"] #1 (gefunden: 0)"
+   Bauteil 2 U-Wert übernommen: null
+--- 4. Ergebnisse zurücklesen und vergleichen ---
+   Raumzeilen: []
+   Summenzeile: null
+--- 5. Prüfungen ---
+   FEHLER: keine Raumzeile gefunden
+   FEHLER: keine Summenzeile gefunden
+   ok   Außen-Auslegungstemperatur startet leer
+   ok   Abgrenzung nennt DIN EN 12831
+   ok   Untertitel nennt DIN EN 12831
+--- 6. Netzverkehr und Aufnahme ---
+   Anfragen gesamt: 19, an fremde Hosts: 0
+   Seitenfehler: []
+   Aufnahme: C:\Users\madve\AppData\Local\Temp\ct-heatload\heatload-1360.png

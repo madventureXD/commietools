@@ -1,0 +1,51 @@
+--- 1. Werkzeug geöffnet ---
+   Überschrift: "Gewinde, Bohrungen und Anzugsmomente"
+--- 2. Größe M6 ---
+   Nenngröße gesetzt: "M6"
+   Berechnen: "Berechnen"
+   Kernloch: Wert "5" · Rechenweg "Ø_K = d − P = 6 − 1 = 5" · Quelle "H1 · H2"
+   → gelesen 5, erwartet 5 → stimmt
+   Kerndurchmesser D1: Wert "4,92" · Rechenweg "D1 = d − 1,0826 · P" · Quelle "FS1"
+   Durchgangsloch: Wert "6,6" · Quelle "H7 · H8"
+   Schlüsselweite aktuell (gesetzt "iso"): Wert "10" · Quelle "H3 · H18" · erwartet 10 → stimmt
+   Schlüsselweite alt (gesetzt "din"): Wert "" · Quelle "H3 · H18" · erwartet nicht geführt → stimmt
+--- 2. Größe M10 ---
+   Nenngröße gesetzt: "M10"
+   Berechnen: "Berechnen"
+   Kernloch: Wert "8,5" · Rechenweg "Ø_K = d − P = 10 − 1,5 = 8,5" · Quelle "H1 · H2"
+   → gelesen 8.5, erwartet 8.5 → stimmt
+   Kerndurchmesser D1: Wert "8,38" · Rechenweg "D1 = d − 1,0826 · P" · Quelle "FS1"
+   Durchgangsloch: Wert "11" · Quelle "H7 · H8"
+   Schlüsselweite aktuell (gesetzt "iso"): Wert "16" · Quelle "H3 · H16 · H17" · erwartet 16 → stimmt
+   Schlüsselweite alt (gesetzt "din"): Wert "17" · Quelle "H3 · H16 · H17" · erwartet 17 → stimmt
+   Anzugsmoment 8.8: [{"name":"Anzugsmoment von","wert":"48"},{"name":"Anzugsmoment bis","wert":"54"}] · erwartet Spanne 48–54 → Spanne erkannt
+--- 2. Größe M12 ---
+   Nenngröße gesetzt: "M12"
+   Berechnen: "Berechnen"
+   Kernloch: Wert "10,2" · Rechenweg "Ø_K = d − P = 12 − 1,75 = 10,25" · Quelle "H1 · H2"
+   → gelesen 10.2, erwartet 10.2 → stimmt
+   Kerndurchmesser D1: Wert "10,11" · Rechenweg "D1 = d − 1,0826 · P" · Quelle "FS1"
+   Durchgangsloch: Wert "13,5" · Quelle "H7 · H8"
+   Schlüsselweite aktuell (gesetzt "iso"): Wert "18" · Quelle "H3 · H16" · erwartet 18 → stimmt
+   Schlüsselweite alt (gesetzt "din"): Wert "19" · Quelle "H3 · H16" · erwartet 19 → stimmt
+--- 3. Hinweise und Quellen ---
+   Richtwert-Hinweis: true
+   Nicht-belegt-Kennzeichnung: true
+   Überschreibbarkeit genannt: true
+   Abrufdatum im Quellenblock: true
+   Spannen-Erklärung: true
+--- 4. Netzverkehr ---
+   Anfragen gesamt: 19, an fremde Hosts: 0
+   Seitenfehler: []
+--- 5. Zusammenfassung ---
+   Kernloch M6: 5 (erwartet 5) ✓
+   SW M6 aktuell: 10 (erwartet 10) ✓
+   SW M6 alt: null (erwartet nicht geführt) ✓
+   Kernloch M10: 8.5 (erwartet 8.5) ✓
+   SW M10 aktuell: 16 (erwartet 16) ✓
+   SW M10 alt: 17 (erwartet 17) ✓
+   Anzugsmoment M10: [{"name":"Anzugsmoment von","wert":"48"},{"name":"Anzugsmoment bis","wert":"54"}] ✓
+   Kernloch M12: 10.2 (erwartet 10.2) ✓
+   SW M12 aktuell: 18 (erwartet 18) ✓
+   SW M12 alt: 19 (erwartet 19) ✓
+   Aufnahme: C:\Users\madve\AppData\Local\Temp\ct-gewinde\gewinde-1360.png
