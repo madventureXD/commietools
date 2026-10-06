@@ -469,6 +469,21 @@ Diese Liste enthält bestätigte, noch nicht abgeschlossene Arbeit. Details geh�
   - [ ] Offen aus M6-002: Die `2nd`-Belegung des RPN-Feldes ist ungeprüft (das Feld hat nur eine
     Ebene); der Browserbeleg liegt unter `work/` außerhalb der Versionierung (M10-004).
 
+- [x] **M8-004 — CSV-Freitext wird als potenzielle Tabellenformel exportiert: erledigt, mit einer
+  offenen Abnahme** *(Nachtrag 2026-10-06)*. `csvField` maskierte nur Quotes und Trennzeichen — ein
+  Freitextfeld mit führendem `=`, `+`, `-`, `@`, Tabulator oder Wagenrücklauf blieb unverändert und
+  wurde vom Tabellenprogramm als **Formel** gelesen. Neu: Zellen sind **typisiert**
+  (`packages/tools/src/calculator/spreadsheet.ts`) — Text mit Formelstarter wird mit führendem
+  Apostroph gekennzeichnet (auch Vollbreite-Zeichen), Rechenwerte bleiben **numerisch**, damit etwa
+  `-12,50` nicht zerstört wird. `toCsv` führt alle freien Felder durch diesen einen Encoder; der
+  alte lokale `csvField` ist entfernt. Die Oberfläche sagt ausdrücklich, dass die Datei **nicht als
+  tabellensicher** zugesichert ist. Bericht: `06-protokolle/2026-10-06-m8-004-csv-formelzeichen.md`.
+  **Nicht gepusht.**
+  - [ ] **Abnahmekriterium der Karte nicht erfüllt:** „Excel/LibreOffice: Direktöffnung, Import und
+    erneutes Speichern" — auf diesem Rechner ist **kein Tabellenprogramm installiert** (geprüft).
+    Ersatzweise liest ein **unabhängiger** CSV-Leser (Pythons `csv`) den Korpus: alle 11 Zeilen
+    bestanden, keine Zelle beginnt danach mit einem Formelzeichen. Das ersetzt die Probe nicht.
+
 ## Pflege
 
 - Erledigte Punkte mit Verweis auf Commit oder ADR in ein Fortschrittsprotokoll übernehmen und anschließend hier entfernen.

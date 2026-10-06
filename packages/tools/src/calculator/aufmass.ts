@@ -20,6 +20,7 @@
  * Sprache (Trennzeichen, Komma) macht die Oberfläche beziehungsweise der Export über Optionen.
  * Fehler sind Codes.
  */
+import { numberCell, spreadsheetRow, textCell, type CsvCell } from './spreadsheet'
 
 /** Interne Skala: 12 Nachkommastellen. Für Maße und Beträge deutlich übererfüllt. */
 const SCALE = 10n ** 12n
@@ -505,45 +506,37 @@ export function localizeNumber(text: string, options: ExportOptions): string {
   return negative ? `-${result}` : result
 }
 
-/** Ein Feld für die CSV entschärfen: Trennzeichen und Anführungszeichen maskieren. */
-function csvField(text: string, options: ExportOptions): string {
-  const value = text.replace(/"/gu, '""')
-  // Nur quoten, was es braucht: das Trennzeichen, ein Anführungszeichen oder ein Zeilenumbruch.
-  // Ein Dezimalkomma bei `;`-Trennung darf ausdrücklich **nicht** gequotet werden.
-  return value.includes(options.delimiter) || /["\r\n]/u.test(value) ? `"${value}"` : value
-}
-
-/** Das Blatt als CSV — mit Rechenweg, damit es nachrechenbar bleibt. */
+/** Das Blatt als CSV — mit Rechenweg, damit es nachrechenbar bleibt. Zellen sind typisiert (M8-004). */
 export function toCsv(document: ComputedDocument, options: ExportOptions = defaultExportOptions): string {
   const lines: string[] = []
-  const row = (...fields: string[]) => lines.push(fields.map((field) => csvField(field, options)).join(options.delimiter))
+  const row = (...cells: readonly CsvCell[]) => lines.push(spreadsheetRow(cells, options.delimiter))
 
-  if (document.title) row(document.title)
-  if (document.client) row(`${options.labels.client}: ${document.client}`)
+  if (document.title) row(textCell(document.title))
+  if (document.client) row(textCell(`${options.labels.client}: ${document.client}`))
   lines.push('')
 
   for (const section of document.sections) {
-    row(options.labels.section, section.label)
-    row(options.labels.measure, options.labels.unit, options.labels.expression)
+    row(textCell(options.labels.section), textCell(section.label))
+    row(textCell(options.labels.measure), textCell(options.labels.unit), textCell(options.labels.expression))
     for (const entry of section.rows) {
-      row(entry.label, entry.unit, entry.display ? `${entry.expression} = ${localizeNumber(entry.display, options)}` : entry.expression)
+      row(textCell(entry.label), textCell(entry.unit), textCell(entry.display ? `${entry.expression} = ${localizeNumber(entry.display, options)}` : entry.expression))
     }
     lines.push('')
-    row(options.labels.quantity, options.labels.unit, options.labels.unitPrice, options.labels.amount)
+    row(textCell(options.labels.quantity), textCell(options.labels.unit), textCell(options.labels.unitPrice), textCell(options.labels.amount))
     for (const position of section.positions) {
       row(
-        position.label,
-        localizeNumber(position.quantityDisplay, options),
-        position.unit,
-        localizeNumber(position.unitPrice, options),
-        localizeNumber(position.amountDisplay, options)
+        textCell(position.label),
+        numberCell(localizeNumber(position.quantityDisplay, options)),
+        textCell(position.unit),
+        numberCell(localizeNumber(position.unitPrice, options)),
+        numberCell(localizeNumber(position.amountDisplay, options))
       )
     }
-    row(options.labels.sum, '', '', '', localizeNumber(document.sectionTotals[section.id] ?? '', options))
+    row(textCell(options.labels.sum), textCell(''), textCell(''), textCell(''), numberCell(localizeNumber(document.sectionTotals[section.id] ?? '', options)))
     lines.push('')
   }
 
-  row(options.labels.total, '', localizeNumber(document.totalAmount, options))
+  row(textCell(options.labels.total), textCell(''), numberCell(localizeNumber(document.totalAmount, options)))
   return lines.join('\r\n')
 }
 

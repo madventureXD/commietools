@@ -279,6 +279,28 @@ describe('Ausgabe', () => {
     expect(toCsv(computed, options)).toContain(';9,800')
   })
 
+  it('entschärft Formeln aus freien Textfeldern (M8-004)', () => {
+    const mitFormel = computeDocument(document({
+      title: '=1+1',
+      client: '@SUM(1)',
+      sections: [section({
+        id: 's1',
+        rows: [{ id: 'r1', label: '-1+1', expression: '1', unit: 'm' }],
+        positions: [{ id: 'p1', label: 'Putz', quantity: '0', sourceRowId: 'r1', unit: 'm', unitPrice: '12,50' }]
+      })]
+    }))
+    const csv = toCsv(mitFormel, options)
+    // Titel und Bezeichnung beginnen mit einem Formelzeichen → im Export als Text gekennzeichnet.
+    expect(csv.split('\r\n')[0]).toBe("'=1+1")
+    expect(csv).toContain("'-1+1")
+    // Der Kunde steht hinter einer Beschriftung — die Zelle beginnt damit nicht mehr mit `@`.
+    expect(csv).toContain(`${options.labels.client}: @SUM(1)`)
+    // Rechenwerte bleiben numerisch: Menge, Preis und Betrag ohne führenden Apostroph.
+    const positionsZeile = csv.split('\r\n').find((line) => line.startsWith('Putz')) ?? '(keine Putz-Zeile)'
+    expect(positionsZeile).toMatch(/^Putz;[\d.,]+;m;[\d.,]+;[\d.,]+$/u)
+    expect(positionsZeile).not.toContain("'")
+  })
+
   it('gibt den Text mit Einheit, Quelle und Betrag aus', () => {
     const text = toText(computed, options, (unit) => `[${unit}]`)
     expect(text).toContain('Wandfläche: 3,50 × 2,80 = 9,800 [m2]')

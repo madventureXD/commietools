@@ -443,6 +443,7 @@ export function Aufmass({ t, locale }: { t: Translate; locale: string }) {
         </div>
         {busy && <p className="scan-note" aria-live="polite">{t('tool.aufmass.export.working')}</p>}
         {notice && <p className="scan-note" aria-live="polite">{notice}</p>}
+        <p className="scan-note">{t('tool.aufmass.export.spreadsheet')}</p>
         <p className="scan-note">{t('tool.aufmass.privacy')}</p>
       </div>
 
