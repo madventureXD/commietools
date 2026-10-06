@@ -128,16 +128,16 @@ Protokoll: `06-protokolle/2026-10-06-r1-*.md`, `…-m9-004-lopdf-anhebung.md`, `
 | M2-006 | Zugängliche Namen bleiben sprachunabhängig englisch | ○ |
 | M2-007 | Drei Schaltflächenregeln unter 44 Pixel | ○ |
 | M2-008 | Oberflächenfarben umgehen das semantische Tokensystem | ○ |
-| M7-001 | Weiße Aktionsbeschriftung im dunklen Schema zu kontrastarm | ○ *(als akzeptierte Abweichung entschieden)* |
+| M7-001 | Weiße Aktionsbeschriftung im dunklen Schema zu kontrastarm | **✓ behoben** (Thomas-Entscheidung 2026-10-06): Token `--color-action-text` je Schema — dunkel `#101114` auf `#ff4b59` = 5,7562:1, hell weiß auf `#c91f2c` = 5,6514:1, beide AA; Audit-Ausnahmen entfernt |
 | M7-002 | Menü-Fokusbegrenzung berücksichtigt sichtbare Kategorien nicht | ○ |
 | M7-003 | PDF-Schwärzung ohne Tastaturalternative | ○ |
 | M7-004 | PDF-Viewer stellt Text assistiver Technik nicht bereit | ○ |
 | M7-005 | Schmale Layouts verdecken Beschriftungen, Katalog läuft über | ○ |
 | M7-006 | Nicht definierte CSS-Tokens lassen Regeln ausfallen | ○ |
 
-*Hinweis:* **M7-001 widerspricht einer Entscheidung von Thomas** (Kontrast bleibt, als akzeptierte
-Abweichung im Prüfer geführt). Nach der Auftragsregel also **nicht ausführen**, sondern in der
-Entscheidungsliste sammeln.
+*Hinweis:* **M7-001 wurde am 2026-10-06 durch Thomas neu entschieden** (Markenrot bleibt, Schriftfarbe
+schemaabhängig) und ist **behoben** — siehe Protokoll `06-protokolle/2026-10-06-m7-001-kontrast-token.md`.
+Die frühere akzeptierte Abweichung ist damit aufgehoben; die Audit-Ausnahmen wurden entfernt.
 
 ### R6 — Spanisch, Unicode, regionale Formate (P1) — nicht begonnen
 
