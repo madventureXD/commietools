@@ -222,7 +222,31 @@ R1, M9-004) — vor einer neuen Welle dort nachsehen statt neu zu stolpern.
    `ttf-parser` unmaintained).
 6. **Aufräumregel** für `apps/web/public/licenses/notices/rust`.
 7. **13 ältere Übergaben** mit fehlenden Pflichtabschnitten ergänzen.
-8. **Push** der 10 lokalen Commits (`03440a7` … `ebabc36`) — gesammelt am Ende durch Thomas.
+8. **Push** der lokalen Commits — **vorerst zurückgestellt** (Thomas, 2026-10-06): `main` ist der
+   Produktionsbranch bei Cloudflare Pages, ein Push veröffentlicht commietools.org. Entscheidung
+   später; Stand damals: 33 Commits vor `origin/main`.
+
+### Entschieden am 2026-10-06 (im Gespräch, Thomas)
+
+| # | Frage | Entscheidung |
+|---|---|---|
+| 1 | Importvertrag der Statistik (M3-002) | **abgenommen**: Komma = Dezimalzeichen, Semikolon trennt Listen |
+| 2 | Kennzeichnung der Anzeige-Nullung (M4-002) | **Hinweis am Ergebnis**, keine neue Ampelstufe |
+| 3 | Tabellenprogramm-Probe (M8-004) | **bewusst fallen gelassen**, Karte ohne sie abgeschlossen |
+| 4 | Kontrast der Aktionsbeschriftung (M7-001) | **behoben**: Markenrot bleibt, Schriftfarbe je Schema |
+| 5 | Push | **zurückgestellt** (main = Produktionsbranch) |
+| 6 | Prüfskripte (M10-004) | nur die **tragenden Belegskripte** nach `scripts/belege/` |
+| 7 | Lizenz `pdf_signer` (GPL-3.0-or-later) | **enge Einzel-Ausnahme** mit Grund, Datum, Quellangebot |
+| 8 | Advisory-Treffer | **erst messen**, welche Pakete im ausgelieferten WASM landen |
+| 9 | Revisionsbindung des Registers | **Prüfung von der Revision lösen**, Revision nur beim Release binden |
+| 10 | Rust-Hinweise | **aufräumen**: verwaiste entfernen |
+| 11 | 13 ältere Übergaben | **ergänzen**, nur den fehlenden Pflichtabschnitt anhängen, Wortlaut bleibt |
+| 12 | M2-009 / M3-001 | **prüfen**, dann über Entfall entscheiden |
+| 13 | M8-005 (NEL) | **zurückgestellt** |
+
+**Noch nicht entschieden:** Aufnahme von `Zlib` (`zlib-rs`) und `Unicode-3.0` (`unicode-ident`) in
+`allowedExpressions` — beide permissiv und unkritisch, vorgeschlagen, aber ausdrücklich noch nicht
+abgenommen. Ebenso die sechs Pakete ohne Originaltext (Beschaffung).
 
 ## 7. Git-Stand
 
