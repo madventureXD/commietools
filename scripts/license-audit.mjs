@@ -1,6 +1,6 @@
 import { createHash } from 'node:crypto'
 import { execFileSync } from 'node:child_process'
-import { existsSync, mkdirSync, readFileSync, readdirSync, statSync, writeFileSync } from 'node:fs'
+import { existsSync, mkdirSync, readFileSync, readdirSync, rmSync, statSync, writeFileSync } from 'node:fs'
 import { dirname, join, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
@@ -380,6 +380,25 @@ function baueRustTeil(pruefen) {
   if (!existsSync(rustComponentsPath)) return null
   const liste = readJson(rustComponentsPath)
   const ziel = join(root, 'apps', 'web', 'public', 'licenses', 'notices', 'rust')
+  /**
+   * Aufräumregel für verwaiste Hinweisordner (Entscheidung Thomas, 2026-10-06).
+   *
+   * Beim Erzeugen wurden neue Ordner angelegt, alte aber nie entfernt — so sammelten sich dort
+   * 21 Leichen nicht mehr enthaltener Komponenten (`lopdf-0.36.0`, `lodf 0.45.0`, `sha2-0.11.0` …),
+   * während `licenses/notices/rust` korrekt aufgeräumt war. Beim Erzeugen wird der Zielordner
+   * deshalb bereinigt; beim Prüfen werden Verwaiste **gemeldet** statt still entfernt — ein
+   * Prüflauf darf nichts ändern.
+   */
+  const gehoert = new Set((liste.komponenten ?? []).map((k) => `${k.name}-${k.version}`))
+  const vorhanden = existsSync(ziel)
+    ? readdirSync(ziel, { withFileTypes: true }).filter((eintrag) => eintrag.isDirectory()).map((eintrag) => eintrag.name)
+    : []
+  const verwaist = vorhanden.filter((name) => !gehoert.has(name)).sort()
+  if (pruefen) {
+    if (verwaist.length) fail(`verwaiste Hinweisordner in apps/web/public/licenses/notices/rust: ${verwaist.join(', ')} — npm run licenses:generate`)
+  } else {
+    for (const name of verwaist) rmSync(join(ziel, name), { recursive: true, force: true })
+  }
   const komponenten = []
   for (const k of liste.komponenten ?? []) {
     const namen = (k.noticeFiles ?? []).map((rel) => rel.split('/').pop())
@@ -418,6 +437,23 @@ const noticesText = notices(registry)
 const projectLicenseText = registry.licenses['AGPL-3.0-only']?.text
 if (!projectLicenseText) fail('SPDX does not provide AGPL-3.0-only')
 
+/**
+ * Neutralisiert die Revision für den **Vergleich** (Entscheidung Thomas, 2026-10-06).
+ *
+ * Das Register trägt die Revision des Stands, in dem es erzeugt wurde, und die daraus gebildeten
+ * Build-Adressen. Dadurch war nach jedem Commit der Vergleich rot, obwohl sich inhaltlich nichts
+ * geändert hatte — gemessen war der Unterschied genau die Revisionszeile samt Adressen. Geprüft
+ * wird deshalb der Inhalt **ohne** Revision; gebunden wird sie weiterhin beim Erzeugen (Release),
+ * und die ausgelieferte Datei trägt sie unverändert.
+ */
+function ohneRevision(text) {
+  const neutral = 'REVISION'
+  return text
+    .replace(/"revision":\s*"[0-9a-f]{7,40}"/gu, `"revision": "${neutral}"`)
+    .replace(/"revision":\s*null/gu, `"revision": "${neutral}"`)
+    .replace(/\/blob\/[0-9a-f]{7,40}\//gu, `/blob/${neutral}/`)
+}
+
 if (mode === 'generate') {
   writeFileSync(registryPath, registryText)
   writeFileSync(publicRegistryPath, registryText)
@@ -430,7 +466,7 @@ if (mode === 'generate') {
 } else if (mode === 'check') {
   for (const [path, expected] of [[registryPath, registryText], [publicRegistryPath, registryText], [noticesPath, noticesText], [licensePath, `${projectLicenseText}\n`], [copyrightPath, copyrightText]]) {
     if (!existsSync(path)) fail(`missing generated file ${path.slice(root.length + 1)}`)
-    if (canonicalText(readFileSync(path, 'utf8')) !== canonicalText(expected)) fail(`${path.slice(root.length + 1)} is incomplete or stale; run npm run licenses:generate`)
+    if (canonicalText(ohneRevision(readFileSync(path, 'utf8'))) !== canonicalText(ohneRevision(expected))) fail(`${path.slice(root.length + 1)} is incomplete or stale; run npm run licenses:generate`)
   }
   console.log(`License audit passed: ${registry.summary.packages} packages, ${registry.summary.licenseIds.length} complete license texts, ${Object.keys(registry.documents).length} preserved package documents.`)
   pruefeRustKomponenten()
