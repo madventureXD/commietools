@@ -135,3 +135,5 @@ Abnahmefall nicht herstellbar ist.
 - Arbeitsbaum: sauber bis auf die drei bewusst unversionierten Einträge
   (`test-assets/m4-005-*.pdf`, fremde Datei `uebergabe/03-konzepte/2026-10-06-tooltip-und-kontexthilfe.md`).
 - **Nichts gepusht.**
+  *(Nachtrag 2026-10-07, nach dem Akten-Commit: Damit liegt `main` **57 Commits** vor
+  `origin/main`.)*
