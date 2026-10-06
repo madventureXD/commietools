@@ -64,8 +64,8 @@
   Grenze. Bericht: `06-protokolle/2026-10-06-welle-d-02-und-03.md`, Belege in
   `06-protokolle/screenshots/2026-10-06-welle-d-fotobeschrifter/` und `…-welle-d-protokoll/`.
   **Alle drei Werkzeuge der Welle D sind lokal, nichts gepusht.**
-- [~] **Welle E (technische Gewerke: 13 Leitungsquerschnitt, 14 Beleuchtung, 15 Rohrdimensionierung,
-  16 Heizlast, 18 Gewinde) — Q2 entschieden, Bau beginnt.** Das Konzept sperrte diese Welle bis zur
+- [x] **Welle E (technische Gewerke: 13 Leitungsquerschnitt, 14 Beleuchtung, 15 Rohrdimensionierung,
+  16 Heizlast, 18 Gewinde) — **abgeschlossen 2026-10-06: fünf Werkzeuge gebaut, geprüft, belegt** (`06-protokolle/2026-10-06-welle-e-bericht.md`); Suite „Handwerk" 17 Werkzeuge, Register 62. Offen bleibt allein die fachliche Abnahme durch eine Elektro-/SHK-Fachkraft — durch Belege nicht ersetzbar. Der weitere Text dieses Eintrags ist der Verlauf.** Das Konzept sperrte diese Welle bis zur
   Klärung der **Normfrage (Q2)**; der Auftrag „Welle E" wurde deshalb zuerst **nicht** als Bauauftrag
   ausgeführt. **Entscheidung Thomas, 2026-10-06:** zuerst die Quellenlage erheben, dann Q2 auf
   belegter Grundlage entscheiden, dann bauen. **Quellenlage erhoben und selbst nachgeprüft:**

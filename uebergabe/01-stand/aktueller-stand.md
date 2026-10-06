@@ -1,6 +1,17 @@
 # Aktueller Projektstand
 
 **Stand:** 2026-10-06
+**Zusatz 2026-10-06 (Faber), Welle E — abgeschlossen:** Suite „Handwerk" umfasst jetzt **17
+Werkzeuge** (neu: Leitungsquerschnitt/Spannungsfall, Beleuchtung, Rohrdimensionierung, Heizlast,
+Gewinde). Register **62 Werkzeuge**, **619 Tests in 39 Dateien**, Startlast 147.711 B gzip von
+204.800, `lint`/`check`/`build` grün, `a11y:check` (hell und dunkel) und `viewport:check`
+(320/390/1360 px) je Route grün. Jede Zahl stammt aus einer belegten Quelle mit sichtbarer
+Angabe je Zeile (Abrufdatum 2026-10-06); Werkzeug 13 enthält **absichtlich keine**
+Strombelastbarkeitstabelle, sondern ein Eingabefeld (Entscheidung Q2). Die Abnahme fand sechs
+Fehler, alle behoben. Einzelheiten: `06-protokolle/2026-10-06-welle-e-bericht.md`, Belege in
+`06-protokolle/screenshots/2026-10-06-welle-e/`. Alles lokal, **nicht gepusht** (`11f09d4`, `8d9be23`).
+**Fachliche Freigabe beanspruchen 13 und 16 ausdrücklich nicht** (Vorplanung bzw. Überschlag).
+
 **Letzter geprüfter Meilenstein:** Sammelrelease mit 41 Werkzeugen, vollständiger Rechner-Suite, PDF-Suite M0–M9 und sprachgetrennten Suchpaketen auf `main` veröffentlicht (`95e1b2f`, 2026-10-04); automatische Cloudflare-Bereitstellung und Online-Nachkontrolle sind als nächster Schritt vorgesehen.
 
 **Zusatz 2026-10-05 (Faber):** Suite „Handwerk" mit **Welle A und Welle B vollständig** — acht
