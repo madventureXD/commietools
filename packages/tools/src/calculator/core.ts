@@ -392,6 +392,18 @@ export interface RpnResult extends Calculation {
 }
 
 /**
+ * Schützt einen RPN-Operanden für die Verknüpfung zu einem mathjs-Ausdruck.
+ *
+ * `raw` ist die **Anzeigeform** des Werts. Ein Bruch wie `1/2` ist darin ein Ausdruck, kein
+ * Wert: Ungeklammert ergäbe `1/2 / 1/3` nach linksassoziativer Präzedenz `((1/2)/1)/3` = 1/6
+ * statt (1/2)/(1/3) = 3/2. Deshalb wird geklammert, sobald der Operand kein einfacher
+ * Dezimaltoken ist; einfache Zahlen bleiben ohne Klammern, damit der Verlauf lesbar bleibt.
+ */
+function geschuetzterOperand(raw: string): string {
+  return /^[+-]?\d+(?:\.\d+)?(?:[eE][+-]?\d+)?$/u.test(raw) ? raw : `(${raw})`
+}
+
+/**
  * Wertet die umgekehrte polnische Notation aus. Die Operanden werden **über mathjs**
  * verknüpft, nicht über eigene Rechenregeln — sonst entstünde eine zweite, abweichende
  * Rechenlogik neben dem Kern.
@@ -413,7 +425,7 @@ export function evaluateRpn(
       if (stack.length < 2) return fail('stackUnderflow')
       const right = stack.pop() as string
       const left = stack.pop() as string
-      const expression = `${left} ${entry} ${right}`
+      const expression = `${geschuetzterOperand(left)} ${entry} ${geschuetzterOperand(right)}`
       const step = evaluate(expression, options, scope)
       if (!step.ok) return { ...step, steps, stack: [...stack] }
       stack.push(step.raw)

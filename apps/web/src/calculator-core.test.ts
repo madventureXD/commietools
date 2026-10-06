@@ -201,6 +201,42 @@ describe('RPN-Stapel', () => {
     expect(evaluateRpn(['1', '2'], { number: 'BigNumber' }).error).toBe('stackLeftover')
   })
 
+  it('schützt Bruchoperanden (Abnahme M4-001)', () => {
+    // (1/2) / (1/3) = 3/2. Ungeklammert läse mathjs linksassoziativ ((1/2)/1)/3 = 1/6.
+    const result = evaluateRpn(['1', '2', '/', '1', '3', '/', '/'], { number: 'Fraction' })
+    expect(result.ok, String(result.error)).toBe(true)
+    expect(result.display).toBe('3/2')
+    // Gegenprobe: genau dieser ungeschützte Ausdruck wäre falsch — der Beleg dafür, dass die
+    // Klammerung die Ursache trifft und nicht nur ein Ergebnis zurechtbiegt.
+    expect(evaluate('1/2 / 1/3', { number: 'Fraction' }).display).toBe('1/6')
+  })
+
+  it('rechnet negative Brüche und Verkettungen richtig', () => {
+    // (−1/2) · (3/4) = −3/8
+    expect(evaluateRpn(['1', 'neg', '2', '/', '3', '4', '/', '*'], { number: 'Fraction' }).display).toBe('-3/8')
+    // (1/2) + (1/3) = 5/6
+    expect(evaluateRpn(['1', '2', '/', '1', '3', '/', '+'], { number: 'Fraction' }).display).toBe('5/6')
+  })
+
+  it('rechnet Potenzen und unäre Operationen auf Brüchen', () => {
+    // (1/2)² = 1/4
+    expect(evaluateRpn(['1', '2', '/', '2', '^'], { number: 'Fraction' }).display).toBe('1/4')
+    expect(evaluateRpn(['1', '2', '/', 'inv'], { number: 'Fraction' }).display).toBe('2/1')
+    expect(evaluateRpn(['1', '2', '/', 'neg'], { number: 'Fraction' }).display).toBe('-1/2')
+    // `sqrt` auf einem Bruch ist im Fraction-Modell nicht definiert (mathjs kann keine exakte
+    // Wurzel eines Bruchs ziehen) — bestehendes Verhalten, von dieser Karte nicht berührt.
+    expect(evaluateRpn(['1', '4', '/', 'sqrt'], { number: 'Fraction' }).error).toBe('numberModel')
+    expect(evaluateRpn(['1', '4', '/', 'sqrt'], { number: 'BigNumber' }).display).toBe('0.5')
+  })
+
+  it('lässt einfache Zahlen ohne Klammern und unverändert', () => {
+    // Der Verlauf bleibt lesbar: einfache Operanden werden nicht geklammert.
+    const result = evaluateRpn(['3', '4', '+'], { number: 'BigNumber' })
+    expect(result.display).toBe('7')
+    expect(result.steps.map((step) => step.expression)).toEqual(['3 + 4'])
+    expect(evaluateRpn(['3', '4', '+', '5', '*'], { number: 'BigNumber' }).display).toBe('35')
+  })
+
   it('binds variables in the stack', () => {
     const scope = withVariable({}, 'breite', '4', { number: 'BigNumber' })
     expect(evaluateRpn(['breite', '3', '*'], { number: 'BigNumber' }, scope).display).toBe('12')

@@ -391,7 +391,15 @@ Diese Liste enthält bestätigte, noch nicht abgeschlossene Arbeit. Details geh�
   **nicht eigenmächtig** geändert (Regeländerung an der Prüfkette). Regel wäre etwa: die Revision
   nicht im Register führen, sie beim Anzeigen aus dem Build setzen, oder einen Vorfahren als
   gültig akzeptieren.
-- [ ] **M4-001 — RPN verbindet formatierte Brüche ohne Klammern zu falschen Ausdrücken** (nächste Karte).
+- [x] **M4-001 — RPN verbindet formatierte Brüche ohne Klammern zu falschen Ausdrücken: erledigt.**
+  Der Kern baute den mathjs-Ausdruck aus den **Anzeigeformen** der Operanden; `1/2 / 1/3` liest
+  mathjs linksassoziativ als 1/6 statt 3/2. Neu: `geschuetzterOperand` klammert, sobald der
+  Operand kein einfacher Dezimaltoken ist — einfache Zahlen bleiben ohne Klammern, damit der
+  Rechenweg lesbar bleibt. 4 neue Tests mit dem Abnahmefall **3/2** und einer **Gegenprobe**
+  (der ungeschützte Ausdruck ergibt tatsächlich 1/6). Zwei eigene Erwartungen waren falsch und
+  sind als bestehendes Verhalten festgehalten: `sqrt` auf einem Bruch scheitert im Fraction-Modell
+  mit `numberModel`, `inv` auf 1/2 liefert dort `2/1`. Der Fall ist **latent** (kein UI-Bruchmodus).
+  Bericht: `06-protokolle/2026-10-06-m4-001-rpn-brueche.md`. **Nicht gepusht.**
 - [ ] Offen in R2 außerdem: M4-002, und die weiteren Karten des Pakets (7 Gruppen).
 
 ## Pflege
