@@ -49,7 +49,15 @@ export function normaliseFileName(value: string, fallback: string): string {
   const maxLength = 180
   if (name.length > maxLength) {
     const keep = Math.max(1, maxLength - extension.length)
-    name = `${stem.slice(0, keep)}${extension}`
+    let gekuerzt = stem.slice(0, keep)
+    /**
+     * **Nicht mitten in einem Zeichenpaar abschneiden** (Karte M3-007): Ein Emoji besteht aus zwei
+     * UTF-16-Einheiten. Endet der gekürzte Name auf der ersten Hälfte, ist er kein gültiger Text
+     * mehr — der Browser zeigt dann ein Ersatzzeichen und der Dateiname ist beschädigt. Gemessen:
+     * `a` + 90 × 😊 wurde zu `…\uD83D.pdf` (nicht wohlgeformt).
+     */
+    if (/[\uD800-\uDBFF]$/u.test(gekuerzt)) gekuerzt = gekuerzt.slice(0, -1)
+    name = `${gekuerzt}${extension}`
   }
   return name
 }
@@ -73,6 +81,71 @@ function fallbackDownload(blob: Blob, name: string): void {
   setTimeout(() => URL.revokeObjectURL(url), 0)
 }
 
+/**
+ * **Speicheradapter (Karte M5-002).**
+ *
+ * Bis zum 2026-10-06 steckte der ganze Ablauf in der Komponente und war damit im automatischen
+ * Testlauf unbenutzt: eine Mutation, die das Schreiben überspringt („Save-noop"), hätte jeden Test
+ * überstanden. Hier steht der Ablauf als reine Funktion mit **injizierter Umgebung** — testbar
+ * ohne Browser, und die Komponente bleibt für die Darstellung zuständig.
+ *
+ * Reihenfolge ist Teil des Vertrags: **Der Picker wird als erste erwartete Operation aufgerufen.**
+ * Sonst hat der Browser die unmittelbare Nutzeraktivierung (Klick) schon verbraucht und lehnt den
+ * Dialog ab. Erst danach werden die Daten erzeugt — bei großen Dateien kann das dauern.
+ */
+export type SaveOutcome = 'saved' | 'cancelled' | 'downloaded' | 'error'
+
+export interface SaveEnvironment {
+  /** Die Picker-Schnittstelle, falls der Browser sie anbietet. */
+  readonly picker?: (options: SaveFilePickerOptions) => Promise<WritableFileHandle>
+  /** Der Rückfallweg: gewöhnlicher Browserdownload. */
+  readonly download: (blob: Blob, name: string) => void
+}
+
+function istAbbruch(fehler: unknown): boolean {
+  return typeof DOMException !== 'undefined' && fehler instanceof DOMException && fehler.name === 'AbortError'
+}
+
+export async function saveWithAdapter(options: {
+  readonly name: string
+  readonly mimeType: string
+  readonly environment: SaveEnvironment
+  readonly getBlob: () => Promise<Blob | null>
+}): Promise<SaveOutcome> {
+  const { name, mimeType, environment, getBlob } = options
+  let handle: WritableFileHandle | null = null
+  if (environment.picker) {
+    const extension = expectedExtension(name)
+    try {
+      handle = await environment.picker({
+        suggestedName: name,
+        types: extension ? [{ description: extension.slice(1).toUpperCase(), accept: { [mimeType]: [extension] } }] : undefined
+      })
+    } catch (fehler) {
+      // Nutzerabbruch ist ein Ergebnis, kein Fehler — und er löst **nicht** heimlich einen
+      // Download aus (die Karte nennt genau das).
+      if (istAbbruch(fehler)) return 'cancelled'
+      // Manche Browser bieten die Schnittstelle an und lehnen den Dialog trotzdem ab.
+      // Für sie bleibt der gewöhnliche Downloadweg.
+      handle = null
+    }
+  }
+  try {
+    const daten = await getBlob()
+    if (!daten) return 'error'
+    if (handle) {
+      const schreibbar = await handle.createWritable()
+      await schreibbar.write(daten)
+      await schreibbar.close()
+      return 'saved'
+    }
+    environment.download(daten, name)
+    return 'downloaded'
+  } catch (fehler) {
+    return istAbbruch(fehler) ? 'cancelled' : 'error'
+  }
+}
+
 export function SaveFileControl(props: SaveFileControlProps) {
   const { suggestedName, mimeType, t, className = '' } = props
   const [fileName, setFileName] = useState(suggestedName)
@@ -91,40 +164,21 @@ export function SaveFileControl(props: SaveFileControlProps) {
     const finalName = normaliseFileName(fileName, suggestedName)
     setFileName(finalName)
     try {
-      let handle: WritableFileHandle | null = null
-      if (picker) {
-        const extension = expectedExtension(finalName)
-        try {
-          // The picker must be the first awaited operation so the browser still sees
-          // the direct click/tap that grants transient user activation.
-          handle = await picker.call(window, {
-            suggestedName: finalName,
-            types: extension ? [{ description: extension.slice(1).toUpperCase(), accept: { [mimeType]: [extension] } }] : undefined
-          })
-        } catch (error) {
-          if (error instanceof DOMException && error.name === 'AbortError') {
-            setStatus('save.cancelled')
-            return
-          }
-          // Some mobile browsers expose the API but reject the picker. Their safe
-          // fallback remains the ordinary browser download.
-          handle = null
-        }
-      }
-      const data = await blobFrom(props)
-      if (!data) throw new Error('No file data')
-      if (handle) {
-        const writable = await handle.createWritable()
-        await writable.write(data)
-        await writable.close()
-        setStatus('save.saved')
-      } else {
-        fallbackDownload(data, finalName)
-        setStatus('save.downloadStarted')
-      }
-    } catch (error) {
-      if (error instanceof DOMException && error.name === 'AbortError') setStatus('save.cancelled')
-      else setStatus('save.error')
+      const ergebnis = await saveWithAdapter({
+        name: finalName,
+        mimeType,
+        environment: {
+          picker: picker ? (optionen) => picker.call(window, optionen) : undefined,
+          download: fallbackDownload
+        },
+        getBlob: () => blobFrom(props)
+      })
+      setStatus({
+        saved: 'save.saved',
+        cancelled: 'save.cancelled',
+        downloaded: 'save.downloadStarted',
+        error: 'save.error'
+      }[ergebnis])
     } finally {
       setBusy(false)
     }

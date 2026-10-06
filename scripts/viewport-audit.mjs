@@ -92,7 +92,7 @@ const OVERFLOW_JS = `(() => {
   return { viewport: width, scrollWidth: document.documentElement.scrollWidth, offenders: offenders.slice(0, 12) };
 })()`
 
-const A11Y_JS = `(() => {
+const A11Y_JS = `(async () => {
   const MIN_TARGET = 44;
   /**
    * Leer seit 2026-10-06: Die weisse Schrift auf dem Markenrot ergab 3,28:1 bei verlangten 4,5:1.
@@ -137,8 +137,20 @@ const A11Y_JS = `(() => {
       return null;
     }
     if (tag === 'img') return (element.getAttribute('alt') || '').trim() || null;
-    const own = text(element) || (element.getAttribute('title') || '').trim();
-    return own || null;
+    /**
+     * Sichtbaren Text OHNE aria-hidden-Kinder lesen. Die Gegenprobe (Karte M2-009) deckte die
+     * Luecke auf: Ein Knopf, dessen gesamter Inhalt in einem aria-hidden-Element steckt (etwa ein
+     * reines Symbol), wurde als "benannt" gezaehlt, obwohl assistive Technik KEINEN Namen erhaelt.
+     * Genau solche Knoepfe sind hier der klassische Fall (Symbolknoepfe, Schubladen, Werkzeugleisten).
+     * (Kein Backtick in diesem Kommentar — er beendet sonst den Template-String des Messausdrucks.)
+     */
+    const sichtbarerText = [...element.childNodes]
+      .filter((node) => !(node.nodeType === 1 && node.getAttribute('aria-hidden') === 'true'))
+      .map((node) => node.textContent || '')
+      .join(' ')
+      .replace(/\\s+/g, ' ')
+      .trim();
+    return sichtbarerText || (element.getAttribute('title') || '').trim() || null;
   };
   const describe = (element) => element.tagName.toLowerCase() + (element.className ? '.' + String(element.className).trim().replace(/\\s+/g, '.').slice(0, 60) : '');
   const inParagraphText = (element) => {
@@ -246,6 +258,36 @@ const A11Y_JS = `(() => {
   findings.contrast = findings.contrast.slice(0, 20);
   findings.ariaHidden = findings.ariaHidden.slice(0, 10);
   findings.clipped = findings.clipped.slice(0, 20);
+
+  /**
+   * **Offenes Menue (Karte M2-009).** Der geschlossene Zustand sagt nichts ueber die Eintraege der
+   * Werkzeugschublade: Sie sind unsichtbar und werden von der Hauptschleife uebersprungen. Hier
+   * wird die Schublade geoeffnet, mitgemessen und wieder geschlossen — der Reproduzierbarkeit
+   * wegen mit fester Wartezeit, und weil ein Menue ohne Messung eine ungeprueft ausgelieferte
+   * Flaeche ist.
+   */
+  findings.opened = { elements: 0, names: [], targets: [] };
+  const menueKnopf = document.querySelector('button.tool-menu-open');
+  if (menueKnopf) {
+    menueKnopf.click();
+    await new Promise((fertig) => setTimeout(fertig, 300));
+    const imMenue = [...document.querySelectorAll(interactiveSelector)].filter(visible);
+    findings.opened.elements = imMenue.length;
+    for (const element of imMenue) {
+      if (!accessibleName(element)) findings.opened.names.push({ element: describe(element), html: element.outerHTML.slice(0, 120) });
+      const flaeche = element.closest('label') ?? element;
+      const kasten = flaeche.getBoundingClientRect();
+      const istLink = element.tagName.toLowerCase() === 'a' && inParagraphText(element);
+      if (!istLink && (kasten.width < MIN_TARGET || kasten.height < MIN_TARGET)) {
+        findings.opened.targets.push({ element: describe(element), width: Math.round(kasten.width), height: Math.round(kasten.height) });
+      }
+    }
+    findings.opened.names = findings.opened.names.slice(0, 20);
+    findings.opened.targets = findings.opened.targets.slice(0, 20);
+    menueKnopf.click();
+    await new Promise((fertig) => setTimeout(fertig, 150));
+  }
+
   return findings;
 })()`
 
@@ -297,14 +339,17 @@ try {
         const findings = await evaluate(A11Y_JS)
         if (!findings) throw new Error(`No a11y measurement on ${route}`)
         if (findings.controls === 0) { emptyRoutes += 1; console.error(`Route ohne Bedienelemente: ${route} (${width} px)`); continue }
+        const geoeffnet = findings.opened ?? { elements: 0, names: [], targets: [] }
         const problems = findings.targets.length + findings.names.length + findings.labels.length
           + findings.contrast.length + findings.ariaHidden.length + findings.clipped.length
           + findings.headings.jumps.length + findings.headings.jumpsOpened.length
+          + geoeffnet.names.length + geoeffnet.targets.length
           + (findings.headings.h1Count !== 1 ? 1 : 0)
         console.log(`${problems ? 'BEFUND' : 'ok'} ${route} ${width}px  Bedienelemente=${findings.controls}`
           + ` Ziele<44=${findings.targets.length} ohneNamen=${findings.names.length} ohneBeschriftung=${findings.labels.length}`
           + ` Kontrast=${findings.contrast.length} akzeptiert=${findings.contrastAkzeptiert.length} (uebersprungen=${findings.skippedContrast}) abgeschnitten=${findings.clipped.length}`
-          + ` h1=${findings.headings.h1Count} Spruenge=${findings.headings.jumps.length}/${findings.headings.jumpsOpened.length}`)
+          + ` h1=${findings.headings.h1Count} Spruenge=${findings.headings.jumps.length}/${findings.headings.jumpsOpened.length}`
+          + ` Menue=${geoeffnet.elements} MenueOhneNamen=${geoeffnet.names.length} MenueZiele<44=${geoeffnet.targets.length}`)
         if (problems) failures.push({ route, width, ...findings })
       }
     }
@@ -312,6 +357,16 @@ try {
   if (emptyRoutes) { console.error(`Abbruch: ${emptyRoutes} Durchgänge ohne prüfbaren Inhalt`); process.exitCode = 2 }
   else if (failures.length) { console.error(JSON.stringify(failures, null, 2)); process.exitCode = 1 }
   else console.log(`Audit passed (${mode}, Schema ${scheme}): ${routes.length} routes${widths.length > 1 ? ` × ${widths.length} widths` : ''}`)
+
+/**
+ * **Grenzen dieses Pruefers, ausdruecklich (Karte M2-009).** Ein gruener Lauf ist kein
+ * WCAG-Urteil: Er sieht das DOM einer gerenderten Seite an — nicht, was ein Vorleser vorliest,
+ * nicht die Fokusreihenfolge bei reiner Tastaturbedienung, nicht das Verhalten bei 400 % Zoom und
+ * nicht reduzierte Bewegung. Diese Faelle bleiben Handarbeit und stehen so auch in der Uebergabe.
+ */
+if (mode === 'a11y') {
+  console.log('Nicht geprueft: Vorleserausgabe, Tastaturdurchlauf, Zoom bis 400%, Fokusreihenfolge, reduzierte Bewegung.')
+}
 } finally {
   socket?.close()
   edge.kill()

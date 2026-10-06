@@ -6,6 +6,30 @@ import { compressionArguments, protectionArguments } from '@commietools/tools/pd
 import { addPdfAttachments, cleanPdfMetadata, comparePdfStructure, cropPdfPages, listPdfAttachments, readPdfMetadata, removePdfAttachment, renamePdfAttachment, safeAttachmentName } from '@commietools/tools/pdf/m8'
 import { preflightPdfA, redactPdf } from '@commietools/tools/pdf/m9'
 import * as mupdf from 'mupdf'
+import { getDocument } from 'pdfjs-dist/legacy/build/pdf.mjs'
+
+/**
+ * **Unabhängiger Leser** für PDF-Inhalte (Karte M5-001).
+ *
+ * Die bisherigen Prüfungen zu Wasserzeichen und Nummerierung sahen nur Seitenzahl und Bytegröße an —
+ * sie wären auch dann grün, wenn die Markierung auf der **falschen** Seite läge oder die Nummer den
+ * falschen Wert trüge. Gelesen wird hier mit **pdfjs**, also einem anderen Weg als dem
+ * pdf-lib-Schreibpfad. Eine Testhilfe darf für den Sollwert **nicht** dieselbe Seitenselektion
+ * benutzen wie die Umsetzung.
+ */
+async function textProSeite(bytes: Uint8Array): Promise<string[]> {
+  const task = getDocument({ data: bytes.slice() })
+  const document = await task.promise
+  const seiten: string[] = []
+  for (let nummer = 1; nummer <= document.numPages; nummer += 1) {
+    const page = await document.getPage(nummer)
+    const inhalt = await page.getTextContent()
+    seiten.push(inhalt.items.map((eintrag) => ('str' in eintrag ? eintrag.str : '')).join(' ').replace(/\s+/gu, ' ').trim())
+    page.cleanup()
+  }
+  await task.destroy()
+  return seiten
+}
 
 async function fixture(sizes: readonly [number, number][]) {
   const document = await PDFDocument.create()
@@ -106,6 +130,28 @@ describe('M3 PDF placement operations', () => {
     const output = await addPdfPageNumbers(source, { pages: [1, 2], anchor: 'bottom-center', fontSize: 11, margin: 24, opacity: 1, color: '#17181b', start: 5, prefix: 'Page ', suffix: '', format: 'page-total' })
     expect((await inspectPdf(output)).pageCount).toBe(3)
     expect(output.byteLength).toBeGreaterThan(source.byteLength)
+  })
+
+  it('liest die Wasserzeichenmarkierung nur auf den gewählten Seiten (unabhängiger Leser)', async () => {
+    const source = await fixture([[300, 400], [300, 400], [300, 400]])
+    const output = await addPdfWatermark(source, { text: 'ENTWURF', pages: [1], anchor: 'center', fontSize: 36, margin: 20, opacity: 1, rotation: 0, color: '#c91f2c', tiled: false, spacing: 80 })
+    const seiten = await textProSeite(output)
+    expect(seiten, 'Seitenzahl').toHaveLength(3)
+    expect(seiten[0], 'Seite 1 darf die Markierung nicht tragen').not.toContain('ENTWURF')
+    expect(seiten[1], 'Seite 2 muss die Markierung tragen').toContain('ENTWURF')
+    expect(seiten[2], 'Seite 3 darf die Markierung nicht tragen').not.toContain('ENTWURF')
+  })
+
+  it('liest die Nummerierung mit Startwert, Gesamtzahl und ohne Nachbarseiten (unabhängiger Leser)', async () => {
+    const source = await fixture([[300, 400], [300, 400], [300, 400]])
+    const output = await addPdfPageNumbers(source, { pages: [1, 2], anchor: 'bottom-center', fontSize: 11, margin: 24, opacity: 1, color: '#17181b', start: 5, prefix: '', suffix: '', format: 'page-total' })
+    const seiten = await textProSeite(output)
+    // Nicht nummerierte Seite bleibt leer; die gewählten tragen Startwert 5 und Gesamtzahl 2.
+    expect(seiten[0], 'Seite 1 wurde nicht gewählt').toBe('')
+    // Sollwert aus `formatPdfPageNumber` gelesen, nicht geraten: Nummer = start + Index,
+    // Gesamtzahl = start + Anzahl - 1 → bei Start 5 und zwei Seiten „5 / 6" und „6 / 6".
+    expect(seiten[1], 'erste gewählte Seite').toBe('5 / 6')
+    expect(seiten[2], 'zweite gewählte Seite').toBe('6 / 6')
   })
 
   it('embeds a visible signature image without changing the page count', async () => {

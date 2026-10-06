@@ -1,0 +1,67 @@
+# Pflichtprüfungen bei Änderungen an `main` und bei Pull Requests (Karte M1-003).
+#
+# **Warum versioniert:** Bis zum 2026-10-06 gab es im Repository **keinen** erkennbaren
+# Freigabeschutz — `main` ist der Produktionsbranch bei Cloudflare Pages, ein Push veröffentlicht
+# also commietools.org. Ob zusätzlich ein Branchschutz im Konto eingerichtet ist, ist von außen
+# nicht feststellbar und wird hier ausdrücklich **nicht** behauptet (Karte: „Kein Beweis fehlenden
+# Kontoschutzes aus fehlender YAML ableiten"). Diese Datei ist der im Repository sichtbare Teil:
+# Sie macht die Prüfungen zur Pflicht, die vorher nur lokal liefen.
+#
+# **Nicht enthalten und bewusst nicht:** kein Deployment, keine Geheimnisse, keine
+# Kontoeinstellungen. Dieser Workflow prüft nur.
+#
+# **Grenze, die der Betreiber schließen muss:** Ein Workflow allein blockiert keinen Merge. Dafür
+# sind im Konto „erforderliche Statuschecks" und ein Branchschutz zu konfigurieren; das gehört mit
+# Datum und Zuständigkeit protokolliert (Karte M1-003, Abnahme).
+#
+# **Zweite Grenze:** Die gebauten Browserprüfungen (`viewport:check`, `a11y:check`) laufen derzeit
+# nur lokal: `scripts/viewport-audit.mjs` steuert Edge auf Windows. Ein Linux-Läufer kann das nicht.
+# Der Browserjob wird deshalb noch nicht verdrahtet — als offener Punkt geführt, statt einen Job
+# zu bauen, der in der Wirklichkeit nicht läuft.
+name: Prüfungen
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+# Minimale Rechte: Lesen genügt zum Prüfen.
+permissions:
+  contents: read
+
+# Läuft von Hand gestartet genauso wie automatisch.
+workflow_dispatch:
+
+jobs:
+  qualitaet:
+    name: Lizenz, Katalog, Lint, Typen, Tests, Bau
+    runs-on: ubuntu-latest
+    steps:
+      # Versionen mit Tag gepinnt. **Offen:** auf Commit-SHAs umstellen, sobald der Workflow in
+      # Betrieb geht (Karte M1-003 verlangt es) — ein erfundener SHA wäre schlimmer als ein Tag.
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      # Installation aus dem Lockstand, nicht aus den Manifesten.
+      - run: npm ci
+      # `check` enthält Lizenzprüfung, Katalogprüfung, Lint, Typprüfung und Tests.
+      - run: npm run check
+      # Der Bau prüft zusätzlich das Startbudget und die Sperre gegen PDF-Engines im Startbündel.
+      - run: npm run build
+
+  rust:
+    name: Rust-Prüfungen (nativ und wasm32)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: wasm32-unknown-unknown
+      - uses: Swatinem/rust-cache@v2
+      # Beide Ziele, weil die WASM-Hülle andere Abhängigkeiten sieht als der native Bau
+      # (siehe die getrandom-Falle aus M9-004).
+      - run: cargo check --manifest-path crates/pdf-signer-engine/Cargo.toml
+      - run: cargo test --manifest-path crates/pdf-signer-engine/Cargo.toml
+      - run: cargo check --manifest-path crates/pdf-signer-wasm/Cargo.toml --target wasm32-unknown-unknown

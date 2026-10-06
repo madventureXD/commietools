@@ -249,6 +249,15 @@ Diese Liste enthält bestätigte, noch nicht abgeschlossene Arbeit. Details geh�
   `no-misused-promises` (60) und die `no-unsafe-*`-Gruppe. Protokoll:
   `06-protokolle/2026-10-06-m4-008-lint.md`.
 - [ ] **96 Lint-Warnungen abarbeiten** (angefangen bei `no-misused-promises`, 60 Treffer).
+- [ ] **Kontrastprüfung des a11y-Scanners untersuchen** (Karte M2-009, offener Befund): Ein
+  absichtlich kontrastarmer Absatz (`#c9c9c9` auf Weiß) erzeugt **keinen** Kontrastbefund; der
+  Prüfer meldet für diese Seite `skippedContrast: 3`. Ursache nicht geklärt — bewusst nicht geraten.
+- [ ] **CI-Workflow in Betrieb nehmen** (Karte M1-003): `.github/workflows/quality.yml` liegt
+  versioniert, ist aber **nie gelaufen** (es wird nicht gepusht). Offen: Actions auf Commit-SHAs
+  pinnen, Browserjob plattformunabhängig machen, Branchschutz und erforderliche Checks im Konto
+  einrichten und mit Datum protokollieren.
+- [ ] **Signaturkorpus in den normalen Testschutz übernehmen** (Karte M5-003): gültig, verändert,
+  inkrementell ergänzt und „unsupported" je Datei mit Herkunft, Hash und Validatorversion.
 - [ ] Offline-Verhalten mit einem automatisierten Browser-Test absichern.
   *(2026-10-06, **M8-002 gemessen: die Offline-Bereitschaft des ersten Besuchs ist nicht gegeben.**
   Frisches Profil, App geladen, Service Worker aktiv, HTTP-Cache gelöscht, **Vorschaudienst beendet**

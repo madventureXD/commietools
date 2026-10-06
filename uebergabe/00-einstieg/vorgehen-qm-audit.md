@@ -105,21 +105,24 @@ Protokoll: `06-protokolle/2026-10-06-r1-*.md`, `…-m9-004-lopdf-anhebung.md`, `
 | M8-002 | Erste Offline-Bereitschaft hängt am flüchtigen HTTP-Cache | **✓ erfüllt** (2026-10-06): frisches Profil, HTTP-Cache gelöscht, **Dienst beendet** → Reload lädt vollständig (**23 von 23 Antworten aus dem Service Worker, 0 gescheitert**), dritte Sprache wird nicht geholt. Lösung: Warmlauf der Sprachpakete nach SW-Kontrolle + `ignoreVary` in der Laufzeitregel. Offen: Warmbesuch, Localewechsel, SW-Versionswechsel |
 | M8-003 | Fehlender Browser-Speicher verhindert Nutzung statt Rückfall | ◐ Adapter ohne Wurf (`readLocal`/`writeLocal`/`readLocalJson`), Startpfad abgesichert — **Verlaufs-/Store-Vertrag und flüchtiger Betrieb offen** (2026-10-06) |
 
-### R4 — Wirksame Tests, Lint, Freigabeschranken (P1) — nicht begonnen (begleitend)
+### R4 — Wirksame Tests, Lint, Freigabeschranken (P1) — **abgeschlossen 2026-10-06**
 
 | Karte | Kurz | Stand |
 |---|---|---|
-| M1-003 | Kein erkennbarer Freigabeschutz für `main` | ○ |
+| M1-003 | Kein erkennbarer Freigabeschutz für `main` | ✓ mit benannten Grenzen (2026-10-06): `.github/workflows/quality.yml` (Node- und Rust-Job, minimale Rechte, kein Deployment). **Grenzen:** nie ausgeführt (kein Push), Actions auf Tags statt SHAs, kein Browserjob (Edge/Windows), Branchschutz bleibt Kontosache |
 | M4-008 | Erfolgreiches Lint-Kommando prüft keine Workspace-Codebasis | **✓ erledigt** (2026-10-06): `eslint.config.mjs` + Wurzel-`tsconfig.json`, `lint` = `eslint .` und Pflichtteil von `check`; **0 Fehler, 96 Warnungen**, 415 Dateien geprüft (vorher 0). Mutationsgegenprobe belegt. Neue MIT-Abhängigkeiten, Lizenzlauf grün (607 Pakete) |
-| M5-001 | PDF-Tests sichern Seitenwahl und Nummerninhalte nicht ab | ○ |
-| M5-002 | Zentraler Speichervorgang bleibt im Testlauf unbenutzt | ○ |
-| M5-003 | Kritische PDF-Engine-Pfade ohne normalen Testschutz | ○ |
-| M5-004 | Randfalltests erfassen wichtige Kombinationen nicht | ○ |
-| M2-009 | Versprochene automatische Barrierefreiheitsprüfung fehlt | ○ |
-| M3-009 | Vorgeschriebene Sprachprüfungen nicht vollständig automatisiert | ○ |
+| M5-001 | PDF-Tests sichern Seitenwahl und Nummerninhalte nicht ab | **✓ erledigt** (2026-10-06): unabhängiger Leser (pdfjs) im Test — Wasserzeichen nur auf der gewählten Seite, Nummerierung „5 / 6" und „6 / 6" inhaltlich geprüft, nicht gewählte Seite leer |
+| M5-002 | Zentraler Speichervorgang bleibt im Testlauf unbenutzt | **✓ erledigt** (2026-10-06): injizierbarer Speicheradapter (`SaveEnvironment`/`saveWithAdapter`), 7 neue Tests mit geprüften Bytes/Name/MIME, Abbruch ohne heimlichen Download, Schreibfehler, fehlende API, wiederholter Klick |
+| M5-003 | Kritische PDF-Engine-Pfade ohne normalen Testschutz | **✓ erledigt, ein Rest offen** (2026-10-06): QPDF-Wirkung im Browser belegt — geschützt ohne Passwort `PasswordException`, mit Passwort Inhalt `SEITE-B-1/2/3` vollständig, entsperrt inhaltlich unverändert, falsches Passwort ergibt echten Fehler. **Offen:** Signaturkorpus nicht im normalen Testschutz |
+| M5-004 | Randfalltests erfassen wichtige Kombinationen nicht | **✓ erledigt** (2026-10-06): die dokumentierten Regressionen stehen in der regulären Suite (M3-001 über die neue Sprachprüfung). **Dabei ein echter Fehler gefunden und behoben:** `normaliseFileName` schnitt bei 180 Zeichen mitten in einem Emoji ab (unpaariges Surrogat) — **M3-007 damit erledigt** |
+| M2-009 | Versprochene automatische Barrierefreiheitsprüfung fehlt | ◐ (2026-10-06): Prüfer erweitert — **offenes Menü** wird mitgemessen, **Grenzen** des Prüfers werden ausgegeben, **Namenslücke behoben** (`aria-hidden`-Inhalte galten als Name); Gegenprobe belegt Namen und Bedienziel. **Offen:** Kontrastteil der Gegenprobe nicht belastbar (`skippedContrast`), keine CI-Verdrahtung |
+| M3-009 | Vorgeschriebene Sprachprüfungen nicht vollständig automatisiert | **✓ erledigt** (2026-10-06): `language-contract.test.ts`, registrygesteuert — Parität, leere Texte, **Platzhalter** (Name und Häufigkeit), Interpolationssyntax, Wohlgeformtheit, common+suites, Katalogtexte. Mutationsgegenprobe `{number}`→`{número}`: genau zwei Prüfungen rot. Generator liefert bei Wiederholung identische Ausgabe |
 
 *Hinweis:* M2-009 dürfte überholt sein — laut README des Empfehlungspakets existiert inzwischen ein
 `a11y:check`; im Projekt ist er als erledigt geführt. Beim Bearbeiten gegen den Live-Stand prüfen.
+*(Nachtrag 2026-10-06: Bestätigt — `a11y:check` existiert und prüft alle Routen des Registers bei
+zwei Breiten. Der Punkt bleibt trotzdem auf ◐, weil die Abdeckung erweitert wurde und zwei
+Teilnachweise fehlen; siehe Protokoll `06-protokolle/2026-10-06-r4-pruef-und-freigabeschranken.md`.)*
 
 ### R5 — Barrierefreiheit und Designsystem (P1) — nicht begonnen
 
@@ -147,7 +150,7 @@ Die frühere akzeptierte Abweichung ist damit aufgehoben; die Audit-Ausnahmen wu
 | M3-003 | Spanische Kerntexte ändern die fachliche Bedeutung | ○ |
 | M3-004 | Deutsche Richtungsbeschriftungen umgehen die Sprachpakete | ○ |
 | M3-006 | Ton und Terminologie nicht durchgängig eingehalten | ○ |
-| M3-007 | Lange Unicode-Dateinamen beim Kürzen beschädigt | ○ |
+| M3-007 | Lange Unicode-Dateinamen beim Kürzen beschädigt | **✓ behoben** 2026-10-06 (bei M5-004 gefunden): `normaliseFileName` schnitt bei 180 Zeichen mitten in einem Emoji ab; Grenzprüfung ergänzt, Regressionstest in `save-file.test.ts` |
 | M3-008 | Titelschreibung übersieht Wörter hinter spanischen Satzzeichen | ○ |
 | M3-010 | Zahlenformate folgen innerhalb einer Oberfläche verschiedenen Regeln | ○ |
 
@@ -274,6 +277,12 @@ Arbeitsbaum trägt außerhalb der Commits nur die beiden revisionsgebundenen Reg
 bewusst uncommittet auf der Revision `dac33b7`; die inhaltliche Registrierung der neuen Abhängigkeit
 `jsonc-parser` ist dagegen **committet**. Die früheren Stände (`ebabc36`, dann `c30cb74`) sind damit
 überholt, nicht falsch gewesen.
+
+*Nachtrag 2026-10-06 (nach R4).* **R4 ist durch.** Sieben Karten erledigt (M1-003, M4-008, M5-001,
+M5-002, M5-003, M5-004, M3-009), eine teilweise (M2-009 ◐ — Prüfer erweitert und Namenslücke
+behoben, Kontrastgegenprobe offen). Zwei echte Produktfehler dabei gefunden und behoben: der
+hängende Aktionsknopf (M4-005) und der zerteilte Emoji-Dateiname (**M3-007**, damit erledigt).
+Protokoll: `06-protokolle/2026-10-06-r4-pruef-und-freigabeschranken.md`. **Nichts gepusht.**
 
 *Nachtrag 2026-10-06 (nach M4-008).* Kopf wird mit dem Commit zu M4-008 fortgeschrieben. `lint`
 prüft jetzt die Produktbasis (415 Dateien) und läuft als Pflichtteil in `check`; zwei echte Befunde
