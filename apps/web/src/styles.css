@@ -116,6 +116,10 @@ select { min-height: 2.75rem; padding: 0 var(--space-3); border: 1px solid var(-
 .settings-card { width: 100%; max-width: 100%; padding: var(--space-6); border: 1px solid var(--color-border); border-radius: var(--radius-md); background: var(--color-background); }
 .settings-card h2 { margin-bottom: var(--space-2); font-size: 1.2rem; }
 .form-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-4); }
+/* Ein Formularraster direkt unter der Kopfzeile eines aufklappbaren Abschnitts bekommt den
+   Abstand der Rasterzeilen: sonst klebt die erste Feldbeschriftung an der Zusammenfassung
+   (gemessen 2026-10-06 an Paving, Tires und Paint 0 px gegen 36 px, wo eine Hinweiszeile liegt). */
+details.settings-card > summary + .form-grid { margin-top: var(--space-4); }
 .field { display: grid; gap: var(--space-2); align-content: start; font-weight: 750; }
 .field > input, .field > select, .field > textarea { min-width: 0; max-width: 100%; }
 .field textarea { min-height: 8rem; }

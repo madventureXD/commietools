@@ -1,0 +1,19 @@
+# Messung details.settings-card, Breite 1360, 2026-10-06T06:24:48.309Z
+ROUTE /tools/paving | h1="Pflaster und Erdarbeiten" | Abschnitte: 3
+  #0 open=true detailsDisplay=block summary="Aufbau und Verbrauch — Steine je m² (Raste" display=list-item rect=745..766@172 | next=P display=block cols=none top=766 overlap=0 | label="Steinlänge (cm)" top=802 aufSummaryzeile=false felder=6
+  #1 open=true detailsDisplay=block summary="Aushubtiefe (Tragschicht, Bettung, Stein)" display=list-item rect=1119..1140@172 | next=DIV display=grid cols=493px 493px top=1156 overlap=0 | label="Bettung (cm)" top=1156 aufSummaryzeile=false felder=6
+  #2 open=false detailsDisplay=block summary="Formel und Quelle" display=list-item rect=1562..1583@147 | next=H3 display=block cols=none top=1583 overlap=0 | label="" top=null aufSummaryzeile=null felder=0
+ROUTE /tools/tires | h1="Reifen und Drehmoment" | Abschnitte: 3
+  #0 open=true detailsDisplay=block summary="Bezugsgröße für den Vergleich" display=list-item rect=766..787@172 | next=DIV display=grid cols=493px 493px top=803 overlap=0 | label="Breite der Bezugsgröße (mm)" top=803 aufSummaryzeile=false felder=3
+  #1 open=true detailsDisplay=block summary="Anzugsmoment" display=list-item rect=1031..1052@172 | next=P display=block cols=none top=1052 overlap=0 | label="Anzugsmoment (Nm)" top=1088 aufSummaryzeile=false felder=2
+  #2 open=false detailsDisplay=block summary="Formel und Quelle" display=list-item rect=1316..1337@147 | next=H3 display=block cols=none top=1337 overlap=0 | label="" top=null aufSummaryzeile=null felder=0
+ROUTE /tools/paint | h1="Farbe, Tapeten und Beschichtung" | Abschnitte: 3
+  #0 open=true detailsDisplay=block summary="Öffnungen" display=list-item rect=656..677@172 | next=DIV display=grid cols=493px 493px top=693 overlap=0 | label="Türen (Stück)" top=693 aufSummaryzeile=false felder=7
+  #1 open=true detailsDisplay=block summary="Untergrund, Farbe und Tapete" display=list-item rect=1099..1120@172 | next=P display=block cols=none top=1120 overlap=0 | label="Anstriche" top=1156 aufSummaryzeile=false felder=8
+  #2 open=false detailsDisplay=block summary="Formel und Quelle" display=list-item rect=1651..1672@147 | next=H3 display=block cols=none top=1672 overlap=0 | label="" top=null aufSummaryzeile=null felder=0
+ROUTE /tools/tiles | h1="Fliesen, Kleber und Fugenmörtel" | Abschnitte: 2
+  #0 open=true detailsDisplay=block summary="Fugen, Kleber und Zuschlag — 5 %" display=list-item rect=923..944@172 | next=P display=block cols=none top=944 overlap=0 | label="Fugenbreite (mm)" top=980 aufSummaryzeile=false felder=6
+  #1 open=false detailsDisplay=block summary="Formel und Quelle" display=list-item rect=1386..1407@147 | next=H3 display=block cols=none top=1407 overlap=0 | label="" top=null aufSummaryzeile=null felder=0
+ROUTE /tools/concrete | h1="Beton, Mörtel und Estrich" | Abschnitte: 2
+  #0 open=true detailsDisplay=block summary="Vorschlag der gewählten Mischung — Z ≈ 300" display=list-item rect=923..944@172 | next=P display=block cols=none top=944 overlap=0 | label="Zementgehalt je m³ Mischung (k" top=980 aufSummaryzeile=false felder=5
+  #1 open=false detailsDisplay=block summary="Formel und Quelle" display=list-item rect=1386..1407@147 | next=H3 display=block cols=none top=1407 overlap=0 | label="" top=null aufSummaryzeile=null felder=0
