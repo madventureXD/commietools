@@ -37,6 +37,30 @@
   nicht gebaut; der Teiler räumt an vier Stellen selbst auf. Bleibt als Aufräumarbeit.
 - Prüfkette unverändert: `npm run check` 687 Tests, Exit 0. **Nichts gepusht.**
 
+**Zusatz 2026-10-07 (Faber), Einheit 4: M4-004 abgeschlossen — Ladefehler haben einen sichtbaren Fehlerweg:**
+- **Vorher:** Eine abgelehnte Zusage beim Nachladen der Werkzeugtexte war **unbehandelt**, die
+  Werkzeugseite stand für immer im Ladehinweis; ein gescheiterter `lazy()`-Import riss die Seite mit
+  **leerem Bildschirm** ab; Katalog, Werkzeugmenü, Suiten-Seite und Katalogschlüssel hatten ebenfalls
+  keinen Fehlerweg.
+- **Neu:** übersetzte Meldung mit **kontrolliertem Neuladen** (einmal, Schleifensperre im
+  Gerätespeicher, sichtbarer Hinweis auf verlorene Eingaben), **Fehlergrenze** für die nachgeladenen
+  Werkzeuge mit **getrennten** Meldungen für veralteten Chunk und Auswertungsfehler, Fehlerwege für
+  Katalog, Menü und Suiten-Seite, Texte in drei Sprachen, 5 Tests für die reinen Funktionen.
+- **Abnahme über einen Fehler-Proxy vor dem Browser** (`work/fehler-proxy.mjs`, bewusst nicht über
+  `Network.setBlockedURLs`): 7 Prüfungen grün — gesperrte Textdatei zeigt Meldung und Knopf,
+  Neuladen bringt ein neues Dokument, Schleifensperre greift, mit wiederhergestelltem Netz lädt
+  derselbe Baustein sauber, der verzögerte Fehlschlag der alten Sprache beschädigt die neue nicht,
+  der faule Chunk wird gefangen, der Auswertungsfehler **anders** gemeldet.
+  **0 unbehandelte Zusagen** im ganzen Lauf.
+- **Abweichung von der Karte, gemessen und benannt:** „Retry ohne Dokumentreload" ist bei einem
+  gescheiterten **Modulimport** nicht möglich. Der Minimalversuch (`work/modulimport-probe.cjs`)
+  zeigt drei Versuche mit nur **einer** Netzanfrage: Der Browser merkt sich die gescheiterte Adresse
+  im Modulspeicher des Dokuments. Statt eines Knopfes, der nichts bewirken kann, steht das Neuladen.
+  Ein benannter, begrenzter Adresszusatz wäre der einzige Weg — die Karte verbietet ihn ausdrücklich.
+- Prüfkette: `npm run check` **692 Tests in 47 Dateien** Exit 0, **0 Lint-Fehler**;
+  `npm run build` Exit 0, Startbündel **149 472 B gzip**. Protokoll:
+  `06-protokolle/2026-10-07-m4-004-ladefehler-und-fehlerwege.md`. **Nichts gepusht** (`ec226ea`).
+
 **Zusatz 2026-10-07 (Faber), Einheit 3: M2-009 abgeschlossen — Kontrastmessung belastbar, Browserjob im CI:**
 - **Ursache gemessen statt geraten:** Der Prüfer brach die Hintergrundauflösung ab, wenn über einem
   Text **keine deckende Fläche** lag — der Kandidat wurde still übersprungen. Zwei Wegwerf-Seiten
