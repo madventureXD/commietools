@@ -89,7 +89,7 @@ Protokoll: `06-protokolle/2026-10-06-r1-*.md`, `…-m9-004-lopdf-anhebung.md`, `
 | M3-002 | Statistik liest lokalisierte Zahlen falsch | ✓ neue Grammatik; **Abnahme des Importvertrags offen (Thomas)** |
 | M4-001 | RPN verkettet Brüche ohne Klammern | ✓ `geschuetzterOperand`, Abnahmefall 3/2 |
 | M4-002 | Anzeige-Nullschwelle vernichtet Vollwert | ◐ `raw`/`full` echt; **Kennzeichnung der Anzeige-Nullung offen** |
-| M4-003 | Plotter ersetzt `x` auch in Funktionsnamen | ○ |
+| M4-003 | Plotter ersetzt `x` auch in Funktionsnamen | ✓ Scope-Bindung, `raw` statt `display`; Abnahmefälle im Browser belegt (2026-10-06) |
 | M6-001 | JSON-Formatierung verändert Zahlenwerte | ○ |
 | M6-002 | RPN-Tastenfeld setzt mehrstellige Zahlen nicht zusammen | ○ |
 | M8-004 | CSV-Freitext als Tabellenformel exportiert | ○ |

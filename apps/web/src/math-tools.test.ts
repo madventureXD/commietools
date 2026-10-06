@@ -317,6 +317,36 @@ describe('Funktionsplotter', () => {
     expect(valueAt('1/x', 0)).toBe(null)
   })
 
+  it('binds x over the scope instead of replacing the character (M4-003)', () => {
+    // Regression: eine Zeichenersetzung im Ausdruck machte aus `exp(x)` die Folge `e(0)p(0)` —
+    // jeder Name mit einem `x` darin lieferte deshalb `null`.
+    expect(valueAt('exp(x)', 0)).toBe(1)
+    // Namen mit `x` stehen neben dem gebundenen Zeichen.
+    expect(valueAt('max(x, 2)', 0)).toBe(2)
+    expect(valueAt('max(x, 2)', 5)).toBe(5)
+    expect(valueAt('x^2', -3)).toBe(9)
+    // Positive Kontrolle: ein Name mit `x` bleibt ein Name, auch ohne gebundenes x.
+    expect(valueAt('exp(0)', 7)).toBe(1)
+    // Unbekannte Namen bleiben unbekannt — es wird nichts erfunden.
+    expect(valueAt('y + 1', 0)).toBe(null)
+  })
+
+  it('uses the same evaluator for table, roots and geometry (M4-003)', () => {
+    // Ein zweiter Rechenweg für denselben Ausdruck wäre der Fehler; alle drei Wege gehen über
+    // `valueAt` und damit über den Kern.
+    const table = sampleTable([{ expression: 'exp(x)' }], { xMin: -1, xMax: 1 }, 3)
+    expect(table[0]?.values[0]).toBeCloseTo(Math.exp(-1), 9)
+    expect(table[1]?.values[0]).toBe(1)
+    expect(table[2]?.values[0]).toBeCloseTo(Math.exp(1), 9)
+
+    const roots = findRoots([{ expression: 'exp(x) - 1' }], { xMin: -2, xMax: 2, yMin: -5, yMax: 5 })
+    expect(roots.map((root) => Number(root.x.toFixed(6)))).toEqual([0])
+
+    const geometry = buildGeometry([{ expression: 'exp(x)' }], { xMin: -1, xMax: 1 }, 20, 600, 300)
+    expect(geometry.paths[0]?.hasValues).toBe(true)
+    expect(geometry.paths[0]?.segments.length).toBe(1)
+  })
+
   it('builds a sample table over the requested domain', () => {
     const table = sampleTable([{ expression: 'x^2' }], { xMin: 0, xMax: 10 }, 11)
     expect(table.length).toBe(11)

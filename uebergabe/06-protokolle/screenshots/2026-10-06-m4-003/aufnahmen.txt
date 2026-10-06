@@ -1,0 +1,29 @@
+SEITE „Funktionsplotter" · Bündel index-B3GNuPJh.js · Fehler „" · Kurvenzüge 1 [6347]
+TABELLE exp(x) [{"x":"-1","values":["0.3678794412"]},{"x":"0","values":["1"]},{"x":"1","values":["2.7182818285"]}]
+ok exp(x): drei Stützstellen (3)
+ok exp(x): x-Werte -1/0/1 (-1,0,1)
+ok exp(x) bei -1 = 0.3678794412 (gelesen 0.3678794412)
+ok exp(x) bei 0 = 1 (gelesen 1)
+ok exp(x) bei 1 = 2.7182818285 (gelesen 2.7182818285)
+ok exp(x): genau ein gezeichneter Kurvenzug mit echtem Pfad
+BILD 01-exp-x-dunkel-1360.png 282 kB
+TABELLE max(x,2) [{"x":"0","values":["2"]},{"x":"1","values":["2"]},{"x":"2","values":["2"]},{"x":"3","values":["3"]}]
+ok max(x,2) über 0..3 = 2,2,2,3 (gelesen 2,2,2,3)
+ok max(x,2): ein Kurvenzug (1)
+BILD 02-max-x-2-dunkel-1360.png 275 kB
+NULLSTELLEN exp(x)-1 ["exp(x) - 1 = 0 → x = 0"]
+ok exp(x)-1: genau eine Nullstelle bei 0 (["exp(x) - 1 = 0 → x = 0"])
+BILD 03-nullstelle-exp-dunkel-1360.png 313 kB
+TABELLE 1/x [{"x":"-2","values":["-0.5"]},{"x":"0","values":["nicht definiert"]},{"x":"2","values":["0.5"]}] · Kurvenzüge 2
+ok 1/x bei 0 ist nicht definiert (gelesen „nicht definiert")
+ok 1/x zeichnet zwei getrennte Äste (2)
+BILD 04-polstelle-1durchx-dunkel-1360.png 272 kB
+TABELLE y+1 [{"x":"-2","values":["nicht definiert"]},{"x":"0","values":["nicht definiert"]},{"x":"2","values":["nicht definiert"]}] · Kurvenzüge 0
+ok unbekannte Variable: kein Zahlenwert
+ok unbekannte Variable: keine Kurve (0)
+BILD 05-unbekannte-variable-dunkel-1360.png 258 kB
+SCHMAL/HELL „Funktionsplotter" · Tabelle [{"x":"-1","values":["0.3678794412"]},{"x":"0","values":["1"]},{"x":"1","values":["2.7182818285"]}] · Überbreite 0 px
+ok schmal: exp(x) bei 0 = 1 (gelesen 1)
+ok keine Überbreite bei 390 px (0 px)
+BILD 06-exp-x-hell-390.png 233 kB
+ERGEBNIS: alle Prüfungen bestanden

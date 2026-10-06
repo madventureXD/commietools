@@ -17,7 +17,7 @@
  * verfeinert. Eine Stelle gilt nur dann als Nullstelle, wenn der Funktionswert dort klein bleibt
  * — ein Vorzeichenwechsel an einer **Polstelle** (etwa 1/x) ist keine Nullstelle.
  */
-import { evaluate } from './core'
+import { calculatorFor, evaluate } from './core'
 
 /** Standardfarbe, wenn keine angegeben ist — ein Test braucht keine Farben. */
 export const defaultCurveColor = '#c91f2c'
@@ -77,11 +77,23 @@ const DEFAULT_WIDTH = 720
 const DEFAULT_HEIGHT = 420
 const PADDING = { left: 46, right: 14, top: 14, bottom: 28 }
 
-/** Funktionswert über den Rechenkern. `null` heißt: an dieser Stelle nicht definiert. */
+/**
+ * Funktionswert über den Rechenkern. `null` heißt: an dieser Stelle nicht definiert.
+ *
+ * Der Ausdruck wird **unverändert** ausgewertet; `x` wird über den Scope gebunden (Karte
+ * M4-003). Vorher ersetzte eine Zeichenersetzung jedes `x` im Ausdruck — damit wurde aus
+ * `exp(x)` die Zeichenfolge `e(0)p(0)` und jeder Name mit einem `x` darin unbrauchbar.
+ * Kein Wortgrenzen-Regex als Ersatz: mathjs ist der Parser, nicht eine Zeichenregel.
+ *
+ * An der Grenze zur Geometrie steht die Umwandlung in eine endliche JS-Zahl. Dafür wird
+ * `raw` gelesen — der kanonische, wieder einlesbare Dezimalwert — und **nicht** `display`:
+ * der Anzeigetext trägt den Dezimaltrenner der Sprache und die Anzeige-Nullung.
+ */
 export function valueAt(expression: string, x: number): number | null {
-  const result = evaluate(expression.replace(/x/gu, `(${x})`), { number: 'BigNumber' })
+  const math = calculatorFor({ number: 'BigNumber' })
+  const result = evaluate(expression, { number: 'BigNumber' }, { x: math.bignumber(x) })
   if (!result.ok) return null
-  const value = Number(result.display)
+  const value = Number(result.raw)
   return Number.isFinite(value) ? value : null
 }
 

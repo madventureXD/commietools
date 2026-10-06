@@ -420,6 +420,25 @@ Diese Liste enthält bestätigte, noch nicht abgeschlossene Arbeit. Details geh�
   jetzt als `1e-14` statt `0`. Gewollte Folge, aber die Oberfläche ist darauf nicht geprüft.
 - [ ] Offen in R2 außerdem: M4-003 und die weiteren Karten des Pakets (7 Gruppen).
 
+- [x] **M4-003 — Plotter ersetzt das Zeichen x auch innerhalb von Funktionsnamen: erledigt**
+  *(Nachtrag 2026-10-06)*. `valueAt` ersetzte `x` per Zeichenersetzung im Ausdruck: `exp(x)` wurde
+  bei `x = 0` zu `e(0)p(0)`, der Kern scheiterte, der Wert war `null` — betroffen waren damit
+  Wertetabelle, Nullstellensuche und gezeichnete Kurve gleichzeitig. Neu: der Ausdruck geht
+  unverändert an den Kern, `x` wird über den vorhandenen Scope als `BigNumber` gebunden; an der
+  Geometriegrenze wird `raw` gelesen und nicht mehr der lokalisierte `display`-Text, der zusätzlich
+  die Anzeige-Nullung aus M4-002 trägt. Belegt durch zwei neue Tests mit Mutationsgegenprobe und
+  sechs Browseraufnahmen (alle Abnahmefälle der Karte bestanden). Bericht:
+  `06-protokolle/2026-10-06-m4-003-plotter-scope.md`. **Nicht gepusht.**
+  - [ ] Offen aus M4-003: der von der Karte **optional** genannte `compile()`-Weg für viele
+    Stützstellen ist nicht umgesetzt — derzeit wertet jeder Punkt über `evaluate` aus. Erst messen,
+    dann entscheiden.
+  - [ ] Fund am Rande, gehört zu **M3-010** (R6, nicht begonnen): die Wertetabelle des Plotters
+    zeigt Punkt-Dezimalzahlen (`0.3678794412`) in der deutschen Oberfläche; der Rechner zeigt Komma.
+- [ ] **Überholt:** der vorstehende Satz „Offen in R2 außerdem: M4-003 …" ist mit dem Nachtrag vom
+  2026-10-06 nicht mehr zutreffend. M4-003 ist erledigt; offen sind in R2 noch **M6-001, M6-002,
+  M8-004** sowie die beiden Entscheidungen aus M3-002 (Importvertrag) und M4-002 (Kennzeichnung der
+  Anzeige-Nullung).
+
 ## Pflege
 
 - Erledigte Punkte mit Verweis auf Commit oder ADR in ein Fortschrittsprotokoll übernehmen und anschließend hier entfernen.
