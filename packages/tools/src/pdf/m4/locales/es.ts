@@ -1,7 +1,7 @@
 export const es = {
   'tool.pdfForm.title': 'Rellenar formulario PDF',
   'tool.pdfForm.description': 'Lee y completa campos de AcroForm localmente; XFA se detecta y se marca claramente como no compatible.',
-  'tool.pdfForm.summary': 'Rellena campos de texto, opciones, casillas de verificación y radio en archivos PDF.',
+  'tool.pdfForm.summary': 'Rellenar campos de texto, opciones, casillas de verificación y radio en archivos PDF.',
   'tool.pdfForm.terms': 'completar formulario PDF, AcroForm, campos PDF, campo de texto, casilla de verificación, campo de elección, botón de opción, guardar formulario, aplanar formulario, XFA, formulario PDF, #pdf, #formulario, #rellenar',
   'tool.pdfForm.noFields': 'No se encontraron campos AcroForm compatibles en este PDF.',
   'tool.pdfForm.xfa': 'Este archivo contiene XFA. XFA no se edita; sólo se muestran campos adicionales de AcroForm.',
@@ -23,7 +23,7 @@ export const es = {
   'tool.pdfAnnotate.add': 'Agregar anotación', 'tool.pdfAnnotate.existing': 'Anotaciones existentes',
   'tool.pdfAnnotate.none': 'Aún no se admiten anotaciones.', 'tool.pdfAnnotate.delete': 'Eliminar anotación',
   'tool.pdfAnnotate.draw': 'dibujar a mano alzada', 'tool.pdfAnnotate.clear': 'Borrar dibujo',
-  'tool.pdfAnnotate.drawHelp': 'Dibuja con el mouse, el bolígrafo o el dedo. Los trazos se guardan como una anotación en tinta genuina en la página PDF seleccionada.',
+  'tool.pdfAnnotate.drawHelp': 'Dibujar con el mouse, el bolígrafo o el dedo. Los trazos se guardan como una anotación en tinta genuina en la página PDF seleccionada.',
   'tool.pdfAnnotate.result': 'PDF comentado'
 } as const
 

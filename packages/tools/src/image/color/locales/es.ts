@@ -14,7 +14,7 @@ export const colorToolsEs = {
   'tool.colorTools.swap': 'Intercambiar primer plano y fondo',
 
   'tool.colorTools.source': 'Imagen',
-  'tool.colorTools.chooseFile': 'Elige el archivo',
+  'tool.colorTools.chooseFile': 'Seleccionar archivo',
   'tool.colorTools.selected': 'Archivo seleccionado',
   'tool.colorTools.originalSize': 'Original',
   'tool.colorTools.pickHint': 'Haz clic en la imagen para elegir un color. Las teclas de flecha mueven un píxel a la vez.',
@@ -27,7 +27,7 @@ export const colorToolsEs = {
   'tool.colorTools.paletteCount': 'Número de colores',
   'tool.colorTools.paletteAction': 'Tirar de la paleta',
   'tool.colorTools.paletteWorking': 'Laboral …',
-  'tool.colorTools.paletteEmpty': 'Elija una imagen primero para crear una paleta.',
+  'tool.colorTools.paletteEmpty': 'Seleccionar primero una imagen para crear una paleta.',
   'tool.colorTools.paletteUse': 'Usar como color',
 
   'tool.colorTools.contrast': 'Contraste',

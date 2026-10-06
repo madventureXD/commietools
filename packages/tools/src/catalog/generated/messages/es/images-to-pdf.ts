@@ -2,7 +2,7 @@
 // Run `npm run catalog:generate` after changing manifests, locale catalogues or tool icons.
 
 export const messages: Readonly<Record<string, string>> = {
-  "tool.imagesToPdf.choose": "Elija imágenes JPEG o PNG",
+  "tool.imagesToPdf.choose": "Seleccionar imágenes JPEG o PNG",
   "tool.imagesToPdf.settings": "Configuración de página",
   "tool.imagesToPdf.pageSize": "Tamaño de página",
   "tool.imagesToPdf.auto": "Tamaño de imagen",

@@ -5,7 +5,7 @@ export const iconGeneratorEs = {
   'tool.iconGenerator.terms': 'icono,iconos,favicon,favicon.ico,icono de aplicación,icono de sitio web,conjunto de iconos,tamaños de iconos,tamaños,16x16,32x32,180x180,192x192,512x512,pwa,manifiesto de aplicación web,manifest.json,enmascarable,android,pantalla de inicio,icono de Apple Touch,icono táctil,crear favicon,pestaña del navegador,pestaña icono,png,ico,windows,icono de programa,acceso directo al escritorio,#icono,#favicon,#pwa',
 
   'tool.iconGenerator.source': 'Imagen',
-  'tool.iconGenerator.chooseFile': 'Elige el archivo',
+  'tool.iconGenerator.chooseFile': 'Seleccionar archivo',
   'tool.iconGenerator.selected': 'Archivo seleccionado',
   'tool.iconGenerator.originalSize': 'Original',
   'tool.iconGenerator.preview': 'Avance',
@@ -40,7 +40,7 @@ export const iconGeneratorEs = {
   'tool.iconGenerator.download': 'Ahorrar',
 
   'tool.iconGenerator.manifest': 'Entrada manifiesta',
-  'tool.iconGenerator.manifestHint': 'Para el manifest.json de su aplicación web. Guarde los PNG guardados junto al archivo de manifiesto.',
+  'tool.iconGenerator.manifestHint': 'Para el manifest.json de su aplicación web: guardar los PNG junto al archivo de manifiesto.',
   'tool.iconGenerator.copy': 'Copiar',
   'tool.iconGenerator.copied': 'copiado'
 } as const

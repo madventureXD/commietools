@@ -3,7 +3,7 @@
 
 export const messages: Readonly<Record<string, string>> = {
   "tool.imageMetadata.file": "Seleccionar imagen",
-  "tool.imageMetadata.chooseFile": "Elige el archivo",
+  "tool.imageMetadata.chooseFile": "Seleccionar archivo",
   "tool.imageMetadata.selected": "Archivo seleccionado",
   "tool.imageMetadata.size": "Tamaño",
   "tool.imageMetadata.dimensions": "Dimensiones",

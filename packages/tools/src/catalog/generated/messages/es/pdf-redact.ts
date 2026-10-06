@@ -3,7 +3,7 @@
 
 export const messages: Readonly<Record<string, string>> = {
   "tool.pdfRedact.warning": "Irreversible: el contenido marcado se elimina del PDF nuevo. Conserva el original por separado.",
-  "tool.pdfRedact.draw": "Arrastra un área de censura sobre la página con ratón, lápiz o dedo.",
+  "tool.pdfRedact.draw": "Arrastrar un área de censura sobre la página con ratón, lápiz o dedo.",
   "tool.pdfRedact.selection": "Selección: X {x}, Y {y}, ancho {w}, alto {h} puntos PDF",
   "tool.pdfRedact.clearMetadata": "Borrar los metadatos del documento de salida",
   "tool.pdfRedact.removeAnnotations": "Eliminar anotaciones de la página afectada",

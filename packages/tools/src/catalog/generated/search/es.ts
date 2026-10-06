@@ -652,7 +652,7 @@ export const searchLocale: Readonly<Record<string, ToolLocaleEntry>> = {
   },
   "pdf-form-fill": {
     "title": "Rellenar formulario PDF",
-    "summary": "Rellena campos de texto, opciones, casillas de verificación y radio en archivos PDF.",
+    "summary": "Rellenar campos de texto, opciones, casillas de verificación y radio en archivos PDF.",
     "description": "Lee y completa campos de AcroForm localmente; XFA se detecta y se marca claramente como no compatible.",
     "terms": [
       "completar formulario PDF",

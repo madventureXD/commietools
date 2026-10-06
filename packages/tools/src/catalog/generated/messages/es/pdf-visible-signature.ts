@@ -9,11 +9,11 @@ export const messages: Readonly<Record<string, string>> = {
   "tool.pdfSignature.name": "Nombre",
   "tool.pdfSignature.nameLabel": "Nombre para la firma",
   "tool.pdfSignature.clear": "Borrar dibujo",
-  "tool.pdfSignature.canvas": "Dibuja la firma con el mouse, el lápiz o el tacto",
+  "tool.pdfSignature.canvas": "Dibujar la firma con el mouse, el lápiz o el tacto",
   "tool.pdfSignature.page": "Página",
   "tool.pdfSignature.width": "Ancho (pt)",
   "tool.pdfSignature.date": "Línea de fecha (opcional)",
-  "tool.pdfSignature.required": "Dibuja una firma, ingresa un nombre o elige una imagen.",
+  "tool.pdfSignature.required": "Dibujar una firma, introducir un nombre o seleccionar una imagen.",
   "tool.pdfSignature.action": "Colocar firma visible",
   "tool.pdfSignature.result": "PDF visiblemente firmado"
 }

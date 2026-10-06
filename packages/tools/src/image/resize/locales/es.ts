@@ -5,7 +5,7 @@ export const imageResizeEs = {
   'tool.imageResize.terms': 'cambiar el tamaño,cambiar el tamaño de la imagen,escala,reducir,reducir la imagen,hacer más pequeño,ampliar,ampliar la imagen,hacer más grande,aumentar,cambiar tamaño,tamaño de la imagen,tamaño,dimensiones,píxeles,ancho,alto,resolución,recortar,cortar,aspecto,rotar,rotación,girar,girar 90 grados,espejo,reflejo,voltear,voltear horizontal,girar vertical,orientación,relación de aspecto,proporcional,mantener proporciones,cuadrado,recorte cuadrado,imagen de perfil,avatar,foto de perfil,miniatura,vista previa,sitio web,redes sociales,instagram,facebook,whatsapp,archivo adjunto de correo electrónico,archivo adjunto,foto,imagen,archivo de imagen,jpeg,png,webp,#imágenes,#tamaño,#recortar,#rotar,#avatar',
 
   'tool.imageResize.source': 'Imagen',
-  'tool.imageResize.chooseFile': 'Elige el archivo',
+  'tool.imageResize.chooseFile': 'Seleccionar archivo',
   'tool.imageResize.selected': 'Archivo seleccionado',
   'tool.imageResize.originalSize': 'Original',
   'tool.imageResize.preview': 'Avance',

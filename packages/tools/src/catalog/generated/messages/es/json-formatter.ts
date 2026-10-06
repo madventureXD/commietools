@@ -2,7 +2,7 @@
 // Run `npm run catalog:generate` after changing manifests, locale catalogues or tool icons.
 
 export const messages: Readonly<Record<string, string>> = {
-  "tool.jsonFormatter.input": "Introduzca JSON",
+  "tool.jsonFormatter.input": "Introducir JSON",
   "tool.jsonFormatter.indentation": "Sangría",
   "tool.jsonFormatter.invalid": "El JSON ingresado no es válido."
 }

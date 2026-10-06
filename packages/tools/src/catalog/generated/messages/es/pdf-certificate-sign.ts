@@ -8,5 +8,5 @@ export const messages: Readonly<Record<string, string>> = {
   "tool.pdfCertificateSign.scope": "Crea PAdES B-B sin sello de tiempo en línea. Esto no confirma que el certificado sea de confianza.",
   "tool.pdfCertificateSign.action": "Firmar PDF digitalmente",
   "tool.pdfCertificateSign.result": "PDF firmado digitalmente",
-  "tool.pdfCertificateSign.failed": "No se pudo firmar el PDF. Comprueba el certificado, la contraseña y el archivo PDF."
+  "tool.pdfCertificateSign.failed": "No se pudo firmar el PDF. Comprobar el certificado, la contraseña y el archivo PDF."
 }

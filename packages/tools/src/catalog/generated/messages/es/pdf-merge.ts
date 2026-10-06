@@ -2,7 +2,7 @@
 // Run `npm run catalog:generate` after changing manifests, locale catalogues or tool icons.
 
 export const messages: Readonly<Record<string, string>> = {
-  "tool.pdfMerge.empty": "Elija al menos un archivo PDF.",
+  "tool.pdfMerge.empty": "Seleccionar al menos un archivo PDF.",
   "tool.pdfMerge.action": "Fusionar archivos PDF",
   "tool.pdfMerge.result": "PDF fusionado",
   "tool.pdfMerge.success": "Se fusionaron {count} documentos."

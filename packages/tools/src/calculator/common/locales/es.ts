@@ -7,7 +7,7 @@ export const calcCommonEs = {
   'tool.calcCommon.assumptions': 'Supuestos y límites',
   'tool.calcCommon.lastChecked': 'Comprobado por última vez el 2026-10-03.',
 
-  'tool.calcCommon.error.empty': 'Introduce un valor.',
+  'tool.calcCommon.error.empty': 'Introducir un valor.',
   'tool.calcCommon.error.invalid': 'La entrada no es un número.',
   'tool.calcCommon.error.range': 'Este valor no es admisible para el cálculo.',
   'tool.calcCommon.error.zeroDivisor': 'La división entre cero no está definida.',

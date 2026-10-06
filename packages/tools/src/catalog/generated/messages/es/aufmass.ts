@@ -59,7 +59,7 @@ export const messages: Readonly<Record<string, string>> = {
   "tool.aufmass.export.copied": "El texto está en el portapapeles.",
   "tool.aufmass.export.failed": "No se pudo copiar: toma el texto a mano.",
   "tool.aufmass.export.working": "Creando el PDF …",
-  "tool.aufmass.error.empty": "Introduce una cadena o una fórmula.",
+  "tool.aufmass.error.empty": "Introducir una cadena de medidas o una fórmula.",
   "tool.aufmass.error.invalid": "La entrada contiene algo que no es un número.",
   "tool.aufmass.error.syntax": "Los paréntesis o los signos no concuerdan.",
   "tool.aufmass.error.zeroDivisor": "La división por cero no está definida.",

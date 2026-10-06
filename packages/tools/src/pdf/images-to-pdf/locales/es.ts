@@ -3,7 +3,7 @@ export const imagesToPdfEs = {
   'tool.imagesToPdf.description': 'Crea un PDF a partir de imágenes JPEG y PNG con orden, tamaño de página y ajuste controlados, completamente en su dispositivo.',
   'tool.imagesToPdf.summary': 'Convierte imágenes JPEG y PNG ordenadas en un solo PDF.',
   'tool.imagesToPdf.terms': 'imágenes a PDF,fotos a PDF,JPG a PDF,JPEG a PDF,PNG a PDF,combinar archivos de imágenes,documento fotográfico,escanear a PDF,tamaño de página A4,PDF Carta,Bilder zu PDF,#pdf,#images,#convertir',
-  'tool.imagesToPdf.choose': 'Elija imágenes JPEG o PNG',
+  'tool.imagesToPdf.choose': 'Seleccionar imágenes JPEG o PNG',
   'tool.imagesToPdf.settings': 'Configuración de página',
   'tool.imagesToPdf.pageSize': 'Tamaño de página',
   'tool.imagesToPdf.auto': 'Tamaño de imagen',

@@ -5,7 +5,7 @@ export const imageWatermarkEs = {
   'tool.watermark.terms': 'marca de agua, agregar marca de agua, marca de agua de imagen, marca de agua de foto, derechos de autor, aviso de derechos de autor, atribución, proteger, proteger imágenes, derechos de imagen, prueba, fuente, crédito, línea de crédito, agregar texto, texto en la imagen, agregar logotipo, logotipo en la imagen, marca, logotipo de la empresa, opacidad, transparencia, semitransparente, posición, ubicación, esquina, abajo a la derecha, mosaico, mosaico patrón,patrón,repetir,diagonal,rotar,rotación,imagen,foto,jpeg,png,webp,en venta,listado,#marca de agua,#imágenes,#copyright',
 
   'tool.watermark.source': 'Imagen',
-  'tool.watermark.chooseFile': 'Elige el archivo',
+  'tool.watermark.chooseFile': 'Seleccionar archivo',
   'tool.watermark.selected': 'Archivo seleccionado',
   'tool.watermark.originalSize': 'Original',
   'tool.watermark.preview': 'Avance',
@@ -37,7 +37,7 @@ export const imageWatermarkEs = {
   'tool.watermark.anchor.bottomLeft': 'Abajo a la izquierda',
   'tool.watermark.anchor.bottom': 'Abajo',
   'tool.watermark.anchor.bottomRight': 'Abajo a la derecha',
-  'tool.watermark.tiled': 'Repita como un patrón en toda la imagen.',
+  'tool.watermark.tiled': 'Repetir como patrón en toda la imagen.',
   'tool.watermark.spacing': 'Brecha en el patrón',
   'tool.watermark.margin': 'Distancia al borde',
   'tool.watermark.disabledInPattern': 'En caso de patrón, no se aplican la posición ni la distancia al borde.',

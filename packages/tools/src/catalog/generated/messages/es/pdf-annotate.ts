@@ -27,6 +27,6 @@ export const messages: Readonly<Record<string, string>> = {
   "tool.pdfAnnotate.delete": "Eliminar anotación",
   "tool.pdfAnnotate.draw": "dibujar a mano alzada",
   "tool.pdfAnnotate.clear": "Borrar dibujo",
-  "tool.pdfAnnotate.drawHelp": "Dibuja con el mouse, el bolígrafo o el dedo. Los trazos se guardan como una anotación en tinta genuina en la página PDF seleccionada.",
+  "tool.pdfAnnotate.drawHelp": "Dibujar con el mouse, el bolígrafo o el dedo. Los trazos se guardan como una anotación en tinta genuina en la página PDF seleccionada.",
   "tool.pdfAnnotate.result": "PDF comentado"
 }

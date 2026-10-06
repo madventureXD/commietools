@@ -3,7 +3,7 @@
 
 export const messages: Readonly<Record<string, string>> = {
   "tool.watermark.source": "Imagen",
-  "tool.watermark.chooseFile": "Elige el archivo",
+  "tool.watermark.chooseFile": "Seleccionar archivo",
   "tool.watermark.selected": "Archivo seleccionado",
   "tool.watermark.originalSize": "Original",
   "tool.watermark.preview": "Avance",
@@ -33,7 +33,7 @@ export const messages: Readonly<Record<string, string>> = {
   "tool.watermark.anchor.bottomLeft": "Abajo a la izquierda",
   "tool.watermark.anchor.bottom": "Abajo",
   "tool.watermark.anchor.bottomRight": "Abajo a la derecha",
-  "tool.watermark.tiled": "Repita como un patrón en toda la imagen.",
+  "tool.watermark.tiled": "Repetir como patrón en toda la imagen.",
   "tool.watermark.spacing": "Brecha en el patrón",
   "tool.watermark.margin": "Distancia al borde",
   "tool.watermark.disabledInPattern": "En caso de patrón, no se aplican la posición ni la distancia al borde.",

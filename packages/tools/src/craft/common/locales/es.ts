@@ -31,7 +31,7 @@ export const craftCommonEs = {
   'tool.craft.out.totalMass': 'Masa total',
   'tool.craft.out.ratio': 'Relación cemento : árido en masa',
 
-  'tool.craft.error.empty': 'Rellene todos los campos.',
+  'tool.craft.error.empty': 'Rellenar todos los campos.',
   'tool.craft.error.invalid': 'Al menos un valor no es un número.',
   'tool.craft.error.volume': 'El volumen debe ser mayor que cero.',
   'tool.craft.error.cement': 'El contenido de cemento está fuera del rango razonable (50 a 800 kg/m³).',

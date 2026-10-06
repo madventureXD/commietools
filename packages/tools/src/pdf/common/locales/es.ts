@@ -1,6 +1,6 @@
 export const pdfCommonEs = {
-  'tool.pdf.choose': 'Elija el archivo PDF',
-  'tool.pdf.chooseMultiple': 'Elija archivos PDF',
+  'tool.pdf.choose': 'Seleccionar archivo PDF',
+  'tool.pdf.chooseMultiple': 'Seleccionar archivos PDF',
   'tool.pdf.files': 'Documentos',
   'tool.pdf.pages': 'paginas',
   'tool.pdf.page': 'Página',

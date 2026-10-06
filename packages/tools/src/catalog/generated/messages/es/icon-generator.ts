@@ -3,7 +3,7 @@
 
 export const messages: Readonly<Record<string, string>> = {
   "tool.iconGenerator.source": "Imagen",
-  "tool.iconGenerator.chooseFile": "Elige el archivo",
+  "tool.iconGenerator.chooseFile": "Seleccionar archivo",
   "tool.iconGenerator.selected": "Archivo seleccionado",
   "tool.iconGenerator.originalSize": "Original",
   "tool.iconGenerator.preview": "Avance",
@@ -31,7 +31,7 @@ export const messages: Readonly<Record<string, string>> = {
   "tool.iconGenerator.resultHint": "Los archivos se guardan uno por uno; todos pertenecen a la misma carpeta.",
   "tool.iconGenerator.download": "Ahorrar",
   "tool.iconGenerator.manifest": "Entrada manifiesta",
-  "tool.iconGenerator.manifestHint": "Para el manifest.json de su aplicación web. Guarde los PNG guardados junto al archivo de manifiesto.",
+  "tool.iconGenerator.manifestHint": "Para el manifest.json de su aplicación web: guardar los PNG junto al archivo de manifiesto.",
   "tool.iconGenerator.copy": "Copiar",
   "tool.iconGenerator.copied": "copiado"
 }

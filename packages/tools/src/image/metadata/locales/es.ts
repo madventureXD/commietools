@@ -5,7 +5,7 @@ export const imageMetadataEs = {
   'tool.imageMetadata.terms': 'metadatos,exif,datos de imagen,información de imagen,información,datos exif,gps,ubicación,geodatos,geo,coordenadas,posición,ubicación de captura,cámara,cámara del teléfono,teléfono inteligente,fecha de captura,hora de captura,fecha,hora,marca de tiempo,exposición,tiempo de exposición,apertura,iso,distancia focal,lente,flash,número de serie,dispositivo,cámara modelo,copyright,creador,artista,fotógrafo,autor,software,programa,comentario,descripción,palabras clave,xmp,iptc,icc,perfil de color,orientación,rotación,eliminar,tira,limpiar,desinfectar,anonimizar,datos ocultos,rastro,rastros,seguimiento,sin pérdidas,sin recodificación,privacidad,foto,imagen,archivo de imagen,jpeg,png,webp,compartir,publicar,enviar,#privacidad,#imágenes,#exif,#gps',
 
   'tool.imageMetadata.file': 'Seleccionar imagen',
-  'tool.imageMetadata.chooseFile': 'Elige el archivo',
+  'tool.imageMetadata.chooseFile': 'Seleccionar archivo',
   'tool.imageMetadata.selected': 'Archivo seleccionado',
   'tool.imageMetadata.size': 'Tamaño',
   'tool.imageMetadata.dimensions': 'Dimensiones',
