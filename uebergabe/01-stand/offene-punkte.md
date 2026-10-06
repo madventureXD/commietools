@@ -65,15 +65,18 @@
   `06-protokolle/screenshots/2026-10-06-welle-d-fotobeschrifter/` und `…-welle-d-protokoll/`.
   **Alle drei Werkzeuge der Welle D sind lokal, nichts gepusht.**
 - [~] **Welle E (technische Gewerke: 13 Leitungsquerschnitt, 14 Beleuchtung, 15 Rohrdimensionierung,
-  16 Heizlast, 18 Gewinde) — Quellenrecherche läuft.** Das Konzept sperrt diese Welle ausdrücklich
-  bis zur Klärung der **Normfrage (Q2)**; der Auftrag „Welle E" wurde deshalb **nicht** als Bauauftrag
-  ausgeführt. **Entscheidung Thomas, 2026-10-06:** zuerst die Quellenlage erheben (eine Sitzung), dann
-  Q2 auf belegter Grundlage entscheiden, dann bauen. Normgebundene Werte kommen als **eigene Werte aus
-  mehreren frei zugänglichen Quellen** ins Werkzeug, **je Wert die Quelle sichtbar** und **jeder Wert
-  änderbar** (nicht fest verdrahtet). Rechercheumfang: **ausführlich** — fünf Datenbestände, je Wert
-  Quelle und Abrufdatum; Fundstellen werden nachgeprüft, nicht geglaubt. Aufwandsschätzung (nach
-  Referenzklasse, nicht gemessen): **5–7 Sitzungen**, davon eine für die Quellenlage; Fehlermarge nach
-  oben offen. Zwischenstand der Recherche: `work/recherche/` (Arbeitsdateien, nicht im Git).
+  16 Heizlast, 18 Gewinde) — Q2 entschieden, Bau beginnt.** Das Konzept sperrte diese Welle bis zur
+  Klärung der **Normfrage (Q2)**; der Auftrag „Welle E" wurde deshalb zuerst **nicht** als Bauauftrag
+  ausgeführt. **Entscheidung Thomas, 2026-10-06:** zuerst die Quellenlage erheben, dann Q2 auf
+  belegter Grundlage entscheiden, dann bauen. **Quellenlage erhoben und selbst nachgeprüft:**
+  `03-konzepte/2026-10-06-normfrage-quellenlage.md` + Anlage `06-protokolle/quellenlage-welle-e/`
+  (fünf Dateien, 1301 Zeilen, je Wert Quelle und Abrufdatum). **Tragender Befund:** die frei
+  abrufbaren Strombelastbarkeitstabellen sind genehmigte Auszüge aus DIN VDE 0298-4 und damit nicht
+  übernehmbar; für die übrigen vier sind die Quellen eigene Zusammenstellungen von Behörden/Verbänden.
+  **Q2 bestätigt für 14, 15, 16, 18** (eigene Werte, Quelle je Wert sichtbar, jeder Wert änderbar);
+  **Werkzeug 13:** Strombelastbarkeit als **Eingabefeld**, das Werkzeug rechnet und prüft den
+  Spannungsfall. Bauplan mit Abnahmekriterien: `06-protokolle/2026-10-06-welle-e-plan.md`.
+  Reihenfolge: 18 → 14 → 16 → 15 → 13.
 - [x] **Stilerscheinung in den aufklappbaren Abschnitten der Handwerk-Werkzeuge prüfen:** Bei
   Pflaster und Reifen sitzt die erste Feldspalte auf der Zeile der Zusammenfassung, das
   Eingabefeld darunter. Lesbar und richtig zugeordnet, aber unschön. Ursache wird im gemeinsamen

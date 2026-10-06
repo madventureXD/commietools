@@ -57,6 +57,18 @@ Quellen für Normzahlen (Gewinde, Profile, Rohdichten) sind als **Fakten** nicht
 ihre konkrete Zusammenstellung schon. Werte einzeln aus mehreren freien Quellen belegen, nicht
 eine Tabelle als Ganzes übernehmen.
 
+*(Zusatz 2026-10-06: **Q2 entschieden.** Die Quellenlage wurde erhoben und geprüft, siehe
+`03-konzepte/2026-10-06-normfrage-quellenlage.md` mit der Anlage
+`06-protokolle/quellenlage-welle-e/`. Ergebnis: Die frei abrufbaren Strombelastbarkeitstabellen
+(ABB, HELUKABEL, Lapp, Schneider-Wiki) sind **genehmigte Auszüge aus DIN VDE 0298-4** — beim
+ABB-Dokument steht es im Titel — und damit für dieses Projekt **nicht übernehmbar**. Für die
+übrigen vier Werkzeuge sind die Quellen eigene Zusammenstellungen von Behörden und Verbänden
+(BAuA/ASR A3.4, DGUV, BBSR/GEG-Portal, UBA, IWPAS-Daten) und mit Quellenangabe je Wert nutzbar.
+**Entscheidung:** eigene Werte aus frei zugänglichen Quellen, Quelle je Wert sichtbar, jeder Wert
+änderbar; bei Werkzeug 13 die Strombelastbarkeit als **Eingabefeld** statt als Tabelle, das Werkzeug
+rechnet und prüft den Spannungsfall. Plan der Welle:
+`06-protokolle/2026-10-06-welle-e-plan.md`.)*
+
 ### Q3 — Zwei MIT-Rechner-Sammlungen sind als Referenz brauchbar, nicht als Abhängigkeit
 
 - **`buildvisionai/construction-calculators`** — MIT (README und LICENSE gelesen), reines
