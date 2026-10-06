@@ -16,7 +16,19 @@ export function loadInterfaceMessages(locale: Locale): Promise<LocalizedMessages
   const key = locale === 'en' ? 'en' : `${locale}+en`
   const cached = interfaceCache.get(key); if (cached) return cached
   const promise = Promise.all([interfaceLoaders.en(), locale === 'en' ? interfaceLoaders.en() : interfaceLoaders[locale]()]).then(([english, selected]) => locale === 'en' ? { en: english } : { en: english, [locale]: selected })
-  interfaceCache.set(key, promise); return promise
+  interfaceCache.set(key, promise)
+  /**
+   * Ein abgelehnter Import darf den Zwischenspeicher nicht vergiften (Karte M4-004): Ohne diese
+   * Zeile bliebe die Ablehnung liegen, und ein zweiter Versuch gäbe sofort wieder den Fehler
+   * zurück, ohne je neu zu laden. Entfernt wird nur **dieses** Promise und nur, solange es das
+   * aktuelle ist — ein später Fehlschlag darf den Erfolg eines neueren Versuchs nicht löschen.
+   *
+   * Dieselbe Logik liegt als `cachedLoader` in `@commietools/core` und wird von den erzeugten
+   * Ladedateien benutzt; hier steht sie inline, weil `@commietools/i18n` nicht von `core` abhängt
+   * und dafür keine neue Paketgrenze gezogen werden soll.
+   */
+  promise.catch(() => { if (interfaceCache.get(key) === promise) interfaceCache.delete(key) })
+  return promise
 }
 
 function resolveFallbackChain(locale: Locale): Locale[] {

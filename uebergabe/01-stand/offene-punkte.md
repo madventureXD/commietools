@@ -486,6 +486,18 @@ Diese Liste enthält bestätigte, noch nicht abgeschlossene Arbeit. Details geh�
 
 ## R3 — Datei-Aufträge, Ressourcen, Offline (ab 2026-10-06)
 
+- [ ] **M4-004 — Sprachladefehler bleiben gecacht: TEILWEISE** *(Nachtrag 2026-10-06)*. Ursache
+  behoben: Alle fünf Lader (`loadToolSearchIndex`, `loadCommonToolTexts`, `loadToolTexts`,
+  `loadAllToolTexts`, `loadInterfaceMessages`) legten das Import-Promise ab, ohne es bei einer
+  Ablehnung wieder zu entfernen — der nächste Versuch bekam für immer den alten Fehler. Neu:
+  gemeinsamer Helfer `cachedLoader` in `packages/core/src/loadCache.ts` (eigener Unterpfad), der
+  nur **dieses** Promise und nur **solange es das aktuelle ist** entfernt; der Generator wurde
+  geändert und die erzeugten Dateien neu erzeugt. Bericht:
+  `06-protokolle/2026-10-06-m4-004-ladecache-teil1.md`.
+  - [ ] **Der von der Karte verlangte UI-Teil fehlt:** sichtbarer, übersetzter Fehlerzustand mit
+    Wiederholung (`LoadState`, `requestKey`, Retry ohne Dokumentreload, Schutz vor
+    Reloadschleifen) in `App.tsx`/`CatalogSection.tsx`/`ToolNavigation.tsx`. Die Abnahme der Karte
+    ist damit **nicht** erfüllt.
 - [x] **M4-007 — Sprach-Type-Guard akzeptiert geerbte Objektschlüssel: erledigt** *(Nachtrag
   2026-10-06)*. `isLocale` fragte mit `value in localeRegistry` und damit die **Prototypenkette**
   mit: `__proto__`, `constructor`, `toString` galten als Sprachen und erreichten über

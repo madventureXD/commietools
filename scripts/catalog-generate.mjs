@@ -261,7 +261,8 @@ const textLoaderCases = languages.map((language) => {
   const tools = toolPrefixes.map((entry) => `    ${JSON.stringify(entry.id)}: () => import('./messages/${language}/${entry.id}'),`).join('\n')
   return `  ${JSON.stringify(language)}: {\n    common: () => import('./messages/${language}/common'),\n${tools}\n  },`
 }).join('\n')
-const loadersText = `${banner}import type { ToolSearchEntry } from '@commietools/core'
+const loadersText = `${banner}import { cachedLoader } from '@commietools/core/loadCache'
+import type { ToolSearchEntry } from '@commietools/core'
 import { toolIndex } from '../toolIndex'
 
 const searchLoaders = {
@@ -272,9 +273,7 @@ const searchCache = new Map<string, Promise<readonly ToolSearchEntry[]>>()
 
 export function loadToolSearchIndex(locale: GeneratedLocale): Promise<readonly ToolSearchEntry[]> {
   const key = locale === 'en' ? 'en' : \`\${locale}+en\`
-  const cached = searchCache.get(key); if (cached) return cached
-  const promise = Promise.all([searchLoaders.en(), locale === 'en' ? searchLoaders.en() : searchLoaders[locale]()]).then(([english, selected]) => toolIndex.map((entry) => ({ ...entry, locales: locale === 'en' ? { en: english.searchLocale[entry.id]! } : { [locale]: selected.searchLocale[entry.id]!, en: english.searchLocale[entry.id]! } })))
-  searchCache.set(key, promise); return promise
+  return cachedLoader(searchCache, key, () => Promise.all([searchLoaders.en(), locale === 'en' ? searchLoaders.en() : searchLoaders[locale]()]).then(([english, selected]) => toolIndex.map((entry) => ({ ...entry, locales: locale === 'en' ? { en: english.searchLocale[entry.id]! } : { [locale]: selected.searchLocale[entry.id]!, en: english.searchLocale[entry.id]! } }))))
 }
 `
 
@@ -284,7 +283,8 @@ export function loadToolSearchIndex(locale: GeneratedLocale): Promise<readonly T
  * sie bei jedem Besuch mit, obwohl sie dort nie gebraucht wird — sie wird erst auf einer
  * Werkzeugroute geholt.
  */
-const textLoadersText = `${banner}import type { GeneratedLocale } from './loaders'
+const textLoadersText = `${banner}import { cachedLoader } from '@commietools/core/loadCache'
+import type { GeneratedLocale } from './loaders'
 
 const textLoaders = {
 ${textLoaderCases}
@@ -301,28 +301,22 @@ const pair = (locale: GeneratedLocale, load: (language: GeneratedLocale) => Prom
 /** Gemeinsame Werkzeugtexte einer Sprache: Rahmen und Bereiche (tool.calc.*, tool.pdf.*, ...). */
 export function loadCommonToolTexts(locale: GeneratedLocale): Promise<LocaleTexts> {
   const key = \`common:\${locale}\`
-  const cached = textCache.get(key); if (cached) return cached
-  const promise = pair(locale, (language) => textLoaders[language].common().then((module) => module.messages))
-  textCache.set(key, promise); return promise
+  return cachedLoader(textCache, key, () => pair(locale, (language) => textLoaders[language].common().then((module) => module.messages)))
 }
 
 /** Die Texte EINES Werkzeugs: gemeinsame Texte plus dieses Werkzeug, dazu Englisch. */
 export function loadToolTexts(locale: GeneratedLocale, toolId: string): Promise<LocaleTexts> {
   const key = \`\${locale}:\${toolId}\`
-  const cached = textCache.get(key); if (cached) return cached
-  const promise = pair(locale, (language) => Promise.all([textLoaders[language].common(), (toolsOf(language)[toolId] ?? empty)()]).then(([common, own]) => ({ ...common.messages, ...own.messages })))
-  textCache.set(key, promise); return promise
+  return cachedLoader(textCache, key, () => pair(locale, (language) => Promise.all([textLoaders[language].common(), (toolsOf(language)[toolId] ?? empty)()]).then(([common, own]) => ({ ...common.messages, ...own.messages }))))
 }
 
 /** Alle Werkzeugtexte einer Sprache — fuer Pruefungen und Pruefwerkzeuge, nicht fuer die Oberflaeche. */
 export function loadAllToolTexts(locale: GeneratedLocale): Promise<LocaleTexts> {
   const key = \`all:\${locale}\`
-  const cached = textCache.get(key); if (cached) return cached
-  const promise = pair(locale, (language) => {
+  return cachedLoader(textCache, key, () => pair(locale, (language) => {
     const own = Object.entries(toolsOf(language)).filter(([id]) => id !== 'common').map(([, loader]) => loader())
     return Promise.all([textLoaders[language].common(), ...own]).then(([common, ...rest]) => Object.assign({}, common.messages, ...rest.map((module) => module.messages)))
-  })
-  textCache.set(key, promise); return promise
+  }))
 }
 `
 
