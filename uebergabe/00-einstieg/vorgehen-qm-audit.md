@@ -94,7 +94,7 @@ Protokoll: `06-protokolle/2026-10-06-r1-*.md`, `…-m9-004-lopdf-anhebung.md`, `
 | M6-002 | RPN-Tastenfeld setzt mehrstellige Zahlen nicht zusammen | ✓ Eingabereducer mit getrenntem Zahlentoken; Tastenfolgen im Browser belegt (2026-10-06) |
 | M8-004 | CSV-Freitext als Tabellenformel exportiert | ✓ typisierte Zellen (Text/Zahl), führender Apostroph, Hinweis in der Oberfläche; **Abnahme bewusst ohne Tabellenprogramm** (Thomas, 2026-10-06) — unabhängige Python-Gegenprobe bleibt maßgeblich |
 
-### R3 — Datei-Aufträge, Ressourcen, Offline (P1) — **teilweise: 5 erledigt, 1 mit Restforderung**
+### R3 — Datei-Aufträge, Ressourcen, Offline (P1) — **abgeschlossen 2026-10-07** (6 Karten: M4-004 ◐→✓ mit benannter Abweichung, M4-005 ✓ mit benannter Grenze, M4-006 ✓, M4-007 ✓, M8-002 ✓, M8-003 ✓)
 
 | Karte | Kurz | Stand |
 |---|---|---|
@@ -103,7 +103,7 @@ Protokoll: `06-protokolle/2026-10-06-r1-*.md`, `…-m9-004-lopdf-anhebung.md`, `
 | M4-006 | PDF-Teiler gibt Ergebnis-URLs beim Verlassen nicht frei | **✓ abgeschlossen** (2026-10-07): Zählerbeleg im Betrieb (create 1203 / revoke 1200 / offen 3) und nach dem Verlassen (revoke 1203 / **offen 0**); **Unmount während laufender Verarbeitung** war ein echtes Leck (offen **1200**, behoben); **StrictMode-Zyklus und wiederholte Nutzung** gegen `vite dev` belegt (5 Aufträge, Zähler je Lauf ausgeglichen, Endstand 17/17/**0**), Mehrfachspeichern ohne Schaden. **Rest (keine Abnahmebedingung):** gemeinsamer `useObjectUrls`-Hook nicht gebaut |
 | M4-007 | Sprach-Type-Guard akzeptiert geerbte Objektschlüssel | ✓ `hasOwnProperty.call` + `typeof`-Prüfung; `__proto__`/`constructor` abgewiesen (2026-10-06) |
 | M8-002 | Erste Offline-Bereitschaft hängt am flüchtigen HTTP-Cache | **✓ erfüllt** (2026-10-06): frisches Profil, HTTP-Cache gelöscht, **Dienst beendet** → Reload lädt vollständig (**23 von 23 Antworten aus dem Service Worker, 0 gescheitert**), dritte Sprache wird nicht geholt. Lösung: Warmlauf der Sprachpakete nach SW-Kontrolle + `ignoreVary` in der Laufzeitregel. Offen: Warmbesuch, Localewechsel, SW-Versionswechsel |
-| M8-003 | Fehlender Browser-Speicher verhindert Nutzung statt Rückfall | ◐ Adapter ohne Wurf (`readLocal`/`writeLocal`/`readLocalJson`), Startpfad abgesichert — **Verlaufs-/Store-Vertrag und flüchtiger Betrieb offen** (2026-10-06) |
+| M8-003 | Fehlender Browser-Speicher verhindert Nutzung statt Rückfall | **✓ abgeschlossen** (2026-10-07): Speicheradapter mit expliziten Zuständen (`ok`/`unavailable`/`quota`/`invalid`) für Rechnerverlauf, Aufmaß und Prüffristen; **Engine und Speicher getrennt geladen** (vorher machte ein Speicherfehler den Rechner unbenutzbar); **flüchtiger Sitzungsbetrieb** mit sichtbarer Warnung; **kein „gespeichert" ohne Deckung**; nach gescheitertem Lesen wird **nicht** geschrieben. Abnahme im Browser (Fehler vor dem Programmstart eingespeist): gesperrtes `localStorage`, kaputter Inhalt, gesperrte IndexedDB, scheiterndes Schreiben — **Rechner rechnet in allen Fällen** (2+3=5, 7*6=42), Warnung sichtbar, **0 unbehandelte Zusagen**. **Nicht gemessen:** ob der eingespeiste `QuotaExceededError` als `quota` (statt `unavailable`) ankommt — die Zuordnung ist über Tests abgesichert |
 
 ### R4 — Wirksame Tests, Lint, Freigabeschranken (P1) — **abgeschlossen 2026-10-06, vollständig 2026-10-07** (M2-009 nachgezogen)
 

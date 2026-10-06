@@ -37,6 +37,30 @@
   nicht gebaut; der Teiler räumt an vier Stellen selbst auf. Bleibt als Aufräumarbeit.
 - Prüfkette unverändert: `npm run check` 687 Tests, Exit 0. **Nichts gepusht.**
 
+**Zusatz 2026-10-07 (Faber), Einheit 5: M8-003 abgeschlossen — Speicherfehler legen die Werkzeuge nicht mehr lahm:**
+- **Vorher:** Die drei IndexedDB-Bereiche (Rechnerverlauf, Aufmaß, Prüffristen) liefen ungeschützt.
+  Beim Rechner standen **Engine und Speicher in einem `Promise.all`** — ein Speicherfehler machte
+  das Werkzeug **unbenutzbar**, obwohl beides nichts miteinander zu tun hat. Ein nicht lesbarer
+  Bestand sah aus wie „nichts gespeichert" und wäre beim nächsten Schreiben überschrieben worden;
+  Schreibvorgänge liefen als `void` ohne Rückmeldung.
+- **Neu:** Speicheradapter mit expliziten Zuständen (`ok`/`unavailable`/`quota`/`invalid`,
+  `packages/tools/src/storage/indexedStore.ts`), Engine und Speicher **getrennt** geladen,
+  **flüchtiger Sitzungsbetrieb** mit sichtbarer Warnung in drei Sprachen, **kein „gespeichert"
+  ohne Deckung**, und nach einem gescheiterten Lesen wird **nicht** geschrieben.
+- **Abnahme im Browser** (Fehler über `Page.addScriptToEvaluateOnNewDocument` **vor** dem
+  Programmstart eingespeist, `work/m8-003-abnahme.cjs`): gesperrtes `localStorage` → Start ohne
+  leeren Bildschirm; kaputter Inhalt → Rückfall ohne erfundene Ursache; gesperrte IndexedDB →
+  **Rechner rechnet trotzdem** (`2+3` = **5**) und warnt, Aufmaß und Prüffristen warnen;
+  scheiterndes Schreiben → `7*6` = **42** und Warnung statt Erfolg. **0 Meldungen, 0 unbehandelte
+  Zusagen.**
+- **Nicht gemessen, offen benannt:** ob der eingespeiste `QuotaExceededError` als `quota` (statt
+  `unavailable`) ankommt — die Warnung ist in beiden Fällen dieselbe; die Zuordnung ist über den
+  Test zu `classifyStorageError` abgesichert.
+- Prüfkette: `npm run check` **695 Tests in 48 Dateien** Exit 0, **0 Lint-Fehler**;
+  `npm run build` Exit 0, Startbündel **149 481 B gzip**. Protokoll:
+  `06-protokolle/2026-10-07-m8-003-speicherfehler-und-fluechtiger-betrieb.md`.
+  **Nichts gepusht** (`bd95592`). **Damit ist R3 vollständig.**
+
 **Zusatz 2026-10-07 (Faber), Einheit 4: M4-004 abgeschlossen — Ladefehler haben einen sichtbaren Fehlerweg:**
 - **Vorher:** Eine abgelehnte Zusage beim Nachladen der Werkzeugtexte war **unbehandelt**, die
   Werkzeugseite stand für immer im Ladehinweis; ein gescheiterter `lazy()`-Import riss die Seite mit

@@ -592,13 +592,11 @@ Diese Liste enthält bestätigte, noch nicht abgeschlossene Arbeit. Details geh�
   gemeldet); Signatur auf `unknown`, damit „nichtstringförmiger Speicherinhalt" wirklich geprüft
   und nicht nur behauptet wird. Bericht: `06-protokolle/2026-10-06-m4-007-sprachpruefung.md`.
   **Nicht gepusht.**
-- [ ] Offen in R3: **M8-003** (fehlender Browser-Speicher blockiert statt Rückfall).
-  *(Nachtrag 2026-10-07: **M4-004**, **M4-005** und **M4-006** sind abgeschlossen — M4-004 mit einer
-  gemessenen Abweichung (kein Retry im selben Dokument), M4-005 mit benannter Grenze, M4-006
-  vollständig; **M8-002** ist ✓. Bei allen blieben Produktfehler zu beheben, siehe die
-  Protokoll-Nachträge `2026-10-06-m4-005-m4-006-pdf-auftraege-urls.md` und
-  `2026-10-07-m4-004-ladefehler-und-fehlerwege.md`. Offen bleibt allein der gemeinsame
-  `useObjectUrls`-Hook — laut Karte keine Abnahmebedingung.)*
+- [x] **R3 ist vollständig** *(2026-10-07)*. Sechs Karten abgeschlossen: **M4-004** (mit benannter
+  Abweichung: kein Retry im selben Dokument möglich, gemessen), **M4-005** (mit benannter Grenze),
+  **M4-006**, **M4-007**, **M8-002**, **M8-003**. Offen aus dieser Stufe bleibt allein der
+  gemeinsame `useObjectUrls`-Hook — laut Karte keine Abnahmebedingung.
+- [ ] Offen in R3: *(nichts mehr)*.
 - [ ] **Kein Retry im selben Dokument möglich** *(2026-10-07, gemessen)*. Ein gescheiterter
   dynamischer Modulimport lässt sich im laufenden Dokument nicht wiederholen: Der Browser merkt
   sich die Adresse, jeder weitere Versuch scheitert ohne neue Netzanfrage (Minimalversuch:
