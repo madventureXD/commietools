@@ -57,6 +57,19 @@ und gelesen wird am `.app`-Element. Der gemessene Knopf war `<button type="submi
 - `.tool-menu-sorts .button.active` nutzt `--color-text`/`--color-surface` statt der Markenfarbe und
   ist damit **nicht** betroffen — geprüft durch Lesen der Regel, nicht gemessen.
 
+## Nachtrag 2026-10-06: eigener Fehler im Prüfskript
+
+Meine Änderung an `scripts/viewport-audit.mjs` machte das Skript **syntaktisch unbrauchbar**: Der
+neue Kommentar steht **innerhalb** des Template-Strings `A11Y_JS` und enthielt einen **Backtick**
+(um `--color-action-text`), der den Template-String vorzeitig beendet. Node brach beim Laden ab —
+`SyntaxError: Invalid left-hand side expression in postfix operation`, Zeile 95.
+
+**Warum es durchging:** `npm run check` und `npm run build` erfassen dieses eigenständige Skript
+nicht — es gehört nicht zum Build. Der grüne Prüflauf (665 Tests, Exit 0) sagte über diese Änderung
+also **nichts** aus; ich habe ihn zu Unrecht als Beleg mitgeführt. Behoben durch Entfernen der
+Backticks; `node --check scripts/viewport-audit.mjs` gehört ab jetzt zur Prüfung, wenn dieses Skript
+angefasst wird.
+
 ## Kennzahlen
 
 | Kennzahl | Wert | Quelle |

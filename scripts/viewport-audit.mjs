@@ -95,10 +95,9 @@ const OVERFLOW_JS = `(() => {
 const A11Y_JS = `(() => {
   const MIN_TARGET = 44;
   /**
-
    * Leer seit 2026-10-06: Die weisse Schrift auf dem Markenrot ergab 3,28:1 bei verlangten 4,5:1.
-   * Behoben ueber das schemaabhaengige Token `--color-action-text` — hell weiss (5,65:1), dunkel
-   * dunkel (5,76:1). Die Flaechen werden damit wieder regulaer geprueft; eine stehende Ausnahme
+   * Behoben ueber das schemaabhaengige Token --color-action-text (hell weiss 5,65:1, dunkel
+   * dunkel 5,76:1). Die Flaechen werden damit wieder regulaer geprueft; eine stehende Ausnahme
    * wuerde kuenftige Regressionen an genau diesen Flaechen verschlucken.
    */
   const AKZEPTIERTE_KONTRASTE = [
