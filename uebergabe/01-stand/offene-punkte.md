@@ -32,9 +32,32 @@
   gingen damit einher: „una cadena" → „una cadena **de medidas**" (Maßkette war unscharf übersetzt)
   und das doppelte „los PNG guardados". Bericht: `06-protokolle/2026-10-06-entscheidungen-umgesetzt.md`.)*
 
-- [ ] **Konzept-Referenz in der spanischen Fassung vereinheitlichen:** fünf Dateien schreiben
-  «Handwerkerwerkzeuge», `craft/metal` übersetzt „concepto de herramientas para oficios". Beide
-  Wege vertretbar, nebeneinander nicht. Vorschlag: der Mehrheit folgen. Gemessen 2026-10-06.
+- [x] **Spanische Fassung des gesamten Registers gegengelesen (2026-10-06).** Die früher offenen
+  **44 Werkzeuge** sind durch: sechs Prüfblöcke (Handwerk A/B, Bild, PDF A/B, Rechner/Text) haben
+  die **veröffentlichte** spanische Seite Satz für Satz gegen Deutsch und Englisch gelesen.
+  **23 Sprachdateien, rund 90 Korrekturen.** Meine Nachprüfung: Schlüsselgleichheit mit dem
+  Deutschen **0 Abweichungen**, Platzhaltergleichheit über **2288 Schlüssel 0 Abweichungen**, keine
+  deutschen oder englischen Reste. **Ernstester Fund:** In pdf-organize, pdf-split und pdf-to-images
+  stand `{número}`, während der Code nur `{number}` ersetzt — spanische Nutzer sahen wörtlich
+  „{número}" statt einer Zahl (im Code nachgelesen: `PdfOrganize.tsx`, `PdfSplit.tsx`). Weitere echte
+  Fehler: „Carta blanca" (Blankoscheck) für Tinte, „Descubrir" für Entsperren, „Laboral" für „läuft",
+  „Avance" für Vorschau, „Cultivo" für Zuschnitt, „Bien" für rechts. Die Anredeentscheidung
+  (unpersönlicher Infinitiv) wurde auch dort angewandt, wo **meine eigenen** Welle-E-Werkzeuge sie
+  nicht eingehalten hatten. **Entschieden statt offengelassen:** generischer „Raum" heißt überall
+  **estancia** (sala = Wohnzimmer/Saal wäre für Flur, Werkstatt, Lager falsch; 13 Stellen geändert,
+  nun 49× estancia), „solo" ohne Akzent nach RAE (4 Stellen), QR-Stile „Clásico/Clásico redondeado"
+  wie im Deutschen (die englische Vorlage hatte „classy" wörtlich ergeben), „Reserva el corte" als
+  Aussage umformuliert, unsichere Fachklammer „(lima-hoya cuadrada)" durch schlichte Beschreibung
+  ersetzt. **Ausgeliefert und nachgemessen:** die ausgelieferten Hauptdateien sind byte-identisch mit
+  dem geprüften Build, dieser enthält alle Korrekturen und keine alte Fassung. Commits `0b0b05c`,
+  `d4cfc03`. **Ehrlich dazu:** Mein erster Online-Lauf meldete fünf „Abweichungen" — alle fünf waren
+  Bedingungen **meines Prüfskripts** (die betroffenen Texte erscheinen erst nach dem Laden einer
+  Datei), kein Produktfehler; deshalb die Byte-Prüfung am ausgelieferten Bündel als Beleg.
+- [x] **Konzept-Referenz in der spanischen Fassung vereinheitlichen:** fünf Dateien schrieben
+  «Handwerkerwerkzeuge», `craft/metal` übersetzte „concepto de herramientas para oficios".
+  **Erledigt 2026-10-06: der Mehrheit gefolgt** — überall `concepto del proyecto
+  «Handwerkerwerkzeuge»`, eine Stelle geändert (`craft/metal/locales/es.ts`). Der deutsche
+  Dokumenttitel steht in Anführungszeichen und bleibt als Titel erkennbar.
 - [ ] **Welle C des Handwerker-Konzepts:** Pflaster-/Erdarbeitenrechner (Vorschlag 5) und
   Reifen-/Drehmomentrechner (24) — beide Klasse a, keine neue Abhängigkeit zu erwarten.
   *(2026-10-05: Welle A und B sind abgeschlossen, die Suite „Handwerk" umfasst acht Werkzeuge;
