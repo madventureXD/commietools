@@ -1,15 +1,37 @@
+/**
+ * Belegprüfung im Browser über die Werkzeugrouten (Edge headless über CDP).
+ *
+ * Zwei Durchgänge in einer Datei, weil beide dasselbe Gerüst brauchen:
+ *
+ *   node scripts/viewport-audit.mjs             Ueberbreite (Vorgabe 320 px, `overflow`)
+ *   node scripts/viewport-audit.mjs a11y        Barrierefreiheit (1360 px und 390 px)
+ *
+ * Umgebung:
+ *   COMMIETOOLS_AUDIT_URL      Vorschauadresse (Vorgabe http://127.0.0.1:5173)
+ *   COMMIETOOLS_AUDIT_ROUTES   Kommaliste von Routen (Vorgabe: alle aus dem Register)
+ *   COMMIETOOLS_AUDIT_WIDTHS   Kommaliste von Breiten (uebersteuert die Vorgaben)
+ *   EDGE_PATH                  Pfad zu msedge.exe
+ *
+ * Der Barrierefreiheits-Durchgang misst je Route: Bedienzielgroessen, zugaengliche Namen,
+ * Beschriftungen der Eingabefelder, Ueberschriftenfolge, Kontrast kleiner und grosser Texte.
+ * Jede Route meldet mit, wie viele Bedienelemente sie angesehen hat; findet ein Durchgang
+ * nichts anzusehen, bricht er ab, statt still zu bestehen.
+ */
 import { mkdtemp, readFile, rm } from 'node:fs/promises'
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 import { spawn } from 'node:child_process'
 import { once } from 'node:events'
 
+const mode = process.argv[2] === 'a11y' ? 'a11y' : 'overflow'
 const baseUrl = process.env.COMMIETOOLS_AUDIT_URL ?? 'http://127.0.0.1:5173'
 const edgePath = process.env.EDGE_PATH ?? 'C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe'
 const catalog = await readFile(new URL('../packages/tools/src/catalog/toolIndex.ts', import.meta.url), 'utf8')
 const allRoutes = [...catalog.matchAll(/"route": "([^"]+)"/gu)].map((match) => match[1])
 const routes = process.env.COMMIETOOLS_AUDIT_ROUTES?.split(',').filter(Boolean) ?? allRoutes
-const profile = await mkdtemp(join(tmpdir(), 'commietools-viewport-'))
+const widths = (process.env.COMMIETOOLS_AUDIT_WIDTHS?.split(',').filter(Boolean).map(Number)
+  ?? (mode === 'a11y' ? [1360, 390] : [320]))
+const profile = await mkdtemp(join(tmpdir(), 'commietools-audit-'))
 const port = 9333 + Math.floor(Math.random() * 500)
 const edge = spawn(edgePath, [
   '--headless=new', '--disable-gpu', '--no-first-run', '--no-default-browser-check',
@@ -26,6 +48,183 @@ function command(method, params = {}) {
   socket.send(JSON.stringify({ id, method, params }))
   return new Promise((resolve, reject) => pending.set(id, { resolve, reject }))
 }
+
+const evaluate = async (expression) => {
+  const result = await command('Runtime.evaluate', { expression, returnByValue: true, awaitPromise: true })
+  if (result.exceptionDetails) throw new Error(`Page error: ${result.exceptionDetails.exception?.description ?? result.exceptionDetails.text}`)
+  return result.result.value
+}
+
+/** Wartet, bis die Route wirklich gerendert ist — sonst prüft der Lauf eine leere Seite. */
+async function waitForRoute(route) {
+  for (let attempt = 0; attempt < 40; attempt += 1) {
+    const ready = await evaluate('(() => ({ tool: Boolean(document.querySelector(".tool-content")), h1: Boolean(document.querySelector("main h1")) }))()')
+    if (ready.tool) return { ready: true }
+    await delay(250)
+  }
+  const url = await evaluate('location.href').catch(() => null)
+  const body = await evaluate('document.body ? document.body.innerText.slice(0, 60) : null').catch(() => null)
+  return { ready: false, url, body }
+}
+
+const OVERFLOW_JS = `(() => {
+  const width = document.documentElement.clientWidth;
+  const visible = (element) => {
+    if (typeof element.checkVisibility === 'function') {
+      return element.checkVisibility({ checkOpacity: true, checkVisibilityCSS: true, contentVisibilityAuto: true, opacityProperty: true, visibilityProperty: true });
+    }
+    const style = getComputedStyle(element); const rect = element.getBoundingClientRect();
+    return style.display !== 'none' && style.visibility !== 'hidden' && rect.width > 0 && rect.height > 0;
+  };
+  const offenders = [...document.querySelectorAll('body *')].flatMap((element) => {
+    const rect = element.getBoundingClientRect();
+    const scrollContainer = [...function* () { let parent = element.parentElement; while (parent) { yield parent; parent = parent.parentElement } }()].find((parent) => { const parentStyle = getComputedStyle(parent); return /(auto|scroll)/.test(parentStyle.overflowX) && parent.scrollWidth > parent.clientWidth });
+    if (!visible(element) || rect.right <= width + 0.5 || scrollContainer) return [];
+    return [{ tag: element.tagName.toLowerCase(), className: String(element.className).slice(0, 100), right: Math.round(rect.right * 10) / 10, width: Math.round(rect.width * 10) / 10, ancestors: [...function* () { let parent = element.parentElement; while (parent && parent !== document.body) { yield parent.tagName.toLowerCase() + (parent.className ? '.' + String(parent.className).trim().replace(/\\\\s+/g, '.') : ''); parent = parent.parentElement } }()].slice(0, 5) }];
+  });
+  return { viewport: width, scrollWidth: document.documentElement.scrollWidth, offenders: offenders.slice(0, 12) };
+})()`
+
+const A11Y_JS = `(() => {
+  const MIN_TARGET = 44;
+  /**
+   * Wichtig: Chromium meldet fuer Inhalte in einem GESCHLOSSENEN details weiterhin ein Rechteck
+   * (versteckt wird ueber content-visibility, nicht ueber display). Eine Sichtbarkeitspruefung
+   * nur ueber display/visibility/rect zaehlt solche Inhalte faelschlich als sichtbar.
+   */
+  const visible = (element) => {
+    if (typeof element.checkVisibility === 'function') {
+      return element.checkVisibility({ checkOpacity: true, checkVisibilityCSS: true, contentVisibilityAuto: true, opacityProperty: true, visibilityProperty: true });
+    }
+    const style = getComputedStyle(element);
+    const rect = element.getBoundingClientRect();
+    return style.display !== 'none' && style.visibility !== 'hidden' && rect.width > 0 && rect.height > 0;
+  };
+  const text = (element) => (element ? (element.textContent || '').replace(/\\s+/g, ' ').trim() : '');
+  const labelFor = (element) => {
+    if (!element.id) return null;
+    const labels = document.querySelectorAll('label[for="' + CSS.escape(element.id) + '"]');
+    return labels.length ? text(labels[0]) : null;
+  };
+  const accessibleName = (element) => {
+    if (element.getAttribute('aria-labelledby')) {
+      const ids = element.getAttribute('aria-labelledby').split(/\\s+/);
+      const parts = ids.map((id) => text(document.getElementById(id))).filter(Boolean);
+      if (parts.length) return parts.join(' ');
+    }
+    if (element.getAttribute('aria-label')) return element.getAttribute('aria-label').trim();
+    const tag = element.tagName.toLowerCase();
+    if (tag === 'input' || tag === 'select' || tag === 'textarea') {
+      const own = labelFor(element) || text(element.closest('label'));
+      if (own) return own;
+      if (element.getAttribute('placeholder')) return element.getAttribute('placeholder').trim();
+      if (element.getAttribute('title')) return element.getAttribute('title').trim();
+      return null;
+    }
+    if (tag === 'img') return (element.getAttribute('alt') || '').trim() || null;
+    const own = text(element) || (element.getAttribute('title') || '').trim();
+    return own || null;
+  };
+  const describe = (element) => element.tagName.toLowerCase() + (element.className ? '.' + String(element.className).trim().replace(/\\s+/g, '.').slice(0, 60) : '');
+  const inParagraphText = (element) => {
+    const name = accessibleName(element) || '';
+    if (name.split(' ').length > 6 || name.length > 60) return true;
+    return false;
+  };
+  const interactiveSelector = 'a[href], button, input:not([type="hidden"]), select, textarea, summary, [role="button"], [role="link"], [role="tab"], [role="checkbox"], [role="switch"], [tabindex]:not([tabindex="-1"])';
+  const controls = [...document.querySelectorAll(interactiveSelector)].filter(visible);
+
+  const findings = { controls: controls.length, targets: [], names: [], labels: [], headings: [], contrast: [], ariaHidden: [], clipped: [] };
+
+  for (const element of controls) {
+    const rect = element.getBoundingClientRect();
+    const name = accessibleName(element);
+    if (!name) findings.names.push({ element: describe(element), html: element.outerHTML.slice(0, 120) });
+    if (element.getAttribute('aria-hidden') === 'true') findings.ariaHidden.push({ element: describe(element), name });
+    const isInlineLink = element.tagName.toLowerCase() === 'a' && inParagraphText(element);
+    const width = Math.round(rect.width); const height = Math.round(rect.height);
+    if (!isInlineLink && (height < MIN_TARGET || width < MIN_TARGET)) {
+      findings.targets.push({ element: describe(element), width, height, name: name ? name.slice(0, 48) : null });
+    }
+    if (element.scrollWidth > element.clientWidth + 1) {
+      findings.clipped.push({ element: describe(element), clientWidth: element.clientWidth, scrollWidth: element.scrollWidth, name: name ? name.slice(0, 40) : null });
+    }
+  }
+
+  for (const element of [...document.querySelectorAll('input:not([type="hidden"]), select, textarea')].filter(visible)) {
+    const name = accessibleName(element);
+    if (!name) findings.labels.push({ element: describe(element), id: element.id || null, type: element.getAttribute('type') });
+  }
+
+  const headings = [...document.querySelectorAll('h1, h2, h3, h4, h5, h6')].filter(visible).map((element) => Number(element.tagName[1]));
+  const jumps = [];
+  for (let index = 1; index < headings.length; index += 1) {
+    if (headings[index] - headings[index - 1] > 1) jumps.push('Sprung ' + headings[index - 1] + ' zu ' + headings[index]);
+  }
+  /**
+   * Inhalt in einem geschlossenen details zaehlt fuer Hilfstechnik nicht — und wird deshalb oben
+   * nicht mitgezaehlt. Beim Aufklappen ist er aber da; die Ueberschriftenfolge wird deshalb
+   * zusaetzlich mit geoeffneten Abschnitten geprueft, sonst meldet die Pruefung eine Struktur
+   * als sauber, die der Nutzer nach einem Klick als Sprung hoert.
+   */
+  const closed = [...document.querySelectorAll('details:not([open])')];
+  closed.forEach((element) => { element.open = true });
+  const opened = [...document.querySelectorAll('h1, h2, h3, h4, h5, h6')].filter(visible).map((element) => Number(element.tagName[1]));
+  closed.forEach((element) => { element.open = false });
+  const jumpsOpened = [];
+  for (let index = 1; index < opened.length; index += 1) {
+    if (opened[index] - opened[index - 1] > 1) jumpsOpened.push('Sprung ' + opened[index - 1] + ' zu ' + opened[index]);
+  }
+  findings.headings = { sequence: headings.slice(0, 20), h1Count: headings.filter((level) => level === 1).length, jumps, jumpsOpened, closedSections: closed.length };
+
+  const parseColor = (value) => {
+    const match = value.match(/rgba?\\(([^)]+)\\)/);
+    if (!match) return null;
+    const parts = match[1].split(/[ ,/]+/).filter(Boolean).map(Number);
+    return { r: parts[0], g: parts[1], b: parts[2], a: parts.length > 3 ? parts[3] : 1 };
+  };
+  const luminance = (color) => {
+    const channel = (value) => { const normalized = value / 255; return normalized <= 0.03928 ? normalized / 12.92 : Math.pow((normalized + 0.055) / 1.055, 2.4) };
+    return 0.2126 * channel(color.r) + 0.7152 * channel(color.g) + 0.0722 * channel(color.b);
+  };
+  const ratio = (first, second) => { const a = luminance(first); const b = luminance(second); const light = Math.max(a, b); const dark = Math.min(a, b); return (light + 0.05) / (dark + 0.05) };
+  const effectiveBackground = (element) => {
+    let node = element;
+    while (node) {
+      const style = getComputedStyle(node);
+      if (style.backgroundImage && style.backgroundImage !== 'none') return null;
+      const color = parseColor(style.backgroundColor);
+      if (color && color.a === 1) return color;
+      node = node.parentElement;
+    }
+    return null;
+  };
+  let skippedContrast = 0;
+  for (const element of [...document.querySelectorAll('body *')].filter(visible)) {
+    const own = [...element.childNodes].some((node) => node.nodeType === 3 && node.textContent.trim().length > 1);
+    if (!own) continue;
+    const style = getComputedStyle(element);
+    const color = parseColor(style.color);
+    const background = effectiveBackground(element);
+    if (!color || !background) { skippedContrast += 1; continue; }
+    const size = parseFloat(style.fontSize);
+    const weight = Number(style.fontWeight) || 400;
+    const large = size >= 24 || (size >= 18.66 && weight >= 700);
+    const required = large ? 3 : 4.5;
+    const measured = Math.round(ratio(color, background) * 100) / 100;
+    if (measured < required) {
+      findings.contrast.push({ element: describe(element), text: text(element).slice(0, 40), size: Math.round(size * 10) / 10, weight, required, measured });
+    }
+  }
+  findings.skippedContrast = skippedContrast;
+  findings.targets = findings.targets.slice(0, 40);
+  findings.names = findings.names.slice(0, 20);
+  findings.labels = findings.labels.slice(0, 20);
+  findings.contrast = findings.contrast.slice(0, 20);
+  findings.ariaHidden = findings.ariaHidden.slice(0, 10);
+  findings.clipped = findings.clipped.slice(0, 20);
+  return findings;
+})()`
 
 try {
   let target
@@ -49,34 +248,46 @@ try {
     if (message.error) request.reject(new Error(message.error.message)); else request.resolve(message.result)
   })
   await command('Page.enable')
-  await command('Emulation.setDeviceMetricsOverride', { width: 320, height: 900, deviceScaleFactor: 1, mobile: true })
+  await command('Runtime.enable')
 
   const failures = []
-  for (const route of routes) {
-    await command('Page.navigate', { url: `${baseUrl}${route}` })
-    await delay(650)
-    const result = await command('Runtime.evaluate', {
-      returnByValue: true,
-      expression: `(() => {
-        const width = document.documentElement.clientWidth;
-        const offenders = [...document.querySelectorAll('body *')].flatMap((element) => {
-          const style = getComputedStyle(element); const rect = element.getBoundingClientRect();
-          const scrollContainer = [...function* () { let parent = element.parentElement; while (parent) { yield parent; parent = parent.parentElement } }()].find((parent) => { const parentStyle = getComputedStyle(parent); return /(auto|scroll)/.test(parentStyle.overflowX) && parent.scrollWidth > parent.clientWidth });
-          if (style.display === 'none' || style.visibility === 'hidden' || rect.width === 0 || rect.height === 0 || rect.right <= width + 0.5 || scrollContainer) return [];
-          return [{ tag: element.tagName.toLowerCase(), className: String(element.className).slice(0, 100), right: Math.round(rect.right * 10) / 10, width: Math.round(rect.width * 10) / 10, ancestors: [...function* () { let parent = element.parentElement; while (parent && parent !== document.body) { yield parent.tagName.toLowerCase() + (parent.className ? '.' + String(parent.className).trim().replace(/\\s+/g, '.') : ''); parent = parent.parentElement } }()].slice(0, 5) }];
-        });
-        return { viewport: width, scrollWidth: document.documentElement.scrollWidth, offenders: offenders.slice(0, 12) };
-      })()`
-    })
-    const measurement = result.result.value
-    if (measurement.scrollWidth > measurement.viewport || measurement.offenders.length) failures.push({ route, ...measurement })
+  let emptyRoutes = 0
+  for (const width of widths) {
+    await command('Emulation.setDeviceMetricsOverride', { width, height: 900, deviceScaleFactor: 1, mobile: width < 768 })
+    for (const route of routes) {
+      await command('Page.navigate', { url: `${baseUrl}${route}` })
+      const state = await waitForRoute(route)
+      if (!state.ready) {
+        emptyRoutes += 1
+        console.error(`Route ohne Inhalt: ${route} (${width} px) — Seite steht auf ${state.url}, Text: ${JSON.stringify(state.body)}`)
+        console.error('  Hinweis: Vorschau lauscht oft nur auf IPv6 ([::1]) — dann http://localhost:<port> verwenden, nicht 127.0.0.1.')
+        continue
+      }
+      await delay(400)
+      if (mode === 'overflow') {
+        const measurement = await evaluate(OVERFLOW_JS)
+        if (!measurement) throw new Error(`No measurement on ${route}`)
+        if (measurement.scrollWidth > measurement.viewport || measurement.offenders.length) failures.push({ route, width, ...measurement })
+        else console.log(`ok ${route} ${width}px`)
+      } else {
+        const findings = await evaluate(A11Y_JS)
+        if (!findings) throw new Error(`No a11y measurement on ${route}`)
+        if (findings.controls === 0) { emptyRoutes += 1; console.error(`Route ohne Bedienelemente: ${route} (${width} px)`); continue }
+        const problems = findings.targets.length + findings.names.length + findings.labels.length
+          + findings.contrast.length + findings.ariaHidden.length + findings.clipped.length
+          + findings.headings.jumps.length + findings.headings.jumpsOpened.length
+          + (findings.headings.h1Count !== 1 ? 1 : 0)
+        console.log(`${problems ? 'BEFUND' : 'ok'} ${route} ${width}px  Bedienelemente=${findings.controls}`
+          + ` Ziele<44=${findings.targets.length} ohneNamen=${findings.names.length} ohneBeschriftung=${findings.labels.length}`
+          + ` Kontrast=${findings.contrast.length} (uebersprungen=${findings.skippedContrast}) abgeschnitten=${findings.clipped.length}`
+          + ` h1=${findings.headings.h1Count} Spruenge=${findings.headings.jumps.length}/${findings.headings.jumpsOpened.length}`)
+        if (problems) failures.push({ route, width, ...findings })
+      }
+    }
   }
-  if (failures.length) {
-    console.error(JSON.stringify(failures, null, 2))
-    process.exitCode = 1
-  } else {
-    console.log(`Viewport audit passed: ${routes.length} tool routes at 320 px`)
-  }
+  if (emptyRoutes) { console.error(`Abbruch: ${emptyRoutes} Durchgänge ohne prüfbaren Inhalt`); process.exitCode = 2 }
+  else if (failures.length) { console.error(JSON.stringify(failures, null, 2)); process.exitCode = 1 }
+  else console.log(`Audit passed (${mode}): ${routes.length} routes${widths.length > 1 ? ` × ${widths.length} widths` : ''}`)
 } finally {
   socket?.close()
   edge.kill()
