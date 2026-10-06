@@ -37,6 +37,30 @@
   nicht gebaut; der Teiler räumt an vier Stellen selbst auf. Bleibt als Aufräumarbeit.
 - Prüfkette unverändert: `npm run check` 687 Tests, Exit 0. **Nichts gepusht.**
 
+**Zusatz 2026-10-07 (Faber), Einheit 3: M2-009 abgeschlossen — Kontrastmessung belastbar, Browserjob im CI:**
+- **Ursache gemessen statt geraten:** Der Prüfer brach die Hintergrundauflösung ab, wenn über einem
+  Text **keine deckende Fläche** lag — der Kandidat wurde still übersprungen. Zwei Wegwerf-Seiten
+  mit demselben kontrastarmen Absatz belegten es: **ohne** Hintergrund `Kontrast=0` bei
+  übersprungen **3**, **mit** deckendem Weiß `Kontrast=1` (gemessen **1,66** bei verlangten 4,5).
+  Der Befund lag also im **Prüfmittel**, nicht im Produkt.
+- **Behebung:** Rückfall auf die **Leinwandfarbe** (Weiß), ausgewiesen als `Leinwandrueckfall` je
+  Route; nicht messbare Stellen (Text über Bild oder Verlauf) werden mit Element, Textausschnitt
+  und Grund **benannt** ausgegeben statt gezählt. Mutationsgegenprobe: derselbe Absatz ergibt jetzt
+  in beiden Fällen einen Befund (übersprungen 0 bzw. 1 — benannt).
+- **Regression:** `a11y` in beiden Schemata **Exit 0, 62 Routen × 2 Breiten, 0 Befunde, 0 Lücken**.
+  Auf **keiner** echten Route greift der Leinwandrückfall — jede Textstelle hat eine deckende
+  Fläche; die Annahme ist für das Produkt nie wirksam.
+- **CI:** neuer Job `browser` auf `windows-latest` (Bau, Vorschaudienst mit Wartezeit, `a11y:check`
+  in beiden Schemata, `viewport:check`) — mit vier benannten Grenzen (nie gelaufen; prüft den Bau
+  auf dem Läufer, nicht die ausgelieferte Seite; Actions als Tags statt SHAs; kein Ersatz für
+  Kontoschutz und Handarbeit). YAML mit einem YAML-Leser eingelesen: drei Jobs, `browser` mit neun
+  Schritten.
+- **Ein eigener Fehler, offen benannt:** Die erste Fassung der Prüfseiten setzte die Textfarbe
+  nicht — das Fehlen des Befunds war dort richtig. Erst nach der Korrektur war die Messung
+  aussagekräftig.
+- Protokoll: `06-protokolle/2026-10-07-m2-009-kontrast-und-ci.md`. Prüfkette: `npm run check`
+  687 Tests Exit 0, `node --check` für das Skript. **Nichts gepusht.**
+
 **Zusatz 2026-10-06 (Faber), QM-Sanierung R3/R4 — nach dem Durchzug:**
 - **M8-002 (R3, erfüllt):** Offline-Bereitschaft des ersten Besuchs — Warmlauf der beim Start
   geholten Sprachpakete (`apps/web/src/pwaWarmCache.ts`) und **`ignoreVary: true`** in der

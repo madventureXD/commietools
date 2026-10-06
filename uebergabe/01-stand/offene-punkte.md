@@ -606,6 +606,21 @@ Diese Liste enthält bestätigte, noch nicht abgeschlossene Arbeit. Details geh�
   `PdfSecurityTools.tsx`, `PdfPlacementTools.tsx`. **Nicht geprüft, nicht behoben** — die Angabe
   ist ein Fund am Quelltext, kein Messergebnis. Nächster Schritt: für **ein** Werkzeug denselben
   Zählerbeleg fahren; erst wenn er das Leck zeigt, ist es eine Fehlerklasse und keine Vermutung.
+- [x] **M2-009 — automatische Barrierefreiheitsprüfung: abgeschlossen** *(2026-10-07)*. Der
+  Kontrastteil der Gegenprobe ist belastbar: Die Ursache des `skippedContrast` war die
+  Hintergrundauflösung des **Prüfers** (ohne deckende Vorfahrenfläche wurde der Kandidat still
+  übersprungen), gemessen mit zwei Wegwerf-Seiten und behoben — Leinwandrückfall mit ausgewiesener
+  Zahl, verbleibende Lücken mit Element und Grund benannt. Gesamtlauf 62 Routen × 2 Breiten in
+  beiden Schemata Exit 0. Bericht: `06-protokolle/2026-10-07-m2-009-kontrast-und-ci.md`.
+- [ ] **Der Browserjob im CI ist nie gelaufen** *(2026-10-07)*. `.github/workflows/quality.yml`
+  hat jetzt einen Job `browser` auf `windows-latest` (Bau, Vorschaudienst, `a11y:check` in beiden
+  Schemata, `viewport:check`) — aber es wird nicht gepusht, also hat GitHub ihn nie ausgeführt.
+  Nächster Schritt: nach einem gewollten Push den ersten echten Lauf ansehen; bis dahin ist die
+  YAML ein Pflichtrahmen, kein Beleg.
+- [ ] **Handarbeitspunkte des Barrierefreiheits-Prüfers bleiben offen:** Vorleserausgabe,
+  Tastaturdurchlauf, 400 % Zoom, Fokusreihenfolge, reduzierte Bewegung. Der Prüfer gibt sie am
+  Ende jedes Laufs selbst aus. Nächster Schritt: bei Gelegenheit ein Vorleserdurchlauf (NVDA oder
+  Narrator) auf einer Werkzeugroute, dokumentiert.
 
 ## Pflege
 
