@@ -1,7 +1,8 @@
 export const commonEn = {
   'app.name': 'CommieTools', 'app.tagline': 'Free tools for everyone.', 'app.promise': 'Your tools. Your device. Your data.',
   'nav.tools': 'Tools', 'nav.suites': 'Suites', 'nav.about': 'Principles',
-  'action.theme': 'Switch color theme', 'action.language': 'Switch language',
+  'action.theme': 'Switch color theme', 'action.language': 'Switch language', 'action.retry': 'Try again',
+  'app.loadError': 'The interface texts could not be loaded. The connection was interrupted or a file is missing.',
   'toolMenu.open': 'Open tool menu', 'toolMenu.close': 'Close tool menu', 'toolMenu.title': 'Tools', 'toolMenu.intro': 'Find and open quickly',
   'toolMenu.search': 'Search tool or file type…', 'toolMenu.sort': 'Sort tools', 'toolMenu.sort.category': 'Categories', 'toolMenu.sort.az': 'A–Z',
   'toolMenu.sort.recent': 'Recent', 'toolMenu.sort.favorites': 'Favorites', 'toolMenu.addFavorite': 'Add to favorites', 'toolMenu.removeFavorite': 'Remove from favorites',

@@ -70,10 +70,23 @@ dass ein Wiederholungsversuch jetzt überhaupt neu laden **kann**. Die Abnahme d
 | neue Testfälle | 3 | `npx vitest run` |
 | neue Paketabhängigkeiten | 0 (Unterpfad statt Reexport) | `packages/core/package.json` |
 
-## Folgemaßnahmen
+## Nachtrag 2026-10-06 (Teil 2): sichtbarer Fehlerzustand der Oberflächentexte
 
-- [ ] **UI-Fehler-/Wiederholungszustand umsetzen** (Kern der Karte): Ladezustand in
-      `App.tsx`/`CatalogSection.tsx`/`ToolNavigation.tsx`, sichtbare übersetzte Fehlermeldung,
-      Retry-Knopf ohne Dokumentreload, Schutz vor Reloadschleifen.
-- [ ] Abnahme der Karte fahren: Import bewusst ablehnen (Proxy vor dem Browser), Netz herstellen,
-      Retry; Locale A langsam, B schnell; alter Reject darf neuen Erfolg nicht löschen.
+Der Ladeeffekt der Oberflächentexte in `App.tsx` hatte **keinen Fehlerweg**:
+`loadInterfaceMessages(locale).then(...)` ohne zweites Argument. Eine Ablehnung war damit eine
+**unbehandelte Zusage**, und die Seite blieb beim leeren Textstand stehen — sichtbar als
+Schlüsselnamen statt Text, ohne Meldung, ohne Möglichkeit zur Wiederholung.
+
+Neu: eigener Fehlerzustand plus ein Zähler als Auslöser der Wiederholung.
+
+- `interfaceError` wird bei jedem Versuch zurückgesetzt und nur gesetzt, wenn der Versuch
+  **noch aktuell** ist (`current`-Flag aus dem Effekt).
+- Die Oberfläche zeigt bei einem Fehler eine Meldung (`app.loadError`) und einen Knopf
+  `action.retry`, der `interfaceAttempt` erhöht — der Effekt läuft erneut, **ohne Dokumentreload**.
+- Beide Texte liegen in `packages/i18n/src/common/{de,en,es}.ts` und sind damit in allen drei
+  Sprachen vorhanden.
+
+**Weiterhin offen (nicht behauptet):** Der Fehlerweg der **Werkzeugtexte** (`ToolPage`,
+`ready`-Flag) und der von der Karte verlangte Generationsschutz sind **nicht** umgesetzt — dort
+führt ein Ladefehler weiterhin zu einem dauerhaften Ladehinweis. Ebenso fehlt die Abnahme
+(Netzfehler über einen Proxy vor dem Browser, Sprache A langsam / B schnell, Unmount).

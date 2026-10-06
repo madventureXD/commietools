@@ -1,7 +1,8 @@
 export const commonEs = {
   'app.name': 'CommieTools', 'app.tagline': 'Herramientas gratuitas para todos.', 'app.promise': 'Tus herramientas. Tu dispositivo. Tus datos.',
   'nav.tools': 'Herramientas', 'nav.suites': 'Suites', 'nav.about': 'Principios',
-  'action.theme': 'Cambiar tema de color', 'action.language': 'Cambiar idioma',
+  'action.theme': 'Cambiar tema de color', 'action.language': 'Cambiar idioma', 'action.retry': 'Reintentar',
+  'app.loadError': 'No se han podido cargar los textos de la interfaz. La conexión se interrumpió o falta un archivo.',
   'toolMenu.open': 'Abrir menú de herramientas', 'toolMenu.close': 'Cerrar menú de herramientas', 'toolMenu.title': 'Herramientas', 'toolMenu.intro': 'Encuentra y abre rápidamente',
   'toolMenu.search': 'Buscar herramienta o tipo de archivo…', 'toolMenu.sort': 'Ordenar herramientas', 'toolMenu.sort.category': 'Categorías', 'toolMenu.sort.az': 'A–Z',
   'toolMenu.sort.recent': 'Reciente', 'toolMenu.sort.favorites': 'Favoritos', 'toolMenu.addFavorite': 'Añadir a favoritos', 'toolMenu.removeFavorite': 'Quitar de favoritos',

@@ -1,7 +1,8 @@
 export const commonDe = {
   'app.name': 'CommieTools', 'app.tagline': 'Kostenlose Werkzeuge für alle.', 'app.promise': 'Deine Werkzeuge. Dein Gerät. Deine Daten.',
   'nav.tools': 'Werkzeuge', 'nav.suites': 'Suites', 'nav.about': 'Prinzipien',
-  'action.theme': 'Farbschema wechseln', 'action.language': 'Sprache wechseln',
+  'action.theme': 'Farbschema wechseln', 'action.language': 'Sprache wechseln', 'action.retry': 'Erneut versuchen',
+  'app.loadError': 'Die Texte der Oberfläche konnten nicht geladen werden. Die Verbindung wurde unterbrochen oder eine Datei fehlt.',
   'toolMenu.open': 'Werkzeugmenü öffnen', 'toolMenu.close': 'Werkzeugmenü schließen', 'toolMenu.title': 'Werkzeuge', 'toolMenu.intro': 'Schnell finden und öffnen',
   'toolMenu.search': 'Tool oder Dateityp suchen …', 'toolMenu.sort': 'Werkzeuge sortieren', 'toolMenu.sort.category': 'Kategorien', 'toolMenu.sort.az': 'A–Z',
   'toolMenu.sort.recent': 'Zuletzt', 'toolMenu.sort.favorites': 'Favoriten', 'toolMenu.addFavorite': 'Zu Favoriten hinzufügen', 'toolMenu.removeFavorite': 'Aus Favoriten entfernen',
