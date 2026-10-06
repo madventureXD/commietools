@@ -14,7 +14,8 @@
  * Aufteilung beendet. Er bleibt im Gerät liegen; gelöscht wird nur auf ausdrücklichen
  * Nutzerwunsch, und „Verlauf löschen" löscht genau einen Bereich.
  */
-import { get, set, del } from 'idb-keyval'
+import { createIndexedStore, type StoredResult } from '../storage/indexedStore'
+import type { StorageOutcome } from '@commietools/core/storage'
 
 export interface HistoryEntry {
   readonly expression: string
@@ -62,15 +63,24 @@ export const RETIRED_STORE_KEYS = ['calculator.history', 'calculator.variables',
 
 export interface CalculatorStore {
   readonly namespace: string
-  readHistory(): Promise<readonly HistoryEntry[]>
+  /**
+   * **Alle Zugriffe melden ihren Zustand (Karte M8-003)** — kein Wurf mehr. `status !== 'ok'`
+   * heißt: Der Wert stammt aus dem Rückfall und liegt **nicht** gespeichert vor; die Oberfläche
+   * schaltet dann in den flüchtigen Sitzungsbetrieb und sagt es.
+   */
+  readHistory(): Promise<StoredResult<readonly HistoryEntry[]>>
   /** Fügt einen Eintrag vorn an und schneidet den Ringpuffer auf `HISTORY_LIMIT` ab. */
-  pushHistory(current: readonly HistoryEntry[], entry: HistoryEntry): Promise<readonly HistoryEntry[]>
-  clearHistory(): Promise<readonly HistoryEntry[]>
-  readVariables(): Promise<Record<string, string>>
-  writeVariables(variables: Record<string, string>): Promise<void>
-  readSettings(): Promise<CalculatorSettings>
-  writeSettings(settings: CalculatorSettings): Promise<void>
+  pushHistory(current: readonly HistoryEntry[], entry: HistoryEntry): Promise<StoredResult<readonly HistoryEntry[]>>
+  clearHistory(): Promise<StoredResult<readonly HistoryEntry[]>>
+  readVariables(): Promise<StoredResult<Record<string, string>>>
+  writeVariables(variables: Record<string, string>): Promise<StorageOutcome>
+  readSettings(): Promise<StoredResult<CalculatorSettings>>
+  writeSettings(settings: CalculatorSettings): Promise<StorageOutcome>
 }
+
+const istEintragsliste = (value: unknown): value is HistoryEntry[] => Array.isArray(value)
+const istVariablen = (value: unknown): value is Record<string, string> => typeof value === 'object' && value !== null && !Array.isArray(value)
+const istEinstellungen = (value: unknown): value is Partial<CalculatorSettings> => typeof value === 'object' && value !== null && !Array.isArray(value)
 
 /**
  * Speicher eines Werkzeugs. `namespace` ist die Werkzeugkennung — die Schlüssel liegen damit
@@ -84,39 +94,42 @@ export function calculatorStore(namespace: string, defaults: Partial<CalculatorS
     settings: `${namespace}.settings`
   } as const
   const fallback: CalculatorSettings = { ...DEFAULT_SETTINGS, ...defaults }
+  const speicher = createIndexedStore()
 
   return {
     namespace,
-    async readHistory(): Promise<readonly HistoryEntry[]> {
-      const stored = await get<HistoryEntry[]>(keys.history)
-      return Array.isArray(stored) ? stored : []
+    async readHistory(): Promise<StoredResult<readonly HistoryEntry[]>> {
+      return speicher.read(keys.history, [] as readonly HistoryEntry[], istEintragsliste)
     },
-    async pushHistory(current: readonly HistoryEntry[], entry: HistoryEntry): Promise<readonly HistoryEntry[]> {
+    async pushHistory(current: readonly HistoryEntry[], entry: HistoryEntry): Promise<StoredResult<readonly HistoryEntry[]>> {
       const next = [entry, ...current].slice(0, HISTORY_LIMIT)
-      await set(keys.history, next)
-      return next
+      const status = await speicher.write(keys.history, next)
+      // **Kein „gespeichert"-Erfolg bei flüchtiger Ablage:** Der neue Verlauf gilt in der Sitzung,
+      // aber der Zustand sagt, ob er auch liegt. Bei einem Fehlschlag wird `next` trotzdem
+      // angezeigt — verlorene Eingaben zu verschweigen wäre schlimmer als sie flüchtig zu halten.
+      return { status, value: next }
     },
-    async clearHistory(): Promise<readonly HistoryEntry[]> {
-      await del(keys.history)
-      return []
+    async clearHistory(): Promise<StoredResult<readonly HistoryEntry[]>> {
+      const status = await speicher.remove(keys.history)
+      return { status, value: [] }
     },
-    async readVariables(): Promise<Record<string, string>> {
-      const stored = await get<Record<string, string>>(keys.variables)
-      return stored && typeof stored === 'object' ? stored : {}
+    async readVariables(): Promise<StoredResult<Record<string, string>>> {
+      return speicher.read<Record<string, string>>(keys.variables, {}, istVariablen)
     },
-    async writeVariables(variables: Record<string, string>): Promise<void> {
-      await set(keys.variables, variables)
+    async writeVariables(variables: Record<string, string>): Promise<StorageOutcome> {
+      return speicher.write(keys.variables, variables)
     },
-    async readSettings(): Promise<CalculatorSettings> {
-      const stored = await get<Partial<CalculatorSettings>>(keys.settings)
+    async readSettings(): Promise<StoredResult<CalculatorSettings>> {
+      const stored = await speicher.read<Partial<CalculatorSettings>>(keys.settings, {}, istEinstellungen)
       // Zusammenführen statt ersetzen: ein gespeicherter Datensatz aus einer früheren Fassung hat
       // einzelne Felder nicht — dann gilt die Vorgabe. Keine Migration nötig. Ein Feld `mode` aus
       // der Fassung vor der Aufteilung fällt dabei weg: die Rechenart ist keine Einstellung mehr,
-      // sondern das Werkzeug selbst.
-      return stored ? { ...fallback, ...stored } : fallback
+      // sondern das Werkzeug selbst. Der Zustand wird **durchgereicht**, auch wenn der Wert
+      // zusammengesetzt wurde: er beschreibt den Zugriff, nicht die Form des Ergebnisses.
+      return { status: stored.status, value: { ...fallback, ...stored.value } }
     },
-    async writeSettings(settings: CalculatorSettings): Promise<void> {
-      await set(keys.settings, settings)
+    async writeSettings(settings: CalculatorSettings): Promise<StorageOutcome> {
+      return speicher.write(keys.settings, settings)
     }
   }
 }

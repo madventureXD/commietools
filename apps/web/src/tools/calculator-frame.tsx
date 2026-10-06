@@ -16,6 +16,7 @@
  * ein statischer Import hinge mathjs an das Startbündel (ADR 0003).
  */
 import { useCallback, useEffect, useMemo, useRef, useState, type FormEvent, type ReactNode } from 'react'
+import type { StorageOutcome } from '@commietools/core/storage'
 import { LocalBadge } from '@commietools/ui'
 import {
   hasSecondPlane,
@@ -146,6 +147,12 @@ export function CalculatorFrame({ spec, t, locale }: { spec: CalculatorFrameSpec
   const store = useMemo(() => calculatorStore(spec.storageKey, settingsDefaults.current), [spec.storageKey])
   const [core, setCore] = useState<CoreModule | null>(null)
   const [loadError, setLoadError] = useState(false)
+  /**
+   * **Flüchtiger Sitzungsbetrieb (Karte M8-003).** Wahr, sobald ein Speicherzugriff nicht `ok`
+   * meldet. Dann gilt alles nur für diese Sitzung, und die Oberfläche **sagt es** — statt einen
+   * Erfolg anzuzeigen, den es nicht gibt.
+   */
+  const [volatileStorage, setVolatileStorage] = useState(false)
 
   const [settings, setSettings] = useState<CalculatorSettings>(() => ({
     fractionMode: false,
@@ -201,28 +208,43 @@ export function CalculatorFrame({ spec, t, locale }: { spec: CalculatorFrameSpec
    */
   const decimalSeparator: ',' | '.' = locale === 'en' ? '.' : ','
 
+  /**
+   * **Engine und Speicher getrennt laden (Karte M8-003).** Vorher stand beides in **einem**
+   * `Promise.all`: Scheiterte der Speicher (gesperrte Datenbank, volle Platte), wurde auch die
+   * Rechen-Engine nie gesetzt — das Werkzeug war **unbenutzbar**, obwohl der Speicher mit dem
+   * Rechnen nichts zu tun hat. Jetzt ist ein Speicherfehler ein Speicherfehler: Er schaltet den
+   * flüchtigen Sitzungsbetrieb ein (mit sichtbarer Warnung) und lässt das Rechnen in Ruhe.
+   */
   useEffect(() => {
     let cancelled = false
-    Promise.all([
-      import('@commietools/tools/calculator/core'),
-      store.readSettings()
-    ])
-      .then(async ([coreModule, saved]) => {
+    void import('@commietools/tools/calculator/core')
+      .then((coreModule) => { if (!cancelled) setCore(coreModule) })
+      .catch(() => { if (!cancelled) setLoadError(true) })
+    void Promise.all([store.readSettings(), store.readHistory(), store.readVariables()])
+      .then(([gespeicherteEinstellungen, gespeicherterVerlauf, gespeicherteVariablen]) => {
         if (cancelled) return
-        setCore(coreModule)
-        setSettings(saved)
-        const [savedHistory, savedVariables] = await Promise.all([store.readHistory(), store.readVariables()])
-        if (cancelled) return
-        setHistory(savedHistory)
-        setVariables(savedVariables)
-      })
-      .catch(() => {
-        if (!cancelled) setLoadError(true)
+        setSettings(gespeicherteEinstellungen.value)
+        setHistory(gespeicherterVerlauf.value)
+        setVariables(gespeicherteVariablen.value)
+        // Ein Zustand ungleich `ok` heißt: Der Wert stammt aus dem Rückfall und liegt **nicht**
+        // gespeichert vor. Das wird gesagt — ein leerer Verlauf als „nichts vorhanden" auszugeben
+        // wäre falsch, wenn in Wahrheit nur nicht gelesen werden konnte.
+        if ([gespeicherteEinstellungen, gespeicherterVerlauf, gespeicherteVariablen].some((ergebnis) => ergebnis.status !== 'ok')) setVolatileStorage(true)
       })
     return () => {
       cancelled = true
     }
   }, [store])
+
+  /**
+   * **Kein „gespeichert" ohne Deckung (Karte M8-003).** Jede Speicherung meldet ihren Zustand;
+   * alles außer `ok` schaltet den flüchtigen Sitzungsbetrieb ein und macht ihn sichtbar. Vorher
+   * liefen die Schreibvorgänge als `void` ohne Rückmeldung — ein voller Speicher sah aus wie ein
+   * gelungener.
+   */
+  const pruefeSpeicher = useCallback((status: StorageOutcome) => {
+    if (status !== 'ok') setVolatileStorage(true)
+  }, [])
 
   const options: Options = useMemo(
     () => ({ number: settings.fractionMode ? ('Fraction' as const) : ('BigNumber' as const), angleMode: settings.angleMode, decimalSeparator }),
@@ -240,12 +262,12 @@ export function CalculatorFrame({ spec, t, locale }: { spec: CalculatorFrameSpec
       set: (patch) => {
         setSettings((current) => {
           const next = { ...current, ...patch }
-          void store.writeSettings(next)
+          void store.writeSettings(next).then(pruefeSpeicher)
           return next
         })
       }
     }),
-    [settings, store]
+    [settings, store, pruefeSpeicher]
   )
 
   /** Variablen als Auswertungs-Scope: der Wert wird beim Setzen bereits geprüft und geparst. */
@@ -371,9 +393,11 @@ export function CalculatorFrame({ spec, t, locale }: { spec: CalculatorFrameSpec
       setErrorKey('')
       setCopyStatus('')
       const entry: HistoryEntry = { expression: input.trim(), display, at: Date.now() }
-      setHistory(await store.pushHistory(history, entry))
+      const geschrieben = await store.pushHistory(history, entry)
+      setHistory(geschrieben.value)
+      pruefeSpeicher(geschrieben.status)
     },
-    [core, spec, settings.fractionMode, options, scope, clearResult, store, history]
+    [core, spec, settings.fractionMode, options, scope, clearResult, store, history, pruefeSpeicher]
   )
 
   const onSubmit = (event: FormEvent) => {
@@ -461,7 +485,7 @@ export function CalculatorFrame({ spec, t, locale }: { spec: CalculatorFrameSpec
     }
     const next = { ...variables, [name]: parsed.raw }
     setVariables(next)
-    await store.writeVariables(next)
+    pruefeSpeicher(await store.writeVariables(next))
     setVariableName('')
     setVariableValue('')
     setErrorKey('')
@@ -471,11 +495,13 @@ export function CalculatorFrame({ spec, t, locale }: { spec: CalculatorFrameSpec
     const next = { ...variables }
     delete next[name]
     setVariables(next)
-    await store.writeVariables(next)
+    pruefeSpeicher(await store.writeVariables(next))
   }
 
   const clearHistory = async () => {
-    setHistory(await store.clearHistory())
+    const geleert = await store.clearHistory()
+    setHistory(geleert.value)
+    pruefeSpeicher(geleert.status)
   }
 
   const copyToClipboard = async (text: string) => {
@@ -507,6 +533,7 @@ export function CalculatorFrame({ spec, t, locale }: { spec: CalculatorFrameSpec
 
   return (
     <div className="stack">
+      {volatileStorage && <p className="scan-note" role="status">{t('storage.volatile')}</p>}
       <form className="settings-card stack" onSubmit={onSubmit}>
         {spec.numberModelSwitch && (
           <div className="field">

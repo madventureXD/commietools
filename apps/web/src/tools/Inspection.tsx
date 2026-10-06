@@ -39,6 +39,10 @@ export function Inspection({ t, locale }: InspectionProps) {
   const [warnDays, setWarnDays] = useState('30')
   const [temporal, setTemporal] = useState<TemporalApi | null>(null)
   const [loaded, setLoaded] = useState(false)
+  /** Zustand eines Speicherzugriffs, der nicht `ok` war — oder leer (Karte M8-003). */
+  const [speicherHinweis, setSpeicherHinweis] = useState('')
+  /** Wahr, solange geschrieben werden darf: nach einem gescheiterten Lesen **nicht**. */
+  const [schreiben, setSchreiben] = useState(true)
 
   // Gelesen wird einmal beim Öffnen; geschrieben erst danach. Sonst überschriebe der erste
   // Durchlauf die gespeicherte Liste mit dem leeren Anfangszustand.
@@ -48,9 +52,15 @@ export function Inspection({ t, locale }: InspectionProps) {
       const [api, gespeichert] = await Promise.all([loadTemporal(), readInspection()])
       if (!aktiv) return
       setTemporal(api)
-      if (gespeichert) {
-        setItems(gespeichert.items)
-        setWarnDays(String(gespeichert.warnDays))
+      // **Nicht gelesen ist nicht dasselbe wie nicht vorhanden (Karte M8-003).** Ein nicht
+      // erreichbarer Speicher darf nicht als leere Liste erscheinen; außerdem wird dann **nicht**
+      // geschrieben, damit ein vorhandener Prüfplan nicht mit dem Anfangszustand überschrieben wird.
+      if (gespeichert.status !== 'ok') {
+        setSpeicherHinweis('storage.readFailed')
+        setSchreiben(false)
+      } else if (gespeichert.value) {
+        setItems(gespeichert.value.items)
+        setWarnDays(String(gespeichert.value.warnDays))
       }
       setLoaded(true)
     })()
@@ -58,9 +68,13 @@ export function Inspection({ t, locale }: InspectionProps) {
   }, [])
 
   useEffect(() => {
-    if (!loaded) return
-    void writeInspection({ warnDays: clampWarnDays(warnDays) ?? 30, items })
-  }, [items, warnDays, loaded])
+    if (!loaded || !schreiben) return
+    void writeInspection({ warnDays: clampWarnDays(warnDays) ?? 30, items }).then((status) => {
+      // **Kein „gespeichert" ohne Deckung:** Bei einem Fehlschlag gilt die Liste nur für diese
+      // Sitzung, und das wird gesagt.
+      if (status !== 'ok') setSpeicherHinweis('storage.volatile')
+    })
+  }, [items, warnDays, loaded, schreiben])
 
   const todayIso = useMemo(localToday, [])
   const warnDaysValue = clampWarnDays(warnDays)
@@ -95,6 +109,7 @@ export function Inspection({ t, locale }: InspectionProps) {
 
   return (
     <div className="stack">
+      {speicherHinweis && <p className="scan-note" role="status">{t(speicherHinweis)}</p>}
       <p className="scan-note">{t('tool.inspection.noReminder')}</p>
 
       <div className="settings-card stack">

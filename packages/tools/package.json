@@ -9,6 +9,7 @@
     "./calculator/core": "./src/calculator/core.ts",
     "./calculator/functions": "./src/calculator/functions.ts",
     "./calculator/history": "./src/calculator/history.ts",
+    "./storage/indexedStore": "./src/storage/indexedStore.ts",
     "./calculator/commercial": "./src/calculator/commercial.ts",
     "./calculator/geometry": "./src/calculator/geometry.ts",
     "./calculator/units": "./src/calculator/units.ts",

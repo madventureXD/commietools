@@ -54,12 +54,19 @@ export function Aufmass({ t, locale }: { t: Translate; locale: string }) {
   const [document, setDocument] = useState<AufmassDocument>({ title: '', client: '', sections: [] })
   const [restorable, setRestorable] = useState(false)
   const [notice, setNotice] = useState('')
+  /** Zustand einer Speicherung, die nicht `ok` war — oder leer (Karte M8-003). */
+  const [speicherHinweis, setSpeicherHinweis] = useState('')
   const [busy, setBusy] = useState(false)
   const loaded = useRef(false)
 
   // Beim Öffnen prüfen, ob ein Blatt liegt — **nicht** ungefragt laden, es könnte ein fremdes sein.
   useEffect(() => {
-    void readSheet().then((stored) => {
+    void readSheet().then((ergebnis) => {
+      // **Nicht gelesen ist nicht dasselbe wie nicht vorhanden (Karte M8-003).** Ein Speicher,
+      // der nicht erreichbar ist, darf nicht als „kein Blatt da" erscheinen — sonst überschreibt
+      // der nächste Schreibversuch ein Blatt, dessen Inhalt nur gerade unsichtbar war.
+      if (ergebnis.status !== 'ok') { setSpeicherHinweis('storage.readFailed'); return }
+      const stored = ergebnis.value
       if (stored && stored.sections.length > 0) setRestorable(true)
     })
   }, [])
@@ -67,7 +74,13 @@ export function Aufmass({ t, locale }: { t: Translate; locale: string }) {
   // Jede Änderung sichern, kurz entprellt. Eigener Bereich, nie der Rechner-Verlauf.
   useEffect(() => {
     if (!loaded.current) return
-    const timer = setTimeout(() => { void writeSheet(document) }, 400)
+    const timer = setTimeout(() => {
+      void writeSheet(document).then((status) => {
+        // **Kein „gespeichert" ohne Deckung:** Bei einem Fehlschlag gilt das Blatt nur für diese
+        // Sitzung, und das wird gesagt.
+        if (status !== 'ok') setSpeicherHinweis('storage.volatile')
+      })
+    }, 400)
     return () => clearTimeout(timer)
   }, [document])
 
@@ -164,6 +177,7 @@ export function Aufmass({ t, locale }: { t: Translate; locale: string }) {
 
   return (
     <div className="stack">
+      {speicherHinweis && <p className="scan-note" role="status">{t(speicherHinweis)}</p>}
       <div className="settings-card stack">
         <div className="field">
           <label htmlFor="aufmass-title">{t('tool.aufmass.doc.title')}</label>
@@ -189,7 +203,9 @@ export function Aufmass({ t, locale }: { t: Translate; locale: string }) {
           <button
             type="button"
             disabled={!restorable}
-            onClick={() => void readSheet().then((stored) => {
+            onClick={() => void readSheet().then((ergebnis) => {
+              if (ergebnis.status !== 'ok') { setNotice(t('storage.readFailed')); return }
+              const stored = ergebnis.value
               if (!stored) { setNotice(t('tool.aufmass.doc.nothingStored')); return }
               change(stored)
               setRestorable(false)
@@ -200,7 +216,8 @@ export function Aufmass({ t, locale }: { t: Translate; locale: string }) {
           </button>
           <button
             type="button"
-            onClick={() => void clearSheet().then(() => {
+            onClick={() => void clearSheet().then((status) => {
+              if (status !== 'ok') { setNotice(t('storage.volatile')); return }
               loaded.current = true
               setRestorable(false)
               setDocument({ ...emptyDocumentState })

@@ -8,10 +8,12 @@
  * Gespeichert wird **ein** Blatt (`aufmass.sheet.v1`). Gelesen wird nur, was strukturell passt;
  * ein fremder oder beschädigter Eintrag führt zu `null`, nicht zu einem Absturz.
  */
-import { get, set, del } from 'idb-keyval'
+import { createIndexedStore, type StoredResult } from '../storage/indexedStore'
+import type { StorageOutcome } from '@commietools/core/storage'
 import { measureUnits, type AufmassDocument, type AufmassPosition, type AufmassRow, type AufmassSection, type MeasureUnit } from './aufmass'
 
 const KEY = 'aufmass.sheet.v1'
+const speicher = createIndexedStore()
 
 function isUnit(value: unknown): value is MeasureUnit {
   return typeof value === 'string' && (measureUnits as readonly string[]).includes(value)
@@ -52,31 +54,44 @@ function readSection(value: unknown): AufmassSection | null {
   return { id: section.id, label: section.label, rows, positions }
 }
 
-/** Das gespeicherte Blatt, oder `null`, wenn keines vorliegt oder es nicht passt. */
-export async function readSheet(): Promise<AufmassDocument | null> {
-  try {
-    const stored = await get<unknown>(KEY)
-    if (!stored || typeof stored !== 'object') return null
-    const document = stored as Record<string, unknown>
-    const sections = Array.isArray(document.sections)
-      ? document.sections.map(readSection).filter((section): section is AufmassSection => section !== null)
-      : []
-    return {
+/** Ein Blatt liegt vor, wenn ein Gegenstand mit einer Liste von Abschnitten dasteht. */
+const istBlattRoh = (value: unknown): value is Record<string, unknown> => {
+  if (!value || typeof value !== 'object') return false
+  return Array.isArray((value as Record<string, unknown>).sections)
+}
+
+/**
+ * Das gespeicherte Blatt, **mit Zustand** (Karte M8-003).
+ *
+ * `status: 'ok'` und `value: null` heißt: es liegt **kein** Blatt vor.
+ * `status: 'unavailable' | 'quota' | 'invalid'` heißt: es konnte nicht gelesen werden — die
+ * Oberfläche schaltet dann in den flüchtigen Sitzungsbetrieb, statt ein leeres Blatt zu zeigen,
+ * als wäre nichts vorhanden. Der Unterschied ist wichtig: „kein Blatt" ist harmlos, „nicht
+ * gelesen" bedeutet, dass ein vorhandenes Blatt gerade **nicht** sichtbar ist.
+ */
+export async function readSheet(): Promise<StoredResult<AufmassDocument | null>> {
+  const stored = await speicher.read(KEY, null, istBlattRoh)
+  if (stored.status !== 'ok' || stored.value === null) return { status: stored.status, value: null }
+  const document = stored.value
+  const sections = Array.isArray(document.sections)
+    ? document.sections.map(readSection).filter((section): section is AufmassSection => section !== null)
+    : []
+  return {
+    status: 'ok',
+    value: {
       title: typeof document.title === 'string' ? document.title : '',
       client: typeof document.client === 'string' ? document.client : '',
       sections
     }
-  } catch {
-    return null
   }
 }
 
-export async function writeSheet(document: AufmassDocument): Promise<void> {
-  await set(KEY, document)
+export async function writeSheet(document: AufmassDocument): Promise<StorageOutcome> {
+  return speicher.write(KEY, document)
 }
 
-export async function clearSheet(): Promise<void> {
-  await del(KEY)
+export async function clearSheet(): Promise<StorageOutcome> {
+  return speicher.remove(KEY)
 }
 
 /** Schlüssel des Bereichs — für Prüfungen und die Übergabe. */

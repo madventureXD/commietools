@@ -9,10 +9,12 @@
  * wird nur, was strukturell passt; ein fremder oder beschädigter Eintrag führt zu `null`, nicht zu
  * einem Absturz.
  */
-import { get, set, del } from 'idb-keyval'
+import { createIndexedStore, type StoredResult } from '../storage/indexedStore'
+import type { StorageOutcome } from '@commietools/core/storage'
 import { inspectionLimits, isIntervalMonths, clampWarnDays, type InspectionItem } from './inspection'
 
 const KEY = 'inspection.items.v1'
+const speicher = createIndexedStore()
 
 export interface StoredInspection {
   readonly warnDays: number
@@ -36,28 +38,36 @@ function readItem(value: unknown): InspectionItem | null {
   return { id: item.id, label, intervalMonths, lastChecked, note: readText(item.note, inspectionLimits.noteMax) }
 }
 
-/** Gespeicherte Liste und Warnschwelle, oder `null`, wenn nichts Brauchbares vorliegt. */
-export async function readInspection(): Promise<StoredInspection | null> {
-  try {
-    const stored = await get<unknown>(KEY)
-    if (!stored || typeof stored !== 'object') return null
-    const document = stored as Record<string, unknown>
-    const items = Array.isArray(document.items)
-      ? document.items.map(readItem).filter((item): item is InspectionItem => item !== null).slice(0, inspectionLimits.itemsMax)
-      : []
-    const warnDays = clampWarnDays(typeof document.warnDays === 'string' ? document.warnDays : String(document.warnDays ?? ''))
-    return { warnDays: warnDays ?? 30, items }
-  } catch {
-    return null
-  }
+/** Eine Liste liegt vor, wenn ein Gegenstand mit einer Liste von Einträgen dasteht. */
+const istListeRoh = (value: unknown): value is Record<string, unknown> => {
+  if (!value || typeof value !== 'object') return false
+  return Array.isArray((value as Record<string, unknown>).items)
 }
 
-export async function writeInspection(value: StoredInspection): Promise<void> {
-  await set(KEY, { warnDays: value.warnDays, items: value.items })
+/**
+ * Gespeicherte Liste und Warnschwelle, **mit Zustand** (Karte M8-003).
+ *
+ * `status: 'ok'` und `value: null` heißt: es liegt **keine** Liste vor. Jeder andere Zustand
+ * heißt: sie konnte nicht gelesen werden — ein vorhandener Prüfplan ist dann gerade **nicht**
+ * sichtbar, und die Oberfläche sagt das, statt eine leere Liste zu zeigen.
+ */
+export async function readInspection(): Promise<StoredResult<StoredInspection | null>> {
+  const stored = await speicher.read(KEY, null, istListeRoh)
+  if (stored.status !== 'ok' || stored.value === null) return { status: stored.status, value: null }
+  const document = stored.value
+  const items = Array.isArray(document.items)
+    ? document.items.map(readItem).filter((item): item is InspectionItem => item !== null).slice(0, inspectionLimits.itemsMax)
+    : []
+  const warnDays = clampWarnDays(typeof document.warnDays === 'string' ? document.warnDays : String(document.warnDays ?? ''))
+  return { status: 'ok', value: { warnDays: warnDays ?? 30, items } }
 }
 
-export async function clearInspection(): Promise<void> {
-  await del(KEY)
+export async function writeInspection(value: StoredInspection): Promise<StorageOutcome> {
+  return speicher.write(KEY, { warnDays: value.warnDays, items: value.items })
+}
+
+export async function clearInspection(): Promise<StorageOutcome> {
+  return speicher.remove(KEY)
 }
 
 /** Schlüssel des Bereichs — für Prüfungen und die Übergabe. */

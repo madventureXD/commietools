@@ -9,6 +9,8 @@ export const commonDe = {
   'tool.chunkFailed': 'Ein Teil dieses Werkzeugs konnte nicht geladen werden.',
   'tool.reloadLosesInput': 'Nicht gespeicherte Eingaben in diesem Werkzeug gehen beim Neuladen verloren.',
   'tool.reloadAgain': 'Es wurde gerade schon neu geladen. Bleibt der Fehler, ist die Fassung auf dem Server fehlerhaft — bitte später erneut versuchen.',
+  'storage.volatile': 'Der Speicher dieses Geräts ist nicht verfügbar. Verlauf, Variablen und Einstellungen gelten nur für diese Sitzung — gespeichert wird nichts.',
+  'storage.readFailed': 'Der Speicher dieses Geräts ließ sich nicht lesen. Ein vorhandener Stand ist gerade nicht sichtbar; Änderungen gelten nur für diese Sitzung.',
   'action.reload': 'Neu laden',
   'toolMenu.open': 'Werkzeugmenü öffnen', 'toolMenu.close': 'Werkzeugmenü schließen', 'toolMenu.title': 'Werkzeuge', 'toolMenu.intro': 'Schnell finden und öffnen',
   'toolMenu.search': 'Tool oder Dateityp suchen …', 'toolMenu.sort': 'Werkzeuge sortieren', 'toolMenu.sort.category': 'Kategorien', 'toolMenu.sort.az': 'A–Z',

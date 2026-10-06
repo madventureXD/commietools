@@ -9,6 +9,8 @@ export const commonEs = {
   'tool.chunkFailed': 'No se ha podido cargar una parte de esta herramienta.',
   'tool.reloadLosesInput': 'Los datos introducidos y no guardados de esta herramienta se pierden al recargar.',
   'tool.reloadAgain': 'Se acaba de recargar. Si el error persiste, la versión del servidor es defectuosa; inténtalo más tarde.',
+  'storage.volatile': 'El almacenamiento de este dispositivo no está disponible. El historial, las variables y los ajustes solo valen para esta sesión; no se guarda nada.',
+  'storage.readFailed': 'No se ha podido leer el almacenamiento de este dispositivo. Un estado existente no es visible ahora mismo; los cambios solo valen para esta sesión.',
   'action.reload': 'Recargar',
   'toolMenu.open': 'Abrir menú de herramientas', 'toolMenu.close': 'Cerrar menú de herramientas', 'toolMenu.title': 'Herramientas', 'toolMenu.intro': 'Encuentra y abre rápidamente',
   'toolMenu.search': 'Buscar herramienta o tipo de archivo…', 'toolMenu.sort': 'Ordenar herramientas', 'toolMenu.sort.category': 'Categorías', 'toolMenu.sort.az': 'A–Z',

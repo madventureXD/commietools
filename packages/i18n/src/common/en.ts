@@ -9,6 +9,8 @@ export const commonEn = {
   'tool.chunkFailed': 'Part of this tool could not be loaded.',
   'tool.reloadLosesInput': 'Unsaved input in this tool is lost when reloading.',
   'tool.reloadAgain': 'A reload just happened. If the error persists, the version on the server is faulty — please try again later.',
+  'storage.volatile': 'Storage on this device is unavailable. History, variables and settings apply to this session only — nothing is being saved.',
+  'storage.readFailed': 'Storage on this device could not be read. Any existing state is currently not visible; changes apply to this session only.',
   'action.reload': 'Reload',
   'toolMenu.open': 'Open tool menu', 'toolMenu.close': 'Close tool menu', 'toolMenu.title': 'Tools', 'toolMenu.intro': 'Find and open quickly',
   'toolMenu.search': 'Search tool or file type…', 'toolMenu.sort': 'Sort tools', 'toolMenu.sort.category': 'Categories', 'toolMenu.sort.az': 'A–Z',
