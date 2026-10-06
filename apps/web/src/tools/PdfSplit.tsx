@@ -35,6 +35,16 @@ export function PdfSplit({ t }: { t: Translate }) {
   const resultsRef = useRef(results)
   resultsRef.current = results
   useEffect(() => () => {
+    /**
+     * Beim **Verlassen** zählt kein laufender Auftrag mehr (Karte M4-005/M4-006).
+     *
+     * Gemessen im Abnahmefall „Unmount während laufender Verarbeitung": Ohne diese Zeile blieb
+     * die Generation unverändert, der späte Auftrag hielt sich für den aktuellen und legte sein
+     * Ergebnis in eine bereits ausgehängte Komponente — **1200 Adressen wurden erzeugt und keine
+     * einzige freigegeben** (create 1200 / revoke 0 nach dem Routenwechsel). Hier wird der Auftrag
+     * ungültig gemacht; sein Ergebnisweg gibt die gerade erzeugten Adressen dann selbst frei.
+     */
+    generationRef.current += 1
     resultsRef.current.forEach((result) => URL.revokeObjectURL(result.url))
   }, [])
   const thumbnails = usePdfThumbnails(file?.bytes ?? null)
