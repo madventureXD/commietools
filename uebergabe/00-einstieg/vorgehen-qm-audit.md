@@ -209,6 +209,11 @@ R1, M9-004) — vor einer neuen Welle dort nachsehen statt neu zu stolpern.
 ## 6. Offene Entscheidungen für Thomas (Stand 2026-10-06)
 
 1. **Revisionsbindung des Lizenzregisters** — `licenses:check` ist nach jedem Commit rot.
+   *(Nachtrag 2026-10-06, gemessen bei M4-003: Der Unterschied zwischen Arbeitsbaum und HEAD ist
+   **genau** die Revisionszeile samt daraus gebildeter Build-Adresse — kein inhaltlicher. Vor der
+   Arbeit stand sie auf `ebabc36`, `npm run licenses:generate` setzte sie auf die aktuelle Revision
+   und `npm run check` lief danach grün bis zum Ende. Die beiden Registry-Dateien werden deshalb
+   nicht committet; solange die Bindung besteht, ist jeder Commit für sich `licenses:check`-rot.)*
 2. **Importvertrag der Statistik** (M3-002) — ausdrücklich abzunehmen.
 3. **Kennzeichnung der Anzeige-Nullung** (M4-002) — fehlt.
 4. **Fünf Lizenzfragen** (`zlib-rs`, `unicode-ident`, `pdf_signer` GPL-3.0-or-later,
@@ -224,6 +229,15 @@ R1, M9-004) — vor einer neuen Welle dort nachsehen statt neu zu stolpern.
 - Kopf: `ebabc36` (Übergabe-Nachtrag), Arbeitsbaum sauber bis auf die bewusst uncommittete
   `licenses/registry.json` mit HEAD-Revision.
 - 10 Commits seit `0a4ecea` in dieser Arbeit. **Nichts gepusht.**
+
+*Nachtrag 2026-10-06 (nach M4-003).* Kopf ist jetzt **`c30cb74`**
+(„Plotter: x ueber den Scope binden statt Zeichen ersetzen (M4-003)"), davor `d78724f` und
+`352b726`. `main` steht **15 Commits vor `origin/main`** — **nichts gepusht**. Der Arbeitsbaum
+trägt außerhalb dieses Commits nur die beiden revisionsgebundenen Registry-Dateien
+(`licenses/registry.json`, `apps/web/public/licenses/registry.json`), bewusst uncommittet auf der
+Revision `d78724f`; sie unterscheiden sich nachweislich **nur** in der Revisionsangabe und der
+daraus gebildeten Build-Adresse. Die frühere Formulierung („Kopf `ebabc36`") ist damit überholt,
+nicht falsch gewesen.
 
 ## 8. Pflege dieser Datei
 
