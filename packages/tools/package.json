@@ -47,7 +47,6 @@
     "./pdf/m7": "./src/pdf/m7.ts",
     "./pdf/m8": "./src/pdf/m8.ts",
     "./pdf/m9": "./src/pdf/m9.ts",
-    "./pdf/report": "./src/pdf/report.ts",
     "./text-loaders": "./src/catalog/generated/textLoaders.ts"
   },
   "dependencies": {
