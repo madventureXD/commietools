@@ -64,6 +64,16 @@
   Grenze. Bericht: `06-protokolle/2026-10-06-welle-d-02-und-03.md`, Belege in
   `06-protokolle/screenshots/2026-10-06-welle-d-fotobeschrifter/` und `…-welle-d-protokoll/`.
   **Alle drei Werkzeuge der Welle D sind lokal, nichts gepusht.**
+- [~] **Welle E (technische Gewerke: 13 Leitungsquerschnitt, 14 Beleuchtung, 15 Rohrdimensionierung,
+  16 Heizlast, 18 Gewinde) — Quellenrecherche läuft.** Das Konzept sperrt diese Welle ausdrücklich
+  bis zur Klärung der **Normfrage (Q2)**; der Auftrag „Welle E" wurde deshalb **nicht** als Bauauftrag
+  ausgeführt. **Entscheidung Thomas, 2026-10-06:** zuerst die Quellenlage erheben (eine Sitzung), dann
+  Q2 auf belegter Grundlage entscheiden, dann bauen. Normgebundene Werte kommen als **eigene Werte aus
+  mehreren frei zugänglichen Quellen** ins Werkzeug, **je Wert die Quelle sichtbar** und **jeder Wert
+  änderbar** (nicht fest verdrahtet). Rechercheumfang: **ausführlich** — fünf Datenbestände, je Wert
+  Quelle und Abrufdatum; Fundstellen werden nachgeprüft, nicht geglaubt. Aufwandsschätzung (nach
+  Referenzklasse, nicht gemessen): **5–7 Sitzungen**, davon eine für die Quellenlage; Fehlermarge nach
+  oben offen. Zwischenstand der Recherche: `work/recherche/` (Arbeitsdateien, nicht im Git).
 - [x] **Stilerscheinung in den aufklappbaren Abschnitten der Handwerk-Werkzeuge prüfen:** Bei
   Pflaster und Reifen sitzt die erste Feldspalte auf der Zeile der Zusammenfassung, das
   Eingabefeld darunter. Lesbar und richtig zugeordnet, aber unschön. Ursache wird im gemeinsamen
