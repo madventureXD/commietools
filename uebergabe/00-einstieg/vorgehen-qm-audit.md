@@ -102,7 +102,7 @@ Protokoll: `06-protokolle/2026-10-06-r1-*.md`, `…-m9-004-lopdf-anhebung.md`, `
 | M4-005 | PDF-Ergebnisse nach Dateiwechsel dem falschen Namen zugeordnet | ◐ Auftrags-Snapshot + Generation, Name aus dem Auftrag — **Browserabnahme mit zwei Aufträgen offen** (2026-10-06) |
 | M4-006 | PDF-Teiler gibt Ergebnis-URLs beim Verlassen nicht frei | ◐ Unmount gibt die aktuellen Ergebnis-URLs frei — **Zählerabnahme und gemeinsamer Hook offen** (2026-10-06) |
 | M4-007 | Sprach-Type-Guard akzeptiert geerbte Objektschlüssel | ✓ `hasOwnProperty.call` + `typeof`-Prüfung; `__proto__`/`constructor` abgewiesen (2026-10-06) |
-| M8-002 | Erste Offline-Bereitschaft hängt am flüchtigen HTTP-Cache | ○ |
+| M8-002 | Erste Offline-Bereitschaft hängt am flüchtigen HTTP-Cache | ◐ **Bestandsaufnahme:** Regeln erfassen die Sprachpakete (189 Chunks gemessen), Ursache ist der **Erstbesuch** vor SW-Kontrolle — Umsetzung braucht Offline-Beleg (2026-10-06) |
 | M8-003 | Fehlender Browser-Speicher verhindert Nutzung statt Rückfall | ◐ Adapter ohne Wurf (`readLocal`/`writeLocal`/`readLocalJson`), Startpfad abgesichert — **Verlaufs-/Store-Vertrag und flüchtiger Betrieb offen** (2026-10-06) |
 
 ### R4 — Wirksame Tests, Lint, Freigabeschranken (P1) — nicht begonnen (begleitend)
