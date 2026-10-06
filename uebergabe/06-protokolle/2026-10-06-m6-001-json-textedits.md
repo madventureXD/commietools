@@ -113,3 +113,13 @@ Reihenfolge wiederhergestellt. Lehre: ein abgeschnittenes Lesen ist keine Bestan
       Punkt M10-004). Soll er dauerhaft prüfbar sein, gehört er in den versionierten Bestand.
 - [ ] Die übrigen Welle-1-Werkzeuge liegen weiterhin im Startbündel — hier absichtlich nicht
       mitgeändert.
+
+## Nachtrag 2026-10-06: Lizenzregister diesmal **mit** committet
+
+Anders als bei M4-003 sind `licenses/registry.json` und `apps/web/public/licenses/registry.json`
+**mit** in den Commit gegangen. Grund: Sie tragen hier eine **inhaltliche** Änderung — die neue
+Komponente `jsonc-parser` samt Hinweis —, und ein HEAD ohne sie hätte eine Abhängigkeit geführt,
+die im versionierten Register fehlt. Die bloße Revisionsbindung (offene Entscheidung 1) ist danach
+wieder der alte Zustand: `npm run licenses:generate` setzte die Revision auf den neuen Commit
+`dac33b7`, die Dateien liegen seitdem wieder bewusst uncommittet; gemessen weichen sie **nur** in
+der Revisionszeile und der daraus gebildeten Build-Adresse ab.

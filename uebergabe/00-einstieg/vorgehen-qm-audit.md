@@ -239,6 +239,14 @@ Revision `d78724f`; sie unterscheiden sich nachweislich **nur** in der Revisions
 daraus gebildeten Build-Adresse. Die frühere Formulierung („Kopf `ebabc36`") ist damit überholt,
 nicht falsch gewesen.
 
+*Nachtrag 2026-10-06 (nach M6-001).* Kopf ist jetzt **`dac33b7`**
+(„JSON-Formatierung als Textedits statt Neu-Serialisierung (M6-001)"), davor `00da6c7`, `c30cb74`,
+`d78724f` und `352b726`. `main` steht damit weiter **vor** `origin/main` — **nichts gepusht**. Der
+Arbeitsbaum trägt außerhalb der Commits nur die beiden revisionsgebundenen Registry-Dateien,
+bewusst uncommittet auf der Revision `dac33b7`; die inhaltliche Registrierung der neuen Abhängigkeit
+`jsonc-parser` ist dagegen **committet**. Die früheren Stände (`ebabc36`, dann `c30cb74`) sind damit
+überholt, nicht falsch gewesen.
+
 ## 8. Pflege dieser Datei
 
 Aktualisiert wird **nur Spalte „Stand"** in Abschnitt 4 und die Abschnitte 6 und 7 — jeweils mit

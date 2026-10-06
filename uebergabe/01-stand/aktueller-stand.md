@@ -12,6 +12,28 @@ Fehler, alle behoben. Einzelheiten: `06-protokolle/2026-10-06-welle-e-bericht.md
 `06-protokolle/screenshots/2026-10-06-welle-e/`. Alles lokal, **nicht gepusht** (`11f09d4`, `8d9be23`).
 **Fachliche Freigabe beanspruchen 13 und 16 ausdrücklich nicht** (Vorplanung bzw. Überschlag).
 
+**Zusatz 2026-10-06 (Faber), QM-Sanierung Stufe C (R2) — zwei Karten erledigt:** In R2 sind
+**M4-003** und **M6-001** abgeschlossen.
+
+- **M4-003 (Plotter):** `valueAt` ersetzte `x` per Zeichenersetzung **im Ausdruck** — `exp(x)` wurde
+  bei `x = 0` zu `e(0)p(0)`, und jeder Name mit einem `x` darin lieferte `null` (Wertetabelle,
+  Nullstellensuche und Kurve gleichzeitig). Jetzt geht der Ausdruck unverändert an den Kern, `x`
+  hängt am vorhandenen Scope, und an der Geometriegrenze wird `raw` statt des lokalisierten
+  `display` gelesen.
+- **M6-001 (JSON):** Die Formatierung schrieb das Dokument aus Werten neu — `9007199254740993`
+  wurde `…992`, `"\u00e4"` wurde `"ä"`, `1e309` wurde `null`. Jetzt sind es **Textedits** auf dem
+  Originaltext (`jsonc-parser` 3.3.1, MIT, ohne Unterabhängigkeiten), Kommentare und
+  abschließendes Komma werden abgelehnt und die Fehlerstelle als **Zeile und Spalte** benannt.
+  Das Werkzeug lädt seitdem **nach** (eigener Chunk 4,86 kB gzip) — Entscheidung und Messwerte in
+  **ADR 0012**. Erst dadurch blieb die neue Bibliothek aus dem Startbündel.
+
+Register unverändert **62 Werkzeuge**, **639 Tests in 40 Dateien** (`npm run check`), Startlast
+**148.032 B gzip** von 204.800 (vorher 148.147 — trotz neuer Bibliothek 115 B kleiner), `check` und
+`build` grün. Neue Abhängigkeit: **`jsonc-parser` 3.3.1** (MIT), im Lizenzregister und in
+`THIRD_PARTY_NOTICES.md` eingetragen. Alles lokal, **nicht gepusht** (`c30cb74`, `00da6c7`,
+`dac33b7`). Einzelheiten: `06-protokolle/2026-10-06-m4-003-plotter-scope.md` und
+`06-protokolle/2026-10-06-m6-001-json-textedits.md`.
+
 **Zusatz 2026-10-06 (Faber), Veröffentlichung:** Welle E ist **ausgeliefert** — 31 Commits gepusht
 (`dd427df`), die Auslieferung spielte den Stand nach rund zwei Minuten aus (Katalogdatei
 `BPHs9pGK`), online nachgeprüft mit eigenem Beleg (`work/online-nachpruefung.cjs`): Suite
