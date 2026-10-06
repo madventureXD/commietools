@@ -47,8 +47,18 @@ export function PdfSplit({ t }: { t: Translate }) {
   async function selectFile(event: ChangeEvent<HTMLInputElement>) {
     const selected = event.target.files?.[0]
     if (!selected) return
-    // Ein laufender Auftrag gehört zur alten Datei: ungültig machen, bevor der Zustand wechselt.
+    /**
+     * Ein laufender Auftrag gehört zur alten Datei: ungültig machen, bevor der Zustand wechselt.
+     *
+     * **Der Fortschritt muss hier enden, nicht im alten Auftrag.** Sein `finally` setzt ihn
+     * absichtlich nur für den aktuellen Auftrag zurück — sonst beendete ein alter Auftrag den
+     * Fortschritt eines neuen. Ohne diese Zeile blieb der Aktionsknopf nach einem Dateiwechsel
+     * während einer laufenden Verarbeitung **dauerhaft gesperrt**: der alte Auftrag durfte nicht,
+     * der neue kam nie zum Zug (gemessen im Abnahmefall zu Karte M4-005 — B ließ sich nicht
+     * starten, die Oberfläche war eine Sackgasse).
+     */
     generationRef.current += 1
+    setProcessing(false)
     clearResults()
     setError('')
     try {

@@ -99,8 +99,8 @@ Protokoll: `06-protokolle/2026-10-06-r1-*.md`, `…-m9-004-lopdf-anhebung.md`, `
 | Karte | Kurz | Stand |
 |---|---|---|
 | M4-004 | Sprachladefehler bleiben gecacht; kein Fehler-/Wiederholungszustand | ◐ Cache gibt abgelehnte Importe frei (5 Lader); Oberflächentexte mit Fehlermeldung + Retry — **Werkzeugtexte und Generationsschutz offen** (2026-10-06) |
-| M4-005 | PDF-Ergebnisse nach Dateiwechsel dem falschen Namen zugeordnet | ◐ Auftrags-Snapshot + Generation, Name aus dem Auftrag — **Browserabnahme mit zwei Aufträgen offen** (2026-10-06) |
-| M4-006 | PDF-Teiler gibt Ergebnis-URLs beim Verlassen nicht frei | ◐ Unmount gibt die aktuellen Ergebnis-URLs frei — **Zählerabnahme und gemeinsamer Hook offen** (2026-10-06) |
+| M4-005 | PDF-Ergebnisse nach Dateiwechsel dem falschen Namen zugeordnet | ◐ belegt 2026-10-06: A (1200 S.) verworfen, B allein sichtbar/speicherbar, Inhalt der 3 Ausgaben als `SEITE-B` geprüft; **dabei Produktfehler gefunden+behoben** (Knopf blieb nach Dateiwechsel gesperrt). **Offen:** Reihenfolge „A zuletzt fertig" nicht herstellbar (Verarbeitung 0,6 s), Unmount im Fehlerweg |
+| M4-006 | PDF-Teiler gibt Ergebnis-URLs beim Verlassen nicht frei | ◐ **Zählerabnahme erbracht** 2026-10-06: create 1203 / revoke 1200 / offen 3 im Betrieb, nach clientseitigem Unmount revoke 1203 / offen 0. **Offen:** gemeinsamer `useObjectUrls`-Hook (nicht Abnahmebedingung), StrictMode-Zyklus |
 | M4-007 | Sprach-Type-Guard akzeptiert geerbte Objektschlüssel | ✓ `hasOwnProperty.call` + `typeof`-Prüfung; `__proto__`/`constructor` abgewiesen (2026-10-06) |
 | M8-002 | Erste Offline-Bereitschaft hängt am flüchtigen HTTP-Cache | ◐ **Bestandsaufnahme:** Regeln erfassen die Sprachpakete (189 Chunks gemessen), Ursache ist der **Erstbesuch** vor SW-Kontrolle — Umsetzung braucht Offline-Beleg (2026-10-06) |
 | M8-003 | Fehlender Browser-Speicher verhindert Nutzung statt Rückfall | ◐ Adapter ohne Wurf (`readLocal`/`writeLocal`/`readLocalJson`), Startpfad abgesichert — **Verlaufs-/Store-Vertrag und flüchtiger Betrieb offen** (2026-10-06) |
@@ -274,6 +274,12 @@ Arbeitsbaum trägt außerhalb der Commits nur die beiden revisionsgebundenen Reg
 bewusst uncommittet auf der Revision `dac33b7`; die inhaltliche Registrierung der neuen Abhängigkeit
 `jsonc-parser` ist dagegen **committet**. Die früheren Stände (`ebabc36`, dann `c30cb74`) sind damit
 überholt, nicht falsch gewesen.
+
+*Nachtrag 2026-10-06 (nach M4-005/M4-006).* Kopf ist jetzt **`<Hash folgt im nächsten Nachtrag>`**
+(„PDF-Teiler: gesperrter Aktionsknopf nach Dateiwechsel behoben"), davor `64bc150`, `a0bad10`.
+Belege für M4-005/M4-006 erbracht (Zähler, Ausgabedateien inhaltlich geprüft); ein Abnahmefall
+(„A zuletzt fertig") ist **nicht herstellbar** und im Protokoll benannt. Protokoll:
+`06-protokolle/2026-10-06-m4-005-m4-006-pdf-auftraege-urls.md`. **Nichts gepusht.**
 
 *Nachtrag 2026-10-06 (nach M4-002-Anzeigenullung).* Kopf ist jetzt **`a0bad10`** („Anzeige-Nullung
 am Ergebnis gekennzeichnet (M4-002)"), davor `0711dcc`, `1469f56` und die in den früheren Nachträgen

@@ -499,17 +499,21 @@ Diese Liste enthält bestätigte, noch nicht abgeschlossene Arbeit. Details geh�
 
 ## R3 — Datei-Aufträge, Ressourcen, Offline (ab 2026-10-06)
 
-- [ ] **M4-006 — PDF-Teiler gibt Ergebnis-URLs beim Verlassen nicht frei: Code umgesetzt, Abnahme
+- [ ] **M4-006 — PDF-Teiler gibt Ergebnis-URLs beim Verlassen nicht frei: Code umgesetzt, Zählerabnahme erbracht,
   offen** *(Nachtrag 2026-10-06)*. Der Teiler erzeugte pro Ergebnis eine Objekt-URL, gab sie aber
   nur bei `clearResults()` (Dateiwechsel, neuer Auftrag) frei — beim **Verlassen** der Route blieben
   sie bis zum Neuladen des Dokuments am Leben. Neu: ein Aufräumeffekt ohne Abhängigkeiten gibt die
   **aktuelle** Liste frei (über einen Ref, damit nicht die Liste des ersten Renderns widerrufen
   wird); verworfene Aufträge aus M4-005 geben ihre URLs bereits sofort frei.
+  - [x] **Zählerabnahme erbracht** *(2026-10-06)*: create 1203 / revoke 1200 / offen 3 bei
+    sichtbarem Ergebnis; nach **clientseitigem** Routenwechsel (gleiches Dokument, echter Unmount)
+    revoke 1203 / offen 0. A's 1200 verworfene Ausgaben wurden sofort freigegeben.
   - [ ] **Offen:** der gemeinsame `useObjectUrls`-Hook bzw. die Erweiterung von `useDownload` (von
-    der Karte vorgeschlagen), die Zählerabnahme (create/revoke nach Ersetzen, Unmount, verspätetem
-    Ergebnis), StrictMode-Zyklus und Mehrfachspeichern.
+    der Karte vorgeschlagen, **nicht** Abnahmebedingung — der Teiler räumt an drei Stellen selbst
+    auf), StrictMode-Zyklus (im ausgelieferten Build ruft React Effekte nicht doppelt auf; ein Lauf
+    gegen `vite dev` fehlt) und Mehrfachspeichern.
 - [ ] **M4-005 — PDF-Ergebnisse können nach Dateiwechsel dem falschen Namen zugeordnet werden:
-  Code umgesetzt, Abnahme offen** *(Nachtrag 2026-10-06)*. Zwei Befunde bestätigt: Der Ergebnisname
+  Code umgesetzt, Abnahme weitgehend erbracht, ein Fall nicht herstellbar** *(Nachtrag 2026-10-06)*. Zwei Befunde bestätigt: Der Ergebnisname
   kam aus `baseName(file?.name ?? 'document')` — also aus dem **aktuellen** Formularzustand; und
   `process()` setzte Ergebnis, Fehler und Fortschritt ohne Prüfung, ob der Auftrag noch aktuell ist
   (spätes Ergebnis der alten Datei überschrieb die Liste der neuen). Neu: unveränderlicher
@@ -517,8 +521,19 @@ Diese Liste enthält bestätigte, noch nicht abgeschlossene Arbeit. Details geh�
   veraltete Ergebnisse werden verworfen und ihre Objekt-URLs sofort freigegeben; Fehler und
   `processing` setzt nur der aktuelle Auftrag; der Dateiname kommt aus dem Auftrag. Bericht:
   `06-protokolle/2026-10-06-m4-005-pdf-teiler-auftrag.md`.
-  - [ ] **Abnahme offen:** zwei Aufträge mit Deferred (A starten, B wählen, B fertig, A zuletzt
-    fertig/fehlerhaft), Unmount und echte Browserprobe mit verschiedenen Namen/Seiteninhalten.
+  - [x] **Browserprobe erbracht** *(2026-10-06)*: A = 1200-Seiten-PDF, B = 3-Seiten-PDF mit anderem
+    Namen und Inhalt. Nach dem Dateiwechsel lief B allein (3 Ergebniseinträge), A's 1200 Ausgaben
+    wurden verworfen und sofort freigegeben, nach +20 s unverändert. Die drei Ausgabedateien wurden
+    abgerufen und mit einem **unabhängigen** Leser geprüft: alle 1 Seite, Inhalt `SEITE-B-1/2/3`,
+    **0 von 3 mit `SEITE-A`**.
+  - [x] **Produktfehler dabei gefunden und behoben:** Wurde während eines laufenden Auftrags eine
+    andere Datei gewählt, blieb der Aktionsknopf **dauerhaft gesperrt** (der alte Auftrag durfte den
+    Fortschritt nicht beenden, niemand setzte ihn zurück) — die Seite war eine Sackgasse. `selectFile`
+    setzt jetzt `setProcessing(false)` an der Invalidierungsstelle.
+  - [ ] **Nicht erfüllt:** der Abnahmefall „A zuletzt fertig" ließ sich **nicht herstellen** — der
+    Teiler ist schneller als jede Bedienhandlung (1200 Seiten → 1200 Dokumente in rund 0,6 s,
+    Zeitmarken im Protokoll). Künstliche Verlängerungen wurden als Prüfmittel-Eingriffe verworfen.
+  - [ ] **Offen:** Unmount während eines **Fehler**wegs (Erfolgsweg belegt).
   - [ ] Muster auf weitere asynchrone Dateiwerkzeuge übertragen (von der Karte verlangt).
 - [ ] **M4-004 — Sprachladefehler bleiben gecacht: TEILWEISE** *(Nachtrag 2026-10-06)*. Ursache
   behoben: Alle fünf Lader (`loadToolSearchIndex`, `loadCommonToolTexts`, `loadToolTexts`,
