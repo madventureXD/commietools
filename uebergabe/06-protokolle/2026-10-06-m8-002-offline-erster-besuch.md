@@ -1,7 +1,8 @@
 # Fortschrittsprotokoll: M8-002 — Offline-Bereitschaft des ersten Besuchs
 
 **Datum:** 2026-10-06
-**Status:** Bestandsaufnahme abgeschlossen, **Abnahme der Karte nicht erfüllt** (Befund gemessen)
+**Status:** **Abnahme erfüllt** (2026-10-06) — Bestandsaufnahme des Befunds unten bleibt stehen,
+die Umsetzung ist im Nachtrag am Ende beschrieben
 
 ## Umfang
 
@@ -86,6 +87,37 @@ Der Erstbesuch ist offline nicht bedienbar.
   `work/m8-002-offline2.cjs` (echtes Netztrennen), `work/m8-002-offline.cjs` (erster, untauglicher
   Weg — als Fehlversuch benannt), `work/m8-002-precache.cjs` (Cache-Bestandsaufnahme)
 - Aufnahmen: `06-protokolle/screenshots/2026-10-06-m8-002/`
+
+## Nachtrag: Umsetzung und Lösung (2026-10-06, nach dem Befund oben)
+
+**Zwei Eingriffe, beide gemessen begründet:**
+
+1. **Warmlauf der Sprachpakete** — neues Modul `apps/web/src/pwaWarmCache.ts`, aufgerufen aus
+   `main.tsx` nach dem Laden der Seite. Sobald der Service Worker die Seite kontrolliert, werden
+   genau die Sprachpakete **dieses** Starts (aktive Sprache + Englisch + Texte der geöffneten Route)
+   erneut angefordert und ihr Vorhandensein im Laufzeitcache geprüft. Kein Vorabladen fremder
+   Sprachen oder nicht geöffneter Werkzeuge. 5 neue Tests (`pwa-warm-cache.test.ts`), Projekt
+   667 → 672.
+2. **`ignoreVary: true` in der Laufzeitregel** (`vite.config.ts`) — **der entscheidende Hebel.**
+   Ohne ihn half der Warmlauf nicht: Die Pakete lagen nachweislich im Cache (`fetch` auf dieselbe
+   Adresse lieferte 200 `text/javascript`), aber der **dynamische `import()`** scheiterte weiter mit
+   `net::ERR_FAILED`. Eingegrenzt durch Gegenproben: Ein Modul-Import einer **Precache**-Datei war
+   erfolgreich, einer Laufzeitcache-Datei nicht — der Cache-Treffer scheiterte am `Vary`-Kopffeld,
+   weil Modul-Load und `fetch` unterschiedliche Anfrage-Kopfzeilen stellen.
+
+**Beleg nach der Umsetzung** (frisches Profil, HTTP-Cache gelöscht, Dienst beendet):
+
+| Prüfung | Ergebnis |
+|---|---|
+| Warmlauf | 2 Cachegruppen, **8 Sprachpakete** im Laufzeitcache |
+| Reload ohne Netz | Überschrift **„Rechner"**, Seite vollständig gerendert (Aufnahme angesehen) |
+| Antworten aus dem Service Worker | **23 von 23, 0 gescheitert** |
+| Dritte Sprache | nicht geholt (`ui-de`, `ui-en`, `search-de`, `search-en` — kein `es`) |
+| Nie geöffnete Route `/tools/pdf-split` | scheitert **nur** an ihren nie geholten Texten `tools-{de,en}-pdf-split-*.js` — kartenkonform („Offlinebereitschaft je tatsächlich geöffnetem Werkzeug") |
+
+**Folge, die nicht zu dieser Karte gehört:** Die nie geöffnete Route zeigt offline **nichts** statt
+einer Shell mit Hinweis. Das ist der offene UI-Teil von **M4-004** (sichtbarer Fehlerzustand mit
+Wiederholung).
 
 ## Folgemaßnahmen
 

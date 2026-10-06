@@ -250,7 +250,14 @@ Diese Liste enthält bestätigte, noch nicht abgeschlossene Arbeit. Details geh�
   Kartenbefund bestätigt und präzisiert; die Umsetzung nach der Karte (Sicherung dieser Pakete,
   gezieltes Nachladen nach SW-Kontrolle) steht aus. Teilfälle **nicht** geprüft: Warmbesuch,
   Localewechsel, fehlendes Einzelpaket, SW-Versionswechsel. Protokoll:
-  `06-protokolle/2026-10-06-m8-002-offline-erster-besuch.md`.)*
+  `06-protokolle/2026-10-06-m8-002-offline-erster-besuch.md`.)
+  *(2026-10-06, **umgesetzt und erfüllt:** Warmlauf der Sprachpakete nach Service-Worker-Kontrolle
+  (`apps/web/src/pwaWarmCache.ts`, 5 neue Tests) **und** `ignoreVary: true` in der Laufzeitregel —
+  ohne den zweiten Eingriff blieb der Modul-Import trotz Cache-Treffer bei `net::ERR_FAILED`. Beleg
+  im frischen Profil mit beendetem Dienst: Reload lädt vollständig, **23 von 23 Antworten aus dem
+  Service Worker, 0 gescheitert**, keine dritte Sprache. Offen bleiben die Teilfälle **Warmbesuch,
+  Localewechsel und SW-Versionswechsel** (nicht geprüft) sowie die nie geöffnete Route, die offline
+  nichts zeigt — das ist der UI-Teil von M4-004.)*
 - [ ] Content Security Policy und spätere Deployment-Header konkretisieren.
 - [ ] Größenbudgets zusätzlich pro große Tool-Engine festlegen; das Startbudget und die Sperre gegen PDF-Engines sind umgesetzt.
 - [ ] **Werkzeugtexte je Sprache im Blick behalten — Reserve 4,3 KiB.** Mit dem umgesetzten

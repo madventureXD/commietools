@@ -83,9 +83,20 @@ export default defineConfig({
           handler: 'CacheFirst',
           options: { cacheName: 'commietools-calculator-engines-v1' }
         }, {
+          /**
+           * Sprachpakete: erst bei Gebrauch geholt, dann offline im Laufzeitcache.
+           *
+           * `ignoreVary` ist hier **notwendig** und gemessen begründet (Karte M8-002): Ein
+           * dynamischer `import()` stellt andere Anfrage-Kopfzeilen als ein `fetch()` auf dieselbe
+           * Adresse. Trägt die gespeicherte Antwort ein `Vary`-Kopffeld, verweigert der
+           * Cache-Treffer beim Modul-Import, die Anfrage fällt ins Netz — und ohne Netz scheitert
+           * sie (`net::ERR_FAILED`), obwohl die Datei nachweislich im Cache liegt. Gemessen:
+           * `fetch` auf dieselbe Adresse liefert 200 aus dem Cache, der Modul-Import scheitert;
+           * ein Modul-Import einer Precache-Datei ist dagegen erfolgreich.
+           */
           urlPattern: /\/assets\/(?:search|tools|ui)-[a-z]{2,3}(?:-[A-Z]{2})?-/,
           handler: 'CacheFirst',
-          options: { cacheName: 'commietools-language-packs-v1' }
+          options: { cacheName: 'commietools-language-packs-v1', matchOptions: { ignoreVary: true } }
         }]
       }
     })
