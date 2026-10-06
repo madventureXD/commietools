@@ -48,7 +48,13 @@ export function ToolNavigation({ t, locale, activeToolId, navigate }: { t: Trans
   const searchRef = useRef<HTMLInputElement>(null)
   const pushedHistory = useRef(false)
 
-  useEffect(() => { let current=true;setSearchReady(false);void loadToolSearchIndex(locale as 'de'|'en'|'es').then((index)=>{if(current){setToolIndex(index);setSearchReady(true)}});return()=>{current=false} },[locale])
+  /**
+   * **Fehlerweg des Werkzeugmenüs (Karte M4-004).** Ohne ihn blieb die unbehandelte Ablehnung
+   * stehen — `.then` ohne zweites Argument gibt sie an eine neue Zusage weiter, die niemand
+   * behandelt. Sichtbar war das als Menü, das für immer „wird geladen" zeigt.
+   */
+  const [searchFailed, setSearchFailed] = useState(false)
+  useEffect(() => { let current=true;setSearchReady(false);setSearchFailed(false);void loadToolSearchIndex(locale as 'de'|'en'|'es').then((index)=>{if(current){setToolIndex(index);setSearchReady(true)}},()=>{if(current){setToolIndex([]);setSearchReady(true);setSearchFailed(true)}});return()=>{current=false} },[locale])
 
   useEffect(() => {
     if (!activeToolId || !knownIds.has(activeToolId)) return
@@ -161,6 +167,8 @@ export function ToolNavigation({ t, locale, activeToolId, navigate }: { t: Trans
 
   const content = trimmed.length >= MIN_QUERY_LENGTH && !searchReady
     ? <div className="tool-menu-empty" role="status"><p>{t('toolMenu.search')} …</p></div>
+    : trimmed.length >= MIN_QUERY_LENGTH && searchFailed
+    ? <div className="tool-menu-empty" role="alert"><p>{t('catalog.loadFailed')}</p></div>
     : trimmed.length >= MIN_QUERY_LENGTH || sort !== 'category'
     ? visible.length ? <div className="tool-menu-list">{visible.map(toolRow)}</div> : <div className="tool-menu-empty"><p>{t(trimmed ? 'toolMenu.noResults' : sort === 'favorites' ? 'toolMenu.noFavorites' : 'toolMenu.noRecent')}</p>{trimmed && <button className="text-link" onClick={() => setQuery('')}>{t('catalog.clear')}</button>}</div>
     : <div className="tool-menu-categories">{categoryOrder.map((category) => {

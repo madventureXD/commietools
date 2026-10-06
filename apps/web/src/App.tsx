@@ -11,6 +11,7 @@ import { LegalNoticePage } from './LegalNoticePage'
 import { ToolCard } from './ToolCard'
 import { toolTextsFrom } from './tool-texts'
 import { ToolNavigation } from './ToolNavigation'
+import { LoadFailureNotice, ToolErrorBoundary } from './ToolErrorBoundary'
 import { ImageMetadata } from './tools/ImageMetadata'
 import { ImageResize } from './tools/ImageResize'
 import { IconGenerator } from './tools/IconGenerator'
@@ -124,7 +125,7 @@ function CaseConverterTool({ t, locale }: { t: Translate; locale: Locale }) {
   return <div className="stack"><TextArea label={t('tool.caseConverter.input')} value={text} onChange={setText} /><div className="segmented" aria-label="Case mode">{(['upper', 'lower', 'title'] as const).map((item) => <Button key={item} className={mode === item ? 'active' : ''} onClick={() => setMode(item)}>{t(labels[item])}</Button>)}</div><TextArea label={t('tool.result')} value={output} readOnly /></div>
 }
 
-function ToolPage({ tool, t, locale, navigate, ready }: { tool: ToolManifest; t: Translate; locale: Locale; navigate: (path: string) => void; ready: boolean }) {
+function ToolPage({ tool, t, locale, navigate, ready, loadFailed }: { tool: ToolManifest; t: Translate; locale: Locale; navigate: (path: string) => void; ready: boolean; loadFailed: boolean }) {
   /**
    * Titel und Beschreibung stehen im **Suchpaket** (2026-10-05) — es ist auf jeder Seite geladen,
    * weil die Werkzeugschublade im Kopfbereich steckt; das Textpaket dieses Werkzeugs enthält sie
@@ -133,7 +134,7 @@ function ToolPage({ tool, t, locale, navigate, ready }: { tool: ToolManifest; t:
   const [toolCatalogue, setToolCatalogue] = useState<readonly ToolSearchEntry[]>([])
   useEffect(() => {
     let current = true
-    void loadToolSearchIndex(locale).then((entries) => { if (current) setToolCatalogue(entries) })
+    void loadToolSearchIndex(locale).then((entries) => { if (current) setToolCatalogue(entries) }, () => { if (current) setToolCatalogue([]) })
     return () => { current = false }
   }, [locale])
   const toolsKopf = toolTextsFrom(toolCatalogue, tool, locale, t)
@@ -150,8 +151,16 @@ function ToolPage({ tool, t, locale, navigate, ready }: { tool: ToolManifest; t:
   const [passtGroesse, setPasstGroesse] = useState<boolean | null>(null)
   // Ohne die Texte dieser Sprache stünden die Schlüsselnamen auf der Seite (`createTranslator`
   // gibt einen unbekannten Schlüssel unverändert zurück). Deshalb erst der Ladehinweis.
+  //
+  // **Und bei einem Fehlschlag eine Meldung statt eines endlosen Ladehinweises (Karte M4-004).**
+  // Vorher blieb die Seite hier für immer stehen: Die Ablehnung des Imports war unbehandelt, das
+  // Merkmal blieb auf „nicht bereit", und niemand konnte etwas tun. Jetzt steht die übersetzte
+  // Meldung mit dem kontrollierten Neuladen da (siehe `LoadFailureNotice` — ein „Erneut versuchen"
+  // wäre bei einem gescheiterten Modulimport eine Wiederholung, die nichts bewirken kann).
   if (!ready) {
-    return <main className="detail-page"><p aria-live="polite">…</p></main>
+    return <main className="detail-page">{loadFailed
+      ? <LoadFailureNotice t={t} messageKey="tool.loadFailed" />
+      : <div className="settings-card stack"><p aria-live="polite">…</p></div>}</main>
   }
   const content = tool.id === 'text-statistics' ? <TextStatisticsTool t={t} />
     : tool.id === 'case-converter' ? <CaseConverterTool t={t} locale={locale} />
@@ -269,7 +278,7 @@ function ToolPage({ tool, t, locale, navigate, ready }: { tool: ToolManifest; t:
   const groessenHilfe = passtGroesse === false
     ? <div className="pip-fit"><p className="scan-note">{t('tool.detach.fitHint')}</p><Button onClick={passeGroesseAn} className="detach">{t('tool.detach.fit')}</Button></div>
     : null
-  return <main className="detail-page"><button className="text-link back" onClick={() => navigate('/')}>← {t('tool.back')}</button><article className="tool-shell"><div className="tool-shell-bar">{unterstuetztAuskoppeln ? detachTrigger : null}</div><PipWrapper id={pipId} fallback="none" placeholder={detachPlaceholder} onOpenChange={(offen) => { if (offen) { window.setTimeout(vergleicheGroesse, 900); window.setTimeout(setzeFarbschemaImFenster, 100); } else setPasstGroesse(null) }}>{groessenHilfe}<header className="tool-header"><div>{icon && <span className="card-icon" aria-hidden="true" style={{ maskImage: `url(${icon})`, WebkitMaskImage: `url(${icon})` }} />}<p className="category">{t(`category.${tool.category}`)}</p><h1>{toolsKopf.title}</h1><p>{toolsKopf.description}</p></div><div className="tool-header-side"><LocalBadge>{t('status.local')}</LocalBadge></div></header><div className="tool-content">{content}</div></PipWrapper></article></main>
+  return <main className="detail-page"><button className="text-link back" onClick={() => navigate('/')}>← {t('tool.back')}</button><article className="tool-shell"><div className="tool-shell-bar">{unterstuetztAuskoppeln ? detachTrigger : null}</div><PipWrapper id={pipId} fallback="none" placeholder={detachPlaceholder} onOpenChange={(offen) => { if (offen) { window.setTimeout(vergleicheGroesse, 900); window.setTimeout(setzeFarbschemaImFenster, 100); } else setPasstGroesse(null) }}>{groessenHilfe}<header className="tool-header"><div>{icon && <span className="card-icon" aria-hidden="true" style={{ maskImage: `url(${icon})`, WebkitMaskImage: `url(${icon})` }} />}<p className="category">{t(`category.${tool.category}`)}</p><h1>{toolsKopf.title}</h1><p>{toolsKopf.description}</p></div><div className="tool-header-side"><LocalBadge>{t('status.local')}</LocalBadge></div></header><div className="tool-content"><ToolErrorBoundary t={t}>{content}</ToolErrorBoundary></div></PipWrapper></article></main>
 }
 
 function SuitePage({ suite, t, locale, navigate }: { suite: SuiteManifest; t: Translate; locale: string; navigate: (path: string) => void }) {
@@ -281,7 +290,7 @@ function SuitePage({ suite, t, locale, navigate }: { suite: SuiteManifest; t: Tr
   const [index, setIndex] = useState<readonly ToolSearchEntry[]>([])
   useEffect(() => {
     let current = true
-    void loadToolSearchIndex(locale as 'de' | 'en' | 'es').then((entries) => { if (current) setIndex(entries) })
+    void loadToolSearchIndex(locale as 'de' | 'en' | 'es').then((entries) => { if (current) setIndex(entries) }, () => { if (current) setIndex([]) })
     return () => { current = false }
   }, [locale])
   return <main className="detail-page"><button className="text-link back" onClick={() => navigate('/')}>← {t('tool.back')}</button><section className="suite-hero"><p className="eyebrow">Suite</p><h1>{t(suite.titleKey)}</h1><p>{t(suite.descriptionKey)}</p><span>{tools.length} {t('suite.tools')}</span></section><div className="catalog-grid">{tools.map((tool) => <ToolCard key={tool.id} tool={tool} t={t} locale={locale} navigate={navigate} index={index} />)}</div></main>
@@ -296,6 +305,14 @@ export function App() {
   /** Die Sprache, deren Werkzeugtexte geladen sind — `null`, solange keine geladen ist. */
   const [toolTextsLocale, setToolTextsLocale] = useState<Locale | null>(null)
   const [toolTextsTool, setToolTextsTool] = useState<string | null>(null)
+  /**
+   * **Fehlerweg der Werkzeugtexte (Karte M4-004).** Bis 2026-10-07 hatte dieser Ladeeffekt kein
+   * zweites Argument: Eine Ablehnung war eine **unbehandelte Zusage**, und weil `ready` nie wahr
+   * wurde, zeigte die Werkzeugseite für immer den Ladehinweis — kein Ende, keine Meldung, keine
+   * Möglichkeit zur Wiederherstellung. Jetzt steht die übersetzte Meldung mit dem kontrollierten
+   * Neuladen da.
+   */
+  const [toolTextsError, setToolTextsError] = useState(false)
   const [interfaceMessages, setInterfaceMessages] = useState<Readonly<Partial<Record<string, Readonly<Record<string, string>>>>>>({})
   /**
    * **Nur die Texte der Oberfläche werden beim Start geholt** (Entscheidung 2026-10-05). Die Texte
@@ -349,6 +366,16 @@ export function App() {
             }
           }
         : {})
+    }, () => {
+      /**
+       * **Auch dieser Weg braucht einen Fehlerweg (Karte M4-004).** Ohne ihn bliebe die
+       * unbehandelte Ablehnung stehen — und die Werkzeugseite zeigte den **Schlüsselnamen** statt
+       * des Titels, weil `toolTextsFrom` dann auf `t(tool.titleKey)` zurückfällt und der
+       * Übersetzer diesen Schlüssel ohne die Katalogtexte nicht auflösen kann. Statt eines
+       * Rückfalls, der wie Bereitschaft aussieht, steht hier die sichtbare Meldung mit
+       * Wiederholung.
+       */
+      if (current) setToolTextsError(true)
     })
     return () => { current = false }
   }, [activeTool, locale])
@@ -361,6 +388,7 @@ export function App() {
   useEffect(() => {
     if (!activeTool) return undefined
     let current = true
+    setToolTextsError(false)
     // Die Textlader liegen in einem eigenen Chunk (Verweiskarte über 147 Pakete, ~2,6 kB gzip):
     // die Startseite soll sie nicht mitladen. Sie werden erst hier geholt.
     void import('@commietools/tools/text-loaders')
@@ -370,6 +398,10 @@ export function App() {
         setToolMessages(tools)
         setToolTextsLocale(locale)
         setToolTextsTool(activeTool.id)
+      }, () => {
+        // Nur der **aktuelle** Auftrag darf den Fehler setzen: Sprachen A (langsam) und B (schnell)
+        // — der späte Fehlschlag von A darf die Oberfläche von B nicht auf Fehler stellen.
+        if (current) setToolTextsError(true)
       })
     return () => { current = false }
   }, [activeTool, locale])
@@ -399,5 +431,5 @@ export function App() {
     requestAnimationFrame(() => document.getElementById('suites')?.scrollIntoView())
   }
 
-  return <div className="app" data-theme={theme}><header className="site-header"><div className="header-leading"><ToolNavigation t={t} locale={locale} activeToolId={activeTool?.id} navigate={navigate} /><button className="brand button-reset" onClick={() => navigate('/')} aria-label={t('app.name')}><span className="brand-mark" aria-hidden="true">★</span><span>Commie<span>Tools</span></span></button></div><nav aria-label="Main navigation"><button className="button-reset" onClick={() => navigate('/')}>{t('nav.tools')}</button><button className="button-reset" onClick={goToSuites}>{t('nav.suites')}</button></nav><div className="header-actions"><select className="language-select" value={locale} aria-label={t('action.language')} onChange={(event) => { if (isLocale(event.target.value)) setLocale(event.target.value) }}>{supportedLocales.map((code) => <option key={code} value={code}>{localeRegistry[code].label}</option>)}</select><Button onClick={toggleTheme} aria-label={t('action.theme')}><span aria-hidden="true">{theme === 'light' ? '☾' : '☀'}</span></Button></div></header>{interfaceError && <div className="settings-card stack" role="alert"><p className="error">{t('app.loadError')}</p><button type="button" className="button" onClick={() => setInterfaceAttempt((attempt) => attempt + 1)}>{t('action.retry')}</button></div>}{pathname === '/licenses' ? <LicensePage t={t} navigate={navigate} /> : pathname === '/impressum' ? <LegalNoticePage t={t} navigate={navigate} /> : activeTool ? <ToolPage tool={activeTool} t={t} locale={locale} navigate={navigate} ready={toolTextsLocale === locale && toolTextsTool === activeTool.id} /> : activeSuite ? <SuitePage suite={activeSuite} t={t} locale={locale} navigate={navigate} /> : <main><section className="hero"><p className="eyebrow">CommieTools.org</p><h1>{t('app.tagline')}</h1><p className="hero-copy">{t('app.promise')}</p><div className="badges"><LocalBadge>{t('status.local')}</LocalBadge><LocalBadge>{t('status.offline')}</LocalBadge></div></section><section className="section" id="tools"><CatalogSection t={t} locale={locale} navigate={navigate} query={query} onQuery={setQuery} /></section>{!searching && <section className="section" id="suites"><div className="section-heading"><div><p className="eyebrow">02</p><h2>{t('suite.heading')}</h2></div><p>{t('suite.intro')}</p></div><div className="catalog-grid suites">{suiteManifests.map((suite) => <article className="catalog-card suite-card" key={suite.id}><p className="category">Suite</p><h3>{t(suite.titleKey)}</h3><p>{t(suite.descriptionKey)}</p><div className="card-footer"><span>{suite.toolIds.length} {t('suite.tools')}</span><button className="text-link" onClick={() => navigate(suite.route)}>{t('suite.open')} →</button></div></article>)}</div></section>}</main>}<footer className="site-footer"><span>© 2026 CommieTools contributors · AGPL-3.0-only</span><div className="footer-links"><button className="text-link" onClick={() => navigate('/impressum')}>{t('footer.legal')}</button><button className="text-link" onClick={() => navigate('/licenses')}>{t('footer.licenses')}</button></div></footer></div>
+  return <div className="app" data-theme={theme}><header className="site-header"><div className="header-leading"><ToolNavigation t={t} locale={locale} activeToolId={activeTool?.id} navigate={navigate} /><button className="brand button-reset" onClick={() => navigate('/')} aria-label={t('app.name')}><span className="brand-mark" aria-hidden="true">★</span><span>Commie<span>Tools</span></span></button></div><nav aria-label="Main navigation"><button className="button-reset" onClick={() => navigate('/')}>{t('nav.tools')}</button><button className="button-reset" onClick={goToSuites}>{t('nav.suites')}</button></nav><div className="header-actions"><select className="language-select" value={locale} aria-label={t('action.language')} onChange={(event) => { if (isLocale(event.target.value)) setLocale(event.target.value) }}>{supportedLocales.map((code) => <option key={code} value={code}>{localeRegistry[code].label}</option>)}</select><Button onClick={toggleTheme} aria-label={t('action.theme')}><span aria-hidden="true">{theme === 'light' ? '☾' : '☀'}</span></Button></div></header>{interfaceError && <div className="settings-card stack" role="alert"><p className="error">{t('app.loadError')}</p><button type="button" className="button" onClick={() => setInterfaceAttempt((attempt) => attempt + 1)}>{t('action.retry')}</button></div>}{pathname === '/licenses' ? <LicensePage t={t} navigate={navigate} /> : pathname === '/impressum' ? <LegalNoticePage t={t} navigate={navigate} /> : activeTool ? <ToolPage tool={activeTool} t={t} locale={locale} navigate={navigate} ready={toolTextsLocale === locale && toolTextsTool === activeTool.id} loadFailed={toolTextsError} /> : activeSuite ? <SuitePage suite={activeSuite} t={t} locale={locale} navigate={navigate} /> : <main><section className="hero"><p className="eyebrow">CommieTools.org</p><h1>{t('app.tagline')}</h1><p className="hero-copy">{t('app.promise')}</p><div className="badges"><LocalBadge>{t('status.local')}</LocalBadge><LocalBadge>{t('status.offline')}</LocalBadge></div></section><section className="section" id="tools"><CatalogSection t={t} locale={locale} navigate={navigate} query={query} onQuery={setQuery} /></section>{!searching && <section className="section" id="suites"><div className="section-heading"><div><p className="eyebrow">02</p><h2>{t('suite.heading')}</h2></div><p>{t('suite.intro')}</p></div><div className="catalog-grid suites">{suiteManifests.map((suite) => <article className="catalog-card suite-card" key={suite.id}><p className="category">Suite</p><h3>{t(suite.titleKey)}</h3><p>{t(suite.descriptionKey)}</p><div className="card-footer"><span>{suite.toolIds.length} {t('suite.tools')}</span><button className="text-link" onClick={() => navigate(suite.route)}>{t('suite.open')} →</button></div></article>)}</div></section>}</main>}<footer className="site-footer"><span>© 2026 CommieTools contributors · AGPL-3.0-only</span><div className="footer-links"><button className="text-link" onClick={() => navigate('/impressum')}>{t('footer.legal')}</button><button className="text-link" onClick={() => navigate('/licenses')}>{t('footer.licenses')}</button></div></footer></div>
 }

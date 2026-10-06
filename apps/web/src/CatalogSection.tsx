@@ -10,7 +10,15 @@ import { ToolCard, type Translate } from './ToolCard'
 export function CatalogSection({ t, locale, navigate, query, onQuery }: { t: Translate; locale: string; navigate: (path: string) => void; query: string; onQuery: (value: string) => void }) {
   const [toolIndex, setToolIndex] = useState<readonly ToolSearchEntry[]>([])
   const [searchReady, setSearchReady] = useState(false)
-  useEffect(() => { let current=true;setSearchReady(false);void loadToolSearchIndex(locale as 'de'|'en'|'es').then((index)=>{if(current){setToolIndex(index);setSearchReady(true)}});return()=>{current=false} },[locale])
+  /**
+   * **Fehlerweg des Katalogindex (Karte M4-004).** Ohne ihn blieb eine unbehandelte Ablehnung
+   * stehen (`.then` ohne zweites Argument gibt die Ablehnung an eine neue Zusage weiter, die
+   * niemand behandelt) und die Suche stand für immer auf „wird geladen". Jetzt steht eine
+   * übersetzte Meldung da; die Liste der Werkzeuge kommt weiter aus dem Register selbst, nur die
+   * Katalogtexte fehlen.
+   */
+  const [searchFailed, setSearchFailed] = useState(false)
+  useEffect(() => { let current=true;setSearchReady(false);setSearchFailed(false);void loadToolSearchIndex(locale as 'de'|'en'|'es').then((index)=>{if(current){setToolIndex(index);setSearchReady(true)}},()=>{if(current){setToolIndex([]);setSearchReady(true);setSearchFailed(true)}});return()=>{current=false} },[locale])
   const trimmed = query.trim()
   const isSearching = trimmed.length >= MIN_QUERY_LENGTH
   const results = useMemo(() => searchTools(toolIndex, { query: trimmed, locale, label: t }), [toolIndex, trimmed, locale, t])
@@ -26,6 +34,7 @@ export function CatalogSection({ t, locale, navigate, query, onQuery }: { t: Tra
         {query !== '' && <button className="text-link" onClick={() => onQuery('')}>{t('catalog.clear')}</button>}
       </div>
       <p className="search-hint">{t('catalog.searchHint')}</p>
+      {searchFailed && <p className="error" role="alert">{t('catalog.loadFailed')}</p>}
       {isSearching && !searchReady ? <p className="search-count" role="status">{t('catalog.search')} …</p> : isSearching ? (
         results.length > 0 ? (
           <>
