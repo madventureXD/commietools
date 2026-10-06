@@ -1,5 +1,6 @@
 import { createHash } from 'node:crypto'
-import { existsSync, readFileSync, readdirSync, statSync, writeFileSync } from 'node:fs'
+import { execFileSync } from 'node:child_process'
+import { existsSync, mkdirSync, readFileSync, readdirSync, statSync, writeFileSync } from 'node:fs'
 import { dirname, join, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
@@ -44,7 +45,15 @@ function normalizeRepository(repository) {
   const raw = typeof repository === 'string' ? repository : repository?.url
   if (!raw) return null
   if (/^[\w.-]+\/[\w.-]+$/.test(raw)) return `https://github.com/${raw}`
-  return raw.replace(/^git\+/, '').replace(/^git:\/\//, 'https://').replace(/\.git$/, '')
+  // Kurzformen aus Paketmetadaten in einen anklickbaren Web-Verweis bringen. Sonst entstehen auf
+  // der Lizenzseite Verweise wie "git@github.com:owner/repo", die im Browser ins Leere führen.
+  const githubKurz = /^(?:git\+)?(?:ssh:\/\/)?(?:git@)?github\.com[:/]([\w.-]+)\/([\w.-]+?)(?:\.git)?$/i.exec(raw)
+  if (githubKurz) return `https://github.com/${githubKurz[1]}/${githubKurz[2]}`
+  const githubSchema = /^github:([\w.-]+)\/([\w.-]+)$/i.exec(raw)
+  if (githubSchema) return `https://github.com/${githubSchema[1]}/${githubSchema[2]}`
+  const web = raw.replace(/^git\+/, '').replace(/^git:\/\//, 'https://').replace(/\.git$/, '')
+  // Nur Web-Adressen sind als Verweis brauchbar; SSH-/Git-Protokolle öffnet kein Browser.
+  return /^https?:\/\//i.test(web) ? web : null
 }
 
 function authorName(author) {
@@ -243,7 +252,167 @@ function notices(registry) {
   return lines.join('\n')
 }
 
+const rustComponentsPath = join(root, 'licenses', 'rust-components.json')
+const rustReviewPath = join(root, 'licenses', 'rust-review.json')
+const publicRustPath = join(root, 'apps', 'web', 'public', 'licenses', 'rust-components.json')
+
+/**
+ * Wertet einen SPDX-Ausdruck strukturell aus (M9-002).
+ *
+ * Die Zulassungsliste ist eine exakte Zeichenkettenliste; Rust-Abhängigkeiten liefern aber
+ * Ausdrücke wie `MIT OR Apache-2.0` oder `(Apache-2.0 OR MIT) AND BSD-3-Clause`. Statt die
+ * Liste um jede Schreibweise zu erweitern (was sie aushöhlen würde), wird der Ausdruck
+ * verstanden: OR verlangt mindestens einen erlaubten Zweig, AND verlangt alle.
+ * Die informelle Schreibweise mit Schrägstrich (`MIT/Apache-2.0`) wird als ODER gelesen und
+ * im Bericht als Auslegung gekennzeichnet, nicht verschwiegen.
+ */
+function spdxAuswerten(ausdruck, erlaubt) {
+  let text = String(ausdruck).replace(/\s+/g, ' ').trim()
+  const ausgelegt = /[^()]*\/[^()]*/.test(text)
+  text = text.replace(/([A-Za-z0-9.+-]+)\s*\/\s*([A-Za-z0-9.+-]+)/g, '$1 OR $2')
+  let stelle = 0
+  function auswerten() {
+    const teile = []
+    let op = null
+    for (;;) {
+      while (text[stelle] === ' ') stelle += 1
+      let knoten
+      if (text[stelle] === '(') {
+        stelle += 1
+        knoten = auswerten()
+        while (text[stelle] === ' ') stelle += 1
+        if (text[stelle] !== ')') throw new Error('Klammer nicht geschlossen')
+        stelle += 1
+      } else {
+        const treffer = /^[A-Za-z0-9.+-]+/.exec(text.slice(stelle))
+        if (!treffer) throw new Error(`unlesbar bei "${text.slice(stelle, stelle + 12)}"`)
+        knoten = { atom: treffer[0] }
+        stelle += treffer[0].length
+      }
+      teile.push(knoten)
+      while (text[stelle] === ' ') stelle += 1
+      const naechster = /^(AND|OR)\b/.exec(text.slice(stelle))
+      if (!naechster) break
+      if (op && op !== naechster[1]) throw new Error('gemischte Operatoren ohne Klammern')
+      op = naechster[1]
+      stelle += naechster[1].length
+    }
+    if (teile.length === 1) return teile[0]
+    return { op, kinder: teile }
+  }
+  const baum = auswerten()
+  const erfuellt = (knoten) => knoten.atom ? erlaubt.has(knoten.atom) : knoten.op === 'OR' ? knoten.kinder.some(erfuellt) : knoten.kinder.every(erfuellt)
+  const fehlende = []
+  const sammeln = (knoten) => { if (knoten.atom) { if (!erlaubt.has(knoten.atom)) fehlende.push(knoten.atom) } else knoten.kinder.forEach(sammeln) }
+  sammeln(baum)
+  return { erfuellt: erfuellt(baum), fehlende: [...new Set(fehlende)], ausgelegt }
+}
+
+/** Prüft die Rust-Komponentenliste gegen die Richtlinie und die ausdrückliche Entscheidungsliste. */
+function pruefeRustKomponenten() {
+  if (!existsSync(rustComponentsPath)) fail('licenses/rust-components.json fehlt — node scripts/rust-components.mjs')
+  const liste = readJson(rustComponentsPath)
+  const erlaubt = new Set(readJson(policyPath).allowedExpressions)
+  const entschieden = existsSync(rustReviewPath) ? (readJson(rustReviewPath).review ?? []) : []
+  const offen = []
+  const auslegungen = []
+  for (const k of liste.komponenten ?? []) {
+    if (!k.license) { offen.push({ k, grund: 'keine Lizenzangabe' }); continue }
+    const bewertet = spdxAuswerten(k.license, erlaubt)
+    if (bewertet.ausgelegt) auslegungen.push(`${k.name} ${k.version}: "${k.license}" als ODER gelesen`)
+    if (!bewertet.erfuellt) offen.push({ k, grund: `Lizenz ${k.license} (fehlend: ${bewertet.fehlende.join(', ')})` })
+  }
+  const unentschieden = offen.filter((o) => !entschieden.some((e) => e.name === o.k.name && e.version === o.k.version))
+  const ohneHinweisUnentschieden = (liste.komponenten ?? [])
+    .filter((k) => k.noticeMissing)
+    .filter((k) => !entschieden.some((e) => e.name === k.name && e.version === k.version))
+  // Die verzeichneten Originalhinweise müssen vorhanden und nicht leer sein — sonst ist die
+  // Lizenzangabe im Register nur eine Behauptung. (Gegenprobe: eine entfernte Hinweisdatei
+  // muss diese Prüfung scheitern lassen.)
+  const fehlendeHinweise = []
+  for (const k of liste.komponenten ?? []) {
+    for (const rel of k.noticeFiles ?? []) {
+      const pfad = join(root, 'licenses', rel)
+      if (!existsSync(pfad) || statSync(pfad).size === 0) fehlendeHinweise.push(`${k.name} ${k.version}: ${rel}`)
+    }
+  }
+  for (const f of fehlendeHinweise) console.error(`  Originalhinweis fehlt oder ist leer: ${f}`)
+  for (const o of unentschieden) console.error(`  offen ohne Entscheidung: ${o.k.name} ${o.k.version} — ${o.grund}`)
+  for (const k of ohneHinweisUnentschieden) console.error(`  Originalhinweis fehlt und ist nicht entschieden: ${k.name} ${k.version}`)
+  if (unentschieden.length || ohneHinweisUnentschieden.length || fehlendeHinweise.length) {
+    fail('Rust-Komponenten: offene Lizenz-/Hinweisfragen ohne Eintrag in licenses/rust-review.json oder fehlende Originalhinweise')
+  }
+  console.log(
+    `Rust components: ${liste.anzahl} components, ${liste.mitOriginalhinweis} with original notices, ` +
+      `${entschieden.length} explicitly reviewed, ${auslegungen.length} informal expressions read as disjunctions.`
+  )
+  for (const a of auslegungen) console.log(`  Auslegung: ${a}`)
+  return liste
+}
+
+/** Revisionsgebundene, absolute Links und eigener Quellcodezugang (M9-003).
+ *  Vorher trug `project.source` nur den Text „LICENSE", und der Build-Link der Signatur-Engine
+ *  war ein relativer Pfad — im Browser landet so etwas auf SPA-HTML statt auf dem Dokument. */
+function ergaenzeQuellzugang(registry) {
+  let revision = null
+  try {
+    revision = execFileSync('git', ['rev-parse', 'HEAD'], { encoding: 'utf8' }).trim()
+  } catch {
+    revision = null
+  }
+  registry.project.repository = 'https://github.com/madventureXD/commietools'
+  registry.project.revision = revision
+  const absolut = []
+  for (const artefakt of registry.artifacts ?? []) {
+    for (const feld of ['build', 'source']) {
+      const wert = artefakt[feld]
+      if (wert && !/^https?:/i.test(wert) && revision) {
+        artefakt[feld] = `https://github.com/madventureXD/commietools/blob/${revision}/${wert}`
+        absolut.push(`${artefakt.id}.${feld}`)
+      }
+    }
+  }
+  return absolut
+}
+
+/** Rust-Komponenten samt Hinweisdateien für die Lizenzseite aufbereiten (M9-001/M9-003). */
+function baueRustTeil(pruefen) {
+  if (!existsSync(rustComponentsPath)) return null
+  const liste = readJson(rustComponentsPath)
+  const ziel = join(root, 'apps', 'web', 'public', 'licenses', 'notices', 'rust')
+  const komponenten = []
+  for (const k of liste.komponenten ?? []) {
+    const namen = (k.noticeFiles ?? []).map((rel) => rel.split('/').pop())
+    if (!pruefen && namen.length) {
+      mkdirSync(join(ziel, `${k.name}-${k.version}`), { recursive: true })
+      for (const rel of k.noticeFiles) {
+        writeFileSync(join(root, 'apps', 'web', 'public', 'licenses', rel), readFileSync(join(root, 'licenses', rel)))
+      }
+    }
+    komponenten.push({
+      name: k.name,
+      version: k.version,
+      license: k.license,
+      repository: k.repository,
+      noticeMissing: Boolean(k.noticeMissing),
+      notices: namen.map((n) => ({ name: n, pfad: `/licenses/notices/rust/${k.name}-${k.version}/${n}` })),
+    })
+  }
+  const entschieden = existsSync(rustReviewPath) ? (readJson(rustReviewPath).review ?? []) : []
+  return {
+    summary: {
+      components: komponenten.length,
+      withNotices: komponenten.filter((k) => !k.noticeMissing).length,
+      reviewed: entschieden.length,
+    },
+    zielprofil: liste.grundlage?.zielprofil ?? null,
+    komponenten,
+  }
+}
+
 const registry = buildRegistry()
+ergaenzeQuellzugang(registry)
+registry.rust = baueRustTeil(mode === 'check')
 const registryText = stableJson(registry)
 const noticesText = notices(registry)
 const projectLicenseText = registry.licenses['AGPL-3.0-only']?.text
@@ -256,12 +425,15 @@ if (mode === 'generate') {
   writeFileSync(licensePath, `${projectLicenseText}\n`)
   writeFileSync(copyrightPath, copyrightText)
   console.log(`Generated complete license registry for ${registry.summary.packages} packages and ${registry.summary.licenseIds.length} licenses.`)
+  writeFileSync(publicRustPath, readFileSync(rustComponentsPath, 'utf8'))
+  pruefeRustKomponenten()
 } else if (mode === 'check') {
   for (const [path, expected] of [[registryPath, registryText], [publicRegistryPath, registryText], [noticesPath, noticesText], [licensePath, `${projectLicenseText}\n`], [copyrightPath, copyrightText]]) {
     if (!existsSync(path)) fail(`missing generated file ${path.slice(root.length + 1)}`)
     if (canonicalText(readFileSync(path, 'utf8')) !== canonicalText(expected)) fail(`${path.slice(root.length + 1)} is incomplete or stale; run npm run licenses:generate`)
   }
   console.log(`License audit passed: ${registry.summary.packages} packages, ${registry.summary.licenseIds.length} complete license texts, ${Object.keys(registry.documents).length} preserved package documents.`)
+  pruefeRustKomponenten()
 } else {
   fail(`unknown mode ${mode}; use generate or check`)
 }

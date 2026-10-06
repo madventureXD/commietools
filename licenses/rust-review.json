@@ -1,0 +1,61 @@
+{
+  "hinweis": "Ausdrückliche Entscheidungen zu Rust-Komponenten, deren Lizenz nicht von licenses/policy.json gedeckt ist oder die keinen Originalhinweis mitliefern. Jeder Eintrag braucht Grund und Datum; die Lizenzprüfung lässt ohne Eintrag nichts durch.",
+  "review": [
+    {
+      "name": "zlib-rs",
+      "version": "0.6.8",
+      "license": "Zlib",
+      "reason": "Die Richtlinie führt nur den zusammengesetzten Ausdruck (MIT AND Zlib), nicht die reine Zlib-Lizenz. Zlib ist permissiv; die Aufnahme in allowedExpressions wäre eine Richtlinienänderung und ist deshalb hier zur Entscheidung vermerkt, nicht stillschweigend vorgenommen.",
+      "needsDecision": true,
+      "recorded": "2026-10-06"
+    },
+    {
+      "name": "pdf_signer",
+      "version": "0.3.2",
+      "license": "GPL-3.0-or-later",
+      "reason": "Copyleft-Abhängigkeit der Signatur-Engine. Sie ist bereits ausgeliefert; die Kombination GPL-3.0-or-later mit dem Projekt unter AGPL-3.0-only ist zulässig, aber eine bewusste Entscheidung. Originalhinweis fehlt im Paket und muss aus dem Repository nachgetragen werden.",
+      "needsDecision": true,
+      "recorded": "2026-10-06"
+    },
+    {
+      "name": "unicode-ident",
+      "version": "1.0.26",
+      "license": "(MIT OR Apache-2.0) AND Unicode-3.0",
+      "reason": "Der Ausdruck verlangt zusätzlich zur MIT-/Apache-Wahl die Unicode-3.0-Lizenz. Unicode-3.0 ist permissiv, steht aber nicht in licenses/policy.json.",
+      "needsDecision": true,
+      "recorded": "2026-10-06"
+    },
+    {
+      "name": "asn1-rs-impl",
+      "version": "0.2.0",
+      "license": "MIT OR Apache-2.0",
+      "reason": "Paket liefert keine Hinweisdatei mit; Lizenzangabe aus den Metadaten. Originaltext aus dem Repository nachzutragen.",
+      "needsDecision": true,
+      "recorded": "2026-10-06"
+    },
+    {
+      "name": "cms",
+      "version": "0.2.3",
+      "license": "Apache-2.0 OR MIT",
+      "reason": "Paket liefert keine Hinweisdatei mit; Lizenzangabe aus den Metadaten. Originaltext aus dem Repository nachzutragen.",
+      "needsDecision": true,
+      "recorded": "2026-10-06"
+    },
+    {
+      "name": "defmt-parser",
+      "version": "1.0.0",
+      "license": "MIT OR Apache-2.0",
+      "reason": "Paket liefert keine Hinweisdatei mit; Lizenzangabe aus den Metadaten. Originaltext aus dem Repository nachzutragen.",
+      "needsDecision": true,
+      "recorded": "2026-10-06"
+    },
+    {
+      "name": "p12-keystore",
+      "version": "0.1.5",
+      "license": "MIT/Apache-2.0",
+      "reason": "Paket liefert keine Hinweisdatei mit; Schrägstrichschreibweise als ODER gelesen. Originaltext aus dem Repository nachzutragen.",
+      "needsDecision": true,
+      "recorded": "2026-10-06"
+    }
+  ]
+}

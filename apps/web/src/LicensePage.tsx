@@ -46,20 +46,37 @@ interface ArtifactRecord {
   toolIds: string[]
 }
 
+interface RustComponent {
+  name: string
+  version: string
+  license: string | null
+  repository: string | null
+  noticeMissing: boolean
+  notices: Array<{ name: string; pfad: string }>
+}
+
+interface RustSection {
+  summary: { components: number; withNotices: number; reviewed: number }
+  zielprofil: string | null
+  komponenten: RustComponent[]
+}
+
 interface LicenseRegistry {
-  project: { name: string; license: string; source: string }
+  project: { name: string; license: string; source: string; repository?: string; revision?: string | null }
   lockfileSha256: string
   summary: { packages: number; runtime: number; development: number; optional: number; installed: number; licenseIds: string[] }
   licenses: Record<string, LicenseRecord>
   documents: Record<string, { sha256: string; text: string }>
   packages: PackageRecord[]
   artifacts: ArtifactRecord[]
+  rust?: RustSection | null
 }
 
 export function LicensePage({ t, navigate }: { t: Translate; navigate: (path: string) => void }) {
   const [registry, setRegistry] = useState<LicenseRegistry | null>(null)
   const [error, setError] = useState(false)
   const [search, setSearch] = useState('')
+  const [rustSearch, setRustSearch] = useState('')
   const [dependencyType, setDependencyType] = useState<'all' | DependencyType>('all')
 
   useEffect(() => {
@@ -86,6 +103,13 @@ export function LicensePage({ t, navigate }: { t: Translate; navigate: (path: st
     })
   }, [registry, search, dependencyType])
 
+  const rustKomponenten = useMemo(() => {
+    const alle = registry?.rust?.komponenten ?? []
+    const needle = rustSearch.trim().toLocaleLowerCase()
+    if (!needle) return alle
+    return alle.filter((komponente) => `${komponente.name} ${komponente.version} ${komponente.license ?? ''}`.toLocaleLowerCase().includes(needle))
+  }, [registry, rustSearch])
+
   return <main className="detail-page license-page">
     <button className="text-link back" onClick={() => navigate('/')}>← {t('licenses.back')}</button>
     <section className="suite-hero license-hero">
@@ -101,6 +125,10 @@ export function LicensePage({ t, navigate }: { t: Translate; navigate: (path: st
       <section className="settings-card stack">
         <div className="license-heading"><div><p className="category">CommieTools</p><h2>{t('licenses.project')}</h2></div><strong>{registry.project.license}</strong></div>
         <p>{t('licenses.projectDescription')}</p>
+        <div className="license-links">
+          {registry.project.repository && <a href={registry.project.repository} target="_blank" rel="noreferrer">{t('licenses.projectSource')} ↗</a>}
+          {registry.project.revision && <span className="license-revision">{t('licenses.projectRevision')}: <code>{registry.project.revision.slice(0, 12)}</code></span>}
+        </div>
         <details><summary>{registry.licenses[registry.project.license]?.name ?? registry.project.license}</summary><pre className="license-text">{registry.licenses[registry.project.license]?.text}</pre></details>
       </section>
 
@@ -126,6 +154,25 @@ export function LicensePage({ t, navigate }: { t: Translate; navigate: (path: st
           {!packages.length && <p>{t('licenses.none')}</p>}
         </div>
       </section>
+
+      {registry.rust && registry.rust.komponenten.length > 0 && <section className="stack">
+        <div className="license-heading"><div><p className="category">Rust</p><h2>{t('licenses.rust')}</h2></div><div className="license-totals"><strong>{registry.rust.summary.components}</strong><span>{t('licenses.packages')}</span><strong>{registry.rust.summary.withNotices}</strong><span>{t('licenses.rustNotices')}</span></div></div>
+        <p>{t('licenses.rustDescription')}</p>
+        <p className="license-count">{t('licenses.rustTarget')}: <code>{registry.rust.zielprofil ?? '—'}</code> · {registry.rust.summary.reviewed} {t('licenses.rustReviewed')}</p>
+        <label className="field"><span>{t('licenses.rustSearch')}</span><input type="search" value={rustSearch} onChange={(event) => setRustSearch(event.target.value)} /></label>
+        <div className="license-list">
+          {rustKomponenten.map((komponente) => <details className="license-package" key={`${komponente.name}@${komponente.version}`}>
+            <summary><span><strong>{komponente.name}</strong><small>{komponente.version}</small></span><span className="license-expression">{komponente.license ?? '—'}{komponente.noticeMissing ? ` · ${t('licenses.rustNoticeMissing')}` : ''}</span></summary>
+            <div className="license-package-content stack">
+              {komponente.repository && <div className="license-links"><a href={komponente.repository.replace(/\.git$/, '')} target="_blank" rel="noreferrer">{t('licenses.source')} ↗</a></div>}
+              {komponente.notices.length > 0
+                ? <div className="license-links">{komponente.notices.map((hinweis) => <a key={hinweis.name} href={hinweis.pfad} target="_blank" rel="noreferrer">{t('licenses.rustNotices')}: {hinweis.name} ↗</a>)}</div>
+                : <p>{t('licenses.rustNoticeMissing')}</p>}
+            </div>
+          </details>)}
+          {!rustKomponenten.length && <p>{t('licenses.none')}</p>}
+        </div>
+      </section>}
 
       {registry.artifacts.length > 0 && <section className="stack">
         <div className="license-heading"><div><p className="category">WebAssembly</p><h2>{t('licenses.artifacts')}</h2></div><strong>{registry.artifacts.length}</strong></div>

@@ -3,7 +3,9 @@
   "project": {
     "name": "CommieTools",
     "license": "AGPL-3.0-only",
-    "source": "LICENSE"
+    "source": "LICENSE",
+    "repository": "https://github.com/madventureXD/commietools",
+    "revision": "a041ee0efda6b07687b3586977bb0d90bf1c89a8"
   },
   "lockfileSha256": "ebb9410674de16cf9dd6ed0e9f120ecb03493dc6331467fc163c6cf84fec6eef",
   "policy": {
@@ -131,13 +133,13 @@
       "name": "PDF Signer WebAssembly engine",
       "version": "0.3.2",
       "fileName": "engine_bg.wasm",
-      "size": 1415068,
-      "sha256": "675c7dd4e0e63cee6fcc19bbbef846c7142045feb602d0d98ba45f6bb8580532",
+      "size": 1415062,
+      "sha256": "f72b606dbfef146779ae5d0a213d305f86fcb7e71a2175572610bb1469bcea19",
       "licenseIds": [
         "GPL-3.0-or-later"
       ],
       "source": "https://github.com/StrategicProjects/pdf_signer/tree/6cc0218100d9ffc038f8dccee3b707e5bd136100",
-      "build": "crates/pdf-signer-wasm/README.md",
+      "build": "https://github.com/madventureXD/commietools/blob/a041ee0efda6b07687b3586977bb0d90bf1c89a8/crates/pdf-signer-wasm/README.md",
       "components": [
         {
           "name": "pdf_signer",
@@ -3776,7 +3778,7 @@
       "dependencyType": "development",
       "optional": false,
       "author": null,
-      "repository": "ssh://git@github.com:isaacs/cliui",
+      "repository": "https://github.com/isaacs/cliui",
       "homepage": null,
       "documents": [
         {
@@ -5261,7 +5263,7 @@
       "dependencyType": "development",
       "optional": false,
       "author": "Jake Luer <jake@qualiancy.com> (http://qualiancy.com)",
-      "repository": "git@github.com:chaijs/assertion-error",
+      "repository": "https://github.com/chaijs/assertion-error",
       "homepage": null,
       "documents": [
         {
@@ -5761,7 +5763,7 @@
       "dependencyType": "runtime",
       "optional": false,
       "author": "Robert Eisele",
-      "repository": "git@github.com:rawify/Complex.js",
+      "repository": "https://github.com/rawify/Complex.js",
       "homepage": "https://raw.org/article/complex-numbers-in-javascript/",
       "documents": [
         {
@@ -5841,7 +5843,7 @@
       "dependencyType": "development",
       "optional": false,
       "author": "André Cruz <andre@moxy.studio>",
-      "repository": "git@github.com:moxystudio/node-cross-spawn",
+      "repository": "https://github.com/moxystudio/node-cross-spawn",
       "homepage": "https://github.com/moxystudio/node-cross-spawn",
       "documents": [
         {
@@ -6471,7 +6473,7 @@
       "dependencyType": "development",
       "optional": false,
       "author": "Ben Gubler <nebrelbug@gmail.com>",
-      "repository": "github:bgub/eta",
+      "repository": "https://github.com/bgub/eta",
       "homepage": "https://eta.js.org",
       "documents": [
         {
@@ -6646,7 +6648,7 @@
       "dependencyType": "runtime",
       "optional": false,
       "author": "Robert Eisele",
-      "repository": "ssh://git@github.com/rawify/Fraction.js",
+      "repository": "https://github.com/rawify/Fraction.js",
       "homepage": "https://raw.org/article/rational-numbers-in-javascript/",
       "documents": [
         {
@@ -6881,7 +6883,7 @@
       "dependencyType": "development",
       "optional": false,
       "author": "Isaac Z. Schlueter <i@izs.me> (https://blog.izs.me/)",
-      "repository": "git@github.com:isaacs/node-glob",
+      "repository": "https://github.com/isaacs/node-glob",
       "homepage": null,
       "documents": [
         {
@@ -7931,7 +7933,7 @@
       "dependencyType": "development",
       "optional": false,
       "author": "JP Richardson <jprichardson@gmail.com>",
-      "repository": "git@github.com:jprichardson/node-jsonfile",
+      "repository": "https://github.com/jprichardson/node-jsonfile",
       "homepage": null,
       "documents": [
         {
@@ -8011,7 +8013,7 @@
       "dependencyType": "development",
       "optional": false,
       "author": "Isaac Z. Schlueter <i@izs.me>",
-      "repository": "ssh://git@github.com/isaacs/node-lru-cache",
+      "repository": "https://github.com/isaacs/node-lru-cache",
       "homepage": null,
       "documents": [
         {
@@ -8115,7 +8117,7 @@
       "dependencyType": "development",
       "optional": false,
       "author": "Isaac Z. Schlueter <i@izs.me> (http://blog.izs.me)",
-      "repository": "git@github.com:isaacs/minimatch",
+      "repository": "https://github.com/isaacs/minimatch",
       "homepage": null,
       "documents": [
         {
@@ -8951,7 +8953,7 @@
       "dependencyType": "development",
       "optional": false,
       "author": "'Julian Viereck' <julian.viereck@gmail.com>",
-      "repository": "ssh://git@github.com/jviereck/regjsparser",
+      "repository": "https://github.com/jviereck/regjsparser",
       "homepage": "https://github.com/jviereck/regjsparser",
       "documents": [
         {
@@ -8991,7 +8993,7 @@
       "dependencyType": "development",
       "optional": false,
       "author": "James Halliday",
-      "repository": "ssh://github.com/browserify/resolve",
+      "repository": "https://github.com/browserify/resolve",
       "homepage": null,
       "documents": [
         {
@@ -9486,7 +9488,7 @@
       "dependencyType": "development",
       "optional": false,
       "author": "Nick Fitzgerald <nfitzgerald@mozilla.com>",
-      "repository": "ssh://git@github.com/mozilla/source-map",
+      "repository": "https://github.com/mozilla/source-map",
       "homepage": "https://github.com/mozilla/source-map",
       "documents": [
         {
@@ -10956,5 +10958,2968 @@
         }
       ]
     }
-  ]
+  ],
+  "rust": {
+    "summary": {
+      "components": 174,
+      "withNotices": 169,
+      "reviewed": 7
+    },
+    "zielprofil": "wasm32-unknown-unknown",
+    "komponenten": [
+      {
+        "name": "adler2",
+        "version": "2.0.1",
+        "license": "0BSD OR MIT OR Apache-2.0",
+        "repository": "https://github.com/oyvindln/adler2",
+        "noticeMissing": false,
+        "notices": [
+          {
+            "name": "LICENSE-0BSD",
+            "pfad": "/licenses/notices/rust/adler2-2.0.1/LICENSE-0BSD"
+          },
+          {
+            "name": "LICENSE-APACHE",
+            "pfad": "/licenses/notices/rust/adler2-2.0.1/LICENSE-APACHE"
+          },
+          {
+            "name": "LICENSE-MIT",
+            "pfad": "/licenses/notices/rust/adler2-2.0.1/LICENSE-MIT"
+          }
+        ]
+      },
+      {
+        "name": "aes",
+        "version": "0.8.4",
+        "license": "MIT OR Apache-2.0",
+        "repository": "https://github.com/RustCrypto/block-ciphers",
+        "noticeMissing": false,
+        "notices": [
+          {
+            "name": "LICENSE-APACHE",
+            "pfad": "/licenses/notices/rust/aes-0.8.4/LICENSE-APACHE"
+          },
+          {
+            "name": "LICENSE-MIT",
+            "pfad": "/licenses/notices/rust/aes-0.8.4/LICENSE-MIT"
+          }
+        ]
+      },
+      {
+        "name": "asn1-rs-derive",
+        "version": "0.6.0",
+        "license": "MIT OR Apache-2.0",
+        "repository": "https://github.com/rusticata/asn1-rs.git",
+        "noticeMissing": false,
+        "notices": [
+          {
+            "name": "LICENSE-APACHE",
+            "pfad": "/licenses/notices/rust/asn1-rs-derive-0.6.0/LICENSE-APACHE"
+          },
+          {
+            "name": "LICENSE-MIT",
+            "pfad": "/licenses/notices/rust/asn1-rs-derive-0.6.0/LICENSE-MIT"
+          }
+        ]
+      },
+      {
+        "name": "asn1-rs-impl",
+        "version": "0.2.0",
+        "license": "MIT/Apache-2.0",
+        "repository": "https://github.com/rusticata/asn1-rs.git",
+        "noticeMissing": true,
+        "notices": []
+      },
+      {
+        "name": "asn1-rs",
+        "version": "0.7.2",
+        "license": "MIT OR Apache-2.0",
+        "repository": "https://github.com/rusticata/asn1-rs.git",
+        "noticeMissing": false,
+        "notices": [
+          {
+            "name": "LICENSE-APACHE",
+            "pfad": "/licenses/notices/rust/asn1-rs-0.7.2/LICENSE-APACHE"
+          },
+          {
+            "name": "LICENSE-MIT",
+            "pfad": "/licenses/notices/rust/asn1-rs-0.7.2/LICENSE-MIT"
+          }
+        ]
+      },
+      {
+        "name": "autocfg",
+        "version": "1.5.1",
+        "license": "Apache-2.0 OR MIT",
+        "repository": "https://github.com/cuviper/autocfg",
+        "noticeMissing": false,
+        "notices": [
+          {
+            "name": "LICENSE-APACHE",
+            "pfad": "/licenses/notices/rust/autocfg-1.5.1/LICENSE-APACHE"
+          },
+          {
+            "name": "LICENSE-MIT",
+            "pfad": "/licenses/notices/rust/autocfg-1.5.1/LICENSE-MIT"
+          }
+        ]
+      },
+      {
+        "name": "base16ct",
+        "version": "0.2.0",
+        "license": "Apache-2.0 OR MIT",
+        "repository": "https://github.com/RustCrypto/formats/tree/master/base16ct",
+        "noticeMissing": false,
+        "notices": [
+          {
+            "name": "LICENSE-APACHE",
+            "pfad": "/licenses/notices/rust/base16ct-0.2.0/LICENSE-APACHE"
+          },
+          {
+            "name": "LICENSE-MIT",
+            "pfad": "/licenses/notices/rust/base16ct-0.2.0/LICENSE-MIT"
+          }
+        ]
+      },
+      {
+        "name": "base64ct",
+        "version": "1.8.3",
+        "license": "Apache-2.0 OR MIT",
+        "repository": "https://github.com/RustCrypto/formats",
+        "noticeMissing": false,
+        "notices": [
+          {
+            "name": "LICENSE-APACHE",
+            "pfad": "/licenses/notices/rust/base64ct-1.8.3/LICENSE-APACHE"
+          },
+          {
+            "name": "LICENSE-MIT",
+            "pfad": "/licenses/notices/rust/base64ct-1.8.3/LICENSE-MIT"
+          }
+        ]
+      },
+      {
+        "name": "bitflags",
+        "version": "1.3.2",
+        "license": "MIT/Apache-2.0",
+        "repository": "https://github.com/bitflags/bitflags",
+        "noticeMissing": false,
+        "notices": [
+          {
+            "name": "LICENSE-APACHE",
+            "pfad": "/licenses/notices/rust/bitflags-1.3.2/LICENSE-APACHE"
+          },
+          {
+            "name": "LICENSE-MIT",
+            "pfad": "/licenses/notices/rust/bitflags-1.3.2/LICENSE-MIT"
+          }
+        ]
+      },
+      {
+        "name": "bitflags",
+        "version": "2.13.2",
+        "license": "MIT OR Apache-2.0",
+        "repository": "https://github.com/bitflags/bitflags",
+        "noticeMissing": false,
+        "notices": [
+          {
+            "name": "LICENSE-APACHE",
+            "pfad": "/licenses/notices/rust/bitflags-2.13.2/LICENSE-APACHE"
+          },
+          {
+            "name": "LICENSE-MIT",
+            "pfad": "/licenses/notices/rust/bitflags-2.13.2/LICENSE-MIT"
+          }
+        ]
+      },
+      {
+        "name": "block-buffer",
+        "version": "0.10.4",
+        "license": "MIT OR Apache-2.0",
+        "repository": "https://github.com/RustCrypto/utils",
+        "noticeMissing": false,
+        "notices": [
+          {
+            "name": "LICENSE-APACHE",
+            "pfad": "/licenses/notices/rust/block-buffer-0.10.4/LICENSE-APACHE"
+          },
+          {
+            "name": "LICENSE-MIT",
+            "pfad": "/licenses/notices/rust/block-buffer-0.10.4/LICENSE-MIT"
+          }
+        ]
+      },
+      {
+        "name": "block-padding",
+        "version": "0.3.3",
+        "license": "MIT OR Apache-2.0",
+        "repository": "https://github.com/RustCrypto/utils",
+        "noticeMissing": false,
+        "notices": [
+          {
+            "name": "LICENSE-APACHE",
+            "pfad": "/licenses/notices/rust/block-padding-0.3.3/LICENSE-APACHE"
+          },
+          {
+            "name": "LICENSE-MIT",
+            "pfad": "/licenses/notices/rust/block-padding-0.3.3/LICENSE-MIT"
+          }
+        ]
+      },
+      {
+        "name": "bumpalo",
+        "version": "3.20.3",
+        "license": "MIT OR Apache-2.0",
+        "repository": "https://github.com/fitzgen/bumpalo",
+        "noticeMissing": false,
+        "notices": [
+          {
+            "name": "LICENSE-APACHE",
+            "pfad": "/licenses/notices/rust/bumpalo-3.20.3/LICENSE-APACHE"
+          },
+          {
+            "name": "LICENSE-MIT",
+            "pfad": "/licenses/notices/rust/bumpalo-3.20.3/LICENSE-MIT"
+          }
+        ]
+      },
+      {
+        "name": "bytecount",
+        "version": "0.6.9",
+        "license": "Apache-2.0/MIT",
+        "repository": "https://github.com/llogiq/bytecount",
+        "noticeMissing": false,
+        "notices": [
+          {
+            "name": "LICENSE.Apache2",
+            "pfad": "/licenses/notices/rust/bytecount-0.6.9/LICENSE.Apache2"
+          },
+          {
+            "name": "LICENSE.MIT",
+            "pfad": "/licenses/notices/rust/bytecount-0.6.9/LICENSE.MIT"
+          }
+        ]
+      },
+      {
+        "name": "cbc",
+        "version": "0.1.2",
+        "license": "MIT OR Apache-2.0",
+        "repository": "https://github.com/RustCrypto/block-modes",
+        "noticeMissing": false,
+        "notices": [
+          {
+            "name": "LICENSE-APACHE",
+            "pfad": "/licenses/notices/rust/cbc-0.1.2/LICENSE-APACHE"
+          },
+          {
+            "name": "LICENSE-MIT",
+            "pfad": "/licenses/notices/rust/cbc-0.1.2/LICENSE-MIT"
+          }
+        ]
+      },
+      {
+        "name": "cfg-if",
+        "version": "1.0.5",
+        "license": "MIT OR Apache-2.0",
+        "repository": "https://github.com/rust-lang/cfg-if",
+        "noticeMissing": false,
+        "notices": [
+          {
+            "name": "LICENSE-APACHE",
+            "pfad": "/licenses/notices/rust/cfg-if-1.0.5/LICENSE-APACHE"
+          },
+          {
+            "name": "LICENSE-MIT",
+            "pfad": "/licenses/notices/rust/cfg-if-1.0.5/LICENSE-MIT"
+          }
+        ]
+      },
+      {
+        "name": "chrono",
+        "version": "0.4.45",
+        "license": "MIT OR Apache-2.0",
+        "repository": "https://github.com/chronotope/chrono",
+        "noticeMissing": false,
+        "notices": [
+          {
+            "name": "LICENSE.txt",
+            "pfad": "/licenses/notices/rust/chrono-0.4.45/LICENSE.txt"
+          }
+        ]
+      },
+      {
+        "name": "cipher",
+        "version": "0.4.4",
+        "license": "MIT OR Apache-2.0",
+        "repository": "https://github.com/RustCrypto/traits",
+        "noticeMissing": false,
+        "notices": [
+          {
+            "name": "LICENSE-APACHE",
+            "pfad": "/licenses/notices/rust/cipher-0.4.4/LICENSE-APACHE"
+          },
+          {
+            "name": "LICENSE-MIT",
+            "pfad": "/licenses/notices/rust/cipher-0.4.4/LICENSE-MIT"
+          }
+        ]
+      },
+      {
+        "name": "cms",
+        "version": "0.2.3",
+        "license": "Apache-2.0 OR MIT",
+        "repository": "https://github.com/RustCrypto/formats/tree/master/cms",
+        "noticeMissing": true,
+        "notices": []
+      },
+      {
+        "name": "const-oid",
+        "version": "0.9.6",
+        "license": "Apache-2.0 OR MIT",
+        "repository": "https://github.com/RustCrypto/formats/tree/master/const-oid",
+        "noticeMissing": false,
+        "notices": [
+          {
+            "name": "LICENSE-APACHE",
+            "pfad": "/licenses/notices/rust/const-oid-0.9.6/LICENSE-APACHE"
+          },
+          {
+            "name": "LICENSE-MIT",
+            "pfad": "/licenses/notices/rust/const-oid-0.9.6/LICENSE-MIT"
+          }
+        ]
+      },
+      {
+        "name": "crc32fast",
+        "version": "1.5.2",
+        "license": "MIT OR Apache-2.0",
+        "repository": "https://github.com/srijs/rust-crc32fast",
+        "noticeMissing": false,
+        "notices": [
+          {
+            "name": "LICENSE-APACHE",
+            "pfad": "/licenses/notices/rust/crc32fast-1.5.2/LICENSE-APACHE"
+          },
+          {
+            "name": "LICENSE-MIT",
+            "pfad": "/licenses/notices/rust/crc32fast-1.5.2/LICENSE-MIT"
+          }
+        ]
+      },
+      {
+        "name": "crossbeam-deque",
+        "version": "0.8.8",
+        "license": "MIT OR Apache-2.0",
+        "repository": "https://github.com/crossbeam-rs/crossbeam",
+        "noticeMissing": false,
+        "notices": [
+          {
+            "name": "LICENSE-APACHE",
+            "pfad": "/licenses/notices/rust/crossbeam-deque-0.8.8/LICENSE-APACHE"
+          },
+          {
+            "name": "LICENSE-MIT",
+            "pfad": "/licenses/notices/rust/crossbeam-deque-0.8.8/LICENSE-MIT"
+          }
+        ]
+      },
+      {
+        "name": "crossbeam-epoch",
+        "version": "0.9.21",
+        "license": "MIT OR Apache-2.0",
+        "repository": "https://github.com/crossbeam-rs/crossbeam",
+        "noticeMissing": false,
+        "notices": [
+          {
+            "name": "LICENSE-APACHE",
+            "pfad": "/licenses/notices/rust/crossbeam-epoch-0.9.21/LICENSE-APACHE"
+          },
+          {
+            "name": "LICENSE-MIT",
+            "pfad": "/licenses/notices/rust/crossbeam-epoch-0.9.21/LICENSE-MIT"
+          }
+        ]
+      },
+      {
+        "name": "crossbeam-utils",
+        "version": "0.8.23",
+        "license": "MIT OR Apache-2.0",
+        "repository": "https://github.com/crossbeam-rs/crossbeam",
+        "noticeMissing": false,
+        "notices": [
+          {
+            "name": "LICENSE-APACHE",
+            "pfad": "/licenses/notices/rust/crossbeam-utils-0.8.23/LICENSE-APACHE"
+          },
+          {
+            "name": "LICENSE-MIT",
+            "pfad": "/licenses/notices/rust/crossbeam-utils-0.8.23/LICENSE-MIT"
+          }
+        ]
+      },
+      {
+        "name": "crypto-bigint",
+        "version": "0.5.5",
+        "license": "Apache-2.0 OR MIT",
+        "repository": "https://github.com/RustCrypto/crypto-bigint",
+        "noticeMissing": false,
+        "notices": [
+          {
+            "name": "LICENSE-APACHE",
+            "pfad": "/licenses/notices/rust/crypto-bigint-0.5.5/LICENSE-APACHE"
+          },
+          {
+            "name": "LICENSE-MIT",
+            "pfad": "/licenses/notices/rust/crypto-bigint-0.5.5/LICENSE-MIT"
+          }
+        ]
+      },
+      {
+        "name": "crypto-common",
+        "version": "0.1.7",
+        "license": "MIT OR Apache-2.0",
+        "repository": "https://github.com/RustCrypto/traits",
+        "noticeMissing": false,
+        "notices": [
+          {
+            "name": "LICENSE-APACHE",
+            "pfad": "/licenses/notices/rust/crypto-common-0.1.7/LICENSE-APACHE"
+          },
+          {
+            "name": "LICENSE-MIT",
+            "pfad": "/licenses/notices/rust/crypto-common-0.1.7/LICENSE-MIT"
+          }
+        ]
+      },
+      {
+        "name": "curve25519-dalek",
+        "version": "4.1.3",
+        "license": "BSD-3-Clause",
+        "repository": "https://github.com/dalek-cryptography/curve25519-dalek/tree/main/curve25519-dalek",
+        "noticeMissing": false,
+        "notices": [
+          {
+            "name": "LICENSE",
+            "pfad": "/licenses/notices/rust/curve25519-dalek-4.1.3/LICENSE"
+          }
+        ]
+      },
+      {
+        "name": "data-encoding",
+        "version": "2.11.1",
+        "license": "MIT",
+        "repository": "https://github.com/ia0/data-encoding",
+        "noticeMissing": false,
+        "notices": [
+          {
+            "name": "LICENSE",
+            "pfad": "/licenses/notices/rust/data-encoding-2.11.1/LICENSE"
+          }
+        ]
+      },
+      {
+        "name": "defmt-macros",
+        "version": "1.1.1",
+        "license": "MIT OR Apache-2.0",
+        "repository": "https://github.com/knurling-rs/defmt",
+        "noticeMissing": false,
+        "notices": [
+          {
+            "name": "LICENSE-APACHE",
+            "pfad": "/licenses/notices/rust/defmt-macros-1.1.1/LICENSE-APACHE"
+          },
+          {
+            "name": "LICENSE-MIT",
+            "pfad": "/licenses/notices/rust/defmt-macros-1.1.1/LICENSE-MIT"
+          }
+        ]
+      },
+      {
+        "name": "defmt-parser",
+        "version": "1.0.0",
+        "license": "MIT OR Apache-2.0",
+        "repository": "https://github.com/knurling-rs/defmt",
+        "noticeMissing": true,
+        "notices": []
+      },
+      {
+        "name": "defmt",
+        "version": "1.1.1",
+        "license": "MIT OR Apache-2.0",
+        "repository": "https://github.com/knurling-rs/defmt",
+        "noticeMissing": false,
+        "notices": [
+          {
+            "name": "LICENSE-APACHE",
+            "pfad": "/licenses/notices/rust/defmt-1.1.1/LICENSE-APACHE"
+          },
+          {
+            "name": "LICENSE-MIT",
+            "pfad": "/licenses/notices/rust/defmt-1.1.1/LICENSE-MIT"
+          }
+        ]
+      },
+      {
+        "name": "der_derive",
+        "version": "0.7.3",
+        "license": "Apache-2.0 OR MIT",
+        "repository": "https://github.com/RustCrypto/formats/tree/master/der/derive",
+        "noticeMissing": false,
+        "notices": [
+          {
+            "name": "LICENSE-APACHE",
+            "pfad": "/licenses/notices/rust/der_derive-0.7.3/LICENSE-APACHE"
+          },
+          {
+            "name": "LICENSE-MIT",
+            "pfad": "/licenses/notices/rust/der_derive-0.7.3/LICENSE-MIT"
+          }
+        ]
+      },
+      {
+        "name": "der-parser",
+        "version": "10.0.0",
+        "license": "MIT OR Apache-2.0",
+        "repository": "https://github.com/rusticata/der-parser.git",
+        "noticeMissing": false,
+        "notices": [
+          {
+            "name": "LICENSE-APACHE",
+            "pfad": "/licenses/notices/rust/der-parser-10.0.0/LICENSE-APACHE"
+          },
+          {
+            "name": "LICENSE-MIT",
+            "pfad": "/licenses/notices/rust/der-parser-10.0.0/LICENSE-MIT"
+          }
+        ]
+      },
+      {
+        "name": "der",
+        "version": "0.7.10",
+        "license": "Apache-2.0 OR MIT",
+        "repository": "https://github.com/RustCrypto/formats/tree/master/der",
+        "noticeMissing": false,
+        "notices": [
+          {
+            "name": "LICENSE-APACHE",
+            "pfad": "/licenses/notices/rust/der-0.7.10/LICENSE-APACHE"
+          },
+          {
+            "name": "LICENSE-MIT",
+            "pfad": "/licenses/notices/rust/der-0.7.10/LICENSE-MIT"
+          }
+        ]
+      },
+      {
+        "name": "deranged",
+        "version": "0.5.8",
+        "license": "MIT OR Apache-2.0",
+        "repository": "https://github.com/jhpratt/deranged",
+        "noticeMissing": false,
+        "notices": [
+          {
+            "name": "LICENSE-Apache",
+            "pfad": "/licenses/notices/rust/deranged-0.5.8/LICENSE-Apache"
+          },
+          {
+            "name": "LICENSE-MIT",
+            "pfad": "/licenses/notices/rust/deranged-0.5.8/LICENSE-MIT"
+          }
+        ]
+      },
+      {
+        "name": "des",
+        "version": "0.8.1",
+        "license": "MIT OR Apache-2.0",
+        "repository": "https://github.com/RustCrypto/block-ciphers",
+        "noticeMissing": false,
+        "notices": [
+          {
+            "name": "LICENSE-APACHE",
+            "pfad": "/licenses/notices/rust/des-0.8.1/LICENSE-APACHE"
+          },
+          {
+            "name": "LICENSE-MIT",
+            "pfad": "/licenses/notices/rust/des-0.8.1/LICENSE-MIT"
+          }
+        ]
+      },
+      {
+        "name": "digest",
+        "version": "0.10.7",
+        "license": "MIT OR Apache-2.0",
+        "repository": "https://github.com/RustCrypto/traits",
+        "noticeMissing": false,
+        "notices": [
+          {
+            "name": "LICENSE-APACHE",
+            "pfad": "/licenses/notices/rust/digest-0.10.7/LICENSE-APACHE"
+          },
+          {
+            "name": "LICENSE-MIT",
+            "pfad": "/licenses/notices/rust/digest-0.10.7/LICENSE-MIT"
+          }
+        ]
+      },
+      {
+        "name": "displaydoc",
+        "version": "0.2.7",
+        "license": "MIT OR Apache-2.0",
+        "repository": "https://github.com/yaahc/displaydoc",
+        "noticeMissing": false,
+        "notices": [
+          {
+            "name": "LICENSE-APACHE",
+            "pfad": "/licenses/notices/rust/displaydoc-0.2.7/LICENSE-APACHE"
+          },
+          {
+            "name": "LICENSE-MIT",
+            "pfad": "/licenses/notices/rust/displaydoc-0.2.7/LICENSE-MIT"
+          }
+        ]
+      },
+      {
+        "name": "ecb",
+        "version": "0.1.2",
+        "license": "MIT",
+        "repository": "https://github.com/magic-akari/ecb",
+        "noticeMissing": false,
+        "notices": [
+          {
+            "name": "LICENSE",
+            "pfad": "/licenses/notices/rust/ecb-0.1.2/LICENSE"
+          }
+        ]
+      },
+      {
+        "name": "ecdsa",
+        "version": "0.16.9",
+        "license": "Apache-2.0 OR MIT",
+        "repository": "https://github.com/RustCrypto/signatures/tree/master/ecdsa",
+        "noticeMissing": false,
+        "notices": [
+          {
+            "name": "LICENSE-APACHE",
+            "pfad": "/licenses/notices/rust/ecdsa-0.16.9/LICENSE-APACHE"
+          },
+          {
+            "name": "LICENSE-MIT",
+            "pfad": "/licenses/notices/rust/ecdsa-0.16.9/LICENSE-MIT"
+          }
+        ]
+      },
+      {
+        "name": "ed25519-dalek",
+        "version": "2.2.0",
+        "license": "BSD-3-Clause",
+        "repository": "https://github.com/dalek-cryptography/curve25519-dalek/tree/main/ed25519-dalek",
+        "noticeMissing": false,
+        "notices": [
+          {
+            "name": "LICENSE",
+            "pfad": "/licenses/notices/rust/ed25519-dalek-2.2.0/LICENSE"
+          }
+        ]
+      },
+      {
+        "name": "ed25519",
+        "version": "2.2.3",
+        "license": "Apache-2.0 OR MIT",
+        "repository": "https://github.com/RustCrypto/signatures/tree/master/ed25519",
+        "noticeMissing": false,
+        "notices": [
+          {
+            "name": "LICENSE-APACHE",
+            "pfad": "/licenses/notices/rust/ed25519-2.2.3/LICENSE-APACHE"
+          },
+          {
+            "name": "LICENSE-MIT",
+            "pfad": "/licenses/notices/rust/ed25519-2.2.3/LICENSE-MIT"
+          }
+        ]
+      },
+      {
+        "name": "either",
+        "version": "1.18.0",
+        "license": "MIT OR Apache-2.0",
+        "repository": "https://github.com/rayon-rs/either",
+        "noticeMissing": false,
+        "notices": [
+          {
+            "name": "LICENSE-APACHE",
+            "pfad": "/licenses/notices/rust/either-1.18.0/LICENSE-APACHE"
+          },
+          {
+            "name": "LICENSE-MIT",
+            "pfad": "/licenses/notices/rust/either-1.18.0/LICENSE-MIT"
+          }
+        ]
+      },
+      {
+        "name": "elliptic-curve",
+        "version": "0.13.8",
+        "license": "Apache-2.0 OR MIT",
+        "repository": "https://github.com/RustCrypto/traits/tree/master/elliptic-curve",
+        "noticeMissing": false,
+        "notices": [
+          {
+            "name": "LICENSE-APACHE",
+            "pfad": "/licenses/notices/rust/elliptic-curve-0.13.8/LICENSE-APACHE"
+          },
+          {
+            "name": "LICENSE-MIT",
+            "pfad": "/licenses/notices/rust/elliptic-curve-0.13.8/LICENSE-MIT"
+          }
+        ]
+      },
+      {
+        "name": "encoding_rs",
+        "version": "0.8.42",
+        "license": "(Apache-2.0 OR MIT) AND BSD-3-Clause",
+        "repository": "https://github.com/hsivonen/encoding_rs",
+        "noticeMissing": false,
+        "notices": [
+          {
+            "name": "COPYRIGHT",
+            "pfad": "/licenses/notices/rust/encoding_rs-0.8.42/COPYRIGHT"
+          },
+          {
+            "name": "LICENSE-APACHE",
+            "pfad": "/licenses/notices/rust/encoding_rs-0.8.42/LICENSE-APACHE"
+          },
+          {
+            "name": "LICENSE-MIT",
+            "pfad": "/licenses/notices/rust/encoding_rs-0.8.42/LICENSE-MIT"
+          },
+          {
+            "name": "LICENSE-WHATWG",
+            "pfad": "/licenses/notices/rust/encoding_rs-0.8.42/LICENSE-WHATWG"
+          }
+        ]
+      },
+      {
+        "name": "equivalent",
+        "version": "1.0.2",
+        "license": "Apache-2.0 OR MIT",
+        "repository": "https://github.com/indexmap-rs/equivalent",
+        "noticeMissing": false,
+        "notices": [
+          {
+            "name": "LICENSE-APACHE",
+            "pfad": "/licenses/notices/rust/equivalent-1.0.2/LICENSE-APACHE"
+          },
+          {
+            "name": "LICENSE-MIT",
+            "pfad": "/licenses/notices/rust/equivalent-1.0.2/LICENSE-MIT"
+          }
+        ]
+      },
+      {
+        "name": "fdeflate",
+        "version": "0.3.7",
+        "license": "MIT OR Apache-2.0",
+        "repository": "https://github.com/image-rs/fdeflate",
+        "noticeMissing": false,
+        "notices": [
+          {
+            "name": "LICENSE-APACHE",
+            "pfad": "/licenses/notices/rust/fdeflate-0.3.7/LICENSE-APACHE"
+          },
+          {
+            "name": "LICENSE-MIT",
+            "pfad": "/licenses/notices/rust/fdeflate-0.3.7/LICENSE-MIT"
+          }
+        ]
+      },
+      {
+        "name": "ff",
+        "version": "0.13.1",
+        "license": "MIT/Apache-2.0",
+        "repository": "https://github.com/zkcrypto/ff",
+        "noticeMissing": false,
+        "notices": [
+          {
+            "name": "LICENSE-APACHE",
+            "pfad": "/licenses/notices/rust/ff-0.13.1/LICENSE-APACHE"
+          },
+          {
+            "name": "LICENSE-MIT",
+            "pfad": "/licenses/notices/rust/ff-0.13.1/LICENSE-MIT"
+          }
+        ]
+      },
+      {
+        "name": "flagset",
+        "version": "0.4.7",
+        "license": "Apache-2.0",
+        "repository": "https://github.com/enarx/flagset",
+        "noticeMissing": false,
+        "notices": [
+          {
+            "name": "LICENSE",
+            "pfad": "/licenses/notices/rust/flagset-0.4.7/LICENSE"
+          }
+        ]
+      },
+      {
+        "name": "flate2",
+        "version": "1.1.10",
+        "license": "MIT OR Apache-2.0",
+        "repository": "https://github.com/rust-lang/flate2-rs",
+        "noticeMissing": false,
+        "notices": [
+          {
+            "name": "LICENSE-APACHE",
+            "pfad": "/licenses/notices/rust/flate2-1.1.10/LICENSE-APACHE"
+          },
+          {
+            "name": "LICENSE-MIT",
+            "pfad": "/licenses/notices/rust/flate2-1.1.10/LICENSE-MIT"
+          }
+        ]
+      },
+      {
+        "name": "futures-core",
+        "version": "0.3.34",
+        "license": "MIT OR Apache-2.0",
+        "repository": "https://github.com/rust-lang/futures-rs",
+        "noticeMissing": false,
+        "notices": [
+          {
+            "name": "LICENSE-APACHE",
+            "pfad": "/licenses/notices/rust/futures-core-0.3.34/LICENSE-APACHE"
+          },
+          {
+            "name": "LICENSE-MIT",
+            "pfad": "/licenses/notices/rust/futures-core-0.3.34/LICENSE-MIT"
+          }
+        ]
+      },
+      {
+        "name": "futures-task",
+        "version": "0.3.34",
+        "license": "MIT OR Apache-2.0",
+        "repository": "https://github.com/rust-lang/futures-rs",
+        "noticeMissing": false,
+        "notices": [
+          {
+            "name": "LICENSE-APACHE",
+            "pfad": "/licenses/notices/rust/futures-task-0.3.34/LICENSE-APACHE"
+          },
+          {
+            "name": "LICENSE-MIT",
+            "pfad": "/licenses/notices/rust/futures-task-0.3.34/LICENSE-MIT"
+          }
+        ]
+      },
+      {
+        "name": "futures-util",
+        "version": "0.3.34",
+        "license": "MIT OR Apache-2.0",
+        "repository": "https://github.com/rust-lang/futures-rs",
+        "noticeMissing": false,
+        "notices": [
+          {
+            "name": "LICENSE-APACHE",
+            "pfad": "/licenses/notices/rust/futures-util-0.3.34/LICENSE-APACHE"
+          },
+          {
+            "name": "LICENSE-MIT",
+            "pfad": "/licenses/notices/rust/futures-util-0.3.34/LICENSE-MIT"
+          }
+        ]
+      },
+      {
+        "name": "generic-array",
+        "version": "0.14.7",
+        "license": "MIT",
+        "repository": "https://github.com/fizyk20/generic-array.git",
+        "noticeMissing": false,
+        "notices": [
+          {
+            "name": "LICENSE",
+            "pfad": "/licenses/notices/rust/generic-array-0.14.7/LICENSE"
+          }
+        ]
+      },
+      {
+        "name": "getrandom",
+        "version": "0.2.17",
+        "license": "MIT OR Apache-2.0",
+        "repository": "https://github.com/rust-random/getrandom",
+        "noticeMissing": false,
+        "notices": [
+          {
+            "name": "LICENSE-APACHE",
+            "pfad": "/licenses/notices/rust/getrandom-0.2.17/LICENSE-APACHE"
+          },
+          {
+            "name": "LICENSE-MIT",
+            "pfad": "/licenses/notices/rust/getrandom-0.2.17/LICENSE-MIT"
+          }
+        ]
+      },
+      {
+        "name": "getrandom",
+        "version": "0.3.4",
+        "license": "MIT OR Apache-2.0",
+        "repository": "https://github.com/rust-random/getrandom",
+        "noticeMissing": false,
+        "notices": [
+          {
+            "name": "LICENSE-APACHE",
+            "pfad": "/licenses/notices/rust/getrandom-0.3.4/LICENSE-APACHE"
+          },
+          {
+            "name": "LICENSE-MIT",
+            "pfad": "/licenses/notices/rust/getrandom-0.3.4/LICENSE-MIT"
+          }
+        ]
+      },
+      {
+        "name": "group",
+        "version": "0.13.0",
+        "license": "MIT/Apache-2.0",
+        "repository": "https://github.com/zkcrypto/group",
+        "noticeMissing": false,
+        "notices": [
+          {
+            "name": "COPYRIGHT",
+            "pfad": "/licenses/notices/rust/group-0.13.0/COPYRIGHT"
+          },
+          {
+            "name": "LICENSE-APACHE",
+            "pfad": "/licenses/notices/rust/group-0.13.0/LICENSE-APACHE"
+          },
+          {
+            "name": "LICENSE-MIT",
+            "pfad": "/licenses/notices/rust/group-0.13.0/LICENSE-MIT"
+          }
+        ]
+      },
+      {
+        "name": "hashbrown",
+        "version": "0.17.1",
+        "license": "MIT OR Apache-2.0",
+        "repository": "https://github.com/rust-lang/hashbrown",
+        "noticeMissing": false,
+        "notices": [
+          {
+            "name": "LICENSE-APACHE",
+            "pfad": "/licenses/notices/rust/hashbrown-0.17.1/LICENSE-APACHE"
+          },
+          {
+            "name": "LICENSE-MIT",
+            "pfad": "/licenses/notices/rust/hashbrown-0.17.1/LICENSE-MIT"
+          }
+        ]
+      },
+      {
+        "name": "hex",
+        "version": "0.4.3",
+        "license": "MIT OR Apache-2.0",
+        "repository": "https://github.com/KokaKiwi/rust-hex",
+        "noticeMissing": false,
+        "notices": [
+          {
+            "name": "LICENSE-APACHE",
+            "pfad": "/licenses/notices/rust/hex-0.4.3/LICENSE-APACHE"
+          },
+          {
+            "name": "LICENSE-MIT",
+            "pfad": "/licenses/notices/rust/hex-0.4.3/LICENSE-MIT"
+          }
+        ]
+      },
+      {
+        "name": "hkdf",
+        "version": "0.12.4",
+        "license": "MIT OR Apache-2.0",
+        "repository": "https://github.com/RustCrypto/KDFs/",
+        "noticeMissing": false,
+        "notices": [
+          {
+            "name": "LICENSE-APACHE",
+            "pfad": "/licenses/notices/rust/hkdf-0.12.4/LICENSE-APACHE"
+          },
+          {
+            "name": "LICENSE-MIT",
+            "pfad": "/licenses/notices/rust/hkdf-0.12.4/LICENSE-MIT"
+          }
+        ]
+      },
+      {
+        "name": "hmac",
+        "version": "0.12.1",
+        "license": "MIT OR Apache-2.0",
+        "repository": "https://github.com/RustCrypto/MACs",
+        "noticeMissing": false,
+        "notices": [
+          {
+            "name": "LICENSE-APACHE",
+            "pfad": "/licenses/notices/rust/hmac-0.12.1/LICENSE-APACHE"
+          },
+          {
+            "name": "LICENSE-MIT",
+            "pfad": "/licenses/notices/rust/hmac-0.12.1/LICENSE-MIT"
+          }
+        ]
+      },
+      {
+        "name": "indexmap",
+        "version": "2.14.2",
+        "license": "Apache-2.0 OR MIT",
+        "repository": "https://github.com/indexmap-rs/indexmap",
+        "noticeMissing": false,
+        "notices": [
+          {
+            "name": "LICENSE-APACHE",
+            "pfad": "/licenses/notices/rust/indexmap-2.14.2/LICENSE-APACHE"
+          },
+          {
+            "name": "LICENSE-MIT",
+            "pfad": "/licenses/notices/rust/indexmap-2.14.2/LICENSE-MIT"
+          }
+        ]
+      },
+      {
+        "name": "inout",
+        "version": "0.1.4",
+        "license": "MIT OR Apache-2.0",
+        "repository": "https://github.com/RustCrypto/utils",
+        "noticeMissing": false,
+        "notices": [
+          {
+            "name": "LICENSE-APACHE",
+            "pfad": "/licenses/notices/rust/inout-0.1.4/LICENSE-APACHE"
+          },
+          {
+            "name": "LICENSE-MIT",
+            "pfad": "/licenses/notices/rust/inout-0.1.4/LICENSE-MIT"
+          }
+        ]
+      },
+      {
+        "name": "itoa",
+        "version": "1.0.18",
+        "license": "MIT OR Apache-2.0",
+        "repository": "https://github.com/dtolnay/itoa",
+        "noticeMissing": false,
+        "notices": [
+          {
+            "name": "LICENSE-APACHE",
+            "pfad": "/licenses/notices/rust/itoa-1.0.18/LICENSE-APACHE"
+          },
+          {
+            "name": "LICENSE-MIT",
+            "pfad": "/licenses/notices/rust/itoa-1.0.18/LICENSE-MIT"
+          }
+        ]
+      },
+      {
+        "name": "jiff-core",
+        "version": "0.1.1",
+        "license": "Unlicense OR MIT",
+        "repository": "https://github.com/BurntSushi/jiff",
+        "noticeMissing": false,
+        "notices": [
+          {
+            "name": "COPYING",
+            "pfad": "/licenses/notices/rust/jiff-core-0.1.1/COPYING"
+          },
+          {
+            "name": "LICENSE-MIT",
+            "pfad": "/licenses/notices/rust/jiff-core-0.1.1/LICENSE-MIT"
+          },
+          {
+            "name": "UNLICENSE",
+            "pfad": "/licenses/notices/rust/jiff-core-0.1.1/UNLICENSE"
+          }
+        ]
+      },
+      {
+        "name": "jiff-static",
+        "version": "0.2.37",
+        "license": "Unlicense OR MIT",
+        "repository": "https://github.com/BurntSushi/jiff",
+        "noticeMissing": false,
+        "notices": [
+          {
+            "name": "COPYING",
+            "pfad": "/licenses/notices/rust/jiff-static-0.2.37/COPYING"
+          },
+          {
+            "name": "LICENSE-MIT",
+            "pfad": "/licenses/notices/rust/jiff-static-0.2.37/LICENSE-MIT"
+          },
+          {
+            "name": "UNLICENSE",
+            "pfad": "/licenses/notices/rust/jiff-static-0.2.37/UNLICENSE"
+          }
+        ]
+      },
+      {
+        "name": "jiff-tzdb-platform",
+        "version": "0.1.3",
+        "license": "Unlicense OR MIT",
+        "repository": "https://github.com/BurntSushi/jiff",
+        "noticeMissing": false,
+        "notices": [
+          {
+            "name": "COPYING",
+            "pfad": "/licenses/notices/rust/jiff-tzdb-platform-0.1.3/COPYING"
+          },
+          {
+            "name": "LICENSE-MIT",
+            "pfad": "/licenses/notices/rust/jiff-tzdb-platform-0.1.3/LICENSE-MIT"
+          },
+          {
+            "name": "UNLICENSE",
+            "pfad": "/licenses/notices/rust/jiff-tzdb-platform-0.1.3/UNLICENSE"
+          }
+        ]
+      },
+      {
+        "name": "jiff-tzdb",
+        "version": "0.1.8",
+        "license": "Unlicense OR MIT",
+        "repository": "https://github.com/BurntSushi/jiff",
+        "noticeMissing": false,
+        "notices": [
+          {
+            "name": "COPYING",
+            "pfad": "/licenses/notices/rust/jiff-tzdb-0.1.8/COPYING"
+          },
+          {
+            "name": "LICENSE-MIT",
+            "pfad": "/licenses/notices/rust/jiff-tzdb-0.1.8/LICENSE-MIT"
+          },
+          {
+            "name": "UNLICENSE",
+            "pfad": "/licenses/notices/rust/jiff-tzdb-0.1.8/UNLICENSE"
+          }
+        ]
+      },
+      {
+        "name": "jiff",
+        "version": "0.2.37",
+        "license": "Unlicense OR MIT",
+        "repository": "https://github.com/BurntSushi/jiff",
+        "noticeMissing": false,
+        "notices": [
+          {
+            "name": "COPYING",
+            "pfad": "/licenses/notices/rust/jiff-0.2.37/COPYING"
+          },
+          {
+            "name": "LICENSE-MIT",
+            "pfad": "/licenses/notices/rust/jiff-0.2.37/LICENSE-MIT"
+          },
+          {
+            "name": "UNLICENSE",
+            "pfad": "/licenses/notices/rust/jiff-0.2.37/UNLICENSE"
+          }
+        ]
+      },
+      {
+        "name": "js-sys",
+        "version": "0.3.106",
+        "license": "MIT OR Apache-2.0",
+        "repository": "https://github.com/wasm-bindgen/wasm-bindgen/tree/master/crates/js-sys",
+        "noticeMissing": false,
+        "notices": [
+          {
+            "name": "LICENSE-APACHE",
+            "pfad": "/licenses/notices/rust/js-sys-0.3.106/LICENSE-APACHE"
+          },
+          {
+            "name": "LICENSE-MIT",
+            "pfad": "/licenses/notices/rust/js-sys-0.3.106/LICENSE-MIT"
+          }
+        ]
+      },
+      {
+        "name": "keccak",
+        "version": "0.1.6",
+        "license": "Apache-2.0 OR MIT",
+        "repository": "https://github.com/RustCrypto/sponges/tree/master/keccak",
+        "noticeMissing": false,
+        "notices": [
+          {
+            "name": "LICENSE-APACHE",
+            "pfad": "/licenses/notices/rust/keccak-0.1.6/LICENSE-APACHE"
+          },
+          {
+            "name": "LICENSE-MIT",
+            "pfad": "/licenses/notices/rust/keccak-0.1.6/LICENSE-MIT"
+          }
+        ]
+      },
+      {
+        "name": "lazy_static",
+        "version": "1.5.1",
+        "license": "MIT OR Apache-2.0",
+        "repository": "https://github.com/rust-lang-nursery/lazy-static.rs",
+        "noticeMissing": false,
+        "notices": [
+          {
+            "name": "LICENSE-APACHE",
+            "pfad": "/licenses/notices/rust/lazy_static-1.5.1/LICENSE-APACHE"
+          },
+          {
+            "name": "LICENSE-MIT",
+            "pfad": "/licenses/notices/rust/lazy_static-1.5.1/LICENSE-MIT"
+          }
+        ]
+      },
+      {
+        "name": "libm",
+        "version": "0.2.16",
+        "license": "MIT",
+        "repository": "https://github.com/rust-lang/compiler-builtins",
+        "noticeMissing": false,
+        "notices": [
+          {
+            "name": "LICENSE.txt",
+            "pfad": "/licenses/notices/rust/libm-0.2.16/LICENSE.txt"
+          }
+        ]
+      },
+      {
+        "name": "log",
+        "version": "0.4.34",
+        "license": "MIT OR Apache-2.0",
+        "repository": "https://github.com/rust-lang/log",
+        "noticeMissing": false,
+        "notices": [
+          {
+            "name": "LICENSE-APACHE",
+            "pfad": "/licenses/notices/rust/log-0.4.34/LICENSE-APACHE"
+          },
+          {
+            "name": "LICENSE-MIT",
+            "pfad": "/licenses/notices/rust/log-0.4.34/LICENSE-MIT"
+          }
+        ]
+      },
+      {
+        "name": "lopdf",
+        "version": "0.36.0",
+        "license": "MIT",
+        "repository": "https://github.com/J-F-Liu/lopdf.git",
+        "noticeMissing": false,
+        "notices": [
+          {
+            "name": "LICENSE",
+            "pfad": "/licenses/notices/rust/lopdf-0.36.0/LICENSE"
+          }
+        ]
+      },
+      {
+        "name": "md-5",
+        "version": "0.10.6",
+        "license": "MIT OR Apache-2.0",
+        "repository": "https://github.com/RustCrypto/hashes",
+        "noticeMissing": false,
+        "notices": [
+          {
+            "name": "LICENSE-APACHE",
+            "pfad": "/licenses/notices/rust/md-5-0.10.6/LICENSE-APACHE"
+          },
+          {
+            "name": "LICENSE-MIT",
+            "pfad": "/licenses/notices/rust/md-5-0.10.6/LICENSE-MIT"
+          }
+        ]
+      },
+      {
+        "name": "memchr",
+        "version": "2.8.3",
+        "license": "Unlicense OR MIT",
+        "repository": "https://github.com/BurntSushi/memchr",
+        "noticeMissing": false,
+        "notices": [
+          {
+            "name": "COPYING",
+            "pfad": "/licenses/notices/rust/memchr-2.8.3/COPYING"
+          },
+          {
+            "name": "LICENSE-MIT",
+            "pfad": "/licenses/notices/rust/memchr-2.8.3/LICENSE-MIT"
+          },
+          {
+            "name": "UNLICENSE",
+            "pfad": "/licenses/notices/rust/memchr-2.8.3/UNLICENSE"
+          }
+        ]
+      },
+      {
+        "name": "minimal-lexical",
+        "version": "0.2.1",
+        "license": "MIT/Apache-2.0",
+        "repository": "https://github.com/Alexhuszagh/minimal-lexical",
+        "noticeMissing": false,
+        "notices": [
+          {
+            "name": "LICENSE-APACHE",
+            "pfad": "/licenses/notices/rust/minimal-lexical-0.2.1/LICENSE-APACHE"
+          },
+          {
+            "name": "LICENSE-MIT",
+            "pfad": "/licenses/notices/rust/minimal-lexical-0.2.1/LICENSE-MIT"
+          },
+          {
+            "name": "LICENSE.md",
+            "pfad": "/licenses/notices/rust/minimal-lexical-0.2.1/LICENSE.md"
+          }
+        ]
+      },
+      {
+        "name": "miniz_oxide",
+        "version": "0.8.9",
+        "license": "MIT OR Zlib OR Apache-2.0",
+        "repository": "https://github.com/Frommi/miniz_oxide/tree/master/miniz_oxide",
+        "noticeMissing": false,
+        "notices": [
+          {
+            "name": "LICENSE",
+            "pfad": "/licenses/notices/rust/miniz_oxide-0.8.9/LICENSE"
+          },
+          {
+            "name": "LICENSE-APACHE.md",
+            "pfad": "/licenses/notices/rust/miniz_oxide-0.8.9/LICENSE-APACHE.md"
+          },
+          {
+            "name": "LICENSE-MIT.md",
+            "pfad": "/licenses/notices/rust/miniz_oxide-0.8.9/LICENSE-MIT.md"
+          },
+          {
+            "name": "LICENSE-ZLIB.md",
+            "pfad": "/licenses/notices/rust/miniz_oxide-0.8.9/LICENSE-ZLIB.md"
+          }
+        ]
+      },
+      {
+        "name": "miniz_oxide",
+        "version": "0.9.1",
+        "license": "MIT OR Zlib OR Apache-2.0",
+        "repository": "https://github.com/Frommi/miniz_oxide/tree/master/miniz_oxide",
+        "noticeMissing": false,
+        "notices": [
+          {
+            "name": "LICENSE",
+            "pfad": "/licenses/notices/rust/miniz_oxide-0.9.1/LICENSE"
+          },
+          {
+            "name": "LICENSE-APACHE.md",
+            "pfad": "/licenses/notices/rust/miniz_oxide-0.9.1/LICENSE-APACHE.md"
+          },
+          {
+            "name": "LICENSE-MIT.md",
+            "pfad": "/licenses/notices/rust/miniz_oxide-0.9.1/LICENSE-MIT.md"
+          },
+          {
+            "name": "LICENSE-ZLIB.md",
+            "pfad": "/licenses/notices/rust/miniz_oxide-0.9.1/LICENSE-ZLIB.md"
+          }
+        ]
+      },
+      {
+        "name": "multiversion_no_op",
+        "version": "1.0.0",
+        "license": "Apache-2.0 OR MIT",
+        "repository": "https://github.com/hsivonen/multiversion_no_op",
+        "noticeMissing": false,
+        "notices": [
+          {
+            "name": "COPYRIGHT",
+            "pfad": "/licenses/notices/rust/multiversion_no_op-1.0.0/COPYRIGHT"
+          },
+          {
+            "name": "LICENSE-APACHE",
+            "pfad": "/licenses/notices/rust/multiversion_no_op-1.0.0/LICENSE-APACHE"
+          },
+          {
+            "name": "LICENSE-MIT",
+            "pfad": "/licenses/notices/rust/multiversion_no_op-1.0.0/LICENSE-MIT"
+          }
+        ]
+      },
+      {
+        "name": "nom_locate",
+        "version": "5.0.0",
+        "license": "MIT",
+        "repository": "https://github.com/fflorent/nom_locate",
+        "noticeMissing": false,
+        "notices": [
+          {
+            "name": "LICENSE",
+            "pfad": "/licenses/notices/rust/nom_locate-5.0.0/LICENSE"
+          }
+        ]
+      },
+      {
+        "name": "nom",
+        "version": "7.1.3",
+        "license": "MIT",
+        "repository": "https://github.com/Geal/nom",
+        "noticeMissing": false,
+        "notices": [
+          {
+            "name": "LICENSE",
+            "pfad": "/licenses/notices/rust/nom-7.1.3/LICENSE"
+          }
+        ]
+      },
+      {
+        "name": "nom",
+        "version": "8.0.0",
+        "license": "MIT",
+        "repository": "https://github.com/rust-bakery/nom",
+        "noticeMissing": false,
+        "notices": [
+          {
+            "name": "LICENSE",
+            "pfad": "/licenses/notices/rust/nom-8.0.0/LICENSE"
+          }
+        ]
+      },
+      {
+        "name": "num-bigint-dig",
+        "version": "0.8.6",
+        "license": "MIT/Apache-2.0",
+        "repository": "https://github.com/dignifiedquire/num-bigint",
+        "noticeMissing": false,
+        "notices": [
+          {
+            "name": "LICENSE-APACHE",
+            "pfad": "/licenses/notices/rust/num-bigint-dig-0.8.6/LICENSE-APACHE"
+          },
+          {
+            "name": "LICENSE-MIT",
+            "pfad": "/licenses/notices/rust/num-bigint-dig-0.8.6/LICENSE-MIT"
+          }
+        ]
+      },
+      {
+        "name": "num-bigint",
+        "version": "0.4.8",
+        "license": "MIT OR Apache-2.0",
+        "repository": "https://github.com/rust-num/num-bigint",
+        "noticeMissing": false,
+        "notices": [
+          {
+            "name": "LICENSE-APACHE",
+            "pfad": "/licenses/notices/rust/num-bigint-0.4.8/LICENSE-APACHE"
+          },
+          {
+            "name": "LICENSE-MIT",
+            "pfad": "/licenses/notices/rust/num-bigint-0.4.8/LICENSE-MIT"
+          }
+        ]
+      },
+      {
+        "name": "num-conv",
+        "version": "0.2.2",
+        "license": "MIT OR Apache-2.0",
+        "repository": "https://github.com/jhpratt/num-conv",
+        "noticeMissing": false,
+        "notices": [
+          {
+            "name": "LICENSE-Apache",
+            "pfad": "/licenses/notices/rust/num-conv-0.2.2/LICENSE-Apache"
+          },
+          {
+            "name": "LICENSE-MIT",
+            "pfad": "/licenses/notices/rust/num-conv-0.2.2/LICENSE-MIT"
+          }
+        ]
+      },
+      {
+        "name": "num-integer",
+        "version": "0.1.47",
+        "license": "MIT OR Apache-2.0",
+        "repository": "https://github.com/rust-num/num-integer",
+        "noticeMissing": false,
+        "notices": [
+          {
+            "name": "LICENSE-APACHE",
+            "pfad": "/licenses/notices/rust/num-integer-0.1.47/LICENSE-APACHE"
+          },
+          {
+            "name": "LICENSE-MIT",
+            "pfad": "/licenses/notices/rust/num-integer-0.1.47/LICENSE-MIT"
+          }
+        ]
+      },
+      {
+        "name": "num-iter",
+        "version": "0.1.46",
+        "license": "MIT OR Apache-2.0",
+        "repository": "https://github.com/rust-num/num-iter",
+        "noticeMissing": false,
+        "notices": [
+          {
+            "name": "LICENSE-APACHE",
+            "pfad": "/licenses/notices/rust/num-iter-0.1.46/LICENSE-APACHE"
+          },
+          {
+            "name": "LICENSE-MIT",
+            "pfad": "/licenses/notices/rust/num-iter-0.1.46/LICENSE-MIT"
+          }
+        ]
+      },
+      {
+        "name": "num-traits",
+        "version": "0.2.19",
+        "license": "MIT OR Apache-2.0",
+        "repository": "https://github.com/rust-num/num-traits",
+        "noticeMissing": false,
+        "notices": [
+          {
+            "name": "LICENSE-APACHE",
+            "pfad": "/licenses/notices/rust/num-traits-0.2.19/LICENSE-APACHE"
+          },
+          {
+            "name": "LICENSE-MIT",
+            "pfad": "/licenses/notices/rust/num-traits-0.2.19/LICENSE-MIT"
+          }
+        ]
+      },
+      {
+        "name": "oid-registry",
+        "version": "0.8.1",
+        "license": "MIT OR Apache-2.0",
+        "repository": "https://github.com/rusticata/oid-registry.git",
+        "noticeMissing": false,
+        "notices": [
+          {
+            "name": "LICENSE-APACHE",
+            "pfad": "/licenses/notices/rust/oid-registry-0.8.1/LICENSE-APACHE"
+          },
+          {
+            "name": "LICENSE-MIT",
+            "pfad": "/licenses/notices/rust/oid-registry-0.8.1/LICENSE-MIT"
+          }
+        ]
+      },
+      {
+        "name": "once_cell",
+        "version": "1.21.4",
+        "license": "MIT OR Apache-2.0",
+        "repository": "https://github.com/matklad/once_cell",
+        "noticeMissing": false,
+        "notices": [
+          {
+            "name": "LICENSE-APACHE",
+            "pfad": "/licenses/notices/rust/once_cell-1.21.4/LICENSE-APACHE"
+          },
+          {
+            "name": "LICENSE-MIT",
+            "pfad": "/licenses/notices/rust/once_cell-1.21.4/LICENSE-MIT"
+          }
+        ]
+      },
+      {
+        "name": "p12-keystore",
+        "version": "0.1.5",
+        "license": "MIT/Apache-2.0",
+        "repository": "https://github.com/ancwrd1/p12-keystore",
+        "noticeMissing": true,
+        "notices": []
+      },
+      {
+        "name": "p256",
+        "version": "0.13.2",
+        "license": "Apache-2.0 OR MIT",
+        "repository": "https://github.com/RustCrypto/elliptic-curves/tree/master/p256",
+        "noticeMissing": false,
+        "notices": [
+          {
+            "name": "LICENSE-APACHE",
+            "pfad": "/licenses/notices/rust/p256-0.13.2/LICENSE-APACHE"
+          },
+          {
+            "name": "LICENSE-MIT",
+            "pfad": "/licenses/notices/rust/p256-0.13.2/LICENSE-MIT"
+          }
+        ]
+      },
+      {
+        "name": "p384",
+        "version": "0.13.1",
+        "license": "Apache-2.0 OR MIT",
+        "repository": "https://github.com/RustCrypto/elliptic-curves/tree/master/p384",
+        "noticeMissing": false,
+        "notices": [
+          {
+            "name": "LICENSE-APACHE",
+            "pfad": "/licenses/notices/rust/p384-0.13.1/LICENSE-APACHE"
+          },
+          {
+            "name": "LICENSE-MIT",
+            "pfad": "/licenses/notices/rust/p384-0.13.1/LICENSE-MIT"
+          }
+        ]
+      },
+      {
+        "name": "pbkdf2",
+        "version": "0.12.2",
+        "license": "MIT OR Apache-2.0",
+        "repository": "https://github.com/RustCrypto/password-hashes/tree/master/pbkdf2",
+        "noticeMissing": false,
+        "notices": [
+          {
+            "name": "LICENSE-APACHE",
+            "pfad": "/licenses/notices/rust/pbkdf2-0.12.2/LICENSE-APACHE"
+          },
+          {
+            "name": "LICENSE-MIT",
+            "pfad": "/licenses/notices/rust/pbkdf2-0.12.2/LICENSE-MIT"
+          }
+        ]
+      },
+      {
+        "name": "pdf_signer",
+        "version": "0.3.2",
+        "license": "GPL-3.0-or-later",
+        "repository": "https://github.com/StrategicProjects/pdf_signer",
+        "noticeMissing": true,
+        "notices": []
+      },
+      {
+        "name": "pem-rfc7468",
+        "version": "0.7.0",
+        "license": "Apache-2.0 OR MIT",
+        "repository": "https://github.com/RustCrypto/formats/tree/master/pem-rfc7468",
+        "noticeMissing": false,
+        "notices": [
+          {
+            "name": "LICENSE-APACHE",
+            "pfad": "/licenses/notices/rust/pem-rfc7468-0.7.0/LICENSE-APACHE"
+          },
+          {
+            "name": "LICENSE-MIT",
+            "pfad": "/licenses/notices/rust/pem-rfc7468-0.7.0/LICENSE-MIT"
+          }
+        ]
+      },
+      {
+        "name": "pin-project-lite",
+        "version": "0.2.17",
+        "license": "Apache-2.0 OR MIT",
+        "repository": "https://github.com/taiki-e/pin-project-lite",
+        "noticeMissing": false,
+        "notices": [
+          {
+            "name": "LICENSE-APACHE",
+            "pfad": "/licenses/notices/rust/pin-project-lite-0.2.17/LICENSE-APACHE"
+          },
+          {
+            "name": "LICENSE-MIT",
+            "pfad": "/licenses/notices/rust/pin-project-lite-0.2.17/LICENSE-MIT"
+          }
+        ]
+      },
+      {
+        "name": "pkcs1",
+        "version": "0.7.5",
+        "license": "Apache-2.0 OR MIT",
+        "repository": "https://github.com/RustCrypto/formats/tree/master/pkcs1",
+        "noticeMissing": false,
+        "notices": [
+          {
+            "name": "LICENSE-APACHE",
+            "pfad": "/licenses/notices/rust/pkcs1-0.7.5/LICENSE-APACHE"
+          },
+          {
+            "name": "LICENSE-MIT",
+            "pfad": "/licenses/notices/rust/pkcs1-0.7.5/LICENSE-MIT"
+          }
+        ]
+      },
+      {
+        "name": "pkcs12",
+        "version": "0.1.0",
+        "license": "Apache-2.0 OR MIT",
+        "repository": "https://github.com/RustCrypto/formats/tree/master/pkcs12",
+        "noticeMissing": false,
+        "notices": [
+          {
+            "name": "LICENSE-APACHE",
+            "pfad": "/licenses/notices/rust/pkcs12-0.1.0/LICENSE-APACHE"
+          },
+          {
+            "name": "LICENSE-MIT",
+            "pfad": "/licenses/notices/rust/pkcs12-0.1.0/LICENSE-MIT"
+          }
+        ]
+      },
+      {
+        "name": "pkcs5",
+        "version": "0.7.1",
+        "license": "Apache-2.0 OR MIT",
+        "repository": "https://github.com/RustCrypto/formats/tree/master/pkcs5",
+        "noticeMissing": false,
+        "notices": [
+          {
+            "name": "LICENSE-APACHE",
+            "pfad": "/licenses/notices/rust/pkcs5-0.7.1/LICENSE-APACHE"
+          },
+          {
+            "name": "LICENSE-MIT",
+            "pfad": "/licenses/notices/rust/pkcs5-0.7.1/LICENSE-MIT"
+          }
+        ]
+      },
+      {
+        "name": "pkcs8",
+        "version": "0.10.2",
+        "license": "Apache-2.0 OR MIT",
+        "repository": "https://github.com/RustCrypto/formats/tree/master/pkcs8",
+        "noticeMissing": false,
+        "notices": [
+          {
+            "name": "LICENSE-APACHE",
+            "pfad": "/licenses/notices/rust/pkcs8-0.10.2/LICENSE-APACHE"
+          },
+          {
+            "name": "LICENSE-MIT",
+            "pfad": "/licenses/notices/rust/pkcs8-0.10.2/LICENSE-MIT"
+          }
+        ]
+      },
+      {
+        "name": "png",
+        "version": "0.18.1",
+        "license": "MIT OR Apache-2.0",
+        "repository": "https://github.com/image-rs/image-png",
+        "noticeMissing": false,
+        "notices": [
+          {
+            "name": "LICENSE-APACHE",
+            "pfad": "/licenses/notices/rust/png-0.18.1/LICENSE-APACHE"
+          },
+          {
+            "name": "LICENSE-MIT",
+            "pfad": "/licenses/notices/rust/png-0.18.1/LICENSE-MIT"
+          }
+        ]
+      },
+      {
+        "name": "powerfmt",
+        "version": "0.2.0",
+        "license": "MIT OR Apache-2.0",
+        "repository": "https://github.com/jhpratt/powerfmt",
+        "noticeMissing": false,
+        "notices": [
+          {
+            "name": "LICENSE-Apache",
+            "pfad": "/licenses/notices/rust/powerfmt-0.2.0/LICENSE-Apache"
+          },
+          {
+            "name": "LICENSE-MIT",
+            "pfad": "/licenses/notices/rust/powerfmt-0.2.0/LICENSE-MIT"
+          }
+        ]
+      },
+      {
+        "name": "ppv-lite86",
+        "version": "0.2.21",
+        "license": "MIT OR Apache-2.0",
+        "repository": "https://github.com/cryptocorrosion/cryptocorrosion",
+        "noticeMissing": false,
+        "notices": [
+          {
+            "name": "LICENSE-APACHE",
+            "pfad": "/licenses/notices/rust/ppv-lite86-0.2.21/LICENSE-APACHE"
+          },
+          {
+            "name": "LICENSE-MIT",
+            "pfad": "/licenses/notices/rust/ppv-lite86-0.2.21/LICENSE-MIT"
+          }
+        ]
+      },
+      {
+        "name": "primeorder",
+        "version": "0.13.6",
+        "license": "Apache-2.0 OR MIT",
+        "repository": "https://github.com/RustCrypto/elliptic-curves/tree/master/primeorder",
+        "noticeMissing": false,
+        "notices": [
+          {
+            "name": "LICENSE-APACHE",
+            "pfad": "/licenses/notices/rust/primeorder-0.13.6/LICENSE-APACHE"
+          },
+          {
+            "name": "LICENSE-MIT",
+            "pfad": "/licenses/notices/rust/primeorder-0.13.6/LICENSE-MIT"
+          }
+        ]
+      },
+      {
+        "name": "proc-macro2",
+        "version": "1.0.107",
+        "license": "MIT OR Apache-2.0",
+        "repository": "https://github.com/dtolnay/proc-macro2",
+        "noticeMissing": false,
+        "notices": [
+          {
+            "name": "LICENSE-APACHE",
+            "pfad": "/licenses/notices/rust/proc-macro2-1.0.107/LICENSE-APACHE"
+          },
+          {
+            "name": "LICENSE-MIT",
+            "pfad": "/licenses/notices/rust/proc-macro2-1.0.107/LICENSE-MIT"
+          }
+        ]
+      },
+      {
+        "name": "quote",
+        "version": "1.0.47",
+        "license": "MIT OR Apache-2.0",
+        "repository": "https://github.com/dtolnay/quote",
+        "noticeMissing": false,
+        "notices": [
+          {
+            "name": "LICENSE-APACHE",
+            "pfad": "/licenses/notices/rust/quote-1.0.47/LICENSE-APACHE"
+          },
+          {
+            "name": "LICENSE-MIT",
+            "pfad": "/licenses/notices/rust/quote-1.0.47/LICENSE-MIT"
+          }
+        ]
+      },
+      {
+        "name": "rand_chacha",
+        "version": "0.3.1",
+        "license": "MIT OR Apache-2.0",
+        "repository": "https://github.com/rust-random/rand",
+        "noticeMissing": false,
+        "notices": [
+          {
+            "name": "COPYRIGHT",
+            "pfad": "/licenses/notices/rust/rand_chacha-0.3.1/COPYRIGHT"
+          },
+          {
+            "name": "LICENSE-APACHE",
+            "pfad": "/licenses/notices/rust/rand_chacha-0.3.1/LICENSE-APACHE"
+          },
+          {
+            "name": "LICENSE-MIT",
+            "pfad": "/licenses/notices/rust/rand_chacha-0.3.1/LICENSE-MIT"
+          }
+        ]
+      },
+      {
+        "name": "rand_chacha",
+        "version": "0.9.0",
+        "license": "MIT OR Apache-2.0",
+        "repository": "https://github.com/rust-random/rand",
+        "noticeMissing": false,
+        "notices": [
+          {
+            "name": "COPYRIGHT",
+            "pfad": "/licenses/notices/rust/rand_chacha-0.9.0/COPYRIGHT"
+          },
+          {
+            "name": "LICENSE-APACHE",
+            "pfad": "/licenses/notices/rust/rand_chacha-0.9.0/LICENSE-APACHE"
+          },
+          {
+            "name": "LICENSE-MIT",
+            "pfad": "/licenses/notices/rust/rand_chacha-0.9.0/LICENSE-MIT"
+          }
+        ]
+      },
+      {
+        "name": "rand_core",
+        "version": "0.6.4",
+        "license": "MIT OR Apache-2.0",
+        "repository": "https://github.com/rust-random/rand",
+        "noticeMissing": false,
+        "notices": [
+          {
+            "name": "COPYRIGHT",
+            "pfad": "/licenses/notices/rust/rand_core-0.6.4/COPYRIGHT"
+          },
+          {
+            "name": "LICENSE-APACHE",
+            "pfad": "/licenses/notices/rust/rand_core-0.6.4/LICENSE-APACHE"
+          },
+          {
+            "name": "LICENSE-MIT",
+            "pfad": "/licenses/notices/rust/rand_core-0.6.4/LICENSE-MIT"
+          }
+        ]
+      },
+      {
+        "name": "rand_core",
+        "version": "0.9.5",
+        "license": "MIT OR Apache-2.0",
+        "repository": "https://github.com/rust-random/rand",
+        "noticeMissing": false,
+        "notices": [
+          {
+            "name": "COPYRIGHT",
+            "pfad": "/licenses/notices/rust/rand_core-0.9.5/COPYRIGHT"
+          },
+          {
+            "name": "LICENSE-APACHE",
+            "pfad": "/licenses/notices/rust/rand_core-0.9.5/LICENSE-APACHE"
+          },
+          {
+            "name": "LICENSE-MIT",
+            "pfad": "/licenses/notices/rust/rand_core-0.9.5/LICENSE-MIT"
+          }
+        ]
+      },
+      {
+        "name": "rand",
+        "version": "0.8.8",
+        "license": "MIT OR Apache-2.0",
+        "repository": "https://github.com/rust-random/rand",
+        "noticeMissing": false,
+        "notices": [
+          {
+            "name": "COPYRIGHT",
+            "pfad": "/licenses/notices/rust/rand-0.8.8/COPYRIGHT"
+          },
+          {
+            "name": "LICENSE-APACHE",
+            "pfad": "/licenses/notices/rust/rand-0.8.8/LICENSE-APACHE"
+          },
+          {
+            "name": "LICENSE-MIT",
+            "pfad": "/licenses/notices/rust/rand-0.8.8/LICENSE-MIT"
+          }
+        ]
+      },
+      {
+        "name": "rand",
+        "version": "0.9.5",
+        "license": "MIT OR Apache-2.0",
+        "repository": "https://github.com/rust-random/rand",
+        "noticeMissing": false,
+        "notices": [
+          {
+            "name": "COPYRIGHT",
+            "pfad": "/licenses/notices/rust/rand-0.9.5/COPYRIGHT"
+          },
+          {
+            "name": "LICENSE-APACHE",
+            "pfad": "/licenses/notices/rust/rand-0.9.5/LICENSE-APACHE"
+          },
+          {
+            "name": "LICENSE-MIT",
+            "pfad": "/licenses/notices/rust/rand-0.9.5/LICENSE-MIT"
+          }
+        ]
+      },
+      {
+        "name": "rangemap",
+        "version": "1.8.0",
+        "license": "MIT/Apache-2.0",
+        "repository": "https://github.com/jeffparsons/rangemap",
+        "noticeMissing": false,
+        "notices": [
+          {
+            "name": "LICENSE-APACHE",
+            "pfad": "/licenses/notices/rust/rangemap-1.8.0/LICENSE-APACHE"
+          },
+          {
+            "name": "LICENSE-MIT",
+            "pfad": "/licenses/notices/rust/rangemap-1.8.0/LICENSE-MIT"
+          }
+        ]
+      },
+      {
+        "name": "rayon-core",
+        "version": "1.13.0",
+        "license": "MIT OR Apache-2.0",
+        "repository": "https://github.com/rayon-rs/rayon",
+        "noticeMissing": false,
+        "notices": [
+          {
+            "name": "LICENSE-APACHE",
+            "pfad": "/licenses/notices/rust/rayon-core-1.13.0/LICENSE-APACHE"
+          },
+          {
+            "name": "LICENSE-MIT",
+            "pfad": "/licenses/notices/rust/rayon-core-1.13.0/LICENSE-MIT"
+          }
+        ]
+      },
+      {
+        "name": "rayon",
+        "version": "1.12.0",
+        "license": "MIT OR Apache-2.0",
+        "repository": "https://github.com/rayon-rs/rayon",
+        "noticeMissing": false,
+        "notices": [
+          {
+            "name": "LICENSE-APACHE",
+            "pfad": "/licenses/notices/rust/rayon-1.12.0/LICENSE-APACHE"
+          },
+          {
+            "name": "LICENSE-MIT",
+            "pfad": "/licenses/notices/rust/rayon-1.12.0/LICENSE-MIT"
+          }
+        ]
+      },
+      {
+        "name": "rc2",
+        "version": "0.8.1",
+        "license": "MIT OR Apache-2.0",
+        "repository": "https://github.com/RustCrypto/block-ciphers",
+        "noticeMissing": false,
+        "notices": [
+          {
+            "name": "LICENSE-APACHE",
+            "pfad": "/licenses/notices/rust/rc2-0.8.1/LICENSE-APACHE"
+          },
+          {
+            "name": "LICENSE-MIT",
+            "pfad": "/licenses/notices/rust/rc2-0.8.1/LICENSE-MIT"
+          }
+        ]
+      },
+      {
+        "name": "rfc6979",
+        "version": "0.4.0",
+        "license": "Apache-2.0 OR MIT",
+        "repository": "https://github.com/RustCrypto/signatures/tree/master/rfc6979",
+        "noticeMissing": false,
+        "notices": [
+          {
+            "name": "LICENSE-APACHE",
+            "pfad": "/licenses/notices/rust/rfc6979-0.4.0/LICENSE-APACHE"
+          },
+          {
+            "name": "LICENSE-MIT",
+            "pfad": "/licenses/notices/rust/rfc6979-0.4.0/LICENSE-MIT"
+          }
+        ]
+      },
+      {
+        "name": "rsa",
+        "version": "0.9.10",
+        "license": "MIT OR Apache-2.0",
+        "repository": "https://github.com/RustCrypto/RSA",
+        "noticeMissing": false,
+        "notices": [
+          {
+            "name": "LICENSE-APACHE",
+            "pfad": "/licenses/notices/rust/rsa-0.9.10/LICENSE-APACHE"
+          },
+          {
+            "name": "LICENSE-MIT",
+            "pfad": "/licenses/notices/rust/rsa-0.9.10/LICENSE-MIT"
+          }
+        ]
+      },
+      {
+        "name": "rustc_version",
+        "version": "0.4.1",
+        "license": "MIT OR Apache-2.0",
+        "repository": "https://github.com/djc/rustc-version-rs",
+        "noticeMissing": false,
+        "notices": [
+          {
+            "name": "LICENSE-APACHE",
+            "pfad": "/licenses/notices/rust/rustc_version-0.4.1/LICENSE-APACHE"
+          },
+          {
+            "name": "LICENSE-MIT",
+            "pfad": "/licenses/notices/rust/rustc_version-0.4.1/LICENSE-MIT"
+          }
+        ]
+      },
+      {
+        "name": "rusticata-macros",
+        "version": "4.1.0",
+        "license": "MIT/Apache-2.0",
+        "repository": "https://github.com/rusticata/rusticata-macros.git",
+        "noticeMissing": false,
+        "notices": [
+          {
+            "name": "LICENSE-APACHE",
+            "pfad": "/licenses/notices/rust/rusticata-macros-4.1.0/LICENSE-APACHE"
+          },
+          {
+            "name": "LICENSE-MIT",
+            "pfad": "/licenses/notices/rust/rusticata-macros-4.1.0/LICENSE-MIT"
+          }
+        ]
+      },
+      {
+        "name": "rustversion",
+        "version": "1.0.23",
+        "license": "MIT OR Apache-2.0",
+        "repository": "https://github.com/dtolnay/rustversion",
+        "noticeMissing": false,
+        "notices": [
+          {
+            "name": "LICENSE-APACHE",
+            "pfad": "/licenses/notices/rust/rustversion-1.0.23/LICENSE-APACHE"
+          },
+          {
+            "name": "LICENSE-MIT",
+            "pfad": "/licenses/notices/rust/rustversion-1.0.23/LICENSE-MIT"
+          }
+        ]
+      },
+      {
+        "name": "salsa20",
+        "version": "0.10.2",
+        "license": "MIT OR Apache-2.0",
+        "repository": "https://github.com/RustCrypto/stream-ciphers",
+        "noticeMissing": false,
+        "notices": [
+          {
+            "name": "LICENSE-APACHE",
+            "pfad": "/licenses/notices/rust/salsa20-0.10.2/LICENSE-APACHE"
+          },
+          {
+            "name": "LICENSE-MIT",
+            "pfad": "/licenses/notices/rust/salsa20-0.10.2/LICENSE-MIT"
+          }
+        ]
+      },
+      {
+        "name": "scopeguard",
+        "version": "1.2.0",
+        "license": "MIT OR Apache-2.0",
+        "repository": "https://github.com/bluss/scopeguard",
+        "noticeMissing": false,
+        "notices": [
+          {
+            "name": "LICENSE-APACHE",
+            "pfad": "/licenses/notices/rust/scopeguard-1.2.0/LICENSE-APACHE"
+          },
+          {
+            "name": "LICENSE-MIT",
+            "pfad": "/licenses/notices/rust/scopeguard-1.2.0/LICENSE-MIT"
+          }
+        ]
+      },
+      {
+        "name": "scrypt",
+        "version": "0.11.0",
+        "license": "MIT OR Apache-2.0",
+        "repository": "https://github.com/RustCrypto/password-hashes/tree/master/scrypt",
+        "noticeMissing": false,
+        "notices": [
+          {
+            "name": "LICENSE-APACHE",
+            "pfad": "/licenses/notices/rust/scrypt-0.11.0/LICENSE-APACHE"
+          },
+          {
+            "name": "LICENSE-MIT",
+            "pfad": "/licenses/notices/rust/scrypt-0.11.0/LICENSE-MIT"
+          }
+        ]
+      },
+      {
+        "name": "sec1",
+        "version": "0.7.3",
+        "license": "Apache-2.0 OR MIT",
+        "repository": "https://github.com/RustCrypto/formats/tree/master/sec1",
+        "noticeMissing": false,
+        "notices": [
+          {
+            "name": "LICENSE-APACHE",
+            "pfad": "/licenses/notices/rust/sec1-0.7.3/LICENSE-APACHE"
+          },
+          {
+            "name": "LICENSE-MIT",
+            "pfad": "/licenses/notices/rust/sec1-0.7.3/LICENSE-MIT"
+          }
+        ]
+      },
+      {
+        "name": "semver",
+        "version": "1.0.28",
+        "license": "MIT OR Apache-2.0",
+        "repository": "https://github.com/dtolnay/semver",
+        "noticeMissing": false,
+        "notices": [
+          {
+            "name": "LICENSE-APACHE",
+            "pfad": "/licenses/notices/rust/semver-1.0.28/LICENSE-APACHE"
+          },
+          {
+            "name": "LICENSE-MIT",
+            "pfad": "/licenses/notices/rust/semver-1.0.28/LICENSE-MIT"
+          }
+        ]
+      },
+      {
+        "name": "serde_core",
+        "version": "1.0.229",
+        "license": "MIT OR Apache-2.0",
+        "repository": "https://github.com/serde-rs/serde",
+        "noticeMissing": false,
+        "notices": [
+          {
+            "name": "LICENSE-APACHE",
+            "pfad": "/licenses/notices/rust/serde_core-1.0.229/LICENSE-APACHE"
+          },
+          {
+            "name": "LICENSE-MIT",
+            "pfad": "/licenses/notices/rust/serde_core-1.0.229/LICENSE-MIT"
+          }
+        ]
+      },
+      {
+        "name": "serde_derive",
+        "version": "1.0.229",
+        "license": "MIT OR Apache-2.0",
+        "repository": "https://github.com/serde-rs/serde",
+        "noticeMissing": false,
+        "notices": [
+          {
+            "name": "LICENSE-APACHE",
+            "pfad": "/licenses/notices/rust/serde_derive-1.0.229/LICENSE-APACHE"
+          },
+          {
+            "name": "LICENSE-MIT",
+            "pfad": "/licenses/notices/rust/serde_derive-1.0.229/LICENSE-MIT"
+          }
+        ]
+      },
+      {
+        "name": "serde-wasm-bindgen",
+        "version": "0.6.5",
+        "license": "MIT",
+        "repository": "https://github.com/RReverser/serde-wasm-bindgen",
+        "noticeMissing": false,
+        "notices": [
+          {
+            "name": "LICENSE",
+            "pfad": "/licenses/notices/rust/serde-wasm-bindgen-0.6.5/LICENSE"
+          }
+        ]
+      },
+      {
+        "name": "serde",
+        "version": "1.0.229",
+        "license": "MIT OR Apache-2.0",
+        "repository": "https://github.com/serde-rs/serde",
+        "noticeMissing": false,
+        "notices": [
+          {
+            "name": "LICENSE-APACHE",
+            "pfad": "/licenses/notices/rust/serde-1.0.229/LICENSE-APACHE"
+          },
+          {
+            "name": "LICENSE-MIT",
+            "pfad": "/licenses/notices/rust/serde-1.0.229/LICENSE-MIT"
+          }
+        ]
+      },
+      {
+        "name": "sha1",
+        "version": "0.10.7",
+        "license": "MIT OR Apache-2.0",
+        "repository": "https://github.com/RustCrypto/hashes",
+        "noticeMissing": false,
+        "notices": [
+          {
+            "name": "LICENSE-APACHE",
+            "pfad": "/licenses/notices/rust/sha1-0.10.7/LICENSE-APACHE"
+          },
+          {
+            "name": "LICENSE-MIT",
+            "pfad": "/licenses/notices/rust/sha1-0.10.7/LICENSE-MIT"
+          }
+        ]
+      },
+      {
+        "name": "sha2",
+        "version": "0.10.9",
+        "license": "MIT OR Apache-2.0",
+        "repository": "https://github.com/RustCrypto/hashes",
+        "noticeMissing": false,
+        "notices": [
+          {
+            "name": "LICENSE-APACHE",
+            "pfad": "/licenses/notices/rust/sha2-0.10.9/LICENSE-APACHE"
+          },
+          {
+            "name": "LICENSE-MIT",
+            "pfad": "/licenses/notices/rust/sha2-0.10.9/LICENSE-MIT"
+          }
+        ]
+      },
+      {
+        "name": "sha3",
+        "version": "0.10.9",
+        "license": "MIT OR Apache-2.0",
+        "repository": "https://github.com/RustCrypto/hashes",
+        "noticeMissing": false,
+        "notices": [
+          {
+            "name": "LICENSE-APACHE",
+            "pfad": "/licenses/notices/rust/sha3-0.10.9/LICENSE-APACHE"
+          },
+          {
+            "name": "LICENSE-MIT",
+            "pfad": "/licenses/notices/rust/sha3-0.10.9/LICENSE-MIT"
+          }
+        ]
+      },
+      {
+        "name": "signature",
+        "version": "2.2.0",
+        "license": "Apache-2.0 OR MIT",
+        "repository": "https://github.com/RustCrypto/traits/tree/master/signature",
+        "noticeMissing": false,
+        "notices": [
+          {
+            "name": "LICENSE-APACHE",
+            "pfad": "/licenses/notices/rust/signature-2.2.0/LICENSE-APACHE"
+          },
+          {
+            "name": "LICENSE-MIT",
+            "pfad": "/licenses/notices/rust/signature-2.2.0/LICENSE-MIT"
+          }
+        ]
+      },
+      {
+        "name": "simd-adler32",
+        "version": "0.3.10",
+        "license": "MIT",
+        "repository": "https://github.com/mcountryman/simd-adler32",
+        "noticeMissing": false,
+        "notices": [
+          {
+            "name": "LICENSE.md",
+            "pfad": "/licenses/notices/rust/simd-adler32-0.3.10/LICENSE.md"
+          }
+        ]
+      },
+      {
+        "name": "slab",
+        "version": "0.4.12",
+        "license": "MIT",
+        "repository": "https://github.com/tokio-rs/slab",
+        "noticeMissing": false,
+        "notices": [
+          {
+            "name": "LICENSE",
+            "pfad": "/licenses/notices/rust/slab-0.4.12/LICENSE"
+          }
+        ]
+      },
+      {
+        "name": "smallvec",
+        "version": "1.16.2",
+        "license": "MIT OR Apache-2.0",
+        "repository": "https://github.com/servo/rust-smallvec",
+        "noticeMissing": false,
+        "notices": [
+          {
+            "name": "LICENSE-APACHE",
+            "pfad": "/licenses/notices/rust/smallvec-1.16.2/LICENSE-APACHE"
+          },
+          {
+            "name": "LICENSE-MIT",
+            "pfad": "/licenses/notices/rust/smallvec-1.16.2/LICENSE-MIT"
+          }
+        ]
+      },
+      {
+        "name": "spin",
+        "version": "0.9.9",
+        "license": "MIT",
+        "repository": "https://github.com/mvdnes/spin-rs.git",
+        "noticeMissing": false,
+        "notices": [
+          {
+            "name": "LICENSE",
+            "pfad": "/licenses/notices/rust/spin-0.9.9/LICENSE"
+          }
+        ]
+      },
+      {
+        "name": "spki",
+        "version": "0.7.3",
+        "license": "Apache-2.0 OR MIT",
+        "repository": "https://github.com/RustCrypto/formats/tree/master/spki",
+        "noticeMissing": false,
+        "notices": [
+          {
+            "name": "LICENSE-APACHE",
+            "pfad": "/licenses/notices/rust/spki-0.7.3/LICENSE-APACHE"
+          },
+          {
+            "name": "LICENSE-MIT",
+            "pfad": "/licenses/notices/rust/spki-0.7.3/LICENSE-MIT"
+          }
+        ]
+      },
+      {
+        "name": "stringprep",
+        "version": "0.1.5",
+        "license": "MIT/Apache-2.0",
+        "repository": "https://github.com/sfackler/rust-stringprep",
+        "noticeMissing": false,
+        "notices": [
+          {
+            "name": "LICENSE-APACHE",
+            "pfad": "/licenses/notices/rust/stringprep-0.1.5/LICENSE-APACHE"
+          },
+          {
+            "name": "LICENSE-MIT",
+            "pfad": "/licenses/notices/rust/stringprep-0.1.5/LICENSE-MIT"
+          }
+        ]
+      },
+      {
+        "name": "subtle",
+        "version": "2.6.1",
+        "license": "BSD-3-Clause",
+        "repository": "https://github.com/dalek-cryptography/subtle",
+        "noticeMissing": false,
+        "notices": [
+          {
+            "name": "LICENSE",
+            "pfad": "/licenses/notices/rust/subtle-2.6.1/LICENSE"
+          }
+        ]
+      },
+      {
+        "name": "syn",
+        "version": "2.0.119",
+        "license": "MIT OR Apache-2.0",
+        "repository": "https://github.com/dtolnay/syn",
+        "noticeMissing": false,
+        "notices": [
+          {
+            "name": "LICENSE-APACHE",
+            "pfad": "/licenses/notices/rust/syn-2.0.119/LICENSE-APACHE"
+          },
+          {
+            "name": "LICENSE-MIT",
+            "pfad": "/licenses/notices/rust/syn-2.0.119/LICENSE-MIT"
+          }
+        ]
+      },
+      {
+        "name": "syn",
+        "version": "3.0.6",
+        "license": "MIT OR Apache-2.0",
+        "repository": "https://github.com/dtolnay/syn",
+        "noticeMissing": false,
+        "notices": [
+          {
+            "name": "LICENSE-APACHE",
+            "pfad": "/licenses/notices/rust/syn-3.0.6/LICENSE-APACHE"
+          },
+          {
+            "name": "LICENSE-MIT",
+            "pfad": "/licenses/notices/rust/syn-3.0.6/LICENSE-MIT"
+          }
+        ]
+      },
+      {
+        "name": "synstructure",
+        "version": "0.13.2",
+        "license": "MIT",
+        "repository": "https://github.com/mystor/synstructure",
+        "noticeMissing": false,
+        "notices": [
+          {
+            "name": "LICENSE",
+            "pfad": "/licenses/notices/rust/synstructure-0.13.2/LICENSE"
+          }
+        ]
+      },
+      {
+        "name": "thiserror-impl",
+        "version": "2.0.21",
+        "license": "MIT OR Apache-2.0",
+        "repository": "https://github.com/dtolnay/thiserror",
+        "noticeMissing": false,
+        "notices": [
+          {
+            "name": "LICENSE-APACHE",
+            "pfad": "/licenses/notices/rust/thiserror-impl-2.0.21/LICENSE-APACHE"
+          },
+          {
+            "name": "LICENSE-MIT",
+            "pfad": "/licenses/notices/rust/thiserror-impl-2.0.21/LICENSE-MIT"
+          }
+        ]
+      },
+      {
+        "name": "thiserror",
+        "version": "2.0.21",
+        "license": "MIT OR Apache-2.0",
+        "repository": "https://github.com/dtolnay/thiserror",
+        "noticeMissing": false,
+        "notices": [
+          {
+            "name": "LICENSE-APACHE",
+            "pfad": "/licenses/notices/rust/thiserror-2.0.21/LICENSE-APACHE"
+          },
+          {
+            "name": "LICENSE-MIT",
+            "pfad": "/licenses/notices/rust/thiserror-2.0.21/LICENSE-MIT"
+          }
+        ]
+      },
+      {
+        "name": "time-core",
+        "version": "0.1.9",
+        "license": "MIT OR Apache-2.0",
+        "repository": "https://github.com/time-rs/time",
+        "noticeMissing": false,
+        "notices": [
+          {
+            "name": "LICENSE-Apache",
+            "pfad": "/licenses/notices/rust/time-core-0.1.9/LICENSE-Apache"
+          },
+          {
+            "name": "LICENSE-MIT",
+            "pfad": "/licenses/notices/rust/time-core-0.1.9/LICENSE-MIT"
+          }
+        ]
+      },
+      {
+        "name": "time-macros",
+        "version": "0.2.32",
+        "license": "MIT OR Apache-2.0",
+        "repository": "https://github.com/time-rs/time",
+        "noticeMissing": false,
+        "notices": [
+          {
+            "name": "LICENSE-Apache",
+            "pfad": "/licenses/notices/rust/time-macros-0.2.32/LICENSE-Apache"
+          },
+          {
+            "name": "LICENSE-MIT",
+            "pfad": "/licenses/notices/rust/time-macros-0.2.32/LICENSE-MIT"
+          }
+        ]
+      },
+      {
+        "name": "time",
+        "version": "0.3.55",
+        "license": "MIT OR Apache-2.0",
+        "repository": "https://github.com/time-rs/time",
+        "noticeMissing": false,
+        "notices": [
+          {
+            "name": "LICENSE-Apache",
+            "pfad": "/licenses/notices/rust/time-0.3.55/LICENSE-Apache"
+          },
+          {
+            "name": "LICENSE-MIT",
+            "pfad": "/licenses/notices/rust/time-0.3.55/LICENSE-MIT"
+          }
+        ]
+      },
+      {
+        "name": "tinyvec",
+        "version": "1.13.3",
+        "license": "Zlib OR Apache-2.0 OR MIT",
+        "repository": "https://github.com/Lokathor/tinyvec",
+        "noticeMissing": false,
+        "notices": [
+          {
+            "name": "LICENSE-APACHE.md",
+            "pfad": "/licenses/notices/rust/tinyvec-1.13.3/LICENSE-APACHE.md"
+          },
+          {
+            "name": "LICENSE-MIT.md",
+            "pfad": "/licenses/notices/rust/tinyvec-1.13.3/LICENSE-MIT.md"
+          },
+          {
+            "name": "LICENSE-ZLIB.md",
+            "pfad": "/licenses/notices/rust/tinyvec-1.13.3/LICENSE-ZLIB.md"
+          }
+        ]
+      },
+      {
+        "name": "tls_codec_derive",
+        "version": "0.4.2",
+        "license": "Apache-2.0 OR MIT",
+        "repository": "https://github.com/RustCrypto/formats",
+        "noticeMissing": false,
+        "notices": [
+          {
+            "name": "LICENSE-APACHE",
+            "pfad": "/licenses/notices/rust/tls_codec_derive-0.4.2/LICENSE-APACHE"
+          },
+          {
+            "name": "LICENSE-MIT",
+            "pfad": "/licenses/notices/rust/tls_codec_derive-0.4.2/LICENSE-MIT"
+          }
+        ]
+      },
+      {
+        "name": "tls_codec",
+        "version": "0.4.2",
+        "license": "Apache-2.0 OR MIT",
+        "repository": "https://github.com/RustCrypto/formats",
+        "noticeMissing": false,
+        "notices": [
+          {
+            "name": "LICENSE-APACHE",
+            "pfad": "/licenses/notices/rust/tls_codec-0.4.2/LICENSE-APACHE"
+          },
+          {
+            "name": "LICENSE-MIT",
+            "pfad": "/licenses/notices/rust/tls_codec-0.4.2/LICENSE-MIT"
+          }
+        ]
+      },
+      {
+        "name": "ttf-parser",
+        "version": "0.25.1",
+        "license": "MIT OR Apache-2.0",
+        "repository": "https://github.com/harfbuzz/ttf-parser",
+        "noticeMissing": false,
+        "notices": [
+          {
+            "name": "LICENSE-APACHE",
+            "pfad": "/licenses/notices/rust/ttf-parser-0.25.1/LICENSE-APACHE"
+          },
+          {
+            "name": "LICENSE-MIT",
+            "pfad": "/licenses/notices/rust/ttf-parser-0.25.1/LICENSE-MIT"
+          }
+        ]
+      },
+      {
+        "name": "typenum",
+        "version": "1.20.1",
+        "license": "MIT OR Apache-2.0",
+        "repository": "https://github.com/paholg/typenum",
+        "noticeMissing": false,
+        "notices": [
+          {
+            "name": "LICENSE",
+            "pfad": "/licenses/notices/rust/typenum-1.20.1/LICENSE"
+          },
+          {
+            "name": "LICENSE-APACHE",
+            "pfad": "/licenses/notices/rust/typenum-1.20.1/LICENSE-APACHE"
+          },
+          {
+            "name": "LICENSE-MIT",
+            "pfad": "/licenses/notices/rust/typenum-1.20.1/LICENSE-MIT"
+          }
+        ]
+      },
+      {
+        "name": "unicode-bidi",
+        "version": "0.3.18",
+        "license": "MIT OR Apache-2.0",
+        "repository": "https://github.com/servo/unicode-bidi",
+        "noticeMissing": false,
+        "notices": [
+          {
+            "name": "COPYRIGHT",
+            "pfad": "/licenses/notices/rust/unicode-bidi-0.3.18/COPYRIGHT"
+          },
+          {
+            "name": "LICENSE-APACHE",
+            "pfad": "/licenses/notices/rust/unicode-bidi-0.3.18/LICENSE-APACHE"
+          },
+          {
+            "name": "LICENSE-MIT",
+            "pfad": "/licenses/notices/rust/unicode-bidi-0.3.18/LICENSE-MIT"
+          }
+        ]
+      },
+      {
+        "name": "unicode-ident",
+        "version": "1.0.26",
+        "license": "(MIT OR Apache-2.0) AND Unicode-3.0",
+        "repository": "https://github.com/dtolnay/unicode-ident",
+        "noticeMissing": false,
+        "notices": [
+          {
+            "name": "LICENSE-APACHE",
+            "pfad": "/licenses/notices/rust/unicode-ident-1.0.26/LICENSE-APACHE"
+          },
+          {
+            "name": "LICENSE-MIT",
+            "pfad": "/licenses/notices/rust/unicode-ident-1.0.26/LICENSE-MIT"
+          },
+          {
+            "name": "LICENSE-UNICODE",
+            "pfad": "/licenses/notices/rust/unicode-ident-1.0.26/LICENSE-UNICODE"
+          }
+        ]
+      },
+      {
+        "name": "unicode-normalization",
+        "version": "0.1.25",
+        "license": "MIT OR Apache-2.0",
+        "repository": "https://github.com/unicode-rs/unicode-normalization",
+        "noticeMissing": false,
+        "notices": [
+          {
+            "name": "COPYRIGHT",
+            "pfad": "/licenses/notices/rust/unicode-normalization-0.1.25/COPYRIGHT"
+          },
+          {
+            "name": "LICENSE-APACHE",
+            "pfad": "/licenses/notices/rust/unicode-normalization-0.1.25/LICENSE-APACHE"
+          },
+          {
+            "name": "LICENSE-MIT",
+            "pfad": "/licenses/notices/rust/unicode-normalization-0.1.25/LICENSE-MIT"
+          }
+        ]
+      },
+      {
+        "name": "unicode-properties",
+        "version": "0.1.4",
+        "license": "MIT/Apache-2.0",
+        "repository": "https://github.com/unicode-rs/unicode-properties",
+        "noticeMissing": false,
+        "notices": [
+          {
+            "name": "COPYRIGHT",
+            "pfad": "/licenses/notices/rust/unicode-properties-0.1.4/COPYRIGHT"
+          },
+          {
+            "name": "LICENSE-APACHE",
+            "pfad": "/licenses/notices/rust/unicode-properties-0.1.4/LICENSE-APACHE"
+          },
+          {
+            "name": "LICENSE-MIT",
+            "pfad": "/licenses/notices/rust/unicode-properties-0.1.4/LICENSE-MIT"
+          }
+        ]
+      },
+      {
+        "name": "version_check",
+        "version": "0.9.5",
+        "license": "MIT/Apache-2.0",
+        "repository": "https://github.com/SergioBenitez/version_check",
+        "noticeMissing": false,
+        "notices": [
+          {
+            "name": "LICENSE-APACHE",
+            "pfad": "/licenses/notices/rust/version_check-0.9.5/LICENSE-APACHE"
+          },
+          {
+            "name": "LICENSE-MIT",
+            "pfad": "/licenses/notices/rust/version_check-0.9.5/LICENSE-MIT"
+          }
+        ]
+      },
+      {
+        "name": "wasm-bindgen-macro-support",
+        "version": "0.2.129",
+        "license": "MIT OR Apache-2.0",
+        "repository": "https://github.com/wasm-bindgen/wasm-bindgen/tree/main/crates/macro-support",
+        "noticeMissing": false,
+        "notices": [
+          {
+            "name": "LICENSE-APACHE",
+            "pfad": "/licenses/notices/rust/wasm-bindgen-macro-support-0.2.129/LICENSE-APACHE"
+          },
+          {
+            "name": "LICENSE-MIT",
+            "pfad": "/licenses/notices/rust/wasm-bindgen-macro-support-0.2.129/LICENSE-MIT"
+          }
+        ]
+      },
+      {
+        "name": "wasm-bindgen-macro",
+        "version": "0.2.129",
+        "license": "MIT OR Apache-2.0",
+        "repository": "https://github.com/wasm-bindgen/wasm-bindgen/tree/master/crates/macro",
+        "noticeMissing": false,
+        "notices": [
+          {
+            "name": "LICENSE-APACHE",
+            "pfad": "/licenses/notices/rust/wasm-bindgen-macro-0.2.129/LICENSE-APACHE"
+          },
+          {
+            "name": "LICENSE-MIT",
+            "pfad": "/licenses/notices/rust/wasm-bindgen-macro-0.2.129/LICENSE-MIT"
+          }
+        ]
+      },
+      {
+        "name": "wasm-bindgen-shared",
+        "version": "0.2.129",
+        "license": "MIT OR Apache-2.0",
+        "repository": "https://github.com/wasm-bindgen/wasm-bindgen/tree/master/crates/shared",
+        "noticeMissing": false,
+        "notices": [
+          {
+            "name": "LICENSE-APACHE",
+            "pfad": "/licenses/notices/rust/wasm-bindgen-shared-0.2.129/LICENSE-APACHE"
+          },
+          {
+            "name": "LICENSE-MIT",
+            "pfad": "/licenses/notices/rust/wasm-bindgen-shared-0.2.129/LICENSE-MIT"
+          }
+        ]
+      },
+      {
+        "name": "wasm-bindgen",
+        "version": "0.2.129",
+        "license": "MIT OR Apache-2.0",
+        "repository": "https://github.com/wasm-bindgen/wasm-bindgen",
+        "noticeMissing": false,
+        "notices": [
+          {
+            "name": "LICENSE-APACHE",
+            "pfad": "/licenses/notices/rust/wasm-bindgen-0.2.129/LICENSE-APACHE"
+          },
+          {
+            "name": "LICENSE-MIT",
+            "pfad": "/licenses/notices/rust/wasm-bindgen-0.2.129/LICENSE-MIT"
+          }
+        ]
+      },
+      {
+        "name": "weezl",
+        "version": "0.1.12",
+        "license": "MIT OR Apache-2.0",
+        "repository": "https://github.com/image-rs/weezl",
+        "noticeMissing": false,
+        "notices": [
+          {
+            "name": "LICENSE-APACHE",
+            "pfad": "/licenses/notices/rust/weezl-0.1.12/LICENSE-APACHE"
+          },
+          {
+            "name": "LICENSE-MIT",
+            "pfad": "/licenses/notices/rust/weezl-0.1.12/LICENSE-MIT"
+          }
+        ]
+      },
+      {
+        "name": "x509-cert",
+        "version": "0.2.5",
+        "license": "Apache-2.0 OR MIT",
+        "repository": "https://github.com/RustCrypto/formats/tree/master/x509-cert",
+        "noticeMissing": false,
+        "notices": [
+          {
+            "name": "LICENSE-APACHE",
+            "pfad": "/licenses/notices/rust/x509-cert-0.2.5/LICENSE-APACHE"
+          },
+          {
+            "name": "LICENSE-MIT",
+            "pfad": "/licenses/notices/rust/x509-cert-0.2.5/LICENSE-MIT"
+          }
+        ]
+      },
+      {
+        "name": "x509-ocsp",
+        "version": "0.2.1",
+        "license": "Apache-2.0 OR MIT",
+        "repository": "https://github.com/RustCrypto/formats/tree/master/x509-ocsp",
+        "noticeMissing": false,
+        "notices": [
+          {
+            "name": "LICENSE-APACHE",
+            "pfad": "/licenses/notices/rust/x509-ocsp-0.2.1/LICENSE-APACHE"
+          },
+          {
+            "name": "LICENSE-MIT",
+            "pfad": "/licenses/notices/rust/x509-ocsp-0.2.1/LICENSE-MIT"
+          }
+        ]
+      },
+      {
+        "name": "x509-parser",
+        "version": "0.17.0",
+        "license": "MIT OR Apache-2.0",
+        "repository": "https://github.com/rusticata/x509-parser.git",
+        "noticeMissing": false,
+        "notices": [
+          {
+            "name": "LICENSE-APACHE",
+            "pfad": "/licenses/notices/rust/x509-parser-0.17.0/LICENSE-APACHE"
+          },
+          {
+            "name": "LICENSE-MIT",
+            "pfad": "/licenses/notices/rust/x509-parser-0.17.0/LICENSE-MIT"
+          }
+        ]
+      },
+      {
+        "name": "zerocopy",
+        "version": "0.8.59",
+        "license": "BSD-2-Clause OR Apache-2.0 OR MIT",
+        "repository": "https://github.com/google/zerocopy",
+        "noticeMissing": false,
+        "notices": [
+          {
+            "name": "LICENSE-APACHE",
+            "pfad": "/licenses/notices/rust/zerocopy-0.8.59/LICENSE-APACHE"
+          },
+          {
+            "name": "LICENSE-BSD",
+            "pfad": "/licenses/notices/rust/zerocopy-0.8.59/LICENSE-BSD"
+          },
+          {
+            "name": "LICENSE-MIT",
+            "pfad": "/licenses/notices/rust/zerocopy-0.8.59/LICENSE-MIT"
+          }
+        ]
+      },
+      {
+        "name": "zeroize_derive",
+        "version": "1.5.0",
+        "license": "Apache-2.0 OR MIT",
+        "repository": "https://github.com/RustCrypto/utils",
+        "noticeMissing": false,
+        "notices": [
+          {
+            "name": "LICENSE-APACHE",
+            "pfad": "/licenses/notices/rust/zeroize_derive-1.5.0/LICENSE-APACHE"
+          },
+          {
+            "name": "LICENSE-MIT",
+            "pfad": "/licenses/notices/rust/zeroize_derive-1.5.0/LICENSE-MIT"
+          }
+        ]
+      },
+      {
+        "name": "zeroize",
+        "version": "1.9.0",
+        "license": "Apache-2.0 OR MIT",
+        "repository": "https://github.com/RustCrypto/utils",
+        "noticeMissing": false,
+        "notices": [
+          {
+            "name": "LICENSE-APACHE",
+            "pfad": "/licenses/notices/rust/zeroize-1.9.0/LICENSE-APACHE"
+          },
+          {
+            "name": "LICENSE-MIT",
+            "pfad": "/licenses/notices/rust/zeroize-1.9.0/LICENSE-MIT"
+          }
+        ]
+      },
+      {
+        "name": "zlib-rs",
+        "version": "0.6.8",
+        "license": "Zlib",
+        "repository": "https://github.com/trifectatechfoundation/zlib-rs",
+        "noticeMissing": false,
+        "notices": [
+          {
+            "name": "LICENSE",
+            "pfad": "/licenses/notices/rust/zlib-rs-0.6.8/LICENSE"
+          }
+        ]
+      }
+    ]
+  }
 }

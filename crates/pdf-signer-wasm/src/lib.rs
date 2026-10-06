@@ -22,6 +22,7 @@ struct VerificationResult {
     all_trusted: bool,
     document_intact: bool,
     modification_kind: String,
+    modification_kind_hint: bool,
     pades_level: String,
     timestamp_count: usize,
     has_validation_material: bool,
@@ -35,10 +36,24 @@ fn contains(bytes: &[u8], needle: &[u8]) -> bool {
     bytes.windows(needle.len()).any(|part| part == needle)
 }
 
-fn modification_kind(pdf: &[u8], signed_end: usize, intact: bool) -> String {
-    if signed_end >= pdf.len() { return "none".into(); }
-    if intact { return "validation-material".into(); }
-    let tail = &pdf[signed_end..];
+/// Ermittelt die Änderungsart und ob sie nur ein Hinweis aus dem Byteinhalt ist.
+///
+/// Bewusst konservativ: Bei fehlgeschlagener Integrität entsteht niemals die Aussage "none"
+/// (unverändert) — auch dann nicht, wenn hinter dem signierten Bereich keine Bytes folgen.
+/// "none" gibt es nur für belegte Integrität ohne weitere Revision. Die inhaltliche Zuordnung
+/// stammt aus Byte-Substring-Heuristiken und ist deshalb immer nur ein Hinweis, keine belastbare
+/// PDF- oder PAdES-Klassifizierung.
+fn modification_kind(pdf: &[u8], signed_end: usize, intact: bool) -> (String, bool) {
+    let tail = if signed_end < pdf.len() { &pdf[signed_end..] } else { &[][..] };
+    if !intact {
+        if tail.is_empty() { return ("unknown".into(), false); }
+        return (classify_tail(tail), true);
+    }
+    if tail.is_empty() { return ("none".into(), false); }
+    (classify_tail(tail), true)
+}
+
+fn classify_tail(tail: &[u8]) -> String {
     if contains(tail, b"/ByteRange") || contains(tail, b"/Type /Sig") { "signature" }
     else if contains(tail, b"/Type /Page") { "pages" }
     else if contains(tail, b"/Annots") || contains(tail, b"/Subtype /Annot") { "annotation" }
@@ -72,11 +87,14 @@ pub fn verify_pdf(pdf: &[u8]) -> Result<JsValue, JsValue> {
         let len = usize::try_from(signature.byte_range[3]).ok()?;
         start.checked_add(len)
     }).max().unwrap_or(0);
+    let (modification_kind_value, modification_kind_hint) =
+        modification_kind(pdf, signed_end, report.document_intact());
     let result = VerificationResult {
         all_valid: report.all_valid(),
         all_trusted: report.all_trusted(),
         document_intact: report.document_intact(),
-        modification_kind: modification_kind(pdf, signed_end, report.document_intact()),
+        modification_kind: modification_kind_value,
+        modification_kind_hint,
         pades_level: pades_level.into(),
         timestamp_count,
         has_validation_material,

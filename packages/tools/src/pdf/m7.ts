@@ -3,6 +3,7 @@ export interface PdfSignatureVerification {
   readonly allTrusted: boolean
   readonly documentIntact: boolean
   readonly modificationKind: 'none' | 'validation-material' | 'signature' | 'pages' | 'annotation' | 'form' | 'unknown'
+  readonly modificationKindHint: boolean
   readonly padesLevel: 'B-B' | 'B-T' | 'B-LT' | 'B-LTA'
   readonly timestampCount: number
   readonly hasValidationMaterial: boolean

@@ -1,0 +1,1940 @@
+{
+  "schemaVersion": 1,
+  "erzeugt": "2026-10-06T12:05:00.717Z",
+  "grundlage": {
+    "zielprofil": "wasm32-unknown-unknown",
+    "manifest": "crates/pdf-signer-wasm/Cargo.toml",
+    "lockfile": "a8c1585d26d70005",
+    "engineLockfile": "92d365a96edcaade",
+    "wasmAusgabe": "675c7dd4e0e63cee",
+    "werkzeuge": {
+      "rustc": "rustc 1.99.0 (b940084d7 2026-09-28)",
+      "cargo": "cargo 1.99.0 (5f94df478 2026-08-27)",
+      "wasmBindgen": "wasm-bindgen 0.2.129"
+    },
+    "hinweis": "Bindet die Liste an Werkzeugstand und Ausgabe; ändert sich eine Größe, ist die Liste neu zu erzeugen."
+  },
+  "anzahl": 174,
+  "mitOriginalhinweis": 169,
+  "komponenten": [
+    {
+      "name": "adler2",
+      "version": "2.0.1",
+      "license": "0BSD OR MIT OR Apache-2.0",
+      "repository": "https://github.com/oyvindln/adler2",
+      "edition": "2021",
+      "noticeFiles": [
+        "notices/rust/adler2-2.0.1/LICENSE-0BSD",
+        "notices/rust/adler2-2.0.1/LICENSE-APACHE",
+        "notices/rust/adler2-2.0.1/LICENSE-MIT"
+      ]
+    },
+    {
+      "name": "aes",
+      "version": "0.8.4",
+      "license": "MIT OR Apache-2.0",
+      "repository": "https://github.com/RustCrypto/block-ciphers",
+      "edition": "2021",
+      "noticeFiles": [
+        "notices/rust/aes-0.8.4/LICENSE-APACHE",
+        "notices/rust/aes-0.8.4/LICENSE-MIT"
+      ]
+    },
+    {
+      "name": "asn1-rs-derive",
+      "version": "0.6.0",
+      "license": "MIT OR Apache-2.0",
+      "repository": "https://github.com/rusticata/asn1-rs.git",
+      "edition": "2018",
+      "noticeFiles": [
+        "notices/rust/asn1-rs-derive-0.6.0/LICENSE-APACHE",
+        "notices/rust/asn1-rs-derive-0.6.0/LICENSE-MIT"
+      ]
+    },
+    {
+      "name": "asn1-rs-impl",
+      "version": "0.2.0",
+      "license": "MIT/Apache-2.0",
+      "repository": "https://github.com/rusticata/asn1-rs.git",
+      "edition": "2018",
+      "noticeFiles": [],
+      "noticeMissing": true,
+      "noticeSource": "Paket ohne Hinweisdatei"
+    },
+    {
+      "name": "asn1-rs",
+      "version": "0.7.2",
+      "license": "MIT OR Apache-2.0",
+      "repository": "https://github.com/rusticata/asn1-rs.git",
+      "edition": "2018",
+      "noticeFiles": [
+        "notices/rust/asn1-rs-0.7.2/LICENSE-APACHE",
+        "notices/rust/asn1-rs-0.7.2/LICENSE-MIT"
+      ]
+    },
+    {
+      "name": "autocfg",
+      "version": "1.5.1",
+      "license": "Apache-2.0 OR MIT",
+      "repository": "https://github.com/cuviper/autocfg",
+      "edition": "2015",
+      "noticeFiles": [
+        "notices/rust/autocfg-1.5.1/LICENSE-APACHE",
+        "notices/rust/autocfg-1.5.1/LICENSE-MIT"
+      ]
+    },
+    {
+      "name": "base16ct",
+      "version": "0.2.0",
+      "license": "Apache-2.0 OR MIT",
+      "repository": "https://github.com/RustCrypto/formats/tree/master/base16ct",
+      "edition": "2021",
+      "noticeFiles": [
+        "notices/rust/base16ct-0.2.0/LICENSE-APACHE",
+        "notices/rust/base16ct-0.2.0/LICENSE-MIT"
+      ]
+    },
+    {
+      "name": "base64ct",
+      "version": "1.8.3",
+      "license": "Apache-2.0 OR MIT",
+      "repository": "https://github.com/RustCrypto/formats",
+      "edition": "2024",
+      "noticeFiles": [
+        "notices/rust/base64ct-1.8.3/LICENSE-APACHE",
+        "notices/rust/base64ct-1.8.3/LICENSE-MIT"
+      ]
+    },
+    {
+      "name": "bitflags",
+      "version": "1.3.2",
+      "license": "MIT/Apache-2.0",
+      "repository": "https://github.com/bitflags/bitflags",
+      "edition": "2018",
+      "noticeFiles": [
+        "notices/rust/bitflags-1.3.2/LICENSE-APACHE",
+        "notices/rust/bitflags-1.3.2/LICENSE-MIT"
+      ]
+    },
+    {
+      "name": "bitflags",
+      "version": "2.13.2",
+      "license": "MIT OR Apache-2.0",
+      "repository": "https://github.com/bitflags/bitflags",
+      "edition": "2021",
+      "noticeFiles": [
+        "notices/rust/bitflags-2.13.2/LICENSE-APACHE",
+        "notices/rust/bitflags-2.13.2/LICENSE-MIT"
+      ]
+    },
+    {
+      "name": "block-buffer",
+      "version": "0.10.4",
+      "license": "MIT OR Apache-2.0",
+      "repository": "https://github.com/RustCrypto/utils",
+      "edition": "2018",
+      "noticeFiles": [
+        "notices/rust/block-buffer-0.10.4/LICENSE-APACHE",
+        "notices/rust/block-buffer-0.10.4/LICENSE-MIT"
+      ]
+    },
+    {
+      "name": "block-padding",
+      "version": "0.3.3",
+      "license": "MIT OR Apache-2.0",
+      "repository": "https://github.com/RustCrypto/utils",
+      "edition": "2021",
+      "noticeFiles": [
+        "notices/rust/block-padding-0.3.3/LICENSE-APACHE",
+        "notices/rust/block-padding-0.3.3/LICENSE-MIT"
+      ]
+    },
+    {
+      "name": "bumpalo",
+      "version": "3.20.3",
+      "license": "MIT OR Apache-2.0",
+      "repository": "https://github.com/fitzgen/bumpalo",
+      "edition": "2021",
+      "noticeFiles": [
+        "notices/rust/bumpalo-3.20.3/LICENSE-APACHE",
+        "notices/rust/bumpalo-3.20.3/LICENSE-MIT"
+      ]
+    },
+    {
+      "name": "bytecount",
+      "version": "0.6.9",
+      "license": "Apache-2.0/MIT",
+      "repository": "https://github.com/llogiq/bytecount",
+      "edition": "2018",
+      "noticeFiles": [
+        "notices/rust/bytecount-0.6.9/LICENSE.Apache2",
+        "notices/rust/bytecount-0.6.9/LICENSE.MIT"
+      ]
+    },
+    {
+      "name": "cbc",
+      "version": "0.1.2",
+      "license": "MIT OR Apache-2.0",
+      "repository": "https://github.com/RustCrypto/block-modes",
+      "edition": "2021",
+      "noticeFiles": [
+        "notices/rust/cbc-0.1.2/LICENSE-APACHE",
+        "notices/rust/cbc-0.1.2/LICENSE-MIT"
+      ]
+    },
+    {
+      "name": "cfg-if",
+      "version": "1.0.5",
+      "license": "MIT OR Apache-2.0",
+      "repository": "https://github.com/rust-lang/cfg-if",
+      "edition": "2018",
+      "noticeFiles": [
+        "notices/rust/cfg-if-1.0.5/LICENSE-APACHE",
+        "notices/rust/cfg-if-1.0.5/LICENSE-MIT"
+      ]
+    },
+    {
+      "name": "chrono",
+      "version": "0.4.45",
+      "license": "MIT OR Apache-2.0",
+      "repository": "https://github.com/chronotope/chrono",
+      "edition": "2021",
+      "noticeFiles": [
+        "notices/rust/chrono-0.4.45/LICENSE.txt"
+      ]
+    },
+    {
+      "name": "cipher",
+      "version": "0.4.4",
+      "license": "MIT OR Apache-2.0",
+      "repository": "https://github.com/RustCrypto/traits",
+      "edition": "2021",
+      "noticeFiles": [
+        "notices/rust/cipher-0.4.4/LICENSE-APACHE",
+        "notices/rust/cipher-0.4.4/LICENSE-MIT"
+      ]
+    },
+    {
+      "name": "cms",
+      "version": "0.2.3",
+      "license": "Apache-2.0 OR MIT",
+      "repository": "https://github.com/RustCrypto/formats/tree/master/cms",
+      "edition": "2021",
+      "noticeFiles": [],
+      "noticeMissing": true,
+      "noticeSource": "Paket ohne Hinweisdatei"
+    },
+    {
+      "name": "const-oid",
+      "version": "0.9.6",
+      "license": "Apache-2.0 OR MIT",
+      "repository": "https://github.com/RustCrypto/formats/tree/master/const-oid",
+      "edition": "2021",
+      "noticeFiles": [
+        "notices/rust/const-oid-0.9.6/LICENSE-APACHE",
+        "notices/rust/const-oid-0.9.6/LICENSE-MIT"
+      ]
+    },
+    {
+      "name": "crc32fast",
+      "version": "1.5.2",
+      "license": "MIT OR Apache-2.0",
+      "repository": "https://github.com/srijs/rust-crc32fast",
+      "edition": "2021",
+      "noticeFiles": [
+        "notices/rust/crc32fast-1.5.2/LICENSE-APACHE",
+        "notices/rust/crc32fast-1.5.2/LICENSE-MIT"
+      ]
+    },
+    {
+      "name": "crossbeam-deque",
+      "version": "0.8.8",
+      "license": "MIT OR Apache-2.0",
+      "repository": "https://github.com/crossbeam-rs/crossbeam",
+      "edition": "2021",
+      "noticeFiles": [
+        "notices/rust/crossbeam-deque-0.8.8/LICENSE-APACHE",
+        "notices/rust/crossbeam-deque-0.8.8/LICENSE-MIT"
+      ]
+    },
+    {
+      "name": "crossbeam-epoch",
+      "version": "0.9.21",
+      "license": "MIT OR Apache-2.0",
+      "repository": "https://github.com/crossbeam-rs/crossbeam",
+      "edition": "2021",
+      "noticeFiles": [
+        "notices/rust/crossbeam-epoch-0.9.21/LICENSE-APACHE",
+        "notices/rust/crossbeam-epoch-0.9.21/LICENSE-MIT"
+      ]
+    },
+    {
+      "name": "crossbeam-utils",
+      "version": "0.8.23",
+      "license": "MIT OR Apache-2.0",
+      "repository": "https://github.com/crossbeam-rs/crossbeam",
+      "edition": "2021",
+      "noticeFiles": [
+        "notices/rust/crossbeam-utils-0.8.23/LICENSE-APACHE",
+        "notices/rust/crossbeam-utils-0.8.23/LICENSE-MIT"
+      ]
+    },
+    {
+      "name": "crypto-bigint",
+      "version": "0.5.5",
+      "license": "Apache-2.0 OR MIT",
+      "repository": "https://github.com/RustCrypto/crypto-bigint",
+      "edition": "2021",
+      "noticeFiles": [
+        "notices/rust/crypto-bigint-0.5.5/LICENSE-APACHE",
+        "notices/rust/crypto-bigint-0.5.5/LICENSE-MIT"
+      ]
+    },
+    {
+      "name": "crypto-common",
+      "version": "0.1.7",
+      "license": "MIT OR Apache-2.0",
+      "repository": "https://github.com/RustCrypto/traits",
+      "edition": "2018",
+      "noticeFiles": [
+        "notices/rust/crypto-common-0.1.7/LICENSE-APACHE",
+        "notices/rust/crypto-common-0.1.7/LICENSE-MIT"
+      ]
+    },
+    {
+      "name": "curve25519-dalek",
+      "version": "4.1.3",
+      "license": "BSD-3-Clause",
+      "repository": "https://github.com/dalek-cryptography/curve25519-dalek/tree/main/curve25519-dalek",
+      "edition": "2021",
+      "noticeFiles": [
+        "notices/rust/curve25519-dalek-4.1.3/LICENSE"
+      ]
+    },
+    {
+      "name": "data-encoding",
+      "version": "2.11.1",
+      "license": "MIT",
+      "repository": "https://github.com/ia0/data-encoding",
+      "edition": "2018",
+      "noticeFiles": [
+        "notices/rust/data-encoding-2.11.1/LICENSE"
+      ]
+    },
+    {
+      "name": "defmt-macros",
+      "version": "1.1.1",
+      "license": "MIT OR Apache-2.0",
+      "repository": "https://github.com/knurling-rs/defmt",
+      "edition": "2021",
+      "noticeFiles": [
+        "notices/rust/defmt-macros-1.1.1/LICENSE-APACHE",
+        "notices/rust/defmt-macros-1.1.1/LICENSE-MIT"
+      ]
+    },
+    {
+      "name": "defmt-parser",
+      "version": "1.0.0",
+      "license": "MIT OR Apache-2.0",
+      "repository": "https://github.com/knurling-rs/defmt",
+      "edition": "2021",
+      "noticeFiles": [],
+      "noticeMissing": true,
+      "noticeSource": "Paket ohne Hinweisdatei"
+    },
+    {
+      "name": "defmt",
+      "version": "1.1.1",
+      "license": "MIT OR Apache-2.0",
+      "repository": "https://github.com/knurling-rs/defmt",
+      "edition": "2021",
+      "noticeFiles": [
+        "notices/rust/defmt-1.1.1/LICENSE-APACHE",
+        "notices/rust/defmt-1.1.1/LICENSE-MIT"
+      ]
+    },
+    {
+      "name": "der_derive",
+      "version": "0.7.3",
+      "license": "Apache-2.0 OR MIT",
+      "repository": "https://github.com/RustCrypto/formats/tree/master/der/derive",
+      "edition": "2021",
+      "noticeFiles": [
+        "notices/rust/der_derive-0.7.3/LICENSE-APACHE",
+        "notices/rust/der_derive-0.7.3/LICENSE-MIT"
+      ]
+    },
+    {
+      "name": "der-parser",
+      "version": "10.0.0",
+      "license": "MIT OR Apache-2.0",
+      "repository": "https://github.com/rusticata/der-parser.git",
+      "edition": "2018",
+      "noticeFiles": [
+        "notices/rust/der-parser-10.0.0/LICENSE-APACHE",
+        "notices/rust/der-parser-10.0.0/LICENSE-MIT"
+      ]
+    },
+    {
+      "name": "der",
+      "version": "0.7.10",
+      "license": "Apache-2.0 OR MIT",
+      "repository": "https://github.com/RustCrypto/formats/tree/master/der",
+      "edition": "2021",
+      "noticeFiles": [
+        "notices/rust/der-0.7.10/LICENSE-APACHE",
+        "notices/rust/der-0.7.10/LICENSE-MIT"
+      ]
+    },
+    {
+      "name": "deranged",
+      "version": "0.5.8",
+      "license": "MIT OR Apache-2.0",
+      "repository": "https://github.com/jhpratt/deranged",
+      "edition": "2021",
+      "noticeFiles": [
+        "notices/rust/deranged-0.5.8/LICENSE-Apache",
+        "notices/rust/deranged-0.5.8/LICENSE-MIT"
+      ]
+    },
+    {
+      "name": "des",
+      "version": "0.8.1",
+      "license": "MIT OR Apache-2.0",
+      "repository": "https://github.com/RustCrypto/block-ciphers",
+      "edition": "2021",
+      "noticeFiles": [
+        "notices/rust/des-0.8.1/LICENSE-APACHE",
+        "notices/rust/des-0.8.1/LICENSE-MIT"
+      ]
+    },
+    {
+      "name": "digest",
+      "version": "0.10.7",
+      "license": "MIT OR Apache-2.0",
+      "repository": "https://github.com/RustCrypto/traits",
+      "edition": "2018",
+      "noticeFiles": [
+        "notices/rust/digest-0.10.7/LICENSE-APACHE",
+        "notices/rust/digest-0.10.7/LICENSE-MIT"
+      ]
+    },
+    {
+      "name": "displaydoc",
+      "version": "0.2.7",
+      "license": "MIT OR Apache-2.0",
+      "repository": "https://github.com/yaahc/displaydoc",
+      "edition": "2021",
+      "noticeFiles": [
+        "notices/rust/displaydoc-0.2.7/LICENSE-APACHE",
+        "notices/rust/displaydoc-0.2.7/LICENSE-MIT"
+      ]
+    },
+    {
+      "name": "ecb",
+      "version": "0.1.2",
+      "license": "MIT",
+      "repository": "https://github.com/magic-akari/ecb",
+      "edition": "2021",
+      "noticeFiles": [
+        "notices/rust/ecb-0.1.2/LICENSE"
+      ]
+    },
+    {
+      "name": "ecdsa",
+      "version": "0.16.9",
+      "license": "Apache-2.0 OR MIT",
+      "repository": "https://github.com/RustCrypto/signatures/tree/master/ecdsa",
+      "edition": "2021",
+      "noticeFiles": [
+        "notices/rust/ecdsa-0.16.9/LICENSE-APACHE",
+        "notices/rust/ecdsa-0.16.9/LICENSE-MIT"
+      ]
+    },
+    {
+      "name": "ed25519-dalek",
+      "version": "2.2.0",
+      "license": "BSD-3-Clause",
+      "repository": "https://github.com/dalek-cryptography/curve25519-dalek/tree/main/ed25519-dalek",
+      "edition": "2021",
+      "noticeFiles": [
+        "notices/rust/ed25519-dalek-2.2.0/LICENSE"
+      ]
+    },
+    {
+      "name": "ed25519",
+      "version": "2.2.3",
+      "license": "Apache-2.0 OR MIT",
+      "repository": "https://github.com/RustCrypto/signatures/tree/master/ed25519",
+      "edition": "2021",
+      "noticeFiles": [
+        "notices/rust/ed25519-2.2.3/LICENSE-APACHE",
+        "notices/rust/ed25519-2.2.3/LICENSE-MIT"
+      ]
+    },
+    {
+      "name": "either",
+      "version": "1.18.0",
+      "license": "MIT OR Apache-2.0",
+      "repository": "https://github.com/rayon-rs/either",
+      "edition": "2021",
+      "noticeFiles": [
+        "notices/rust/either-1.18.0/LICENSE-APACHE",
+        "notices/rust/either-1.18.0/LICENSE-MIT"
+      ]
+    },
+    {
+      "name": "elliptic-curve",
+      "version": "0.13.8",
+      "license": "Apache-2.0 OR MIT",
+      "repository": "https://github.com/RustCrypto/traits/tree/master/elliptic-curve",
+      "edition": "2021",
+      "noticeFiles": [
+        "notices/rust/elliptic-curve-0.13.8/LICENSE-APACHE",
+        "notices/rust/elliptic-curve-0.13.8/LICENSE-MIT"
+      ]
+    },
+    {
+      "name": "encoding_rs",
+      "version": "0.8.42",
+      "license": "(Apache-2.0 OR MIT) AND BSD-3-Clause",
+      "repository": "https://github.com/hsivonen/encoding_rs",
+      "edition": "2024",
+      "noticeFiles": [
+        "notices/rust/encoding_rs-0.8.42/COPYRIGHT",
+        "notices/rust/encoding_rs-0.8.42/LICENSE-APACHE",
+        "notices/rust/encoding_rs-0.8.42/LICENSE-MIT",
+        "notices/rust/encoding_rs-0.8.42/LICENSE-WHATWG"
+      ]
+    },
+    {
+      "name": "equivalent",
+      "version": "1.0.2",
+      "license": "Apache-2.0 OR MIT",
+      "repository": "https://github.com/indexmap-rs/equivalent",
+      "edition": "2015",
+      "noticeFiles": [
+        "notices/rust/equivalent-1.0.2/LICENSE-APACHE",
+        "notices/rust/equivalent-1.0.2/LICENSE-MIT"
+      ]
+    },
+    {
+      "name": "fdeflate",
+      "version": "0.3.7",
+      "license": "MIT OR Apache-2.0",
+      "repository": "https://github.com/image-rs/fdeflate",
+      "edition": "2021",
+      "noticeFiles": [
+        "notices/rust/fdeflate-0.3.7/LICENSE-APACHE",
+        "notices/rust/fdeflate-0.3.7/LICENSE-MIT"
+      ]
+    },
+    {
+      "name": "ff",
+      "version": "0.13.1",
+      "license": "MIT/Apache-2.0",
+      "repository": "https://github.com/zkcrypto/ff",
+      "edition": "2021",
+      "noticeFiles": [
+        "notices/rust/ff-0.13.1/LICENSE-APACHE",
+        "notices/rust/ff-0.13.1/LICENSE-MIT"
+      ]
+    },
+    {
+      "name": "flagset",
+      "version": "0.4.7",
+      "license": "Apache-2.0",
+      "repository": "https://github.com/enarx/flagset",
+      "edition": "2021",
+      "noticeFiles": [
+        "notices/rust/flagset-0.4.7/LICENSE"
+      ]
+    },
+    {
+      "name": "flate2",
+      "version": "1.1.10",
+      "license": "MIT OR Apache-2.0",
+      "repository": "https://github.com/rust-lang/flate2-rs",
+      "edition": "2018",
+      "noticeFiles": [
+        "notices/rust/flate2-1.1.10/LICENSE-APACHE",
+        "notices/rust/flate2-1.1.10/LICENSE-MIT"
+      ]
+    },
+    {
+      "name": "futures-core",
+      "version": "0.3.34",
+      "license": "MIT OR Apache-2.0",
+      "repository": "https://github.com/rust-lang/futures-rs",
+      "edition": "2018",
+      "noticeFiles": [
+        "notices/rust/futures-core-0.3.34/LICENSE-APACHE",
+        "notices/rust/futures-core-0.3.34/LICENSE-MIT"
+      ]
+    },
+    {
+      "name": "futures-task",
+      "version": "0.3.34",
+      "license": "MIT OR Apache-2.0",
+      "repository": "https://github.com/rust-lang/futures-rs",
+      "edition": "2018",
+      "noticeFiles": [
+        "notices/rust/futures-task-0.3.34/LICENSE-APACHE",
+        "notices/rust/futures-task-0.3.34/LICENSE-MIT"
+      ]
+    },
+    {
+      "name": "futures-util",
+      "version": "0.3.34",
+      "license": "MIT OR Apache-2.0",
+      "repository": "https://github.com/rust-lang/futures-rs",
+      "edition": "2018",
+      "noticeFiles": [
+        "notices/rust/futures-util-0.3.34/LICENSE-APACHE",
+        "notices/rust/futures-util-0.3.34/LICENSE-MIT"
+      ]
+    },
+    {
+      "name": "generic-array",
+      "version": "0.14.7",
+      "license": "MIT",
+      "repository": "https://github.com/fizyk20/generic-array.git",
+      "edition": "2015",
+      "noticeFiles": [
+        "notices/rust/generic-array-0.14.7/LICENSE"
+      ]
+    },
+    {
+      "name": "getrandom",
+      "version": "0.2.17",
+      "license": "MIT OR Apache-2.0",
+      "repository": "https://github.com/rust-random/getrandom",
+      "edition": "2018",
+      "noticeFiles": [
+        "notices/rust/getrandom-0.2.17/LICENSE-APACHE",
+        "notices/rust/getrandom-0.2.17/LICENSE-MIT"
+      ]
+    },
+    {
+      "name": "getrandom",
+      "version": "0.3.4",
+      "license": "MIT OR Apache-2.0",
+      "repository": "https://github.com/rust-random/getrandom",
+      "edition": "2021",
+      "noticeFiles": [
+        "notices/rust/getrandom-0.3.4/LICENSE-APACHE",
+        "notices/rust/getrandom-0.3.4/LICENSE-MIT"
+      ]
+    },
+    {
+      "name": "group",
+      "version": "0.13.0",
+      "license": "MIT/Apache-2.0",
+      "repository": "https://github.com/zkcrypto/group",
+      "edition": "2021",
+      "noticeFiles": [
+        "notices/rust/group-0.13.0/COPYRIGHT",
+        "notices/rust/group-0.13.0/LICENSE-APACHE",
+        "notices/rust/group-0.13.0/LICENSE-MIT"
+      ]
+    },
+    {
+      "name": "hashbrown",
+      "version": "0.17.1",
+      "license": "MIT OR Apache-2.0",
+      "repository": "https://github.com/rust-lang/hashbrown",
+      "edition": "2024",
+      "noticeFiles": [
+        "notices/rust/hashbrown-0.17.1/LICENSE-APACHE",
+        "notices/rust/hashbrown-0.17.1/LICENSE-MIT"
+      ]
+    },
+    {
+      "name": "hex",
+      "version": "0.4.3",
+      "license": "MIT OR Apache-2.0",
+      "repository": "https://github.com/KokaKiwi/rust-hex",
+      "edition": "2018",
+      "noticeFiles": [
+        "notices/rust/hex-0.4.3/LICENSE-APACHE",
+        "notices/rust/hex-0.4.3/LICENSE-MIT"
+      ]
+    },
+    {
+      "name": "hkdf",
+      "version": "0.12.4",
+      "license": "MIT OR Apache-2.0",
+      "repository": "https://github.com/RustCrypto/KDFs/",
+      "edition": "2018",
+      "noticeFiles": [
+        "notices/rust/hkdf-0.12.4/LICENSE-APACHE",
+        "notices/rust/hkdf-0.12.4/LICENSE-MIT"
+      ]
+    },
+    {
+      "name": "hmac",
+      "version": "0.12.1",
+      "license": "MIT OR Apache-2.0",
+      "repository": "https://github.com/RustCrypto/MACs",
+      "edition": "2018",
+      "noticeFiles": [
+        "notices/rust/hmac-0.12.1/LICENSE-APACHE",
+        "notices/rust/hmac-0.12.1/LICENSE-MIT"
+      ]
+    },
+    {
+      "name": "indexmap",
+      "version": "2.14.2",
+      "license": "Apache-2.0 OR MIT",
+      "repository": "https://github.com/indexmap-rs/indexmap",
+      "edition": "2024",
+      "noticeFiles": [
+        "notices/rust/indexmap-2.14.2/LICENSE-APACHE",
+        "notices/rust/indexmap-2.14.2/LICENSE-MIT"
+      ]
+    },
+    {
+      "name": "inout",
+      "version": "0.1.4",
+      "license": "MIT OR Apache-2.0",
+      "repository": "https://github.com/RustCrypto/utils",
+      "edition": "2021",
+      "noticeFiles": [
+        "notices/rust/inout-0.1.4/LICENSE-APACHE",
+        "notices/rust/inout-0.1.4/LICENSE-MIT"
+      ]
+    },
+    {
+      "name": "itoa",
+      "version": "1.0.18",
+      "license": "MIT OR Apache-2.0",
+      "repository": "https://github.com/dtolnay/itoa",
+      "edition": "2021",
+      "noticeFiles": [
+        "notices/rust/itoa-1.0.18/LICENSE-APACHE",
+        "notices/rust/itoa-1.0.18/LICENSE-MIT"
+      ]
+    },
+    {
+      "name": "jiff-core",
+      "version": "0.1.1",
+      "license": "Unlicense OR MIT",
+      "repository": "https://github.com/BurntSushi/jiff",
+      "edition": "2021",
+      "noticeFiles": [
+        "notices/rust/jiff-core-0.1.1/COPYING",
+        "notices/rust/jiff-core-0.1.1/LICENSE-MIT",
+        "notices/rust/jiff-core-0.1.1/UNLICENSE"
+      ]
+    },
+    {
+      "name": "jiff-static",
+      "version": "0.2.37",
+      "license": "Unlicense OR MIT",
+      "repository": "https://github.com/BurntSushi/jiff",
+      "edition": "2021",
+      "noticeFiles": [
+        "notices/rust/jiff-static-0.2.37/COPYING",
+        "notices/rust/jiff-static-0.2.37/LICENSE-MIT",
+        "notices/rust/jiff-static-0.2.37/UNLICENSE"
+      ]
+    },
+    {
+      "name": "jiff-tzdb-platform",
+      "version": "0.1.3",
+      "license": "Unlicense OR MIT",
+      "repository": "https://github.com/BurntSushi/jiff",
+      "edition": "2021",
+      "noticeFiles": [
+        "notices/rust/jiff-tzdb-platform-0.1.3/COPYING",
+        "notices/rust/jiff-tzdb-platform-0.1.3/LICENSE-MIT",
+        "notices/rust/jiff-tzdb-platform-0.1.3/UNLICENSE"
+      ]
+    },
+    {
+      "name": "jiff-tzdb",
+      "version": "0.1.8",
+      "license": "Unlicense OR MIT",
+      "repository": "https://github.com/BurntSushi/jiff",
+      "edition": "2021",
+      "noticeFiles": [
+        "notices/rust/jiff-tzdb-0.1.8/COPYING",
+        "notices/rust/jiff-tzdb-0.1.8/LICENSE-MIT",
+        "notices/rust/jiff-tzdb-0.1.8/UNLICENSE"
+      ]
+    },
+    {
+      "name": "jiff",
+      "version": "0.2.37",
+      "license": "Unlicense OR MIT",
+      "repository": "https://github.com/BurntSushi/jiff",
+      "edition": "2021",
+      "noticeFiles": [
+        "notices/rust/jiff-0.2.37/COPYING",
+        "notices/rust/jiff-0.2.37/LICENSE-MIT",
+        "notices/rust/jiff-0.2.37/UNLICENSE"
+      ]
+    },
+    {
+      "name": "js-sys",
+      "version": "0.3.106",
+      "license": "MIT OR Apache-2.0",
+      "repository": "https://github.com/wasm-bindgen/wasm-bindgen/tree/master/crates/js-sys",
+      "edition": "2021",
+      "noticeFiles": [
+        "notices/rust/js-sys-0.3.106/LICENSE-APACHE",
+        "notices/rust/js-sys-0.3.106/LICENSE-MIT"
+      ]
+    },
+    {
+      "name": "keccak",
+      "version": "0.1.6",
+      "license": "Apache-2.0 OR MIT",
+      "repository": "https://github.com/RustCrypto/sponges/tree/master/keccak",
+      "edition": "2018",
+      "noticeFiles": [
+        "notices/rust/keccak-0.1.6/LICENSE-APACHE",
+        "notices/rust/keccak-0.1.6/LICENSE-MIT"
+      ]
+    },
+    {
+      "name": "lazy_static",
+      "version": "1.5.1",
+      "license": "MIT OR Apache-2.0",
+      "repository": "https://github.com/rust-lang-nursery/lazy-static.rs",
+      "edition": "2015",
+      "noticeFiles": [
+        "notices/rust/lazy_static-1.5.1/LICENSE-APACHE",
+        "notices/rust/lazy_static-1.5.1/LICENSE-MIT"
+      ]
+    },
+    {
+      "name": "libm",
+      "version": "0.2.16",
+      "license": "MIT",
+      "repository": "https://github.com/rust-lang/compiler-builtins",
+      "edition": "2021",
+      "noticeFiles": [
+        "notices/rust/libm-0.2.16/LICENSE.txt"
+      ]
+    },
+    {
+      "name": "log",
+      "version": "0.4.34",
+      "license": "MIT OR Apache-2.0",
+      "repository": "https://github.com/rust-lang/log",
+      "edition": "2021",
+      "noticeFiles": [
+        "notices/rust/log-0.4.34/LICENSE-APACHE",
+        "notices/rust/log-0.4.34/LICENSE-MIT"
+      ]
+    },
+    {
+      "name": "lopdf",
+      "version": "0.36.0",
+      "license": "MIT",
+      "repository": "https://github.com/J-F-Liu/lopdf.git",
+      "edition": "2021",
+      "noticeFiles": [
+        "notices/rust/lopdf-0.36.0/LICENSE"
+      ]
+    },
+    {
+      "name": "md-5",
+      "version": "0.10.6",
+      "license": "MIT OR Apache-2.0",
+      "repository": "https://github.com/RustCrypto/hashes",
+      "edition": "2018",
+      "noticeFiles": [
+        "notices/rust/md-5-0.10.6/LICENSE-APACHE",
+        "notices/rust/md-5-0.10.6/LICENSE-MIT"
+      ]
+    },
+    {
+      "name": "memchr",
+      "version": "2.8.3",
+      "license": "Unlicense OR MIT",
+      "repository": "https://github.com/BurntSushi/memchr",
+      "edition": "2021",
+      "noticeFiles": [
+        "notices/rust/memchr-2.8.3/COPYING",
+        "notices/rust/memchr-2.8.3/LICENSE-MIT",
+        "notices/rust/memchr-2.8.3/UNLICENSE"
+      ]
+    },
+    {
+      "name": "minimal-lexical",
+      "version": "0.2.1",
+      "license": "MIT/Apache-2.0",
+      "repository": "https://github.com/Alexhuszagh/minimal-lexical",
+      "edition": "2018",
+      "noticeFiles": [
+        "notices/rust/minimal-lexical-0.2.1/LICENSE-APACHE",
+        "notices/rust/minimal-lexical-0.2.1/LICENSE-MIT",
+        "notices/rust/minimal-lexical-0.2.1/LICENSE.md"
+      ]
+    },
+    {
+      "name": "miniz_oxide",
+      "version": "0.8.9",
+      "license": "MIT OR Zlib OR Apache-2.0",
+      "repository": "https://github.com/Frommi/miniz_oxide/tree/master/miniz_oxide",
+      "edition": "2021",
+      "noticeFiles": [
+        "notices/rust/miniz_oxide-0.8.9/LICENSE",
+        "notices/rust/miniz_oxide-0.8.9/LICENSE-APACHE.md",
+        "notices/rust/miniz_oxide-0.8.9/LICENSE-MIT.md",
+        "notices/rust/miniz_oxide-0.8.9/LICENSE-ZLIB.md"
+      ]
+    },
+    {
+      "name": "miniz_oxide",
+      "version": "0.9.1",
+      "license": "MIT OR Zlib OR Apache-2.0",
+      "repository": "https://github.com/Frommi/miniz_oxide/tree/master/miniz_oxide",
+      "edition": "2021",
+      "noticeFiles": [
+        "notices/rust/miniz_oxide-0.9.1/LICENSE",
+        "notices/rust/miniz_oxide-0.9.1/LICENSE-APACHE.md",
+        "notices/rust/miniz_oxide-0.9.1/LICENSE-MIT.md",
+        "notices/rust/miniz_oxide-0.9.1/LICENSE-ZLIB.md"
+      ]
+    },
+    {
+      "name": "multiversion_no_op",
+      "version": "1.0.0",
+      "license": "Apache-2.0 OR MIT",
+      "repository": "https://github.com/hsivonen/multiversion_no_op",
+      "edition": "2021",
+      "noticeFiles": [
+        "notices/rust/multiversion_no_op-1.0.0/COPYRIGHT",
+        "notices/rust/multiversion_no_op-1.0.0/LICENSE-APACHE",
+        "notices/rust/multiversion_no_op-1.0.0/LICENSE-MIT"
+      ]
+    },
+    {
+      "name": "nom_locate",
+      "version": "5.0.0",
+      "license": "MIT",
+      "repository": "https://github.com/fflorent/nom_locate",
+      "edition": "2018",
+      "noticeFiles": [
+        "notices/rust/nom_locate-5.0.0/LICENSE"
+      ]
+    },
+    {
+      "name": "nom",
+      "version": "7.1.3",
+      "license": "MIT",
+      "repository": "https://github.com/Geal/nom",
+      "edition": "2018",
+      "noticeFiles": [
+        "notices/rust/nom-7.1.3/LICENSE"
+      ]
+    },
+    {
+      "name": "nom",
+      "version": "8.0.0",
+      "license": "MIT",
+      "repository": "https://github.com/rust-bakery/nom",
+      "edition": "2021",
+      "noticeFiles": [
+        "notices/rust/nom-8.0.0/LICENSE"
+      ]
+    },
+    {
+      "name": "num-bigint-dig",
+      "version": "0.8.6",
+      "license": "MIT/Apache-2.0",
+      "repository": "https://github.com/dignifiedquire/num-bigint",
+      "edition": "2021",
+      "noticeFiles": [
+        "notices/rust/num-bigint-dig-0.8.6/LICENSE-APACHE",
+        "notices/rust/num-bigint-dig-0.8.6/LICENSE-MIT"
+      ]
+    },
+    {
+      "name": "num-bigint",
+      "version": "0.4.8",
+      "license": "MIT OR Apache-2.0",
+      "repository": "https://github.com/rust-num/num-bigint",
+      "edition": "2021",
+      "noticeFiles": [
+        "notices/rust/num-bigint-0.4.8/LICENSE-APACHE",
+        "notices/rust/num-bigint-0.4.8/LICENSE-MIT"
+      ]
+    },
+    {
+      "name": "num-conv",
+      "version": "0.2.2",
+      "license": "MIT OR Apache-2.0",
+      "repository": "https://github.com/jhpratt/num-conv",
+      "edition": "2021",
+      "noticeFiles": [
+        "notices/rust/num-conv-0.2.2/LICENSE-Apache",
+        "notices/rust/num-conv-0.2.2/LICENSE-MIT"
+      ]
+    },
+    {
+      "name": "num-integer",
+      "version": "0.1.47",
+      "license": "MIT OR Apache-2.0",
+      "repository": "https://github.com/rust-num/num-integer",
+      "edition": "2018",
+      "noticeFiles": [
+        "notices/rust/num-integer-0.1.47/LICENSE-APACHE",
+        "notices/rust/num-integer-0.1.47/LICENSE-MIT"
+      ]
+    },
+    {
+      "name": "num-iter",
+      "version": "0.1.46",
+      "license": "MIT OR Apache-2.0",
+      "repository": "https://github.com/rust-num/num-iter",
+      "edition": "2018",
+      "noticeFiles": [
+        "notices/rust/num-iter-0.1.46/LICENSE-APACHE",
+        "notices/rust/num-iter-0.1.46/LICENSE-MIT"
+      ]
+    },
+    {
+      "name": "num-traits",
+      "version": "0.2.19",
+      "license": "MIT OR Apache-2.0",
+      "repository": "https://github.com/rust-num/num-traits",
+      "edition": "2021",
+      "noticeFiles": [
+        "notices/rust/num-traits-0.2.19/LICENSE-APACHE",
+        "notices/rust/num-traits-0.2.19/LICENSE-MIT"
+      ]
+    },
+    {
+      "name": "oid-registry",
+      "version": "0.8.1",
+      "license": "MIT OR Apache-2.0",
+      "repository": "https://github.com/rusticata/oid-registry.git",
+      "edition": "2018",
+      "noticeFiles": [
+        "notices/rust/oid-registry-0.8.1/LICENSE-APACHE",
+        "notices/rust/oid-registry-0.8.1/LICENSE-MIT"
+      ]
+    },
+    {
+      "name": "once_cell",
+      "version": "1.21.4",
+      "license": "MIT OR Apache-2.0",
+      "repository": "https://github.com/matklad/once_cell",
+      "edition": "2021",
+      "noticeFiles": [
+        "notices/rust/once_cell-1.21.4/LICENSE-APACHE",
+        "notices/rust/once_cell-1.21.4/LICENSE-MIT"
+      ]
+    },
+    {
+      "name": "p12-keystore",
+      "version": "0.1.5",
+      "license": "MIT/Apache-2.0",
+      "repository": "https://github.com/ancwrd1/p12-keystore",
+      "edition": "2021",
+      "noticeFiles": [],
+      "noticeMissing": true,
+      "noticeSource": "Paket ohne Hinweisdatei"
+    },
+    {
+      "name": "p256",
+      "version": "0.13.2",
+      "license": "Apache-2.0 OR MIT",
+      "repository": "https://github.com/RustCrypto/elliptic-curves/tree/master/p256",
+      "edition": "2021",
+      "noticeFiles": [
+        "notices/rust/p256-0.13.2/LICENSE-APACHE",
+        "notices/rust/p256-0.13.2/LICENSE-MIT"
+      ]
+    },
+    {
+      "name": "p384",
+      "version": "0.13.1",
+      "license": "Apache-2.0 OR MIT",
+      "repository": "https://github.com/RustCrypto/elliptic-curves/tree/master/p384",
+      "edition": "2021",
+      "noticeFiles": [
+        "notices/rust/p384-0.13.1/LICENSE-APACHE",
+        "notices/rust/p384-0.13.1/LICENSE-MIT"
+      ]
+    },
+    {
+      "name": "pbkdf2",
+      "version": "0.12.2",
+      "license": "MIT OR Apache-2.0",
+      "repository": "https://github.com/RustCrypto/password-hashes/tree/master/pbkdf2",
+      "edition": "2021",
+      "noticeFiles": [
+        "notices/rust/pbkdf2-0.12.2/LICENSE-APACHE",
+        "notices/rust/pbkdf2-0.12.2/LICENSE-MIT"
+      ]
+    },
+    {
+      "name": "pdf_signer",
+      "version": "0.3.2",
+      "license": "GPL-3.0-or-later",
+      "repository": "https://github.com/StrategicProjects/pdf_signer",
+      "edition": "2021",
+      "noticeFiles": [],
+      "noticeMissing": true,
+      "noticeSource": "Paketquelle nicht im Zwischenspeicher"
+    },
+    {
+      "name": "pem-rfc7468",
+      "version": "0.7.0",
+      "license": "Apache-2.0 OR MIT",
+      "repository": "https://github.com/RustCrypto/formats/tree/master/pem-rfc7468",
+      "edition": "2021",
+      "noticeFiles": [
+        "notices/rust/pem-rfc7468-0.7.0/LICENSE-APACHE",
+        "notices/rust/pem-rfc7468-0.7.0/LICENSE-MIT"
+      ]
+    },
+    {
+      "name": "pin-project-lite",
+      "version": "0.2.17",
+      "license": "Apache-2.0 OR MIT",
+      "repository": "https://github.com/taiki-e/pin-project-lite",
+      "edition": "2018",
+      "noticeFiles": [
+        "notices/rust/pin-project-lite-0.2.17/LICENSE-APACHE",
+        "notices/rust/pin-project-lite-0.2.17/LICENSE-MIT"
+      ]
+    },
+    {
+      "name": "pkcs1",
+      "version": "0.7.5",
+      "license": "Apache-2.0 OR MIT",
+      "repository": "https://github.com/RustCrypto/formats/tree/master/pkcs1",
+      "edition": "2021",
+      "noticeFiles": [
+        "notices/rust/pkcs1-0.7.5/LICENSE-APACHE",
+        "notices/rust/pkcs1-0.7.5/LICENSE-MIT"
+      ]
+    },
+    {
+      "name": "pkcs12",
+      "version": "0.1.0",
+      "license": "Apache-2.0 OR MIT",
+      "repository": "https://github.com/RustCrypto/formats/tree/master/pkcs12",
+      "edition": "2021",
+      "noticeFiles": [
+        "notices/rust/pkcs12-0.1.0/LICENSE-APACHE",
+        "notices/rust/pkcs12-0.1.0/LICENSE-MIT"
+      ]
+    },
+    {
+      "name": "pkcs5",
+      "version": "0.7.1",
+      "license": "Apache-2.0 OR MIT",
+      "repository": "https://github.com/RustCrypto/formats/tree/master/pkcs5",
+      "edition": "2021",
+      "noticeFiles": [
+        "notices/rust/pkcs5-0.7.1/LICENSE-APACHE",
+        "notices/rust/pkcs5-0.7.1/LICENSE-MIT"
+      ]
+    },
+    {
+      "name": "pkcs8",
+      "version": "0.10.2",
+      "license": "Apache-2.0 OR MIT",
+      "repository": "https://github.com/RustCrypto/formats/tree/master/pkcs8",
+      "edition": "2021",
+      "noticeFiles": [
+        "notices/rust/pkcs8-0.10.2/LICENSE-APACHE",
+        "notices/rust/pkcs8-0.10.2/LICENSE-MIT"
+      ]
+    },
+    {
+      "name": "png",
+      "version": "0.18.1",
+      "license": "MIT OR Apache-2.0",
+      "repository": "https://github.com/image-rs/image-png",
+      "edition": "2021",
+      "noticeFiles": [
+        "notices/rust/png-0.18.1/LICENSE-APACHE",
+        "notices/rust/png-0.18.1/LICENSE-MIT"
+      ]
+    },
+    {
+      "name": "powerfmt",
+      "version": "0.2.0",
+      "license": "MIT OR Apache-2.0",
+      "repository": "https://github.com/jhpratt/powerfmt",
+      "edition": "2021",
+      "noticeFiles": [
+        "notices/rust/powerfmt-0.2.0/LICENSE-Apache",
+        "notices/rust/powerfmt-0.2.0/LICENSE-MIT"
+      ]
+    },
+    {
+      "name": "ppv-lite86",
+      "version": "0.2.21",
+      "license": "MIT OR Apache-2.0",
+      "repository": "https://github.com/cryptocorrosion/cryptocorrosion",
+      "edition": "2021",
+      "noticeFiles": [
+        "notices/rust/ppv-lite86-0.2.21/LICENSE-APACHE",
+        "notices/rust/ppv-lite86-0.2.21/LICENSE-MIT"
+      ]
+    },
+    {
+      "name": "primeorder",
+      "version": "0.13.6",
+      "license": "Apache-2.0 OR MIT",
+      "repository": "https://github.com/RustCrypto/elliptic-curves/tree/master/primeorder",
+      "edition": "2021",
+      "noticeFiles": [
+        "notices/rust/primeorder-0.13.6/LICENSE-APACHE",
+        "notices/rust/primeorder-0.13.6/LICENSE-MIT"
+      ]
+    },
+    {
+      "name": "proc-macro2",
+      "version": "1.0.107",
+      "license": "MIT OR Apache-2.0",
+      "repository": "https://github.com/dtolnay/proc-macro2",
+      "edition": "2021",
+      "noticeFiles": [
+        "notices/rust/proc-macro2-1.0.107/LICENSE-APACHE",
+        "notices/rust/proc-macro2-1.0.107/LICENSE-MIT"
+      ]
+    },
+    {
+      "name": "quote",
+      "version": "1.0.47",
+      "license": "MIT OR Apache-2.0",
+      "repository": "https://github.com/dtolnay/quote",
+      "edition": "2021",
+      "noticeFiles": [
+        "notices/rust/quote-1.0.47/LICENSE-APACHE",
+        "notices/rust/quote-1.0.47/LICENSE-MIT"
+      ]
+    },
+    {
+      "name": "rand_chacha",
+      "version": "0.3.1",
+      "license": "MIT OR Apache-2.0",
+      "repository": "https://github.com/rust-random/rand",
+      "edition": "2018",
+      "noticeFiles": [
+        "notices/rust/rand_chacha-0.3.1/COPYRIGHT",
+        "notices/rust/rand_chacha-0.3.1/LICENSE-APACHE",
+        "notices/rust/rand_chacha-0.3.1/LICENSE-MIT"
+      ]
+    },
+    {
+      "name": "rand_chacha",
+      "version": "0.9.0",
+      "license": "MIT OR Apache-2.0",
+      "repository": "https://github.com/rust-random/rand",
+      "edition": "2021",
+      "noticeFiles": [
+        "notices/rust/rand_chacha-0.9.0/COPYRIGHT",
+        "notices/rust/rand_chacha-0.9.0/LICENSE-APACHE",
+        "notices/rust/rand_chacha-0.9.0/LICENSE-MIT"
+      ]
+    },
+    {
+      "name": "rand_core",
+      "version": "0.6.4",
+      "license": "MIT OR Apache-2.0",
+      "repository": "https://github.com/rust-random/rand",
+      "edition": "2018",
+      "noticeFiles": [
+        "notices/rust/rand_core-0.6.4/COPYRIGHT",
+        "notices/rust/rand_core-0.6.4/LICENSE-APACHE",
+        "notices/rust/rand_core-0.6.4/LICENSE-MIT"
+      ]
+    },
+    {
+      "name": "rand_core",
+      "version": "0.9.5",
+      "license": "MIT OR Apache-2.0",
+      "repository": "https://github.com/rust-random/rand",
+      "edition": "2021",
+      "noticeFiles": [
+        "notices/rust/rand_core-0.9.5/COPYRIGHT",
+        "notices/rust/rand_core-0.9.5/LICENSE-APACHE",
+        "notices/rust/rand_core-0.9.5/LICENSE-MIT"
+      ]
+    },
+    {
+      "name": "rand",
+      "version": "0.8.8",
+      "license": "MIT OR Apache-2.0",
+      "repository": "https://github.com/rust-random/rand",
+      "edition": "2018",
+      "noticeFiles": [
+        "notices/rust/rand-0.8.8/COPYRIGHT",
+        "notices/rust/rand-0.8.8/LICENSE-APACHE",
+        "notices/rust/rand-0.8.8/LICENSE-MIT"
+      ]
+    },
+    {
+      "name": "rand",
+      "version": "0.9.5",
+      "license": "MIT OR Apache-2.0",
+      "repository": "https://github.com/rust-random/rand",
+      "edition": "2021",
+      "noticeFiles": [
+        "notices/rust/rand-0.9.5/COPYRIGHT",
+        "notices/rust/rand-0.9.5/LICENSE-APACHE",
+        "notices/rust/rand-0.9.5/LICENSE-MIT"
+      ]
+    },
+    {
+      "name": "rangemap",
+      "version": "1.8.0",
+      "license": "MIT/Apache-2.0",
+      "repository": "https://github.com/jeffparsons/rangemap",
+      "edition": "2018",
+      "noticeFiles": [
+        "notices/rust/rangemap-1.8.0/LICENSE-APACHE",
+        "notices/rust/rangemap-1.8.0/LICENSE-MIT"
+      ]
+    },
+    {
+      "name": "rayon-core",
+      "version": "1.13.0",
+      "license": "MIT OR Apache-2.0",
+      "repository": "https://github.com/rayon-rs/rayon",
+      "edition": "2021",
+      "noticeFiles": [
+        "notices/rust/rayon-core-1.13.0/LICENSE-APACHE",
+        "notices/rust/rayon-core-1.13.0/LICENSE-MIT"
+      ]
+    },
+    {
+      "name": "rayon",
+      "version": "1.12.0",
+      "license": "MIT OR Apache-2.0",
+      "repository": "https://github.com/rayon-rs/rayon",
+      "edition": "2021",
+      "noticeFiles": [
+        "notices/rust/rayon-1.12.0/LICENSE-APACHE",
+        "notices/rust/rayon-1.12.0/LICENSE-MIT"
+      ]
+    },
+    {
+      "name": "rc2",
+      "version": "0.8.1",
+      "license": "MIT OR Apache-2.0",
+      "repository": "https://github.com/RustCrypto/block-ciphers",
+      "edition": "2021",
+      "noticeFiles": [
+        "notices/rust/rc2-0.8.1/LICENSE-APACHE",
+        "notices/rust/rc2-0.8.1/LICENSE-MIT"
+      ]
+    },
+    {
+      "name": "rfc6979",
+      "version": "0.4.0",
+      "license": "Apache-2.0 OR MIT",
+      "repository": "https://github.com/RustCrypto/signatures/tree/master/rfc6979",
+      "edition": "2021",
+      "noticeFiles": [
+        "notices/rust/rfc6979-0.4.0/LICENSE-APACHE",
+        "notices/rust/rfc6979-0.4.0/LICENSE-MIT"
+      ]
+    },
+    {
+      "name": "rsa",
+      "version": "0.9.10",
+      "license": "MIT OR Apache-2.0",
+      "repository": "https://github.com/RustCrypto/RSA",
+      "edition": "2021",
+      "noticeFiles": [
+        "notices/rust/rsa-0.9.10/LICENSE-APACHE",
+        "notices/rust/rsa-0.9.10/LICENSE-MIT"
+      ]
+    },
+    {
+      "name": "rustc_version",
+      "version": "0.4.1",
+      "license": "MIT OR Apache-2.0",
+      "repository": "https://github.com/djc/rustc-version-rs",
+      "edition": "2018",
+      "noticeFiles": [
+        "notices/rust/rustc_version-0.4.1/LICENSE-APACHE",
+        "notices/rust/rustc_version-0.4.1/LICENSE-MIT"
+      ]
+    },
+    {
+      "name": "rusticata-macros",
+      "version": "4.1.0",
+      "license": "MIT/Apache-2.0",
+      "repository": "https://github.com/rusticata/rusticata-macros.git",
+      "edition": "2018",
+      "noticeFiles": [
+        "notices/rust/rusticata-macros-4.1.0/LICENSE-APACHE",
+        "notices/rust/rusticata-macros-4.1.0/LICENSE-MIT"
+      ]
+    },
+    {
+      "name": "rustversion",
+      "version": "1.0.23",
+      "license": "MIT OR Apache-2.0",
+      "repository": "https://github.com/dtolnay/rustversion",
+      "edition": "2018",
+      "noticeFiles": [
+        "notices/rust/rustversion-1.0.23/LICENSE-APACHE",
+        "notices/rust/rustversion-1.0.23/LICENSE-MIT"
+      ]
+    },
+    {
+      "name": "salsa20",
+      "version": "0.10.2",
+      "license": "MIT OR Apache-2.0",
+      "repository": "https://github.com/RustCrypto/stream-ciphers",
+      "edition": "2021",
+      "noticeFiles": [
+        "notices/rust/salsa20-0.10.2/LICENSE-APACHE",
+        "notices/rust/salsa20-0.10.2/LICENSE-MIT"
+      ]
+    },
+    {
+      "name": "scopeguard",
+      "version": "1.2.0",
+      "license": "MIT OR Apache-2.0",
+      "repository": "https://github.com/bluss/scopeguard",
+      "edition": "2015",
+      "noticeFiles": [
+        "notices/rust/scopeguard-1.2.0/LICENSE-APACHE",
+        "notices/rust/scopeguard-1.2.0/LICENSE-MIT"
+      ]
+    },
+    {
+      "name": "scrypt",
+      "version": "0.11.0",
+      "license": "MIT OR Apache-2.0",
+      "repository": "https://github.com/RustCrypto/password-hashes/tree/master/scrypt",
+      "edition": "2021",
+      "noticeFiles": [
+        "notices/rust/scrypt-0.11.0/LICENSE-APACHE",
+        "notices/rust/scrypt-0.11.0/LICENSE-MIT"
+      ]
+    },
+    {
+      "name": "sec1",
+      "version": "0.7.3",
+      "license": "Apache-2.0 OR MIT",
+      "repository": "https://github.com/RustCrypto/formats/tree/master/sec1",
+      "edition": "2021",
+      "noticeFiles": [
+        "notices/rust/sec1-0.7.3/LICENSE-APACHE",
+        "notices/rust/sec1-0.7.3/LICENSE-MIT"
+      ]
+    },
+    {
+      "name": "semver",
+      "version": "1.0.28",
+      "license": "MIT OR Apache-2.0",
+      "repository": "https://github.com/dtolnay/semver",
+      "edition": "2021",
+      "noticeFiles": [
+        "notices/rust/semver-1.0.28/LICENSE-APACHE",
+        "notices/rust/semver-1.0.28/LICENSE-MIT"
+      ]
+    },
+    {
+      "name": "serde_core",
+      "version": "1.0.229",
+      "license": "MIT OR Apache-2.0",
+      "repository": "https://github.com/serde-rs/serde",
+      "edition": "2021",
+      "noticeFiles": [
+        "notices/rust/serde_core-1.0.229/LICENSE-APACHE",
+        "notices/rust/serde_core-1.0.229/LICENSE-MIT"
+      ]
+    },
+    {
+      "name": "serde_derive",
+      "version": "1.0.229",
+      "license": "MIT OR Apache-2.0",
+      "repository": "https://github.com/serde-rs/serde",
+      "edition": "2021",
+      "noticeFiles": [
+        "notices/rust/serde_derive-1.0.229/LICENSE-APACHE",
+        "notices/rust/serde_derive-1.0.229/LICENSE-MIT"
+      ]
+    },
+    {
+      "name": "serde-wasm-bindgen",
+      "version": "0.6.5",
+      "license": "MIT",
+      "repository": "https://github.com/RReverser/serde-wasm-bindgen",
+      "edition": "2018",
+      "noticeFiles": [
+        "notices/rust/serde-wasm-bindgen-0.6.5/LICENSE"
+      ]
+    },
+    {
+      "name": "serde",
+      "version": "1.0.229",
+      "license": "MIT OR Apache-2.0",
+      "repository": "https://github.com/serde-rs/serde",
+      "edition": "2021",
+      "noticeFiles": [
+        "notices/rust/serde-1.0.229/LICENSE-APACHE",
+        "notices/rust/serde-1.0.229/LICENSE-MIT"
+      ]
+    },
+    {
+      "name": "sha1",
+      "version": "0.10.7",
+      "license": "MIT OR Apache-2.0",
+      "repository": "https://github.com/RustCrypto/hashes",
+      "edition": "2018",
+      "noticeFiles": [
+        "notices/rust/sha1-0.10.7/LICENSE-APACHE",
+        "notices/rust/sha1-0.10.7/LICENSE-MIT"
+      ]
+    },
+    {
+      "name": "sha2",
+      "version": "0.10.9",
+      "license": "MIT OR Apache-2.0",
+      "repository": "https://github.com/RustCrypto/hashes",
+      "edition": "2018",
+      "noticeFiles": [
+        "notices/rust/sha2-0.10.9/LICENSE-APACHE",
+        "notices/rust/sha2-0.10.9/LICENSE-MIT"
+      ]
+    },
+    {
+      "name": "sha3",
+      "version": "0.10.9",
+      "license": "MIT OR Apache-2.0",
+      "repository": "https://github.com/RustCrypto/hashes",
+      "edition": "2018",
+      "noticeFiles": [
+        "notices/rust/sha3-0.10.9/LICENSE-APACHE",
+        "notices/rust/sha3-0.10.9/LICENSE-MIT"
+      ]
+    },
+    {
+      "name": "signature",
+      "version": "2.2.0",
+      "license": "Apache-2.0 OR MIT",
+      "repository": "https://github.com/RustCrypto/traits/tree/master/signature",
+      "edition": "2021",
+      "noticeFiles": [
+        "notices/rust/signature-2.2.0/LICENSE-APACHE",
+        "notices/rust/signature-2.2.0/LICENSE-MIT"
+      ]
+    },
+    {
+      "name": "simd-adler32",
+      "version": "0.3.10",
+      "license": "MIT",
+      "repository": "https://github.com/mcountryman/simd-adler32",
+      "edition": "2018",
+      "noticeFiles": [
+        "notices/rust/simd-adler32-0.3.10/LICENSE.md"
+      ]
+    },
+    {
+      "name": "slab",
+      "version": "0.4.12",
+      "license": "MIT",
+      "repository": "https://github.com/tokio-rs/slab",
+      "edition": "2018",
+      "noticeFiles": [
+        "notices/rust/slab-0.4.12/LICENSE"
+      ]
+    },
+    {
+      "name": "smallvec",
+      "version": "1.16.2",
+      "license": "MIT OR Apache-2.0",
+      "repository": "https://github.com/servo/rust-smallvec",
+      "edition": "2018",
+      "noticeFiles": [
+        "notices/rust/smallvec-1.16.2/LICENSE-APACHE",
+        "notices/rust/smallvec-1.16.2/LICENSE-MIT"
+      ]
+    },
+    {
+      "name": "spin",
+      "version": "0.9.9",
+      "license": "MIT",
+      "repository": "https://github.com/mvdnes/spin-rs.git",
+      "edition": "2015",
+      "noticeFiles": [
+        "notices/rust/spin-0.9.9/LICENSE"
+      ]
+    },
+    {
+      "name": "spki",
+      "version": "0.7.3",
+      "license": "Apache-2.0 OR MIT",
+      "repository": "https://github.com/RustCrypto/formats/tree/master/spki",
+      "edition": "2021",
+      "noticeFiles": [
+        "notices/rust/spki-0.7.3/LICENSE-APACHE",
+        "notices/rust/spki-0.7.3/LICENSE-MIT"
+      ]
+    },
+    {
+      "name": "stringprep",
+      "version": "0.1.5",
+      "license": "MIT/Apache-2.0",
+      "repository": "https://github.com/sfackler/rust-stringprep",
+      "edition": "2015",
+      "noticeFiles": [
+        "notices/rust/stringprep-0.1.5/LICENSE-APACHE",
+        "notices/rust/stringprep-0.1.5/LICENSE-MIT"
+      ]
+    },
+    {
+      "name": "subtle",
+      "version": "2.6.1",
+      "license": "BSD-3-Clause",
+      "repository": "https://github.com/dalek-cryptography/subtle",
+      "edition": "2018",
+      "noticeFiles": [
+        "notices/rust/subtle-2.6.1/LICENSE"
+      ]
+    },
+    {
+      "name": "syn",
+      "version": "2.0.119",
+      "license": "MIT OR Apache-2.0",
+      "repository": "https://github.com/dtolnay/syn",
+      "edition": "2021",
+      "noticeFiles": [
+        "notices/rust/syn-2.0.119/LICENSE-APACHE",
+        "notices/rust/syn-2.0.119/LICENSE-MIT"
+      ]
+    },
+    {
+      "name": "syn",
+      "version": "3.0.6",
+      "license": "MIT OR Apache-2.0",
+      "repository": "https://github.com/dtolnay/syn",
+      "edition": "2021",
+      "noticeFiles": [
+        "notices/rust/syn-3.0.6/LICENSE-APACHE",
+        "notices/rust/syn-3.0.6/LICENSE-MIT"
+      ]
+    },
+    {
+      "name": "synstructure",
+      "version": "0.13.2",
+      "license": "MIT",
+      "repository": "https://github.com/mystor/synstructure",
+      "edition": "2018",
+      "noticeFiles": [
+        "notices/rust/synstructure-0.13.2/LICENSE"
+      ]
+    },
+    {
+      "name": "thiserror-impl",
+      "version": "2.0.21",
+      "license": "MIT OR Apache-2.0",
+      "repository": "https://github.com/dtolnay/thiserror",
+      "edition": "2021",
+      "noticeFiles": [
+        "notices/rust/thiserror-impl-2.0.21/LICENSE-APACHE",
+        "notices/rust/thiserror-impl-2.0.21/LICENSE-MIT"
+      ]
+    },
+    {
+      "name": "thiserror",
+      "version": "2.0.21",
+      "license": "MIT OR Apache-2.0",
+      "repository": "https://github.com/dtolnay/thiserror",
+      "edition": "2021",
+      "noticeFiles": [
+        "notices/rust/thiserror-2.0.21/LICENSE-APACHE",
+        "notices/rust/thiserror-2.0.21/LICENSE-MIT"
+      ]
+    },
+    {
+      "name": "time-core",
+      "version": "0.1.9",
+      "license": "MIT OR Apache-2.0",
+      "repository": "https://github.com/time-rs/time",
+      "edition": "2024",
+      "noticeFiles": [
+        "notices/rust/time-core-0.1.9/LICENSE-Apache",
+        "notices/rust/time-core-0.1.9/LICENSE-MIT"
+      ]
+    },
+    {
+      "name": "time-macros",
+      "version": "0.2.32",
+      "license": "MIT OR Apache-2.0",
+      "repository": "https://github.com/time-rs/time",
+      "edition": "2024",
+      "noticeFiles": [
+        "notices/rust/time-macros-0.2.32/LICENSE-Apache",
+        "notices/rust/time-macros-0.2.32/LICENSE-MIT"
+      ]
+    },
+    {
+      "name": "time",
+      "version": "0.3.55",
+      "license": "MIT OR Apache-2.0",
+      "repository": "https://github.com/time-rs/time",
+      "edition": "2024",
+      "noticeFiles": [
+        "notices/rust/time-0.3.55/LICENSE-Apache",
+        "notices/rust/time-0.3.55/LICENSE-MIT"
+      ]
+    },
+    {
+      "name": "tinyvec",
+      "version": "1.13.3",
+      "license": "Zlib OR Apache-2.0 OR MIT",
+      "repository": "https://github.com/Lokathor/tinyvec",
+      "edition": "2018",
+      "noticeFiles": [
+        "notices/rust/tinyvec-1.13.3/LICENSE-APACHE.md",
+        "notices/rust/tinyvec-1.13.3/LICENSE-MIT.md",
+        "notices/rust/tinyvec-1.13.3/LICENSE-ZLIB.md"
+      ]
+    },
+    {
+      "name": "tls_codec_derive",
+      "version": "0.4.2",
+      "license": "Apache-2.0 OR MIT",
+      "repository": "https://github.com/RustCrypto/formats",
+      "edition": "2021",
+      "noticeFiles": [
+        "notices/rust/tls_codec_derive-0.4.2/LICENSE-APACHE",
+        "notices/rust/tls_codec_derive-0.4.2/LICENSE-MIT"
+      ]
+    },
+    {
+      "name": "tls_codec",
+      "version": "0.4.2",
+      "license": "Apache-2.0 OR MIT",
+      "repository": "https://github.com/RustCrypto/formats",
+      "edition": "2021",
+      "noticeFiles": [
+        "notices/rust/tls_codec-0.4.2/LICENSE-APACHE",
+        "notices/rust/tls_codec-0.4.2/LICENSE-MIT"
+      ]
+    },
+    {
+      "name": "ttf-parser",
+      "version": "0.25.1",
+      "license": "MIT OR Apache-2.0",
+      "repository": "https://github.com/harfbuzz/ttf-parser",
+      "edition": "2018",
+      "noticeFiles": [
+        "notices/rust/ttf-parser-0.25.1/LICENSE-APACHE",
+        "notices/rust/ttf-parser-0.25.1/LICENSE-MIT"
+      ]
+    },
+    {
+      "name": "typenum",
+      "version": "1.20.1",
+      "license": "MIT OR Apache-2.0",
+      "repository": "https://github.com/paholg/typenum",
+      "edition": "2018",
+      "noticeFiles": [
+        "notices/rust/typenum-1.20.1/LICENSE",
+        "notices/rust/typenum-1.20.1/LICENSE-APACHE",
+        "notices/rust/typenum-1.20.1/LICENSE-MIT"
+      ]
+    },
+    {
+      "name": "unicode-bidi",
+      "version": "0.3.18",
+      "license": "MIT OR Apache-2.0",
+      "repository": "https://github.com/servo/unicode-bidi",
+      "edition": "2018",
+      "noticeFiles": [
+        "notices/rust/unicode-bidi-0.3.18/COPYRIGHT",
+        "notices/rust/unicode-bidi-0.3.18/LICENSE-APACHE",
+        "notices/rust/unicode-bidi-0.3.18/LICENSE-MIT"
+      ]
+    },
+    {
+      "name": "unicode-ident",
+      "version": "1.0.26",
+      "license": "(MIT OR Apache-2.0) AND Unicode-3.0",
+      "repository": "https://github.com/dtolnay/unicode-ident",
+      "edition": "2021",
+      "noticeFiles": [
+        "notices/rust/unicode-ident-1.0.26/LICENSE-APACHE",
+        "notices/rust/unicode-ident-1.0.26/LICENSE-MIT",
+        "notices/rust/unicode-ident-1.0.26/LICENSE-UNICODE"
+      ]
+    },
+    {
+      "name": "unicode-normalization",
+      "version": "0.1.25",
+      "license": "MIT OR Apache-2.0",
+      "repository": "https://github.com/unicode-rs/unicode-normalization",
+      "edition": "2018",
+      "noticeFiles": [
+        "notices/rust/unicode-normalization-0.1.25/COPYRIGHT",
+        "notices/rust/unicode-normalization-0.1.25/LICENSE-APACHE",
+        "notices/rust/unicode-normalization-0.1.25/LICENSE-MIT"
+      ]
+    },
+    {
+      "name": "unicode-properties",
+      "version": "0.1.4",
+      "license": "MIT/Apache-2.0",
+      "repository": "https://github.com/unicode-rs/unicode-properties",
+      "edition": "2021",
+      "noticeFiles": [
+        "notices/rust/unicode-properties-0.1.4/COPYRIGHT",
+        "notices/rust/unicode-properties-0.1.4/LICENSE-APACHE",
+        "notices/rust/unicode-properties-0.1.4/LICENSE-MIT"
+      ]
+    },
+    {
+      "name": "version_check",
+      "version": "0.9.5",
+      "license": "MIT/Apache-2.0",
+      "repository": "https://github.com/SergioBenitez/version_check",
+      "edition": "2015",
+      "noticeFiles": [
+        "notices/rust/version_check-0.9.5/LICENSE-APACHE",
+        "notices/rust/version_check-0.9.5/LICENSE-MIT"
+      ]
+    },
+    {
+      "name": "wasm-bindgen-macro-support",
+      "version": "0.2.129",
+      "license": "MIT OR Apache-2.0",
+      "repository": "https://github.com/wasm-bindgen/wasm-bindgen/tree/main/crates/macro-support",
+      "edition": "2021",
+      "noticeFiles": [
+        "notices/rust/wasm-bindgen-macro-support-0.2.129/LICENSE-APACHE",
+        "notices/rust/wasm-bindgen-macro-support-0.2.129/LICENSE-MIT"
+      ]
+    },
+    {
+      "name": "wasm-bindgen-macro",
+      "version": "0.2.129",
+      "license": "MIT OR Apache-2.0",
+      "repository": "https://github.com/wasm-bindgen/wasm-bindgen/tree/master/crates/macro",
+      "edition": "2021",
+      "noticeFiles": [
+        "notices/rust/wasm-bindgen-macro-0.2.129/LICENSE-APACHE",
+        "notices/rust/wasm-bindgen-macro-0.2.129/LICENSE-MIT"
+      ]
+    },
+    {
+      "name": "wasm-bindgen-shared",
+      "version": "0.2.129",
+      "license": "MIT OR Apache-2.0",
+      "repository": "https://github.com/wasm-bindgen/wasm-bindgen/tree/master/crates/shared",
+      "edition": "2021",
+      "noticeFiles": [
+        "notices/rust/wasm-bindgen-shared-0.2.129/LICENSE-APACHE",
+        "notices/rust/wasm-bindgen-shared-0.2.129/LICENSE-MIT"
+      ]
+    },
+    {
+      "name": "wasm-bindgen",
+      "version": "0.2.129",
+      "license": "MIT OR Apache-2.0",
+      "repository": "https://github.com/wasm-bindgen/wasm-bindgen",
+      "edition": "2021",
+      "noticeFiles": [
+        "notices/rust/wasm-bindgen-0.2.129/LICENSE-APACHE",
+        "notices/rust/wasm-bindgen-0.2.129/LICENSE-MIT"
+      ]
+    },
+    {
+      "name": "weezl",
+      "version": "0.1.12",
+      "license": "MIT OR Apache-2.0",
+      "repository": "https://github.com/image-rs/weezl",
+      "edition": "2018",
+      "noticeFiles": [
+        "notices/rust/weezl-0.1.12/LICENSE-APACHE",
+        "notices/rust/weezl-0.1.12/LICENSE-MIT"
+      ]
+    },
+    {
+      "name": "x509-cert",
+      "version": "0.2.5",
+      "license": "Apache-2.0 OR MIT",
+      "repository": "https://github.com/RustCrypto/formats/tree/master/x509-cert",
+      "edition": "2021",
+      "noticeFiles": [
+        "notices/rust/x509-cert-0.2.5/LICENSE-APACHE",
+        "notices/rust/x509-cert-0.2.5/LICENSE-MIT"
+      ]
+    },
+    {
+      "name": "x509-ocsp",
+      "version": "0.2.1",
+      "license": "Apache-2.0 OR MIT",
+      "repository": "https://github.com/RustCrypto/formats/tree/master/x509-ocsp",
+      "edition": "2021",
+      "noticeFiles": [
+        "notices/rust/x509-ocsp-0.2.1/LICENSE-APACHE",
+        "notices/rust/x509-ocsp-0.2.1/LICENSE-MIT"
+      ]
+    },
+    {
+      "name": "x509-parser",
+      "version": "0.17.0",
+      "license": "MIT OR Apache-2.0",
+      "repository": "https://github.com/rusticata/x509-parser.git",
+      "edition": "2018",
+      "noticeFiles": [
+        "notices/rust/x509-parser-0.17.0/LICENSE-APACHE",
+        "notices/rust/x509-parser-0.17.0/LICENSE-MIT"
+      ]
+    },
+    {
+      "name": "zerocopy",
+      "version": "0.8.59",
+      "license": "BSD-2-Clause OR Apache-2.0 OR MIT",
+      "repository": "https://github.com/google/zerocopy",
+      "edition": "2021",
+      "noticeFiles": [
+        "notices/rust/zerocopy-0.8.59/LICENSE-APACHE",
+        "notices/rust/zerocopy-0.8.59/LICENSE-BSD",
+        "notices/rust/zerocopy-0.8.59/LICENSE-MIT"
+      ]
+    },
+    {
+      "name": "zeroize_derive",
+      "version": "1.5.0",
+      "license": "Apache-2.0 OR MIT",
+      "repository": "https://github.com/RustCrypto/utils",
+      "edition": "2024",
+      "noticeFiles": [
+        "notices/rust/zeroize_derive-1.5.0/LICENSE-APACHE",
+        "notices/rust/zeroize_derive-1.5.0/LICENSE-MIT"
+      ]
+    },
+    {
+      "name": "zeroize",
+      "version": "1.9.0",
+      "license": "Apache-2.0 OR MIT",
+      "repository": "https://github.com/RustCrypto/utils",
+      "edition": "2024",
+      "noticeFiles": [
+        "notices/rust/zeroize-1.9.0/LICENSE-APACHE",
+        "notices/rust/zeroize-1.9.0/LICENSE-MIT"
+      ]
+    },
+    {
+      "name": "zlib-rs",
+      "version": "0.6.8",
+      "license": "Zlib",
+      "repository": "https://github.com/trifectatechfoundation/zlib-rs",
+      "edition": "2021",
+      "noticeFiles": [
+        "notices/rust/zlib-rs-0.6.8/LICENSE"
+      ]
+    }
+  ]
+}
