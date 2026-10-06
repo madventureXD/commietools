@@ -8,20 +8,23 @@ Der Ordnername `uebergabe` verwendet bewusst nur ASCII-Zeichen, damit Skripte, G
 
 1. [`00-einstieg/projektueberblick.md`](00-einstieg/projektueberblick.md) lesen.
 2. [`00-einstieg/arbeitsregeln.md`](00-einstieg/arbeitsregeln.md) beachten.
-3. [`01-stand/aktueller-stand.md`](01-stand/aktueller-stand.md) und [`01-stand/offene-punkte.md`](01-stand/offene-punkte.md) prüfen.
-4. **`DRINGEND-*`-Dateien in diesem Ordner zuerst lesen.** Sie enthalten Befunde, die keinen
+3. **Läuft die QM-Sanierung (R1–R10):** [`00-einstieg/vorgehen-qm-audit.md`](00-einstieg/vorgehen-qm-audit.md)
+   ist der zentrale Wegweiser — Auftrag, Reihenfolge, Fundstellen der Anweisungen und der Stand
+   aller 59 Handlungskarten an einer Stelle.
+4. [`01-stand/aktueller-stand.md`](01-stand/aktueller-stand.md) und [`01-stand/offene-punkte.md`](01-stand/offene-punkte.md) prüfen.
+5. **`DRINGEND-*`-Dateien in diesem Ordner zuerst lesen.** Sie enthalten Befunde, die keinen
    Aufschub dulden, mit Messwerten und Lösungsweg. Steht dort etwas, hat es Vorrang vor der
    regulären Arbeit; die Punkte tauchen zusätzlich in `01-stand/offene-punkte.md` auf.
-5. Die **jüngste Übergabe** unter [`05-uebergaben/`](05-uebergaben/) lesen (Dateiname `YYYY-MM-DD-…`, neuestes Datum zuerst): dort stehen die zuletzt geänderten Bereiche, die dort gelaufenen Prüfungen und der empfohlene nächste Schritt.
-6. Betroffene Originaldokumente und den aktuellen Code lesen.
-7. Vor einer größeren oder schwer umkehrbaren Entscheidung die Entscheidungsübersicht prüfen und bei Bedarf einen ADR anlegen.
-8. Nach der Arbeit Status, offene Punkte und eine Übergabe aktualisieren.
+6. Die **jüngste Übergabe** unter [`05-uebergaben/`](05-uebergaben/) lesen (Dateiname `YYYY-MM-DD-…`, neuestes Datum zuerst): dort stehen die zuletzt geänderten Bereiche, die dort gelaufenen Prüfungen und der empfohlene nächste Schritt.
+7. Betroffene Originaldokumente und den aktuellen Code lesen.
+8. Vor einer größeren oder schwer umkehrbaren Entscheidung die Entscheidungsübersicht prüfen und bei Bedarf einen ADR anlegen.
+9. Nach der Arbeit Status, offene Punkte und eine Übergabe aktualisieren.
 
 ## Ablage
 
 ```text
 uebergabe/
-├── 00-einstieg/       Projektüberblick und verbindliche Arbeitsregeln
+├── 00-einstieg/       Projektüberblick, Arbeitsregeln und Vorgehensplan der QM-Sanierung
 ├── 01-stand/          Aktueller Stand, offene Punkte und Roadmap
 ├── 02-architektur/    Architektur-Navigation und Erweiterungsleitfäden
 ├── 03-konzepte/       Geplante, noch nicht verbindlich entschiedene Vorhaben
