@@ -60,7 +60,7 @@ nav button:hover { color: var(--color-text); }
 .tool-menu-empty { padding: var(--space-6) var(--space-2); color: var(--color-text-muted); }
 .tool-menu-footer { display: flex; flex: 0 0 auto; justify-content: space-between; gap: var(--space-3); padding: var(--space-3) var(--space-5); border-top: 1px solid var(--color-border); color: var(--color-text-muted); font-size: 0.78rem; }
 .button, form > button[type="submit"] { min-width: 2.75rem; min-height: 2.75rem; padding: var(--space-2) var(--space-3); border: 1px solid var(--color-border); border-radius: var(--radius-sm); color: var(--color-text); background: var(--color-surface); cursor: pointer; font-weight: 700; }
-.button.primary, form > button[type="submit"] { border-color: var(--color-brand); color: white; background: var(--color-brand); }
+.button.primary, form > button[type="submit"] { border-color: var(--color-brand); color: var(--color-action-text); background: var(--color-brand); }
 .button:disabled, form > button[type="submit"]:disabled { opacity: 0.5; cursor: not-allowed; }
 .button:hover, form > button[type="submit"]:hover { border-color: var(--color-brand); }
 .button:focus-visible, button:focus-visible, textarea:focus-visible, select:focus-visible { outline: 3px solid var(--color-focus); outline-offset: 3px; }
@@ -125,7 +125,7 @@ h1 { max-width: 16ch; margin-bottom: var(--space-4); font-size: clamp(3rem, 8vw,
    des Übergabeprotokolls) — die Tabelle scrollt ohnehin seitlich, also bekommen die Felder eine
    brauchbare Mindestbreite. */
 .cvd-table-wrap input, .cvd-table-wrap select, .cvd-table-wrap textarea { min-width: 7rem; }
-.segmented .active { border-color: var(--color-brand); color: white; background: var(--color-brand); }
+.segmented .active { border-color: var(--color-brand); color: var(--color-action-text); background: var(--color-brand); }
 .inline-field { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-3); min-width: 0; }
 .inline-field > * { min-width: 0; max-width: 100%; }
 select { min-height: 2.75rem; padding: 0 var(--space-3); border: 1px solid var(--color-border); border-radius: var(--radius-sm); color: var(--color-text); background: var(--color-background); }
@@ -441,7 +441,7 @@ a.button { display: inline-flex; align-items: center; justify-content: center; t
 .calculator-icon-button svg { width: 1.15rem; height: 1.15rem; }
 .calculator-switch { display: flex; gap: 0.15rem; padding: 0.15rem; border: 1px solid var(--color-border); border-radius: 999px; background: var(--color-surface); }
 .calculator-switch button { display: grid; place-items: center; min-width: 2.75rem; min-height: 2.75rem; padding: 0; border: 0; border-radius: 999px; background: transparent; color: var(--color-text-muted); font: inherit; font-size: 0.9rem; font-weight: 800; }
-.calculator-switch button.active { background: var(--color-brand); color: white; }
+.calculator-switch button.active { background: var(--color-brand); color: var(--color-action-text); }
 .calculator-switch .fraction-glyph { display: grid; justify-items: center; line-height: 1; font-size: 0.78rem; }
 .calculator-switch .fraction-glyph i { font-style: normal; border-top: 1px solid currentColor; padding-top: 1px; }
 .keypad { display: grid; gap: var(--space-2); }

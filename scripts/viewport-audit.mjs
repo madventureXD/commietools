@@ -95,13 +95,13 @@ const OVERFLOW_JS = `(() => {
 const A11Y_JS = `(() => {
   const MIN_TARGET = 44;
   /**
-   * Entschiedene Ausnahme (Thomas, 2026-10-06): weisse Schrift auf dem Markenrot ergibt 3,28:1
-   * bei verlangten 4,5:1. Die Markenfarbe bleibt so. Solche Funde werden getrennt gezaehlt und im
-   * Protokoll weiterhin ausgewiesen — nicht als Befund gewertet, aber auch nicht verschwiegen.
+
+   * Leer seit 2026-10-06: Die weisse Schrift auf dem Markenrot ergab 3,28:1 bei verlangten 4,5:1.
+   * Behoben ueber das schemaabhaengige Token `--color-action-text` — hell weiss (5,65:1), dunkel
+   * dunkel (5,76:1). Die Flaechen werden damit wieder regulaer geprueft; eine stehende Ausnahme
+   * wuerde kuenftige Regressionen an genau diesen Flaechen verschlucken.
    */
   const AKZEPTIERTE_KONTRASTE = [
-    { auswahl: '.button.primary, form > button[type="submit"]', grund: 'weiss auf Markenrot, Entscheidung 2026-10-06' },
-    { auswahl: '.button.active, .segmented .active', grund: 'weiss auf Markenrot, Entscheidung 2026-10-06' }
   ];
   /**
    * Wichtig: Chromium meldet fuer Inhalte in einem GESCHLOSSENEN details weiterhin ein Rechteck

@@ -1,6 +1,7 @@
 :root {
   color-scheme: light;
   --color-brand: #c91f2c;
+  --color-action-text: #ffffff;
   --color-brand-hover: #a91722;
   --color-brand-soft: #fff0f1;
   --color-background: #f6f7f9;
@@ -28,6 +29,7 @@
 [data-theme='dark'] {
   color-scheme: dark;
   --color-brand: #ff4b59;
+  --color-action-text: #101114;
   --color-brand-hover: #ff6b76;
   --color-brand-soft: #35191d;
   --color-background: #101114;
