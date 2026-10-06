@@ -592,9 +592,19 @@ Diese Liste enthält bestätigte, noch nicht abgeschlossene Arbeit. Details geh�
   gemeldet); Signatur auf `unknown`, damit „nichtstringförmiger Speicherinhalt" wirklich geprüft
   und nicht nur behauptet wird. Bericht: `06-protokolle/2026-10-06-m4-007-sprachpruefung.md`.
   **Nicht gepusht.**
-- [ ] Offen in R3: **M4-004** (Sprachladefehler bleiben gecacht), **M4-005** / **M4-006**
-  (PDF-Ergebnisse und Objekt-URLs), **M8-002** (Offline-Bereitschaft am flüchtigen HTTP-Cache),
-  **M8-003** (fehlender Browser-Speicher blockiert statt Rückfall).
+- [ ] Offen in R3: **M4-004** (Sprachladefehler bleiben gecacht), **M4-006**
+  (Objekt-URLs im PDF-Teiler), **M8-003** (fehlender Browser-Speicher blockiert statt Rückfall).
+  *(Nachtrag 2026-10-07: **M4-005** ist abgeschlossen — mit benannter Grenze; **M8-002** ist ✓.
+  Bei M4-005 blieben zwei Produktfehler zu beheben, siehe Protokoll-Nachtrag
+  `06-protokolle/2026-10-06-m4-005-m4-006-pdf-auftraege-urls.md`.)*
+- [ ] **Neu, nicht gemessen (2026-10-07): dasselbe Adressmuster in weiteren Werkzeugen.** Eine
+  Ergebnisadresse entsteht **nach** einem `await`, ohne Aufräumen beim Aushängen — beim PDF-Teiler
+  war das ein Leck von **1200 Adressen** (behoben). Dieselbe Stelle steht in
+  `PdfToImages.tsx:36`, `ImageMetadata.tsx:125`, `ImageResize.tsx:140`, `ImageWatermark.tsx:197`,
+  `IconGenerator.tsx:160/170` und in den Adressgebern von `PdfInteractiveTools.tsx`,
+  `PdfSecurityTools.tsx`, `PdfPlacementTools.tsx`. **Nicht geprüft, nicht behoben** — die Angabe
+  ist ein Fund am Quelltext, kein Messergebnis. Nächster Schritt: für **ein** Werkzeug denselben
+  Zählerbeleg fahren; erst wenn er das Leck zeigt, ist es eine Fehlerklasse und keine Vermutung.
 
 ## Pflege
 

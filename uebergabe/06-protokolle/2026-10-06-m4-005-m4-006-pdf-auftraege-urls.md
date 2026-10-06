@@ -106,3 +106,79 @@ fehlt.
   (neuer Auftrag, verworfener Auftrag, Unmount). Für M4-006 ist der Zähler ausgeglichen; eine
   gemeinsame Abstraktion wäre eine Aufräumarbeit, keine Abnahmebedingung.
 - [ ] Muster auf weitere asynchrone Dateiwerkzeuge übertragen (von der Karte verlangt).
+
+## Nachtrag 2026-10-07 (Faber): Abnahme auf dem geänderten Stand, ein Produktfehler behoben
+
+**Entscheidung Thomas (2026-10-07, im Gespräch):** M4-005 wird **mit benannter Grenze
+abgeschlossen** — die Wirkung ist belegt, unbelegt bleibt allein die Zeitreihenfolge. M4-006 wird
+erst nach dem StrictMode-Lauf und einem Lauf mit wiederholter Nutzung abgeschlossen.
+
+### Der bisher ungeprüfte Abnahmefall „Unmount während Erfolg und Fehler" — ein echter Fehler
+
+Verlässt man die Route, **während** ein Auftrag läuft, blieben alle Ergebnisadressen offen.
+Gemessen am ausgelieferten Build (`work/m4-006-unmount-laufend.cjs`), 1200-Seiten-Datei:
+
+| Prüfung | vorher | nachher |
+|---|---|---|
+| Adressen nach dem Unmount während des Auftrags | create 1200 / revoke 0 / **offen 1200** | create 1200 / revoke 1200 / **offen 0** |
+
+**Ursache:** Der Aufräumeffekt gab beim Aushängen nur die **bereits gesetzte** Ergebnisliste frei.
+Die Auftragsgeneration blieb dabei unverändert, deshalb hielt sich der noch laufende Auftrag für
+den aktuellen, schrieb sein Ergebnis in eine ausgehängte Komponente und erzeugte dabei Adressen,
+die niemand mehr freigab. Die Zeitmarken belegen die Reihenfolge: Klick bei 6761 ms, Routenwechsel
+bei 6762 ms, die Adressen entstanden erst 7239–7469 ms — also **nach** dem Aushängen.
+**Behebung** an der Invalidierungsstelle: der Aufräumeffekt erhöht jetzt die Generation; der späte
+Auftrag verwirft sein Ergebnis und gibt die gerade erzeugten Adressen selbst frei
+(`apps/web/src/tools/PdfSplit.tsx`).
+
+**Dritter Fall, ebenfalls gemessen** (`work/m4-006-unmount-fehler.cjs`): Aus dem **Fehlerzustand**
+heraus verlassen (ungültige Seitengruppe „9-1" → „Die Seitenangabe ist ungültig."), danach
+create 0 / revoke 0 / **offen 0**, keine Ausnahme, keine Konsolenfehler. Damit ist die Forderung
+„Unmount während Erfolg und Fehler" in **allen drei** Ausprägungen belegt (Ergebnis sichtbar,
+Auftrag laufend, Fehler angezeigt) — die frühere Folgemaßnahme ist damit erledigt.
+
+### Kartenabnahme auf dem geänderten Stand neu gefahren
+
+`work/m4-005-abnahme.cjs`: A = 1200 Seiten (anderer Name, anderer Seiteninhalt), B = 3 Seiten.
+
+- `[3]` Antwortzeit der Oberfläche während A: **80 ms**; Knopf zeigt „PDF wird verarbeitet …", gesperrt.
+- `[4]` nach dem Dateiwechsel ist der Knopf **wieder frei** — der am 2026-10-06 behobene Fehler
+  bleibt behoben, auch mit der neuen Zeile im Aufräumeffekt.
+- `[5]` B-Ergebnis: **3 Einträge**, nur B; `[6]` über **60 s unverändert** (A trug nichts nach).
+- `[7]` vor dem Verlassen: create **1203** / revoke **1200** / offen **3**.
+- `[8]` nach clientseitigem Routenwechsel: revoke **1203** / **offen 0**.
+
+### Prüfmittel repariert (eigener Fehler, der einen Lauf wertlos machte)
+
+Das Abnahmeskript merkte sich die Knoten-ID des Dateifelds **einmal** und benutzte sie für beide
+Auswahlen. Im ersten Wiederholungslauf kam B deshalb nie an; der Lauf sah wie ein reiner A-Fall aus
+und meldete trotzdem Erfolg (Exit 0, 1200 Einträge, „B-Ergebnis"). Jetzt wird die Kennung **vor
+jeder** Auswahl frisch bestimmt, der Lauf wartet auf die Reaktion der Seite statt auf eine feste
+Zeit, und er **bricht ab**, wenn der erwartete Dateiname nicht erscheint. Ohne diese Prüfung hätte
+ein grüner Lauf eine Abnahme behauptet, die nie gefahren wurde.
+
+### Weiterhin nicht herstellbar (benannte Grenze, Grund gemessen)
+
+„A zuletzt fertig": Der Teiler erzeugt 1200 Dokumente in rund 0,6 s und ist damit immer vor jeder
+Bedienhandlung fertig. Künstliche Verlangsamungen (CPU-Bremse Faktor 15 und 40, mehr Seiten) wurden
+als Prüfmitteleingriff verworfen. Belegt ist der Schutz für den Fall „A kommt zurück, nachdem B
+gewählt wurde".
+
+### Neu aufgenommener offener Punkt (nicht mitbehoben, nicht gemessen)
+
+Dasselbe Muster — eine Adresse entsteht **nach** einem `await`, ohne Aufräumen beim Aushängen —
+steht an weiteren Stellen: `PdfToImages.tsx:36`, `ImageMetadata.tsx:125`, `ImageResize.tsx:140`,
+`ImageWatermark.tsx:197`, `IconGenerator.tsx:160/170` sowie in den Adressgebern von
+`PdfInteractiveTools.tsx`, `PdfSecurityTools.tsx`, `PdfPlacementTools.tsx`. Das ist **nicht** Teil
+der Karten M4-005/M4-006; es wird als Folgearbeit geführt und ist **nicht gemessen**. Ein Mittun
+ohne Beleg wäre eine Behauptung.
+
+**Prüfkette:** `npm run check` **687 Tests in 46 Dateien**, Exit 0 · `npm run build` Exit 0,
+Startbündel **148 998 B gzip** · `node --check` für beide neuen Belegskripte.
+**Nicht gepusht.**
+
+### Nachtrag 2026-10-07 zur Folgemaßnahmenliste oben
+
+Die Punkte „Unmount während eines Fehlerwegs" und „Muster auf weitere asynchrone Dateiwerkzeuge"
+sind oben offen geführt. Der erste ist mit diesem Nachtrag **erledigt**; beim zweiten ist das
+Muster gefunden und benannt, die Übertragung selbst steht weiter aus.

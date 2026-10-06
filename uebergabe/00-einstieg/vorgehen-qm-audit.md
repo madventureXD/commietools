@@ -94,12 +94,12 @@ Protokoll: `06-protokolle/2026-10-06-r1-*.md`, `…-m9-004-lopdf-anhebung.md`, `
 | M6-002 | RPN-Tastenfeld setzt mehrstellige Zahlen nicht zusammen | ✓ Eingabereducer mit getrenntem Zahlentoken; Tastenfolgen im Browser belegt (2026-10-06) |
 | M8-004 | CSV-Freitext als Tabellenformel exportiert | ✓ typisierte Zellen (Text/Zahl), führender Apostroph, Hinweis in der Oberfläche; **Abnahme bewusst ohne Tabellenprogramm** (Thomas, 2026-10-06) — unabhängige Python-Gegenprobe bleibt maßgeblich |
 
-### R3 — Datei-Aufträge, Ressourcen, Offline (P1) — **teilweise: 2 erledigt, 4 mit Restforderung**
+### R3 — Datei-Aufträge, Ressourcen, Offline (P1) — **teilweise: 3 erledigt, 3 mit Restforderung**
 
 | Karte | Kurz | Stand |
 |---|---|---|
 | M4-004 | Sprachladefehler bleiben gecacht; kein Fehler-/Wiederholungszustand | ◐ Cache gibt abgelehnte Importe frei (5 Lader); Oberflächentexte mit Fehlermeldung + Retry — **Werkzeugtexte und Generationsschutz offen** (2026-10-06) |
-| M4-005 | PDF-Ergebnisse nach Dateiwechsel dem falschen Namen zugeordnet | ◐ belegt 2026-10-06: A (1200 S.) verworfen, B allein sichtbar/speicherbar, Inhalt der 3 Ausgaben als `SEITE-B` geprüft; **dabei Produktfehler gefunden+behoben** (Knopf blieb nach Dateiwechsel gesperrt). **Offen:** Reihenfolge „A zuletzt fertig" nicht herstellbar (Verarbeitung 0,6 s), Unmount im Fehlerweg |
+| M4-005 | PDF-Ergebnisse nach Dateiwechsel dem falschen Namen zugeordnet | **✓ mit benannter Grenze** (2026-10-07): Abnahme auf dem heutigen Stand neu gefahren — A (1200 S.) verworfen, B allein sichtbar/speicherbar, Inhalt der 3 Ausgaben als `SEITE-B` geprüft, 60 s stabil; **Unmount im Erfolgs-, Lauf- und Fehlerweg belegt**. Dabei zwei Produktfehler gefunden+behoben (hängender Aktionsknopf; nicht freigegebene Adressen beim Verlassen während eines Auftrags). **Grenze:** Reihenfolge „A zuletzt fertig" nicht herstellbar (Verarbeitung 0,6 s, Grund gemessen) |
 | M4-006 | PDF-Teiler gibt Ergebnis-URLs beim Verlassen nicht frei | ◐ **Zählerabnahme erbracht** 2026-10-06: create 1203 / revoke 1200 / offen 3 im Betrieb, nach clientseitigem Unmount revoke 1203 / offen 0. **Offen:** gemeinsamer `useObjectUrls`-Hook (nicht Abnahmebedingung), StrictMode-Zyklus |
 | M4-007 | Sprach-Type-Guard akzeptiert geerbte Objektschlüssel | ✓ `hasOwnProperty.call` + `typeof`-Prüfung; `__proto__`/`constructor` abgewiesen (2026-10-06) |
 | M8-002 | Erste Offline-Bereitschaft hängt am flüchtigen HTTP-Cache | **✓ erfüllt** (2026-10-06): frisches Profil, HTTP-Cache gelöscht, **Dienst beendet** → Reload lädt vollständig (**23 von 23 Antworten aus dem Service Worker, 0 gescheitert**), dritte Sprache wird nicht geholt. Lösung: Warmlauf der Sprachpakete nach SW-Kontrolle + `ignoreVary` in der Laufzeitregel. Offen: Warmbesuch, Localewechsel, SW-Versionswechsel |

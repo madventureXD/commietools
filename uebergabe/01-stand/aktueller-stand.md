@@ -1,6 +1,30 @@
 # Aktueller Projektstand
 
 **Stand:** 2026-10-06
+**Zusatz 2026-10-07 (Faber), R3/M2-009-Durchzug — Einheit 1: M4-005 abgeschlossen, ein Leck behoben:**
+- **M4-005 ✓ mit benannter Grenze.** Abnahme auf dem heutigen Stand **neu gefahren**: A (1200 Seiten)
+  verworfen, B (3 Seiten) allein sichtbar und speicherbar, über **60 s** unverändert; Zähler
+  create 1203 / revoke 1200 / offen 3 → nach clientseitigem Routenwechsel revoke 1203 / **offen 0**.
+  Unbelegt bleibt allein die Zeitreihenfolge „A zuletzt fertig" — der Teiler braucht für 1200 Seiten
+  rund 0,6 s, der Grund ist gemessen, es wurde **kein** Ersatzbeleg erfunden.
+- **Produktfehler gefunden und behoben:** Verlässt man die Route, **während** ein Auftrag läuft,
+  blieben **alle Ergebnisadressen** offen. Der Aufräumeffekt gab nur die bereits gesetzte Liste frei
+  und erhöhte die Auftragsgeneration nicht, deshalb schrieb der späte Auftrag sein Ergebnis in eine
+  ausgehängte Komponente. Gemessen an 1200 Seiten: vorher create 1200 / revoke 0 / **offen 1200**,
+  nachher create 1200 / revoke 1200 / **offen 0**. Behebung in `apps/web/src/tools/PdfSplit.tsx`
+  (Commit `30d949a`). Der dritte Abnahmefall — Verlassen aus dem **Fehlerzustand** — ist ebenfalls
+  belegt (0/0/0, keine Ausnahme, keine Konsolenfehler).
+- **Prüfmittel repariert (eigener Fehler):** Das Abnahmeskript merkte sich die Knoten-ID des
+  Dateifelds **einmal** und benutzte sie für beide Auswahlen; ein Lauf, in dem B nie ankam, meldete
+  trotzdem Erfolg. Jetzt frische Kennung vor **jeder** Auswahl, Warten auf die Reaktion der Seite
+  und **Abbruch**, wenn der erwartete Dateiname fehlt.
+- **Neu offen, ausdrücklich ungemessen:** dasselbe Adressmuster in acht weiteren Werkzeugdateien
+  (`PdfToImages`, `ImageMetadata`, `ImageResize`, `ImageWatermark`, `IconGenerator`,
+  `PdfInteractiveTools`, `PdfSecurityTools`, `PdfPlacementTools`) — Fund am Quelltext, Folgearbeit.
+- Prüfkette: **`npm run check` 687 Tests in 46 Dateien, Exit 0** · **`npm run build` Exit 0,
+  Startbündel 148 998 B gzip**. Protokoll-Nachtrag:
+  `06-protokolle/2026-10-06-m4-005-m4-006-pdf-auftraege-urls.md`. **Nichts gepusht.**
+
 **Zusatz 2026-10-06 (Faber), QM-Sanierung R3/R4 — nach dem Durchzug:**
 - **M8-002 (R3, erfüllt):** Offline-Bereitschaft des ersten Besuchs — Warmlauf der beim Start
   geholten Sprachpakete (`apps/web/src/pwaWarmCache.ts`) und **`ignoreVary: true`** in der
