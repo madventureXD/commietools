@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest'
 import { createTranslator, detectLocale, loadInterfaceMessages, localeRegistry, supportedLocales } from '@commietools/i18n'
-import { buildQrPayload, convertCase, encodeQrPayload, formatJson, getSuiteTools, getTextStatistics, suiteManifests, toolByRoute } from '@commietools/tools'
+import { buildQrPayload, convertCase, encodeQrPayload, getSuiteTools, getTextStatistics, suiteManifests, toolByRoute } from '@commietools/tools'
+import { formatJson } from '@commietools/tools/developer/json-formatter'
 import { loadAllToolTexts } from '@commietools/tools/text-loaders'
 
 const deMessages = await loadAllToolTexts('de')

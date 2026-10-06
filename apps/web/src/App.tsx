@@ -1,7 +1,7 @@
 import { lazy, Suspense, useEffect, useMemo, useRef, useState } from 'react'
 import type { SuiteManifest, ToolManifest, ToolSearchEntry } from '@commietools/core'
 import { createTranslator, detectLocale, isLocale, loadInterfaceMessages, localeRegistry, supportedLocales, type Locale } from '@commietools/i18n'
-import { convertCase, formatJson, getSuiteTools, getTextStatistics, loadToolSearchIndex, MIN_QUERY_LENGTH, searchEntryById, suiteByRoute, suiteManifests, toolByRoute, type CaseMode } from '@commietools/tools'
+import { convertCase, getSuiteTools, getTextStatistics, loadToolSearchIndex, MIN_QUERY_LENGTH, searchEntryById, suiteByRoute, suiteManifests, toolByRoute, type CaseMode } from '@commietools/tools'
 import { Button, LocalBadge } from '@commietools/ui'
 import { PipTrigger, PipWrapper } from '@pip-it-up/react'
 import { CatalogSection } from './CatalogSection'
@@ -16,6 +16,13 @@ import { IconGenerator } from './tools/IconGenerator'
 import { ImageWatermark } from './tools/ImageWatermark'
 import { ColorTools } from './tools/ColorTools'
 import { QrCodeGenerator } from './tools/QrCodeGenerator'
+import { TextArea } from './tools/text-area'
+
+/**
+ * Der JSON-Formatierer lädt nach (Karte M6-001): seine Logik benutzt `jsonc-parser`, und die soll
+ * nur auf dieser Route ankommen, nicht bei jedem Aufruf der Startseite.
+ */
+const JsonFormatter = lazy(() => import('./tools/JsonFormatter').then((module) => ({ default: module.JsonFormatter })))
 
 const PdfMerge = lazy(() => import('./tools/PdfMerge').then((module) => ({ default: module.PdfMerge })))
 const PdfSplit = lazy(() => import('./tools/PdfSplit').then((module) => ({ default: module.PdfSplit })))
@@ -100,10 +107,6 @@ function usePathname() {
   }] as const
 }
 
-function TextArea({ label, value, onChange, readOnly = false }: { label: string; value: string; onChange?: (value: string) => void; readOnly?: boolean }) {
-  return <div className="input-panel"><label>{label}<textarea value={value} onChange={(event) => onChange?.(event.target.value)} readOnly={readOnly} /></label></div>
-}
-
 function TextStatisticsTool({ t }: { t: Translate }) {
   const [text, setText] = useState('')
   const stats = useMemo(() => getTextStatistics(text), [text])
@@ -116,13 +119,6 @@ function CaseConverterTool({ t, locale }: { t: Translate; locale: Locale }) {
   const output = useMemo(() => convertCase(text, mode, locale), [text, mode, locale])
   const labels: Record<CaseMode, string> = { upper: 'tool.caseConverter.upper', lower: 'tool.caseConverter.lower', title: 'tool.caseConverter.titleCase' }
   return <div className="stack"><TextArea label={t('tool.caseConverter.input')} value={text} onChange={setText} /><div className="segmented" aria-label="Case mode">{(['upper', 'lower', 'title'] as const).map((item) => <Button key={item} className={mode === item ? 'active' : ''} onClick={() => setMode(item)}>{t(labels[item])}</Button>)}</div><TextArea label={t('tool.result')} value={output} readOnly /></div>
-}
-
-function JsonFormatterTool({ t }: { t: Translate }) {
-  const [text, setText] = useState('')
-  const [indentation, setIndentation] = useState(2)
-  const result = useMemo(() => formatJson(text, indentation), [text, indentation])
-  return <div className="stack"><div className="inline-field"><label htmlFor="indentation">{t('tool.jsonFormatter.indentation')}</label><select id="indentation" value={indentation} onChange={(event) => setIndentation(Number(event.target.value))}><option value="2">2</option><option value="4">4</option></select></div><div className="tool-grid"><TextArea label={t('tool.jsonFormatter.input')} value={text} onChange={setText} /><div><TextArea label={t('tool.result')} value={result.value} readOnly />{result.error && <p className="error" role="alert">{t('tool.jsonFormatter.invalid')}</p>}</div></div></div>
 }
 
 function ToolPage({ tool, t, locale, navigate, ready }: { tool: ToolManifest; t: Translate; locale: Locale; navigate: (path: string) => void; ready: boolean }) {
@@ -156,7 +152,7 @@ function ToolPage({ tool, t, locale, navigate, ready }: { tool: ToolManifest; t:
   }
   const content = tool.id === 'text-statistics' ? <TextStatisticsTool t={t} />
     : tool.id === 'case-converter' ? <CaseConverterTool t={t} locale={locale} />
-      : tool.id === 'json-formatter' ? <JsonFormatterTool t={t} />
+      : tool.id === 'json-formatter' ? <Suspense fallback={<p aria-live="polite">…</p>}><JsonFormatter t={t} /></Suspense>
         : tool.id === 'qr-code-generator' ? <QrCodeGenerator t={t} />
           : tool.id === 'image-metadata' ? <ImageMetadata t={t} locale={locale} />
             : tool.id === 'image-resize' ? <ImageResize t={t} locale={locale} />

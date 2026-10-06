@@ -4,5 +4,7 @@
 export const messages: Readonly<Record<string, string>> = {
   "tool.jsonFormatter.input": "Introducir JSON",
   "tool.jsonFormatter.indentation": "Sangría",
-  "tool.jsonFormatter.invalid": "El JSON introducido no es válido."
+  "tool.jsonFormatter.invalid": "El JSON introducido no es válido.",
+  "tool.jsonFormatter.errorLine": "Línea",
+  "tool.jsonFormatter.errorColumn": "Columna"
 }

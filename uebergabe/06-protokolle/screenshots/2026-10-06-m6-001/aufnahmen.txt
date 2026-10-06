@@ -1,0 +1,23 @@
+ok Startseite lädt keinen JSON-Formatierer-Chunk (7 Skripte geprüft)
+ok Startbündel index-CwYpvqWh.js enthält den JSON-Parser nicht (503721 Zeichen geprüft)
+ok Werkzeugroute lädt einen eigenen Chunk (JsonFormatter-BgLbGY3I.js) unter 13 Skripten
+ok Werkzeug-Chunk enthält den JSON-Parser (13665 Zeichen)
+ERGEBNIS "{\n  \"gross\": 9007199254740993,\n  \"neg\": -9007199254740993,\n  \"exp\": 1e309,\n  \"null\": -0,\n  \"tail\": 1.2300,\n  \"dup\": 1,\n  \"dup\": 2\n}"
+ok Tokenfolge unverändert (9007199254740993, -9007199254740993, 1e309, -0, 1.2300, doppelte Schlüssel)
+ok kein Fehler gemeldet ()
+ok eingerückt mit zwei Leerzeichen
+ok kein Sprachschlüssel auf der Seite sichtbar
+BILD 01-tokenfolge-dunkel-1360.png
+ok zweites Formatieren ändert nichts
+ok Einrückung 4 wirkt ("{\n    \"a\": 1\n}")
+KOMMENTAR Fehlertext: "Das eingegebene JSON ist nicht gültig. — Zeile 1, Spalte 9"
+ok Kommentar abgelehnt mit Zeilenangabe („Das eingegebene JSON ist nicht gültig. — Zeile 1, Spalte 9")
+ok ungültige Eingabe bleibt unverändert stehen
+BILD 02-kommentar-fehler-dunkel-1360.png
+TRAILING Fehlertext: "Das eingegebene JSON ist nicht gültig. — Zeile 3, Spalte 1"
+ok abschließendes Komma abgelehnt, Stelle in Zeile 3 („Das eingegebene JSON ist nicht gültig. — Zeile 3, Spalte 1")
+ok schmal/hell: Tokenfolge weiterhin unverändert
+ok keine Überbreite bei 390 px (0 px)
+BILD 03-schmal-hell-390.png
+KONSOLENFEHLER: keine
+ERGEBNIS: alle Prüfungen bestanden

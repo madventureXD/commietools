@@ -174,17 +174,6 @@ export function convertCase(input: string, mode: CaseMode, locale = 'de-DE'): st
   return input.toLocaleLowerCase(locale).replace(/(^|\s)(\p{L})/gu, (_, space: string, letter: string) => `${space}${letter.toLocaleUpperCase(locale)}`)
 }
 
-export interface JsonFormatResult { value: string; error: string | null }
-
-export function formatJson(input: string, indentation = 2): JsonFormatResult {
-  if (!input.trim()) return { value: '', error: null }
-  try {
-    return { value: JSON.stringify(JSON.parse(input), null, indentation), error: null }
-  } catch {
-    return { value: input, error: 'invalid-json' }
-  }
-}
-
 export type QrContentType = 'text' | 'url' | 'wifi' | 'contact' | 'email' | 'phone' | 'sms' | 'geo'
 
 export interface QrPayloadInput {

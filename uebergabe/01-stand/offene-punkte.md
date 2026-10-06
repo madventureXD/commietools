@@ -439,6 +439,22 @@ Diese Liste enthält bestätigte, noch nicht abgeschlossene Arbeit. Details geh�
   M8-004** sowie die beiden Entscheidungen aus M3-002 (Importvertrag) und M4-002 (Kennzeichnung der
   Anzeige-Nullung).
 
+- [x] **M6-001 — JSON-Formatierung verändert Zahlenwerte ohne Hinweis: erledigt** *(Nachtrag
+  2026-10-06)*. `JSON.parse` + `JSON.stringify` schrieb das Dokument aus Werten neu: aus
+  `9007199254740993` wurde `…992`, aus `"\u00e4"` ein `"ä"`, aus `1e309` ein `null`. Neu sind es
+  **Textedits** auf dem Originaltext (`jsonc-parser` 3.3.1, MIT, ohne Unterabhängigkeiten); das
+  parse-Ergebnis wird nie serialisiert. Kommentare und abschließendes Komma werden abgelehnt, die
+  Fehlerstelle **als Zeile und Spalte** angezeigt (drei Sprachen). Das Werkzeug liegt jetzt
+  **außerhalb des Startbündels** (Logik hinter eigenem Unterpfad, Oberfläche über `lazy`):
+  Werkzeug-Chunk 4,86 kB gzip, Startbündel 148 147 → 148 032 B gzip. Entscheidung und Kosten in
+  **ADR 0012**. Bericht: `06-protokolle/2026-10-06-m6-001-json-textedits.md`. **Nicht gepusht.**
+  - [ ] Offen aus M6-001: Der Browserbeleg (`work/json-beleg.cjs`) liegt außerhalb der
+    Versionierung — bekannter Punkt M10-004.
+  - [ ] ADR-Index: **0012** nachgetragen; der Index selbst ist vollständig (ADR 0011 stand bereits
+    dort — ein eigener Fehlschluss aus abgeschnittenem Lesen, im Protokoll benannt).
+- [ ] **Überholt (zweiter Nachtrag 2026-10-06):** Auch der zweite Überholt-Vermerk ist unvollständig
+  — **M6-001 ist erledigt**. Offen sind in R2 jetzt noch **M6-002** und **M8-004**.
+
 ## Pflege
 
 - Erledigte Punkte mit Verweis auf Commit oder ADR in ein Fortschrittsprotokoll übernehmen und anschließend hier entfernen.
