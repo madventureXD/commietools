@@ -313,9 +313,22 @@ Diese Liste enthält bestätigte, noch nicht abgeschlossene Arbeit. Details geh�
   Paket erneuert (176 Komponenten, 171 mit Originalhinweis). Bericht:
   `06-protokolle/2026-10-06-m9-004-lopdf-anhebung.md`, Aufnahmen in
   `06-protokolle/screenshots/2026-10-06-m9004/`. **Nicht gepusht.**)*
-- [ ] **OCR-Ursache klären:** Das OCR-Werkzeug meldet für eine gültige Bildseite „Die PDF konnte
+- [x] **OCR-Ursache klären:** Das OCR-Werkzeug meldet für eine gültige Bildseite „Die PDF konnte
   nicht verarbeitet werden." Der Fehlschlag tritt **auch ohne CSP** auf, und der PDF-Viewer liest
   dieselbe Datei fehlerfrei — die CSP ist nicht die Ursache. Hängt an der Abnahme von M8-001.
+  *(2026-10-06, **geklärt: es war mein Prüfmittel, nicht das Produkt.** Die Konsolenmitschrift
+  (`work/m8-001-ocr-diagnose.cjs`) zeigt `Failed to load module script: … non-JavaScript MIME type
+  of "application/octet-stream"`: `work/csp-server.mjs` kannte die Endung `.mjs` nicht und lieferte
+  den pdf.js-Worker (`pdf.worker.min-*.mjs`) als Binärstrom aus. Der Browser lehnt ein Modul-Skript
+  mit falschem Typ ab, pdf.js kann nicht arbeiten, das Werkzeug meldet den generischen PDF-Fehler —
+  und zwar **unabhängig von der CSP**, genau wie beobachtet. Nach Ergänzung von `.mjs` in der
+  MIME-Tabelle: OCR läuft unter den gebauten Auslieferungsheadern, 329 Zeichen erkannt, „Gewinde"
+  gefunden, keine Konsolenfehler (Aufnahme
+  `06-protokolle/screenshots/2026-10-06-m8-001-ocr/ocr-erfolg.png`). **Offen bleibt** der Rest der
+  M8-001-Abnahme: Abbruch, beschädigtes Modell, Offlinewiederholung. **Wichtig zur Einordnung:**
+  Die ausgelieferte Seite (online geprüft) scheitert weiterhin — dort greift noch die alte CSP
+  (`script-src 'self'` blockt den tesseract-Core), weil die M8-001-Reparatur committet, aber
+  **nicht gepusht** ist.)*
 - [ ] **Vier Lizenzfragen zur Entscheidung** (stehen mit Grund und Datum in `licenses/rust-review.json`):
   `zlib-rs` (Lizenz „Zlib" nicht in der Richtlinie), `unicode-ident` („Unicode-3.0" fehlt),
   `pdf_signer` 0.3.2 (GPL-3.0-or-later, bereits ausgeliefert — bewusst so lassen?), und ob die
