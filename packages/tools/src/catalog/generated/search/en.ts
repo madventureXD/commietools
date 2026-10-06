@@ -1734,5 +1734,55 @@ export const searchLocale: Readonly<Record<string, ToolLocaleEntry>> = {
       "#inspection",
       "#safety"
     ]
+  },
+  "photo-caption": {
+    "title": "Site photo captioner",
+    "summary": "Caption photos with time, note and arrow; save them as one combined PDF.",
+    "description": "Caption photos locally with the capture time from the image data, your own note and an arrow to the crucial spot, and turn them into one combined PDF. The images never leave the device.",
+    "terms": [
+      "caption photo",
+      "site photo",
+      "photo documentation",
+      "label",
+      "timestamp",
+      "exif",
+      "capture time",
+      "arrow",
+      "mark",
+      "site diary",
+      "defect photo",
+      "combined pdf",
+      "photo to pdf",
+      "documentation"
+    ],
+    "tags": [
+      "#photo",
+      "#site"
+    ]
+  },
+  "handover-report": {
+    "title": "Handover and defect report",
+    "summary": "Record defects with deadline, photos and signature; save as a PDF.",
+    "description": "Record a handover or acceptance on site: header details, defect lines with a deadline, photos and a signature — turned into a finished PDF. Warranty periods are calculated from the acceptance date. Everything stays on the device.",
+    "terms": [
+      "handover report",
+      "acceptance report",
+      "defect report",
+      "defects",
+      "acceptance",
+      "handover",
+      "warranty",
+      "deadline",
+      "signature",
+      "photos",
+      "site",
+      "trade",
+      "documentation",
+      "pdf"
+    ],
+    "tags": [
+      "#report",
+      "#site"
+    ]
   }
 }

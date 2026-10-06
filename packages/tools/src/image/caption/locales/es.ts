@@ -1,0 +1,37 @@
+export const photoCaptionEs = {
+  'tool.photoCaption.title': 'Rotulador de fotos de obra',
+  'tool.photoCaption.description': 'Rotular fotos localmente con la hora de captura de los datos de la imagen, una nota propia y una flecha hacia el punto decisivo, y reunirlas en un solo PDF. Las imágenes no salen del dispositivo.',
+  'tool.photoCaption.summary': 'Rotular fotos con hora, nota y flecha; guardarlas como un solo PDF.',
+  'tool.photoCaption.terms': 'rotular foto,foto de obra,documentación fotográfica,rótulo,marca de tiempo,exif,hora de captura,flecha,marcar,diario de obra,foto de defecto,pdf conjunto,foto a pdf,documentación,#foto,#obra',
+
+  'tool.photoCaption.choose': 'Elegir fotos (JPEG, PNG, WebP)',
+  'tool.photoCaption.local': 'Todo permanece en el dispositivo: sin subida, sin transmisión.',
+  'tool.photoCaption.photos': 'Fotos',
+  'tool.photoCaption.empty': 'Todavía no hay fotos elegidas. La hora de captura se lee de los datos de la imagen cuando existe.',
+  'tool.photoCaption.note': 'Nota',
+  'tool.photoCaption.timestamp': 'Hora de captura',
+  'tool.photoCaption.fromExif': 'leída de los datos de la imagen',
+  'tool.photoCaption.fromModified': 'leída de los datos de la imagen (fecha de modificación del archivo; no es forzosamente la hora de captura)',
+  'tool.photoCaption.noExif': 'no hay hora de captura en el archivo: el campo queda vacío',
+  'tool.photoCaption.arrowHint': 'Flecha: tocar o hacer clic en la vista previa. La flecha señala ese punto.',
+  'tool.photoCaption.arrowClear': 'Quitar la flecha',
+  'tool.photoCaption.remove': 'Quitar la foto',
+  'tool.photoCaption.preview': 'Vista previa',
+  'tool.photoCaption.render': 'Rotular las fotos',
+  'tool.photoCaption.rendering': 'Calculando …',
+  'tool.photoCaption.result': 'Resultado',
+  'tool.photoCaption.resultNote': 'Un archivo por foto y además un PDF conjunto. Los nombres se pueden cambiar antes de guardar.',
+  'tool.photoCaption.pdfName': 'documentacion-fotografica.pdf',
+  'tool.photoCaption.settings': 'Salida',
+  'tool.photoCaption.format': 'Formato de imagen de los archivos sueltos',
+
+  'tool.photoCaption.assumptions': 'Supuestos: la hora de captura procede de los datos de la imagen (`DateTimeOriginal`, si no `CreateDate`, si no `ModifyDate`) y **no se inventa**: si falta, el campo queda vacío y el rótulo muestra solo la nota. Si procede solo de la fecha de modificación del archivo, se indica expresamente; no es forzosamente la hora de captura. La hora se puede sobrescribir, porque el reloj de una cámara puede estar mal. El rótulo va en una banda inferior; la flecha sube en vertical desde la banda hasta el punto marcado. La disposición se calcula como proporción de la superficie de la imagen para que la vista previa y el resultado se vean igual. **No incluido:** reducir imágenes (para eso está «Redimensionar imagen»), censurar, detectar personas o lugares. Los datos Exif solo se leen, nunca se modifican.',
+  'tool.photoCaption.sources': 'Datos de imagen: lector EXIF propio del proyecto (sin biblioteca ajena, véase la herramienta «Metadatos de imagen»). PDF: el motor PDF ya presente en el proyecto, el mismo que usa «Imágenes a PDF». Sin referencias a normas y sin sugerencias sobre tamaños de archivo.',
+
+  'tool.photoCaption.error.none': 'Elegir primero las fotos.',
+  'tool.photoCaption.error.tooMany': 'Demasiadas fotos a la vez (60 como máximo). Conviene trabajar en dos tandas.',
+  'tool.photoCaption.error.image': 'Una imagen no se pudo leer. Se ha omitido; conviene revisar el archivo.',
+  'tool.photoCaption.error.note': 'Una nota es demasiado larga (160 caracteres como máximo).',
+  'tool.photoCaption.error.timestamp': 'Una hora de captura no es utilizable (se espera AAAA-MM-DD HH:MM).',
+  'tool.photoCaption.error.selection': 'La selección no contenía ningún archivo de imagen legible.'
+} as const

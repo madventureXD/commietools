@@ -68,7 +68,7 @@ describe('search over declared file types and labels', () => {
     // The two image tools carry "WebP" as a curated term, the QR tool only as a
     // declared output type - the curated term ranks above the derived type.
     const byType = searchTools(germanIndex, { query: 'webp', locale: 'de', label: de })
-    expect(byType.map((match) => match.entry.id)).toEqual(['image-metadata', 'image-resize', 'image-watermark', 'qr-code-generator', 'icon-generator', 'color-tools'])
+    expect(byType.map((match) => match.entry.id)).toEqual(['image-metadata', 'image-resize', 'image-watermark', 'qr-code-generator', 'icon-generator', 'color-tools', 'photo-caption'])
     expect(byType.slice(0, 3).every((match) => match.field === 'term')).toBe(true)
     expect(byType[3]?.field).toBe('format')
     expect(germanIds('heic')).toEqual(['image-metadata'])
@@ -78,7 +78,7 @@ describe('search over declared file types and labels', () => {
 
   it('finds tools by tag and by keyword', () => {
     expect(germanIds('#bilder')).toEqual(['image-metadata', 'image-resize', 'image-watermark', 'images-to-pdf', 'pdf-to-images'])
-    expect(germanIds('bilder')).toEqual(['images-to-pdf', 'pdf-compress', 'image-metadata', 'image-resize', 'image-watermark', 'pdf-to-images', 'color-tools', 'icon-generator'])
+    expect(germanIds('bilder')).toEqual(['images-to-pdf', 'pdf-compress', 'image-metadata', 'image-resize', 'image-watermark', 'pdf-to-images', 'color-tools', 'photo-caption', 'icon-generator'])
     expect(germanIds('#datenschutz')).toEqual(['image-metadata'])
   })
 
@@ -90,7 +90,7 @@ describe('search over declared file types and labels', () => {
   })
 
   it('works without a label resolver too', () => {
-    expect(searchTools(germanIndex, { query: 'webp', locale: 'de' }).length).toBe(6)
+    expect(searchTools(germanIndex, { query: 'webp', locale: 'de' }).length).toBe(7)
     expect(searchTools(germanIndex, { query: 'exif', locale: 'de' })[0]?.entry.id).toBe('image-metadata')
   })
 })
@@ -128,7 +128,7 @@ describe('search ranking and completeness', () => {
 
   it('keeps the catalogue order when scores are equal', () => {
     // "Bild" scores the same for several tools, so the catalogue decides their order.
-    expect(germanIds('bild')).toEqual(['qr-code-generator', 'image-metadata', 'image-resize', 'image-watermark', 'images-to-pdf', 'pdf-compress', 'pdf-to-images', 'icon-generator', 'color-tools', 'pdf-visible-signature'])
+    expect(germanIds('bild')).toEqual(['qr-code-generator', 'image-metadata', 'image-resize', 'image-watermark', 'images-to-pdf', 'pdf-compress', 'pdf-to-images', 'icon-generator', 'color-tools', 'pdf-visible-signature', 'photo-caption'])
   })
 
   it('answers a nonsense query with nothing instead of guessing', () => {

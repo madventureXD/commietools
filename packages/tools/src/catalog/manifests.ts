@@ -383,6 +383,28 @@ export const toolManifests: readonly ToolManifest[] = [
     titleKey: 'tool.inspection.title', descriptionKey: 'tool.inspection.description',
     summaryKey: 'tool.inspection.summary', termsKey: 'tool.inspection.terms',
     executionMode: 'local', resourceClass: 'standard', worksOffline: true
+  },
+  {
+    id: 'photo-caption', route: '/tools/photo-caption', category: 'image',
+    titleKey: 'tool.photoCaption.title', descriptionKey: 'tool.photoCaption.description',
+    summaryKey: 'tool.photoCaption.summary', termsKey: 'tool.photoCaption.terms',
+    executionMode: 'local', resourceClass: 'standard', worksOffline: true,
+    files: {
+      input: ['image/jpeg', 'image/png', 'image/webp'],
+      output: ['image/jpeg', 'application/pdf']
+    }
+  },
+  {
+    id: 'handover-report', route: '/tools/handover-report', category: 'craft',
+    titleKey: 'tool.handover.title', descriptionKey: 'tool.handover.description',
+    summaryKey: 'tool.handover.summary', termsKey: 'tool.handover.terms',
+    executionMode: 'local', resourceClass: 'standard', worksOffline: true,
+    files: {
+      // Nur JPEG und PNG: andere Formate kann die PDF-Engine nicht einbetten. WebP wird bewusst
+      // nicht angenommen, statt es stillschweigend zu überspringen.
+      input: ['image/jpeg', 'image/png'],
+      output: ['application/pdf']
+    }
   }
 ]
 
@@ -390,8 +412,8 @@ export const suiteManifests: readonly SuiteManifest[] = [
   { id: 'text', route: '/suites/text', titleKey: 'suite.text.title', descriptionKey: 'suite.text.description', toolIds: ['text-statistics', 'case-converter'] },
   { id: 'developer', route: '/suites/developer', titleKey: 'suite.developer.title', descriptionKey: 'suite.developer.description', toolIds: ['json-formatter'] },
   { id: 'generators', route: '/suites/generators', titleKey: 'suite.generators.title', descriptionKey: 'suite.generators.description', toolIds: ['qr-code-generator'] },
-  { id: 'image', route: '/suites/image', titleKey: 'suite.image.title', descriptionKey: 'suite.image.description', toolIds: ['image-metadata', 'image-resize', 'icon-generator', 'image-watermark', 'color-tools'] },
+  { id: 'image', route: '/suites/image', titleKey: 'suite.image.title', descriptionKey: 'suite.image.description', toolIds: ['image-metadata', 'image-resize', 'icon-generator', 'image-watermark', 'color-tools', 'photo-caption'] },
   { id: 'pdf', route: '/suites/pdf', titleKey: 'suite.pdf.title', descriptionKey: 'suite.pdf.description', toolIds: ['pdf-viewer', 'pdf-text-ocr', 'pdf-signature-verify', 'pdf-certificate-sign', 'pdf-a-preflight', 'pdf-redact', 'pdf-metadata', 'pdf-crop', 'pdf-repair', 'pdf-attachments', 'pdf-compare', 'pdf-merge', 'pdf-split', 'pdf-organize', 'images-to-pdf', 'pdf-to-images', 'pdf-watermark', 'pdf-page-numbers', 'pdf-visible-signature', 'pdf-form-fill', 'pdf-annotate', 'pdf-security', 'pdf-compress'] },
   { id: 'calculator', route: '/suites/calculator', titleKey: 'suite.calculator.title', descriptionKey: 'suite.calculator.description', toolIds: ['calculator', 'scientific-calculator', 'programmer-calculator', 'rpn-calculator', 'convert', 'commercial', 'datetime', 'plotter', 'statistics', 'equations', 'geometry', 'aufmass'] },
-  { id: 'craft', route: '/suites/craft', titleKey: 'suite.craft.title', descriptionKey: 'suite.craft.description', toolIds: ['concrete', 'roof', 'metal-weight', 'wood', 'tiles', 'paint', 'drywall', 'flooring', 'paving', 'tires', 'inspection'] }
+  { id: 'craft', route: '/suites/craft', titleKey: 'suite.craft.title', descriptionKey: 'suite.craft.description', toolIds: ['concrete', 'roof', 'metal-weight', 'wood', 'tiles', 'paint', 'drywall', 'flooring', 'paving', 'tires', 'inspection', 'handover-report'] }
 ]

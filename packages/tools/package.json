@@ -31,6 +31,9 @@
     "./craft/paint": "./src/craft/paint.ts",
     "./craft/inspection": "./src/craft/inspection.ts",
     "./craft/inspectionStore": "./src/craft/inspectionStore.ts",
+    "./image/caption": "./src/image/caption.ts",
+    "./craft/handover": "./src/craft/handover.ts",
+    "./pdf/report": "./src/pdf/report.ts",
     "./calculator/keypad": "./src/calculator/keypad.ts",
     "./calculator/keypads": "./src/calculator/keypads/index.ts",
     "./calculator/keypads/standard": "./src/calculator/keypads/standard.ts",
@@ -44,6 +47,7 @@
     "./pdf/m7": "./src/pdf/m7.ts",
     "./pdf/m8": "./src/pdf/m8.ts",
     "./pdf/m9": "./src/pdf/m9.ts",
+    "./pdf/report": "./src/pdf/report.ts",
     "./text-loaders": "./src/catalog/generated/textLoaders.ts"
   },
   "dependencies": {

@@ -1,0 +1,37 @@
+export const photoCaptionEn = {
+  'tool.photoCaption.title': 'Site photo captioner',
+  'tool.photoCaption.description': 'Caption photos locally with the capture time from the image data, your own note and an arrow to the crucial spot, and turn them into one combined PDF. The images never leave the device.',
+  'tool.photoCaption.summary': 'Caption photos with time, note and arrow; save them as one combined PDF.',
+  'tool.photoCaption.terms': 'caption photo,site photo,photo documentation,label,timestamp,exif,capture time,arrow,mark,site diary,defect photo,combined pdf,photo to pdf,documentation,#photo,#site',
+
+  'tool.photoCaption.choose': 'Choose photos (JPEG, PNG, WebP)',
+  'tool.photoCaption.local': 'Everything stays on the device: no upload, no transfer.',
+  'tool.photoCaption.photos': 'Photos',
+  'tool.photoCaption.empty': 'No photos chosen yet. The capture time is read from the image data when there is one.',
+  'tool.photoCaption.note': 'Note',
+  'tool.photoCaption.timestamp': 'Capture time',
+  'tool.photoCaption.fromExif': 'read from the image data',
+  'tool.photoCaption.fromModified': 'read from the image data (file modification date — not necessarily the capture time)',
+  'tool.photoCaption.noExif': 'no capture time in the file — the field stays empty',
+  'tool.photoCaption.arrowHint': 'Arrow: tap or click into the preview. The arrow points at that spot.',
+  'tool.photoCaption.arrowClear': 'Remove arrow',
+  'tool.photoCaption.remove': 'Remove photo',
+  'tool.photoCaption.preview': 'Preview',
+  'tool.photoCaption.render': 'Caption photos',
+  'tool.photoCaption.rendering': 'Working …',
+  'tool.photoCaption.result': 'Result',
+  'tool.photoCaption.resultNote': 'One file per photo plus one combined PDF. File names can be changed before saving.',
+  'tool.photoCaption.pdfName': 'photo-documentation.pdf',
+  'tool.photoCaption.settings': 'Output',
+  'tool.photoCaption.format': 'Image format of the single files',
+
+  'tool.photoCaption.assumptions': 'Assumptions: the capture time comes from the image data (`DateTimeOriginal`, else `CreateDate`, else `ModifyDate`) and is **never invented** — if it is missing the field stays empty and the caption shows only the note. If it comes only from the file modification date, that is stated explicitly; it is not necessarily the capture time. The timestamp can be overwritten, because a camera clock can be wrong. The caption sits in a band at the bottom; the arrow runs straight down from the band to the marked spot. The layout is calculated as a share of the image area so preview and result look the same. **Not included:** resizing images (that is what "Resize image" is for), redaction, detecting people or places. Exif data is only read, never changed.',
+  'tool.photoCaption.sources': 'Image data: the project\u2019s own EXIF reader (no third-party library, see the "Image metadata" tool). PDF: the PDF engine already in the project, the same one used by "Images to PDF". No standard references, no suggestions about file sizes.',
+
+  'tool.photoCaption.error.none': 'Choose photos first.',
+  'tool.photoCaption.error.tooMany': 'Too many photos at once (60 at most). Please work in two runs.',
+  'tool.photoCaption.error.image': 'One image could not be read. It was skipped — please check the file.',
+  'tool.photoCaption.error.note': 'One note is too long (160 characters at most).',
+  'tool.photoCaption.error.timestamp': 'One capture time is unusable (expected YYYY-MM-DD HH:MM).',
+  'tool.photoCaption.error.selection': 'The selection contained no readable image file.'
+} as const

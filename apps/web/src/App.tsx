@@ -63,6 +63,8 @@ const Flooring = lazy(() => import('./tools/Flooring').then((module) => ({ defau
 const Paving = lazy(() => import('./tools/Paving').then((module) => ({ default: module.Paving })))
 const Tires = lazy(() => import('./tools/Tires').then((module) => ({ default: module.Tires })))
 const Inspection = lazy(() => import('./tools/Inspection').then((module) => ({ default: module.Inspection })))
+const PhotoCaption = lazy(() => import('./tools/PhotoCaption').then((module) => ({ default: module.PhotoCaption })))
+const HandoverReport = lazy(() => import('./tools/HandoverReport').then((module) => ({ default: module.HandoverReport })))
 
 type Theme = 'light' | 'dark'
 type Translate = (key: string) => string
@@ -179,6 +181,8 @@ function ToolPage({ tool, t, locale, navigate, ready }: { tool: ToolManifest; t:
                                   : tool.id === 'paving' ? <Suspense fallback={<p aria-live="polite">…</p>}><Paving t={t} locale={locale} /></Suspense>
                                   : tool.id === 'tires' ? <Suspense fallback={<p aria-live="polite">…</p>}><Tires t={t} locale={locale} /></Suspense>
                                   : tool.id === 'inspection' ? <Suspense fallback={<p aria-live="polite">…</p>}><Inspection t={t} locale={locale} /></Suspense>
+                                    : tool.id === 'photo-caption' ? <Suspense fallback={<p aria-live="polite">…</p>}><PhotoCaption t={t} locale={locale} /></Suspense>
+                                      : tool.id === 'handover-report' ? <Suspense fallback={<p aria-live="polite">…</p>}><HandoverReport t={t} locale={locale} /></Suspense>
               : tool.id === 'pdf-merge' ? <Suspense fallback={<p aria-live="polite">…</p>}><PdfMerge t={t} /></Suspense>
                 : tool.id === 'pdf-split' ? <Suspense fallback={<p aria-live="polite">…</p>}><PdfSplit t={t} /></Suspense>
                   : tool.id === 'pdf-organize' ? <Suspense fallback={<p aria-live="polite">…</p>}><PdfOrganize t={t} /></Suspense>

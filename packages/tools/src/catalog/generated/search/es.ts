@@ -1662,5 +1662,55 @@ export const searchLocale: Readonly<Record<string, ToolLocaleEntry>> = {
       "#inspeccion",
       "#prevencion"
     ]
+  },
+  "photo-caption": {
+    "title": "Rotulador de fotos de obra",
+    "summary": "Rotular fotos con hora, nota y flecha; guardarlas como un solo PDF.",
+    "description": "Rotular fotos localmente con la hora de captura de los datos de la imagen, una nota propia y una flecha hacia el punto decisivo, y reunirlas en un solo PDF. Las imágenes no salen del dispositivo.",
+    "terms": [
+      "rotular foto",
+      "foto de obra",
+      "documentación fotográfica",
+      "rótulo",
+      "marca de tiempo",
+      "exif",
+      "hora de captura",
+      "flecha",
+      "marcar",
+      "diario de obra",
+      "foto de defecto",
+      "pdf conjunto",
+      "foto a pdf",
+      "documentación"
+    ],
+    "tags": [
+      "#foto",
+      "#obra"
+    ]
+  },
+  "handover-report": {
+    "title": "Acta de entrega y defectos",
+    "summary": "Registrar defectos con plazo, fotos y firma y guardarlos como PDF.",
+    "description": "Registrar una entrega o recepción en obra: datos de cabecera, líneas de defectos con plazo, fotos y firma, y obtener un PDF terminado. Los plazos de garantía se calculan desde la fecha de recepción. Todo permanece en el dispositivo.",
+    "terms": [
+      "acta de entrega",
+      "acta de recepción",
+      "acta de defectos",
+      "defectos",
+      "recepción",
+      "entrega",
+      "garantía",
+      "plazo",
+      "firma",
+      "fotos",
+      "obra",
+      "oficio",
+      "documentación",
+      "pdf"
+    ],
+    "tags": [
+      "#acta",
+      "#obra"
+    ]
   }
 }

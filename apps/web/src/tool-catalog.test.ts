@@ -164,7 +164,7 @@ describe('declared file types', () => {
         expect(tool.files?.input?.length, tool.id).toBeGreaterThan(0)
       }
     }
-    expect(fileToolIds).toEqual(['image-metadata', 'image-resize', 'icon-generator', 'image-watermark', 'color-tools', 'pdf-merge', 'pdf-split', 'pdf-organize', 'images-to-pdf', 'pdf-to-images', 'pdf-watermark', 'pdf-page-numbers', 'pdf-visible-signature', 'pdf-form-fill', 'pdf-annotate', 'pdf-security', 'pdf-compress', 'pdf-viewer', 'pdf-text-ocr', 'pdf-certificate-sign', 'pdf-signature-verify', 'pdf-metadata', 'pdf-crop', 'pdf-repair', 'pdf-attachments', 'pdf-compare', 'pdf-a-preflight', 'pdf-redact'])
+    expect(fileToolIds).toEqual(['image-metadata', 'image-resize', 'icon-generator', 'image-watermark', 'color-tools', 'pdf-merge', 'pdf-split', 'pdf-organize', 'images-to-pdf', 'pdf-to-images', 'pdf-watermark', 'pdf-page-numbers', 'pdf-visible-signature', 'pdf-form-fill', 'pdf-annotate', 'pdf-security', 'pdf-compress', 'pdf-viewer', 'pdf-text-ocr', 'pdf-certificate-sign', 'pdf-signature-verify', 'pdf-metadata', 'pdf-crop', 'pdf-repair', 'pdf-attachments', 'pdf-compare', 'pdf-a-preflight', 'pdf-redact', 'photo-caption', 'handover-report'])
   })
 
   it('separates types that are only read from types that are written', () => {

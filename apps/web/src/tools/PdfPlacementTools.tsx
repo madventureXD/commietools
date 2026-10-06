@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, type ChangeEvent, type PointerEvent, type ReactNode } from 'react'
+import { useEffect, useState, type ChangeEvent, type ReactNode } from 'react'
 import {
   acceptAttributeFor,
   auxiliaryMimeTypes
@@ -14,6 +14,7 @@ import {
   type PdfPlacementAnchor
 } from '@commietools/tools/pdf/core'
 import { Button, LocalBadge } from '@commietools/ui'
+import { SignaturePad, canvasPng, type SignatureSource } from './SignaturePad'
 import { PdfWarnings, baseName, pdfErrorKey, usePdfThumbnails, type LoadedPdf, type Translate } from './pdfUi'
 import { SaveFileControl } from './SaveFileControl'
 
@@ -28,10 +29,6 @@ const anchorKeys: Record<PdfPlacementAnchor, string> = {
   'bottom-left': 'tool.pdfPlacement.bottomLeft',
   'bottom-center': 'tool.pdfPlacement.bottomCenter',
   'bottom-right': 'tool.pdfPlacement.bottomRight'
-}
-
-function canvasPng(canvas: HTMLCanvasElement): Promise<Uint8Array> {
-  return new Promise((resolve, reject) => canvas.toBlob(async (blob) => blob ? resolve(new Uint8Array(await blob.arrayBuffer())) : reject(new Error('PNG export failed')), 'image/png'))
 }
 
 async function renderTextPng(text: string, fontSize: number, color: string, font = 'system-ui, sans-serif'): Promise<Uint8Array> {
@@ -49,34 +46,6 @@ async function renderTextPng(text: string, fontSize: number, color: string, font
   final.textBaseline = 'middle'
   final.fillText(text, 4 * scale, canvas.height / 2)
   return canvasPng(canvas)
-}
-
-type SignatureSource = { bytes: Uint8Array; mimeType: 'image/png' | 'image/jpeg'; name: string }
-
-function SignaturePad({ onChange, clearLabel, label }: { onChange: (signature: SignatureSource | null) => void; clearLabel: string; label: string }) {
-  const canvasRef = useRef<HTMLCanvasElement>(null)
-  const drawing = useRef(false)
-  function point(event: PointerEvent<HTMLCanvasElement>) {
-    const canvas = canvasRef.current!
-    const rect = canvas.getBoundingClientRect()
-    return { x: (event.clientX - rect.left) * canvas.width / rect.width, y: (event.clientY - rect.top) * canvas.height / rect.height }
-  }
-  function start(event: PointerEvent<HTMLCanvasElement>) {
-    const canvas = canvasRef.current!; const context = canvas.getContext('2d')!; const at = point(event)
-    drawing.current = true; canvas.setPointerCapture(event.pointerId); context.beginPath(); context.moveTo(at.x, at.y)
-  }
-  function move(event: PointerEvent<HTMLCanvasElement>) {
-    if (!drawing.current) return
-    const context = canvasRef.current!.getContext('2d')!; const at = point(event)
-    context.lineWidth = 4; context.lineCap = 'round'; context.lineJoin = 'round'; context.strokeStyle = '#17181b'; context.lineTo(at.x, at.y); context.stroke()
-  }
-  async function end(event: PointerEvent<HTMLCanvasElement>) {
-    if (!drawing.current) return
-    drawing.current = false; canvasRef.current!.releasePointerCapture(event.pointerId)
-    onChange({ bytes: await canvasPng(canvasRef.current!), mimeType: 'image/png', name: label })
-  }
-  function clear() { const canvas = canvasRef.current!; canvas.getContext('2d')!.clearRect(0, 0, canvas.width, canvas.height); onChange(null) }
-  return <div className="signature-pad"><canvas ref={canvasRef} width="720" height="240" aria-label={label} onPointerDown={start} onPointerMove={move} onPointerUp={end} onPointerCancel={end} /><Button onClick={clear}>{clearLabel}</Button></div>
 }
 
 function AnchorSelect({ value, onChange, t }: { value: PdfPlacementAnchor; onChange: (value: PdfPlacementAnchor) => void; t: Translate }) {

@@ -1792,5 +1792,56 @@ export const searchLocale: Readonly<Record<string, ToolLocaleEntry>> = {
       "#prüffristen",
       "#arbeitsschutz"
     ]
+  },
+  "photo-caption": {
+    "title": "Baustellenfoto-Beschrifter",
+    "summary": "Fotos mit Zeitstempel, Notiz und Pfeil beschriften, als Sammel-PDF ausgeben.",
+    "description": "Fotos lokal mit Aufnahmezeit aus den Bilddaten, eigener Notiz und einem Pfeil auf die entscheidende Stelle versehen und daraus ein Sammel-PDF erzeugen. Die Bilder verlassen das Gerät nicht.",
+    "terms": [
+      "foto beschriften",
+      "baustellenfoto",
+      "fotodokumentation",
+      "beschriftung",
+      "zeitstempel",
+      "exif",
+      "aufnahmezeit",
+      "pfeil",
+      "markieren",
+      "bautagebuch",
+      "mängelfoto",
+      "sammel pdf",
+      "foto zu pdf",
+      "dokumentation"
+    ],
+    "tags": [
+      "#foto",
+      "#baustelle"
+    ]
+  },
+  "handover-report": {
+    "title": "Abnahme- und Mängelprotokoll",
+    "summary": "Mängel mit Frist, Fotos und Unterschrift erfassen und als PDF ausgeben.",
+    "description": "Übergabe oder Abnahme vor Ort protokollieren: Kopfangaben, Mängelzeilen mit Frist, Fotos und Unterschrift — daraus ein fertiges PDF. Gewährleistungsfristen werden aus dem Abnahmedatum berechnet. Alles bleibt im Gerät.",
+    "terms": [
+      "abnahmeprotokoll",
+      "übergabeprotokoll",
+      "mängelprotokoll",
+      "mängel",
+      "mangel",
+      "abnahme",
+      "übergabe",
+      "gewährleistung",
+      "frist",
+      "unterschrift",
+      "fotos",
+      "baustelle",
+      "handwerk",
+      "dokumentation",
+      "pdf"
+    ],
+    "tags": [
+      "#protokoll",
+      "#baustelle"
+    ]
   }
 }

@@ -997,5 +997,47 @@ export const toolIndex: readonly ToolCatalogEntry[] = [
     "input": [],
     "output": [],
     "auxiliary": []
+  },
+  {
+    "id": "photo-caption",
+    "route": "/tools/photo-caption",
+    "icon": "/tools/photo-caption.svg",
+    "category": "image",
+    "suiteIds": [
+      "image"
+    ],
+    "executionMode": "local",
+    "resourceClass": "standard",
+    "worksOffline": true,
+    "input": [
+      "image/jpeg",
+      "image/png",
+      "image/webp"
+    ],
+    "output": [
+      "image/jpeg",
+      "application/pdf"
+    ],
+    "auxiliary": []
+  },
+  {
+    "id": "handover-report",
+    "route": "/tools/handover-report",
+    "icon": "/tools/handover-report.svg",
+    "category": "craft",
+    "suiteIds": [
+      "craft"
+    ],
+    "executionMode": "local",
+    "resourceClass": "standard",
+    "worksOffline": true,
+    "input": [
+      "image/jpeg",
+      "image/png"
+    ],
+    "output": [
+      "application/pdf"
+    ],
+    "auxiliary": []
   }
 ]

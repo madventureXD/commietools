@@ -143,6 +143,9 @@ details.settings-card > summary { padding-block: var(--space-3); }
 .qr-preview { position: sticky; top: 6rem; text-align: center; }
 .preview-heading, .download-row { display: flex; align-items: center; justify-content: space-between; gap: var(--space-3); text-align: left; }
 .qr-canvas { display: grid; place-items: center; overflow: auto; max-width: 100%; min-height: 22rem; margin: var(--space-4) 0; padding: var(--space-3); border-radius: var(--radius-sm); background: #fff; }
+/* Foto-Beschrifter: die Vorschau wird mit fester Breite gezeichnet und hier auf die Spalte
+   skaliert, damit die Anordnung nicht von der Anzeigegröße abhängt. */
+.caption-canvas { display: block; width: 100%; max-width: 100%; height: auto; border: 1px solid var(--color-border); border-radius: var(--radius-sm); background: var(--color-surface); cursor: crosshair; }
 .qr-canvas svg, .qr-canvas canvas { display: block; max-width: 100%; height: auto; }
 .privacy-note { color: var(--color-success); font-weight: 700; }
 .scan-note { color: var(--color-text-muted); font-size: 0.9rem; line-height: 1.5; }
