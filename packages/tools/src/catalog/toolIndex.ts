@@ -1105,7 +1105,9 @@ export const toolIndex: readonly ToolCatalogEntry[] = [
     "route": "/tools/pipes",
     "icon": "/tools/pipes.svg",
     "category": "craft",
-    "suiteIds": [],
+    "suiteIds": [
+      "craft"
+    ],
     "executionMode": "local",
     "resourceClass": "standard",
     "worksOffline": true,
