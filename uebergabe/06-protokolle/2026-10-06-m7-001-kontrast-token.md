@@ -49,9 +49,10 @@ und gelesen wird am `.app`-Element. Der gemessene Knopf war `<button type="submi
 
 ## Was nicht geprüft ist
 
-- **Der Audit-Durchgang** (`viewport-audit.mjs a11y`, beide Schemata) — beim ersten Versuch ohne
-  Terminal abgebrochen (`stdin is not a tty`) und meldete trotzdem Exit 0. Läuft mit Terminal
-  erneut; das Ergebnis steht noch aus.
+- **Der Audit-Durchgang** (`viewport-audit.mjs a11y`) ist **gefahren und grün** — siehe Nachtrag
+  unten. Zunächst vier Anläufe gescheitert, alle an Vorbereitungsfehlern auf meiner Seite
+  (Terminal fehlte, eigener Datei-Redirect nahm das Terminal weg, Backtick im Prüfskript, falsche
+  Adresse).
 - **Hover und Fokus** auf den Aktionsflächen: nicht einzeln gemessen. Der Fokusring bleibt
   `--color-focus`, das ist unabhängig.
 - `.tool-menu-sorts .button.active` nutzt `--color-text`/`--color-surface` statt der Markenfarbe und
@@ -69,6 +70,21 @@ nicht — es gehört nicht zum Build. Der grüne Prüflauf (665 Tests, Exit 0) s
 also **nichts** aus; ich habe ihn zu Unrecht als Beleg mitgeführt. Behoben durch Entfernen der
 Backticks; `node --check scripts/viewport-audit.mjs` gehört ab jetzt zur Prüfung, wenn dieses Skript
 angefasst wird.
+
+## Nachtrag 2026-10-06: Prüfer-Durchgang bestanden
+
+`node scripts/viewport-audit.mjs a11y` in beiden Schemata, mit
+`COMMIETOOLS_AUDIT_URL=http://localhost:4173` (der Vorschauserver lauscht hier auf `localhost`
+bzw. `[::1]`, nicht auf `127.0.0.1` — das Skript gibt diesen Hinweis selbst):
+
+| Durchgang | Ergebnis |
+|---|---|
+| dunkles Schema | `Audit passed (a11y, Schema dark): 62 routes × 2 widths`, Exit 0 |
+| helles Schema | `Audit passed (a11y, Schema light): 62 routes × 2 widths`, Exit 0 |
+
+Jede Route meldet `ok` mit `Kontrast=0` und **`akzeptiert=0`** — die früheren Ausnahmen sind
+tatsächlich entfernt, und es gibt keine Kontrastbefunde. Damit ist die Karte auch über den
+Prüfer belegt und nicht nur über die Einzelmessung.
 
 ## Kennzahlen
 
