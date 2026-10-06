@@ -3,17 +3,22 @@ import { evaluate, evaluateRpn } from '@commietools/tools/calculator/core'
 import { calculatorFactoryNames } from '@commietools/tools/calculator/functions'
 import {
   SHEET_GROUPS,
-  appendRpnToken,
-  dropRpnToken,
   hasSecondPlane,
   isKeyEnabled,
   keypadFunctionNames,
   keypadKeys,
   resolveKey,
-  swapRpnTokens,
   type KeypadBase,
   type KeypadLayout
 } from '@commietools/tools/calculator/keypad'
+import {
+  parseRpnInput,
+  rpnActionForSnippet,
+  rpnInputReducer,
+  rpnInputText,
+  type RpnInputAction,
+  type RpnInputState
+} from '@commietools/tools/calculator/rpnInput'
 import { ALL_KEYPADS } from '@commietools/tools/calculator/keypads'
 import { PROGRAMMER_KEYPAD } from '@commietools/tools/calculator/keypads/programmer'
 import { RPN_KEYPAD } from '@commietools/tools/calculator/keypads/rpn'
@@ -247,11 +252,13 @@ describe('Tastenfeld', () => {
   })
 
   it('setzt in RPN ein Leerzeichen zwischen die Tokens', () => {
-    // Ohne das Leerzeichen wäre `4 5+` zwei Tokens (`4` und `5+`) und damit unlesbar.
-    expect(appendRpnToken('', '3')).toBe('3')
-    expect(appendRpnToken('3', '4')).toBe('3 4')
-    expect(appendRpnToken('3 4 ', '+')).toBe('3 4 +')
-    expect(appendRpnToken('3 4', '*').split(/\s+/u)).toEqual(['3', '4', '*'])
+    // Ohne das Leerzeichen wäre `4 5+` zwei Tokens (`4` und `5+`) und damit unlesbar. Seit Karte
+    // M6-002 liegt die Regel im Eingabereducer (`rpnInputText`), nicht mehr in einer Textfunktion.
+    const text = (tokens: string[], draft = '') => rpnInputText({ tokens, draft })
+    expect(text([], '3')).toBe('3')
+    expect(text(['3'], '4')).toBe('3 4')
+    expect(text(['3', '4'], '+')).toBe('3 4 +')
+    expect(text(['3', '4', '+'])).toBe('3 4 +')
   })
 
   it('gibt dem Standardrechner ein eigenes Feld mit Blatt und Klammern', () => {
@@ -321,15 +328,44 @@ describe('2D-Satz', () => {
  * 2026-10-04: `appendSnippet('6', '1')` setzte ein Leerzeichen; im Programmierer-Bild stand
  * „Der Ausdruck ist nicht lesbar". Erst eine Folge zeigt, was der Nutzer wirklich tippt.
  */
-/** Drückt Tasten aufeinander und gibt den entstehenden Ausdruck zurück. */
+/**
+ * Drückt Tasten aufeinander und gibt den entstehenden Ausdruck zurück.
+ *
+ * Im RPN-Feld läuft die Folge über den **Eingabereducer** (Karte M6-002) — dieselbe Abbildung wie
+ * im Rahmen: Ziffern erweitern den Zahlentoken, eine Operator- oder Werttaste schließt ihn ab,
+ * `Enter` schließt ihn ohne Rechnung ab. Eine Nachbildung über `appendRpnToken` prüfte den alten
+ * Eingabeweg und würde mehrstellige Zahlen übersehen.
+ */
 const pressSequence = (layout: KeypadLayout, tokens: readonly string[]): string => {
   const keys = keypadKeys(layout)
-  return tokens.reduce((current, token) => {
+  const snippetOf = (token: string) => {
     const definition = keys.find((entry) => entry.label === token || entry.id === token)
     if (!definition) throw new Error(`Keine Taste „${token}"`)
-    const { snippet } = resolveKey(definition, false)
-    return layout === RPN_KEYPAD ? appendRpnToken(current, snippet) : appendSnippet(current, snippet)
-  }, '')
+    return { id: definition.id, snippet: resolveKey(definition, false).snippet }
+  }
+  if (layout !== RPN_KEYPAD) {
+    return tokens.reduce((current, token) => appendSnippet(current, snippetOf(token).snippet), '')
+  }
+  /**
+   * RPN: **derselbe Zustandsweg wie im Rahmen**. Den Text allein durchzureichen genügt nicht — er
+   * kann „abgeschlossener Wert" und „begonnener Wert" nicht unterscheiden (`3` nach `Enter` sähe
+   * aus wie ein laufender Entwurf, und `3` `Enter` `4` ergäbe `34`).
+   */
+  const state = tokens.reduce<RpnInputState>((current, token) => {
+    if (token === 'Enter') return rpnInputReducer(current, { type: 'commit' })
+    const { id, snippet } = snippetOf(token)
+    const action = rpnActionForSnippet(snippet)
+    if (action) return rpnInputReducer(current, action)
+    switch (id) {
+      case 'clear': return rpnInputReducer(current, { type: 'clear' })
+      case 'backspace': return rpnInputReducer(current, { type: 'backspace' })
+      case 'rpnSwap': return rpnInputReducer(current, { type: 'swap' })
+      case 'rpnDrop': return rpnInputReducer(current, { type: 'drop' })
+      // Alles andere ist ein fertiger Token (etwa ein eingesetztes Ergebnis).
+      default: return rpnInputReducer(current, { type: 'operator', value: snippet })
+    }
+  }, { tokens: [], draft: '' })
+  return rpnInputText(state)
 }
 
 describe('Tastenfolgen', () => {
@@ -363,12 +399,31 @@ describe('Tastenfolgen', () => {
     expect(evaluate(expression, { number: 'BigNumber' }).ok).toBe(true)
   })
 
-  it('rechnet eine RPN-Folge in der richtigen Reihenfolge', () => {
-    const expression = pressSequence(RPN_KEYPAD, ['3', '4', '+', '5', '×'])
-    expect(expression).toBe('3 4 + 5 *')
-    const outcome = evaluateRpn(splitRpnTokens(expression), { number: 'BigNumber' })
+  it('hält eine RPN-Zahl zusammen und rechnet die Folge richtig (M6-002)', () => {
+    // `3` `4` sind ohne Enter **eine** Zahl (34) — der alte Weg machte daraus zwei Werte.
+    expect(pressSequence(RPN_KEYPAD, ['3', '4'])).toBe('34')
+    expect(pressSequence(RPN_KEYPAD, ['3', 'Enter', '4', 'Enter', '+'])).toBe('3 4 +')
+    expect(pressSequence(RPN_KEYPAD, ['3', 'Enter', '4', 'Enter', '+', '5', '×'])).toBe('3 4 + 5 *')
+    const outcome = evaluateRpn(splitRpnTokens('3 4 + 5 *'), { number: 'BigNumber' })
     expect(outcome.ok).toBe(true)
     expect(outcome.raw).toBe('35')
+  })
+
+  it('erfüllt die Abnahmefälle der Karte M6-002', () => {
+    // 1 → 2 → Enter → 3 → + : die 12 ist eine Zahl, dann die 3, dann die Addition → 15.
+    const fifteen = pressSequence(RPN_KEYPAD, ['1', '2', 'Enter', '3', '+'])
+    expect(fifteen).toBe('12 3 +')
+    const sum = evaluateRpn(splitRpnTokens(fifteen), { number: 'BigNumber' })
+    expect(sum.ok).toBe(true)
+    expect(sum.raw).toBe('15')
+
+    // 1 → Dezimal → 5 → Enter → 2 → × : 1,5 mal 2 → 3. Das RPN-Feld liefert das **deutsche
+    // Komma** als Dezimalzeichen (wie das Tastenfeld des Standardrechners).
+    const three = pressSequence(RPN_KEYPAD, ['1', 'decimal', '5', 'Enter', '2', '×'])
+    expect(three).toBe('1,5 2 *')
+    const product = evaluateRpn(splitRpnTokens(three), { number: 'BigNumber' })
+    expect(product.ok).toBe(true)
+    expect(product.raw).toBe('3')
   })
 })
 
@@ -380,24 +435,28 @@ describe('Tastenfolgen', () => {
  * wäre tot — genau der Fehler, der vorher gemessen wurde.
  */
 describe('Stapelgriffe und Ziffernbuchstaben', () => {
+  const apply = (text: string, action: RpnInputAction) => rpnInputText(rpnInputReducer(parseRpnInput(text), action))
+
   it('verwirft einen ganzen Wert statt eines Zeichens', () => {
-    expect(dropRpnToken('3 4 + 5')).toBe('3 4 +')
-    expect(dropRpnToken('3')).toBe('')
-    expect(dropRpnToken('   ')).toBe('')
+    expect(apply('3 4 + 5', { type: 'drop' })).toBe('3 4 +')
+    expect(apply('3', { type: 'drop' })).toBe('')
+    expect(apply('   ', { type: 'drop' })).toBe('')
+    // Mit laufendem Entwurf ist **der** der letzte Wert — er wird verworfen, nicht der davor.
+    expect(apply('3 4', { type: 'drop' })).toBe('3')
   })
 
   it('tauscht die letzten beiden Werte', () => {
-    expect(swapRpnTokens('3 4 +')).toBe('3 + 4')
-    expect(swapRpnTokens('3')).toBe('3')
-    expect(swapRpnTokens('')).toBe('')
+    expect(apply('3 4 +', { type: 'swap' })).toBe('3 + 4')
+    expect(apply('3', { type: 'swap' })).toBe('3')
+    expect(apply('', { type: 'swap' })).toBe('')
+    // Der bearbeitete Zahlentoken zählt als oberster Wert mit (Karte M6-002).
+    expect(apply('3 4', { type: 'swap' })).toBe('4 3')
   })
 
   it('macht aus SWAP auf der Folge eine lesbare Rechnung', () => {
     // Der Fall, für den SWAP gedacht ist: die letzten beiden **Werte** stehen in falscher
     // Reihenfolge — tauschen, dann rechnen.
-    const vertauscht = swapRpnTokens(pressSequence(RPN_KEYPAD, ['4', '3']))
-    expect(vertauscht).toBe('3 4')
-    const expression = appendRpnToken(vertauscht, '+')
+    const expression = pressSequence(RPN_KEYPAD, ['4', 'Enter', '3', 'rpnSwap', '+'])
     expect(expression).toBe('3 4 +')
     const outcome = evaluateRpn(splitRpnTokens(expression), { number: 'BigNumber' })
     expect(outcome.ok).toBe(true)

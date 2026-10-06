@@ -18,16 +18,21 @@
 import { useCallback, useEffect, useMemo, useRef, useState, type FormEvent, type ReactNode } from 'react'
 import { LocalBadge } from '@commietools/ui'
 import {
-  appendRpnToken,
-  dropRpnToken,
   hasSecondPlane,
   isKeyEnabled,
   resolveKey,
-  swapRpnTokens,
   type KeyDefinition,
   type KeypadLayout,
   type SheetGroup
 } from '@commietools/tools/calculator/keypad'
+import {
+  parseRpnInput,
+  rpnActionForSnippet,
+  rpnInputReducer,
+  rpnInputText,
+  type RpnInputAction,
+  type RpnInputState
+} from '@commietools/tools/calculator/rpnInput'
 import { toMathML } from '@commietools/tools/calculator/render'
 import { calculatorStore, type CalculatorSettings, type HistoryEntry } from '@commietools/tools/calculator/history'
 import { accuracyOf, appendHexDigit, appendSnippet, splitRpnTokens } from '../calculator-ui'
@@ -153,6 +158,18 @@ export function CalculatorFrame({ spec, t, locale }: { spec: CalculatorFrameSpec
   }))
 
   const [expression, setExpression] = useState('')
+  /**
+   * Der RPN-Modus führt einen **eigenen Eingabezustand** (Karte M6-002): Nur dort sind der
+   * bearbeitete Zahlentoken und die abgeschlossenen Tokens geschieden. Der Text allein kann das
+   * nicht ausdrücken — `3` sieht als abgeschlossener Wert genauso aus wie als begonnene Zahl.
+   * Alle übrigen Rechnerarten arbeiten weiter mit dem Text.
+   */
+  const [rpnState, setRpnState] = useState<RpnInputState>({ tokens: [], draft: '' })
+  const inputText = spec.input === 'rpn' ? rpnInputText(rpnState) : expression
+  const setInputText = (next: string) => {
+    if (spec.input === 'rpn') setRpnState(parseRpnInput(next))
+    else setExpression(next)
+  }
   const [second, setSecond] = useState(false)
   const [sheetOpen, setSheetOpen] = useState(false)
 
@@ -248,9 +265,9 @@ export function CalculatorFrame({ spec, t, locale }: { spec: CalculatorFrameSpec
    */
   const rpn = useMemo(() => {
     if (!core || spec.input !== 'rpn') return null
-    const tokens = splitRpnTokens(expression)
+    const tokens = splitRpnTokens(inputText)
     return tokens.length ? core.evaluateRpn(tokens, options, scope) : null
-  }, [core, spec.input, expression, options, scope])
+  }, [core, spec.input, inputText, options, scope])
 
   const allowTwoDim = spec.allowTwoDim ? spec.allowTwoDim(state) : true
 
@@ -351,17 +368,28 @@ export function CalculatorFrame({ spec, t, locale }: { spec: CalculatorFrameSpec
 
   const onSubmit = (event: FormEvent) => {
     event.preventDefault()
-    void runCalculation(expression)
+    void runCalculation(inputText)
   }
 
   /**
-   * Schnipsel anhängen. In RPN mit Leerzeichen — dort wird an Leerraum zerlegt. Die
-   * Ziffernbuchstaben `A`–`F` des Programmiererrechners bekommen ihr `0x`: ohne Präfix wären sie
-   * ein mathjs-Name und die Taste damit tot.
+   * Ein Schritt im RPN-Eingabezustand. Tippen, Einfügen und Tastenfeld laufen über denselben
+   * Reducer; die Tastatureingabe wird dabei als Text neu ausgelegt (`parseRpnInput`).
+   */
+  const applyRpn = (action: RpnInputAction) => {
+    setRpnState((current) => rpnInputReducer(current, action))
+  }
+
+  /**
+   * Schnipsel anhängen. Im RPN-Modus übernimmt der Eingabereducer (Karte M6-002): Ziffern
+   * erweitern den laufenden Zahlentoken, eine Operator- oder Werttaste schließt ihn zuerst ab.
+   * Was der Reducer nicht kennt — etwa ein eingesetztes Ergebnis — ist ein **fertiger** Wert und
+   * geht denselben Weg wie eine Operator-Taste. Sonst mit Leerzeichen: dort wird an Leerraum
+   * zerlegt. Die Ziffernbuchstaben `A`–`F` des Programmiererrechners bekommen ihr `0x`: ohne
+   * Präfix wären sie ein mathjs-Name und die Taste damit tot.
    */
   const appendToInput = (snippet: string) => {
     if (spec.input === 'rpn') {
-      setExpression((current) => appendRpnToken(current, snippet))
+      applyRpn(rpnActionForSnippet(snippet) ?? { type: 'operator', value: snippet })
       return
     }
     const append = spec.appendSnippet ?? appendSnippet
@@ -375,11 +403,13 @@ export function CalculatorFrame({ spec, t, locale }: { spec: CalculatorFrameSpec
     if (!snippet) {
       switch (definition.id) {
         case 'clear':
-          setExpression('')
+          if (spec.input === 'rpn') applyRpn({ type: 'clear' })
+          else setExpression('')
           clearResult()
           break
         case 'backspace':
-          setExpression((current) => current.slice(0, -1))
+          if (spec.input === 'rpn') applyRpn({ type: 'backspace' })
+          else setExpression((current) => current.slice(0, -1))
           break
         case 'more':
           setSheetOpen((open) => !open)
@@ -391,13 +421,13 @@ export function CalculatorFrame({ spec, t, locale }: { spec: CalculatorFrameSpec
           if (resultRaw) appendToInput(resultRaw)
           break
         case 'rpnSwap':
-          setExpression((current) => swapRpnTokens(current))
+          applyRpn({ type: 'swap' })
           break
         case 'rpnDrop':
-          setExpression((current) => dropRpnToken(current))
+          applyRpn({ type: 'drop' })
           break
         case 'equals':
-          void runCalculation(expression)
+          void runCalculation(inputText)
           break
         default:
           break
@@ -513,8 +543,15 @@ export function CalculatorFrame({ spec, t, locale }: { spec: CalculatorFrameSpec
             autoComplete="off"
             spellCheck={false}
             placeholder={t(spec.placeholderKey ?? 'tool.calc.placeholder')}
-            value={expression}
-            onChange={(event) => setExpression(event.target.value)}
+            value={inputText}
+            onChange={(event) => setInputText(event.target.value)}
+            onKeyDown={(event) => {
+              // Im RPN-Modus schließt Enter den bearbeiteten Zahlentoken ab, statt das Formular
+              // abzuschicken (Karte M6-002). Ein leerer Enter tut nichts — er dupliziert keinen Wert.
+              if (spec.input !== 'rpn' || event.key !== 'Enter') return
+              event.preventDefault()
+              applyRpn({ type: 'commit' })
+            }}
           />
         </div>
 
@@ -530,12 +567,12 @@ export function CalculatorFrame({ spec, t, locale }: { spec: CalculatorFrameSpec
                 aria-label={shownResult}
                 dangerouslySetInnerHTML={{ __html: twoDimResult as string }}
               />
-              <p className="expression-line">{expression || t(spec.placeholderKey ?? 'tool.calc.placeholder')}</p>
+              <p className="expression-line">{inputText || t(spec.placeholderKey ?? 'tool.calc.placeholder')}</p>
             </>
           ) : (
             <>
               {shownResult && <p className="result-line">{shownResult}</p>}
-              <p className="expression-line">{expression || t(spec.placeholderKey ?? 'tool.calc.placeholder')}</p>
+              <p className="expression-line">{inputText || t(spec.placeholderKey ?? 'tool.calc.placeholder')}</p>
             </>
           )}
 
@@ -623,7 +660,7 @@ export function CalculatorFrame({ spec, t, locale }: { spec: CalculatorFrameSpec
         </div>
 
         <div className="calculator-copy-row">
-          <button type="button" className="button" onClick={() => void copyToClipboard(expression)}>
+          <button type="button" className="button" onClick={() => void copyToClipboard(inputText)}>
             {t('tool.calc.copyExpression')}
           </button>
           <button type="button" className="button" onClick={() => void copyToClipboard(resultRaw || result)}>
@@ -726,7 +763,7 @@ export function CalculatorFrame({ spec, t, locale }: { spec: CalculatorFrameSpec
                     if (!core) return
                     clearResult()
                     state.set({ fractionMode: false })
-                    void runCalculation(expression)
+                    void runCalculation(inputText)
                   }}
                 >
                   {t('tool.calc.retryDecimal')}
@@ -748,7 +785,7 @@ export function CalculatorFrame({ spec, t, locale }: { spec: CalculatorFrameSpec
         </div>
       )}
 
-      {spec.renderPanels && core && spec.renderPanels({ core, options, state, input: expression, result, resultRaw })}
+      {spec.renderPanels && core && spec.renderPanels({ core, options, state, input: inputText, result, resultRaw })}
 
       {spec.input === 'rpn' && <RpnPanels t={t} rpn={rpn} />}
 
@@ -762,7 +799,7 @@ export function CalculatorFrame({ spec, t, locale }: { spec: CalculatorFrameSpec
               {history.map((entry) => (
                 <li key={`${entry.at}-${entry.expression}`}>
                   <code>{entry.expression} = {entry.display}</code>
-                  <button type="button" onClick={() => setExpression(entry.expression)}>
+                  <button type="button" onClick={() => setInputText(entry.expression)}>
                     {t('tool.calc.reuse')}
                   </button>
                 </li>

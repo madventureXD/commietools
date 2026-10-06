@@ -452,8 +452,22 @@ Diese Liste enthält bestätigte, noch nicht abgeschlossene Arbeit. Details geh�
     Versionierung — bekannter Punkt M10-004.
   - [ ] ADR-Index: **0012** nachgetragen; der Index selbst ist vollständig (ADR 0011 stand bereits
     dort — ein eigener Fehlschluss aus abgeschnittenem Lesen, im Protokoll benannt).
-- [ ] **Überholt (zweiter Nachtrag 2026-10-06):** Auch der zweite Überholt-Vermerk ist unvollständig
-  — **M6-001 ist erledigt**. Offen sind in R2 jetzt noch **M6-002** und **M8-004**.
+- [ ] **Überholt (dritter Nachtrag 2026-10-06):** Auch hier ist **M6-002 erledigt**; offen ist in
+  R2 nur noch **M8-004** (CSV-Freitext als Tabellenformel), dazu die zwei Entscheidungen aus
+  M3-002 und M4-002.
+
+- [x] **M6-002 — RPN-Tastenfeld kann mehrstellige Zahlen und Dezimalzahlen nicht zusammensetzen:
+  erledigt** *(Nachtrag 2026-10-06)*. Jede Taste hing ihren Schnipsel als **eigenen Token** an —
+  `1` `2` ergab zwei Werte statt der Zahl 12. Neu: ein **Eingabereducer** mit getrenntem
+  Zahlentoken und abgeschlossenen Tokens (`packages/tools/src/calculator/rpnInput.ts`), mit den
+  Aktionen `digit`, `decimal`, `sign`, `commit`, `operator`, `backspace`, `drop`, `swap`, `clear`.
+  Enter schließt den Entwurf ab; ein leerer Enter dupliziert nichts. Der Rahmen führt für den
+  RPN-Modus einen **eigenen Zustand** — der Text allein kann „abgeschlossen" und „begonnen" nicht
+  unterscheiden (das war der Fehler der ersten Fassung: `3` `Enter` `4` ergab `34`). Die
+  Textfunktionen `appendRpnToken`, `dropRpnToken`, `swapRpnTokens` sind **entfernt** (kein
+  Doppelmodell). Bericht: `06-protokolle/2026-10-06-m6-002-rpn-eingabereducer.md`. **Nicht gepusht.**
+  - [ ] Offen aus M6-002: Die `2nd`-Belegung des RPN-Feldes ist ungeprüft (das Feld hat nur eine
+    Ebene); der Browserbeleg liegt unter `work/` außerhalb der Versionierung (M10-004).
 
 ## Pflege
 

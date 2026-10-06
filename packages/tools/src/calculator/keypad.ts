@@ -124,43 +124,6 @@ export function isKeyEnabled(definition: KeyDefinition, base?: KeypadBase): bool
   return (definition.minBase ?? 2) <= base
 }
 
-/**
- * Hängt ein Tasten-Zeichen an die **RPN**-Eingabe. Anders als beim Ausdruck wird hier immer ein
- * Leerzeichen gesetzt: die RPN-Eingabe wird an Leerraum zerlegt, `4 5+` wäre zwei Tokens
- * (`4` und `5+`) und damit unlesbar. Der vorhandene Helfer `appendSnippet` setzt bewusst kein
- * Leerzeichen vor einen Operator — für RPN ist das die falsche Regel.
- */
-export function appendRpnToken(current: string, token: string): string {
-  const trimmed = current.trimEnd()
-  return trimmed ? `${trimmed} ${token}` : token
-}
-
-/**
- * Verwirft den **letzten Wert** der RPN-Eingabe. Anders als `⌫`, das ein einzelnes Zeichen löscht,
- * arbeitet dieser Griff auf Token-Ebene — so wie der `DROP`-Griff eines Stapelrechners, nur auf
- * der geschriebenen Folge statt auf einem Stapel im Speicher.
- */
-export function dropRpnToken(current: string): string {
-  const tokens = current.trim() ? current.trim().split(/\s+/u) : []
-  tokens.pop()
-  return tokens.join(' ')
-}
-
-/**
- * Tauscht die letzten beiden Werte — der `SWAP`-Griff eines Stapelrechners. Bei weniger als zwei
- * Werten bleibt die Eingabe unverändert.
- */
-export function swapRpnTokens(current: string): string {
-  const trimmed = current.trim()
-  if (!trimmed) return ''
-  const tokens = trimmed.split(/\s+/u)
-  if (tokens.length < 2) return trimmed
-  const last = tokens[tokens.length - 1] ?? ''
-  const before = tokens[tokens.length - 2] ?? ''
-  tokens.splice(tokens.length - 2, 2, last, before)
-  return tokens.join(' ')
-}
-
 /** Eine Funktionstaste des Blattes „Weitere Funktionen". */
 export interface SheetEntry {
   readonly label: string

@@ -91,7 +91,7 @@ Protokoll: `06-protokolle/2026-10-06-r1-*.md`, `…-m9-004-lopdf-anhebung.md`, `
 | M4-002 | Anzeige-Nullschwelle vernichtet Vollwert | ◐ `raw`/`full` echt; **Kennzeichnung der Anzeige-Nullung offen** |
 | M4-003 | Plotter ersetzt `x` auch in Funktionsnamen | ✓ Scope-Bindung, `raw` statt `display`; Abnahmefälle im Browser belegt (2026-10-06) |
 | M6-001 | JSON-Formatierung verändert Zahlenwerte | ✓ Textedits auf dem Originaltext, Fehlerstelle mit Zeile/Spalte; Werkzeug aus dem Startbündel gelöst (ADR 0012) |
-| M6-002 | RPN-Tastenfeld setzt mehrstellige Zahlen nicht zusammen | ○ |
+| M6-002 | RPN-Tastenfeld setzt mehrstellige Zahlen nicht zusammen | ✓ Eingabereducer mit getrenntem Zahlentoken; Tastenfolgen im Browser belegt (2026-10-06) |
 | M8-004 | CSV-Freitext als Tabellenformel exportiert | ○ |
 
 ### R3 — Datei-Aufträge, Ressourcen, Offline (P1) — nicht begonnen

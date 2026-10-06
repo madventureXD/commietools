@@ -15,8 +15,8 @@ const RPN: readonly KeyDefinition[] = [
 ]
 
 /**
- * Stapelgriffe. Sie tragen keinen Schnipsel, sondern arbeiten auf der Token-Folge
- * (`dropRpnToken`, `swapRpnTokens`). `SWAP` und `DROP` sind die eingeführten Abkürzungen der
+ * Stapelgriffe. Sie tragen keinen Schnipsel, sondern arbeiten auf dem RPN-Eingabezustand
+ * (`rpnInput`, Aktionen `swap` und `drop`). `SWAP` und `DROP` sind die eingeführten Abkürzungen der
  * Stapelrechner — genormte Kürzel werden nicht übersetzt.
  */
 const RPN_EDIT: readonly KeyDefinition[] = [

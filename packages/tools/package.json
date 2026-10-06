@@ -41,6 +41,7 @@
     "./pdf/report": "./src/pdf/report.ts",
     "./developer/json-formatter": "./src/developer/json-formatter/format.ts",
     "./calculator/keypad": "./src/calculator/keypad.ts",
+    "./calculator/rpnInput": "./src/calculator/rpnInput.ts",
     "./calculator/keypads": "./src/calculator/keypads/index.ts",
     "./calculator/keypads/standard": "./src/calculator/keypads/standard.ts",
     "./calculator/keypads/scientific": "./src/calculator/keypads/scientific.ts",

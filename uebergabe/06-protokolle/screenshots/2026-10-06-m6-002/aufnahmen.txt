@@ -1,0 +1,24 @@
+TASTEN (35): ["← Zurück zu allen Tools","In eigenes Fenster auskoppeln","12","1/2","Term kopieren","Ergebnis kopieren","AC","1/x","√","÷","±","n!","xʸ","mod","×","7","8","9","−","=","4","5","6","+","1","2","3",",","0","π","e","SWAP","DROP","Berechnen","Variable setzen"]
+FALL 1 Eingabe „12 3 +" · Anzeige „12 3 + | 1 | 2 | 1/2" · Stapel ["15","12 + 3 = 15[15]"]
+ok Eingabe „12 3 +" (gelesen „12 3 +")
+ok Ergebnis 15 steht in der Anzeige oder im Stapel
+ok kein Sprachschlüssel sichtbar
+BILD 01-zwoelf-drei-plus-15.png
+ok leerer Enter lässt die Eingabe unverändert („12 3 +")
+FALL 3 Eingabe „1,5 2 *" · Anzeige „1,5 2 * | 1 | 2 | 1/2" · Stapel ["3","1.5 * 2 = 3[3]"]
+ok Eingabe „1,5 2 *" (gelesen „1,5 2 *")
+ok Ergebnis 3 steht in der Anzeige oder im Stapel
+BILD 02-einhalb-mal-zwei-drei.png
+ok zweites Dezimalzeichen wird nicht angenommen („1,5")
+ok zwei Werte abgeschlossen („9 4")
+ok SWAP tauscht die letzten beiden Werte („4 9")
+ok DROP verwirft den letzten Wert („4")
+BILD 03-swap-drop.png
+FALL 6 eingefügt „5 6 +" · Anzeige „5 6 + | 1 | 2 | 1/2" · Stapel ["11","5 + 6 = 11[11]"]
+ok eingefügter Text bleibt stehen („5 6 +")
+ok eingefügte Folge wird gerechnet (11)
+ok schmal: mehrstellige Zahl bleibt zusammen („78")
+ok keine Überbreite bei 390 px (0 px)
+BILD 04-schmal-hell-390.png
+SEITENFEHLER: keine
+ERGEBNIS: alle Prüfungen bestanden
