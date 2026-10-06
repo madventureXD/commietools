@@ -1,0 +1,27 @@
+--- 1. Werkzeug geöffnet ---
+   Überschrift: "Prüffristen"
+   Ehrlichkeitshinweis vorhanden: true
+   Speichern-Dialog im Beleg abgeschaltet: undefined
+   geklickt: Eintrag hinzufügen (1) ("Eintrag hinzufügen")
+   geklickt: Eintrag hinzufügen (2) ("Eintrag hinzufügen")
+--- 2. Gerenderter Zustand (nach Eingabe) ---
+   ["Leiter Halle 2","12","2024-06-30","Sichtprüfung","30.06.2025","463 Tage überfällig · Überfällig","Entfernen"]
+   ["Prüfmittel Nr. 12","6","2026-09-01","","01.03.2027","146 · In Ordnung","Entfernen"]
+   Fehlermeldung im DOM: null
+--- 3. Nach dem Neuladen ---
+   ["Leiter Halle 2","12","2024-06-30","Sichtprüfung","30.06.2025","463 Tage überfällig · Überfällig","Entfernen"]
+   ["Prüfmittel Nr. 12","6","2026-09-01","","01.03.2027","146 · In Ordnung","Entfernen"]
+   Einträge vorher/nachher: 2 / 2
+--- 4. Export ---
+   geklickt: Export speichern ("Speichern unter …")
+   Status im Werkzeug: "Download gestartet."
+   Neue Datei(en): ["prueffristen.csv"]
+   Erste Bytes: "ï»¿" (BOM erwartet: ï»¿)
+   Inhalt:
+     Gegenstand;Notiz;Intervall (Monate);Letzte Prüfung;Fällig am;Resttage
+     Leiter Halle 2;Sichtprüfung;12;30.06.2024;30.06.2025;-463
+     Prüfmittel Nr. 12;;6;01.09.2026;01.03.2027;146
+--- 5. Netzverkehr ---
+   Anfragen gesamt: 45, an fremde Hosts: 0
+   Seitenfehler: []
+   Aufnahme: C:\Users\madve\AppData\Local\Temp\ct-prueffristen\prueffristen-1360.png

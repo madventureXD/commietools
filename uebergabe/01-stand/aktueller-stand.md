@@ -1,6 +1,6 @@
 # Aktueller Projektstand
 
-**Stand:** 2026-10-05
+**Stand:** 2026-10-06
 **Letzter geprüfter Meilenstein:** Sammelrelease mit 41 Werkzeugen, vollständiger Rechner-Suite, PDF-Suite M0–M9 und sprachgetrennten Suchpaketen auf `main` veröffentlicht (`95e1b2f`, 2026-10-04); automatische Cloudflare-Bereitstellung und Online-Nachkontrolle sind als nächster Schritt vorgesehen.
 
 **Zusatz 2026-10-05 (Faber):** Suite „Handwerk" mit **Welle A und Welle B vollständig** — acht
@@ -18,6 +18,17 @@ Pflasterwerkzeug rechnet das Werkzeug im Rastermaß (Stein plus Fuge), beim Reif
 Anzugsmoment vorgeschlagen — nur Einheiten und Toleranzbereich. Alles lokal, **nicht gepusht**;
 Einzelheiten in `05-uebergaben/2026-10-05-welle-c-handwerkerwerkzeuge.md` und
 `06-protokolle/2026-10-05-welle-c-gesamtbericht.md`.
+**Zusatz 2026-10-06 (Faber), Barrierefreiheit, Sprache und drei Entscheidungen:** Der
+Barrierefreiheits-Durchgang der Suite „Handwerk" ist **befundfrei** (Bedienziele 44 px,
+Überschriftenfolge, zugängliche Namen, Kontrast, abgeschnittener Inhalt) und als zweiter Durchgang
+im vorhandenen Belegapparat dauerhaft nutzbar (`npm run a11y:check`, Farbschema einstellbar). Die
+spanische Fassung der zehn Handwerk-Werkzeuge ist sprachlich und visuell gegengelesen; die Anrede
+steht seit der Entscheidung vom 2026-10-06 durchgehend im unpersönlichen Infinitiv (31 Stellen).
+Drei Entscheidungen sind umgesetzt und belegt: Markenfarbe bleibt (Kontrastmangel **nur im dunklen
+Schema**, 3,28:1 gegen 5,65:1 im hellen), die Hauptaktion trägt jetzt die Gestaltung von
+`button primary` über **eine** Regel, und die spanische Anrede ist vereinheitlicht. Einzelheiten in
+`06-protokolle/2026-10-06-barrierefreiheit-handwerk.md`, `…-sprachabnahme-spanisch-handwerk.md` und
+`…-entscheidungen-umgesetzt.md`.
 **Lokal fertiggestellt, noch nicht veröffentlicht:** Desktop-Auskoppeln M0–M7 (Werkzeuge laufen in
 einem eigenen Fenster); die elf zugehörigen Commits liegen lokal vor `origin/main`.
 
@@ -149,6 +160,7 @@ einem eigenen Fenster); die elf zugehörigen Commits liegen lokal vor `origin/ma
 | Parkett, Laminat und Bodenbelag | `flooring` | Handwerk | lokal | keine (nur Information) |
 | Pflaster und Erdarbeiten | `paving` | Handwerk | lokal | keine (nur Information) |
 | Reifen und Drehmoment | `tires` | Handwerk | lokal | keine (nur Information) |
+| Prüffristen | `inspection` | Handwerk | lokal | CSV heraus |
 
 ## Derzeitige Suiten
 
@@ -160,6 +172,7 @@ einem eigenen Fenster); die elf zugehörigen Commits liegen lokal vor `origin/ma
 - Handwerk (Beton/Mörtel/Estrich, Dach, Metallgewicht, Holzfeuchte und Holzgewicht) — Welle A der Handwerkerwerkzeuge, abgenommen am 2026-10-04
   *Zusatz 2026-10-05: um die Welle B erweitert — Fliesen/Kleber/Fugenmörtel, Farbe/Tapeten/Beschichtung, Trockenbau, Parkett/Laminat/Bodenbelag. Die Suite umfasst damit **acht Werkzeuge**.*
   *Zusatz 2026-10-05 (Welle C): um die beiden letzten Werkzeuge der Klasse a erweitert — Pflaster/Erdarbeiten und Reifen/Drehmoment. Die Suite umfasst damit **zehn Werkzeuge** und ist nach dem Konzept vollständig.*
+  *Zusatz 2026-10-06 (Welle D, erstes Werkzeug): **Prüffristen** (`inspection`) ergänzt die Suite um die Verwaltung wiederkehrender Prüfungen — nächster Termin aus letzter Prüfung plus Intervall (Monatsarithmetik über Temporal), Resttage, Einordnung in überfällig/bald fällig/in Ordnung und Export als Tabelle. **Keine vorgeschlagenen Intervalle:** Prüffristen stammen aus der Gefährdungsbeurteilung des Betreibers; das Werkzeug rechnet nur, was eingegeben wird, und sagt die Grenze („ohne Server keine Erinnerung") sichtbar. Die Suite umfasst damit **elf Werkzeuge**. Noch offen aus Welle D: Foto-Beschrifter und Protokoll.*
 - PDF (Viewer, Text/OCR, Zertifikatssignaturen prüfen und erstellen, Zusammenführen, Teilen, Seiten organisieren, Bilder zu PDF, PDF zu Bildern, Wasserzeichen, Seitenzahlen, sichtbar unterschreiben, Formular ausfüllen, kommentieren und markieren, schützen/entsperren, komprimieren, Metadaten, Beschneiden, Reparatur, Anhänge, Vergleich, PDF/A-Vorcheck und sichere Schwärzung)
 
 ## Qualität und Compliance

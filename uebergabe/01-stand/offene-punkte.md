@@ -42,6 +42,19 @@
   *(Zusatz 2026-10-05: **erledigt** — beide Werkzeuge gebaut, geprüft und belegt; Suite „Handwerk"
   mit zehn Werkzeugen, Register 54, 440 Tests in 30 Dateien. Commits `b80f527` und `3972f59`,
   Übergabe `05-uebergaben/2026-10-05-welle-c-handwerkerwerkzeuge.md`. **Nicht gepusht.**)*
+- [x] **Welle D, Werkzeug 23 (Prüffristen, `inspection`)** — erledigt am 2026-10-06. Liste
+  wiederkehrender Prüfungen mit nächstem Termin, Resttagen, Einordnung und Tabellen-Export;
+  **keine vorgeschlagenen Intervalle** (die stammen aus der Gefährdungsbeurteilung des Betreibers)
+  und **keine Erinnerung ohne Server** — beides steht sichtbar im Werkzeug. Abnahmekriterien im
+  Browser belegt: Einträge überleben ein Neuladen, 463 und 146 Resttage unabhängig nachgerechnet,
+  Export gelesen, kein fremder Netzverkehr. Bericht:
+  `06-protokolle/2026-10-06-welle-d-01-prueffristen.md`, Belege in
+  `06-protokolle/screenshots/2026-10-06-welle-d-prueffristen/`.
+- [ ] **Welle D, Werkzeuge 19 und 20 (Foto-Beschrifter `photo-caption`, Protokoll
+  `acceptance-report`)** — offen. Plan und Abnahmekriterien stehen in
+  `06-protokolle/2026-10-06-welle-d-plan.md`. Vor Werkzeug 20 ist die Zeichenfläche aus
+  `PdfPlacementTools.tsx` als gemeinsamer Baustein herauszuziehen (so verlangt es das Konzept);
+  bei Werkzeug 19 ist die Speichergrenze bei vielen großen Fotos **zu messen**, nicht anzunehmen.
 - [x] **Stilerscheinung in den aufklappbaren Abschnitten der Handwerk-Werkzeuge prüfen:** Bei
   Pflaster und Reifen sitzt die erste Feldspalte auf der Zeile der Zusammenfassung, das
   Eingabefeld darunter. Lesbar und richtig zugeordnet, aber unschön. Ursache wird im gemeinsamen
