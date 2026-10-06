@@ -99,7 +99,7 @@ Protokoll: `06-protokolle/2026-10-06-r1-*.md`, `…-m9-004-lopdf-anhebung.md`, `
 | Karte | Kurz | Stand |
 |---|---|---|
 | M4-004 | Sprachladefehler bleiben gecacht; kein Fehler-/Wiederholungszustand | ◐ Cache gibt abgelehnte Importe frei (5 Lader); Oberflächentexte mit Fehlermeldung + Retry — **Werkzeugtexte und Generationsschutz offen** (2026-10-06) |
-| M4-005 | PDF-Ergebnisse nach Dateiwechsel dem falschen Namen zugeordnet | ○ |
+| M4-005 | PDF-Ergebnisse nach Dateiwechsel dem falschen Namen zugeordnet | ◐ Auftrags-Snapshot + Generation, Name aus dem Auftrag — **Browserabnahme mit zwei Aufträgen offen** (2026-10-06) |
 | M4-006 | PDF-Teiler gibt Ergebnis-URLs beim Verlassen nicht frei | ○ |
 | M4-007 | Sprach-Type-Guard akzeptiert geerbte Objektschlüssel | ✓ `hasOwnProperty.call` + `typeof`-Prüfung; `__proto__`/`constructor` abgewiesen (2026-10-06) |
 | M8-002 | Erste Offline-Bereitschaft hängt am flüchtigen HTTP-Cache | ○ |

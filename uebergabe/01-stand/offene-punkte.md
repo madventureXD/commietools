@@ -486,6 +486,18 @@ Diese Liste enthält bestätigte, noch nicht abgeschlossene Arbeit. Details geh�
 
 ## R3 — Datei-Aufträge, Ressourcen, Offline (ab 2026-10-06)
 
+- [ ] **M4-005 — PDF-Ergebnisse können nach Dateiwechsel dem falschen Namen zugeordnet werden:
+  Code umgesetzt, Abnahme offen** *(Nachtrag 2026-10-06)*. Zwei Befunde bestätigt: Der Ergebnisname
+  kam aus `baseName(file?.name ?? 'document')` — also aus dem **aktuellen** Formularzustand; und
+  `process()` setzte Ergebnis, Fehler und Fortschritt ohne Prüfung, ob der Auftrag noch aktuell ist
+  (spätes Ergebnis der alten Datei überschrieb die Liste der neuen). Neu: unveränderlicher
+  Auftrags-Snapshot (`name`, `bytes`, `pageCount`, `mode`, `selection`) und `generationRef`;
+  veraltete Ergebnisse werden verworfen und ihre Objekt-URLs sofort freigegeben; Fehler und
+  `processing` setzt nur der aktuelle Auftrag; der Dateiname kommt aus dem Auftrag. Bericht:
+  `06-protokolle/2026-10-06-m4-005-pdf-teiler-auftrag.md`.
+  - [ ] **Abnahme offen:** zwei Aufträge mit Deferred (A starten, B wählen, B fertig, A zuletzt
+    fertig/fehlerhaft), Unmount und echte Browserprobe mit verschiedenen Namen/Seiteninhalten.
+  - [ ] Muster auf weitere asynchrone Dateiwerkzeuge übertragen (von der Karte verlangt).
 - [ ] **M4-004 — Sprachladefehler bleiben gecacht: TEILWEISE** *(Nachtrag 2026-10-06)*. Ursache
   behoben: Alle fünf Lader (`loadToolSearchIndex`, `loadCommonToolTexts`, `loadToolTexts`,
   `loadAllToolTexts`, `loadInterfaceMessages`) legten das Import-Promise ab, ohne es bei einer
