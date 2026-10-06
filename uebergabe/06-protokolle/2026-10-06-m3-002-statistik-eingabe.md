@@ -53,6 +53,16 @@ Damit ist auch der Punkt „dürfen nicht unbemerkt verschwinden" belegt: Die ve
 stehen **sichtbar** unter der Ergebnisliste. Aufnahmen:
 `06-protokolle/screenshots/2026-10-06-m3002/`.
 
+## Nachtrag 2026-10-06: Abnahme des Importvertrags
+
+**Die Karte ist damit abgeschlossen.** Thomas hat den geänderten Vertrag ausdrücklich abgenommen
+(Entscheidung im Gespräch, 2026-10-06): **Komma ist Dezimalzeichen, Semikolon trennt Listen** —
+eindeutig, kein Raten. Damit ist die in der Karte geforderte Abnahme erteilt; die Alternativen
+(Komma als Listentrenner bei ganzen Zahlen, Rückkehr zum alten Vertrag) wurden verworfen.
+
+**Folge für die Akte:** Der Vertrag ist ab jetzt die gültige Konvention. Wer `1,2,3` eingibt, sieht
+eine Meldung — das ist gewollt und keine Fehlfunktion.
+
 ## Kennzahlen
 
 | Kennzahl | Wert | Quelle |

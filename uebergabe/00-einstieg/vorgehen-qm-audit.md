@@ -86,7 +86,7 @@ Protokoll: `06-protokolle/2026-10-06-r1-*.md`, `…-m9-004-lopdf-anhebung.md`, `
 
 | Karte | Kurz | Stand |
 |---|---|---|
-| M3-002 | Statistik liest lokalisierte Zahlen falsch | ✓ neue Grammatik; **Abnahme des Importvertrags offen (Thomas)** |
+| M3-002 | Statistik liest lokalisierte Zahlen falsch | ✓ neue Grammatik; **Importvertrag abgenommen (Thomas, 2026-10-06)**: Komma = Dezimalzeichen, Semikolon trennt Listen |
 | M4-001 | RPN verkettet Brüche ohne Klammern | ✓ `geschuetzterOperand`, Abnahmefall 3/2 |
 | M4-002 | Anzeige-Nullschwelle vernichtet Vollwert | ◐ `raw`/`full` echt; **Kennzeichnung der Anzeige-Nullung offen** |
 | M4-003 | Plotter ersetzt `x` auch in Funktionsnamen | ✓ Scope-Bindung, `raw` statt `display`; Abnahmefälle im Browser belegt (2026-10-06) |
