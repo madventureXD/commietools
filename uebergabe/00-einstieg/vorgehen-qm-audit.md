@@ -101,7 +101,7 @@ Protokoll: `06-protokolle/2026-10-06-r1-*.md`, `…-m9-004-lopdf-anhebung.md`, `
 | M4-004 | Sprachladefehler bleiben gecacht; kein Fehler-/Wiederholungszustand | ○ |
 | M4-005 | PDF-Ergebnisse nach Dateiwechsel dem falschen Namen zugeordnet | ○ |
 | M4-006 | PDF-Teiler gibt Ergebnis-URLs beim Verlassen nicht frei | ○ |
-| M4-007 | Sprach-Type-Guard akzeptiert geerbte Objektschlüssel | ○ |
+| M4-007 | Sprach-Type-Guard akzeptiert geerbte Objektschlüssel | ✓ `hasOwnProperty.call` + `typeof`-Prüfung; `__proto__`/`constructor` abgewiesen (2026-10-06) |
 | M8-002 | Erste Offline-Bereitschaft hängt am flüchtigen HTTP-Cache | ○ |
 | M8-003 | Fehlender Browser-Speicher verhindert Nutzung statt Rückfall | ○ |
 

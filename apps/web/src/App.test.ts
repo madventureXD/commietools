@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { createTranslator, detectLocale, loadInterfaceMessages, localeRegistry, supportedLocales } from '@commietools/i18n'
+import { createTranslator, detectLocale, isLocale, loadInterfaceMessages, localeRegistry, supportedLocales } from '@commietools/i18n'
 import { buildQrPayload, convertCase, encodeQrPayload, getSuiteTools, getTextStatistics, suiteManifests, toolByRoute } from '@commietools/tools'
 import { formatJson } from '@commietools/tools/developer/json-formatter'
 import { loadAllToolTexts } from '@commietools/tools/text-loaders'
@@ -36,6 +36,42 @@ describe('local tool engines', () => {
   it('formats valid JSON and reports invalid JSON', () => {
     expect(formatJson('{"ok":true}').value).toBe('{\n  "ok": true\n}')
     expect(formatJson('{').error).toBe('invalid-json')
+  })
+})
+
+/**
+ * M4-007: Der Sprach-Type-Guard fragte mit `in` die Prototypenkette mit — `__proto__` und
+ * `constructor` galten damit als Sprachen und erreichten einen Loader.
+ */
+describe('Sprachprüfung (M4-007)', () => {
+  it('weist geerbte Objektschlüssel ab', () => {
+    expect(isLocale('__proto__')).toBe(false)
+    expect(isLocale('constructor')).toBe(false)
+    expect(isLocale('toString')).toBe(false)
+    expect(isLocale('hasOwnProperty')).toBe(false)
+    expect(isLocale('valueOf')).toBe(false)
+  })
+
+  it('weist leere, unbekannte und nichtstringförmige Werte ab', () => {
+    expect(isLocale('')).toBe(false)
+    expect(isLocale('de-DE')).toBe(false)
+    expect(isLocale('fr')).toBe(false)
+    // Werte aus dem Speicher sind nicht typisiert: Die Prüfung muss auch das aushalten.
+    expect(isLocale(null)).toBe(false)
+    expect(isLocale(42)).toBe(false)
+    expect(isLocale({})).toBe(false)
+    expect(isLocale(['de'])).toBe(false)
+  })
+
+  it('nimmt die registrierten Sprachen und den Basis-Rückfall weiter an', () => {
+    expect(isLocale('de')).toBe(true)
+    expect(isLocale('en')).toBe(true)
+    expect(isLocale('es')).toBe(true)
+    // Der dokumentierte Rückfall: `es-ES` findet über die Basissprache zur registrierten Sprache.
+    expect(detectLocale(['es-ES'])).toBe('es')
+    expect(detectLocale(['de-DE', 'en-US'])).toBe('de')
+    expect(detectLocale(['__proto__'])).toBe('en')
+    expect(detectLocale([])).toBe('en')
   })
 })
 

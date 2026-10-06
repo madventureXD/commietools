@@ -484,6 +484,22 @@ Diese Liste enthält bestätigte, noch nicht abgeschlossene Arbeit. Details geh�
     Ersatzweise liest ein **unabhängiger** CSV-Leser (Pythons `csv`) den Korpus: alle 11 Zeilen
     bestanden, keine Zelle beginnt danach mit einem Formelzeichen. Das ersetzt die Probe nicht.
 
+## R3 — Datei-Aufträge, Ressourcen, Offline (ab 2026-10-06)
+
+- [x] **M4-007 — Sprach-Type-Guard akzeptiert geerbte Objektschlüssel: erledigt** *(Nachtrag
+  2026-10-06)*. `isLocale` fragte mit `value in localeRegistry` und damit die **Prototypenkette**
+  mit: `__proto__`, `constructor`, `toString` galten als Sprachen und erreichten über
+  `detectLocale`/`preferredLocale` den Loader. Gegenprobe wörtlich: mit der alten Zeile liefert
+  `detectLocale(['__proto__'])` den Wert `'__proto__'` statt `'en'`. Neu:
+  `typeof value === 'string'` **und** `Object.prototype.hasOwnProperty.call(...)`
+  (`Object.hasOwn` verlangt ES2022 und fehlt in der `lib`-Einstellung — der Typcheck hat es
+  gemeldet); Signatur auf `unknown`, damit „nichtstringförmiger Speicherinhalt" wirklich geprüft
+  und nicht nur behauptet wird. Bericht: `06-protokolle/2026-10-06-m4-007-sprachpruefung.md`.
+  **Nicht gepusht.**
+- [ ] Offen in R3: **M4-004** (Sprachladefehler bleiben gecacht), **M4-005** / **M4-006**
+  (PDF-Ergebnisse und Objekt-URLs), **M8-002** (Offline-Bereitschaft am flüchtigen HTTP-Cache),
+  **M8-003** (fehlender Browser-Speicher blockiert statt Rückfall).
+
 ## Pflege
 
 - Erledigte Punkte mit Verweis auf Commit oder ADR in ein Fortschrittsprotokoll übernehmen und anschließend hier entfernen.
