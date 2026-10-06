@@ -23,6 +23,18 @@
   ist damit **nicht** erteilt, der Stand bleibt nach `02-architektur/sprachpakete.md` §11 „Lokales
   Testpaket". Bericht: `06-protokolle/2026-10-06-sprachabnahme-spanisch-handwerk.md`. Die übrigen
   **44** Werkzeuge des Registers stehen weiter aus.)*
+  *(2026-10-06, Entscheidung und Umsetzung: **unpersönlicher Infinitiv.** Die vollständige
+  Bestandsaufnahme fand **45** Schlüssel mit Anredeform im ganzen Projekt (nicht 20, wie der erste
+  Suchlauf vermutete). **31** sind umgestellt — „Elige el archivo" → „Seleccionar archivo",
+  „Introduce un valor." → „Introducir un valor.", „Rellene todos los campos." → „Rellenar todos los
+  campos." —, **14** sind geprüft und unverändert gelassen, weil dritte Person oder Substantiv
+  („Cambia" = ändert, „Firma" = Unterschrift, „Descarga iniciada"). Zwei Bedeutungskorrekturen
+  gingen damit einher: „una cadena" → „una cadena **de medidas**" (Maßkette war unscharf übersetzt)
+  und das doppelte „los PNG guardados". Bericht: `06-protokolle/2026-10-06-entscheidungen-umgesetzt.md`.)*
+
+- [ ] **Konzept-Referenz in der spanischen Fassung vereinheitlichen:** fünf Dateien schreiben
+  «Handwerkerwerkzeuge», `craft/metal` übersetzt „concepto de herramientas para oficios". Beide
+  Wege vertretbar, nebeneinander nicht. Vorschlag: der Mehrheit folgen. Gemessen 2026-10-06.
 - [ ] **Welle C des Handwerker-Konzepts:** Pflaster-/Erdarbeitenrechner (Vorschlag 5) und
   Reifen-/Drehmomentrechner (24) — beide Klasse a, keine neue Abhängigkeit zu erwarten.
   *(2026-10-05: Welle A und B sind abgeschlossen, die Suite „Handwerk" umfasst acht Werkzeuge;
@@ -65,18 +77,36 @@
   Kategorien befundfrei; Belege und Messungen im Fortschrittsprotokoll
   `06-protokolle/2026-10-06-barrierefreiheit-handwerk.md`.)*
 
-- [ ] **Kontrast der Markenfarbe entscheiden:** Weiße Schrift auf dem Markenrot ergibt
+- [x] **Kontrast der Markenfarbe entscheiden:** Weiße Schrift auf dem Markenrot ergibt
   **3,28:1**, verlangt sind 4,5:1 für Text in 16 px/700. Betrifft `.button.primary`,
   `.button.active` und `.segmented .active` — 38 Vorkommen in 14 Routen, also jeden Hauptknopf
   im Projekt. Zwei Wege: dunkleres Rot nur für Flächen (Marke bleibt) oder dunkle Schrift auf dem
   Rot. **Farbentscheidung, nicht eigenmächtig geändert.** Gemessen 2026-10-06 mit
   `npm run a11y:check`.
+  *(2026-10-06: **Entscheidung: „so lassen".** Zugleich eine Korrektur meiner Angabe oben — die
+  3,28:1 gelten **nur im dunklen Schema**; im hellen Schema ist derselbe Knopf mit **5,65:1**
+  unauffällig. Der Durchgang lief im Vorgabeschema des Browsers (dunkel), das helle Schema war
+  nicht mitgemessen — Lücke jetzt geschlossen: `COMMIETOOLS_AUDIT_SCHEME=dark|light`, ein
+  vollständiger Durchgang läuft zweimal. Die entschiedene Ausnahme steht **im Prüfer**
+  (`AKZEPTIERTE_KONTRASTE` in `scripts/viewport-audit.mjs`, mit Auswahl, Grund und Datum) und wird
+  je Durchgang als `akzeptiert=N` weiterhin ausgewiesen — nicht verschwiegen, aber auch nicht als
+  Befund gewertet. Bericht: `06-protokolle/2026-10-06-entscheidungen-umgesetzt.md`.)*
 
-- [ ] **Gestaltung der Hauptaktion entscheiden:** `<button type="submit">` trägt in **allen 18**
+- [x] **Gestaltung der Hauptaktion entscheiden:** `<button type="submit">` trägt in **allen 18**
   Rechner- und Handwerk-Werkzeugen keine Klasse; es greift keine Regel, der Knopf zeigt die
   Browser-Vorgabe (grau, Schriftstärke 400) — `docs/ui-system.md` verlangt aber, dass die
   Hauptaktion optisch dominiert. Gemessen und im Bild belegt 2026-10-06. Zwei Wege: Klasse
   `button primary` an den 18 Stellen oder eine Regel für `button[type="submit"]`.
+  *(2026-10-06: **Entscheidung: „eine Regel"** — umgesetzt in `apps/web/src/styles.css`, indem die
+  vorhandenen `.button`-Regeln um den Selektor `form > button[type="submit"]` erweitert wurden
+  (Grundwerte, `.primary`-Farben, `:disabled`, `:hover`). Keine Werkzeugdatei angefasst, keine
+  Werte doppelt gepflegt. Gemessen: 1052 × 44 px, Markenfarbe als Hintergrund, weiße 700er Schrift
+  — vorher 1052 × 27 px Browser-Standardknopf.)*
+
+- [ ] **Schreibweisen in den spanischen PDF-Texten vereinheitlichen:** derselbe Text meint „Maus"
+  und „Stift" zweimal verschieden — „mouse" (2 Dateien: `pdf/m4`, `pdf/placement`) gegen „ratón"
+  (1: `pdf/m9`), „bolígrafo" (1: `pdf/m4`) gegen „lápiz" (2). Gemessen 2026-10-06 im Zuge der
+  Anrede-Umstellung; bewusst nicht mitgeändert, weil die Anrede die eine Entscheidung war.
 
 - [ ] **Bedienziele unter 44 px außerhalb der Suiten nachziehen:** Schieberegler
   (`input[type=range]`, 16 px hoch) und Kontrollkästchen (18 × 18 px) in acht Bild- und

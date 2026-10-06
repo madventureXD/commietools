@@ -1,0 +1,923 @@
+ok /tools/aufmass 1360px  Bedienelemente=21 Ziele<44=0 ohneNamen=0 ohneBeschriftung=0 Kontrast=0 akzeptiert=2 (uebersprungen=0) abgeschnitten=0 h1=1 Spruenge=0/0
+ok /tools/calculator 1360px  Bedienelemente=46 Ziele<44=0 ohneNamen=0 ohneBeschriftung=0 Kontrast=0 akzeptiert=2 (uebersprungen=0) abgeschnitten=0 h1=1 Spruenge=0/0
+ok /tools/case-converter 1360px  Bedienelemente=15 Ziele<44=0 ohneNamen=0 ohneBeschriftung=0 Kontrast=0 akzeptiert=1 (uebersprungen=0) abgeschnitten=0 h1=1 Spruenge=0/0
+BEFUND /tools/color-tools 1360px  Bedienelemente=22 Ziele<44=1 ohneNamen=0 ohneBeschriftung=0 Kontrast=0 akzeptiert=1 (uebersprungen=0) abgeschnitten=0 h1=1 Spruenge=0/0
+BEFUND /tools/icon-generator 1360px  Bedienelemente=30 Ziele<44=16 ohneNamen=0 ohneBeschriftung=0 Kontrast=0 akzeptiert=1 (uebersprungen=0) abgeschnitten=0 h1=1 Spruenge=0/0
+BEFUND /tools/image-watermark 1360px  Bedienelemente=32 Ziele<44=6 ohneNamen=0 ohneBeschriftung=0 Kontrast=0 akzeptiert=2 (uebersprungen=0) abgeschnitten=0 h1=1 Spruenge=0/0
+ok /tools/pdf-certificate-sign 1360px  Bedienelemente=14 Ziele<44=0 ohneNamen=0 ohneBeschriftung=0 Kontrast=0 akzeptiert=1 (uebersprungen=0) abgeschnitten=0 h1=1 Spruenge=0/0
+BEFUND /tools/pdf-compare 1360px  Bedienelemente=14 Ziele<44=1 ohneNamen=0 ohneBeschriftung=0 Kontrast=0 akzeptiert=1 (uebersprungen=0) abgeschnitten=0 h1=1 Spruenge=0/0
+ok /tools/pdf-merge 1360px  Bedienelemente=12 Ziele<44=0 ohneNamen=0 ohneBeschriftung=0 Kontrast=0 akzeptiert=1 (uebersprungen=0) abgeschnitten=0 h1=1 Spruenge=0/0
+ok /tools/pdf-security 1360px  Bedienelemente=13 Ziele<44=0 ohneNamen=0 ohneBeschriftung=0 Kontrast=0 akzeptiert=1 (uebersprungen=0) abgeschnitten=0 h1=1 Spruenge=0/0
+ok /tools/pdf-signature-verify 1360px  Bedienelemente=12 Ziele<44=0 ohneNamen=0 ohneBeschriftung=0 Kontrast=0 akzeptiert=1 (uebersprungen=0) abgeschnitten=0 h1=1 Spruenge=0/0
+BEFUND /tools/programmer-calculator 1360px  Bedienelemente=67 Ziele<44=4 ohneNamen=0 ohneBeschriftung=0 Kontrast=0 akzeptiert=4 (uebersprungen=0) abgeschnitten=0 h1=1 Spruenge=0/0
+BEFUND /tools/qr-code-generator 1360px  Bedienelemente=26 Ziele<44=4 ohneNamen=0 ohneBeschriftung=0 Kontrast=0 akzeptiert=1 (uebersprungen=0) abgeschnitten=0 h1=1 Spruenge=0/0
+ok /tools/scientific-calculator 1360px  Bedienelemente=63 Ziele<44=0 ohneNamen=0 ohneBeschriftung=0 Kontrast=0 akzeptiert=3 (uebersprungen=0) abgeschnitten=0 h1=1 Spruenge=0/0
+ok /tools/aufmass 390px  Bedienelemente=19 Ziele<44=0 ohneNamen=0 ohneBeschriftung=0 Kontrast=0 akzeptiert=2 (uebersprungen=0) abgeschnitten=0 h1=1 Spruenge=0/0
+ok /tools/calculator 390px  Bedienelemente=44 Ziele<44=0 ohneNamen=0 ohneBeschriftung=0 Kontrast=0 akzeptiert=2 (uebersprungen=0) abgeschnitten=0 h1=1 Spruenge=0/0
+ok /tools/case-converter 390px  Bedienelemente=13 Ziele<44=0 ohneNamen=0 ohneBeschriftung=0 Kontrast=0 akzeptiert=1 (uebersprungen=0) abgeschnitten=0 h1=1 Spruenge=0/0
+BEFUND /tools/color-tools 390px  Bedienelemente=20 Ziele<44=1 ohneNamen=0 ohneBeschriftung=0 Kontrast=0 akzeptiert=1 (uebersprungen=0) abgeschnitten=0 h1=1 Spruenge=0/0
+BEFUND /tools/icon-generator 390px  Bedienelemente=28 Ziele<44=16 ohneNamen=0 ohneBeschriftung=0 Kontrast=0 akzeptiert=1 (uebersprungen=0) abgeschnitten=0 h1=1 Spruenge=0/0
+BEFUND /tools/image-watermark 390px  Bedienelemente=30 Ziele<44=6 ohneNamen=0 ohneBeschriftung=0 Kontrast=0 akzeptiert=2 (uebersprungen=0) abgeschnitten=0 h1=1 Spruenge=0/0
+ok /tools/pdf-certificate-sign 390px  Bedienelemente=12 Ziele<44=0 ohneNamen=0 ohneBeschriftung=0 Kontrast=0 akzeptiert=1 (uebersprungen=0) abgeschnitten=0 h1=1 Spruenge=0/0
+BEFUND /tools/pdf-compare 390px  Bedienelemente=12 Ziele<44=1 ohneNamen=0 ohneBeschriftung=0 Kontrast=0 akzeptiert=1 (uebersprungen=0) abgeschnitten=0 h1=1 Spruenge=0/0
+ok /tools/pdf-merge 390px  Bedienelemente=10 Ziele<44=0 ohneNamen=0 ohneBeschriftung=0 Kontrast=0 akzeptiert=1 (uebersprungen=0) abgeschnitten=0 h1=1 Spruenge=0/0
+ok /tools/pdf-security 390px  Bedienelemente=11 Ziele<44=0 ohneNamen=0 ohneBeschriftung=0 Kontrast=0 akzeptiert=1 (uebersprungen=0) abgeschnitten=0 h1=1 Spruenge=0/0
+ok /tools/pdf-signature-verify 390px  Bedienelemente=10 Ziele<44=0 ohneNamen=0 ohneBeschriftung=0 Kontrast=0 akzeptiert=1 (uebersprungen=0) abgeschnitten=0 h1=1 Spruenge=0/0
+BEFUND /tools/programmer-calculator 390px  Bedienelemente=65 Ziele<44=4 ohneNamen=0 ohneBeschriftung=0 Kontrast=0 akzeptiert=4 (uebersprungen=0) abgeschnitten=4 h1=1 Spruenge=0/0
+BEFUND /tools/qr-code-generator 390px  Bedienelemente=24 Ziele<44=4 ohneNamen=0 ohneBeschriftung=0 Kontrast=0 akzeptiert=1 (uebersprungen=0) abgeschnitten=0 h1=1 Spruenge=0/0
+ok /tools/scientific-calculator 390px  Bedienelemente=61 Ziele<44=0 ohneNamen=0 ohneBeschriftung=0 Kontrast=0 akzeptiert=3 (uebersprungen=0) abgeschnitten=0 h1=1 Spruenge=0/0
+[
+  {
+    "route": "/tools/color-tools",
+    "width": 1360,
+    "controls": 22,
+    "targets": [
+      {
+        "element": "input",
+        "width": 1052,
+        "height": 16,
+        "name": "Anzahl der Farben: 5"
+      }
+    ],
+    "names": [],
+    "labels": [],
+    "headings": {
+      "sequence": [
+        1,
+        2,
+        2,
+        2,
+        2,
+        2
+      ],
+      "h1Count": 1,
+      "jumps": [],
+      "jumpsOpened": [],
+      "closedSections": 7
+    },
+    "contrast": [],
+    "contrastAkzeptiert": [
+      {
+        "element": "button.button.primary",
+        "text": "Palette ziehen",
+        "size": 16,
+        "weight": 700,
+        "required": 4.5,
+        "measured": 3.28
+      }
+    ],
+    "ariaHidden": [],
+    "clipped": [],
+    "skippedContrast": 0
+  },
+  {
+    "route": "/tools/icon-generator",
+    "width": 1360,
+    "controls": 30,
+    "targets": [
+      {
+        "element": "input",
+        "width": 18,
+        "height": 18,
+        "name": "16 px"
+      },
+      {
+        "element": "input",
+        "width": 18,
+        "height": 18,
+        "name": "20 px"
+      },
+      {
+        "element": "input",
+        "width": 18,
+        "height": 18,
+        "name": "24 px"
+      },
+      {
+        "element": "input",
+        "width": 18,
+        "height": 18,
+        "name": "32 px"
+      },
+      {
+        "element": "input",
+        "width": 18,
+        "height": 18,
+        "name": "40 px"
+      },
+      {
+        "element": "input",
+        "width": 18,
+        "height": 18,
+        "name": "48 px"
+      },
+      {
+        "element": "input",
+        "width": 18,
+        "height": 18,
+        "name": "64 px"
+      },
+      {
+        "element": "input",
+        "width": 18,
+        "height": 18,
+        "name": "96 px"
+      },
+      {
+        "element": "input",
+        "width": 18,
+        "height": 18,
+        "name": "128 px"
+      },
+      {
+        "element": "input",
+        "width": 18,
+        "height": 18,
+        "name": "180 px"
+      },
+      {
+        "element": "input",
+        "width": 18,
+        "height": 18,
+        "name": "192 px"
+      },
+      {
+        "element": "input",
+        "width": 18,
+        "height": 18,
+        "name": "256 px"
+      },
+      {
+        "element": "input",
+        "width": 18,
+        "height": 18,
+        "name": "512 px"
+      },
+      {
+        "element": "input",
+        "width": 18,
+        "height": 18,
+        "name": "Durchsichtig"
+      },
+      {
+        "element": "input",
+        "width": 18,
+        "height": 18,
+        "name": "Maskierbare Variante zusätzlich erzeugen"
+      },
+      {
+        "element": "input",
+        "width": 18,
+        "height": 18,
+        "name": "favicon.ico erzeugen"
+      }
+    ],
+    "names": [],
+    "labels": [],
+    "headings": {
+      "sequence": [
+        1,
+        2,
+        2,
+        2,
+        2
+      ],
+      "h1Count": 1,
+      "jumps": [],
+      "jumpsOpened": [],
+      "closedSections": 7
+    },
+    "contrast": [],
+    "contrastAkzeptiert": [
+      {
+        "element": "button.button.primary",
+        "text": "Symbole erzeugen",
+        "size": 16,
+        "weight": 700,
+        "required": 4.5,
+        "measured": 3.28
+      }
+    ],
+    "ariaHidden": [],
+    "clipped": [],
+    "skippedContrast": 0
+  },
+  {
+    "route": "/tools/image-watermark",
+    "width": 1360,
+    "controls": 32,
+    "targets": [
+      {
+        "element": "input",
+        "width": 18,
+        "height": 18,
+        "name": "Als Muster über das ganze Bild"
+      },
+      {
+        "element": "input",
+        "width": 1052,
+        "height": 16,
+        "name": "Randabstand: 4 %"
+      },
+      {
+        "element": "input",
+        "width": 1052,
+        "height": 16,
+        "name": "Größe: 18 %"
+      },
+      {
+        "element": "input",
+        "width": 1052,
+        "height": 16,
+        "name": "Deckkraft: 70 %"
+      },
+      {
+        "element": "input",
+        "width": 1052,
+        "height": 16,
+        "name": "Drehung: 0°"
+      },
+      {
+        "element": "input",
+        "width": 1052,
+        "height": 16,
+        "name": "Qualität: 90 %"
+      }
+    ],
+    "names": [],
+    "labels": [],
+    "headings": {
+      "sequence": [
+        1,
+        2,
+        2,
+        2,
+        2
+      ],
+      "h1Count": 1,
+      "jumps": [],
+      "jumpsOpened": [],
+      "closedSections": 7
+    },
+    "contrast": [],
+    "contrastAkzeptiert": [
+      {
+        "element": "button.button.active",
+        "text": "Text",
+        "size": 16,
+        "weight": 700,
+        "required": 4.5,
+        "measured": 3.28
+      },
+      {
+        "element": "button.button.primary",
+        "text": "Wasserzeichen setzen",
+        "size": 16,
+        "weight": 700,
+        "required": 4.5,
+        "measured": 3.28
+      }
+    ],
+    "ariaHidden": [],
+    "clipped": [],
+    "skippedContrast": 0
+  },
+  {
+    "route": "/tools/pdf-compare",
+    "width": 1360,
+    "controls": 14,
+    "targets": [
+      {
+        "element": "input",
+        "width": 1052,
+        "height": 16,
+        "name": "Farbkanal-Toleranz für den Bildvergleich16"
+      }
+    ],
+    "names": [],
+    "labels": [],
+    "headings": {
+      "sequence": [
+        1
+      ],
+      "h1Count": 1,
+      "jumps": [],
+      "jumpsOpened": [],
+      "closedSections": 7
+    },
+    "contrast": [],
+    "contrastAkzeptiert": [
+      {
+        "element": "button.button.primary",
+        "text": "PDFs vergleichen",
+        "size": 16,
+        "weight": 700,
+        "required": 4.5,
+        "measured": 3.28
+      }
+    ],
+    "ariaHidden": [],
+    "clipped": [],
+    "skippedContrast": 0
+  },
+  {
+    "route": "/tools/programmer-calculator",
+    "width": 1360,
+    "controls": 67,
+    "targets": [
+      {
+        "element": "button",
+        "width": 25,
+        "height": 44,
+        "name": "8"
+      },
+      {
+        "element": "button",
+        "width": 34,
+        "height": 44,
+        "name": "16"
+      },
+      {
+        "element": "button.active",
+        "width": 34,
+        "height": 44,
+        "name": "32"
+      },
+      {
+        "element": "button",
+        "width": 34,
+        "height": 44,
+        "name": "64"
+      }
+    ],
+    "names": [],
+    "labels": [],
+    "headings": {
+      "sequence": [
+        1,
+        2,
+        2
+      ],
+      "h1Count": 1,
+      "jumps": [],
+      "jumpsOpened": [],
+      "closedSections": 8
+    },
+    "contrast": [],
+    "contrastAkzeptiert": [
+      {
+        "element": "button.active",
+        "text": "HEX",
+        "size": 16,
+        "weight": 750,
+        "required": 4.5,
+        "measured": 3.28
+      },
+      {
+        "element": "button.active",
+        "text": "32",
+        "size": 16,
+        "weight": 750,
+        "required": 4.5,
+        "measured": 3.28
+      },
+      {
+        "element": "button.active",
+        "text": "mit Vorzeichen",
+        "size": 16,
+        "weight": 750,
+        "required": 4.5,
+        "measured": 3.28
+      },
+      {
+        "element": "button",
+        "text": "Berechnen",
+        "size": 16,
+        "weight": 700,
+        "required": 4.5,
+        "measured": 3.28
+      }
+    ],
+    "ariaHidden": [],
+    "clipped": [],
+    "skippedContrast": 0
+  },
+  {
+    "route": "/tools/qr-code-generator",
+    "width": 1360,
+    "controls": 26,
+    "targets": [
+      {
+        "element": "input",
+        "width": 290,
+        "height": 16,
+        "name": "Größe: 360px"
+      },
+      {
+        "element": "input",
+        "width": 290,
+        "height": 16,
+        "name": "Rand: 16px"
+      },
+      {
+        "element": "input",
+        "width": 290,
+        "height": 16,
+        "name": "Logogröße: 28%"
+      },
+      {
+        "element": "input",
+        "width": 18,
+        "height": 18,
+        "name": "Module unter Logo ausblenden"
+      }
+    ],
+    "names": [],
+    "labels": [],
+    "headings": {
+      "sequence": [
+        1,
+        2,
+        2,
+        2
+      ],
+      "h1Count": 1,
+      "jumps": [],
+      "jumpsOpened": [],
+      "closedSections": 7
+    },
+    "contrast": [],
+    "contrastAkzeptiert": [
+      {
+        "element": "button.button.primary",
+        "text": "Speichern unter …",
+        "size": 16,
+        "weight": 700,
+        "required": 4.5,
+        "measured": 3.28
+      }
+    ],
+    "ariaHidden": [],
+    "clipped": [],
+    "skippedContrast": 0
+  },
+  {
+    "route": "/tools/color-tools",
+    "width": 390,
+    "controls": 20,
+    "targets": [
+      {
+        "element": "input",
+        "width": 290,
+        "height": 16,
+        "name": "Anzahl der Farben: 5"
+      }
+    ],
+    "names": [],
+    "labels": [],
+    "headings": {
+      "sequence": [
+        1,
+        2,
+        2,
+        2,
+        2,
+        2
+      ],
+      "h1Count": 1,
+      "jumps": [],
+      "jumpsOpened": [],
+      "closedSections": 7
+    },
+    "contrast": [],
+    "contrastAkzeptiert": [
+      {
+        "element": "button.button.primary",
+        "text": "Palette ziehen",
+        "size": 16,
+        "weight": 700,
+        "required": 4.5,
+        "measured": 3.28
+      }
+    ],
+    "ariaHidden": [],
+    "clipped": [],
+    "skippedContrast": 0
+  },
+  {
+    "route": "/tools/icon-generator",
+    "width": 390,
+    "controls": 28,
+    "targets": [
+      {
+        "element": "input",
+        "width": 18,
+        "height": 18,
+        "name": "16 px"
+      },
+      {
+        "element": "input",
+        "width": 18,
+        "height": 18,
+        "name": "20 px"
+      },
+      {
+        "element": "input",
+        "width": 18,
+        "height": 18,
+        "name": "24 px"
+      },
+      {
+        "element": "input",
+        "width": 18,
+        "height": 18,
+        "name": "32 px"
+      },
+      {
+        "element": "input",
+        "width": 18,
+        "height": 18,
+        "name": "40 px"
+      },
+      {
+        "element": "input",
+        "width": 18,
+        "height": 18,
+        "name": "48 px"
+      },
+      {
+        "element": "input",
+        "width": 18,
+        "height": 18,
+        "name": "64 px"
+      },
+      {
+        "element": "input",
+        "width": 18,
+        "height": 18,
+        "name": "96 px"
+      },
+      {
+        "element": "input",
+        "width": 18,
+        "height": 18,
+        "name": "128 px"
+      },
+      {
+        "element": "input",
+        "width": 18,
+        "height": 18,
+        "name": "180 px"
+      },
+      {
+        "element": "input",
+        "width": 18,
+        "height": 18,
+        "name": "192 px"
+      },
+      {
+        "element": "input",
+        "width": 18,
+        "height": 18,
+        "name": "256 px"
+      },
+      {
+        "element": "input",
+        "width": 18,
+        "height": 18,
+        "name": "512 px"
+      },
+      {
+        "element": "input",
+        "width": 18,
+        "height": 18,
+        "name": "Durchsichtig"
+      },
+      {
+        "element": "input",
+        "width": 15,
+        "height": 18,
+        "name": "Maskierbare Variante zusätzlich erzeugen"
+      },
+      {
+        "element": "input",
+        "width": 18,
+        "height": 18,
+        "name": "favicon.ico erzeugen"
+      }
+    ],
+    "names": [],
+    "labels": [],
+    "headings": {
+      "sequence": [
+        1,
+        2,
+        2,
+        2,
+        2
+      ],
+      "h1Count": 1,
+      "jumps": [],
+      "jumpsOpened": [],
+      "closedSections": 7
+    },
+    "contrast": [],
+    "contrastAkzeptiert": [
+      {
+        "element": "button.button.primary",
+        "text": "Symbole erzeugen",
+        "size": 16,
+        "weight": 700,
+        "required": 4.5,
+        "measured": 3.28
+      }
+    ],
+    "ariaHidden": [],
+    "clipped": [],
+    "skippedContrast": 0
+  },
+  {
+    "route": "/tools/image-watermark",
+    "width": 390,
+    "controls": 30,
+    "targets": [
+      {
+        "element": "input",
+        "width": 18,
+        "height": 18,
+        "name": "Als Muster über das ganze Bild"
+      },
+      {
+        "element": "input",
+        "width": 290,
+        "height": 16,
+        "name": "Randabstand: 4 %"
+      },
+      {
+        "element": "input",
+        "width": 290,
+        "height": 16,
+        "name": "Größe: 18 %"
+      },
+      {
+        "element": "input",
+        "width": 290,
+        "height": 16,
+        "name": "Deckkraft: 70 %"
+      },
+      {
+        "element": "input",
+        "width": 290,
+        "height": 16,
+        "name": "Drehung: 0°"
+      },
+      {
+        "element": "input",
+        "width": 290,
+        "height": 16,
+        "name": "Qualität: 90 %"
+      }
+    ],
+    "names": [],
+    "labels": [],
+    "headings": {
+      "sequence": [
+        1,
+        2,
+        2,
+        2,
+        2
+      ],
+      "h1Count": 1,
+      "jumps": [],
+      "jumpsOpened": [],
+      "closedSections": 7
+    },
+    "contrast": [],
+    "contrastAkzeptiert": [
+      {
+        "element": "button.button.active",
+        "text": "Text",
+        "size": 16,
+        "weight": 700,
+        "required": 4.5,
+        "measured": 3.28
+      },
+      {
+        "element": "button.button.primary",
+        "text": "Wasserzeichen setzen",
+        "size": 16,
+        "weight": 700,
+        "required": 4.5,
+        "measured": 3.28
+      }
+    ],
+    "ariaHidden": [],
+    "clipped": [],
+    "skippedContrast": 0
+  },
+  {
+    "route": "/tools/pdf-compare",
+    "width": 390,
+    "controls": 12,
+    "targets": [
+      {
+        "element": "input",
+        "width": 290,
+        "height": 16,
+        "name": "Farbkanal-Toleranz für den Bildvergleich16"
+      }
+    ],
+    "names": [],
+    "labels": [],
+    "headings": {
+      "sequence": [
+        1
+      ],
+      "h1Count": 1,
+      "jumps": [],
+      "jumpsOpened": [],
+      "closedSections": 7
+    },
+    "contrast": [],
+    "contrastAkzeptiert": [
+      {
+        "element": "button.button.primary",
+        "text": "PDFs vergleichen",
+        "size": 16,
+        "weight": 700,
+        "required": 4.5,
+        "measured": 3.28
+      }
+    ],
+    "ariaHidden": [],
+    "clipped": [],
+    "skippedContrast": 0
+  },
+  {
+    "route": "/tools/programmer-calculator",
+    "width": 390,
+    "controls": 65,
+    "targets": [
+      {
+        "element": "button",
+        "width": 25,
+        "height": 44,
+        "name": "8"
+      },
+      {
+        "element": "button",
+        "width": 34,
+        "height": 44,
+        "name": "16"
+      },
+      {
+        "element": "button.active",
+        "width": 34,
+        "height": 44,
+        "name": "32"
+      },
+      {
+        "element": "button",
+        "width": 34,
+        "height": 44,
+        "name": "64"
+      }
+    ],
+    "names": [],
+    "labels": [],
+    "headings": {
+      "sequence": [
+        1,
+        2,
+        2
+      ],
+      "h1Count": 1,
+      "jumps": [],
+      "jumpsOpened": [],
+      "closedSections": 8
+    },
+    "contrast": [],
+    "contrastAkzeptiert": [
+      {
+        "element": "button.active",
+        "text": "HEX",
+        "size": 16,
+        "weight": 750,
+        "required": 4.5,
+        "measured": 3.28
+      },
+      {
+        "element": "button.active",
+        "text": "32",
+        "size": 16,
+        "weight": 750,
+        "required": 4.5,
+        "measured": 3.28
+      },
+      {
+        "element": "button.active",
+        "text": "mit Vorzeichen",
+        "size": 16,
+        "weight": 750,
+        "required": 4.5,
+        "measured": 3.28
+      },
+      {
+        "element": "button",
+        "text": "Berechnen",
+        "size": 16,
+        "weight": 700,
+        "required": 4.5,
+        "measured": 3.28
+      }
+    ],
+    "ariaHidden": [],
+    "clipped": [
+      {
+        "element": "button.keypad-key.operator",
+        "clientWidth": 42,
+        "scrollWidth": 53,
+        "name": "AND"
+      },
+      {
+        "element": "button.keypad-key.operator",
+        "clientWidth": 42,
+        "scrollWidth": 50,
+        "name": "XOR"
+      },
+      {
+        "element": "button.keypad-key.operator",
+        "clientWidth": 42,
+        "scrollWidth": 51,
+        "name": "NOT"
+      },
+      {
+        "element": "button.keypad-key.operator",
+        "clientWidth": 42,
+        "scrollWidth": 51,
+        "name": "mod"
+      }
+    ],
+    "skippedContrast": 0
+  },
+  {
+    "route": "/tools/qr-code-generator",
+    "width": 390,
+    "controls": 24,
+    "targets": [
+      {
+        "element": "input",
+        "width": 290,
+        "height": 16,
+        "name": "Größe: 360px"
+      },
+      {
+        "element": "input",
+        "width": 290,
+        "height": 16,
+        "name": "Rand: 16px"
+      },
+      {
+        "element": "input",
+        "width": 290,
+        "height": 16,
+        "name": "Logogröße: 28%"
+      },
+      {
+        "element": "input",
+        "width": 18,
+        "height": 18,
+        "name": "Module unter Logo ausblenden"
+      }
+    ],
+    "names": [],
+    "labels": [],
+    "headings": {
+      "sequence": [
+        1,
+        2,
+        2,
+        2
+      ],
+      "h1Count": 1,
+      "jumps": [],
+      "jumpsOpened": [],
+      "closedSections": 7
+    },
+    "contrast": [],
+    "contrastAkzeptiert": [
+      {
+        "element": "button.button.primary",
+        "text": "Speichern unter …",
+        "size": 16,
+        "weight": 700,
+        "required": 4.5,
+        "measured": 3.28
+      }
+    ],
+    "ariaHidden": [],
+    "clipped": [],
+    "skippedContrast": 0
+  }
+]
