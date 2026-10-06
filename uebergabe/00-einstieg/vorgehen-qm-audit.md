@@ -64,9 +64,12 @@ zu dieser Basis — vor Änderungen Hash und fachlichen Anker gegen den Live-Sta
 
 **R4 wird bei jeder Reparatur mitgeführt.** Kein pauschaler Rewrite.
 
-## 4. Stand der Karten (2026-10-06)
+## 4. Stand der Karten (2026-10-06, nachgeführt 2026-10-07)
 
 Legende: ✓ erledigt · ◐ erledigt mit offener Restforderung · ○ offen
+
+**Stand am 2026-10-07 (ausgezählt): 59 Karten — 28 erledigt · 1 mit Restforderung (M8-001) ·
+30 offen.** R1, R2, R3 und R4 sind vollständig; R5–R10 stehen aus (R10 ist Betreiberentscheidung).
 
 ### R1 — PDF-Engines, Signaturen, Lizenzen (P0) — **abgeschlossen**
 
