@@ -14,7 +14,7 @@ export const messages: Readonly<Record<string, string>> = {
   "tool.colorTools.chooseFile": "Seleccionar archivo",
   "tool.colorTools.selected": "Archivo seleccionado",
   "tool.colorTools.originalSize": "Original",
-  "tool.colorTools.pickHint": "Haz clic en la imagen para elegir un color. Las teclas de flecha mueven un píxel a la vez.",
+  "tool.colorTools.pickHint": "Hacer clic en la imagen para elegir un color. Las teclas de flecha mueven un píxel a la vez.",
   "tool.colorTools.picker": "Cuentagotas",
   "tool.colorTools.privacy": "La imagen permanece en su dispositivo.",
   "tool.colorTools.error": "La imagen no se pudo leer.",

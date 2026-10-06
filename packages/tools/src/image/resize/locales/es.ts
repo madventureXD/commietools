@@ -1,6 +1,6 @@
 export const imageResizeEs = {
   'tool.imageResize.title': 'Cambiar el tamaño de la imagen',
-  'tool.imageResize.description': 'Reduce, amplía, rota, refleja y recorta imágenes, completamente en tu dispositivo.',
+  'tool.imageResize.description': 'Reduce, amplía, rota, refleja y recorta imágenes, por completo en el dispositivo.',
   'tool.imageResize.summary': 'Cambia de tamaño, recorte y orientación.',
   'tool.imageResize.terms': 'cambiar el tamaño,cambiar el tamaño de la imagen,escala,reducir,reducir la imagen,hacer más pequeño,ampliar,ampliar la imagen,hacer más grande,aumentar,cambiar tamaño,tamaño de la imagen,tamaño,dimensiones,píxeles,ancho,alto,resolución,recortar,cortar,aspecto,rotar,rotación,girar,girar 90 grados,espejo,reflejo,voltear,voltear horizontal,girar vertical,orientación,relación de aspecto,proporcional,mantener proporciones,cuadrado,recorte cuadrado,imagen de perfil,avatar,foto de perfil,miniatura,vista previa,sitio web,redes sociales,instagram,facebook,whatsapp,archivo adjunto de correo electrónico,archivo adjunto,foto,imagen,archivo de imagen,jpeg,png,webp,#imágenes,#tamaño,#recortar,#rotar,#avatar',
 
@@ -22,7 +22,7 @@ export const imageResizeEs = {
   'tool.imageResize.cropY': 'Desde arriba',
   'tool.imageResize.cropWidth': 'Ancho',
   'tool.imageResize.cropHeight': 'Altura',
-  'tool.imageResize.cropReset': 'Usa la imagen completa',
+  'tool.imageResize.cropReset': 'Usar la imagen completa',
 
   'tool.imageResize.size': 'Tamaño objetivo',
   'tool.imageResize.mode': 'Base',

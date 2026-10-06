@@ -11,5 +11,5 @@ export const messages: Readonly<Record<string, string>> = {
   "tool.pdfViewer.searchPlaceholder": "Buscar texto en el PDF …",
   "tool.pdfViewer.matches": "Resultados",
   "tool.pdfViewer.noMatches": "No se encontraron resultados.",
-  "tool.pdfViewer.textUnavailable": "Esta página no contiene texto legible. Usa el reconocimiento de texto (OCR) para documentos escaneados."
+  "tool.pdfViewer.textUnavailable": "Esta página no contiene texto legible. Usar el reconocimiento de texto (OCR) para documentos escaneados."
 }

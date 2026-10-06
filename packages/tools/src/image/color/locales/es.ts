@@ -1,6 +1,6 @@
 export const colorToolsEs = {
   'tool.colorTools.title': 'herramientas de color',
-  'tool.colorTools.description': 'Convierte colores entre HEX, RGB, HSL y LAB, verifica el contraste WCAG, extrae la paleta de una imagen y muestra cómo aparecen los colores con deficiencia en la visión del color, completamente en tu dispositivo.',
+  'tool.colorTools.description': 'Convierte colores entre HEX, RGB, HSL y LAB, verifica el contraste WCAG, extrae la paleta de una imagen y muestra cómo aparecen los colores con deficiencia en la visión del color, por completo en el dispositivo.',
   'tool.colorTools.summary': 'Convierte colores, comprueba el contraste y extrae paletas de imágenes.',
   'tool.colorTools.terms': 'color,colores,herramienta de color,convertidor de color,convertir,hex,rgb,hsl,lab,hex a rgb,rgb a hex,valor de color,código de color,selector de color,cuentagotas,paleta,paleta de colores,colores dominantes,colores de la imagen,contraste de color,contraste,wcag,relación de contraste,accesibilidad,legibilidad,texto en color,daltonismo,visión de colores deficiencia,protanopia,deuteranopia,tritanopia,simulación,diseño,tokens,diseño web,#color,#colores,#accesibilidad',
 
@@ -17,7 +17,7 @@ export const colorToolsEs = {
   'tool.colorTools.chooseFile': 'Seleccionar archivo',
   'tool.colorTools.selected': 'Archivo seleccionado',
   'tool.colorTools.originalSize': 'Original',
-  'tool.colorTools.pickHint': 'Haz clic en la imagen para elegir un color. Las teclas de flecha mueven un píxel a la vez.',
+  'tool.colorTools.pickHint': 'Hacer clic en la imagen para elegir un color. Las teclas de flecha mueven un píxel a la vez.',
   'tool.colorTools.picker': 'Cuentagotas',
   'tool.colorTools.privacy': 'La imagen permanece en su dispositivo.',
   'tool.colorTools.error': 'La imagen no se pudo leer.',

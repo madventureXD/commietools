@@ -23,7 +23,7 @@ export const es = {
   'tool.pdfAnnotate.add': 'Agregar anotación', 'tool.pdfAnnotate.existing': 'Anotaciones existentes',
   'tool.pdfAnnotate.none': 'Aún no se admiten anotaciones.', 'tool.pdfAnnotate.delete': 'Eliminar anotación',
   'tool.pdfAnnotate.draw': 'dibujar a mano alzada', 'tool.pdfAnnotate.clear': 'Borrar dibujo',
-  'tool.pdfAnnotate.drawHelp': 'Dibujar con el mouse, el bolígrafo o el dedo. Los trazos se guardan como una anotación en tinta genuina en la página PDF seleccionada.',
+  'tool.pdfAnnotate.drawHelp': 'Dibujar con el ratón, el lápiz o el dedo. Los trazos se guardan como una anotación en tinta genuina en la página PDF seleccionada.',
   'tool.pdfAnnotate.result': 'PDF comentado'
 } as const
 

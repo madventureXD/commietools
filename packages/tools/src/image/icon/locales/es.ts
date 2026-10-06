@@ -1,6 +1,6 @@
 export const iconGeneratorEs = {
   'tool.iconGenerator.title': 'Generador de iconos',
-  'tool.iconGenerator.description': 'Convierte una imagen en un conjunto completo de íconos: favicon, íconos de PWA, ícono táctil de Apple y una variante enmascarable, completamente en tu dispositivo.',
+  'tool.iconGenerator.description': 'Convierte una imagen en un conjunto completo de íconos: favicon, íconos de PWA, ícono táctil de Apple y una variante enmascarable, por completo en el dispositivo.',
   'tool.iconGenerator.summary': 'Crea conjuntos de iconos y favicon a partir de una imagen.',
   'tool.iconGenerator.terms': 'icono,iconos,favicon,favicon.ico,icono de aplicación,icono de sitio web,conjunto de iconos,tamaños de iconos,tamaños,16x16,32x32,180x180,192x192,512x512,pwa,manifiesto de aplicación web,manifest.json,enmascarable,android,pantalla de inicio,icono de Apple Touch,icono táctil,crear favicon,pestaña del navegador,pestaña icono,png,ico,windows,icono de programa,acceso directo al escritorio,#icono,#favicon,#pwa',
 

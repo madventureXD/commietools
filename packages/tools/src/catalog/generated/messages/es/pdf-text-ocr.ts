@@ -18,7 +18,7 @@ export const messages: Readonly<Record<string, string>> = {
   "tool.pdfTextOcr.result": "Texto reconocido",
   "tool.pdfTextOcr.progress": "Progreso",
   "tool.pdfTextOcr.cancel": "Cancelar",
-  "tool.pdfTextOcr.needConsent": "Confirma primero la descarga única de los componentes OCR de código abierto.",
+  "tool.pdfTextOcr.needConsent": "Confirmar primero la descarga única de los componentes OCR de código abierto.",
   "tool.pdfTextOcr.cancelled": "El reconocimiento de texto se ha cancelado.",
   "tool.pdfTextOcr.empty": "No se ha reconocido texto en las páginas seleccionadas."
 }

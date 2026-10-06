@@ -1,6 +1,6 @@
 export const lightingEs = {
   'tool.lighting.title': 'Planificación de iluminación por lux',
-  'tool.lighting.description': 'Elige la iluminancia objetivo por tipo de sala a partir de fuentes de libre acceso, introduce la superficie y el factor de mantenimiento y calcula el flujo luminoso y el número de luminarias. Cuando las fuentes discrepan, la herramienta muestra el intervalo en lugar de una media. Todo se calcula en el navegador.',
+  'tool.lighting.description': 'Elegir la iluminancia objetivo por tipo de sala a partir de fuentes de libre acceso, introducir la superficie y el factor de mantenimiento y calcular el flujo luminoso y el número de luminarias. Cuando las fuentes discrepan, la herramienta muestra el intervalo en lugar de una media. Todo se calcula en el navegador.',
   'tool.lighting.summary': 'Lux objetivo por tipo de sala, flujo luminoso y número de luminarias según superficie y factor de mantenimiento.',
   'tool.lighting.terms': 'iluminación,luz,lux,iluminancia,luminaria,luminarias,flujo luminoso,lumen,factor de mantenimiento,tipo de sala,pasillo,almacén,taller,vestuario,aula,planificación de iluminación,oficio,#iluminación,#oficio',
   'tool.lighting.roomType': 'Tipo de sala',

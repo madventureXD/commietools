@@ -258,7 +258,7 @@ export const searchLocale: Readonly<Record<string, ToolLocaleEntry>> = {
   "image-resize": {
     "title": "Cambiar el tamaño de la imagen",
     "summary": "Cambia de tamaño, recorte y orientación.",
-    "description": "Reduce, amplía, rota, refleja y recorta imágenes, completamente en tu dispositivo.",
+    "description": "Reduce, amplía, rota, refleja y recorta imágenes, por completo en el dispositivo.",
     "terms": [
       "cambiar el tamaño",
       "cambiar el tamaño de la imagen",
@@ -326,7 +326,7 @@ export const searchLocale: Readonly<Record<string, ToolLocaleEntry>> = {
   "icon-generator": {
     "title": "Generador de iconos",
     "summary": "Crea conjuntos de iconos y favicon a partir de una imagen.",
-    "description": "Convierte una imagen en un conjunto completo de íconos: favicon, íconos de PWA, ícono táctil de Apple y una variante enmascarable, completamente en tu dispositivo.",
+    "description": "Convierte una imagen en un conjunto completo de íconos: favicon, íconos de PWA, ícono táctil de Apple y una variante enmascarable, por completo en el dispositivo.",
     "terms": [
       "icono",
       "iconos",
@@ -421,7 +421,7 @@ export const searchLocale: Readonly<Record<string, ToolLocaleEntry>> = {
   "color-tools": {
     "title": "herramientas de color",
     "summary": "Convierte colores, comprueba el contraste y extrae paletas de imágenes.",
-    "description": "Convierte colores entre HEX, RGB, HSL y LAB, verifica el contraste WCAG, extrae la paleta de una imagen y muestra cómo aparecen los colores con deficiencia en la visión del color, completamente en tu dispositivo.",
+    "description": "Convierte colores entre HEX, RGB, HSL y LAB, verifica el contraste WCAG, extrae la paleta de una imagen y muestra cómo aparecen los colores con deficiencia en la visión del color, por completo en el dispositivo.",
     "terms": [
       "color",
       "colores",
@@ -1743,7 +1743,7 @@ export const searchLocale: Readonly<Record<string, ToolLocaleEntry>> = {
   "lighting": {
     "title": "Planificación de iluminación por lux",
     "summary": "Lux objetivo por tipo de sala, flujo luminoso y número de luminarias según superficie y factor de mantenimiento.",
-    "description": "Elige la iluminancia objetivo por tipo de sala a partir de fuentes de libre acceso, introduce la superficie y el factor de mantenimiento y calcula el flujo luminoso y el número de luminarias. Cuando las fuentes discrepan, la herramienta muestra el intervalo en lugar de una media. Todo se calcula en el navegador.",
+    "description": "Elegir la iluminancia objetivo por tipo de sala a partir de fuentes de libre acceso, introducir la superficie y el factor de mantenimiento y calcular el flujo luminoso y el número de luminarias. Cuando las fuentes discrepan, la herramienta muestra el intervalo en lugar de una media. Todo se calcula en el navegador.",
     "terms": [
       "iluminación",
       "luz",

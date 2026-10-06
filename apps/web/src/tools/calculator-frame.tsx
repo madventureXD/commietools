@@ -651,7 +651,7 @@ export function CalculatorFrame({ spec, t, locale }: { spec: CalculatorFrameSpec
                 <button
                   key={definition.id}
                   type="button"
-                  className={`keypad-key ${definition.role}${armed ? ' armed' : ''}`}
+                  className={`keypad-key ${definition.role}${armed ? ' armed' : ''}${definition.role === 'operator' && resolved.label.length > 1 ? ' wortzeichen' : ''}`}
                   style={{
                     gridColumn: definition.colSpan ? `span ${definition.colSpan}` : undefined,
                     gridRow: definition.rowSpan ? `span ${definition.rowSpan}` : undefined

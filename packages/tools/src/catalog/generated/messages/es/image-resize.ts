@@ -19,7 +19,7 @@ export const messages: Readonly<Record<string, string>> = {
   "tool.imageResize.cropY": "Desde arriba",
   "tool.imageResize.cropWidth": "Ancho",
   "tool.imageResize.cropHeight": "Altura",
-  "tool.imageResize.cropReset": "Usa la imagen completa",
+  "tool.imageResize.cropReset": "Usar la imagen completa",
   "tool.imageResize.size": "Tamaño objetivo",
   "tool.imageResize.mode": "Base",
   "tool.imageResize.mode.dimensions": "Tamaño en píxeles",

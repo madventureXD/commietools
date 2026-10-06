@@ -45,7 +45,7 @@ export const cableEs = {
   'tool.cable.withinLimit': 'La caída de tensión está dentro del límite.',
   'tool.cable.overLimit': 'La caída de tensión supera el límite.',
   'tool.cable.ampacityOk': 'La corriente está dentro de la capacidad de carga introducida.',
-  'tool.cable.ampacityOver': 'La corriente supera la capacidad de carga introducida. Compruebe una sección mayor, otro tipo de instalación o una carga menor.',
+  'tool.cable.ampacityOver': 'La corriente supera la capacidad de carga introducida. Comprobar una sección mayor, otro tipo de instalación o una carga menor.',
   'tool.cable.beyondSeries': 'La sección necesaria supera la serie habitual (240 mm²). Secciones tan grandes requieren un diseño propio.',
   'tool.cable.roundNote': 'Calculado con doce cifras significativas; mostrado en el idioma del usuario. La propuesta de sección es el siguiente valor normalizado superior de la serie habitual.',
   'tool.cable.disclaimer': 'Resultado de un prediseño. No sustituye a un electricista cualificado ni a un dimensionado según las reglas reconocidas de la técnica.',
@@ -54,7 +54,7 @@ export const cableEs = {
   'tool.cable.sources': 'Fórmula: ΔU = b · L · I / (κ · A) y su inversa A = b · L · I / (κ · ΔU_admisible), de uso libre (Wikipedia "Caída de tensión", DIN VDE 0100-520 anexo G referido). κ: valores de cálculo 56 (cobre) y 35 (aluminio) de páginas especializadas; el Instituto del Cobre indica ρ = 0,017–0,018 Ω·mm²/m. Límites de caída de tensión: DIN VDE 0100-520, anexo G, tabla G.52.1 (3 %/5 %) — referidos solo mediante páginas especializadas/wiki, sin fuente primaria de libre acceso. Los valores de aluminio por debajo de 25 mm² y la fuente primaria normativa del 3 %/5 % figuran como no documentados en la colección de fuentes; aquí no se afirma nada al respecto.',
   'tool.cable.formula': 'Supuestos y fuentes',
 
-  'tool.cable.error.empty': 'Rellene todos los campos.',
+  'tool.cable.error.empty': 'Rellenar todos los campos.',
   'tool.cable.error.voltage': 'La tensión está fuera del rango razonable (1 a 1500 V).',
   'tool.cable.error.current': 'La corriente está fuera del rango razonable (0,1 a 2000 A).',
   'tool.cable.error.power': 'La potencia está fuera del rango razonable (1 a 2.000.000 W).',

@@ -49,7 +49,7 @@ export const es = {
   'tool.pdfSignature.name': 'Nombre',
   'tool.pdfSignature.nameLabel': 'Nombre para la firma',
   'tool.pdfSignature.clear': 'Borrar dibujo',
-  'tool.pdfSignature.canvas': 'Dibujar la firma con el mouse, el lápiz o el tacto',
+  'tool.pdfSignature.canvas': 'Dibujar la firma con el ratón, el lápiz o el tacto',
   'tool.pdfSignature.page': 'Página',
   'tool.pdfSignature.width': 'Ancho (pt)',
   'tool.pdfSignature.date': 'Línea de fecha (opcional)',

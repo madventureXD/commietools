@@ -118,6 +118,13 @@ h1 { max-width: 16ch; margin-bottom: var(--space-4); font-size: clamp(3rem, 8vw,
 .stack { display: grid; gap: var(--space-4); }
 .stack > * { min-width: 0; max-width: 100%; }
 .segmented { display: flex; flex-wrap: wrap; gap: var(--space-2); }
+/* Die segmentierten Knöpfe (z. B. 8/16/32/64 Bit) waren nur so breit wie ihre Beschriftung —
+   25 bis 34 px statt der Hausgrenze 44 px (gemessen 2026-10-06). */
+.segmented button { min-width: 2.75rem; }
+/* Eingabefelder in Tabellenzellen schrumpften bei 390 px auf 26 px Breite (gemessen am Ort-Feld
+   des Übergabeprotokolls) — die Tabelle scrollt ohnehin seitlich, also bekommen die Felder eine
+   brauchbare Mindestbreite. */
+.cvd-table-wrap input, .cvd-table-wrap select, .cvd-table-wrap textarea { min-width: 7rem; }
 .segmented .active { border-color: var(--color-brand); color: white; background: var(--color-brand); }
 .inline-field { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-3); min-width: 0; }
 .inline-field > * { min-width: 0; max-width: 100%; }
@@ -177,6 +184,14 @@ details.settings-card > summary { padding-block: var(--space-3); }
 label { font-weight: 750; }
 textarea { width: 100%; min-height: 17rem; resize: vertical; padding: var(--space-4); border: 1px solid var(--color-border); border-radius: var(--radius-md); color: var(--color-text); background: var(--color-background); line-height: 1.6; }
 input:not([type='checkbox']):not([type='range']):not([type='color']) { width: 100%; min-height: 2.75rem; padding: 0 var(--space-3); border: 1px solid var(--color-border); border-radius: var(--radius-sm); color: var(--color-text); background: var(--color-background); }
+/* Schieberegler und Kontrollkästchen waren von der 44-px-Regel oben ausgenommen und damit die
+   einzigen Bedienelemente unter der Hausgrenze (gemessen 2026-10-06: Regler 16 px hoch,
+   Kontrollkästchen 18 × 18 px). Die Fläche wächst, die Darstellung bleibt schlank. */
+input[type='range'] { min-height: 2.75rem; }
+input[type='checkbox'] { inline-size: 1.375rem; block-size: 1.375rem; }
+/* Das umgebende Etikett ist bei diesen Kästchen die eigentliche Klickfläche — es muss die
+   Hausgrenze ebenfalls erreichen, sonst bleibt die Bedienung eng. */
+label:has(> input[type='checkbox']) { min-height: 2.75rem; display: flex; align-items: center; gap: var(--space-2); }
 input[type='color'] { width: 100%; min-height: 2.75rem; padding: 0.2rem; border: 1px solid var(--color-border); border-radius: var(--radius-sm); background: var(--color-background); }
 input[type='range'] { width: 100%; accent-color: var(--color-brand); }
 .results { display: grid; align-content: start; gap: var(--space-3); margin: 1.85rem 0 0; }
@@ -430,9 +445,13 @@ a.button { display: inline-flex; align-items: center; justify-content: center; t
 .calculator-switch .fraction-glyph { display: grid; justify-items: center; line-height: 1; font-size: 0.78rem; }
 .calculator-switch .fraction-glyph i { font-style: normal; border-top: 1px solid currentColor; padding-top: 1px; }
 .keypad { display: grid; gap: var(--space-2); }
-.keypad-key { display: grid; place-items: center; min-height: 3.25rem; padding: 0 0.3rem; border: 1px solid var(--color-border); border-radius: 0.75rem; background: var(--color-surface); color: var(--color-text); font: inherit; font-size: 1.15rem; font-weight: 650; line-height: 1; }
+.keypad-key { display: grid; place-items: center; min-height: 3.25rem; min-width: 2.75rem; padding: 0 0.3rem; border: 1px solid var(--color-border); border-radius: 0.75rem; background: var(--color-surface); color: var(--color-text); font: inherit; font-size: 1.15rem; font-weight: 650; line-height: 1; }
 .keypad-key.digit { background: var(--color-surface-raised); font-weight: 750; }
 .keypad-key.operator { color: var(--color-brand); font-size: 1.3rem; font-weight: 800; }
+/* Operator-Tasten mit Wortbeschriftung (AND, XOR, NOT, mod) liefen aus der Taste heraus —
+   gemessen 2026-10-06: 50–53 px Inhalt in 42 px Fläche. Wortzeichen bekommen kleinere Schrift,
+   die Zeichenoperatoren (+, −, ×, ÷) behalten ihre Größe. */
+.keypad-key.operator.wortzeichen { font-size: 0.95rem; }
 .keypad-key.function, .keypad-key.constant { color: var(--color-text-muted); font-size: 0.95rem; font-weight: 700; }
 .keypad-key.equals { border-color: var(--color-brand); background: var(--color-brand); color: white; font-size: 1.35rem; }
 .keypad-key.armed { border-color: var(--color-brand); color: var(--color-brand); background: var(--color-brand-soft); }

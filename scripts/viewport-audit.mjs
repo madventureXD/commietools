@@ -159,8 +159,14 @@ const A11Y_JS = `(() => {
     if (element.getAttribute('aria-hidden') === 'true') findings.ariaHidden.push({ element: describe(element), name });
     const isInlineLink = element.tagName.toLowerCase() === 'a' && inParagraphText(element);
     const width = Math.round(rect.width); const height = Math.round(rect.height);
-    if (!isInlineLink && (height < MIN_TARGET || width < MIN_TARGET)) {
-      findings.targets.push({ element: describe(element), width, height, name: name ? name.slice(0, 48) : null });
+    // Steckt das Bedienelement in einem Etikett, ist das Etikett seine Klickfläche — so bedient man
+    // ein Kontrollkästchen: man klickt den Text daneben. Gemessen wird dann das Etikett; die eigene
+    // Größe des Elements wird trotzdem mitgeschrieben, damit die Zahl niemandem verborgen bleibt.
+    const etikett = element.closest('label');
+    const ziel = etikett ? etikett.getBoundingClientRect() : rect;
+    const zielBreite = Math.round(ziel.width); const zielHoehe = Math.round(ziel.height);
+    if (!isInlineLink && (zielHoehe < MIN_TARGET || zielBreite < MIN_TARGET)) {
+      findings.targets.push({ element: describe(element), width, height, zielBreite, zielHoehe, ueberEtikett: Boolean(etikett), name: name ? name.slice(0, 48) : null });
     }
     if (element.scrollWidth > element.clientWidth + 1) {
       findings.clipped.push({ element: describe(element), clientWidth: element.clientWidth, scrollWidth: element.scrollWidth, name: name ? name.slice(0, 40) : null });
