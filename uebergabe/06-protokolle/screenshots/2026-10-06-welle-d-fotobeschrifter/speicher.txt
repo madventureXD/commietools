@@ -1,0 +1,13 @@
+Speichermessung Foto-Beschrifter — Edge kopflos, Schema hell, 1360×1100
+Maßstab: ein Foto mit 12 Megapixeln entspricht der üblichen Handykamera.
+--- 24 Fotos à 4000×3000 (288 Megapixel) ---
+   Dateien übergeben: ja (Feld wird vom Werkzeug sofort geleert), Vorschaubilder im DOM 24, Browser 854 → 1469 MB, JS-Speicher 5 MB
+   Ergebnis: 24 Dateien + PDF, Dauer 9.5 s, Browser 1341 MB (Zuwachs 487 MB), JS-Speicher 19 MB, Fehler null
+--- Zusatz: sehr großes Foto ---
+--- 24 Fotos à 8000×6000 (1152 Megapixel) ---
+   Dateien übergeben: ja (Feld wird vom Werkzeug sofort geleert), Vorschaubilder im DOM 24, Browser 1158 → 1252 MB, JS-Speicher 13 MB
+   Ergebnis: 24 Dateien + PDF, Dauer 22.5 s, Browser 1698 MB (Zuwachs 540 MB), JS-Speicher 35 MB, Fehler null
+--- Zusammenfassung ---
+   24 Fotos: 288 MP, 9.5 s, Browser 1341 MB (Zuwachs 487 MB), fertig
+   24 Fotos: 1152 MP, 22.5 s, Browser 1698 MB (Zuwachs 540 MB), fertig
+   Seitenfehler: []

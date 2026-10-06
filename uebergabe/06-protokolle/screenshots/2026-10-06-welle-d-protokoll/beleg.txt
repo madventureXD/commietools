@@ -1,0 +1,25 @@
+--- 1. Werkzeug geöffnet ---
+   Überschrift: "Abnahme- und Mängelprotokoll"
+   Felder im Formular: 7
+--- 2. Kopfangaben und Mängel ---
+   Objekt: "Haus Musterweg 4"
+   Datum: "2026-10-06"
+   Zeilenzeilen im Formular: [{"wert":"Haus Musterweg 4","name":"Objekt / Bauvorhaben"},{"wert":"2026-10-06","name":"Datum der Abnahme"},{"wert":"Frau Meier (Auftraggeberin)","name":"Auftraggeber"},{"wert":"Firma Bau GmbH","name":"Auftragnehmer"},{"wert":"","name":"Beschreibung"},{"wert":"","name":"Ort"},{"wert":"","name":"Frist bis"}]
+   geklickt: Zeile hinzufügen ("Zeile hinzufügen")
+   Felder nach dem Hinzufügen: 10
+   Fristen im Werkzeug: ["BGB § 634a Abs. 1 Nr. 2 (Bauwerk), 5 Jahre: 2031-10-06","VOB/B § 13 Abs. 4 Nr. 2 (wenn vereinbart), 4 Jahre: 2030-10-06"]
+--- 3. Foto und Unterschriften ---
+   Foto angenommen: true
+   Zeichenflächen im Werkzeug: 2
+   Unterschrift 1: Lage {"links":154,"oben":461,"breite":720,"hoehe":240}, Tinte gemessen {"breite":720,"hoehe":240,"gefaerbt":2546}
+   Unterschrift 2: Lage {"links":154,"oben":430,"breite":720,"hoehe":240}, Tinte gemessen {"breite":720,"hoehe":240,"gefaerbt":2587}
+--- 4. PDF erzeugen ---
+   geklickt: PDF erzeugen ("PDF erzeugen")
+   Hinweise im Werkzeug: []
+   Speicherfelder: 1
+   Neue Dateien: ["haus-musterweg-4-2026-10-06-protokoll.pdf"]
+   haus-musterweg-4-2026-10-06-protokoll.pdf: 31738 Bytes, Kopf "%PDF-1.7", Seiten 3, eingebettete Bilder 3, Seitengröße {"breite":595,"hoehe":842}
+--- 5. Netzverkehr ---
+   Anfragen gesamt: 23, an fremde Hosts: 0
+   Seitenfehler: []
+   Aufnahme: C:\Users\madve\AppData\Local\Temp\ct-protokoll\protokoll-1360.png

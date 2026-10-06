@@ -50,11 +50,20 @@
   Export gelesen, kein fremder Netzverkehr. Bericht:
   `06-protokolle/2026-10-06-welle-d-01-prueffristen.md`, Belege in
   `06-protokolle/screenshots/2026-10-06-welle-d-prueffristen/`.
-- [ ] **Welle D, Werkzeuge 19 und 20 (Foto-Beschrifter `photo-caption`, Protokoll
-  `acceptance-report`)** — offen. Plan und Abnahmekriterien stehen in
-  `06-protokolle/2026-10-06-welle-d-plan.md`. Vor Werkzeug 20 ist die Zeichenfläche aus
-  `PdfPlacementTools.tsx` als gemeinsamer Baustein herauszuziehen (so verlangt es das Konzept);
-  bei Werkzeug 19 ist die Speichergrenze bei vielen großen Fotos **zu messen**, nicht anzunehmen.
+- [x] **Welle D, Werkzeuge 19 und 20 (Foto-Beschrifter `photo-caption`, Abnahme- und
+  Mängelprotokoll `handover-report`)** — erledigt am 2026-10-06, **Welle D damit vollständig**.
+  Werkzeug 19 (`photo-caption`): Aufnahmezeit aus den Bilddaten (eigener Exif-Leser; das echte
+  Fremdfoto deckte einen Fehler in der Rückfallkette auf — die dritte Quelle heißt `ModifyDate`,
+  nicht `DateTime`), Notiz, Pfeil, je Foto eine Datei und ein Sammel-PDF; Pixelvergleich belegt,
+  dass das Original unverändert bleibt. Werkzeug 20 (`handover-report`): Kopfdaten, Mängelzeilen,
+  Fotos, zwei Unterschriften, PDF; Gewährleistungsfristen gerechnet (5/4 Jahre, mit Schalttag und
+  Jahreswechsel im Test). Die Zeichenfläche ist als **ein** gemeinsamer Baustein herausgezogen
+  (`tools/SignaturePad.tsx`), die zweite Fassung in `PdfPlacementTools.tsx` entfernt. Die
+  Speichergrenze wurde gemessen: **keine Bruchgrenze gefunden** (60 × 12 MP und 24 × 48 MP liefen
+  fehlerfrei) — die Obergrenze von 60 Fotos ist deshalb eine bewusste Schranke, keine gemessene
+  Grenze. Bericht: `06-protokolle/2026-10-06-welle-d-02-und-03.md`, Belege in
+  `06-protokolle/screenshots/2026-10-06-welle-d-fotobeschrifter/` und `…-welle-d-protokoll/`.
+  **Alle drei Werkzeuge der Welle D sind lokal, nichts gepusht.**
 - [x] **Stilerscheinung in den aufklappbaren Abschnitten der Handwerk-Werkzeuge prüfen:** Bei
   Pflaster und Reifen sitzt die erste Feldspalte auf der Zeile der Zusammenfassung, das
   Eingabefeld darunter. Lesbar und richtig zugeordnet, aber unschön. Ursache wird im gemeinsamen

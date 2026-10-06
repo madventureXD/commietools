@@ -1,0 +1,38 @@
+--- 1. Testfotos herstellen ---
+   foto-ohne-exif.jpg: 23851 Bytes, enthält Exif: false
+   foto-mit-exif.jpg:  23981 Bytes, enthält Datum: true
+   echtes Fremdfoto:   C:/Windows/Web/touchkeyboard/TouchKeyboardThemeDark003.jpg (122749 Bytes, Windows-Systemdatei, nicht von uns geschrieben)
+   Prüfsummen vorher: {"ohneExif":"2bad9d1266693d5e","mitZeit":"065f1e2f9beb47cf","fremd":"cf6ac1149c5b5ff5"}
+--- 2. Werkzeug geöffnet ---
+   Überschrift: "Baustellenfoto-Beschrifter"
+   Datenschutzhinweis: "Alles bleibt im Gerät: kein Upload, keine Übertragung."
+--- 3. Fotos wählen (eines mit, eines ohne Aufnahmezeit) ---
+   Abschnitte: 4 (Dateifeld + drei Fotos)
+   {"ueberschrift":"wand-ost","notiz":"","zeit":"","hinweis":"Pfeil: in die Vorschau tippen oder klicken. Der Pfeil zeigt auf diese Stelle. | keine Aufnahmezeit in der Datei — Feld bleibt leer","pfeil":{"text":"Pfeil entfernen","aus":true,"gedrueckt":"false"}}
+   {"ueberschrift":"decke-halle","notiz":"","zeit":"2026-10-05 14:22","hinweis":"Pfeil: in die Vorschau tippen oder klicken. Der Pfeil zeigt auf diese Stelle. | aus den Bilddaten gelesen","pfeil":{"text":"Pfeil entfernen","aus":true,"gedrueckt":"false"}}
+   {"ueberschrift":"fremdfoto","notiz":"","zeit":"2021-04-09 09:39","hinweis":"Pfeil: in die Vorschau tippen oder klicken. Der Pfeil zeigt auf diese Stelle. | aus den Bilddaten gelesen (Änderungsdatum der Datei — nicht zwingend die Aufnahmezeit)","pfeil":{"text":"Pfeil entfernen","aus":true,"gedrueckt":"false"}}
+   Aufnahmezeit aus der Datei gelesen: "2026-10-05 14:22" (erwartet 2026-10-05 14:22)
+   Ohne Aufnahmezeit bleibt das Feld leer: ja
+   Echtes Fremdfoto (Windows-Systemdatei): "2021-04-09 09:39" (erwartet 2021-04-09 09:39) — Hinweis: "Pfeil: in die Vorschau tippen oder klicken. Der Pfeil zeigt auf diese Stelle. | aus den Bilddaten gelesen (Änderungsdatum der Datei — nicht zwingend die Aufnahmezeit)"
+--- 4. Notiz und Pfeil ---
+   Pfeilzustand am ersten Foto: {"text":"Pfeil entfernen","aus":false,"gedrueckt":"true"}
+   Vorschau gezeichnet: Pixelkennzahl vorher 16170626 → nachher 16231755 (Pfeil ist sichtbar)
+   Foto ohne Aufnahmezeit (wand-ost): {"zeit":"","hinweis":"Pfeil: in die Vorschau tippen oder klicken. Der Pfeil zeigt auf diese Stelle. | keine Aufnahmezeit in der Datei — Feld bleibt leer"}
+--- 5. Beschriften und speichern (Einzeldateien als PNG für den Pixelvergleich) ---
+   geklickt: Fotos beschriften ("Fotos beschriften")
+   Ergebnisbereich: "Ergebnis"
+   Speicherfelder: 4 (erwartet 4: PDF + drei Fotos)
+   Neue Dateien: ["decke-halle-beschriftet.png","fotodokumentation.pdf","fremdfoto-beschriftet.png","wand-ost-beschriftet.png"]
+   decke-halle-beschriftet.png: 117279 Bytes, Maße {"breite":1600,"hoehe":1200}
+   fotodokumentation.pdf: 172844 Bytes, Kopf "%PDF-1.7", Seiten 3, eingebettete Bilder 3, Seitengröße {"width":841.89,"height":595.28}
+   fremdfoto-beschriftet.png: 958701 Bytes, Maße {"breite":2736,"hoehe":1539}
+   wand-ost-beschriftet.png: 118473 Bytes, Maße {"breite":1600,"hoehe":1200}
+--- 5b. Pixelvergleich Original ↔ Ergebnis (Foto ohne Pfeil: decke-halle) ---
+   decke-halle-beschriftet.png: {"breite":1600,"hoehe":1200,"abweichend":268800,"anteil":0.14,"oben":1032,"unten":1199,"links":0,"rechts":1599}
+   Textleiste beginnt bei Zeile 1008; oberste Abweichung bei Zeile 1032 → oberhalb der Leiste abweichende Punkte: 0
+   Anteil abweichender Punkte am Bild: 0.14 (nur die Textleiste)
+   Prüfsummen nachher: {"ohneExif":"2bad9d1266693d5e","mitZeit":"065f1e2f9beb47cf","fremd":"cf6ac1149c5b5ff5"}
+--- 6. Netzverkehr ---
+   Anfragen gesamt: 26, an fremde Hosts: 0
+   Seitenfehler: []
+   Aufnahme: C:\Users\madve\AppData\Local\Temp\ct-fotobeschrifter\fotobeschrifter-1360.png
