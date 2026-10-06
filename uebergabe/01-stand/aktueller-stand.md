@@ -1,6 +1,28 @@
 # Aktueller Projektstand
 
 **Stand:** 2026-10-06
+**Zusatz 2026-10-06 (Faber), QM-Sanierung R3/R4 — nach dem Durchzug:**
+- **M8-002 (R3, erfüllt):** Offline-Bereitschaft des ersten Besuchs — Warmlauf der beim Start
+  geholten Sprachpakete (`apps/web/src/pwaWarmCache.ts`) und **`ignoreVary: true`** in der
+  Laufzeitregel (`vite.config.ts`; ohne diesen Hebel scheiterte der Modul-Import trotz
+  Cache-Treffer mit `net::ERR_FAILED`). Beleg mit beendetem Dienst: **23 von 23 Antworten aus dem
+  Service Worker, 0 gescheitert**, keine dritte Sprache.
+- **R4 (sieben von acht Karten):** **M4-008** Lint prüft jetzt 415 Dateien (**0 Fehler**; vorher
+  lief das Kommando ohne eine einzige Datei), **M5-001** Inhaltsorakel über pdfjs, **M5-002**
+  Speicheradapter mit geprüften Bytes, **M5-003** QPDF-Wirkung im Browser (geschützt/entsperrt/
+  falsches Passwort), **M5-004** dokumentierte Regressionen in der regulären Suite, **M3-009**
+  registrygesteuerter Sprachkontrakt mit Mutationsgegenprobe, **M1-003** versionierter CI-Workflow
+  (vier Grenzen benannt, **nie gelaufen** — kein Push). **M2-009 ◐:** Prüfer um offenes
+  Werkzeugmenü und eigene Grenzen erweitert, `aria-hidden`-Namenslücke behoben; Gesamtlauf
+  **62 Routen × 2 Breiten grün**, die Kontrastprüfung ist offen (absichtlich kontrastarmer Absatz
+  erzeugt keinen Befund, `skippedContrast: 3`, Ursache ungeklärt).
+- **Zwei Produktfehler behoben:** Der Aktionsknopf im PDF-Teiler blieb nach einem Dateiwechsel
+  dauerhaft gesperrt (M4-005); `normaliseFileName` schnitt bei 180 Zeichen mitten in einem Emoji ab
+  (**M3-007 damit erledigt**).
+Teststand **687 Tests** (`npm run check`, Exit 0), Startbündel **149 000 B gzip** von 204.800,
+`build` Exit 0, **nicht gepusht** (`9882c57`, `86082e5`; 44 Commits vor `origin/main`).
+Protokolle: `06-protokolle/2026-10-06-r4-pruef-und-freigabeschranken.md` u. a.; Übergabe:
+`05-uebergaben/2026-10-06-m8-002-und-r4.md`.
 **Zusatz 2026-10-06 (Faber), Welle E — abgeschlossen:** Suite „Handwerk" umfasst jetzt **17
 Werkzeuge** (neu: Leitungsquerschnitt/Spannungsfall, Beleuchtung, Rohrdimensionierung, Heizlast,
 Gewinde). Register **62 Werkzeuge**, **619 Tests in 39 Dateien**, Startlast 147.711 B gzip von
