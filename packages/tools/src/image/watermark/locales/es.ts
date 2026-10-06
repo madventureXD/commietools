@@ -8,7 +8,7 @@ export const imageWatermarkEs = {
   'tool.watermark.chooseFile': 'Seleccionar archivo',
   'tool.watermark.selected': 'Archivo seleccionado',
   'tool.watermark.originalSize': 'Original',
-  'tool.watermark.preview': 'Avance',
+  'tool.watermark.preview': 'Vista previa',
   'tool.watermark.previewHint': 'La vista previa muestra el efecto reducido. El archivo se guarda en el tamaño original de la imagen.',
   'tool.watermark.privacy': 'La imagen permanece en su dispositivo.',
   'tool.watermark.error': 'La imagen no se pudo procesar.',
@@ -33,7 +33,7 @@ export const imageWatermarkEs = {
   'tool.watermark.anchor.topRight': 'Arriba a la derecha',
   'tool.watermark.anchor.left': 'Izquierda',
   'tool.watermark.anchor.center': 'Centro',
-  'tool.watermark.anchor.right': 'Bien',
+  'tool.watermark.anchor.right': 'Derecha',
   'tool.watermark.anchor.bottomLeft': 'Abajo a la izquierda',
   'tool.watermark.anchor.bottom': 'Abajo',
   'tool.watermark.anchor.bottomRight': 'Abajo a la derecha',
@@ -52,9 +52,9 @@ export const imageWatermarkEs = {
   'tool.watermark.qualityHint': 'Se aplica a JPEG y WebP. PNG se almacena sin pérdidas e ignora este valor.',
 
   'tool.watermark.action': 'Aplicar marca de agua',
-  'tool.watermark.processing': 'Laboral …',
+  'tool.watermark.processing': 'Calculando …',
   'tool.watermark.result': 'Resultado',
   'tool.watermark.outputSize': 'Tamaño del resultado',
-  'tool.watermark.download': 'Salvar el imagen'
+  'tool.watermark.download': 'Guardar la imagen'
 } as const
 

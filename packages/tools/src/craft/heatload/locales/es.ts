@@ -7,7 +7,7 @@ export const heatloadEs = {
 
   'tool.heatload.head': 'Estancias',
   'tool.heatload.outdoorTemp': 'Temperatura exterior de diseño en °C',
-  'tool.heatload.outdoorTempHint': 'Depende de la ubicación y NO figura en las fuentes documentadas: elija el valor para su ubicación. Sin valor por defecto; el campo empieza vacío.',
+  'tool.heatload.outdoorTempHint': 'Depende de la ubicación y NO figura en las fuentes documentadas: elegir el valor para la propia ubicación. Sin valor por defecto; el campo empieza vacío.',
   'tool.heatload.outdoorTempPlaceholder': 'según la ubicación — p. ej. -12',
   'tool.heatload.rooms': 'Estancias',
   'tool.heatload.room': 'Estancia',
@@ -88,7 +88,7 @@ export const heatloadEs = {
 
   'tool.heatload.result': 'Resultado',
   'tool.heatload.resultNote': 'Vatios por estancia, separados en transmisión y ventilación, con el desarrollo del cálculo. La fila de total reúne las estancias para el edificio.',
-  'tool.heatload.resultEmpty': 'Todavía no hay cálculo: introduzca la temperatura exterior de diseño y rellene las estancias.',
+  'tool.heatload.resultEmpty': 'Todavía no hay cálculo: introducir la temperatura exterior de diseño y rellenar las estancias.',
   'tool.heatload.out.transmission': 'Transmisión',
   'tool.heatload.out.ventilation': 'Ventilación',
   'tool.heatload.out.total': 'Total estancia',
@@ -103,8 +103,8 @@ export const heatloadEs = {
   'tool.heatload.formulaVentilation': 'ρ · c_p · n · V · ΔT ÷ 3600',
 
   'tool.heatload.formula': 'Supuestos y fuentes',
-  'tool.heatload.abgrenzungTitle': 'Alcance — léalo',
-  'tool.heatload.abgrenzung': 'Esta herramienta calcula una estimación con valores de ejemplo y de experiencia de libre acceso. NO es un cálculo de carga térmica normalizado según DIN EN 12831. Faltan, entre otras cosas, los suplementos por puentes térmicos y las ganancias solares, y la temperatura exterior de diseño debe elegirla usted según la ubicación. El resultado no sustituye la planificación ni el dimensionado por una persona cualificada.',
+  'tool.heatload.abgrenzungTitle': 'Alcance — leer',
+  'tool.heatload.abgrenzung': 'Esta herramienta calcula una estimación con valores de ejemplo y de experiencia de libre acceso. NO es un cálculo de carga térmica normalizado según DIN EN 12831. Faltan, entre otras cosas, los suplementos por puentes térmicos y las ganancias solares, y la temperatura exterior de diseño debe elegirse según la ubicación. El resultado no sustituye la planificación ni el dimensionado por una persona cualificada.',
   'tool.heatload.assumptions': 'Por estancia se calcula Q_T = Σ U · A · ΔT (transmisión) y Q_L = ρ · c_p · n · V · ΔT ÷ 3600 (ventilación). El volumen de la estancia es superficie en planta × altura. La fórmula de ventilación se divide por 3600 porque la renovación de aire n está en h⁻¹: ρ · c_p · n · V · ΔT es una energía por hora, pero se busca una potencia (W). La temperatura interior por uso es un valor preferente dentro de un intervalo documentado y sigue siendo una elección: es editable. Todos los valores U, temperaturas interiores, renovaciones de aire y propiedades del aire son valores orientativos y editables. **No incluido:** suplementos por puentes térmicos ni ganancias solares (no documentados en las fuentes); los tabiques interiores hacia estancias calefactadas no se aplican por falta de un valor orientativo documentado.',
   'tool.heatload.sourcesBlock': 'Fuentes (consultadas el 2026-10-06)',
   'tool.heatload.abruf': 'Consulta',
@@ -134,7 +134,7 @@ export const heatloadEs = {
   'tool.heatload.sourceType.fachdatenbank': 'Base de datos / enciclopedia técnica',
   'tool.heatload.sourceType.eigener': 'valor propio',
 
-  'tool.heatload.error.outdoorTempMissing': 'Falta la temperatura exterior de diseño. Depende de la ubicación y no tiene valor por defecto: introdúzcala.',
+  'tool.heatload.error.outdoorTempMissing': 'Falta la temperatura exterior de diseño. Depende de la ubicación y no tiene valor por defecto: introducirla.',
   'tool.heatload.error.outdoorTempRange': 'La temperatura exterior de diseño está fuera del intervalo razonable (−30 a 20 °C).',
   'tool.heatload.error.noRooms': 'No se ha registrado ninguna estancia.',
   'tool.heatload.error.tooManyRooms': 'Demasiadas estancias (40 como máximo).',

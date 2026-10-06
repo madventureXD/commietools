@@ -4,6 +4,6 @@
 export const messages: Readonly<Record<string, string>> = {
   "tool.caseConverter.input": "Introducir texto",
   "tool.caseConverter.upper": "MAYÚSCULAS",
-  "tool.caseConverter.lower": "minúscula",
-  "tool.caseConverter.titleCase": "Caso de título"
+  "tool.caseConverter.lower": "minúsculas",
+  "tool.caseConverter.titleCase": "Formato de título"
 }

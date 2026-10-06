@@ -3,7 +3,7 @@ export const es = {
   'tool.pdfSecurity.description': 'Protege archivos PDF localmente con AES-256 o elimina la protección mediante una contraseña válida.',
   'tool.pdfSecurity.summary': 'Cifra archivos PDF con AES-256 y los descifra con la contraseña válida.',
   'tool.pdfSecurity.terms': 'proteger PDF,contraseña de PDF,cifrar PDF,AES-256,desbloquear PDF,descifrar PDF,contraseña de propietario,permisos,protección de PDF,#pdf,#seguridad,#contraseña',
-  'tool.pdfSecurity.protect': 'Proteger', 'tool.pdfSecurity.unlock': 'Descubrir',
+  'tool.pdfSecurity.protect': 'Proteger', 'tool.pdfSecurity.unlock': 'Desbloquear',
   'tool.pdfSecurity.userPassword': 'Contraseña de apertura', 'tool.pdfSecurity.ownerPassword': 'Contraseña del propietario',
   'tool.pdfSecurity.confirmPassword': 'Repetir contraseña de apertura',
   'tool.pdfSecurity.passwordMismatch': 'Las contraseñas de apertura no coinciden.',
@@ -25,7 +25,7 @@ export const es = {
   'tool.pdfCompress.lossyWarning': 'Este nivel puede convertir imágenes adecuadas que no sean JPEG a JPEG. La calidad de la imagen y la transparencia pueden cambiar.',
   'tool.pdfCompress.action': 'Optimizar PDF', 'tool.pdfCompress.result': 'PDF optimizado',
   'tool.pdfCompress.originalSize': 'Tamaño original', 'tool.pdfCompress.resultSize': 'Tamaño del resultado', 'tool.pdfCompress.saving': 'Ahorro',
-  'tool.pdfCompress.larger': 'El resultado es más grande que el original. No se guarda automáticamente; sólo puedes descargarlo deliberadamente.',
+  'tool.pdfCompress.larger': 'El resultado es más grande que el original. No se guarda automáticamente; sólo se puede descargar deliberadamente.',
   'tool.pdfCompress.noPromise': 'La compresión estructural no necesariamente puede reducir los archivos PDF que ya están bien optimizados o que contienen principalmente imágenes JPEG.'
 } as const
 

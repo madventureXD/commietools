@@ -3,7 +3,7 @@
 
 export const messages: Readonly<Record<string, string>> = {
   "tool.pdfSecurity.protect": "Proteger",
-  "tool.pdfSecurity.unlock": "Descubrir",
+  "tool.pdfSecurity.unlock": "Desbloquear",
   "tool.pdfSecurity.userPassword": "Contraseña de apertura",
   "tool.pdfSecurity.ownerPassword": "Contraseña del propietario",
   "tool.pdfSecurity.confirmPassword": "Repetir contraseña de apertura",

@@ -1,6 +1,6 @@
 export const paintEs = {
   'tool.paint.title': 'Pintura, papel pintado y revestimiento',
-  'tool.paint.description': 'Superficie de pared con descuentos, pintura según rendimiento y manos, y papel pintado por paños con rapport — con longitud de corte, paños por rollo, número de rollos y merma indicada aparte. Calcula por completo en el navegador.',
+  'tool.paint.description': 'Superficie de pared con descuentos, pintura según rendimiento y manos, y papel pintado por paños con rapport — con longitud de corte, paños por rollo, número de rollos y recortes indicados aparte. Calcula por completo en el navegador.',
   'tool.paint.summary': 'Superficie de pared, pintura y paños de papel con rapport desde medidas.',
   'tool.paint.terms': 'pintura,pintar,manos,cantidad de pintura,pintura plástica,rendimiento,litros,cubo,papel pintado,calculadora de papel pintado,paños,rapport,desfase,repetición,ancho del rollo,longitud del rollo,papel liso,superficie de pared,descuento,ventana,puerta,renovación,reforma,#pintura,#artesania',
 
@@ -39,7 +39,7 @@ export const paintEs = {
   'tool.paint.out.perRoll': 'Paños por rollo',
   'tool.paint.out.drops': 'Paños',
   'tool.paint.out.rolls': 'Rollos',
-  'tool.paint.out.offcut': 'Merma (superficie del rollo)',
+  'tool.paint.out.offcut': 'Recortes (superficie del rollo)',
   'tool.paint.out.remainder': 'por encima de la cantidad necesaria',
 
   'tool.paint.error.perimeter': 'El perímetro debe estar entre 0,5 y 2000 m.',

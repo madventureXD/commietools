@@ -1,6 +1,6 @@
 export const cableEs = {
   'tool.cable.title': 'Sección del conductor y caída de tensión',
-  'tool.cable.description': 'Calcular la caída de tensión de una línea monofásica o trifásica, proponer la sección adecuada y comprobar si la corriente encaja con la capacidad de carga que usted introduzca. La capacidad de carga no se toma de una tabla, sino que se introduce desde su norma o datos del fabricante. Todo permanece en el dispositivo.',
+  'tool.cable.description': 'Calcular la caída de tensión de una línea monofásica o trifásica, proponer la sección adecuada y comprobar si la corriente encaja con la capacidad de carga que se introduzca. La capacidad de carga no se toma de una tabla, sino que se introduce desde la propia norma o los datos del fabricante. Todo permanece en el dispositivo.',
   'tool.cable.summary': 'Calcular la caída de tensión, proponer la sección y comprobarla contra la capacidad de carga introducida.',
   'tool.cable.terms': 'sección del conductor,sección,caída de tensión,pérdida de tensión,cable,línea,capacidad de carga,ampacidad,utilización,cobre,aluminio,instalación,eléctrico,#caidadetensión,#eléctrico',
 
@@ -33,7 +33,7 @@ export const cableEs = {
   'tool.cable.resetKappa': 'Restablecer κ al valor del material',
 
   'tool.cable.ampacity': 'Capacidad de carga (corriente admisible)',
-  'tool.cable.ampacityHint': 'Tome el valor de su tabla o norma — por ejemplo de los datos del fabricante o de un extracto de la DIN VDE 0298-4. Esta herramienta **no contiene a propósito** ninguna tabla de capacidad de carga; calcula la caída de tensión y la comprueba contra su valor.',
+  'tool.cable.ampacityHint': 'Tomar el valor de la propia tabla o norma — por ejemplo de los datos del fabricante o de un extracto de la DIN VDE 0298-4. Esta herramienta **no contiene a propósito** ninguna tabla de capacidad de carga; calcula la caída de tensión y la comprueba contra el valor introducido.',
 
   'tool.cable.action': 'Calcular',
   'tool.cable.result': 'Resultado',

@@ -51,7 +51,7 @@ export const pipesEs = {
   'tool.pipes.proposalNote': 'Propuesta: el diámetro nominal más pequeño de este tipo de tubo cuya velocidad no supera el valor orientativo superior. El valor orientativo es práctica de proyecto, no un límite.',
   'tool.pipes.overview': 'Estimación, no un cálculo de red de tuberías. No se incluyen las pérdidas singulares de accesorios (codos, tes, válvulas).',
 
-  'tool.pipes.error.empty': 'Complete todos los campos con un número.',
+  'tool.pipes.error.empty': 'Rellenar todos los campos con un número.',
   'tool.pipes.error.power': 'La potencia térmica debe estar entre 0,1 y 5000 kW.',
   'tool.pipes.error.spread': 'El salto térmico debe estar entre 1 y 60 K.',
   'tool.pipes.error.temperature': 'La temperatura del agua debe estar entre 10 y 80 °C (solo este intervalo está documentado).',

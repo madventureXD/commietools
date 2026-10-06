@@ -6,6 +6,6 @@ export const pdfOrganizeEs = {
   'tool.pdfOrganize.empty': 'Debe quedar al menos una página en el documento.',
   'tool.pdfOrganize.action': 'Crear nuevo PDF',
   'tool.pdfOrganize.result': 'PDF organizado',
-  'tool.pdfOrganize.original': 'Página original {número}'
+  'tool.pdfOrganize.original': 'Página original {number}'
 } as const
 

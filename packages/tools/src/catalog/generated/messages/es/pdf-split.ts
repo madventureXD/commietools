@@ -6,8 +6,8 @@ export const messages: Readonly<Record<string, string>> = {
   "tool.pdfSplit.every": "Cada página por separado",
   "tool.pdfSplit.groups": "Grupos personalizados",
   "tool.pdfSplit.selection": "Grupos de páginas",
-  "tool.pdfSplit.hint": "Separe los grupos con punto y coma, por ejemplo: 1-3; 4,6; 7-10.",
+  "tool.pdfSplit.hint": "Separar los grupos con punto y coma, por ejemplo: 1-3; 4,6; 7-10.",
   "tool.pdfSplit.action": "Dividir PDF",
   "tool.pdfSplit.result": "Resultados",
-  "tool.pdfSplit.download": "Guardar parte {número}"
+  "tool.pdfSplit.download": "Guardar parte {number}"
 }

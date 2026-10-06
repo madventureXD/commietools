@@ -1,5 +1,5 @@
 export const colorToolsEs = {
-  'tool.colorTools.title': 'herramientas de color',
+  'tool.colorTools.title': 'Herramientas de color',
   'tool.colorTools.description': 'Convierte colores entre HEX, RGB, HSL y LAB, verifica el contraste WCAG, extrae la paleta de una imagen y muestra cómo aparecen los colores con deficiencia en la visión del color, por completo en el dispositivo.',
   'tool.colorTools.summary': 'Convierte colores, comprueba el contraste y extrae paletas de imágenes.',
   'tool.colorTools.terms': 'color,colores,herramienta de color,convertidor de color,convertir,hex,rgb,hsl,lab,hex a rgb,rgb a hex,valor de color,código de color,selector de color,cuentagotas,paleta,paleta de colores,colores dominantes,colores de la imagen,contraste de color,contraste,wcag,relación de contraste,accesibilidad,legibilidad,texto en color,daltonismo,visión de colores deficiencia,protanopia,deuteranopia,tritanopia,simulación,diseño,tokens,diseño web,#color,#colores,#accesibilidad',
@@ -26,7 +26,7 @@ export const colorToolsEs = {
   'tool.colorTools.paletteHint': 'Los colores más frecuentes de la imagen. El número decide cuántos colores se buscan.',
   'tool.colorTools.paletteCount': 'Número de colores',
   'tool.colorTools.paletteAction': 'Tirar de la paleta',
-  'tool.colorTools.paletteWorking': 'Laboral …',
+  'tool.colorTools.paletteWorking': 'Calculando …',
   'tool.colorTools.paletteEmpty': 'Seleccionar primero una imagen para crear una paleta.',
   'tool.colorTools.paletteUse': 'Usar como color',
 
@@ -43,7 +43,7 @@ export const colorToolsEs = {
   'tool.colorTools.sampleText': 'Así se ve el texto',
 
   'tool.colorTools.simulation': 'Deficiencia de visión del color',
-  'tool.colorTools.simulationHint': 'El cálculo sigue a Brettel, Viénot y Mollon (1997) sobre sRGB lineal. Muestra el efecto, pero no sustituye a las pruebas con las personas interesadas.',
+  'tool.colorTools.simulationHint': 'El cálculo sigue a Brettel, Viénot y Mollon (1997) sobre sRGB lineal. Muestra el efecto, pero no sustituye a las pruebas con las personas afectadas.',
   'tool.colorTools.protanopia': 'Protanopia (sin percepción del rojo)',
   'tool.colorTools.deuteranopia': 'Deuteranopia (sin percepción verde)',
   'tool.colorTools.tritanopia': 'Tritanopía (sin percepción azul)',

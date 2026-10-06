@@ -29,7 +29,7 @@ export const messages: Readonly<Record<string, string>> = {
   "tool.cable.kappaSpread": "Atención, las fuentes varían: cobre κ = 55…57, aluminio κ = 35…36, el valor normativo de cálculo corresponde a κ ≈ 44 (cobre) o ≈ 28 (aluminio). El valor ajustado aquí es un supuesto y se puede cambiar.",
   "tool.cable.resetKappa": "Restablecer κ al valor del material",
   "tool.cable.ampacity": "Capacidad de carga (corriente admisible)",
-  "tool.cable.ampacityHint": "Tome el valor de su tabla o norma — por ejemplo de los datos del fabricante o de un extracto de la DIN VDE 0298-4. Esta herramienta **no contiene a propósito** ninguna tabla de capacidad de carga; calcula la caída de tensión y la comprueba contra su valor.",
+  "tool.cable.ampacityHint": "Tomar el valor de la propia tabla o norma — por ejemplo de los datos del fabricante o de un extracto de la DIN VDE 0298-4. Esta herramienta **no contiene a propósito** ninguna tabla de capacidad de carga; calcula la caída de tensión y la comprueba contra el valor introducido.",
   "tool.cable.action": "Calcular",
   "tool.cable.result": "Resultado",
   "tool.cable.out.dropVolts": "Caída de tensión ΔU",

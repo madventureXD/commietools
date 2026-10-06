@@ -14,7 +14,7 @@ export const imagesToPdfEs = {
   'tool.imagesToPdf.portrait': 'Retrato',
   'tool.imagesToPdf.landscape': 'Paisaje',
   'tool.imagesToPdf.margin': 'Margen en puntos',
-  'tool.imagesToPdf.fit': 'Adecuado',
+  'tool.imagesToPdf.fit': 'Ajuste',
   'tool.imagesToPdf.contain': 'Ajustar toda la imagen',
   'tool.imagesToPdf.cover': 'Llenar página y recortar',
   'tool.imagesToPdf.action': 'Crear PDF',

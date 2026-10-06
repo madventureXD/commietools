@@ -43,9 +43,9 @@ export const searchLocale: Readonly<Record<string, ToolLocaleEntry>> = {
     ]
   },
   "case-converter": {
-    "title": "caso de letra",
+    "title": "Mayúsculas y minúsculas",
     "summary": "Cambia entre mayúsculas, minúsculas y formato de título.",
-    "description": "Convierte texto localmente a mayúsculas, minúsculas o a mayúsculas.",
+    "description": "Convierte texto localmente a mayúsculas, minúsculas o formato de título.",
     "terms": [
       "mayúsculas",
       "minúsculas",
@@ -68,7 +68,7 @@ export const searchLocale: Readonly<Record<string, ToolLocaleEntry>> = {
     ]
   },
   "json-formatter": {
-    "title": "Formato JSON",
+    "title": "Formatear JSON",
     "summary": "Sangra y valida JSON.",
     "description": "Valida y formatea JSON completamente en su navegador.",
     "terms": [
@@ -110,7 +110,7 @@ export const searchLocale: Readonly<Record<string, ToolLocaleEntry>> = {
     ]
   },
   "qr-code-generator": {
-    "title": "generador de códigos QR",
+    "title": "Generador de códigos QR",
     "summary": "Crea códigos QR como una imagen.",
     "description": "Crea códigos QR versátiles y personalizables completamente en su dispositivo.",
     "terms": [
@@ -419,7 +419,7 @@ export const searchLocale: Readonly<Record<string, ToolLocaleEntry>> = {
     ]
   },
   "color-tools": {
-    "title": "herramientas de color",
+    "title": "Herramientas de color",
     "summary": "Convierte colores, comprueba el contraste y extrae paletas de imágenes.",
     "description": "Convierte colores entre HEX, RGB, HSL y LAB, verifica el contraste WCAG, extrae la paleta de una imagen y muestra cómo aparecen los colores con deficiencia en la visión del color, por completo en el dispositivo.",
     "terms": [
@@ -583,7 +583,7 @@ export const searchLocale: Readonly<Record<string, ToolLocaleEntry>> = {
     ]
   },
   "pdf-watermark": {
-    "title": "marca de agua PDF",
+    "title": "Marca de agua PDF",
     "summary": "Agrega texto como una marca de agua PDF única o repetida.",
     "description": "Agrega una marca de agua de texto ajustable a páginas PDF seleccionadas, localmente y sin cargas.",
     "terms": [
@@ -607,7 +607,7 @@ export const searchLocale: Readonly<Record<string, ToolLocaleEntry>> = {
     ]
   },
   "pdf-page-numbers": {
-    "title": "números de página PDF",
+    "title": "Números de página PDF",
     "summary": "Agrega números de página con formato libre a los archivos PDF.",
     "description": "Numera las páginas PDF seleccionadas con un valor inicial, formato, prefijo y sufijo, completamente en su dispositivo.",
     "terms": [
@@ -694,7 +694,7 @@ export const searchLocale: Readonly<Record<string, ToolLocaleEntry>> = {
     "tags": [
       "#pdf",
       "#comentar",
-      "#annotación"
+      "#anotación"
     ]
   },
   "pdf-security": {
@@ -1464,7 +1464,7 @@ export const searchLocale: Readonly<Record<string, ToolLocaleEntry>> = {
   "paint": {
     "title": "Pintura, papel pintado y revestimiento",
     "summary": "Superficie de pared, pintura y paños de papel con rapport desde medidas.",
-    "description": "Superficie de pared con descuentos, pintura según rendimiento y manos, y papel pintado por paños con rapport — con longitud de corte, paños por rollo, número de rollos y merma indicada aparte. Calcula por completo en el navegador.",
+    "description": "Superficie de pared con descuentos, pintura según rendimiento y manos, y papel pintado por paños con rapport — con longitud de corte, paños por rollo, número de rollos y recortes indicados aparte. Calcula por completo en el navegador.",
     "terms": [
       "pintura",
       "pintar",
@@ -1798,7 +1798,7 @@ export const searchLocale: Readonly<Record<string, ToolLocaleEntry>> = {
   "cable": {
     "title": "Sección del conductor y caída de tensión",
     "summary": "Calcular la caída de tensión, proponer la sección y comprobarla contra la capacidad de carga introducida.",
-    "description": "Calcular la caída de tensión de una línea monofásica o trifásica, proponer la sección adecuada y comprobar si la corriente encaja con la capacidad de carga que usted introduzca. La capacidad de carga no se toma de una tabla, sino que se introduce desde su norma o datos del fabricante. Todo permanece en el dispositivo.",
+    "description": "Calcular la caída de tensión de una línea monofásica o trifásica, proponer la sección adecuada y comprobar si la corriente encaja con la capacidad de carga que se introduzca. La capacidad de carga no se toma de una tabla, sino que se introduce desde la propia norma o los datos del fabricante. Todo permanece en el dispositivo.",
     "terms": [
       "sección del conductor",
       "sección",

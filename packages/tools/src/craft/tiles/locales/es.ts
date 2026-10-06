@@ -13,15 +13,15 @@ export const tilesEs = {
   'tool.tiles.pattern.grid': 'A junta corrida (juntas continuas)',
   'tool.tiles.pattern.halfOffset': 'A junta trabada (juntas desplazadas)',
   'tool.tiles.pattern.diagonal': 'En diagonal',
-  'tool.tiles.patternSurcharge': 'Reserva (%)',
+  'tool.tiles.patternSurcharge': 'Margen (%)',
   'tool.tiles.jointWidth': 'Ancho de junta (mm)',
   'tool.tiles.jointDepth': 'Profundidad de junta (mm)',
   'tool.tiles.jointDensity': 'Densidad del mortero de juntas (kg/m³)',
   'tool.tiles.notch': 'Dentado de la llana (mm)',
   'tool.tiles.bagSize': 'Tamaño del saco (kg)',
-  'tool.tiles.settings': 'Juntas, adhesivo y reserva',
+  'tool.tiles.settings': 'Juntas, adhesivo y margen',
 
-  'tool.tiles.out.area': 'Superficie incluida la reserva',
+  'tool.tiles.out.area': 'Superficie con el margen incluido',
   'tool.tiles.out.tiles': 'Azulejos',
   'tool.tiles.out.perSquareMeter': 'Azulejos por m²',
   'tool.tiles.out.reserve': 'de los cuales, reserva por el margen',
@@ -39,10 +39,10 @@ export const tilesEs = {
   'tool.tiles.error.depth': 'La profundidad de junta debe estar entre 2 y 40 mm.',
   'tool.tiles.error.density': 'La densidad del mortero de juntas debe estar entre 800 y 2400 kg/m³.',
   'tool.tiles.error.notch': 'El dentado de la llana debe estar entre 0 y 20 mm.',
-  'tool.tiles.error.surcharge': 'La reserva debe estar entre 0 y 40 por ciento.',
+  'tool.tiles.error.surcharge': 'El margen debe estar entre 0 y 40 por ciento.',
   'tool.tiles.error.bag': 'El tamaño del saco debe estar entre 1 y 50 kg.',
 
-  'tool.tiles.assumptions': 'Supuestos: se calcula con la medida nominal del formato, no con el módulo de formato más junta — así lo hacen el comercio y los fabricantes. La junta reduce ligeramente la superficie de azulejo por metro cuadrado (con 30 × 30 cm y junta de 3 mm, 10,89 en lugar de 11,11 azulejos por m², alrededor del 2 %); esa diferencia es menor que cualquier reserva por colocación y queda cubierta por los recortes. La longitud de juntas es la parte de junta por azulejo sobre toda la superficie. La profundidad de junta suele ser el grosor del azulejo menos el lecho de adhesivo, por eso se introduce aparte. El consumo de adhesivo sigue la regla práctica «la mitad de la altura del dentado da kilogramos por metro cuadrado» (dentado de 8 mm → 4 kg/m²). La reserva cubre cortes y colocación; es un valor de experiencia y se puede modificar.',
-  'tool.tiles.sources': 'Fórmulas: mortero de juntas por m² = (a + b) / (a · b) · ancho de junta · profundidad de junta · densidad, con 1600 kg/m³ para el mortero de cemento — ambas según la fuente citada en el concepto del proyecto «Handwerkerwerkzeuge» (tw.advema.de). Todos los demás valores propuestos (reservas por colocación, regla del adhesivo) son valores de experiencia sin fuente técnica citada y así se indican en la interfaz. Sin tablas de normas y sin afirmaciones sobre normas: es un cálculo de pedido para predimensionar.',
+  'tool.tiles.assumptions': 'Supuestos: se calcula con la medida nominal del formato, no con el módulo de formato más junta — así lo hacen el comercio y los fabricantes. La junta reduce ligeramente la superficie de azulejo por metro cuadrado (con 30 × 30 cm y junta de 3 mm, 10,89 en lugar de 11,11 azulejos por m², alrededor del 2 %); esa diferencia es menor que cualquier margen por colocación y queda cubierta por los recortes. La longitud de juntas es la parte de junta por azulejo sobre toda la superficie. La profundidad de junta suele ser el grosor del azulejo menos el lecho de adhesivo, por eso se introduce aparte. El consumo de adhesivo sigue la regla práctica «la mitad de la altura del dentado da kilogramos por metro cuadrado» (dentado de 8 mm → 4 kg/m²). El margen cubre cortes y colocación; es un valor de experiencia y se puede modificar.',
+  'tool.tiles.sources': 'Fórmulas: mortero de juntas por m² = (a + b) / (a · b) · ancho de junta · profundidad de junta · densidad, con 1600 kg/m³ para el mortero de cemento — ambas según la fuente citada en el concepto del proyecto «Handwerkerwerkzeuge» (tw.advema.de). Todos los demás valores propuestos (márgenes por colocación, regla del adhesivo) son valores de experiencia sin fuente técnica citada y así se indican en la interfaz. Sin tablas de normas y sin afirmaciones sobre normas: es un cálculo de pedido para predimensionar.',
   'tool.tiles.roundNote': 'Se calcula con doce cifras significativas y se muestra en el idioma del usuario. Los azulejos y los sacos se redondean siempre hacia arriba.'
 } as const

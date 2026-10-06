@@ -3,7 +3,7 @@
 
 export const messages: Readonly<Record<string, string>> = {
   "tool.pdfToImages.settings": "Configuración de salida",
-  "tool.pdfToImages.selection": "paginas",
+  "tool.pdfToImages.selection": "páginas",
   "tool.pdfToImages.selectionHint": "Por ejemplo 1-3, 7 o 10-8.",
   "tool.pdfToImages.format": "Formato de imagen",
   "tool.pdfToImages.resolution": "Resolución",
@@ -11,6 +11,6 @@ export const messages: Readonly<Record<string, string>> = {
   "tool.pdfToImages.background": "Color de fondo",
   "tool.pdfToImages.action": "Crear imágenes",
   "tool.pdfToImages.result": "Imágenes creadas",
-  "tool.pdfToImages.download": "Descargar página {número}",
+  "tool.pdfToImages.download": "Descargar página {number}",
   "tool.pdfToImages.large": "Las altas resoluciones requieren una memoria considerable. Las páginas se procesan una a la vez."
 }

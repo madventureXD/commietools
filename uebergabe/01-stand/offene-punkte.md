@@ -77,6 +77,10 @@
   **Werkzeug 13:** Strombelastbarkeit als **Eingabefeld**, das Werkzeug rechnet und prüft den
   Spannungsfall. Bauplan mit Abnahmekriterien: `06-protokolle/2026-10-06-welle-e-plan.md`.
   Reihenfolge: 18 → 14 → 16 → 15 → 13.
+  *(2026-10-06, Veröffentlichung: Welle E ist **gepusht und ausgeliefert** — `dd427df`, 31 Commits.
+  Online nachgeprüft mit eigenem Beleg. Ein Fehler kam erst dabei heraus: Werkzeug 15 fehlte in der
+  Suite „Handwerk" (16 statt 17), weil ein Beauftragter beim Zurücksetzen auch seinen Suite-Eintrag
+  entfernt hatte; behoben in `832a5e2` und online bestätigt. Der Katalogprüfer findet das nicht.)*
 - [x] **Stilerscheinung in den aufklappbaren Abschnitten der Handwerk-Werkzeuge prüfen:** Bei
   Pflaster und Reifen sitzt die erste Feldspalte auf der Zeile der Zusammenfassung, das
   Eingabefeld darunter. Lesbar und richtig zugeordnet, aber unschön. Ursache wird im gemeinsamen

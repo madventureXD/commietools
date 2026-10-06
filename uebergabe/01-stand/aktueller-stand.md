@@ -12,6 +12,22 @@ Fehler, alle behoben. Einzelheiten: `06-protokolle/2026-10-06-welle-e-bericht.md
 `06-protokolle/screenshots/2026-10-06-welle-e/`. Alles lokal, **nicht gepusht** (`11f09d4`, `8d9be23`).
 **Fachliche Freigabe beanspruchen 13 und 16 ausdrücklich nicht** (Vorplanung bzw. Überschlag).
 
+**Zusatz 2026-10-06 (Faber), Veröffentlichung:** Welle E ist **ausgeliefert** — 31 Commits gepusht
+(`dd427df`), die Auslieferung spielte den Stand nach rund zwei Minuten aus (Katalogdatei
+`BPHs9pGK`), online nachgeprüft mit eigenem Beleg (`work/online-nachpruefung.cjs`): Suite
+„Handwerk" zeigt **17 Werkzeuge**, alle fünf neuen sind aufgeführt, Werkzeug 15 lädt, Werkzeug 18
+rechnet online richtig (M10: Kernloch 8,5 · D1 8,38 · Durchgangsloch 11 · Schlüsselweite 16 ·
+Anzugsmoment 48–54 Nm), die Suche findet „Gewinde".
+
+**Dabei ein Fehler gefunden, den kein Test und keine Prüfung im Repository gemeldet hat:**
+Werkzeug 15 (Rohr) war im Register, **fehlte aber in der Suite „Handwerk"** (16 statt 17). Ursache
+war ein Beauftragter, der beim Zurücksetzen seiner Verdrahtung auch seinen Suite-Eintrag entfernt
+hatte — **nachdem** meine Verdrahtungsprüfung gelaufen war. Der Katalogprüfer schweigt dazu, weil
+ein nicht aufgeführter Werkzeugeintrag kein Fehler ist. Gefunden hat es erst der Blick auf die
+**ausgelieferte Seite**; behoben in `832a5e2`, danach erneut ausgeliefert und online bestätigt.
+Lehre im Skill: nach dem Zurückkehren der Beauftragten **Einträge zählen** und die Suite-Zeile
+**einzeln** nachsehen — nicht nur den Kataloglauf bestehen lassen.
+
 **Letzter geprüfter Meilenstein:** Sammelrelease mit 41 Werkzeugen, vollständiger Rechner-Suite, PDF-Suite M0–M9 und sprachgetrennten Suchpaketen auf `main` veröffentlicht (`95e1b2f`, 2026-10-04); automatische Cloudflare-Bereitstellung und Online-Nachkontrolle sind als nächster Schritt vorgesehen.
 
 **Zusatz 2026-10-05 (Faber):** Suite „Handwerk" mit **Welle A und Welle B vollständig** — acht

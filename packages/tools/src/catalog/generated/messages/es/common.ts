@@ -143,7 +143,7 @@ export const messages: Readonly<Record<string, string>> = {
   "tool.pdf.error.unsupported": "El archivo o formato seleccionado no es compatible o está dañado.",
   "tool.pdf.error.generic": "No se pudo procesar el PDF.",
   "tool.pdf.result": "Resultado",
-  "tool.pdfPlacement.pages": "paginas",
+  "tool.pdfPlacement.pages": "páginas",
   "tool.pdfPlacement.pagesHint": "Por ejemplo 1-3, 5 u 8-6.",
   "tool.pdfPlacement.anchor": "Posición",
   "tool.pdfPlacement.margin": "Distancia desde el borde (pt)",

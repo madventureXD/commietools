@@ -36,7 +36,7 @@ export const messages: Readonly<Record<string, string>> = {
   "tool.paint.out.perRoll": "Paños por rollo",
   "tool.paint.out.drops": "Paños",
   "tool.paint.out.rolls": "Rollos",
-  "tool.paint.out.offcut": "Merma (superficie del rollo)",
+  "tool.paint.out.offcut": "Recortes (superficie del rollo)",
   "tool.paint.out.remainder": "por encima de la cantidad necesaria",
   "tool.paint.error.perimeter": "El perímetro debe estar entre 0,5 y 2000 m.",
   "tool.paint.error.height": "La altura de la pared debe estar entre 0,5 y 20 m.",

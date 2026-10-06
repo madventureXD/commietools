@@ -13,7 +13,7 @@ export const woodEs = {
   'tool.wood.dryMass': 'Masa seca (kg)',
   'tool.wood.targetMoisture': 'Humedad objetivo (%)',
   'tool.wood.species': 'Especie',
-  'tool.wood.species.spruce': 'Picea',
+  'tool.wood.species.spruce': 'Pícea',
   'tool.wood.species.fir': 'Abeto',
   'tool.wood.species.pine': 'Pino',
   'tool.wood.species.larch': 'Alerce',
@@ -56,6 +56,6 @@ export const woodEs = {
   'tool.wood.error.length': 'La longitud debe estar entre 0,01 y 100 metros.',
 
   'tool.wood.assumptions': 'Supuestos: la humedad de la madera es un porcentaje en masa referido a la masa seca, tal como lo define la literatura técnica: u = (masa húmeda − masa seca) / masa seca · 100. La densidad se refiere a una humedad de 12 a 15 por ciento, como la que se alcanza en interiores. No se convierte a propósito a otros niveles de humedad: la hinchazón también cambia el volumen, así que esa conversión sería una falsa precisión. La densidad varía mucho dentro de una especie según la región y la anchura de los anillos, por lo que la tabla da valores medios que se pueden sobrescribir.',
-  'tool.wood.sources': 'Densidades medias con 12 a 15 por ciento de humedad: Instituto Forestal de Baviera (LWF), tabla de las maderas centroeuropeas, reproducida en sanier.de; comprobación en la serie «Wissen 57» del LWF (pino 0,52, picea 0,47, abeto 0,47, alerce 0,59, abeto de Douglas 0,58, roble 0,67–0,69, haya 0,69–0,72 g/cm³). Fórmula de la humedad y clasificación por rangos (0–6 seca, 6–35 rango de trabajo, desde 35 mojada): bauhandwerk.de y holzland.de. Ninguna afirmación sobre normas y ninguna instrucción de secado: se mide en la pieza, no se calcula.',
+  'tool.wood.sources': 'Densidades medias con 12 a 15 por ciento de humedad: Instituto Forestal de Baviera (LWF), tabla de las maderas centroeuropeas, reproducida en sanier.de; comprobación en la serie «Wissen 57» del LWF (pino 0,52, pícea 0,47, abeto 0,47, alerce 0,59, abeto de Douglas 0,58, roble 0,67–0,69, haya 0,69–0,72 g/cm³). Fórmula de la humedad y clasificación por rangos (0–6 seca, 6–35 rango de trabajo, desde 35 mojada): bauhandwerk.de y holzland.de. Ninguna afirmación sobre normas y ninguna instrucción de secado: se mide en la pieza, no se calcula.',
   'tool.wood.roundNote': 'Se calcula con doce cifras significativas y se muestra en el idioma del usuario. La densidad es un valor medio; el resultado es un cálculo previo, no un control de pesaje.'
 } as const

@@ -8,20 +8,20 @@ export const iconGeneratorEs = {
   'tool.iconGenerator.chooseFile': 'Seleccionar archivo',
   'tool.iconGenerator.selected': 'Archivo seleccionado',
   'tool.iconGenerator.originalSize': 'Original',
-  'tool.iconGenerator.preview': 'Avance',
+  'tool.iconGenerator.preview': 'Vista previa',
   'tool.iconGenerator.privacy': 'La imagen permanece en su dispositivo.',
   'tool.iconGenerator.error': 'La imagen no se pudo procesar.',
 
-  'tool.iconGenerator.sizes': 'Tallas',
+  'tool.iconGenerator.sizes': 'Tamaños',
   'tool.iconGenerator.sizesHint': 'Cada tamaño seleccionado se escribe como PNG. Los tamaños pequeños parecen suaves en un navegador porque están muy reducidos.',
 
-  'tool.iconGenerator.fit': 'Adecuado',
+  'tool.iconGenerator.fit': 'Ajuste',
   'tool.iconGenerator.fit.cover': 'rellenar y recortar',
-  'tool.iconGenerator.fit.contain': 'ajuste y almohadilla',
+  'tool.iconGenerator.fit.contain': 'ajustar y rellenar',
   'tool.iconGenerator.fitHint': 'El relleno cubre todo el cuadrado y recorta los bordes. El ajuste mantiene la imagen completa y rellena los bordes con el color de fondo.',
 
   'tool.iconGenerator.background': 'Color de fondo',
-  'tool.iconGenerator.backgroundHint': 'Se utiliza para bordes acolchados y siempre para la variante enmascarable. Los íconos enmascarables deben ser opacos, porque el sistema operativo los recorta en cualquier forma.',
+  'tool.iconGenerator.backgroundHint': 'Se utiliza para bordes rellenados y siempre para la variante enmascarable. Los íconos enmascarables deben ser opacos, porque el sistema operativo los recorta en cualquier forma.',
   'tool.iconGenerator.transparent': 'Transparente',
   'tool.iconGenerator.transparentHint': 'Sin color de fondo, los bordes permanecen transparentes. Esto no se aplica a la variante enmascarable.',
 
@@ -34,12 +34,12 @@ export const iconGeneratorEs = {
   'tool.iconGenerator.icoOversize': 'Los tamaños superiores a 256 píxeles no caben en favicon.ico y están escritos únicamente como PNG.',
 
   'tool.iconGenerator.action': 'Crear iconos',
-  'tool.iconGenerator.processing': 'Laboral …',
+  'tool.iconGenerator.processing': 'Calculando …',
   'tool.iconGenerator.result': 'Resultado',
   'tool.iconGenerator.resultHint': 'Los archivos se guardan uno por uno; todos pertenecen a la misma carpeta.',
-  'tool.iconGenerator.download': 'Ahorrar',
+  'tool.iconGenerator.download': 'Guardar',
 
-  'tool.iconGenerator.manifest': 'Entrada manifiesta',
+  'tool.iconGenerator.manifest': 'Entrada del manifiesto',
   'tool.iconGenerator.manifestHint': 'Para el manifest.json de su aplicación web: guardar los PNG junto al archivo de manifiesto.',
   'tool.iconGenerator.copy': 'Copiar',
   'tool.iconGenerator.copied': 'copiado'
