@@ -44,11 +44,40 @@
   `work/details-inhalt-zaehlen.cjs`. **Erledigt mit Commit `57d94da`;
   Fortschrittsprotokoll `06-protokolle/2026-10-06-details-abstand.md`.**)*
 
-- [ ] **Bedienzielhöhe der aufklappbaren Kopfzeilen (44 px):** Der anklickbare `summary` eines
+- [x] **Bedienzielhöhe der aufklappbaren Kopfzeilen (44 px):** Der anklickbare `summary` eines
   aufklappbaren Abschnitts ist nur rund **21 px** hoch — `docs/ui-system.md` verlangt 44 px
   Mindestgröße für Bedienziele; derselbe Baustein nutzt im Werkzeugmenü `min-height: 3rem`.
   Betrifft **alle 30** Abschnitte in 19 Dateien und damit jede Werkzeugfläche, deshalb bewusst
   nicht nebenbei mitbehoben. Gemessen 2026-10-06 (Beleg `messung-nachher.txt`).
+  *(2026-10-06: **erledigt im Barrierefreiheits-Durchgang** — `details.settings-card > summary
+  { padding-block: var(--space-3) }` in `apps/web/src/styles.css`. Zugleich wurden alle
+  `button`-Elemente auf 44 px gebracht (`button { min-height: 2.75rem }`), weil die Aktionsknöpfe
+  der Rechner- und Handwerk-Werkzeuge keine Klasse tragen und mit 27 px (Berechnen) bzw. 20–21 px
+  (Textknöpfe) unter der Schwelle lagen. Die Suite „Handwerk" ist damit in allen geprüften
+  Kategorien befundfrei; Belege und Messungen im Fortschrittsprotokoll
+  `06-protokolle/2026-10-06-barrierefreiheit-handwerk.md`.)*
+
+- [ ] **Kontrast der Markenfarbe entscheiden:** Weiße Schrift auf dem Markenrot ergibt
+  **3,28:1**, verlangt sind 4,5:1 für Text in 16 px/700. Betrifft `.button.primary`,
+  `.button.active` und `.segmented .active` — 38 Vorkommen in 14 Routen, also jeden Hauptknopf
+  im Projekt. Zwei Wege: dunkleres Rot nur für Flächen (Marke bleibt) oder dunkle Schrift auf dem
+  Rot. **Farbentscheidung, nicht eigenmächtig geändert.** Gemessen 2026-10-06 mit
+  `npm run a11y:check`.
+
+- [ ] **Gestaltung der Hauptaktion entscheiden:** `<button type="submit">` trägt in **allen 18**
+  Rechner- und Handwerk-Werkzeugen keine Klasse; es greift keine Regel, der Knopf zeigt die
+  Browser-Vorgabe (grau, Schriftstärke 400) — `docs/ui-system.md` verlangt aber, dass die
+  Hauptaktion optisch dominiert. Gemessen und im Bild belegt 2026-10-06. Zwei Wege: Klasse
+  `button primary` an den 18 Stellen oder eine Regel für `button[type="submit"]`.
+
+- [ ] **Bedienziele unter 44 px außerhalb der Suiten nachziehen:** Schieberegler
+  (`input[type=range]`, 16 px hoch) und Kontrollkästchen (18 × 18 px) in acht Bild- und
+  PDF-Werkzeugen, Tastenfelder im Programmiererrechner 25–34 px breit. Gemessen 2026-10-06 über
+  alle 54 Routen.
+
+- [ ] **Abgeschnittener Inhalt im Programmiererrechner:** vier Tasten `button.keypad-key.operator`
+  sind 42 px breit bei 50–53 px Inhalt; über die Tastatur beschriftet, aber der Text wird
+  beschnitten. Gemessen 2026-10-06.
 
 Diese Liste enthält bestätigte, noch nicht abgeschlossene Arbeit. Details gehören in verlinkte Konzepte oder Issues, sobald solche vorhanden sind.
 
@@ -57,7 +86,15 @@ Diese Liste enthält bestätigte, noch nicht abgeschlossene Arbeit. Details geh�
 - [ ] Nach erfolgreicher Domainumschaltung einen sichtbaren Source-Link auf `https://github.com/madventureXD/commietools` in die Weboberfläche integrieren.
 - [ ] Mailbetrieb nach DNS-Umschaltung prüfen: MX, `autoconfig`, vier SRV-Einträge und SPF; `autoconfig` muss in Cloudflare auf „DNS only“ bleiben.
 - [ ] Den PDF-Testkorpus um frei weitergebbare verschlüsselte, XFA-, Annotations- und Signatur-Beispiele sowie Reader-Interoperabilität erweitern.
-- [ ] Automatisierte Barrierefreiheitsprüfung für zentrale Komponenten und Tool-Flows ergänzen.
+- [x] Automatisierte Barrierefreiheitsprüfung für zentrale Komponenten und Tool-Flows ergänzen.
+  *(2026-10-06: **erledigt** — `scripts/viewport-audit.mjs` hat einen zweiten Durchgang
+  (`npm run a11y:check`): Bedienzielgrößen (44 px), zugängliche Namen, Feldbeschriftungen,
+  Überschriftenfolge auch im aufgeklappten Zustand, Kontrastfarben, abgeschnittener Inhalt. Der
+  Durchgang läuft über alle Routen des Registers bei 1360 px und 390 px und **bricht mit Fehlercode
+  2 ab**, wenn eine Route keinen prüfbaren Inhalt liefert — sonst meldet eine Prüfung „bestanden",
+  ohne eine Seite angesehen zu haben (genau das passierte beim ersten Lauf, weil die Vorschau nur
+  auf IPv6 lauscht). Läuft wie `viewport:check` nur bei laufender Vorschau, deshalb nicht in
+  `npm run check`.)*
 
 ## Mittlere Priorität
 
