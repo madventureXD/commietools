@@ -72,7 +72,8 @@ Ampelstufe.
 
 ## Relevante Verweise
 
-- Commit: *(wird nach der Ablage als datierter Zusatz nachgetragen)*
+- Commit: **`a0bad10`** („Anzeige-Nullung am Ergebnis gekennzeichnet (M4-002)"), 14 Dateien;
+  **nicht gepusht**. Nachtrag vom 2026-10-06 nach der Ablage dieser Datei.
 - Karte: `QM/70-reparaturempfehlungen/R2.md`, Abschnitt „M4-002" (Abnahme: „Anzeige darf den
   Vergleichswert nicht zurücküberschreiben")
 - Entscheidung: Thomas, 2026-10-06 — Hinweis am Ergebnis, keine neue Ampelstufe

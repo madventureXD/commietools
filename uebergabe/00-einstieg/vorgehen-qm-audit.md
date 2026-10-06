@@ -275,6 +275,14 @@ bewusst uncommittet auf der Revision `dac33b7`; die inhaltliche Registrierung de
 `jsonc-parser` ist dagegen **committet**. Die früheren Stände (`ebabc36`, dann `c30cb74`) sind damit
 überholt, nicht falsch gewesen.
 
+*Nachtrag 2026-10-06 (nach M4-002-Anzeigenullung).* Kopf ist jetzt **`a0bad10`** („Anzeige-Nullung
+am Ergebnis gekennzeichnet (M4-002)"), davor `0711dcc`, `1469f56` und die in den früheren Nachträgen
+genannten Commits. `main` steht damit **37 Commits vor `origin/main`** — **nichts gepusht.** Der
+Arbeitsbaum trägt außerhalb des Commits nur die bewusst uncommittete fremde Konzeptdatei
+`03-konzepte/2026-10-06-tooltip-und-kontexthilfe.md` (nicht angefasst, nicht committet). Der
+geprüfte Stand ist identisch mit `a0bad10`: 667 Tests, `check`, `build`, `licenses:check` und
+`catalog:check` je Exit 0.
+
 *Nachtrag 2026-10-06 (nach M6-002).* Kopf ist jetzt **`15f386f`** („RPN: Eingabereducer mit
 getrenntem Zahlentoken (M6-002)"), davor `86be4d8`, `dac33b7`, `00da6c7`, `c30cb74` und `d78724f`.
 **Nichts gepusht.** Der Arbeitsbaum trägt außerhalb der Commits nur die beiden
