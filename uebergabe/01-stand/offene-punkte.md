@@ -400,7 +400,25 @@ Diese Liste enthält bestätigte, noch nicht abgeschlossene Arbeit. Details geh�
   sind als bestehendes Verhalten festgehalten: `sqrt` auf einem Bruch scheitert im Fraction-Modell
   mit `numberModel`, `inv` auf 1/2 liefert dort `2/1`. Der Fall ist **latent** (kein UI-Bruchmodus).
   Bericht: `06-protokolle/2026-10-06-m4-001-rpn-brueche.md`. **Nicht gepusht.**
-- [ ] Offen in R2 außerdem: M4-002, und die weiteren Karten des Pakets (7 Gruppen).
+- [x] **M4-002 — Anzeige-Nullschwelle vernichtet auch Rohwert und Genauigkeitsvergleich: erledigt.**
+  Der Filter (`ZERO_THRESHOLD = 1e-13`) stand in der **gemeinsamen** Formatierung und wirkte damit
+  auch auf `raw` und `full`; die Genauigkeitsampel (ADR 0006) verglich zwei gefälschte Nullen und
+  meldete für `1e-14` „vollständig". Jetzt formatiert `formatValue` nur noch — `raw` und `full`
+  tragen den echten Wert —, und `anzeigeNull` prüft die Taschenrechner-Konvention **nur für
+  `display`** (echte Null ausgenommen, `magnitude > 0`). 4 neue Tests (Projekt 627 → 631):
+  `1e-14`, `-1e-14`, `1e-300`, `1e-500` bleiben in `raw`/`full` ungleich null, exakte Null bleibt
+  null, `sin(pi)` zeigt `0` bei echtem Vergleichswert, Brüche und große Zahlen unverändert. Keine
+  Schwelle verschoben, keine Modellkonvertierung. Bericht:
+  `06-protokolle/2026-10-06-m4-002-nullfilter.md`. **Nicht gepusht.**
+  **Selbstverschuldeter Umweg, offen benannt:** die Hilfsfunktion wurde durch zwei Patch-Läufe
+  doppelt eingefügt und machte die Datei unbrauchbar; behoben über `git checkout` und
+  kontrolliertes Neu-Anbringen mit Zählung danach.
+- [ ] **Kennzeichnung der Anzeige-Nullung entscheiden** (offene Forderung aus M4-002): Die Anzeige
+  zeigt bei trigonometrischen Restfehlern `0`, der volle Wert (`full`) ist echt — sichtbar wird die
+  Approximation nirgends. Weg: Hinweis am Ergebnis oder dritte Ampelstufe „angezeigte Null".
+- [ ] **Verlauf und ANS mit echten kleinen Werten prüfen:** sie hängen an `raw`; `1e-14` steht dort
+  jetzt als `1e-14` statt `0`. Gewollte Folge, aber die Oberfläche ist darauf nicht geprüft.
+- [ ] Offen in R2 außerdem: M4-003 und die weiteren Karten des Pakets (7 Gruppen).
 
 ## Pflege
 

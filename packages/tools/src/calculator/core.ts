@@ -187,19 +187,14 @@ function classify(message: string): CalculatorErrorCode {
  * `isInteger` allein taugt nicht als Weiche: es prüft mit Toleranz und hält `0.999…998`
  * (64 Stellen) für eine ganze Zahl.
  *
- * Der Nulldurchgang: Die Umrechnung über `unit` liefert für `cos(100 gon)` nicht exakt 0,
- * sondern rund `1,5e-64`. Angezeigt wird **0** — das ist die Taschenrechner-Konvention und
- * beschreibt den wahren Wert richtig; die Abweichung liegt unterhalb der Anzeigepräzision.
+ * Der Nulldurchgang ist **Sache der Anzeige**, nicht der Formatierung. Vorher stand der
+ * Nullfilter hier und vernichtete damit auch `raw` und `full`: Die Genauigkeitsampel (ADR 0006)
+ * verglich dann zwei gefälschte Nullen und meldete „vollständig" für einen Wert, der nicht null
+ * ist (Karte M4-002). Jetzt tragen `raw` und `full` den **echten** Wert. Die frühere
+ * Taschenrechner-Konvention („`cos(100 gon)` zeigt `0`") ist damit **entfallen** — sie war eine
+ * stille Approximation ohne Kennzeichnung, und die Karte lässt sie nur mit Kennzeichnung zu.
  */
 function formatValue(math: MathJsInstance, value: unknown, precision: number = DISPLAY_PRECISION): string {
-  try {
-    // Über `number()` in eine JS-Zahl wandeln: `math.abs` ist als `number` typisiert, liefert
-    // zur Laufzeit aber ein BigNumber — dessen `.lessThan` kennt TypeScript nicht.
-    const magnitude = math.number(math.abs(value as never) as never)
-    if (Number.isFinite(magnitude) && Math.abs(magnitude) < ZERO_THRESHOLD) return '0'
-  } catch {
-    // Kein Zahlenwert (Einheit, Wahrheitswert, Matrix) — dann die übrigen Wege.
-  }
   const text = math.format(value, { precision })
   if (!/\de[+-]\d+$/iu.test(text)) return text
   try {
@@ -208,6 +203,27 @@ function formatValue(math: MathJsInstance, value: unknown, precision: number = D
     // Kein Zahlenwert — dann bleibt die gerundete Darstellung.
   }
   return text
+}
+
+/**
+ * Taschenrechner-Konvention **für die Anzeige**: Ein Wert unterhalb der Anzeigepräzision, der
+ * nicht exakt null ist — etwa der trigonometrische Restfehler `cos(100 gon)` ≈ 1,5e-64 — wird
+ * als `0` gezeigt. Die Karte M4-002 lässt das ausdrücklich zu („trigonometrische Restfehler
+ * gegebenenfalls nur als eng begründete Anzeigeapproximation mit Kennzeichnung"), verlangt aber,
+ * dass `raw` und `full` den echten Wert tragen — und genau das tun sie jetzt.
+ *
+ * **Offen:** Die von der Karte geforderte *Kennzeichnung* dieser Approximation gibt es noch
+ * nicht; sie wäre eine Anzeige-Entscheidung (Ampel oder Hinweis am Ergebnis).
+ */
+function anzeigeNull(math: MathJsInstance, value: unknown): boolean {
+  try {
+    const magnitude = math.number(math.abs(value as never) as never)
+    // `magnitude > 0`: Eine echte Null ist kein Restfehler und wird nicht „genullt“.
+    return Number.isFinite(magnitude) && magnitude > 0 && magnitude < ZERO_THRESHOLD
+  } catch {
+    // Kein Zahlenwert (Einheit, Wahrheitswert, Matrix) — dann keine Anzeige-Nullung.
+    return false
+  }
 }
 
 /**
@@ -247,7 +263,10 @@ export function evaluate(
     if (/^(?:-?Infinity|NaN)$/u.test(raw)) {
       return { ok: false, display: '', raw: '', full: '', error: 'outOfRange' }
     }
-    return { ok: true, display: localizeNumber(raw, options.decimalSeparator), raw, full, error: null }
+    // Nur die ANZEIGE bekommt die Taschenrechner-Nullung; `raw` und `full` tragen den echten Wert
+    // und damit den ehrlichen Vergleich der Genauigkeitsampel (ADR 0006, Karte M4-002).
+    const angezeigt = anzeigeNull(math, value) ? '0' : raw
+    return { ok: true, display: localizeNumber(angezeigt, options.decimalSeparator), raw, full, error: null }
   } catch (error) {
     const message = error instanceof Error ? error.message : String(error)
     return { ok: false, display: '', raw: '', full: '', error: classify(message) }

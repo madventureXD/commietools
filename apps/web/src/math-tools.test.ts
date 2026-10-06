@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'vitest'
+import { evaluate } from '@commietools/tools/calculator/core'
 import { evaluatePolynomial, polynomialText, round12, shiftText, solve, worstCheck } from '@commietools/tools/calculator/equations'
 import { parseNumbers, parsePairs, quantile, regress, regressionText, summarise } from '@commietools/tools/calculator/statistics'
 import { buildGeometry, findRoots, niceTicks, sampleTable, segmentToPath, valueAt } from '@commietools/tools/calculator/plotter'
@@ -228,6 +229,46 @@ describe('Statistik — Eingabegrammatik (Abnahme M3-002)', () => {
   it('trennt an Leerraum, Semikolon und Zeilenumbruch', () => {
     expect(parseNumbers('1;2 3\n4').numbers).toEqual([1, 2, 3, 4])
     expect(parseNumbers('   \n  ').numbers).toEqual([])
+  })
+})
+
+describe('Vollwert gegen Anzeige-Nullung (Abnahme M4-002)', () => {
+  it('vernichtet echte kleine Werte nicht mehr in raw und full', () => {
+    for (const ausdruck of ['1e-14', '-1e-14', '1e-300', '1e-500']) {
+      const result = evaluate(ausdruck, { number: 'BigNumber' })
+      expect(result.ok, `${ausdruck}: ${result.error}`).toBe(true)
+      expect(result.full, `${ausdruck} im Vollwert`).not.toBe('0')
+      expect(result.raw, `${ausdruck} in raw`).not.toBe('0')
+    }
+    // Auch im Fraction-Modell: ein echter Wert bleibt ein Wert.
+    const bruch = evaluate('1/100000000000000', { number: 'Fraction' })
+    expect(bruch.full).not.toBe('0')
+  })
+
+  it('lässt die exakte Null eine Null', () => {
+    expect(evaluate('0', { number: 'BigNumber' }).raw).toBe('0')
+    expect(evaluate('2 - 2', { number: 'BigNumber' }).full).toBe('0')
+    expect(evaluate('1/3 - 1/3', { number: 'Fraction' }).full).toBe('0/1')
+  })
+
+  it('zeigt den trigonometrischen Restfehler weiter als 0, ohne den Vergleichswert zu fälschen', () => {
+    // Taschenrechner-Konvention für die Anzeige — die Karte lässt sie für trigonometrische
+    // Restfehler ausdrücklich zu. Entscheidend: `raw` und `full` tragen den ECHTEN Wert, sonst
+    // vergliche die Genauigkeitsampel (ADR 0006) zwei gefälschte Nullen.
+    const result = evaluate('sin(pi)', { number: 'BigNumber' })
+    expect(result.ok, String(result.error)).toBe(true)
+    expect(result.display).toBe('0')
+    expect(result.full).not.toBe('0')
+    expect(result.raw).not.toBe('0')
+    // Der Vergleichswert wird von der Anzeige nicht zurücküberschrieben.
+    expect(result.full).not.toBe(result.display)
+  })
+
+  it('hält Brüche, große Zahlen und gewöhnliche Rechnungen unverändert', () => {
+    expect(evaluate('1/3 + 1/6', { number: 'Fraction' }).display).toBe('1/2')
+    expect(evaluate('13983816', { number: 'BigNumber' }).display).toBe('13983816')
+    expect(evaluate('2 + 3', { number: 'BigNumber' }).display).toBe('5')
+    expect(evaluate('sin(0)', { number: 'BigNumber' }).display).toBe('0')
   })
 })
 
