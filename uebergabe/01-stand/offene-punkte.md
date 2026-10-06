@@ -15,6 +15,14 @@
   *(Zusatz 2026-10-05, Welle C: **zehn** Handwerk-Werkzeuge sind es inzwischen; die beiden neuen
   (Pflaster, Reifen) kommen hinzu. Empfehlung: das Gegenlesen in **einem** Durchgang für die ganze
   Suite, nicht zehn Einzelläufe.)*
+  *(2026-10-06: Die **zehn Handwerk-Werkzeuge** sind gegengelesen — sprachlich (elf Quelldateien,
+  521 Schlüssel je Sprache, geprüft gegen den deutschen Wortlaut) und visuell (zehn Routen bei
+  1360 px und 320 px, mit geöffneten Abschnitten). Zwei Befunde: eine **gemischte Anredeform**
+  (20 Stellen im Projekt, darunter ein Widerspruch in derselben Datei) und eine **uneinheitlich
+  wiedergegebene Konzept-Referenz**. Beide warten auf eine Entscheidung; die sprachliche Freigabe
+  ist damit **nicht** erteilt, der Stand bleibt nach `02-architektur/sprachpakete.md` §11 „Lokales
+  Testpaket". Bericht: `06-protokolle/2026-10-06-sprachabnahme-spanisch-handwerk.md`. Die übrigen
+  **44** Werkzeuge des Registers stehen weiter aus.)*
 - [ ] **Welle C des Handwerker-Konzepts:** Pflaster-/Erdarbeitenrechner (Vorschlag 5) und
   Reifen-/Drehmomentrechner (24) — beide Klasse a, keine neue Abhängigkeit zu erwarten.
   *(2026-10-05: Welle A und B sind abgeschlossen, die Suite „Handwerk" umfasst acht Werkzeuge;
