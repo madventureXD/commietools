@@ -22,12 +22,33 @@
   *(Zusatz 2026-10-05: **erledigt** — beide Werkzeuge gebaut, geprüft und belegt; Suite „Handwerk"
   mit zehn Werkzeugen, Register 54, 440 Tests in 30 Dateien. Commits `b80f527` und `3972f59`,
   Übergabe `05-uebergaben/2026-10-05-welle-c-handwerkerwerkzeuge.md`. **Nicht gepusht.**)*
-- [ ] **Stilerscheinung in den aufklappbaren Abschnitten der Handwerk-Werkzeuge prüfen:** Bei
+- [x] **Stilerscheinung in den aufklappbaren Abschnitten der Handwerk-Werkzeuge prüfen:** Bei
   Pflaster und Reifen sitzt die erste Feldspalte auf der Zeile der Zusammenfassung, das
   Eingabefeld darunter. Lesbar und richtig zugeordnet, aber unschön. Ursache wird im gemeinsamen
   Aufbau (`details > summary` plus `.form-grid`) vermutet, noch nicht gegen ein Werkzeug der
   Wellen A/B verglichen — bewusst nicht nebenbei geändert, um keine Stiländerung an allen zwölf
   Werkzeugflächen mit einer Werkzeugwelle zu vermischen.
+  *(2026-10-06: **gemessen und behoben.** Die Vermutung stimmt im Kern, die Beschreibung war zu
+  scharf: Es war keine Überlappung (gemessen 1360 px und 390 px: Überlappung 0 px auf allen
+  geprüften Routen), sondern ein **fehlender Abstand** — dort, wo dem `summary` direkt das
+  Formularraster folgt, begann es auf dessen Unterkante, sodass die erste Feldbeschriftung wie ein
+  Teil der Zusammenfassung aussah (0 px gegen 36 px, wo eine Hinweiszeile dazwischenliegt).
+  Betroffen waren nicht zwei, sondern **drei** Abschnitte: Paving, Tires **und Paint** (Welle B) —
+  also ein Vorbefund, nicht von Welle C erzeugt. Behoben an einer Stelle statt in den Werkzeugen:
+  `details.settings-card > summary + .form-grid { margin-top: var(--space-4) }` in
+  `apps/web/src/styles.css`; der Abstand entspricht damit dem Zeilenabstand des Rasters selbst.
+  Belegt mit Messung vorher/nachher und Aufnahmen bei 1360 px und 390 px in
+  `06-protokolle/screenshots/2026-10-06-details-abstand/`; die Abschnitte mit Hinweiszeile
+  (Tiles, Concrete) sind unverändert (Abstand weiterhin 36 px). Messskripte:
+  `work/details-layout-messen.cjs`, `work/details-layout-shots.cjs`,
+  `work/details-inhalt-zaehlen.cjs`. **Erledigt mit Commit `57d94da`;
+  Fortschrittsprotokoll `06-protokolle/2026-10-06-details-abstand.md`.**)*
+
+- [ ] **Bedienzielhöhe der aufklappbaren Kopfzeilen (44 px):** Der anklickbare `summary` eines
+  aufklappbaren Abschnitts ist nur rund **21 px** hoch — `docs/ui-system.md` verlangt 44 px
+  Mindestgröße für Bedienziele; derselbe Baustein nutzt im Werkzeugmenü `min-height: 3rem`.
+  Betrifft **alle 30** Abschnitte in 19 Dateien und damit jede Werkzeugfläche, deshalb bewusst
+  nicht nebenbei mitbehoben. Gemessen 2026-10-06 (Beleg `messung-nachher.txt`).
 
 Diese Liste enthält bestätigte, noch nicht abgeschlossene Arbeit. Details gehören in verlinkte Konzepte oder Issues, sobald solche vorhanden sind.
 
