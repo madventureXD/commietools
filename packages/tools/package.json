@@ -29,6 +29,8 @@
     "./craft/paving": "./src/craft/paving.ts",
     "./craft/flooring": "./src/craft/flooring.ts",
     "./craft/paint": "./src/craft/paint.ts",
+    "./craft/inspection": "./src/craft/inspection.ts",
+    "./craft/inspectionStore": "./src/craft/inspectionStore.ts",
     "./calculator/keypad": "./src/calculator/keypad.ts",
     "./calculator/keypads": "./src/calculator/keypads/index.ts",
     "./calculator/keypads/standard": "./src/calculator/keypads/standard.ts",

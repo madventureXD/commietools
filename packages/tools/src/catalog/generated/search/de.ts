@@ -1762,5 +1762,35 @@ export const searchLocale: Readonly<Record<string, ToolLocaleEntry>> = {
       "#reifen",
       "#handwerk"
     ]
+  },
+  "inspection": {
+    "title": "Prüffristen",
+    "summary": "Nächste Prüftermine aus letzter Prüfung und Intervall, mit Resttagen und Export.",
+    "description": "Wiederkehrende Prüfungen für Leitern, PSA und Prüfmittel verwalten: nächster Termin aus letzter Prüfung und Intervall, Resttage und Einordnung in überfällig, bald fällig und in Ordnung — mit Export als Tabelle. Rechnet und speichert vollständig im Browser.",
+    "terms": [
+      "prüffrist",
+      "prüffristen",
+      "prüfprotokoll",
+      "prüftermin",
+      "wiederkehrende prüfung",
+      "leiter",
+      "leiterprüfung",
+      "psa",
+      "prüfmittel",
+      "betriebsmittel",
+      "dguv",
+      "unterweisung",
+      "intervall",
+      "überfällig",
+      "fällig",
+      "mängelliste",
+      "arbeitsschutz",
+      "export",
+      "csv"
+    ],
+    "tags": [
+      "#prüffristen",
+      "#arbeitsschutz"
+    ]
   }
 }

@@ -1636,5 +1636,31 @@ export const searchLocale: Readonly<Record<string, ToolLocaleEntry>> = {
       "#neumaticos",
       "#artesania"
     ]
+  },
+  "inspection": {
+    "title": "Plazos de inspección",
+    "summary": "Próximas fechas de inspección desde la última y el intervalo, con días restantes.",
+    "description": "Gestionar las inspecciones periódicas de escaleras, EPI y medios de control: próxima fecha a partir de la última inspección y el intervalo, días restantes y clasificación en vencido, próximo a vencer y correcto — con exportación como tabla. Calcula y guarda por completo en el navegador.",
+    "terms": [
+      "plazo de inspección",
+      "inspección periódica",
+      "fecha de inspección",
+      "escalera",
+      "revisión de escaleras",
+      "epi",
+      "medios de control",
+      "equipos",
+      "prevención",
+      "intervalo",
+      "vencido",
+      "próximo a vencer",
+      "lista de defectos",
+      "exportar",
+      "csv"
+    ],
+    "tags": [
+      "#inspeccion",
+      "#prevencion"
+    ]
   }
 }

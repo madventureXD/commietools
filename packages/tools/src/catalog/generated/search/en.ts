@@ -1705,5 +1705,34 @@ export const searchLocale: Readonly<Record<string, ToolLocaleEntry>> = {
       "#tyres",
       "#craft"
     ]
+  },
+  "inspection": {
+    "title": "Inspection deadlines",
+    "summary": "Next inspection dates from last inspection and interval, with days remaining.",
+    "description": "Keep recurring inspections for ladders, PPE and test equipment in order: next date from the last inspection and the interval, days remaining and a grouping into overdue, due soon and fine — with a table export. Calculates and stores entirely in the browser.",
+    "terms": [
+      "inspection deadline",
+      "test date",
+      "inspection interval",
+      "recurring inspection",
+      "ladder",
+      "ladder inspection",
+      "ppe",
+      "test equipment",
+      "equipment",
+      "dguv",
+      "instruction",
+      "interval",
+      "overdue",
+      "due",
+      "defect list",
+      "health and safety",
+      "export",
+      "csv"
+    ],
+    "tags": [
+      "#inspection",
+      "#safety"
+    ]
   }
 }
