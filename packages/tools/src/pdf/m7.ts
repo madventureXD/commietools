@@ -29,7 +29,7 @@ let enginePromise: Promise<Engine> | undefined
 async function loadEngine(): Promise<Engine> {
   enginePromise ??= import('./m7-wasm/engine.js').then(async (module) => {
     await module.default()
-    return module as unknown as Engine
+    return module
   })
   return enginePromise
 }

@@ -77,12 +77,12 @@ describe('Beleuchtung — Grenzen', () => {
     for (const [feld, grenze] of Object.entries(lightingLimits)) {
       const key = feldFehler[feld]!
       // unterhalb der unteren Grenze
-      expect(lightingErrorKeys(gueltig({ [feld]: grenze.min - 1 } as Partial<LightingInput>)), `${feld} = unter min`).toContain(key)
+      expect(lightingErrorKeys(gueltig({ [feld]: grenze.min - 1 } )), `${feld} = unter min`).toContain(key)
       // oberhalb der oberen Grenze
-      expect(lightingErrorKeys(gueltig({ [feld]: grenze.max + 1 } as Partial<LightingInput>)), `${feld} = über max`).toContain(key)
+      expect(lightingErrorKeys(gueltig({ [feld]: grenze.max + 1 } )), `${feld} = über max`).toContain(key)
       // genau auf den Grenzen ist zulässig
-      expect(lightingErrorKeys(gueltig({ [feld]: grenze.min } as Partial<LightingInput>)), `${feld} = min`).not.toContain(key)
-      expect(lightingErrorKeys(gueltig({ [feld]: grenze.max } as Partial<LightingInput>)), `${feld} = max`).not.toContain(key)
+      expect(lightingErrorKeys(gueltig({ [feld]: grenze.min } )), `${feld} = min`).not.toContain(key)
+      expect(lightingErrorKeys(gueltig({ [feld]: grenze.max } )), `${feld} = max`).not.toContain(key)
     }
   })
 

@@ -34,6 +34,8 @@ function expectedExtension(name: string): string {
 export function normaliseFileName(value: string, fallback: string): string {
   const extension = expectedExtension(fallback)
   let name = value
+    // Steuerzeichen werden hier **bewusst** entfernt: ein Dateiname darf sie nicht tragen.
+    // eslint-disable-next-line no-control-regex -- Absicht, siehe Zeile darüber
     .replace(/[\u0000-\u001f\u007f]/gu, '')
     .replace(/[\\/:*?"<>|]/gu, '-')
     .trim()

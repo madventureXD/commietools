@@ -38,7 +38,8 @@ describe('cachedLoader (M4-004)', () => {
     const alt = new Promise<string>((_, reject) => {
       ablehnen = reject
     })
-    cachedLoader(cache, 'de', () => alt)
+    // Nur den Eintrag setzen: `await` ginge hier nicht, das Promise loest nie auf (Absicht).
+    void cachedLoader(cache, 'de', () => alt)
     // Der neuere Versuch hat den Eintrag ersetzt (etwa nach einem Sprach- oder Netzwechsel).
     const neuer = Promise.resolve('neu')
     cache.set('de', neuer)

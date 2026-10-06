@@ -64,7 +64,6 @@ const RULE = rgb(0.65, 0.65, 0.65)
 
 const DESC_RATIO = 0.6
 const LOC_RATIO = 0.2
-const DEADLINE_RATIO = 0.2
 const COL_PAD = 5
 
 /** Höhe einer Foto-Zelle ohne Beschriftung. */
@@ -120,10 +119,7 @@ function wrapText(text: string, font: PDFFont, size: number, maxWidth: number): 
         current = candidate
         continue
       }
-      if (current) {
-        lines.push(current)
-        current = ''
-      }
+      if (current) lines.push(current)
       // Einzelnes Wort breiter als die Spalte: zeichenweise zerlegen, sonst läuft es über.
       if (measure(word) > maxWidth) {
         let chunk = ''
@@ -241,7 +237,6 @@ export async function buildReportPdf(input: ReportPdfInput): Promise<Uint8Array>
       page.drawText(`${toWinAnsi(entry.label)}: ${toWinAnsi(entry.date)}`, { x: MARGIN, y: cursorY, size: 9, font: regular, color: BLACK })
       cursorY -= 13
     }
-    cursorY -= 4
   }
 
   // Fotos: beginnen auf einer neuen Seite, zweispaltiges Raster mit erhaltenem Seitenverhältnis.

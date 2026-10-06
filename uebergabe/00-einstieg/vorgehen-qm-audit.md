@@ -110,7 +110,7 @@ Protokoll: `06-protokolle/2026-10-06-r1-*.md`, `…-m9-004-lopdf-anhebung.md`, `
 | Karte | Kurz | Stand |
 |---|---|---|
 | M1-003 | Kein erkennbarer Freigabeschutz für `main` | ○ |
-| M4-008 | Erfolgreiches Lint-Kommando prüft keine Workspace-Codebasis | ○ |
+| M4-008 | Erfolgreiches Lint-Kommando prüft keine Workspace-Codebasis | **✓ erledigt** (2026-10-06): `eslint.config.mjs` + Wurzel-`tsconfig.json`, `lint` = `eslint .` und Pflichtteil von `check`; **0 Fehler, 96 Warnungen**, 415 Dateien geprüft (vorher 0). Mutationsgegenprobe belegt. Neue MIT-Abhängigkeiten, Lizenzlauf grün (607 Pakete) |
 | M5-001 | PDF-Tests sichern Seitenwahl und Nummerninhalte nicht ab | ○ |
 | M5-002 | Zentraler Speichervorgang bleibt im Testlauf unbenutzt | ○ |
 | M5-003 | Kritische PDF-Engine-Pfade ohne normalen Testschutz | ○ |
@@ -274,6 +274,12 @@ Arbeitsbaum trägt außerhalb der Commits nur die beiden revisionsgebundenen Reg
 bewusst uncommittet auf der Revision `dac33b7`; die inhaltliche Registrierung der neuen Abhängigkeit
 `jsonc-parser` ist dagegen **committet**. Die früheren Stände (`ebabc36`, dann `c30cb74`) sind damit
 überholt, nicht falsch gewesen.
+
+*Nachtrag 2026-10-06 (nach M4-008).* Kopf wird mit dem Commit zu M4-008 fortgeschrieben. `lint`
+prüft jetzt die Produktbasis (415 Dateien) und läuft als Pflichtteil in `check`; zwei echte Befunde
+dabei behoben (fünf nicht behandelte Zusagen in `pdfUi.tsx`, ein toter Zustand in `ImageResize.tsx`),
+ein `throw` im `finally` des Prüfskripts beseitigt. Protokoll:
+`06-protokolle/2026-10-06-m4-008-lint.md`. **Nichts gepusht.**
 
 *Nachtrag 2026-10-06 (nach M8-002).* Kopf weiter **`49dcaf2`** (M8-002 hat nur gemessen, keinen Code
 geändert); Akten-Commit folgt. **M8-002 ist belegt nicht erfüllt** — Offline-Reload im frischen

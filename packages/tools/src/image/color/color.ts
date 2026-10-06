@@ -136,7 +136,7 @@ export function rgbToHsl(rgb: Rgb): Hsl {
   const delta = max - min
   if (delta === 0) return { h: 0, s: 0, l: Math.round(lightness * 100) }
   const saturation = delta / (1 - Math.abs(2 * lightness - 1))
-  let hue = 0
+  let hue: number
   if (max === r) hue = 60 * (((g - b) / delta) % 6)
   else if (max === g) hue = 60 * ((b - r) / delta + 2)
   else hue = 60 * ((r - g) / delta + 4)

@@ -34,7 +34,7 @@ interface Rendered {
 /** Fortlaufende Nummer für die Vorschau-Elemente — kein Zufall, damit React stabil bleibt. */
 let laufendeNummer = 0
 
-export function PhotoCaption({ t, locale }: PhotoCaptionProps) {
+export function PhotoCaption({ t }: PhotoCaptionProps) {
   const [photos, setPhotos] = useState<readonly LoadedPhoto[]>([])
   const [format, setFormat] = useState<'image/jpeg' | 'image/png'>('image/jpeg')
   const [errorKey, setErrorKey] = useState<string | null>(null)

@@ -240,6 +240,15 @@ Diese Liste enthält bestätigte, noch nicht abgeschlossene Arbeit. Details geh�
   Bereiche" statt „Geänderte Bereiche" …). Es sind also **keine leeren** Übergaben — die Prüfung
   ist eine Überschriftenprüfung, und wer die Akte gewohnt ist, findet die Angaben nicht dort, wo
   sie stehen müssen.*
+- [x] **Lint war ein Leerlauf (Karte M4-008): erledigt 2026-10-06.** `npm run lint` endete
+  vorher mit Exit 0 **ohne eine einzige Ausgabe** — kein Arbeitsbereich hatte ein `lint`-Skript.
+  Jetzt: `eslint.config.mjs` (risikoorientierte Regeln), Wurzel-`tsconfig.json` für die Paketquellen
+  (der Parser sah vorher 290 Dateien nicht), `lint` = `eslint .` und Pflichtteil von `check`.
+  Gemessen **0 Fehler, 96 Warnungen** über 415 Dateien; Mutationsgegenproben (ungenutzte Variable,
+  unbehandeltes Promise) scheiterten wie erwartet. Als Warnung geführt und begründet:
+  `no-misused-promises` (60) und die `no-unsafe-*`-Gruppe. Protokoll:
+  `06-protokolle/2026-10-06-m4-008-lint.md`.
+- [ ] **96 Lint-Warnungen abarbeiten** (angefangen bei `no-misused-promises`, 60 Treffer).
 - [ ] Offline-Verhalten mit einem automatisierten Browser-Test absichern.
   *(2026-10-06, **M8-002 gemessen: die Offline-Bereitschaft des ersten Besuchs ist nicht gegeben.**
   Frisches Profil, App geladen, Service Worker aktiv, HTTP-Cache gelöscht, **Vorschaudienst beendet**

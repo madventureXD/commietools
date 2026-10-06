@@ -318,7 +318,7 @@ export function annuityPlan(
 
   const rows: AnnuityRow[] = []
   let balance = toCents(capital)
-  let annuityRounded = toCents(annuity)
+  const annuityRounded = toCents(annuity)
   for (let period = 1; period <= periods; period += 1) {
     const interest = toCents(mul(balance, ratePerPeriod))
     // Die letzte Rate löst die Restschuld vollständig auf — sonst bliebe ein Cent-Rest stehen.

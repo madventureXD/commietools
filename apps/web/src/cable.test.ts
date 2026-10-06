@@ -206,7 +206,7 @@ describe('Keine Strombelastbarkeitstabelle im Modul', () => {
   function sammleZahlenfelder(wert: unknown, pfad: string, treffer: Array<{ pfad: string; werte: number[] }>): void {
     if (Array.isArray(wert)) {
       if (wert.every((eintrag) => typeof eintrag === 'number')) {
-        treffer.push({ pfad, werte: wert as number[] })
+        treffer.push({ pfad, werte: wert })
         return
       }
       wert.forEach((eintrag, index) => sammleZahlenfelder(eintrag, `${pfad}[${index}]`, treffer))

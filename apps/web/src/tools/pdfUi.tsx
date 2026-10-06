@@ -63,7 +63,7 @@ export function usePdfThumbnails(bytes: Uint8Array | null, maxWidth = 150) {
         page.cleanup()
         if (!cancelled) setImages([...next])
       }
-      document.cleanup()
+      await document.cleanup()
     }).catch(() => !cancelled && setError(true))
     return () => {
       cancelled = true
@@ -119,7 +119,7 @@ export async function extractPdfText(bytes: Uint8Array, pages?: readonly number[
       results.push({ pageNumber: index + 1, text })
       page.cleanup()
     }
-    document.cleanup()
+    await document.cleanup()
     return results
   } finally {
     await task.destroy()
@@ -146,7 +146,7 @@ export async function comparePdfRendering(left: Uint8Array, right: Uint8Array, c
       for (let i=0;i<ad.length;i+=4) if (Math.max(Math.abs(ad[i]!-bd[i]!),Math.abs(ad[i+1]!-bd[i+1]!),Math.abs(ad[i+2]!-bd[i+2]!)) > channelTolerance) different += 1
       ratios.push(different/(width*height)); ap.cleanup(); bp.cleanup()
     }
-    a.cleanup(); b.cleanup(); return ratios
+    await Promise.all([a.cleanup(), b.cleanup()]); return ratios
   } finally { await Promise.all([leftTask.destroy(),rightTask.destroy()]) }
 }
 
@@ -167,7 +167,7 @@ export async function renderPdfPagePreview(bytes: Uint8Array, pageNumber: number
     await page.render({ canvas, canvasContext: context, viewport, background: '#ffffff' }).promise
     const blob = await new Promise<Blob>((resolve, reject) => canvas.toBlob((value) => value ? resolve(value) : reject(new Error('Image encoding failed')), 'image/webp', 0.92))
     page.cleanup()
-    document.cleanup()
+    await document.cleanup()
     return blob
   } finally {
     await task.destroy()
@@ -200,7 +200,7 @@ export async function renderPdfPages(bytes: Uint8Array, pages: readonly number[]
       results.push({ pageNumber: pageIndex + 1, blob, width, height })
       page.cleanup()
     }
-    document.cleanup()
+    await document.cleanup()
     return results
   } finally {
     await task.destroy()

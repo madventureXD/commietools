@@ -162,7 +162,7 @@ describe('Tastenfeld', () => {
     const fits = (layout: KeypadLayout): string | null => {
       const occupied = new Set<string>()
       let row = 0
-      let column = 0
+      let column: number
       for (const keyRow of layout.rows) {
         column = 0
         for (const entry of keyRow) {

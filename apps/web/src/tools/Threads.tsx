@@ -5,7 +5,6 @@ import {
   THREAD_RETRIEVED,
   THREAD_SIZE_LABELS,
   THREAD_SOURCES,
-  coreDiameter,
   coreDiameterShown,
   coreHoleDrill,
   coreHoleRaw,

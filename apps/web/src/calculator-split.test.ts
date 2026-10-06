@@ -19,7 +19,6 @@ import { supportedLocales } from '@commietools/i18n'
  * Der Rahmen trägt die Rechenarten nicht: kein Werkzeugschlüssel darf den Namen eines anderen
  * Werkzeugs enthalten (etwa `tool.calculator.scientificCalculator…`).
  */
-const FRAME_PREFIX = 'tool.calc.'
 const TOOLS = [
   { id: 'calculator', prefix: 'tool.calculator.', limit: 60, title: 'Rechner' },
   { id: 'scientific-calculator', prefix: 'tool.scientificCalculator.', limit: 60, title: 'Wissenschaftlicher Rechner' },

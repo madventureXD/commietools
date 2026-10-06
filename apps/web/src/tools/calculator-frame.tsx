@@ -35,7 +35,7 @@ import {
 } from '@commietools/tools/calculator/rpnInput'
 import { toMathML } from '@commietools/tools/calculator/render'
 import { calculatorStore, type CalculatorSettings, type HistoryEntry } from '@commietools/tools/calculator/history'
-import { accuracyOf, appendHexDigit, appendSnippet, splitRpnTokens } from '../calculator-ui'
+import { accuracyOf, appendSnippet, splitRpnTokens } from '../calculator-ui'
 
 type Translate = (key: string) => string
 type CoreModule = typeof import('@commietools/tools/calculator/core')
@@ -255,7 +255,7 @@ export function CalculatorFrame({ spec, t, locale }: { spec: CalculatorFrameSpec
       const parsed = core.evaluate(value, options)
       return parsed.ok && name.trim() ? [[name, parsed.raw] as const] : []
     })
-    return Object.fromEntries(entries) as Record<string, unknown>
+    return Object.fromEntries(entries)
   }, [core, variables, options])
 
   const clearResult = useCallback(() => {
@@ -287,7 +287,7 @@ export function CalculatorFrame({ spec, t, locale }: { spec: CalculatorFrameSpec
     if (!core || !settings.twoDimensional || !resultRaw || !allowTwoDim) return null
     try {
       const node = core.calculatorFor(options).parse(resultRaw.trim())
-      return toMathML(node as never, resultRaw.trim(), decimalSeparator)
+      return toMathML(node, resultRaw.trim(), decimalSeparator)
     } catch {
       return null
     }

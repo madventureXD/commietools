@@ -122,7 +122,7 @@ export function inspectPdfAnnotations(bytes: Uint8Array): PdfAnnotationInfo[] {
     const result: PdfAnnotationInfo[] = []
     for (let pageIndex = 0; pageIndex < document.countPages(); pageIndex += 1) {
       const page = document.loadPage(pageIndex)
-      page.getAnnotations().forEach((annotation, index) => result.push({ pageIndex, index, type: annotation.getType(), contents: annotation.getContents(), author: annotation.getAuthor(), rect: annotation.getBounds() as [number, number, number, number] }))
+      page.getAnnotations().forEach((annotation, index) => result.push({ pageIndex, index, type: annotation.getType(), contents: annotation.getContents(), author: annotation.getAuthor(), rect: annotation.getBounds() }))
     }
     return result
   } finally { document.destroy() }

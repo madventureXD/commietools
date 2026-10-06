@@ -53,6 +53,6 @@ export const handoverDe = {
   'tool.handover.error.tooManyPhotos': 'Zu viele Fotos (höchstens 12).',
 
   'tool.handover.assumptions': 'Annahmen: Das PDF wird aus den erfassten Angaben erzeugt, nichts wird ergänzt und nichts erfunden. Zeilen **ohne Beschreibung** fallen weg statt als leere Tabellenzeile zu erscheinen. Ein leeres Fristfeld ist zulässig (Frist noch offen) — steht eine Frist da, muss sie ein vorhandenes Datum sein. Fehlt eine Unterschrift, wird das gemeldet und die Unterschriftsseite bleibt leer. **Nicht enthalten:** Fristen nach anderen Vertragswerken, Nachträge, Fotos bearbeiten, Versand per Mail. Fotos werden wie übergeben eingebettet.',
-  'tool.handover.sources': 'Datum: die Datumslogik des Projekts (`calculator/dates`, Temporal) — dieselbe wie im Werkzeug „Frist berechnen\". Fristen: BGB § 634a Abs. 1 Nr. 2 (fünf Jahre bei einem Bauwerk) und VOB/B § 13 Abs. 4 Nr. 2 (vier Jahre, wenn VOB/B vereinbart ist). PDF: die im Projekt vorhandene PDF-Engine. Keine Übertragung, keine Fremdbibliothek für das Formular.',
+  'tool.handover.sources': 'Datum: die Datumslogik des Projekts (`calculator/dates`, Temporal) — dieselbe wie im Werkzeug „Frist berechnen". Fristen: BGB § 634a Abs. 1 Nr. 2 (fünf Jahre bei einem Bauwerk) und VOB/B § 13 Abs. 4 Nr. 2 (vier Jahre, wenn VOB/B vereinbart ist). PDF: die im Projekt vorhandene PDF-Engine. Keine Übertragung, keine Fremdbibliothek für das Formular.',
   'tool.handover.formula': 'Annahmen und Quellen'
 } as const

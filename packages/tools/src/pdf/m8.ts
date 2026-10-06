@@ -79,6 +79,8 @@ export async function removePdfAttachment(bytes: Uint8Array, index: number): Pro
 }
 export function safeAttachmentName(name: string, fallback = 'attachment'): string {
   const leaf = name.replaceAll('\\', '/').split('/').pop() ?? ''
+  // Steuerzeichen und Richtungsmarken werden hier **bewusst** entfernt: sie gehören nicht in einen Dateinamen.
+  // eslint-disable-next-line no-control-regex -- Absicht, siehe Zeile darüber
   let cleaned = leaf.replace(/[\u0000-\u001f\u007f\u202a-\u202e\u2066-\u2069<>:"|?*]/gu, '_').replace(/^\.+/u, '').trim().replace(/[. ]+$/u, '').slice(0, 180)
   if (/^(?:con|prn|aux|nul|com[1-9]|lpt[1-9])(?:\.|$)/iu.test(cleaned)) cleaned = `_${cleaned}`
   return cleaned && cleaned !== '.' && cleaned !== '..' ? cleaned : fallback

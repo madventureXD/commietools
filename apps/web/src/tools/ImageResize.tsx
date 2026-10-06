@@ -2,7 +2,7 @@ import { useEffect, useMemo, useRef, useState, type ChangeEvent } from 'react'
 import { acceptAttributeFor, cropBoxFraction, fitScale, formatNames, inputMimeTypes, planResize, readOnlyFormatNames, type CropRect, type ResizeMode } from '@commietools/tools'
 import type { Locale } from '@commietools/i18n'
 import { Button, LocalBadge } from '@commietools/ui'
-import { renderOrientationPreview, renderPlan, type OutputFormat } from './imageResizeRender'
+import { renderOrientationPreview, renderPlan } from './imageResizeRender'
 import { SaveFileControl } from './SaveFileControl'
 
 /** Formats offered by this tool, straight from the manifest. */
@@ -31,7 +31,6 @@ function outputName(name: string, width: number, height: number, type: string): 
 
 export function ImageResize({ t, locale }: { t: Translate; locale: Locale }) {
   const [image, setImage] = useState<HTMLImageElement | null>(null)
-  const [preview, setPreview] = useState('')
   const [fileName, setFileName] = useState('')
   const [fileType, setFileType] = useState('image/jpeg')
   const [fileSize, setFileSize] = useState(0)
@@ -102,7 +101,6 @@ export function ImageResize({ t, locale }: { t: Translate; locale: Locale }) {
     const loaded = new Image()
     loaded.onload = () => {
       setImage(loaded)
-      setPreview(url)
       setWidth(loaded.naturalWidth)
       setHeight(loaded.naturalHeight)
     }
@@ -136,7 +134,7 @@ export function ImageResize({ t, locale }: { t: Translate; locale: Locale }) {
     setProcessing(true)
     setError('')
     try {
-      const format = (fileType === 'image/png' || fileType === 'image/webp' ? fileType : 'image/jpeg') as OutputFormat
+      const format = fileType === 'image/png' || fileType === 'image/webp' ? fileType : 'image/jpeg'
       const blob = await renderPlan(image, plan, { format, quality })
       if (result) URL.revokeObjectURL(result.url)
       setResult({ url: URL.createObjectURL(blob), size: blob.size, width: plan.target.width, height: plan.target.height })

@@ -186,7 +186,7 @@ export function ImageWatermark({ t, locale }: { t: Translate; locale: Locale }) 
     setBusy(true)
     setError('')
     try {
-      const format = (fileType === 'image/png' || fileType === 'image/webp' ? fileType : 'image/jpeg') as 'image/jpeg' | 'image/png' | 'image/webp'
+      const format = fileType === 'image/png' || fileType === 'image/webp' ? fileType : 'image/jpeg'
       const blob = await renderWatermark(image, mark, {
         ...options,
         opacity: clampOpacity(opacity / 100),

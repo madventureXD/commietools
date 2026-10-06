@@ -125,7 +125,7 @@ function applyAngleMode(math: MathJsInstance, angleMode: AngleMode): void {
    * Winkelumrechnung in eine Dezimalzahl gehoben; das Ergebnis einer Winkelfunktion ist
    * ohnehin im Allgemeinen kein Bruch (sin 30° = 0,5, sin 45° = 0,707…).
    */
-  const asUnitValue = (x: unknown) => (math.isFraction(x as never) ? math.bignumber(x as never) : x)
+  const asUnitValue = (x: unknown) => (math.isFraction(x) ? math.bignumber(x) : x)
   const toRad = (x: unknown) => math.unit(asUnitValue(x) as never, unit).to('rad')
   // Zwei Fallen auf einmal: `toNumber(unit)` liefert ein **rohes** Decimal-Objekt, auf dem
   // `format(…, { precision })` nicht rundet, und `.value` gäbe den Wert in der Basiseinheit

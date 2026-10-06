@@ -15,8 +15,7 @@ import {
   type CvdType,
   type Rgb
 } from '@commietools/tools'
-import type { Locale } from '@commietools/i18n'
-import { Button, LocalBadge } from '@commietools/ui'
+import { Button } from '@commietools/ui'
 
 type Translate = (key: string) => string
 

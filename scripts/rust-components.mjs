@@ -132,7 +132,7 @@ if (modus === 'check') {
     process.exit(1)
   }
   const alt = JSON.parse(readFileSync(KARTE, 'utf8'))
-  const { kopf, fehlend } = sammeln(true)
+  const { kopf } = sammeln(true)
   const abweichungen = []
   if (alt.anzahl !== kopf.anzahl) abweichungen.push(`Komponentenzahl ${alt.anzahl} → ${kopf.anzahl}`)
   for (const [schluessel, wert] of Object.entries(kopf.grundlage)) {

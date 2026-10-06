@@ -3,7 +3,6 @@ import { LocalBadge } from '@commietools/ui'
 import {
   CRAFT_LIMITS,
   craftMixById,
-  craftMixes,
   craftMixesOfKind,
   planCraftMix,
   roundForDisplay,

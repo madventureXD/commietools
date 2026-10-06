@@ -63,7 +63,7 @@ const evaluate = async (expression) => {
 }
 
 /** Wartet, bis die Route wirklich gerendert ist — sonst prüft der Lauf eine leere Seite. */
-async function waitForRoute(route) {
+async function waitForRoute() {
   for (let attempt = 0; attempt < 40; attempt += 1) {
     const ready = await evaluate('(() => ({ tool: Boolean(document.querySelector(".tool-content")), h1: Boolean(document.querySelector("main h1")) }))()')
     if (ready.tool) return { ready: true }
@@ -280,7 +280,7 @@ try {
     await command('Emulation.setDeviceMetricsOverride', { width, height: 900, deviceScaleFactor: 1, mobile: width < 768 })
     for (const route of routes) {
       await command('Page.navigate', { url: `${baseUrl}${route}` })
-      const state = await waitForRoute(route)
+      const state = await waitForRoute()
       if (!state.ready) {
         emptyRoutes += 1
         console.error(`Route ohne Inhalt: ${route} (${width} px) — Seite steht auf ${state.url}, Text: ${JSON.stringify(state.body)}`)
@@ -316,7 +316,15 @@ try {
   socket?.close()
   edge.kill()
   if (edge.exitCode === null) await Promise.race([once(edge, 'exit'), delay(2000)])
+  /**
+   * Aufräumen darf eine laufende Ausnahme nicht ersetzen: Ein `throw` im `finally` überschreibt
+   * den ursprünglichen Fehler, und die eigentliche Ursache geht verloren. Deshalb wird ein
+   * endgültig misslungenes Aufräumen **gemeldet**, nicht geworfen (Lint-Regel no-unsafe-finally).
+   */
   for (let attempt = 0; attempt < 5; attempt += 1) {
-    try { await rm(profile, { recursive: true, force: true }); break } catch (error) { if (attempt === 4) throw error; await delay(200) }
+    try { await rm(profile, { recursive: true, force: true }); break } catch (error) {
+      if (attempt === 4) console.error(`Profil konnte nicht entfernt werden: ${profile} (${error?.message ?? error})`)
+      else await delay(200)
+    }
   }
 }

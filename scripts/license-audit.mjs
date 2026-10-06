@@ -354,7 +354,7 @@ function pruefeRustKomponenten() {
  *  Vorher trug `project.source` nur den Text „LICENSE", und der Build-Link der Signatur-Engine
  *  war ein relativer Pfad — im Browser landet so etwas auf SPA-HTML statt auf dem Dokument. */
 function ergaenzeQuellzugang(registry) {
-  let revision = null
+  let revision
   try {
     revision = execFileSync('git', ['rev-parse', 'HEAD'], { encoding: 'utf8' }).trim()
   } catch {
