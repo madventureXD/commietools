@@ -241,6 +241,16 @@ Diese Liste enthält bestätigte, noch nicht abgeschlossene Arbeit. Details geh�
   ist eine Überschriftenprüfung, und wer die Akte gewohnt ist, findet die Angaben nicht dort, wo
   sie stehen müssen.*
 - [ ] Offline-Verhalten mit einem automatisierten Browser-Test absichern.
+  *(2026-10-06, **M8-002 gemessen: die Offline-Bereitschaft des ersten Besuchs ist nicht gegeben.**
+  Frisches Profil, App geladen, Service Worker aktiv, HTTP-Cache gelöscht, **Vorschaudienst beendet**
+  (Erreichbarkeit 0 geprüft), dann Reload: der Service Worker liefert 7 von 7 Antworten aus dem Cache,
+  **eine** Datei scheitert — `/assets/ui-en-*.js` (`net::ERR_FAILED`) — und die Seite bleibt **leer**.
+  Ursache im CacheStorage nachgewiesen: **acht** beim Öffnen nachgeladene Pakete (Sprach-, Such- und
+  Werkzeugtexte) liegen **nicht** im CacheStorage, sondern nur im flüchtigen HTTP-Cache. Damit ist der
+  Kartenbefund bestätigt und präzisiert; die Umsetzung nach der Karte (Sicherung dieser Pakete,
+  gezieltes Nachladen nach SW-Kontrolle) steht aus. Teilfälle **nicht** geprüft: Warmbesuch,
+  Localewechsel, fehlendes Einzelpaket, SW-Versionswechsel. Protokoll:
+  `06-protokolle/2026-10-06-m8-002-offline-erster-besuch.md`.)*
 - [ ] Content Security Policy und spätere Deployment-Header konkretisieren.
 - [ ] Größenbudgets zusätzlich pro große Tool-Engine festlegen; das Startbudget und die Sperre gegen PDF-Engines sind umgesetzt.
 - [ ] **Werkzeugtexte je Sprache im Blick behalten — Reserve 4,3 KiB.** Mit dem umgesetzten
