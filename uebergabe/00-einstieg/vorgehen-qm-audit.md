@@ -275,7 +275,7 @@ bewusst uncommittet auf der Revision `dac33b7`; die inhaltliche Registrierung de
 `jsonc-parser` ist dagegen **committet**. Die früheren Stände (`ebabc36`, dann `c30cb74`) sind damit
 überholt, nicht falsch gewesen.
 
-*Nachtrag 2026-10-06 (nach M4-005/M4-006).* Kopf ist jetzt **`<Hash folgt im nächsten Nachtrag>`**
+*Nachtrag 2026-10-06 (nach M4-005/M4-006).* Kopf ist jetzt **`49dcaf2`**
 („PDF-Teiler: gesperrter Aktionsknopf nach Dateiwechsel behoben"), davor `64bc150`, `a0bad10`.
 Belege für M4-005/M4-006 erbracht (Zähler, Ausgabedateien inhaltlich geprüft); ein Abnahmefall
 („A zuletzt fertig") ist **nicht herstellbar** und im Protokoll benannt. Protokoll:

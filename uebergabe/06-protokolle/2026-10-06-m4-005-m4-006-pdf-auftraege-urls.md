@@ -84,7 +84,11 @@ fehlt.
 
 ## Relevante Verweise
 
-- Commits: *(werden nach der Ablage als datierter Zusatz nachgetragen)*
+- Commits: **`49dcaf2`** („PDF-Teiler: gesperrter Aktionsknopf nach Dateiwechsel behoben (M4-005)").
+  Nachtrag vom 2026-10-06 nach der Ablage dieser Datei. **Nicht gepusht.**
+- Die Prüfdateien `test-assets/m4-005-langsam-A.pdf` (599 kB) und `-schnell-B.pdf` liegen
+  **unversioniert**; ihre Erzeugung steht in `work/m4-005-dateien.mjs` (außerhalb der
+  Versionierung — bekannter Punkt M10-004).
 - Karten: `QM/70-reparaturempfehlungen/R3.md`, M4-005 und M4-006 („Nicht tun": kein Timeout, kein
   bloßes `disabled` des Knopfes, kein globales URL-Sammelarray)
 - Belegskripte (außerhalb der Versionierung, bekannter Punkt M10-004):
