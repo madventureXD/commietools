@@ -14,10 +14,15 @@
 # sind im Konto „erforderliche Statuschecks" und ein Branchschutz zu konfigurieren; das gehört mit
 # Datum und Zuständigkeit protokolliert (Karte M1-003, Abnahme).
 #
-# **Zweite Grenze:** Die gebauten Browserprüfungen (`viewport:check`, `a11y:check`) laufen derzeit
-# nur lokal: `scripts/viewport-audit.mjs` steuert Edge auf Windows. Ein Linux-Läufer kann das nicht.
-# Der Browserjob wird deshalb noch nicht verdrahtet — als offener Punkt geführt, statt einen Job
-# zu bauen, der in der Wirklichkeit nicht läuft.
+# **Zweite Grenze (Stand 2026-10-06):** Die gebauten Browserprüfungen (`viewport:check`,
+# `a11y:check`) liefen nur lokal: `scripts/viewport-audit.mjs` steuert Edge auf Windows. Ein
+# Linux-Läufer kann das nicht. Der Browserjob war deshalb nicht verdrahtet.
+#
+# **Nachtrag 2026-10-07 (Karte M2-009):** Der Browserjob ist jetzt da und läuft auf
+# `windows-latest`, weil der Prüfer Edge und ein Windows-Terminal braucht. Die frühere Grenze
+# bleibt als **Grenze des Belegs** bestehen: Der Job ist **nie gelaufen** (es wird nicht gepusht),
+# und ein Lauf auf einem fremden Rechner beweist die Auslieferung nicht — er belegt nur, dass die
+# Prüfung dort greift, wo sie läuft. Siehe die Anmerkungen am Job selbst.
 name: Prüfungen
 
 on:
@@ -50,6 +55,64 @@ jobs:
       - run: npm run check
       # Der Bau prüft zusätzlich das Startbudget und die Sperre gegen PDF-Engines im Startbündel.
       - run: npm run build
+
+  # Barrierefreiheit und Überbreite im echten Browser (Karte M2-009).
+  #
+  # **Warum Windows:** `scripts/viewport-audit.mjs` steuert Edge headless über das
+  # DevTools-Protokoll; Edge und die Pfadangabe sind Windows-spezifisch. Auf `ubuntu-latest`
+  # würde der Job nicht laufen — ein Job, der in der Wirklichkeit nicht läuft, wäre schlimmer
+  # als keiner.
+  #
+  # **Grenzen dieses Jobs, ausdrücklich:**
+  #  1. Er ist **nie gelaufen** — es wird nicht gepusht, also hat GitHub ihn nicht ausgeführt.
+  #     Eine erfolgreiche Meldung ohne Ausführung wäre eine Falschaussage.
+  #  2. Er prüft den **Bau** auf dem Läufer, nicht die ausgelieferte Seite. Die Prüfung gilt
+  #     damit der Prüfung selbst, nicht der Veröffentlichung.
+  #  3. Actions sind mit Tags gepinnt (`@v4`), nicht mit Commit-SHAs (offen, wie in `qualitaet`).
+  #  4. Er ersetzt **keine** erforderlichen Statuschecks im Konto und keine Handarbeit:
+  #     Vorleserausgabe, Tastaturdurchlauf, 400 % Zoom, Fokusreihenfolge und reduzierte Bewegung
+  #     bleiben ungeprüft (der Prüfer sagt das am Ende seines Laufs selbst).
+  #
+  # **Voraussetzung, die scheitern DARF:** Der Läufer braucht Edge unter dem im Prüfer
+  # hinterlegten Pfad. Fehlt es, bricht der Lauf mit Fehler ab — das ist gewollt: ein stiller
+  # grüner Lauf ohne Messung wäre der schlimmere Ausgang.
+  browser:
+    name: Barrierefreiheit und Überbreite (Windows, Edge)
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci
+      # Der Prüfer läuft gegen die BAUdateien: erst bauen, dann ausliefern.
+      - run: npm run build
+      - name: Vorschaudienst starten
+        working-directory: apps/web
+        run: Start-Process -FilePath "npx.cmd" -ArgumentList "vite","preview","--host","127.0.0.1","--port","4173","--strictPort" -WindowStyle Hidden
+      - name: Auf den Vorschaudienst warten
+        shell: pwsh
+        run: |
+          for ($versuch = 0; $versuch -lt 60; $versuch++) {
+            try {
+              $antwort = Invoke-WebRequest -UseBasicParsing -Uri "http://127.0.0.1:4173/" -TimeoutSec 3
+              if ($antwort.StatusCode -eq 200) { Write-Host "Vorschaudienst bereit nach $versuch Versuchen"; exit 0 }
+            } catch { Start-Sleep -Seconds 2 }
+          }
+          throw "Vorschaudienst auf 127.0.0.1:4173 nicht erreichbar"
+      # Beide Schemata: der Kontrast unterscheidet sich deutlich (Token --color-action-text).
+      - run: npm run a11y:check
+        env:
+          COMMIETOOLS_AUDIT_URL: http://127.0.0.1:4173
+          COMMIETOOLS_AUDIT_SCHEME: dark
+      - run: npm run a11y:check
+        env:
+          COMMIETOOLS_AUDIT_URL: http://127.0.0.1:4173
+          COMMIETOOLS_AUDIT_SCHEME: light
+      - run: npm run viewport:check
+        env:
+          COMMIETOOLS_AUDIT_URL: http://127.0.0.1:4173
 
   rust:
     name: Rust-Prüfungen (nativ und wasm32)

@@ -16,6 +16,11 @@
  * Beschriftungen der Eingabefelder, Ueberschriftenfolge, Kontrast kleiner und grosser Texte.
  * Jede Route meldet mit, wie viele Bedienelemente sie angesehen hat; findet ein Durchgang
  * nichts anzusehen, bricht er ab, statt still zu bestehen.
+ *
+ * Zum Kontrast (Karte M2-009): Ist ueber einem Text keine deckende Flaeche gesetzt, wird die
+ * Leinwandfarbe angenommen und der Rueckfall je Route gezaehlt (`Leinwandrueckfall`). Text ueber
+ * einem Bild oder Verlauf bleibt nicht messbar — solche Stellen werden mit Element und Text
+ * **benannt** ausgegeben, statt still gezaehlt zu werden.
  */
 import { mkdtemp, readFile, rm } from 'node:fs/promises'
 import { tmpdir } from 'node:os'
@@ -221,37 +226,65 @@ const A11Y_JS = `(async () => {
     return 0.2126 * channel(color.r) + 0.7152 * channel(color.g) + 0.0722 * channel(color.b);
   };
   const ratio = (first, second) => { const a = luminance(first); const b = luminance(second); const light = Math.max(a, b); const dark = Math.min(a, b); return (light + 0.05) / (dark + 0.05) };
+  /**
+   * Wirksamer Hintergrund eines Textes (Karte M2-009).
+   *
+   * Laeuft die Vorfahrenkette hoch und nimmt die erste DECKENDE Hintergrundfarbe. Fand sich
+   * keine, wird die **Leinwandfarbe** angenommen — das ist die Farbe, die der Browser unter
+   * allem zeichnet. Vorher gab die Funktion hier null zurueck, der Kandidat wurde nur gezaehlt
+   * und uebersprungen: Ein absichtlich kontrastarmer Absatz erzeugte dann **keinen** Befund, und
+   * ein Loch in der Messung sah aus wie "kein Befund". Gemessen am 2026-10-07 mit zwei
+   * Wegwerf-Seiten: ohne Hintergrund Kontrast=0 bei uebersprungen=3, mit deckendem Weiss
+   * Kontrast=1 (gemessen 1,66 bei verlangten 4,5) — dieselbe Regel, nur messbar.
+   *
+   * Weiss ist die Vorgabe der Leinwand. Wo eine Seite eine andere Leinwandfarbe setzt, muss sie
+   * sie als Flaeche tragen; die Annahme wird je Route als Rueckfallzahl ausgegeben, damit sie
+   * nicht stillschweigend wirkt.
+   *
+   * Bleibt ueber dem Text ein **Bild oder Verlauf** (background-image), ist der Kontrast nicht
+   * bestimmbar — dann gibt es weiterhin null, und der Kandidat wird mit Element und Text
+   * benannt ausgegeben (nicht still gezaehlt).
+   */
+  const LEINWANDFARBE = { r: 255, g: 255, b: 255, a: 1 };
   const effectiveBackground = (element) => {
     let node = element;
+    let ueberBild = false;
     while (node) {
       const style = getComputedStyle(node);
-      if (style.backgroundImage && style.backgroundImage !== 'none') return null;
+      if (style.backgroundImage && style.backgroundImage !== 'none') { ueberBild = true; break; }
       const color = parseColor(style.backgroundColor);
-      if (color && color.a === 1) return color;
+      if (color && color.a === 1) return { farbe: color, herkunft: 'flaeche' };
       node = node.parentElement;
     }
-    return null;
+    if (ueberBild) return null;
+    return { farbe: LEINWANDFARBE, herkunft: 'leinwand' };
   };
-  let skippedContrast = 0;
+  const uebersprungen = [];
+  let leinwandRueckfall = 0;
   for (const element of [...document.querySelectorAll('body *')].filter(visible)) {
     const own = [...element.childNodes].some((node) => node.nodeType === 3 && node.textContent.trim().length > 1);
     if (!own) continue;
     const style = getComputedStyle(element);
     const color = parseColor(style.color);
     const background = effectiveBackground(element);
-    if (!color || !background) { skippedContrast += 1; continue; }
+    if (!color || !background) {
+      uebersprungen.push({ element: describe(element), text: text(element).slice(0, 40), grund: color ? 'hintergrund-ueber-bild' : 'textfarbe-unlesbar' });
+      continue;
+    }
+    if (background.herkunft === 'leinwand') leinwandRueckfall += 1;
     const size = parseFloat(style.fontSize);
     const weight = Number(style.fontWeight) || 400;
     const large = size >= 24 || (size >= 18.66 && weight >= 700);
     const required = large ? 3 : 4.5;
-    const measured = Math.round(ratio(color, background) * 100) / 100;
+    const measured = Math.round(ratio(color, background.farbe) * 100) / 100;
     if (measured < required) {
-      const eintrag = { element: describe(element), text: text(element).slice(0, 40), size: Math.round(size * 10) / 10, weight, required, measured };
+      const eintrag = { element: describe(element), text: text(element).slice(0, 40), size: Math.round(size * 10) / 10, weight, required, measured, hintergrund: background.herkunft };
       if (AKZEPTIERTE_KONTRASTE.some((ausnahme) => element.matches(ausnahme.auswahl))) findings.contrastAkzeptiert.push(eintrag);
       else findings.contrast.push(eintrag);
     }
   }
-  findings.skippedContrast = skippedContrast;
+  findings.skippedContrast = uebersprungen;
+  findings.canvasFallback = leinwandRueckfall;
   findings.targets = findings.targets.slice(0, 40);
   findings.names = findings.names.slice(0, 20);
   findings.labels = findings.labels.slice(0, 20);
@@ -347,9 +380,18 @@ try {
           + (findings.headings.h1Count !== 1 ? 1 : 0)
         console.log(`${problems ? 'BEFUND' : 'ok'} ${route} ${width}px  Bedienelemente=${findings.controls}`
           + ` Ziele<44=${findings.targets.length} ohneNamen=${findings.names.length} ohneBeschriftung=${findings.labels.length}`
-          + ` Kontrast=${findings.contrast.length} akzeptiert=${findings.contrastAkzeptiert.length} (uebersprungen=${findings.skippedContrast}) abgeschnitten=${findings.clipped.length}`
+          + ` Kontrast=${findings.contrast.length} akzeptiert=${findings.contrastAkzeptiert.length} (uebersprungen=${findings.skippedContrast.length}) Leinwandrueckfall=${findings.canvasFallback ?? 0} abgeschnitten=${findings.clipped.length}`
           + ` h1=${findings.headings.h1Count} Spruenge=${findings.headings.jumps.length}/${findings.headings.jumpsOpened.length}`
           + ` Menue=${geoeffnet.elements} MenueOhneNamen=${geoeffnet.names.length} MenueZiele<44=${geoeffnet.targets.length}`)
+        /**
+         * Uebersprungene Kontrastkandidaten werden BENANNT, nicht nur gezaehlt (Karte M2-009):
+         * Eine Zahl ohne Ort laesst ein Loch in der Messung wie ein sauberes Ergebnis aussehen.
+         * Ein Grundeintrag bleibt moeglich (Text ueber Bild oder Verlauf ist nicht messbar) und
+         * ist ab hier im Lauf sichtbar.
+         */
+        for (const luecke of findings.skippedContrast) {
+          console.log(`  nicht messbar (${luecke.grund}): ${luecke.element} "${luecke.text}"`)
+        }
         if (problems) failures.push({ route, width, ...findings })
       }
     }
