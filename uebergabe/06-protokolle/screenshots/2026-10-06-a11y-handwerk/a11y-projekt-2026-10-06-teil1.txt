@@ -1,0 +1,780 @@
+ok /tools/text-statistics 1360px  Bedienelemente=11 Ziele<44=0 ohneNamen=0 ohneBeschriftung=0 Kontrast=0 (uebersprungen=0) abgeschnitten=0 h1=1 Spruenge=0/0
+BEFUND /tools/case-converter 1360px  Bedienelemente=15 Ziele<44=0 ohneNamen=0 ohneBeschriftung=0 Kontrast=1 (uebersprungen=0) abgeschnitten=0 h1=1 Spruenge=0/0
+ok /tools/json-formatter 1360px  Bedienelemente=13 Ziele<44=0 ohneNamen=0 ohneBeschriftung=0 Kontrast=0 (uebersprungen=0) abgeschnitten=0 h1=1 Spruenge=0/0
+BEFUND /tools/qr-code-generator 1360px  Bedienelemente=26 Ziele<44=4 ohneNamen=0 ohneBeschriftung=0 Kontrast=1 (uebersprungen=0) abgeschnitten=0 h1=1 Spruenge=0/0
+ok /tools/image-metadata 1360px  Bedienelemente=11 Ziele<44=0 ohneNamen=0 ohneBeschriftung=0 Kontrast=0 (uebersprungen=0) abgeschnitten=0 h1=1 Spruenge=0/0
+ok /tools/image-resize 1360px  Bedienelemente=11 Ziele<44=0 ohneNamen=0 ohneBeschriftung=0 Kontrast=0 (uebersprungen=0) abgeschnitten=0 h1=1 Spruenge=0/0
+BEFUND /tools/icon-generator 1360px  Bedienelemente=30 Ziele<44=16 ohneNamen=0 ohneBeschriftung=0 Kontrast=1 (uebersprungen=0) abgeschnitten=0 h1=1 Spruenge=0/0
+BEFUND /tools/image-watermark 1360px  Bedienelemente=32 Ziele<44=6 ohneNamen=0 ohneBeschriftung=0 Kontrast=2 (uebersprungen=0) abgeschnitten=0 h1=1 Spruenge=0/0
+BEFUND /tools/color-tools 1360px  Bedienelemente=22 Ziele<44=1 ohneNamen=0 ohneBeschriftung=0 Kontrast=1 (uebersprungen=0) abgeschnitten=0 h1=1 Spruenge=0/0
+BEFUND /tools/pdf-merge 1360px  Bedienelemente=12 Ziele<44=0 ohneNamen=0 ohneBeschriftung=0 Kontrast=1 (uebersprungen=0) abgeschnitten=0 h1=1 Spruenge=0/0
+ok /tools/pdf-split 1360px  Bedienelemente=11 Ziele<44=0 ohneNamen=0 ohneBeschriftung=0 Kontrast=0 (uebersprungen=0) abgeschnitten=0 h1=1 Spruenge=0/0
+ok /tools/pdf-organize 1360px  Bedienelemente=11 Ziele<44=0 ohneNamen=0 ohneBeschriftung=0 Kontrast=0 (uebersprungen=0) abgeschnitten=0 h1=1 Spruenge=0/0
+ok /tools/images-to-pdf 1360px  Bedienelemente=11 Ziele<44=0 ohneNamen=0 ohneBeschriftung=0 Kontrast=0 (uebersprungen=0) abgeschnitten=0 h1=1 Spruenge=0/0
+ok /tools/pdf-to-images 1360px  Bedienelemente=11 Ziele<44=0 ohneNamen=0 ohneBeschriftung=0 Kontrast=0 (uebersprungen=0) abgeschnitten=0 h1=1 Spruenge=0/0
+ok /tools/pdf-watermark 1360px  Bedienelemente=11 Ziele<44=0 ohneNamen=0 ohneBeschriftung=0 Kontrast=0 (uebersprungen=0) abgeschnitten=0 h1=1 Spruenge=0/0
+ok /tools/pdf-page-numbers 1360px  Bedienelemente=11 Ziele<44=0 ohneNamen=0 ohneBeschriftung=0 Kontrast=0 (uebersprungen=0) abgeschnitten=0 h1=1 Spruenge=0/0
+ok /tools/pdf-visible-signature 1360px  Bedienelemente=11 Ziele<44=0 ohneNamen=0 ohneBeschriftung=0 Kontrast=0 (uebersprungen=0) abgeschnitten=0 h1=1 Spruenge=0/0
+ok /tools/pdf-form-fill 1360px  Bedienelemente=11 Ziele<44=0 ohneNamen=0 ohneBeschriftung=0 Kontrast=0 (uebersprungen=0) abgeschnitten=0 h1=1 Spruenge=0/0
+ok /tools/text-statistics 390px  Bedienelemente=9 Ziele<44=0 ohneNamen=0 ohneBeschriftung=0 Kontrast=0 (uebersprungen=0) abgeschnitten=0 h1=1 Spruenge=0/0
+BEFUND /tools/case-converter 390px  Bedienelemente=13 Ziele<44=0 ohneNamen=0 ohneBeschriftung=0 Kontrast=1 (uebersprungen=0) abgeschnitten=0 h1=1 Spruenge=0/0
+ok /tools/json-formatter 390px  Bedienelemente=11 Ziele<44=0 ohneNamen=0 ohneBeschriftung=0 Kontrast=0 (uebersprungen=0) abgeschnitten=0 h1=1 Spruenge=0/0
+BEFUND /tools/qr-code-generator 390px  Bedienelemente=24 Ziele<44=4 ohneNamen=0 ohneBeschriftung=0 Kontrast=1 (uebersprungen=0) abgeschnitten=0 h1=1 Spruenge=0/0
+ok /tools/image-metadata 390px  Bedienelemente=9 Ziele<44=0 ohneNamen=0 ohneBeschriftung=0 Kontrast=0 (uebersprungen=0) abgeschnitten=0 h1=1 Spruenge=0/0
+ok /tools/image-resize 390px  Bedienelemente=9 Ziele<44=0 ohneNamen=0 ohneBeschriftung=0 Kontrast=0 (uebersprungen=0) abgeschnitten=0 h1=1 Spruenge=0/0
+BEFUND /tools/icon-generator 390px  Bedienelemente=28 Ziele<44=16 ohneNamen=0 ohneBeschriftung=0 Kontrast=1 (uebersprungen=0) abgeschnitten=0 h1=1 Spruenge=0/0
+BEFUND /tools/image-watermark 390px  Bedienelemente=30 Ziele<44=6 ohneNamen=0 ohneBeschriftung=0 Kontrast=2 (uebersprungen=0) abgeschnitten=0 h1=1 Spruenge=0/0
+BEFUND /tools/color-tools 390px  Bedienelemente=20 Ziele<44=1 ohneNamen=0 ohneBeschriftung=0 Kontrast=1 (uebersprungen=0) abgeschnitten=0 h1=1 Spruenge=0/0
+BEFUND /tools/pdf-merge 390px  Bedienelemente=10 Ziele<44=0 ohneNamen=0 ohneBeschriftung=0 Kontrast=1 (uebersprungen=0) abgeschnitten=0 h1=1 Spruenge=0/0
+ok /tools/pdf-split 390px  Bedienelemente=9 Ziele<44=0 ohneNamen=0 ohneBeschriftung=0 Kontrast=0 (uebersprungen=0) abgeschnitten=0 h1=1 Spruenge=0/0
+ok /tools/pdf-organize 390px  Bedienelemente=9 Ziele<44=0 ohneNamen=0 ohneBeschriftung=0 Kontrast=0 (uebersprungen=0) abgeschnitten=0 h1=1 Spruenge=0/0
+ok /tools/images-to-pdf 390px  Bedienelemente=9 Ziele<44=0 ohneNamen=0 ohneBeschriftung=0 Kontrast=0 (uebersprungen=0) abgeschnitten=0 h1=1 Spruenge=0/0
+ok /tools/pdf-to-images 390px  Bedienelemente=9 Ziele<44=0 ohneNamen=0 ohneBeschriftung=0 Kontrast=0 (uebersprungen=0) abgeschnitten=0 h1=1 Spruenge=0/0
+ok /tools/pdf-watermark 390px  Bedienelemente=9 Ziele<44=0 ohneNamen=0 ohneBeschriftung=0 Kontrast=0 (uebersprungen=0) abgeschnitten=0 h1=1 Spruenge=0/0
+ok /tools/pdf-page-numbers 390px  Bedienelemente=9 Ziele<44=0 ohneNamen=0 ohneBeschriftung=0 Kontrast=0 (uebersprungen=0) abgeschnitten=0 h1=1 Spruenge=0/0
+ok /tools/pdf-visible-signature 390px  Bedienelemente=9 Ziele<44=0 ohneNamen=0 ohneBeschriftung=0 Kontrast=0 (uebersprungen=0) abgeschnitten=0 h1=1 Spruenge=0/0
+ok /tools/pdf-form-fill 390px  Bedienelemente=9 Ziele<44=0 ohneNamen=0 ohneBeschriftung=0 Kontrast=0 (uebersprungen=0) abgeschnitten=0 h1=1 Spruenge=0/0
+[
+  {
+    "route": "/tools/case-converter",
+    "width": 1360,
+    "controls": 15,
+    "targets": [],
+    "names": [],
+    "labels": [],
+    "headings": {
+      "sequence": [
+        1
+      ],
+      "h1Count": 1,
+      "jumps": [],
+      "jumpsOpened": [],
+      "closedSections": 7
+    },
+    "contrast": [
+      {
+        "element": "button.button.active",
+        "text": "GROSSBUCHSTABEN",
+        "size": 16,
+        "weight": 700,
+        "required": 4.5,
+        "measured": 3.28
+      }
+    ],
+    "ariaHidden": [],
+    "clipped": [],
+    "skippedContrast": 0
+  },
+  {
+    "route": "/tools/qr-code-generator",
+    "width": 1360,
+    "controls": 26,
+    "targets": [
+      {
+        "element": "input",
+        "width": 290,
+        "height": 16,
+        "name": "Größe: 360px"
+      },
+      {
+        "element": "input",
+        "width": 290,
+        "height": 16,
+        "name": "Rand: 16px"
+      },
+      {
+        "element": "input",
+        "width": 290,
+        "height": 16,
+        "name": "Logogröße: 28%"
+      },
+      {
+        "element": "input",
+        "width": 18,
+        "height": 18,
+        "name": "Module unter Logo ausblenden"
+      }
+    ],
+    "names": [],
+    "labels": [],
+    "headings": {
+      "sequence": [
+        1,
+        2,
+        2,
+        2
+      ],
+      "h1Count": 1,
+      "jumps": [],
+      "jumpsOpened": [],
+      "closedSections": 7
+    },
+    "contrast": [
+      {
+        "element": "button.button.primary",
+        "text": "Speichern unter …",
+        "size": 16,
+        "weight": 700,
+        "required": 4.5,
+        "measured": 3.28
+      }
+    ],
+    "ariaHidden": [],
+    "clipped": [],
+    "skippedContrast": 0
+  },
+  {
+    "route": "/tools/icon-generator",
+    "width": 1360,
+    "controls": 30,
+    "targets": [
+      {
+        "element": "input",
+        "width": 18,
+        "height": 18,
+        "name": "16 px"
+      },
+      {
+        "element": "input",
+        "width": 18,
+        "height": 18,
+        "name": "20 px"
+      },
+      {
+        "element": "input",
+        "width": 18,
+        "height": 18,
+        "name": "24 px"
+      },
+      {
+        "element": "input",
+        "width": 18,
+        "height": 18,
+        "name": "32 px"
+      },
+      {
+        "element": "input",
+        "width": 18,
+        "height": 18,
+        "name": "40 px"
+      },
+      {
+        "element": "input",
+        "width": 18,
+        "height": 18,
+        "name": "48 px"
+      },
+      {
+        "element": "input",
+        "width": 18,
+        "height": 18,
+        "name": "64 px"
+      },
+      {
+        "element": "input",
+        "width": 18,
+        "height": 18,
+        "name": "96 px"
+      },
+      {
+        "element": "input",
+        "width": 18,
+        "height": 18,
+        "name": "128 px"
+      },
+      {
+        "element": "input",
+        "width": 18,
+        "height": 18,
+        "name": "180 px"
+      },
+      {
+        "element": "input",
+        "width": 18,
+        "height": 18,
+        "name": "192 px"
+      },
+      {
+        "element": "input",
+        "width": 18,
+        "height": 18,
+        "name": "256 px"
+      },
+      {
+        "element": "input",
+        "width": 18,
+        "height": 18,
+        "name": "512 px"
+      },
+      {
+        "element": "input",
+        "width": 18,
+        "height": 18,
+        "name": "Durchsichtig"
+      },
+      {
+        "element": "input",
+        "width": 18,
+        "height": 18,
+        "name": "Maskierbare Variante zusätzlich erzeugen"
+      },
+      {
+        "element": "input",
+        "width": 18,
+        "height": 18,
+        "name": "favicon.ico erzeugen"
+      }
+    ],
+    "names": [],
+    "labels": [],
+    "headings": {
+      "sequence": [
+        1,
+        2,
+        2,
+        2,
+        2
+      ],
+      "h1Count": 1,
+      "jumps": [],
+      "jumpsOpened": [],
+      "closedSections": 7
+    },
+    "contrast": [
+      {
+        "element": "button.button.primary",
+        "text": "Symbole erzeugen",
+        "size": 16,
+        "weight": 700,
+        "required": 4.5,
+        "measured": 3.28
+      }
+    ],
+    "ariaHidden": [],
+    "clipped": [],
+    "skippedContrast": 0
+  },
+  {
+    "route": "/tools/image-watermark",
+    "width": 1360,
+    "controls": 32,
+    "targets": [
+      {
+        "element": "input",
+        "width": 18,
+        "height": 18,
+        "name": "Als Muster über das ganze Bild"
+      },
+      {
+        "element": "input",
+        "width": 1052,
+        "height": 16,
+        "name": "Randabstand: 4 %"
+      },
+      {
+        "element": "input",
+        "width": 1052,
+        "height": 16,
+        "name": "Größe: 18 %"
+      },
+      {
+        "element": "input",
+        "width": 1052,
+        "height": 16,
+        "name": "Deckkraft: 70 %"
+      },
+      {
+        "element": "input",
+        "width": 1052,
+        "height": 16,
+        "name": "Drehung: 0°"
+      },
+      {
+        "element": "input",
+        "width": 1052,
+        "height": 16,
+        "name": "Qualität: 90 %"
+      }
+    ],
+    "names": [],
+    "labels": [],
+    "headings": {
+      "sequence": [
+        1,
+        2,
+        2,
+        2,
+        2
+      ],
+      "h1Count": 1,
+      "jumps": [],
+      "jumpsOpened": [],
+      "closedSections": 7
+    },
+    "contrast": [
+      {
+        "element": "button.button.active",
+        "text": "Text",
+        "size": 16,
+        "weight": 700,
+        "required": 4.5,
+        "measured": 3.28
+      },
+      {
+        "element": "button.button.primary",
+        "text": "Wasserzeichen setzen",
+        "size": 16,
+        "weight": 700,
+        "required": 4.5,
+        "measured": 3.28
+      }
+    ],
+    "ariaHidden": [],
+    "clipped": [],
+    "skippedContrast": 0
+  },
+  {
+    "route": "/tools/color-tools",
+    "width": 1360,
+    "controls": 22,
+    "targets": [
+      {
+        "element": "input",
+        "width": 1052,
+        "height": 16,
+        "name": "Anzahl der Farben: 5"
+      }
+    ],
+    "names": [],
+    "labels": [],
+    "headings": {
+      "sequence": [
+        1,
+        2,
+        2,
+        2,
+        2,
+        2
+      ],
+      "h1Count": 1,
+      "jumps": [],
+      "jumpsOpened": [],
+      "closedSections": 7
+    },
+    "contrast": [
+      {
+        "element": "button.button.primary",
+        "text": "Palette ziehen",
+        "size": 16,
+        "weight": 700,
+        "required": 4.5,
+        "measured": 3.28
+      }
+    ],
+    "ariaHidden": [],
+    "clipped": [],
+    "skippedContrast": 0
+  },
+  {
+    "route": "/tools/pdf-merge",
+    "width": 1360,
+    "controls": 12,
+    "targets": [],
+    "names": [],
+    "labels": [],
+    "headings": {
+      "sequence": [
+        1,
+        2
+      ],
+      "h1Count": 1,
+      "jumps": [],
+      "jumpsOpened": [],
+      "closedSections": 7
+    },
+    "contrast": [
+      {
+        "element": "button.button.primary",
+        "text": "PDFs zusammenführen",
+        "size": 16,
+        "weight": 700,
+        "required": 4.5,
+        "measured": 3.28
+      }
+    ],
+    "ariaHidden": [],
+    "clipped": [],
+    "skippedContrast": 0
+  },
+  {
+    "route": "/tools/case-converter",
+    "width": 390,
+    "controls": 13,
+    "targets": [],
+    "names": [],
+    "labels": [],
+    "headings": {
+      "sequence": [
+        1
+      ],
+      "h1Count": 1,
+      "jumps": [],
+      "jumpsOpened": [],
+      "closedSections": 7
+    },
+    "contrast": [
+      {
+        "element": "button.button.active",
+        "text": "GROSSBUCHSTABEN",
+        "size": 16,
+        "weight": 700,
+        "required": 4.5,
+        "measured": 3.28
+      }
+    ],
+    "ariaHidden": [],
+    "clipped": [],
+    "skippedContrast": 0
+  },
+  {
+    "route": "/tools/qr-code-generator",
+    "width": 390,
+    "controls": 24,
+    "targets": [
+      {
+        "element": "input",
+        "width": 290,
+        "height": 16,
+        "name": "Größe: 360px"
+      },
+      {
+        "element": "input",
+        "width": 290,
+        "height": 16,
+        "name": "Rand: 16px"
+      },
+      {
+        "element": "input",
+        "width": 290,
+        "height": 16,
+        "name": "Logogröße: 28%"
+      },
+      {
+        "element": "input",
+        "width": 18,
+        "height": 18,
+        "name": "Module unter Logo ausblenden"
+      }
+    ],
+    "names": [],
+    "labels": [],
+    "headings": {
+      "sequence": [
+        1,
+        2,
+        2,
+        2
+      ],
+      "h1Count": 1,
+      "jumps": [],
+      "jumpsOpened": [],
+      "closedSections": 7
+    },
+    "contrast": [
+      {
+        "element": "button.button.primary",
+        "text": "Speichern unter …",
+        "size": 16,
+        "weight": 700,
+        "required": 4.5,
+        "measured": 3.28
+      }
+    ],
+    "ariaHidden": [],
+    "clipped": [],
+    "skippedContrast": 0
+  },
+  {
+    "route": "/tools/icon-generator",
+    "width": 390,
+    "controls": 28,
+    "targets": [
+      {
+        "element": "input",
+        "width": 18,
+        "height": 18,
+        "name": "16 px"
+      },
+      {
+        "element": "input",
+        "width": 18,
+        "height": 18,
+        "name": "20 px"
+      },
+      {
+        "element": "input",
+        "width": 18,
+        "height": 18,
+        "name": "24 px"
+      },
+      {
+        "element": "input",
+        "width": 18,
+        "height": 18,
+        "name": "32 px"
+      },
+      {
+        "element": "input",
+        "width": 18,
+        "height": 18,
+        "name": "40 px"
+      },
+      {
+        "element": "input",
+        "width": 18,
+        "height": 18,
+        "name": "48 px"
+      },
+      {
+        "element": "input",
+        "width": 18,
+        "height": 18,
+        "name": "64 px"
+      },
+      {
+        "element": "input",
+        "width": 18,
+        "height": 18,
+        "name": "96 px"
+      },
+      {
+        "element": "input",
+        "width": 18,
+        "height": 18,
+        "name": "128 px"
+      },
+      {
+        "element": "input",
+        "width": 18,
+        "height": 18,
+        "name": "180 px"
+      },
+      {
+        "element": "input",
+        "width": 18,
+        "height": 18,
+        "name": "192 px"
+      },
+      {
+        "element": "input",
+        "width": 18,
+        "height": 18,
+        "name": "256 px"
+      },
+      {
+        "element": "input",
+        "width": 18,
+        "height": 18,
+        "name": "512 px"
+      },
+      {
+        "element": "input",
+        "width": 18,
+        "height": 18,
+        "name": "Durchsichtig"
+      },
+      {
+        "element": "input",
+        "width": 15,
+        "height": 18,
+        "name": "Maskierbare Variante zusätzlich erzeugen"
+      },
+      {
+        "element": "input",
+        "width": 18,
+        "height": 18,
+        "name": "favicon.ico erzeugen"
+      }
+    ],
+    "names": [],
+    "labels": [],
+    "headings": {
+      "sequence": [
+        1,
+        2,
+        2,
+        2,
+        2
+      ],
+      "h1Count": 1,
+      "jumps": [],
+      "jumpsOpened": [],
+      "closedSections": 7
+    },
+    "contrast": [
+      {
+        "element": "button.button.primary",
+        "text": "Symbole erzeugen",
+        "size": 16,
+        "weight": 700,
+        "required": 4.5,
+        "measured": 3.28
+      }
+    ],
+    "ariaHidden": [],
+    "clipped": [],
+    "skippedContrast": 0
+  },
+  {
+    "route": "/tools/image-watermark",
+    "width": 390,
+    "controls": 30,
+    "targets": [
+      {
+        "element": "input",
+        "width": 18,
+        "height": 18,
+        "name": "Als Muster über das ganze Bild"
+      },
+      {
+        "element": "input",
+        "width": 290,
+        "height": 16,
+        "name": "Randabstand: 4 %"
+      },
+      {
+        "element": "input",
+        "width": 290,
+        "height": 16,
+        "name": "Größe: 18 %"
+      },
+      {
+        "element": "input",
+        "width": 290,
+        "height": 16,
+        "name": "Deckkraft: 70 %"
+      },
+      {
+        "element": "input",
+        "width": 290,
+        "height": 16,
+        "name": "Drehung: 0°"
+      },
+      {
+        "element": "input",
+        "width": 290,
+        "height": 16,
+        "name": "Qualität: 90 %"
+      }
+    ],
+    "names": [],
+    "labels": [],
+    "headings": {
+      "sequence": [
+        1,
+        2,
+        2,
+        2,
+        2
+      ],
+      "h1Count": 1,
+      "jumps": [],
+      "jumpsOpened": [],
+      "closedSections": 7
+    },
+    "contrast": [
+      {
+        "element": "button.button.active",
+        "text": "Text",
+        "size": 16,
+        "weight": 700,
+        "required": 4.5,
+        "measured": 3.28
+      },
+      {
+        "element": "button.button.primary",
+        "text": "Wasserzeichen setzen",
+        "size": 16,
+        "weight": 700,
+        "required": 4.5,
+        "measured": 3.28
+      }
+    ],
+    "ariaHidden": [],
+    "clipped": [],
+    "skippedContrast": 0
+  },
+  {
+    "route": "/tools/color-tools",
+    "width": 390,
+    "controls": 20,
+    "targets": [
+      {
+        "element": "input",
+        "width": 290,
+        "height": 16,
+        "name": "Anzahl der Farben: 5"
+      }
+    ],
+    "names": [],
+    "labels": [],
+    "headings": {
+      "sequence": [
+        1,
+        2,
+        2,
+        2,
+        2,
+        2
+      ],
+      "h1Count": 1,
+      "jumps": [],
+      "jumpsOpened": [],
+      "closedSections": 7
+    },
+    "contrast": [
+      {
+        "element": "button.button.primary",
+        "text": "Palette ziehen",
+        "size": 16,
+        "weight": 700,
+        "required": 4.5,
+        "measured": 3.28
+      }
+    ],
+    "ariaHidden": [],
+    "clipped": [],
+    "skippedContrast": 0
+  },
+  {
+    "route": "/tools/pdf-merge",
+    "width": 390,
+    "controls": 10,
+    "targets": [],
+    "names": [],
+    "labels": [],
+    "headings": {
+      "sequence": [
+        1,
+        2
+      ],
+      "h1Count": 1,
+      "jumps": [],
+      "jumpsOpened": [],
+      "closedSections": 7
+    },
+    "contrast": [
+      {
+        "element": "button.button.primary",
+        "text": "PDFs zusammenführen",
+        "size": 16,
+        "weight": 700,
+        "required": 4.5,
+        "measured": 3.28
+      }
+    ],
+    "ariaHidden": [],
+    "clipped": [],
+    "skippedContrast": 0
+  }
+]

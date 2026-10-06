@@ -219,7 +219,7 @@ export function Commercial({ t, locale }: { t: Translate; locale: string }) {
       <details className="settings-card">
         <summary>{t('tool.calcCommon.formula')}</summary>
         <p className="scan-note" style={{ whiteSpace: 'pre-line' }}>{t('tool.commercial.formulas')}</p>
-        <h3>{t('tool.calcCommon.assumptions')}</h3>
+        <h2>{t('tool.calcCommon.assumptions')}</h2>
         <p className="scan-note">{t('tool.commercial.assumptions')}</p>
         <p className="scan-note">{t('tool.commercial.sources')}</p>
         <p className="scan-note">{t('tool.calcCommon.lastChecked')}</p>

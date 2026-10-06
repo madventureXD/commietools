@@ -183,7 +183,7 @@ export function DateTime({ t }: { t: Translate }) {
       <details className="settings-card">
         <summary>{t('tool.calcCommon.formula')}</summary>
         <p className="scan-note">{t('tool.datetime.formulas')}</p>
-        <h3>{t('tool.calcCommon.assumptions')}</h3>
+        <h2>{t('tool.calcCommon.assumptions')}</h2>
         <p className="scan-note">{t('tool.datetime.assumptions')}</p>
         <p className="scan-note">{t('tool.datetime.sources')}</p>
         <p className="scan-note">{t('tool.calcCommon.lastChecked')}</p>

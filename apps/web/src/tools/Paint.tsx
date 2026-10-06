@@ -270,7 +270,7 @@ export function Paint({ t, locale }: { t: Translate; locale: string }) {
 
       <details className="settings-card">
         <summary>{t('tool.craft.formula')}</summary>
-        <h3>{t('tool.craft.assumptions')}</h3>
+        <h2>{t('tool.craft.assumptions')}</h2>
         <p className="scan-note">{t('tool.paint.assumptions')}</p>
         <p className="scan-note">{t('tool.paint.sources')}</p>
       </details>

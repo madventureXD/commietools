@@ -124,7 +124,7 @@ export function Geometry({ t, locale }: { t: Translate; locale: string }) {
 
       <details className="settings-card">
         <summary>{t('tool.calcCommon.formula')}</summary>
-        <h3>{t('tool.calcCommon.assumptions')}</h3>
+        <h2>{t('tool.calcCommon.assumptions')}</h2>
         <p className="scan-note">{t('tool.geometry.assumptions')}</p>
         <p className="scan-note">{t('tool.geometry.sources')}</p>
         <p className="scan-note">{t('tool.calcCommon.lastChecked')}</p>

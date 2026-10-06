@@ -2,6 +2,11 @@
 html { scroll-behavior: smooth; }
 body { margin: 0; font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
 button, textarea, select { font: inherit; }
+/* Bedienzielgroesse: docs/ui-system.md verlangt 44 px fuer Bedienziele. Die Aktionsknoepfe der
+   Rechner- und Handwerk-Werkzeuge tragen keine Klasse, deshalb gilt die Schwelle fuer das Element;
+   ausdrueckliche Klassenwerte (z. B. `.icon-result figcaption .button`) bleiben staerker.
+   Gemessen 2026-10-06: ohne diese Regel 20–32 px hoch (Berechnen 27, Textknoepfe 20, Kopfzeile 21). */
+button { min-height: 2.75rem; }
 a { color: inherit; }
 .app { min-height: 100vh; color: var(--color-text); background: var(--color-background); transition: background-color 160ms ease, color 160ms ease; }
 .site-header { position: sticky; top: 0; z-index: 10; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: var(--space-4); min-height: 4.5rem; padding: var(--space-3) max(var(--space-4), calc((100vw - var(--content-width)) / 2)); border-bottom: 1px solid var(--color-border); background: var(--color-surface); }
@@ -120,6 +125,10 @@ select { min-height: 2.75rem; padding: 0 var(--space-3); border: 1px solid var(-
    Abstand der Rasterzeilen: sonst klebt die erste Feldbeschriftung an der Zusammenfassung
    (gemessen 2026-10-06 an Paving, Tires und Paint 0 px gegen 36 px, wo eine Hinweiszeile liegt). */
 details.settings-card > summary + .form-grid { margin-top: var(--space-4); }
+/* Auch die Kopfzeile eines aufklappbaren Abschnitts ist ein Bedienziel: 21 px hoch gemessen,
+   verlangt sind 44 px (docs/ui-system.md). Innenabstand statt fester Hoehe, damit der
+   Aufklapp-Pfeil und der Textumbruch unveraendert bleiben und mehrzeilige Kopfzeilen mitwachsen. */
+details.settings-card > summary { padding-block: var(--space-3); }
 .field { display: grid; gap: var(--space-2); align-content: start; font-weight: 750; }
 .field > input, .field > select, .field > textarea { min-width: 0; max-width: 100%; }
 .field textarea { min-height: 8rem; }

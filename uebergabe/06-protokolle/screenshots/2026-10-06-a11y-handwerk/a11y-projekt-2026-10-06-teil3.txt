@@ -1,0 +1,900 @@
+BEFUND /tools/commercial 1360px  Bedienelemente=15 Ziele<44=0 ohneNamen=0 ohneBeschriftung=0 Kontrast=0 (uebersprungen=0) abgeschnitten=0 h1=1 Spruenge=0/1
+BEFUND /tools/convert 1360px  Bedienelemente=17 Ziele<44=0 ohneNamen=0 ohneBeschriftung=0 Kontrast=0 (uebersprungen=0) abgeschnitten=0 h1=1 Spruenge=0/1
+BEFUND /tools/datetime 1360px  Bedienelemente=15 Ziele<44=0 ohneNamen=0 ohneBeschriftung=0 Kontrast=0 (uebersprungen=0) abgeschnitten=0 h1=1 Spruenge=0/1
+BEFUND /tools/plotter 1360px  Bedienelemente=18 Ziele<44=0 ohneNamen=0 ohneBeschriftung=0 Kontrast=0 (uebersprungen=0) abgeschnitten=0 h1=1 Spruenge=0/1
+BEFUND /tools/aufmass 1360px  Bedienelemente=21 Ziele<44=0 ohneNamen=0 ohneBeschriftung=0 Kontrast=2 (uebersprungen=0) abgeschnitten=0 h1=1 Spruenge=0/0
+BEFUND /tools/statistics 1360px  Bedienelemente=14 Ziele<44=0 ohneNamen=0 ohneBeschriftung=0 Kontrast=0 (uebersprungen=0) abgeschnitten=0 h1=1 Spruenge=0/1
+BEFUND /tools/equations 1360px  Bedienelemente=16 Ziele<44=0 ohneNamen=0 ohneBeschriftung=0 Kontrast=0 (uebersprungen=0) abgeschnitten=0 h1=1 Spruenge=0/1
+BEFUND /tools/geometry 1360px  Bedienelemente=15 Ziele<44=0 ohneNamen=0 ohneBeschriftung=0 Kontrast=0 (uebersprungen=0) abgeschnitten=0 h1=1 Spruenge=0/1
+BEFUND /tools/concrete 1360px  Bedienelemente=25 Ziele<44=0 ohneNamen=0 ohneBeschriftung=0 Kontrast=0 (uebersprungen=0) abgeschnitten=0 h1=1 Spruenge=0/1
+BEFUND /tools/roof 1360px  Bedienelemente=21 Ziele<44=0 ohneNamen=0 ohneBeschriftung=0 Kontrast=0 (uebersprungen=0) abgeschnitten=0 h1=1 Spruenge=0/1
+BEFUND /tools/metal-weight 1360px  Bedienelemente=18 Ziele<44=0 ohneNamen=0 ohneBeschriftung=0 Kontrast=0 (uebersprungen=0) abgeschnitten=0 h1=1 Spruenge=0/1
+BEFUND /tools/wood 1360px  Bedienelemente=15 Ziele<44=0 ohneNamen=0 ohneBeschriftung=0 Kontrast=0 (uebersprungen=0) abgeschnitten=0 h1=1 Spruenge=0/1
+BEFUND /tools/tiles 1360px  Bedienelemente=26 Ziele<44=0 ohneNamen=0 ohneBeschriftung=0 Kontrast=0 (uebersprungen=0) abgeschnitten=0 h1=1 Spruenge=0/1
+BEFUND /tools/paint 1360px  Bedienelemente=32 Ziele<44=0 ohneNamen=0 ohneBeschriftung=0 Kontrast=0 (uebersprungen=0) abgeschnitten=0 h1=1 Spruenge=0/1
+BEFUND /tools/drywall 1360px  Bedienelemente=29 Ziele<44=0 ohneNamen=0 ohneBeschriftung=0 Kontrast=0 (uebersprungen=0) abgeschnitten=0 h1=1 Spruenge=0/1
+BEFUND /tools/flooring 1360px  Bedienelemente=22 Ziele<44=0 ohneNamen=0 ohneBeschriftung=0 Kontrast=0 (uebersprungen=0) abgeschnitten=0 h1=1 Spruenge=0/1
+BEFUND /tools/paving 1360px  Bedienelemente=30 Ziele<44=0 ohneNamen=0 ohneBeschriftung=0 Kontrast=0 (uebersprungen=0) abgeschnitten=0 h1=1 Spruenge=0/1
+BEFUND /tools/tires 1360px  Bedienelemente=24 Ziele<44=0 ohneNamen=0 ohneBeschriftung=0 Kontrast=0 (uebersprungen=0) abgeschnitten=0 h1=1 Spruenge=0/1
+BEFUND /tools/commercial 390px  Bedienelemente=13 Ziele<44=0 ohneNamen=0 ohneBeschriftung=0 Kontrast=0 (uebersprungen=0) abgeschnitten=0 h1=1 Spruenge=0/1
+BEFUND /tools/convert 390px  Bedienelemente=15 Ziele<44=0 ohneNamen=0 ohneBeschriftung=0 Kontrast=0 (uebersprungen=0) abgeschnitten=0 h1=1 Spruenge=0/1
+BEFUND /tools/datetime 390px  Bedienelemente=13 Ziele<44=0 ohneNamen=0 ohneBeschriftung=0 Kontrast=0 (uebersprungen=0) abgeschnitten=0 h1=1 Spruenge=0/1
+BEFUND /tools/plotter 390px  Bedienelemente=16 Ziele<44=0 ohneNamen=0 ohneBeschriftung=0 Kontrast=0 (uebersprungen=0) abgeschnitten=0 h1=1 Spruenge=0/1
+BEFUND /tools/aufmass 390px  Bedienelemente=19 Ziele<44=0 ohneNamen=0 ohneBeschriftung=0 Kontrast=2 (uebersprungen=0) abgeschnitten=0 h1=1 Spruenge=0/0
+BEFUND /tools/statistics 390px  Bedienelemente=12 Ziele<44=0 ohneNamen=0 ohneBeschriftung=0 Kontrast=0 (uebersprungen=0) abgeschnitten=0 h1=1 Spruenge=0/1
+BEFUND /tools/equations 390px  Bedienelemente=14 Ziele<44=0 ohneNamen=0 ohneBeschriftung=0 Kontrast=0 (uebersprungen=0) abgeschnitten=0 h1=1 Spruenge=0/1
+BEFUND /tools/geometry 390px  Bedienelemente=13 Ziele<44=0 ohneNamen=0 ohneBeschriftung=0 Kontrast=0 (uebersprungen=0) abgeschnitten=0 h1=1 Spruenge=0/1
+BEFUND /tools/concrete 390px  Bedienelemente=23 Ziele<44=0 ohneNamen=0 ohneBeschriftung=0 Kontrast=0 (uebersprungen=0) abgeschnitten=0 h1=1 Spruenge=0/1
+BEFUND /tools/roof 390px  Bedienelemente=19 Ziele<44=0 ohneNamen=0 ohneBeschriftung=0 Kontrast=0 (uebersprungen=0) abgeschnitten=0 h1=1 Spruenge=0/1
+BEFUND /tools/metal-weight 390px  Bedienelemente=16 Ziele<44=0 ohneNamen=0 ohneBeschriftung=0 Kontrast=0 (uebersprungen=0) abgeschnitten=0 h1=1 Spruenge=0/1
+BEFUND /tools/wood 390px  Bedienelemente=13 Ziele<44=0 ohneNamen=0 ohneBeschriftung=0 Kontrast=0 (uebersprungen=0) abgeschnitten=0 h1=1 Spruenge=0/1
+BEFUND /tools/tiles 390px  Bedienelemente=24 Ziele<44=0 ohneNamen=0 ohneBeschriftung=0 Kontrast=0 (uebersprungen=0) abgeschnitten=0 h1=1 Spruenge=0/1
+BEFUND /tools/paint 390px  Bedienelemente=30 Ziele<44=0 ohneNamen=0 ohneBeschriftung=0 Kontrast=0 (uebersprungen=0) abgeschnitten=0 h1=1 Spruenge=0/1
+BEFUND /tools/drywall 390px  Bedienelemente=27 Ziele<44=0 ohneNamen=0 ohneBeschriftung=0 Kontrast=0 (uebersprungen=0) abgeschnitten=0 h1=1 Spruenge=0/1
+BEFUND /tools/flooring 390px  Bedienelemente=20 Ziele<44=0 ohneNamen=0 ohneBeschriftung=0 Kontrast=0 (uebersprungen=0) abgeschnitten=0 h1=1 Spruenge=0/1
+BEFUND /tools/paving 390px  Bedienelemente=28 Ziele<44=0 ohneNamen=0 ohneBeschriftung=0 Kontrast=0 (uebersprungen=0) abgeschnitten=0 h1=1 Spruenge=0/1
+BEFUND /tools/tires 390px  Bedienelemente=22 Ziele<44=0 ohneNamen=0 ohneBeschriftung=0 Kontrast=0 (uebersprungen=0) abgeschnitten=0 h1=1 Spruenge=0/1
+[
+  {
+    "route": "/tools/commercial",
+    "width": 1360,
+    "controls": 15,
+    "targets": [],
+    "names": [],
+    "labels": [],
+    "headings": {
+      "sequence": [
+        1
+      ],
+      "h1Count": 1,
+      "jumps": [],
+      "jumpsOpened": [
+        "Sprung 1 zu 3"
+      ],
+      "closedSections": 8
+    },
+    "contrast": [],
+    "ariaHidden": [],
+    "clipped": [],
+    "skippedContrast": 0
+  },
+  {
+    "route": "/tools/convert",
+    "width": 1360,
+    "controls": 17,
+    "targets": [],
+    "names": [],
+    "labels": [],
+    "headings": {
+      "sequence": [
+        1
+      ],
+      "h1Count": 1,
+      "jumps": [],
+      "jumpsOpened": [
+        "Sprung 1 zu 3"
+      ],
+      "closedSections": 8
+    },
+    "contrast": [],
+    "ariaHidden": [],
+    "clipped": [],
+    "skippedContrast": 0
+  },
+  {
+    "route": "/tools/datetime",
+    "width": 1360,
+    "controls": 15,
+    "targets": [],
+    "names": [],
+    "labels": [],
+    "headings": {
+      "sequence": [
+        1
+      ],
+      "h1Count": 1,
+      "jumps": [],
+      "jumpsOpened": [
+        "Sprung 1 zu 3"
+      ],
+      "closedSections": 8
+    },
+    "contrast": [],
+    "ariaHidden": [],
+    "clipped": [],
+    "skippedContrast": 0
+  },
+  {
+    "route": "/tools/plotter",
+    "width": 1360,
+    "controls": 18,
+    "targets": [],
+    "names": [],
+    "labels": [],
+    "headings": {
+      "sequence": [
+        1
+      ],
+      "h1Count": 1,
+      "jumps": [],
+      "jumpsOpened": [
+        "Sprung 1 zu 3"
+      ],
+      "closedSections": 8
+    },
+    "contrast": [],
+    "ariaHidden": [],
+    "clipped": [],
+    "skippedContrast": 0
+  },
+  {
+    "route": "/tools/aufmass",
+    "width": 1360,
+    "controls": 21,
+    "targets": [],
+    "names": [],
+    "labels": [],
+    "headings": {
+      "sequence": [
+        1,
+        2,
+        2
+      ],
+      "h1Count": 1,
+      "jumps": [],
+      "jumpsOpened": [],
+      "closedSections": 8
+    },
+    "contrast": [
+      {
+        "element": "button.button.primary",
+        "text": "Speichern unter …",
+        "size": 16,
+        "weight": 700,
+        "required": 4.5,
+        "measured": 3.28
+      },
+      {
+        "element": "button.button.primary",
+        "text": "Speichern unter …",
+        "size": 16,
+        "weight": 700,
+        "required": 4.5,
+        "measured": 3.28
+      }
+    ],
+    "ariaHidden": [],
+    "clipped": [],
+    "skippedContrast": 0
+  },
+  {
+    "route": "/tools/statistics",
+    "width": 1360,
+    "controls": 14,
+    "targets": [],
+    "names": [],
+    "labels": [],
+    "headings": {
+      "sequence": [
+        1
+      ],
+      "h1Count": 1,
+      "jumps": [],
+      "jumpsOpened": [
+        "Sprung 1 zu 3"
+      ],
+      "closedSections": 8
+    },
+    "contrast": [],
+    "ariaHidden": [],
+    "clipped": [],
+    "skippedContrast": 0
+  },
+  {
+    "route": "/tools/equations",
+    "width": 1360,
+    "controls": 16,
+    "targets": [],
+    "names": [],
+    "labels": [],
+    "headings": {
+      "sequence": [
+        1
+      ],
+      "h1Count": 1,
+      "jumps": [],
+      "jumpsOpened": [
+        "Sprung 1 zu 3"
+      ],
+      "closedSections": 8
+    },
+    "contrast": [],
+    "ariaHidden": [],
+    "clipped": [],
+    "skippedContrast": 0
+  },
+  {
+    "route": "/tools/geometry",
+    "width": 1360,
+    "controls": 15,
+    "targets": [],
+    "names": [],
+    "labels": [],
+    "headings": {
+      "sequence": [
+        1
+      ],
+      "h1Count": 1,
+      "jumps": [],
+      "jumpsOpened": [
+        "Sprung 1 zu 3"
+      ],
+      "closedSections": 8
+    },
+    "contrast": [],
+    "ariaHidden": [],
+    "clipped": [],
+    "skippedContrast": 0
+  },
+  {
+    "route": "/tools/concrete",
+    "width": 1360,
+    "controls": 25,
+    "targets": [],
+    "names": [],
+    "labels": [],
+    "headings": {
+      "sequence": [
+        1
+      ],
+      "h1Count": 1,
+      "jumps": [],
+      "jumpsOpened": [
+        "Sprung 1 zu 3"
+      ],
+      "closedSections": 8
+    },
+    "contrast": [],
+    "ariaHidden": [],
+    "clipped": [],
+    "skippedContrast": 0
+  },
+  {
+    "route": "/tools/roof",
+    "width": 1360,
+    "controls": 21,
+    "targets": [],
+    "names": [],
+    "labels": [],
+    "headings": {
+      "sequence": [
+        1
+      ],
+      "h1Count": 1,
+      "jumps": [],
+      "jumpsOpened": [
+        "Sprung 1 zu 3"
+      ],
+      "closedSections": 8
+    },
+    "contrast": [],
+    "ariaHidden": [],
+    "clipped": [],
+    "skippedContrast": 0
+  },
+  {
+    "route": "/tools/metal-weight",
+    "width": 1360,
+    "controls": 18,
+    "targets": [],
+    "names": [],
+    "labels": [],
+    "headings": {
+      "sequence": [
+        1
+      ],
+      "h1Count": 1,
+      "jumps": [],
+      "jumpsOpened": [
+        "Sprung 1 zu 3"
+      ],
+      "closedSections": 8
+    },
+    "contrast": [],
+    "ariaHidden": [],
+    "clipped": [],
+    "skippedContrast": 0
+  },
+  {
+    "route": "/tools/wood",
+    "width": 1360,
+    "controls": 15,
+    "targets": [],
+    "names": [],
+    "labels": [],
+    "headings": {
+      "sequence": [
+        1
+      ],
+      "h1Count": 1,
+      "jumps": [],
+      "jumpsOpened": [
+        "Sprung 1 zu 3"
+      ],
+      "closedSections": 8
+    },
+    "contrast": [],
+    "ariaHidden": [],
+    "clipped": [],
+    "skippedContrast": 0
+  },
+  {
+    "route": "/tools/tiles",
+    "width": 1360,
+    "controls": 26,
+    "targets": [],
+    "names": [],
+    "labels": [],
+    "headings": {
+      "sequence": [
+        1
+      ],
+      "h1Count": 1,
+      "jumps": [],
+      "jumpsOpened": [
+        "Sprung 1 zu 3"
+      ],
+      "closedSections": 8
+    },
+    "contrast": [],
+    "ariaHidden": [],
+    "clipped": [],
+    "skippedContrast": 0
+  },
+  {
+    "route": "/tools/paint",
+    "width": 1360,
+    "controls": 32,
+    "targets": [],
+    "names": [],
+    "labels": [],
+    "headings": {
+      "sequence": [
+        1
+      ],
+      "h1Count": 1,
+      "jumps": [],
+      "jumpsOpened": [
+        "Sprung 1 zu 3"
+      ],
+      "closedSections": 8
+    },
+    "contrast": [],
+    "ariaHidden": [],
+    "clipped": [],
+    "skippedContrast": 0
+  },
+  {
+    "route": "/tools/drywall",
+    "width": 1360,
+    "controls": 29,
+    "targets": [],
+    "names": [],
+    "labels": [],
+    "headings": {
+      "sequence": [
+        1
+      ],
+      "h1Count": 1,
+      "jumps": [],
+      "jumpsOpened": [
+        "Sprung 1 zu 3"
+      ],
+      "closedSections": 8
+    },
+    "contrast": [],
+    "ariaHidden": [],
+    "clipped": [],
+    "skippedContrast": 0
+  },
+  {
+    "route": "/tools/flooring",
+    "width": 1360,
+    "controls": 22,
+    "targets": [],
+    "names": [],
+    "labels": [],
+    "headings": {
+      "sequence": [
+        1
+      ],
+      "h1Count": 1,
+      "jumps": [],
+      "jumpsOpened": [
+        "Sprung 1 zu 3"
+      ],
+      "closedSections": 8
+    },
+    "contrast": [],
+    "ariaHidden": [],
+    "clipped": [],
+    "skippedContrast": 0
+  },
+  {
+    "route": "/tools/paving",
+    "width": 1360,
+    "controls": 30,
+    "targets": [],
+    "names": [],
+    "labels": [],
+    "headings": {
+      "sequence": [
+        1
+      ],
+      "h1Count": 1,
+      "jumps": [],
+      "jumpsOpened": [
+        "Sprung 1 zu 3"
+      ],
+      "closedSections": 8
+    },
+    "contrast": [],
+    "ariaHidden": [],
+    "clipped": [],
+    "skippedContrast": 0
+  },
+  {
+    "route": "/tools/tires",
+    "width": 1360,
+    "controls": 24,
+    "targets": [],
+    "names": [],
+    "labels": [],
+    "headings": {
+      "sequence": [
+        1
+      ],
+      "h1Count": 1,
+      "jumps": [],
+      "jumpsOpened": [
+        "Sprung 1 zu 3"
+      ],
+      "closedSections": 8
+    },
+    "contrast": [],
+    "ariaHidden": [],
+    "clipped": [],
+    "skippedContrast": 0
+  },
+  {
+    "route": "/tools/commercial",
+    "width": 390,
+    "controls": 13,
+    "targets": [],
+    "names": [],
+    "labels": [],
+    "headings": {
+      "sequence": [
+        1
+      ],
+      "h1Count": 1,
+      "jumps": [],
+      "jumpsOpened": [
+        "Sprung 1 zu 3"
+      ],
+      "closedSections": 8
+    },
+    "contrast": [],
+    "ariaHidden": [],
+    "clipped": [],
+    "skippedContrast": 0
+  },
+  {
+    "route": "/tools/convert",
+    "width": 390,
+    "controls": 15,
+    "targets": [],
+    "names": [],
+    "labels": [],
+    "headings": {
+      "sequence": [
+        1
+      ],
+      "h1Count": 1,
+      "jumps": [],
+      "jumpsOpened": [
+        "Sprung 1 zu 3"
+      ],
+      "closedSections": 8
+    },
+    "contrast": [],
+    "ariaHidden": [],
+    "clipped": [],
+    "skippedContrast": 0
+  },
+  {
+    "route": "/tools/datetime",
+    "width": 390,
+    "controls": 13,
+    "targets": [],
+    "names": [],
+    "labels": [],
+    "headings": {
+      "sequence": [
+        1
+      ],
+      "h1Count": 1,
+      "jumps": [],
+      "jumpsOpened": [
+        "Sprung 1 zu 3"
+      ],
+      "closedSections": 8
+    },
+    "contrast": [],
+    "ariaHidden": [],
+    "clipped": [],
+    "skippedContrast": 0
+  },
+  {
+    "route": "/tools/plotter",
+    "width": 390,
+    "controls": 16,
+    "targets": [],
+    "names": [],
+    "labels": [],
+    "headings": {
+      "sequence": [
+        1
+      ],
+      "h1Count": 1,
+      "jumps": [],
+      "jumpsOpened": [
+        "Sprung 1 zu 3"
+      ],
+      "closedSections": 8
+    },
+    "contrast": [],
+    "ariaHidden": [],
+    "clipped": [],
+    "skippedContrast": 0
+  },
+  {
+    "route": "/tools/aufmass",
+    "width": 390,
+    "controls": 19,
+    "targets": [],
+    "names": [],
+    "labels": [],
+    "headings": {
+      "sequence": [
+        1,
+        2,
+        2
+      ],
+      "h1Count": 1,
+      "jumps": [],
+      "jumpsOpened": [],
+      "closedSections": 8
+    },
+    "contrast": [
+      {
+        "element": "button.button.primary",
+        "text": "Speichern unter …",
+        "size": 16,
+        "weight": 700,
+        "required": 4.5,
+        "measured": 3.28
+      },
+      {
+        "element": "button.button.primary",
+        "text": "Speichern unter …",
+        "size": 16,
+        "weight": 700,
+        "required": 4.5,
+        "measured": 3.28
+      }
+    ],
+    "ariaHidden": [],
+    "clipped": [],
+    "skippedContrast": 0
+  },
+  {
+    "route": "/tools/statistics",
+    "width": 390,
+    "controls": 12,
+    "targets": [],
+    "names": [],
+    "labels": [],
+    "headings": {
+      "sequence": [
+        1
+      ],
+      "h1Count": 1,
+      "jumps": [],
+      "jumpsOpened": [
+        "Sprung 1 zu 3"
+      ],
+      "closedSections": 8
+    },
+    "contrast": [],
+    "ariaHidden": [],
+    "clipped": [],
+    "skippedContrast": 0
+  },
+  {
+    "route": "/tools/equations",
+    "width": 390,
+    "controls": 14,
+    "targets": [],
+    "names": [],
+    "labels": [],
+    "headings": {
+      "sequence": [
+        1
+      ],
+      "h1Count": 1,
+      "jumps": [],
+      "jumpsOpened": [
+        "Sprung 1 zu 3"
+      ],
+      "closedSections": 8
+    },
+    "contrast": [],
+    "ariaHidden": [],
+    "clipped": [],
+    "skippedContrast": 0
+  },
+  {
+    "route": "/tools/geometry",
+    "width": 390,
+    "controls": 13,
+    "targets": [],
+    "names": [],
+    "labels": [],
+    "headings": {
+      "sequence": [
+        1
+      ],
+      "h1Count": 1,
+      "jumps": [],
+      "jumpsOpened": [
+        "Sprung 1 zu 3"
+      ],
+      "closedSections": 8
+    },
+    "contrast": [],
+    "ariaHidden": [],
+    "clipped": [],
+    "skippedContrast": 0
+  },
+  {
+    "route": "/tools/concrete",
+    "width": 390,
+    "controls": 23,
+    "targets": [],
+    "names": [],
+    "labels": [],
+    "headings": {
+      "sequence": [
+        1
+      ],
+      "h1Count": 1,
+      "jumps": [],
+      "jumpsOpened": [
+        "Sprung 1 zu 3"
+      ],
+      "closedSections": 8
+    },
+    "contrast": [],
+    "ariaHidden": [],
+    "clipped": [],
+    "skippedContrast": 0
+  },
+  {
+    "route": "/tools/roof",
+    "width": 390,
+    "controls": 19,
+    "targets": [],
+    "names": [],
+    "labels": [],
+    "headings": {
+      "sequence": [
+        1
+      ],
+      "h1Count": 1,
+      "jumps": [],
+      "jumpsOpened": [
+        "Sprung 1 zu 3"
+      ],
+      "closedSections": 8
+    },
+    "contrast": [],
+    "ariaHidden": [],
+    "clipped": [],
+    "skippedContrast": 0
+  },
+  {
+    "route": "/tools/metal-weight",
+    "width": 390,
+    "controls": 16,
+    "targets": [],
+    "names": [],
+    "labels": [],
+    "headings": {
+      "sequence": [
+        1
+      ],
+      "h1Count": 1,
+      "jumps": [],
+      "jumpsOpened": [
+        "Sprung 1 zu 3"
+      ],
+      "closedSections": 8
+    },
+    "contrast": [],
+    "ariaHidden": [],
+    "clipped": [],
+    "skippedContrast": 0
+  },
+  {
+    "route": "/tools/wood",
+    "width": 390,
+    "controls": 13,
+    "targets": [],
+    "names": [],
+    "labels": [],
+    "headings": {
+      "sequence": [
+        1
+      ],
+      "h1Count": 1,
+      "jumps": [],
+      "jumpsOpened": [
+        "Sprung 1 zu 3"
+      ],
+      "closedSections": 8
+    },
+    "contrast": [],
+    "ariaHidden": [],
+    "clipped": [],
+    "skippedContrast": 0
+  },
+  {
+    "route": "/tools/tiles",
+    "width": 390,
+    "controls": 24,
+    "targets": [],
+    "names": [],
+    "labels": [],
+    "headings": {
+      "sequence": [
+        1
+      ],
+      "h1Count": 1,
+      "jumps": [],
+      "jumpsOpened": [
+        "Sprung 1 zu 3"
+      ],
+      "closedSections": 8
+    },
+    "contrast": [],
+    "ariaHidden": [],
+    "clipped": [],
+    "skippedContrast": 0
+  },
+  {
+    "route": "/tools/paint",
+    "width": 390,
+    "controls": 30,
+    "targets": [],
+    "names": [],
+    "labels": [],
+    "headings": {
+      "sequence": [
+        1
+      ],
+      "h1Count": 1,
+      "jumps": [],
+      "jumpsOpened": [
+        "Sprung 1 zu 3"
+      ],
+      "closedSections": 8
+    },
+    "contrast": [],
+    "ariaHidden": [],
+    "clipped": [],
+    "skippedContrast": 0
+  },
+  {
+    "route": "/tools/drywall",
+    "width": 390,
+    "controls": 27,
+    "targets": [],
+    "names": [],
+    "labels": [],
+    "headings": {
+      "sequence": [
+        1
+      ],
+      "h1Count": 1,
+      "jumps": [],
+      "jumpsOpened": [
+        "Sprung 1 zu 3"
+      ],
+      "closedSections": 8
+    },
+    "contrast": [],
+    "ariaHidden": [],
+    "clipped": [],
+    "skippedContrast": 0
+  },
+  {
+    "route": "/tools/flooring",
+    "width": 390,
+    "controls": 20,
+    "targets": [],
+    "names": [],
+    "labels": [],
+    "headings": {
+      "sequence": [
+        1
+      ],
+      "h1Count": 1,
+      "jumps": [],
+      "jumpsOpened": [
+        "Sprung 1 zu 3"
+      ],
+      "closedSections": 8
+    },
+    "contrast": [],
+    "ariaHidden": [],
+    "clipped": [],
+    "skippedContrast": 0
+  },
+  {
+    "route": "/tools/paving",
+    "width": 390,
+    "controls": 28,
+    "targets": [],
+    "names": [],
+    "labels": [],
+    "headings": {
+      "sequence": [
+        1
+      ],
+      "h1Count": 1,
+      "jumps": [],
+      "jumpsOpened": [
+        "Sprung 1 zu 3"
+      ],
+      "closedSections": 8
+    },
+    "contrast": [],
+    "ariaHidden": [],
+    "clipped": [],
+    "skippedContrast": 0
+  },
+  {
+    "route": "/tools/tires",
+    "width": 390,
+    "controls": 22,
+    "targets": [],
+    "names": [],
+    "labels": [],
+    "headings": {
+      "sequence": [
+        1
+      ],
+      "h1Count": 1,
+      "jumps": [],
+      "jumpsOpened": [
+        "Sprung 1 zu 3"
+      ],
+      "closedSections": 8
+    },
+    "contrast": [],
+    "ariaHidden": [],
+    "clipped": [],
+    "skippedContrast": 0
+  }
+]

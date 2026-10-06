@@ -212,7 +212,7 @@ export function Tires({ t, locale }: { t: Translate; locale: string }) {
 
       <details className="settings-card">
         <summary>{t('tool.craft.formula')}</summary>
-        <h3>{t('tool.craft.assumptions')}</h3>
+        <h2>{t('tool.craft.assumptions')}</h2>
         <p className="scan-note">{t('tool.tires.assumptions')}</p>
         <p className="scan-note">{t('tool.tires.sources')}</p>
       </details>

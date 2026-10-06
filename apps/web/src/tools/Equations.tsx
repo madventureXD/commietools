@@ -118,7 +118,7 @@ export function Equations({ t, locale }: { t: Translate; locale: string }) {
       <details className="settings-card">
         <summary>{t('tool.calcCommon.formula')}</summary>
         <p className="scan-note">{t('tool.equations.formulas')}</p>
-        <h3>{t('tool.calcCommon.assumptions')}</h3>
+        <h2>{t('tool.calcCommon.assumptions')}</h2>
         <p className="scan-note">{t('tool.equations.assumptions')}</p>
         <p className="scan-note">{t('tool.equations.sources')}</p>
         <p className="scan-note">{t('tool.calcCommon.lastChecked')}</p>

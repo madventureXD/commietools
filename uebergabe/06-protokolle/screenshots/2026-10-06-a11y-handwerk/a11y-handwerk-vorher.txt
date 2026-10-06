@@ -1,0 +1,1472 @@
+BEFUND /tools/concrete 1360px  Bedienelemente=25 Ziele<44=10 ohneNamen=0 ohneBeschriftung=0 Kontrast=0 (uebersprungen=0) abgeschnitten=0 h1=1 Spruenge=0
+BEFUND /tools/roof 1360px  Bedienelemente=21 Ziele<44=8 ohneNamen=0 ohneBeschriftung=0 Kontrast=0 (uebersprungen=0) abgeschnitten=0 h1=1 Spruenge=0
+BEFUND /tools/metal-weight 1360px  Bedienelemente=18 Ziele<44=8 ohneNamen=0 ohneBeschriftung=0 Kontrast=0 (uebersprungen=0) abgeschnitten=0 h1=1 Spruenge=0
+BEFUND /tools/wood 1360px  Bedienelemente=15 Ziele<44=8 ohneNamen=0 ohneBeschriftung=0 Kontrast=0 (uebersprungen=0) abgeschnitten=0 h1=1 Spruenge=0
+BEFUND /tools/tiles 1360px  Bedienelemente=26 Ziele<44=10 ohneNamen=0 ohneBeschriftung=0 Kontrast=0 (uebersprungen=0) abgeschnitten=0 h1=1 Spruenge=0
+BEFUND /tools/paint 1360px  Bedienelemente=32 Ziele<44=11 ohneNamen=0 ohneBeschriftung=0 Kontrast=0 (uebersprungen=0) abgeschnitten=0 h1=1 Spruenge=0
+BEFUND /tools/drywall 1360px  Bedienelemente=29 Ziele<44=11 ohneNamen=0 ohneBeschriftung=0 Kontrast=0 (uebersprungen=0) abgeschnitten=0 h1=1 Spruenge=0
+BEFUND /tools/flooring 1360px  Bedienelemente=22 Ziele<44=10 ohneNamen=0 ohneBeschriftung=0 Kontrast=0 (uebersprungen=0) abgeschnitten=0 h1=1 Spruenge=0
+BEFUND /tools/paving 1360px  Bedienelemente=30 Ziele<44=11 ohneNamen=0 ohneBeschriftung=0 Kontrast=0 (uebersprungen=0) abgeschnitten=0 h1=1 Spruenge=0
+BEFUND /tools/tires 1360px  Bedienelemente=24 Ziele<44=11 ohneNamen=0 ohneBeschriftung=0 Kontrast=0 (uebersprungen=0) abgeschnitten=0 h1=1 Spruenge=0
+BEFUND /tools/concrete 390px  Bedienelemente=23 Ziele<44=7 ohneNamen=0 ohneBeschriftung=0 Kontrast=0 (uebersprungen=0) abgeschnitten=0 h1=1 Spruenge=0
+BEFUND /tools/roof 390px  Bedienelemente=19 Ziele<44=6 ohneNamen=0 ohneBeschriftung=0 Kontrast=0 (uebersprungen=0) abgeschnitten=0 h1=1 Spruenge=0
+BEFUND /tools/metal-weight 390px  Bedienelemente=16 Ziele<44=6 ohneNamen=0 ohneBeschriftung=0 Kontrast=0 (uebersprungen=0) abgeschnitten=0 h1=1 Spruenge=0
+BEFUND /tools/wood 390px  Bedienelemente=13 Ziele<44=6 ohneNamen=0 ohneBeschriftung=0 Kontrast=0 (uebersprungen=0) abgeschnitten=0 h1=1 Spruenge=0
+BEFUND /tools/tiles 390px  Bedienelemente=24 Ziele<44=8 ohneNamen=0 ohneBeschriftung=0 Kontrast=0 (uebersprungen=0) abgeschnitten=0 h1=1 Spruenge=0
+BEFUND /tools/paint 390px  Bedienelemente=30 Ziele<44=9 ohneNamen=0 ohneBeschriftung=0 Kontrast=0 (uebersprungen=0) abgeschnitten=0 h1=1 Spruenge=0
+BEFUND /tools/drywall 390px  Bedienelemente=27 Ziele<44=9 ohneNamen=0 ohneBeschriftung=0 Kontrast=0 (uebersprungen=0) abgeschnitten=0 h1=1 Spruenge=0
+BEFUND /tools/flooring 390px  Bedienelemente=20 Ziele<44=8 ohneNamen=0 ohneBeschriftung=0 Kontrast=0 (uebersprungen=0) abgeschnitten=0 h1=1 Spruenge=0
+BEFUND /tools/paving 390px  Bedienelemente=28 Ziele<44=9 ohneNamen=0 ohneBeschriftung=0 Kontrast=0 (uebersprungen=0) abgeschnitten=0 h1=1 Spruenge=0
+BEFUND /tools/tires 390px  Bedienelemente=22 Ziele<44=9 ohneNamen=0 ohneBeschriftung=0 Kontrast=0 (uebersprungen=0) abgeschnitten=0 h1=1 Spruenge=0
+[
+  {
+    "route": "/tools/concrete",
+    "width": 1360,
+    "controls": 25,
+    "targets": [
+      {
+        "element": "button.brand.button-reset",
+        "width": 153,
+        "height": 32,
+        "name": "CommieTools"
+      },
+      {
+        "element": "button.button-reset",
+        "width": 84,
+        "height": 21,
+        "name": "Werkzeuge"
+      },
+      {
+        "element": "button.button-reset",
+        "width": 45,
+        "height": 21,
+        "name": "Suites"
+      },
+      {
+        "element": "button.text-link.back",
+        "width": 185,
+        "height": 21,
+        "name": "← Zurück zu allen Tools"
+      },
+      {
+        "element": "summary",
+        "width": 1002,
+        "height": 21,
+        "name": "Vorschlag der gewählten Mischung — Z ≈ 300 kg/m³"
+      },
+      {
+        "element": "button.text-link",
+        "width": 238,
+        "height": 21,
+        "name": "Vorschlagswerte zurücksetzen"
+      },
+      {
+        "element": "button",
+        "width": 1052,
+        "height": 27,
+        "name": "Berechnen"
+      },
+      {
+        "element": "summary",
+        "width": 1052,
+        "height": 21,
+        "name": "Formel und Quelle"
+      },
+      {
+        "element": "button.text-link",
+        "width": 79,
+        "height": 20,
+        "name": "Impressum"
+      },
+      {
+        "element": "button.text-link",
+        "width": 169,
+        "height": 20,
+        "name": "Lizenzen & Open Source"
+      }
+    ],
+    "names": [],
+    "labels": [],
+    "headings": {
+      "sequence": [
+        1
+      ],
+      "h1Count": 1,
+      "jumps": []
+    },
+    "contrast": [],
+    "ariaHidden": [],
+    "clipped": [],
+    "skippedContrast": 0
+  },
+  {
+    "route": "/tools/roof",
+    "width": 1360,
+    "controls": 21,
+    "targets": [
+      {
+        "element": "button.brand.button-reset",
+        "width": 153,
+        "height": 32,
+        "name": "CommieTools"
+      },
+      {
+        "element": "button.button-reset",
+        "width": 84,
+        "height": 21,
+        "name": "Werkzeuge"
+      },
+      {
+        "element": "button.button-reset",
+        "width": 45,
+        "height": 21,
+        "name": "Suites"
+      },
+      {
+        "element": "button.text-link.back",
+        "width": 185,
+        "height": 21,
+        "name": "← Zurück zu allen Tools"
+      },
+      {
+        "element": "button",
+        "width": 1052,
+        "height": 27,
+        "name": "Berechnen"
+      },
+      {
+        "element": "summary",
+        "width": 1052,
+        "height": 21,
+        "name": "Formel und Quelle"
+      },
+      {
+        "element": "button.text-link",
+        "width": 79,
+        "height": 20,
+        "name": "Impressum"
+      },
+      {
+        "element": "button.text-link",
+        "width": 169,
+        "height": 20,
+        "name": "Lizenzen & Open Source"
+      }
+    ],
+    "names": [],
+    "labels": [],
+    "headings": {
+      "sequence": [
+        1
+      ],
+      "h1Count": 1,
+      "jumps": []
+    },
+    "contrast": [],
+    "ariaHidden": [],
+    "clipped": [],
+    "skippedContrast": 0
+  },
+  {
+    "route": "/tools/metal-weight",
+    "width": 1360,
+    "controls": 18,
+    "targets": [
+      {
+        "element": "button.brand.button-reset",
+        "width": 153,
+        "height": 32,
+        "name": "CommieTools"
+      },
+      {
+        "element": "button.button-reset",
+        "width": 84,
+        "height": 21,
+        "name": "Werkzeuge"
+      },
+      {
+        "element": "button.button-reset",
+        "width": 45,
+        "height": 21,
+        "name": "Suites"
+      },
+      {
+        "element": "button.text-link.back",
+        "width": 185,
+        "height": 21,
+        "name": "← Zurück zu allen Tools"
+      },
+      {
+        "element": "button",
+        "width": 1052,
+        "height": 27,
+        "name": "Berechnen"
+      },
+      {
+        "element": "summary",
+        "width": 1052,
+        "height": 21,
+        "name": "Formel und Quelle"
+      },
+      {
+        "element": "button.text-link",
+        "width": 79,
+        "height": 20,
+        "name": "Impressum"
+      },
+      {
+        "element": "button.text-link",
+        "width": 169,
+        "height": 20,
+        "name": "Lizenzen & Open Source"
+      }
+    ],
+    "names": [],
+    "labels": [],
+    "headings": {
+      "sequence": [
+        1
+      ],
+      "h1Count": 1,
+      "jumps": []
+    },
+    "contrast": [],
+    "ariaHidden": [],
+    "clipped": [],
+    "skippedContrast": 0
+  },
+  {
+    "route": "/tools/wood",
+    "width": 1360,
+    "controls": 15,
+    "targets": [
+      {
+        "element": "button.brand.button-reset",
+        "width": 153,
+        "height": 32,
+        "name": "CommieTools"
+      },
+      {
+        "element": "button.button-reset",
+        "width": 84,
+        "height": 21,
+        "name": "Werkzeuge"
+      },
+      {
+        "element": "button.button-reset",
+        "width": 45,
+        "height": 21,
+        "name": "Suites"
+      },
+      {
+        "element": "button.text-link.back",
+        "width": 185,
+        "height": 21,
+        "name": "← Zurück zu allen Tools"
+      },
+      {
+        "element": "button",
+        "width": 1052,
+        "height": 27,
+        "name": "Berechnen"
+      },
+      {
+        "element": "summary",
+        "width": 1052,
+        "height": 21,
+        "name": "Formel und Quelle"
+      },
+      {
+        "element": "button.text-link",
+        "width": 79,
+        "height": 20,
+        "name": "Impressum"
+      },
+      {
+        "element": "button.text-link",
+        "width": 169,
+        "height": 20,
+        "name": "Lizenzen & Open Source"
+      }
+    ],
+    "names": [],
+    "labels": [],
+    "headings": {
+      "sequence": [
+        1
+      ],
+      "h1Count": 1,
+      "jumps": []
+    },
+    "contrast": [],
+    "ariaHidden": [],
+    "clipped": [],
+    "skippedContrast": 0
+  },
+  {
+    "route": "/tools/tiles",
+    "width": 1360,
+    "controls": 26,
+    "targets": [
+      {
+        "element": "button.brand.button-reset",
+        "width": 153,
+        "height": 32,
+        "name": "CommieTools"
+      },
+      {
+        "element": "button.button-reset",
+        "width": 84,
+        "height": 21,
+        "name": "Werkzeuge"
+      },
+      {
+        "element": "button.button-reset",
+        "width": 45,
+        "height": 21,
+        "name": "Suites"
+      },
+      {
+        "element": "button.text-link.back",
+        "width": 185,
+        "height": 21,
+        "name": "← Zurück zu allen Tools"
+      },
+      {
+        "element": "summary",
+        "width": 1002,
+        "height": 21,
+        "name": "Fugen, Kleber und Zuschlag — 5 %"
+      },
+      {
+        "element": "button.text-link",
+        "width": 238,
+        "height": 21,
+        "name": "Vorschlagswerte zurücksetzen"
+      },
+      {
+        "element": "button",
+        "width": 1052,
+        "height": 27,
+        "name": "Berechnen"
+      },
+      {
+        "element": "summary",
+        "width": 1052,
+        "height": 21,
+        "name": "Formel und Quelle"
+      },
+      {
+        "element": "button.text-link",
+        "width": 79,
+        "height": 20,
+        "name": "Impressum"
+      },
+      {
+        "element": "button.text-link",
+        "width": 169,
+        "height": 20,
+        "name": "Lizenzen & Open Source"
+      }
+    ],
+    "names": [],
+    "labels": [],
+    "headings": {
+      "sequence": [
+        1
+      ],
+      "h1Count": 1,
+      "jumps": []
+    },
+    "contrast": [],
+    "ariaHidden": [],
+    "clipped": [],
+    "skippedContrast": 0
+  },
+  {
+    "route": "/tools/paint",
+    "width": 1360,
+    "controls": 32,
+    "targets": [
+      {
+        "element": "button.brand.button-reset",
+        "width": 153,
+        "height": 32,
+        "name": "CommieTools"
+      },
+      {
+        "element": "button.button-reset",
+        "width": 84,
+        "height": 21,
+        "name": "Werkzeuge"
+      },
+      {
+        "element": "button.button-reset",
+        "width": 45,
+        "height": 21,
+        "name": "Suites"
+      },
+      {
+        "element": "button.text-link.back",
+        "width": 185,
+        "height": 21,
+        "name": "← Zurück zu allen Tools"
+      },
+      {
+        "element": "summary",
+        "width": 1002,
+        "height": 21,
+        "name": "Öffnungen"
+      },
+      {
+        "element": "summary",
+        "width": 1002,
+        "height": 21,
+        "name": "Untergrund, Farbe und Tapete"
+      },
+      {
+        "element": "button.text-link",
+        "width": 238,
+        "height": 21,
+        "name": "Vorschlagswerte zurücksetzen"
+      },
+      {
+        "element": "button",
+        "width": 1052,
+        "height": 27,
+        "name": "Berechnen"
+      },
+      {
+        "element": "summary",
+        "width": 1052,
+        "height": 21,
+        "name": "Formel und Quelle"
+      },
+      {
+        "element": "button.text-link",
+        "width": 79,
+        "height": 20,
+        "name": "Impressum"
+      },
+      {
+        "element": "button.text-link",
+        "width": 169,
+        "height": 20,
+        "name": "Lizenzen & Open Source"
+      }
+    ],
+    "names": [],
+    "labels": [],
+    "headings": {
+      "sequence": [
+        1
+      ],
+      "h1Count": 1,
+      "jumps": []
+    },
+    "contrast": [],
+    "ariaHidden": [],
+    "clipped": [],
+    "skippedContrast": 0
+  },
+  {
+    "route": "/tools/drywall",
+    "width": 1360,
+    "controls": 29,
+    "targets": [
+      {
+        "element": "button.brand.button-reset",
+        "width": 153,
+        "height": 32,
+        "name": "CommieTools"
+      },
+      {
+        "element": "button.button-reset",
+        "width": 84,
+        "height": 21,
+        "name": "Werkzeuge"
+      },
+      {
+        "element": "button.button-reset",
+        "width": 45,
+        "height": 21,
+        "name": "Suites"
+      },
+      {
+        "element": "button.text-link.back",
+        "width": 185,
+        "height": 21,
+        "name": "← Zurück zu allen Tools"
+      },
+      {
+        "element": "summary",
+        "width": 1002,
+        "height": 21,
+        "name": "Öffnungen"
+      },
+      {
+        "element": "summary",
+        "width": 1002,
+        "height": 21,
+        "name": "Platten, Profile und Verbrauch"
+      },
+      {
+        "element": "button.text-link",
+        "width": 238,
+        "height": 21,
+        "name": "Vorschlagswerte zurücksetzen"
+      },
+      {
+        "element": "button",
+        "width": 1052,
+        "height": 27,
+        "name": "Berechnen"
+      },
+      {
+        "element": "summary",
+        "width": 1052,
+        "height": 21,
+        "name": "Formel und Quelle"
+      },
+      {
+        "element": "button.text-link",
+        "width": 79,
+        "height": 20,
+        "name": "Impressum"
+      },
+      {
+        "element": "button.text-link",
+        "width": 169,
+        "height": 20,
+        "name": "Lizenzen & Open Source"
+      }
+    ],
+    "names": [],
+    "labels": [],
+    "headings": {
+      "sequence": [
+        1
+      ],
+      "h1Count": 1,
+      "jumps": []
+    },
+    "contrast": [],
+    "ariaHidden": [],
+    "clipped": [],
+    "skippedContrast": 0
+  },
+  {
+    "route": "/tools/flooring",
+    "width": 1360,
+    "controls": 22,
+    "targets": [
+      {
+        "element": "button.brand.button-reset",
+        "width": 153,
+        "height": 32,
+        "name": "CommieTools"
+      },
+      {
+        "element": "button.button-reset",
+        "width": 84,
+        "height": 21,
+        "name": "Werkzeuge"
+      },
+      {
+        "element": "button.button-reset",
+        "width": 45,
+        "height": 21,
+        "name": "Suites"
+      },
+      {
+        "element": "button.text-link.back",
+        "width": 185,
+        "height": 21,
+        "name": "← Zurück zu allen Tools"
+      },
+      {
+        "element": "summary",
+        "width": 1002,
+        "height": 21,
+        "name": "Belag, Dämmung und Leisten — 5 %"
+      },
+      {
+        "element": "button.text-link",
+        "width": 238,
+        "height": 21,
+        "name": "Vorschlagswerte zurücksetzen"
+      },
+      {
+        "element": "button",
+        "width": 1052,
+        "height": 27,
+        "name": "Berechnen"
+      },
+      {
+        "element": "summary",
+        "width": 1052,
+        "height": 21,
+        "name": "Formel und Quelle"
+      },
+      {
+        "element": "button.text-link",
+        "width": 79,
+        "height": 20,
+        "name": "Impressum"
+      },
+      {
+        "element": "button.text-link",
+        "width": 169,
+        "height": 20,
+        "name": "Lizenzen & Open Source"
+      }
+    ],
+    "names": [],
+    "labels": [],
+    "headings": {
+      "sequence": [
+        1
+      ],
+      "h1Count": 1,
+      "jumps": []
+    },
+    "contrast": [],
+    "ariaHidden": [],
+    "clipped": [],
+    "skippedContrast": 0
+  },
+  {
+    "route": "/tools/paving",
+    "width": 1360,
+    "controls": 30,
+    "targets": [
+      {
+        "element": "button.brand.button-reset",
+        "width": 153,
+        "height": 32,
+        "name": "CommieTools"
+      },
+      {
+        "element": "button.button-reset",
+        "width": 84,
+        "height": 21,
+        "name": "Werkzeuge"
+      },
+      {
+        "element": "button.button-reset",
+        "width": 45,
+        "height": 21,
+        "name": "Suites"
+      },
+      {
+        "element": "button.text-link.back",
+        "width": 185,
+        "height": 21,
+        "name": "← Zurück zu allen Tools"
+      },
+      {
+        "element": "summary",
+        "width": 1002,
+        "height": 21,
+        "name": "Aufbau und Verbrauch — Steine je m² (Rastermaß):"
+      },
+      {
+        "element": "summary",
+        "width": 1002,
+        "height": 21,
+        "name": "Aushubtiefe (Tragschicht, Bettung, Stein)"
+      },
+      {
+        "element": "button.text-link",
+        "width": 238,
+        "height": 21,
+        "name": "Vorschlagswerte zurücksetzen"
+      },
+      {
+        "element": "button",
+        "width": 1052,
+        "height": 27,
+        "name": "Berechnen"
+      },
+      {
+        "element": "summary",
+        "width": 1052,
+        "height": 21,
+        "name": "Formel und Quelle"
+      },
+      {
+        "element": "button.text-link",
+        "width": 79,
+        "height": 20,
+        "name": "Impressum"
+      },
+      {
+        "element": "button.text-link",
+        "width": 169,
+        "height": 20,
+        "name": "Lizenzen & Open Source"
+      }
+    ],
+    "names": [],
+    "labels": [],
+    "headings": {
+      "sequence": [
+        1
+      ],
+      "h1Count": 1,
+      "jumps": []
+    },
+    "contrast": [],
+    "ariaHidden": [],
+    "clipped": [],
+    "skippedContrast": 0
+  },
+  {
+    "route": "/tools/tires",
+    "width": 1360,
+    "controls": 24,
+    "targets": [
+      {
+        "element": "button.brand.button-reset",
+        "width": 153,
+        "height": 32,
+        "name": "CommieTools"
+      },
+      {
+        "element": "button.button-reset",
+        "width": 84,
+        "height": 21,
+        "name": "Werkzeuge"
+      },
+      {
+        "element": "button.button-reset",
+        "width": 45,
+        "height": 21,
+        "name": "Suites"
+      },
+      {
+        "element": "button.text-link.back",
+        "width": 185,
+        "height": 21,
+        "name": "← Zurück zu allen Tools"
+      },
+      {
+        "element": "summary",
+        "width": 1002,
+        "height": 21,
+        "name": "Bezugsgröße für den Vergleich"
+      },
+      {
+        "element": "summary",
+        "width": 1002,
+        "height": 21,
+        "name": "Anzugsmoment"
+      },
+      {
+        "element": "button.text-link",
+        "width": 238,
+        "height": 21,
+        "name": "Vorschlagswerte zurücksetzen"
+      },
+      {
+        "element": "button",
+        "width": 1052,
+        "height": 27,
+        "name": "Berechnen"
+      },
+      {
+        "element": "summary",
+        "width": 1052,
+        "height": 21,
+        "name": "Formel und Quelle"
+      },
+      {
+        "element": "button.text-link",
+        "width": 79,
+        "height": 20,
+        "name": "Impressum"
+      },
+      {
+        "element": "button.text-link",
+        "width": 169,
+        "height": 20,
+        "name": "Lizenzen & Open Source"
+      }
+    ],
+    "names": [],
+    "labels": [],
+    "headings": {
+      "sequence": [
+        1
+      ],
+      "h1Count": 1,
+      "jumps": []
+    },
+    "contrast": [],
+    "ariaHidden": [],
+    "clipped": [],
+    "skippedContrast": 0
+  },
+  {
+    "route": "/tools/concrete",
+    "width": 390,
+    "controls": 23,
+    "targets": [
+      {
+        "element": "button.brand.button-reset",
+        "width": 140,
+        "height": 30,
+        "name": "CommieTools"
+      },
+      {
+        "element": "button.text-link.back",
+        "width": 185,
+        "height": 21,
+        "name": "← Zurück zu allen Tools"
+      },
+      {
+        "element": "button.text-link",
+        "width": 238,
+        "height": 21,
+        "name": "Vorschlagswerte zurücksetzen"
+      },
+      {
+        "element": "button",
+        "width": 290,
+        "height": 27,
+        "name": "Berechnen"
+      },
+      {
+        "element": "summary",
+        "width": 290,
+        "height": 21,
+        "name": "Formel und Quelle"
+      },
+      {
+        "element": "button.text-link",
+        "width": 79,
+        "height": 20,
+        "name": "Impressum"
+      },
+      {
+        "element": "button.text-link",
+        "width": 169,
+        "height": 20,
+        "name": "Lizenzen & Open Source"
+      }
+    ],
+    "names": [],
+    "labels": [],
+    "headings": {
+      "sequence": [
+        1
+      ],
+      "h1Count": 1,
+      "jumps": []
+    },
+    "contrast": [],
+    "ariaHidden": [],
+    "clipped": [],
+    "skippedContrast": 0
+  },
+  {
+    "route": "/tools/roof",
+    "width": 390,
+    "controls": 19,
+    "targets": [
+      {
+        "element": "button.brand.button-reset",
+        "width": 140,
+        "height": 30,
+        "name": "CommieTools"
+      },
+      {
+        "element": "button.text-link.back",
+        "width": 185,
+        "height": 21,
+        "name": "← Zurück zu allen Tools"
+      },
+      {
+        "element": "button",
+        "width": 290,
+        "height": 27,
+        "name": "Berechnen"
+      },
+      {
+        "element": "summary",
+        "width": 290,
+        "height": 21,
+        "name": "Formel und Quelle"
+      },
+      {
+        "element": "button.text-link",
+        "width": 79,
+        "height": 20,
+        "name": "Impressum"
+      },
+      {
+        "element": "button.text-link",
+        "width": 169,
+        "height": 20,
+        "name": "Lizenzen & Open Source"
+      }
+    ],
+    "names": [],
+    "labels": [],
+    "headings": {
+      "sequence": [
+        1
+      ],
+      "h1Count": 1,
+      "jumps": []
+    },
+    "contrast": [],
+    "ariaHidden": [],
+    "clipped": [],
+    "skippedContrast": 0
+  },
+  {
+    "route": "/tools/metal-weight",
+    "width": 390,
+    "controls": 16,
+    "targets": [
+      {
+        "element": "button.brand.button-reset",
+        "width": 140,
+        "height": 30,
+        "name": "CommieTools"
+      },
+      {
+        "element": "button.text-link.back",
+        "width": 185,
+        "height": 21,
+        "name": "← Zurück zu allen Tools"
+      },
+      {
+        "element": "button",
+        "width": 290,
+        "height": 27,
+        "name": "Berechnen"
+      },
+      {
+        "element": "summary",
+        "width": 290,
+        "height": 21,
+        "name": "Formel und Quelle"
+      },
+      {
+        "element": "button.text-link",
+        "width": 79,
+        "height": 20,
+        "name": "Impressum"
+      },
+      {
+        "element": "button.text-link",
+        "width": 169,
+        "height": 20,
+        "name": "Lizenzen & Open Source"
+      }
+    ],
+    "names": [],
+    "labels": [],
+    "headings": {
+      "sequence": [
+        1
+      ],
+      "h1Count": 1,
+      "jumps": []
+    },
+    "contrast": [],
+    "ariaHidden": [],
+    "clipped": [],
+    "skippedContrast": 0
+  },
+  {
+    "route": "/tools/wood",
+    "width": 390,
+    "controls": 13,
+    "targets": [
+      {
+        "element": "button.brand.button-reset",
+        "width": 140,
+        "height": 30,
+        "name": "CommieTools"
+      },
+      {
+        "element": "button.text-link.back",
+        "width": 185,
+        "height": 21,
+        "name": "← Zurück zu allen Tools"
+      },
+      {
+        "element": "button",
+        "width": 290,
+        "height": 27,
+        "name": "Berechnen"
+      },
+      {
+        "element": "summary",
+        "width": 290,
+        "height": 21,
+        "name": "Formel und Quelle"
+      },
+      {
+        "element": "button.text-link",
+        "width": 79,
+        "height": 20,
+        "name": "Impressum"
+      },
+      {
+        "element": "button.text-link",
+        "width": 169,
+        "height": 20,
+        "name": "Lizenzen & Open Source"
+      }
+    ],
+    "names": [],
+    "labels": [],
+    "headings": {
+      "sequence": [
+        1
+      ],
+      "h1Count": 1,
+      "jumps": []
+    },
+    "contrast": [],
+    "ariaHidden": [],
+    "clipped": [],
+    "skippedContrast": 0
+  },
+  {
+    "route": "/tools/tiles",
+    "width": 390,
+    "controls": 24,
+    "targets": [
+      {
+        "element": "button.brand.button-reset",
+        "width": 140,
+        "height": 30,
+        "name": "CommieTools"
+      },
+      {
+        "element": "button.text-link.back",
+        "width": 185,
+        "height": 21,
+        "name": "← Zurück zu allen Tools"
+      },
+      {
+        "element": "summary",
+        "width": 256,
+        "height": 42,
+        "name": "Fugen, Kleber und Zuschlag — 5 %"
+      },
+      {
+        "element": "button.text-link",
+        "width": 238,
+        "height": 21,
+        "name": "Vorschlagswerte zurücksetzen"
+      },
+      {
+        "element": "button",
+        "width": 290,
+        "height": 27,
+        "name": "Berechnen"
+      },
+      {
+        "element": "summary",
+        "width": 290,
+        "height": 21,
+        "name": "Formel und Quelle"
+      },
+      {
+        "element": "button.text-link",
+        "width": 79,
+        "height": 20,
+        "name": "Impressum"
+      },
+      {
+        "element": "button.text-link",
+        "width": 169,
+        "height": 20,
+        "name": "Lizenzen & Open Source"
+      }
+    ],
+    "names": [],
+    "labels": [],
+    "headings": {
+      "sequence": [
+        1
+      ],
+      "h1Count": 1,
+      "jumps": []
+    },
+    "contrast": [],
+    "ariaHidden": [],
+    "clipped": [],
+    "skippedContrast": 0
+  },
+  {
+    "route": "/tools/paint",
+    "width": 390,
+    "controls": 30,
+    "targets": [
+      {
+        "element": "button.brand.button-reset",
+        "width": 140,
+        "height": 30,
+        "name": "CommieTools"
+      },
+      {
+        "element": "button.text-link.back",
+        "width": 185,
+        "height": 21,
+        "name": "← Zurück zu allen Tools"
+      },
+      {
+        "element": "summary",
+        "width": 256,
+        "height": 21,
+        "name": "Öffnungen"
+      },
+      {
+        "element": "summary",
+        "width": 256,
+        "height": 21,
+        "name": "Untergrund, Farbe und Tapete"
+      },
+      {
+        "element": "button.text-link",
+        "width": 238,
+        "height": 21,
+        "name": "Vorschlagswerte zurücksetzen"
+      },
+      {
+        "element": "button",
+        "width": 290,
+        "height": 27,
+        "name": "Berechnen"
+      },
+      {
+        "element": "summary",
+        "width": 290,
+        "height": 21,
+        "name": "Formel und Quelle"
+      },
+      {
+        "element": "button.text-link",
+        "width": 79,
+        "height": 20,
+        "name": "Impressum"
+      },
+      {
+        "element": "button.text-link",
+        "width": 169,
+        "height": 20,
+        "name": "Lizenzen & Open Source"
+      }
+    ],
+    "names": [],
+    "labels": [],
+    "headings": {
+      "sequence": [
+        1
+      ],
+      "h1Count": 1,
+      "jumps": []
+    },
+    "contrast": [],
+    "ariaHidden": [],
+    "clipped": [],
+    "skippedContrast": 0
+  },
+  {
+    "route": "/tools/drywall",
+    "width": 390,
+    "controls": 27,
+    "targets": [
+      {
+        "element": "button.brand.button-reset",
+        "width": 140,
+        "height": 30,
+        "name": "CommieTools"
+      },
+      {
+        "element": "button.text-link.back",
+        "width": 185,
+        "height": 21,
+        "name": "← Zurück zu allen Tools"
+      },
+      {
+        "element": "summary",
+        "width": 256,
+        "height": 21,
+        "name": "Öffnungen"
+      },
+      {
+        "element": "summary",
+        "width": 256,
+        "height": 21,
+        "name": "Platten, Profile und Verbrauch"
+      },
+      {
+        "element": "button.text-link",
+        "width": 238,
+        "height": 21,
+        "name": "Vorschlagswerte zurücksetzen"
+      },
+      {
+        "element": "button",
+        "width": 290,
+        "height": 27,
+        "name": "Berechnen"
+      },
+      {
+        "element": "summary",
+        "width": 290,
+        "height": 21,
+        "name": "Formel und Quelle"
+      },
+      {
+        "element": "button.text-link",
+        "width": 79,
+        "height": 20,
+        "name": "Impressum"
+      },
+      {
+        "element": "button.text-link",
+        "width": 169,
+        "height": 20,
+        "name": "Lizenzen & Open Source"
+      }
+    ],
+    "names": [],
+    "labels": [],
+    "headings": {
+      "sequence": [
+        1
+      ],
+      "h1Count": 1,
+      "jumps": []
+    },
+    "contrast": [],
+    "ariaHidden": [],
+    "clipped": [],
+    "skippedContrast": 0
+  },
+  {
+    "route": "/tools/flooring",
+    "width": 390,
+    "controls": 20,
+    "targets": [
+      {
+        "element": "button.brand.button-reset",
+        "width": 140,
+        "height": 30,
+        "name": "CommieTools"
+      },
+      {
+        "element": "button.text-link.back",
+        "width": 185,
+        "height": 21,
+        "name": "← Zurück zu allen Tools"
+      },
+      {
+        "element": "summary",
+        "width": 256,
+        "height": 42,
+        "name": "Belag, Dämmung und Leisten — 5 %"
+      },
+      {
+        "element": "button.text-link",
+        "width": 238,
+        "height": 21,
+        "name": "Vorschlagswerte zurücksetzen"
+      },
+      {
+        "element": "button",
+        "width": 290,
+        "height": 27,
+        "name": "Berechnen"
+      },
+      {
+        "element": "summary",
+        "width": 290,
+        "height": 21,
+        "name": "Formel und Quelle"
+      },
+      {
+        "element": "button.text-link",
+        "width": 79,
+        "height": 20,
+        "name": "Impressum"
+      },
+      {
+        "element": "button.text-link",
+        "width": 169,
+        "height": 20,
+        "name": "Lizenzen & Open Source"
+      }
+    ],
+    "names": [],
+    "labels": [],
+    "headings": {
+      "sequence": [
+        1
+      ],
+      "h1Count": 1,
+      "jumps": []
+    },
+    "contrast": [],
+    "ariaHidden": [],
+    "clipped": [],
+    "skippedContrast": 0
+  },
+  {
+    "route": "/tools/paving",
+    "width": 390,
+    "controls": 28,
+    "targets": [
+      {
+        "element": "button.brand.button-reset",
+        "width": 140,
+        "height": 30,
+        "name": "CommieTools"
+      },
+      {
+        "element": "button.text-link.back",
+        "width": 185,
+        "height": 21,
+        "name": "← Zurück zu allen Tools"
+      },
+      {
+        "element": "summary",
+        "width": 256,
+        "height": 42,
+        "name": "Aufbau und Verbrauch — Steine je m² (Rastermaß):"
+      },
+      {
+        "element": "summary",
+        "width": 256,
+        "height": 42,
+        "name": "Aushubtiefe (Tragschicht, Bettung, Stein)"
+      },
+      {
+        "element": "button.text-link",
+        "width": 238,
+        "height": 21,
+        "name": "Vorschlagswerte zurücksetzen"
+      },
+      {
+        "element": "button",
+        "width": 290,
+        "height": 27,
+        "name": "Berechnen"
+      },
+      {
+        "element": "summary",
+        "width": 290,
+        "height": 21,
+        "name": "Formel und Quelle"
+      },
+      {
+        "element": "button.text-link",
+        "width": 79,
+        "height": 20,
+        "name": "Impressum"
+      },
+      {
+        "element": "button.text-link",
+        "width": 169,
+        "height": 20,
+        "name": "Lizenzen & Open Source"
+      }
+    ],
+    "names": [],
+    "labels": [],
+    "headings": {
+      "sequence": [
+        1
+      ],
+      "h1Count": 1,
+      "jumps": []
+    },
+    "contrast": [],
+    "ariaHidden": [],
+    "clipped": [],
+    "skippedContrast": 0
+  },
+  {
+    "route": "/tools/tires",
+    "width": 390,
+    "controls": 22,
+    "targets": [
+      {
+        "element": "button.brand.button-reset",
+        "width": 140,
+        "height": 30,
+        "name": "CommieTools"
+      },
+      {
+        "element": "button.text-link.back",
+        "width": 185,
+        "height": 21,
+        "name": "← Zurück zu allen Tools"
+      },
+      {
+        "element": "summary",
+        "width": 256,
+        "height": 21,
+        "name": "Bezugsgröße für den Vergleich"
+      },
+      {
+        "element": "summary",
+        "width": 256,
+        "height": 21,
+        "name": "Anzugsmoment"
+      },
+      {
+        "element": "button.text-link",
+        "width": 238,
+        "height": 21,
+        "name": "Vorschlagswerte zurücksetzen"
+      },
+      {
+        "element": "button",
+        "width": 290,
+        "height": 27,
+        "name": "Berechnen"
+      },
+      {
+        "element": "summary",
+        "width": 290,
+        "height": 21,
+        "name": "Formel und Quelle"
+      },
+      {
+        "element": "button.text-link",
+        "width": 79,
+        "height": 20,
+        "name": "Impressum"
+      },
+      {
+        "element": "button.text-link",
+        "width": 169,
+        "height": 20,
+        "name": "Lizenzen & Open Source"
+      }
+    ],
+    "names": [],
+    "labels": [],
+    "headings": {
+      "sequence": [
+        1
+      ],
+      "h1Count": 1,
+      "jumps": []
+    },
+    "contrast": [],
+    "ariaHidden": [],
+    "clipped": [],
+    "skippedContrast": 0
+  }
+]
