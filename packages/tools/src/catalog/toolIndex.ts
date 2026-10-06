@@ -1039,5 +1039,78 @@ export const toolIndex: readonly ToolCatalogEntry[] = [
       "application/pdf"
     ],
     "auxiliary": []
+  },
+  {
+    "id": "threads",
+    "route": "/tools/threads",
+    "icon": "/tools/threads.svg",
+    "category": "craft",
+    "suiteIds": [
+      "craft"
+    ],
+    "executionMode": "local",
+    "resourceClass": "standard",
+    "worksOffline": true,
+    "input": [],
+    "output": [],
+    "auxiliary": []
+  },
+  {
+    "id": "lighting",
+    "route": "/tools/lighting",
+    "icon": "/tools/lighting.svg",
+    "category": "craft",
+    "suiteIds": [
+      "craft"
+    ],
+    "executionMode": "local",
+    "resourceClass": "standard",
+    "worksOffline": true,
+    "input": [],
+    "output": [],
+    "auxiliary": []
+  },
+  {
+    "id": "heatload",
+    "route": "/tools/heatload",
+    "icon": "/tools/heatload.svg",
+    "category": "craft",
+    "suiteIds": [
+      "craft"
+    ],
+    "executionMode": "local",
+    "resourceClass": "standard",
+    "worksOffline": true,
+    "input": [],
+    "output": [],
+    "auxiliary": []
+  },
+  {
+    "id": "cable",
+    "route": "/tools/cable",
+    "icon": "/tools/cable.svg",
+    "category": "craft",
+    "suiteIds": [
+      "craft"
+    ],
+    "executionMode": "local",
+    "resourceClass": "standard",
+    "worksOffline": true,
+    "input": [],
+    "output": [],
+    "auxiliary": []
+  },
+  {
+    "id": "pipes",
+    "route": "/tools/pipes",
+    "icon": "/tools/pipes.svg",
+    "category": "craft",
+    "suiteIds": [],
+    "executionMode": "local",
+    "resourceClass": "standard",
+    "worksOffline": true,
+    "input": [],
+    "output": [],
+    "auxiliary": []
   }
 ]

@@ -1784,5 +1784,140 @@ export const searchLocale: Readonly<Record<string, ToolLocaleEntry>> = {
       "#report",
       "#site"
     ]
+  },
+  "threads": {
+    "title": "Threads, bores and tightening torques",
+    "summary": "Core hole, minor diameter, wrench sizes and tightening torques for metric threads — with sources.",
+    "description": "Look up and calculate metric coarse and fine threads: core hole as a rule (nominal diameter − pitch), minor diameter D1, clearance hole, both series of wrench sizes and tightening torques as reference ranges. Every value with a source, every value editable. Everything stays on the device.",
+    "terms": [
+      "thread",
+      "threads",
+      "tap drill",
+      "core hole",
+      "minor diameter",
+      "clearance hole",
+      "wrench size",
+      "across flats",
+      "torque",
+      "tightening torque",
+      "metric",
+      "coarse thread",
+      "fine thread",
+      "pitch",
+      "drilling",
+      "workshop",
+      "trade"
+    ],
+    "tags": [
+      "#thread",
+      "#workshop"
+    ]
+  },
+  "lighting": {
+    "title": "Lighting design by lux",
+    "summary": "Target lux per room type, luminous flux and luminaire count from area and maintenance factor.",
+    "description": "Pick a target illuminance per room type from freely accessible sources, enter area and maintenance factor, and compute luminous flux and luminaire count. Where sources disagree, the tool shows the range instead of an average. Fully computed in the browser.",
+    "terms": [
+      "lighting",
+      "light",
+      "lux",
+      "illuminance",
+      "luminaire",
+      "luminaires",
+      "luminous flux",
+      "lumen",
+      "maintenance factor",
+      "room type",
+      "corridor",
+      "storage",
+      "workshop",
+      "changing room",
+      "classroom",
+      "lighting design",
+      "trade"
+    ],
+    "tags": [
+      "#lighting",
+      "#trade"
+    ]
+  },
+  "heatload": {
+    "title": "Heat load estimate per room",
+    "summary": "Estimate the heat load per room — an estimate, not DIN EN 12831.",
+    "description": "Estimate the heat load per room: transmission (U · A · ΔT) and ventilation (air change) from documented example values, totalled per room and for the building. This is an estimate, not a standard-compliant heat load calculation to DIN EN 12831. The outdoor design temperature is not pre-filled and depends on location.",
+    "terms": [
+      "heat load",
+      "heat load estimate",
+      "estimate",
+      "transmission",
+      "ventilation",
+      "air change",
+      "u value",
+      "thermal transmittance",
+      "per room",
+      "heating",
+      "outdoor design temperature",
+      "heat load calculation",
+      "din en 12831",
+      "din 12831",
+      "bbsr",
+      "building"
+    ],
+    "tags": [
+      "#heatload",
+      "#trade"
+    ]
+  },
+  "cable": {
+    "title": "Cable cross-section and voltage drop",
+    "summary": "Calculate voltage drop, suggest a cross-section, check it against the entered current-carrying capacity.",
+    "description": "Calculate the voltage drop of a line single- or three-phase, suggest the matching cross-section and check whether the current fits the current-carrying capacity you entered. The ampacity is not taken from a table but entered from your standard or manufacturer data. Everything stays on the device.",
+    "terms": [
+      "cable cross-section",
+      "cross-section",
+      "voltage drop",
+      "voltage loss",
+      "cable",
+      "line",
+      "current-carrying capacity",
+      "ampacity",
+      "utilisation",
+      "copper",
+      "aluminium",
+      "installation",
+      "electrical"
+    ],
+    "tags": [
+      "#voltagedrop",
+      "#electrical"
+    ]
+  },
+  "pipes": {
+    "title": "Pipe sizing, volume flow and pressure loss",
+    "summary": "Estimate volume flow, velocity and pressure loss from heat output and spread.",
+    "description": "From heat output and spread to the volume flow, from the pipe chosen to the flow velocity, Reynolds number and pressure-loss gradient as an estimate (Darcy-Weisbach). Pipe inner dimensions and water properties with a source per row, wall thickness editable, a nominal-size proposal with recommended-range check. Runs entirely in the browser.",
+    "terms": [
+      "pipe",
+      "pipe sizing",
+      "pipe calculation",
+      "volume flow",
+      "flow rate",
+      "pressure loss",
+      "pressure gradient",
+      "friction factor",
+      "Reynolds number",
+      "flow velocity",
+      "heating",
+      "nominal size",
+      "copper pipe",
+      "steel pipe",
+      "composite pipe",
+      "water",
+      "Darcy-Weisbach"
+    ],
+    "tags": [
+      "#pipe",
+      "#trade"
+    ]
   }
 }

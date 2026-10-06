@@ -405,6 +405,36 @@ export const toolManifests: readonly ToolManifest[] = [
       input: ['image/jpeg', 'image/png'],
       output: ['application/pdf']
     }
+  },
+  {
+    id: 'threads', route: '/tools/threads', category: 'craft',
+    titleKey: 'tool.threads.title', descriptionKey: 'tool.threads.description',
+    summaryKey: 'tool.threads.summary', termsKey: 'tool.threads.terms',
+    executionMode: 'local', resourceClass: 'standard', worksOffline: true
+  },
+  {
+    id: 'lighting', route: '/tools/lighting', category: 'craft',
+    titleKey: 'tool.lighting.title', descriptionKey: 'tool.lighting.description',
+    summaryKey: 'tool.lighting.summary', termsKey: 'tool.lighting.terms',
+    executionMode: 'local', resourceClass: 'standard', worksOffline: true
+  },
+  {
+    id: 'heatload', route: '/tools/heatload', category: 'craft',
+    titleKey: 'tool.heatload.title', descriptionKey: 'tool.heatload.description',
+    summaryKey: 'tool.heatload.summary', termsKey: 'tool.heatload.terms',
+    executionMode: 'local', resourceClass: 'standard', worksOffline: true
+  },
+  {
+    id: 'cable', route: '/tools/cable', category: 'craft',
+    titleKey: 'tool.cable.title', descriptionKey: 'tool.cable.description',
+    summaryKey: 'tool.cable.summary', termsKey: 'tool.cable.terms',
+    executionMode: 'local', resourceClass: 'standard', worksOffline: true
+  },
+  {
+    id: 'pipes', route: '/tools/pipes', category: 'craft',
+    titleKey: 'tool.pipes.title', descriptionKey: 'tool.pipes.description',
+    summaryKey: 'tool.pipes.summary', termsKey: 'tool.pipes.terms',
+    executionMode: 'local', resourceClass: 'standard', worksOffline: true
   }
 ]
 
@@ -415,5 +445,5 @@ export const suiteManifests: readonly SuiteManifest[] = [
   { id: 'image', route: '/suites/image', titleKey: 'suite.image.title', descriptionKey: 'suite.image.description', toolIds: ['image-metadata', 'image-resize', 'icon-generator', 'image-watermark', 'color-tools', 'photo-caption'] },
   { id: 'pdf', route: '/suites/pdf', titleKey: 'suite.pdf.title', descriptionKey: 'suite.pdf.description', toolIds: ['pdf-viewer', 'pdf-text-ocr', 'pdf-signature-verify', 'pdf-certificate-sign', 'pdf-a-preflight', 'pdf-redact', 'pdf-metadata', 'pdf-crop', 'pdf-repair', 'pdf-attachments', 'pdf-compare', 'pdf-merge', 'pdf-split', 'pdf-organize', 'images-to-pdf', 'pdf-to-images', 'pdf-watermark', 'pdf-page-numbers', 'pdf-visible-signature', 'pdf-form-fill', 'pdf-annotate', 'pdf-security', 'pdf-compress'] },
   { id: 'calculator', route: '/suites/calculator', titleKey: 'suite.calculator.title', descriptionKey: 'suite.calculator.description', toolIds: ['calculator', 'scientific-calculator', 'programmer-calculator', 'rpn-calculator', 'convert', 'commercial', 'datetime', 'plotter', 'statistics', 'equations', 'geometry', 'aufmass'] },
-  { id: 'craft', route: '/suites/craft', titleKey: 'suite.craft.title', descriptionKey: 'suite.craft.description', toolIds: ['concrete', 'roof', 'metal-weight', 'wood', 'tiles', 'paint', 'drywall', 'flooring', 'paving', 'tires', 'inspection', 'handover-report'] }
+  { id: 'craft', route: '/suites/craft', titleKey: 'suite.craft.title', descriptionKey: 'suite.craft.description', toolIds: ['concrete', 'roof', 'metal-weight', 'wood', 'tiles', 'paint', 'drywall', 'flooring', 'paving', 'tires', 'inspection', 'handover-report', 'threads', 'lighting', 'heatload', 'cable'] }
 ]

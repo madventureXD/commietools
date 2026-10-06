@@ -48,6 +48,11 @@ import { tiresMessages } from './craft/tires/locales'
 import { inspectionMessages } from './craft/inspection/locales'
 import { photoCaptionMessages } from './image/caption/locales'
 import { handoverMessages } from './craft/handover/locales'
+import { threadsMessages } from './craft/threads/locales'
+import { pipesMessages } from './craft/pipes/locales'
+import { lightingMessages } from './craft/lighting/locales'
+import { heatloadMessages } from './craft/heatload/locales'
+import { cableMessages } from './craft/cable/locales'
 
 type MessageCatalog = Readonly<Record<string, string>>
 type PartialLocalizedMessages = Readonly<Record<string, MessageCatalog>>
@@ -103,6 +108,11 @@ export const toolMessages = mergeToolCatalogs([
   inspectionMessages,
   photoCaptionMessages,
   handoverMessages,
+  threadsMessages,
+  pipesMessages,
+  lightingMessages,
+  heatloadMessages,
+  cableMessages,
   concreteMessages,
   roofMessages,
   metalMessages,

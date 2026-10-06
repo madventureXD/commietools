@@ -1712,5 +1712,139 @@ export const searchLocale: Readonly<Record<string, ToolLocaleEntry>> = {
       "#acta",
       "#obra"
     ]
+  },
+  "threads": {
+    "title": "Roscas, taladros y pares de apriete",
+    "summary": "Agujero de núcleo, diámetro de núcleo, anchos de llave y pares de apriete de roscas métricas, con fuentes.",
+    "description": "Consultar y calcular roscas métricas gruesas y finas: agujero de núcleo como regla (diámetro nominal − paso), diámetro de núcleo D1, agujero de paso, anchos de llave de ambas series y pares de apriete como rangos orientativos. Cada valor con su fuente y modificable. Todo permanece en el dispositivo.",
+    "terms": [
+      "rosca",
+      "roscas",
+      "taladro de rosca",
+      "agujero de núcleo",
+      "diámetro de núcleo",
+      "agujero de paso",
+      "ancho de llave",
+      "par de apriete",
+      "torque",
+      "métrico",
+      "rosca gruesa",
+      "rosca fina",
+      "paso",
+      "perforación",
+      "taller",
+      "oficio"
+    ],
+    "tags": [
+      "#rosca",
+      "#taller"
+    ]
+  },
+  "lighting": {
+    "title": "Planificación de iluminación por lux",
+    "summary": "Lux objetivo por tipo de sala, flujo luminoso y número de luminarias según superficie y factor de mantenimiento.",
+    "description": "Elige la iluminancia objetivo por tipo de sala a partir de fuentes de libre acceso, introduce la superficie y el factor de mantenimiento y calcula el flujo luminoso y el número de luminarias. Cuando las fuentes discrepan, la herramienta muestra el intervalo en lugar de una media. Todo se calcula en el navegador.",
+    "terms": [
+      "iluminación",
+      "luz",
+      "lux",
+      "iluminancia",
+      "luminaria",
+      "luminarias",
+      "flujo luminoso",
+      "lumen",
+      "factor de mantenimiento",
+      "tipo de sala",
+      "pasillo",
+      "almacén",
+      "taller",
+      "vestuario",
+      "aula",
+      "planificación de iluminación",
+      "oficio"
+    ],
+    "tags": [
+      "#iluminación",
+      "#oficio"
+    ]
+  },
+  "heatload": {
+    "title": "Estimación de carga térmica por estancia",
+    "summary": "Estimar la carga térmica por estancia — estimación, no DIN EN 12831.",
+    "description": "Estimar la carga térmica por estancia: transmisión (U · A · ΔT) y ventilación (renovaciones de aire) con valores de ejemplo documentados, total por estancia y para el edificio. Es una estimación, no un cálculo de carga térmica normalizado según DIN EN 12831. La temperatura exterior de diseño no viene rellenada y depende de la ubicación.",
+    "terms": [
+      "carga térmica",
+      "estimación de carga térmica",
+      "estimación",
+      "transmisión",
+      "ventilación",
+      "renovación de aire",
+      "valor u",
+      "transmitancia térmica",
+      "por estancia",
+      "calefacción",
+      "temperatura exterior de diseño",
+      "cálculo de carga térmica",
+      "din en 12831",
+      "din 12831",
+      "bbsr",
+      "edificio"
+    ],
+    "tags": [
+      "#cargatérmica",
+      "#oficio"
+    ]
+  },
+  "cable": {
+    "title": "Sección del conductor y caída de tensión",
+    "summary": "Calcular la caída de tensión, proponer la sección y comprobarla contra la capacidad de carga introducida.",
+    "description": "Calcular la caída de tensión de una línea monofásica o trifásica, proponer la sección adecuada y comprobar si la corriente encaja con la capacidad de carga que usted introduzca. La capacidad de carga no se toma de una tabla, sino que se introduce desde su norma o datos del fabricante. Todo permanece en el dispositivo.",
+    "terms": [
+      "sección del conductor",
+      "sección",
+      "caída de tensión",
+      "pérdida de tensión",
+      "cable",
+      "línea",
+      "capacidad de carga",
+      "ampacidad",
+      "utilización",
+      "cobre",
+      "aluminio",
+      "instalación",
+      "eléctrico"
+    ],
+    "tags": [
+      "#caidadetensión",
+      "#eléctrico"
+    ]
+  },
+  "pipes": {
+    "title": "Dimensionado de tuberías, caudal y pérdida de carga",
+    "summary": "Estimar caudal, velocidad y pérdida de carga a partir de potencia y salto térmico.",
+    "description": "De la potencia térmica y el salto térmico al caudal volumétrico, y del tubo elegido a la velocidad, el número de Reynolds y el gradiente de pérdida de carga como estimación (Darcy-Weisbach). Medidas interiores del tubo y datos del agua con fuente por fila, espesor de pared editable, propuesta de diámetro nominal con comprobación del valor orientativo. Todo se calcula en el navegador.",
+    "terms": [
+      "tubería",
+      "dimensionado de tuberías",
+      "cálculo de tuberías",
+      "caudal",
+      "caudal volumétrico",
+      "pérdida de carga",
+      "gradiente de presión",
+      "coeficiente de fricción",
+      "número de Reynolds",
+      "velocidad del flujo",
+      "calefacción",
+      "diámetro nominal",
+      "tubo de cobre",
+      "tubo de acero",
+      "tubo multicapa",
+      "agua",
+      "Darcy-Weisbach"
+    ],
+    "tags": [
+      "#tubería",
+      "#oficio"
+    ]
   }
 }

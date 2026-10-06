@@ -1843,5 +1843,140 @@ export const searchLocale: Readonly<Record<string, ToolLocaleEntry>> = {
       "#protokoll",
       "#baustelle"
     ]
+  },
+  "threads": {
+    "title": "Gewinde, Bohrungen und Anzugsmomente",
+    "summary": "Kernloch, Kerndurchmesser, Schlüsselweiten und Anzugsmomente zu metrischen Gewinden — mit Quellen.",
+    "description": "Metrisches Regel- und Feingewinde nachschlagen und rechnen: Kernloch als Rechenregel (Nenndurchmesser − Steigung), Kerndurchmesser D1, Durchgangsloch, Schlüsselweiten beider Reihen und Anzugsmomente als Richtwertspannen. Jeder Wert mit Quellenangabe, jeder Wert überschreibbar. Alles bleibt im Gerät.",
+    "terms": [
+      "gewinde",
+      "kernloch",
+      "kerndurchmesser",
+      "durchgangsloch",
+      "schlüsselweite",
+      "schluesselweite",
+      "anzugsmoment",
+      "drehmoment",
+      "metrisch",
+      "regelgewinde",
+      "feingewinde",
+      "steigung",
+      "bohrung",
+      "gewindebohrer",
+      "handwerk",
+      "werkstatt"
+    ],
+    "tags": [
+      "#gewinde",
+      "#handwerk"
+    ]
+  },
+  "lighting": {
+    "title": "Beleuchtungsplanung nach Lux",
+    "summary": "Soll-Lux je Raumtyp, Lichtstrom und Leuchtenzahl aus Fläche und Wartungsfaktor.",
+    "description": "Soll-Beleuchtungsstärke je Raumtyp aus frei zugänglichen Quellen wählen, Fläche und Wartungsfaktor eingeben und daraus Lichtstrom und Leuchtenzahl rechnen. Wo Quellen sich widersprechen, zeigt das Werkzeug die Spanne statt eines Mittelwerts. Rechnet vollständig im Browser.",
+    "terms": [
+      "beleuchtung",
+      "licht",
+      "lux",
+      "beleuchtungsstärke",
+      "leuchte",
+      "leuchten",
+      "lichtstrom",
+      "lumen",
+      "wartungsfaktor",
+      "raumtyp",
+      "flur",
+      "lager",
+      "werkstatt",
+      "umkleide",
+      "unterrichtsraum",
+      "beleuchtungsplanung",
+      "raumplanung",
+      "handwerk",
+      "elektro"
+    ],
+    "tags": [
+      "#beleuchtung",
+      "#handwerk"
+    ]
+  },
+  "heatload": {
+    "title": "Heizlast-Überschlag je Raum",
+    "summary": "Heizlast je Raum überschlagen — Überschlag, nicht DIN EN 12831.",
+    "description": "Heizlast je Raum überschlagen: Transmission (U · A · ΔT) und Lüftung (Luftwechsel) aus belegten Beispielwerten, Summe je Raum und für das Gebäude. Dies ist ein Überschlag, keine normgerechte Heizlastberechnung nach DIN EN 12831. Die Außen-Auslegungstemperatur ist nicht vorbelegt und ortsabhängig.",
+    "terms": [
+      "heizlast",
+      "heizlastüberschlag",
+      "überschlag",
+      "transmission",
+      "lüftung",
+      "luftwechsel",
+      "u-wert",
+      "wärmedurchgang",
+      "raumweise",
+      "heizung",
+      "auslegungstemperatur",
+      "heizlastberechnung",
+      "din en 12831",
+      "din 12831",
+      "bbsr",
+      "gebäude"
+    ],
+    "tags": [
+      "#heizlast",
+      "#handwerk"
+    ]
+  },
+  "cable": {
+    "title": "Leitungsquerschnitt und Spannungsfall",
+    "summary": "Spannungsfall rechnen, Querschnitt vorschlagen, gegen die eingegebene Strombelastbarkeit prüfen.",
+    "description": "Spannungsfall einer Leitung ein- oder dreiphasig rechnen, den dazu passenden Querschnitt vorschlagen und prüfen, ob der Strom zur eingegebenen Strombelastbarkeit passt. Die Strombelastbarkeit wird nicht aus einer Tabelle geholt, sondern aus Ihrer Norm oder Herstellerangabe eingetragen. Alles bleibt im Gerät.",
+    "terms": [
+      "leitungsquerschnitt",
+      "querschnitt",
+      "spannungsfall",
+      "spannungsabfall",
+      "kabel",
+      "leitung",
+      "strombelastbarkeit",
+      "auslastung",
+      "kupfer",
+      "aluminium",
+      "installation",
+      "elektro"
+    ],
+    "tags": [
+      "#spannungsfall",
+      "#elektro"
+    ]
+  },
+  "pipes": {
+    "title": "Rohrdimensionierung, Volumenstrom und Druckverlust",
+    "summary": "Volumenstrom, Geschwindigkeit und Druckverlust aus Leistung und Spreizung überschlagen.",
+    "description": "Aus Wärmeleistung und Spreizung den Volumenstrom, aus der Rohrwahl die Strömungsgeschwindigkeit, Reynoldszahl und das Druckverlustgefälle als Überschlag (Darcy-Weisbach). Rohr-Innenmaße und Wasser-Stoffdaten mit Quelle je Zeile, Wanddicke änderbar, DN-Vorschlag mit Richtwert-Prüfung. Rechnet vollständig im Browser.",
+    "terms": [
+      "Rohr",
+      "Rohrdimensionierung",
+      "Rohrleitungsberechnung",
+      "Volumenstrom",
+      "Durchfluss",
+      "Druckverlust",
+      "Druckgefälle",
+      "Rohrreibungszahl",
+      "Reynoldszahl",
+      "Strömungsgeschwindigkeit",
+      "Heizung",
+      "Nennweite",
+      "Kupferrohr",
+      "Stahlrohr",
+      "Verbundrohr",
+      "Wasser",
+      "Darcy-Weisbach"
+    ],
+    "tags": [
+      "#rohr",
+      "#handwerk"
+    ]
   }
 }

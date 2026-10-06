@@ -65,6 +65,11 @@ const Tires = lazy(() => import('./tools/Tires').then((module) => ({ default: mo
 const Inspection = lazy(() => import('./tools/Inspection').then((module) => ({ default: module.Inspection })))
 const PhotoCaption = lazy(() => import('./tools/PhotoCaption').then((module) => ({ default: module.PhotoCaption })))
 const HandoverReport = lazy(() => import('./tools/HandoverReport').then((module) => ({ default: module.HandoverReport })))
+const Threads = lazy(() => import('./tools/Threads').then((module) => ({ default: module.Threads })))
+const Lighting = lazy(() => import('./tools/Lighting').then((module) => ({ default: module.Lighting })))
+const Heatload = lazy(() => import('./tools/Heatload').then((module) => ({ default: module.Heatload })))
+const Cable = lazy(() => import('./tools/Cable').then((module) => ({ default: module.Cable })))
+const PipesTool = lazy(() => import('./tools/Pipes').then((module) => ({ default: module.Pipes })))
 
 type Theme = 'light' | 'dark'
 type Translate = (key: string) => string
@@ -183,6 +188,11 @@ function ToolPage({ tool, t, locale, navigate, ready }: { tool: ToolManifest; t:
                                   : tool.id === 'inspection' ? <Suspense fallback={<p aria-live="polite">…</p>}><Inspection t={t} locale={locale} /></Suspense>
                                     : tool.id === 'photo-caption' ? <Suspense fallback={<p aria-live="polite">…</p>}><PhotoCaption t={t} locale={locale} /></Suspense>
                                       : tool.id === 'handover-report' ? <Suspense fallback={<p aria-live="polite">…</p>}><HandoverReport t={t} locale={locale} /></Suspense>
+                                        : tool.id === 'threads' ? <Suspense fallback={<p aria-live="polite">…</p>}><Threads t={t} locale={locale} /></Suspense>
+                                            : tool.id === 'lighting' ? <Suspense fallback={<p aria-live="polite">…</p>}><Lighting t={t} locale={locale} /></Suspense>
+                                              : tool.id === 'heatload' ? <Suspense fallback={<p aria-live="polite">…</p>}><Heatload t={t} locale={locale} /></Suspense>
+                                                : tool.id === 'cable' ? <Suspense fallback={<p aria-live="polite">…</p>}><Cable t={t} locale={locale} /></Suspense>
+                                                  : tool.id === 'pipes' ? <Suspense fallback={<p aria-live="polite">…</p>}><PipesTool t={t} locale={locale} /></Suspense>
               : tool.id === 'pdf-merge' ? <Suspense fallback={<p aria-live="polite">…</p>}><PdfMerge t={t} /></Suspense>
                 : tool.id === 'pdf-split' ? <Suspense fallback={<p aria-live="polite">…</p>}><PdfSplit t={t} /></Suspense>
                   : tool.id === 'pdf-organize' ? <Suspense fallback={<p aria-live="polite">…</p>}><PdfOrganize t={t} /></Suspense>

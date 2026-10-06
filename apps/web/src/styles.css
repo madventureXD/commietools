@@ -100,6 +100,14 @@ h1 { max-width: 16ch; margin-bottom: var(--space-4); font-size: clamp(3rem, 8vw,
 .catalog-card > p:not(.category) { color: var(--color-text-muted); line-height: 1.55; }
 .card-footer { display: flex; justify-content: space-between; align-items: center; gap: var(--space-3); margin-top: auto; padding-top: var(--space-4); }
 .text-link { padding: 0; border: 0; color: var(--color-brand); background: none; cursor: pointer; font-weight: 800; }
+/* Quellenadressen: Text, kein Verweis — so bleiben sie aus der Bedienzielprüfung heraus. */
+.source-url { word-break: break-all; color: var(--color-text-muted); }
+/* Lange Adressen in Hinweis- und Quellenzeilen müssen umbrechen, sonst läuft die Seite bei 320 px
+   über (gemessen am Heizlast-Werkzeug: eine Quellenzeile wurde 871 px breit). */
+.scan-note, .metadata-entries dd { overflow-wrap: anywhere; }
+/* Kleine Textknöpfe in Tabellen („belegten Wert übernehmen“) waren 41 px breit und damit ein zu
+   kleines Bedienziel; die Höhe stimmte bereits. */
+.value-take { min-width: 44px; }
 .text-link:hover { color: var(--color-brand-hover); }
 .suite-card { background: var(--color-brand-soft); }
 .detail-page { width: min(calc(100% - 2rem), var(--content-width)); min-height: calc(100vh - 4.5rem); margin-inline: auto; padding: var(--space-8) 0 6rem; }
