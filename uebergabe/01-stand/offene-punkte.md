@@ -325,10 +325,22 @@ Diese Liste enthält bestätigte, noch nicht abgeschlossene Arbeit. Details geh�
   MIME-Tabelle: OCR läuft unter den gebauten Auslieferungsheadern, 329 Zeichen erkannt, „Gewinde"
   gefunden, keine Konsolenfehler (Aufnahme
   `06-protokolle/screenshots/2026-10-06-m8-001-ocr/ocr-erfolg.png`). **Offen bleibt** der Rest der
-  M8-001-Abnahme: Abbruch, beschädigtes Modell, Offlinewiederholung. **Wichtig zur Einordnung:**
-  Die ausgelieferte Seite (online geprüft) scheitert weiterhin — dort greift noch die alte CSP
-  (`script-src 'self'` blockt den tesseract-Core), weil die M8-001-Reparatur committet, aber
-  **nicht gepusht** ist.)*
+    M8-001-Abnahme: Abbruch, beschädigtes Modell, Offlinewiederholung. **Wichtig zur Einordnung:**
+    Die ausgelieferte Seite (online geprüft) scheitert weiterhin — dort greift noch die alte CSP
+    (`script-src 'self'` blockt den tesseract-Core), weil die M8-001-Reparatur committet, aber
+    **nicht gepusht** ist.)*
+    *(Zusatz 2026-10-06, Abnahmefälle: **Abbruch ist belegt** — „Die Texterkennung wurde
+    abgebrochen.", Aufnahme `abbruch.png`. **Beschädigtes Modell und Offlinewiederholung konnte ich
+    nicht belastbar herstellen.** `Network.setBlockedURLs` und `Network.emulateNetworkConditions`
+    erreichen den tesseract-Worker nicht: In beiden Fällen lieferte die Seite nach 15 s das volle
+    Ergebnis (329 Zeichen), also lief die OCR mit Netz weiter — die Messung sagt nichts über den
+    Fehlerfall. Beobachtung aus einem Lauf mit **kaltem** Modell-Cache und abgeschaltetem Netz
+    (`work/m8-001-abnahmefaelle.cjs`): Die Verarbeitung lief dort **165 s ohne Meldung, ohne
+    Fortschritt und ohne Abbruch** weiter. Das ist ein **Verdacht, kein Befund** — er braucht einen
+    Nachweis, den die Netzsimulation nicht liefern kann. Vorgeschlagener Weg: Edge mit
+    `--proxy-server` starten und einen kleinen Proxy die CDN-Hosts blocken lassen, damit die
+    Anfragen wirklich aus dem Worker-Kontext kommen. Sonden:
+    `work/m8-001-abnahmefaelle.cjs`, `work/m8-001-ocr-fehlerfall.cjs`.)*
 - [ ] **Vier Lizenzfragen zur Entscheidung** (stehen mit Grund und Datum in `licenses/rust-review.json`):
   `zlib-rs` (Lizenz „Zlib" nicht in der Richtlinie), `unicode-ident` („Unicode-3.0" fehlt),
   `pdf_signer` 0.3.2 (GPL-3.0-or-later, bereits ausgeliefert — bewusst so lassen?), und ob die
