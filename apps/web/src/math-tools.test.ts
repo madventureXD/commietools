@@ -196,6 +196,41 @@ describe('Statistik — Kennwerte gegen Nachrechnung', () => {
   })
 })
 
+describe('Statistik — Eingabegrammatik (Abnahme M3-002)', () => {
+  it('liest negative Kommazahlen statt sie zu verwerfen', () => {
+    expect(parseNumbers('-1,5 2,5')).toEqual({ numbers: [-1.5, 2.5], ignored: [] })
+    const result = summarise('-1,5 2,5')
+    expect(result.ok, String(result.error)).toBe(true)
+    expect(result.count).toBe(2)
+    expect(result.values.mean).toBeCloseTo(0.5, 10)
+  })
+
+  it('liest Punktzahlen, Vorzeichen, Null und Exponenten', () => {
+    expect(parseNumbers('1.5 -2.5').numbers).toEqual([1.5, -2.5])
+    expect(parseNumbers('+3').numbers).toEqual([3])
+    expect(Object.is(parseNumbers('-0').numbers[0], -0)).toBe(true)
+    expect(parseNumbers('1,5e3').numbers).toEqual([1500])
+    expect(parseNumbers('2.5E-2').numbers).toEqual([0.025])
+  })
+
+  it('meldet ungültige Tokens, statt sie stillschweigend zu verwerfen', () => {
+    // Mehrdeutige Kommaliste und gemischte Gruppierung dürfen NICHT geraten werden.
+    expect(parseNumbers('1,2,3').ignored).toEqual(['1,2,3'])
+    expect(parseNumbers('1,2,3').numbers).toEqual([])
+    expect(parseNumbers('1.234,56').ignored).toEqual(['1.234,56'])
+    expect(parseNumbers('1.234,56').numbers).toEqual([])
+    // Kein globales Komma-Ersetzen: ein Ausdruck bleibt ein ungültiger Token.
+    expect(parseNumbers('gcd(12,18)').ignored).toEqual(['gcd(12,18)'])
+    expect(parseNumbers('abc 4').numbers).toEqual([4])
+    expect(parseNumbers('abc 4').ignored).toEqual(['abc'])
+  })
+
+  it('trennt an Leerraum, Semikolon und Zeilenumbruch', () => {
+    expect(parseNumbers('1;2 3\n4').numbers).toEqual([1, 2, 3, 4])
+    expect(parseNumbers('   \n  ').numbers).toEqual([])
+  })
+})
+
 describe('Statistik — Regression', () => {
   it('reproduces a perfect line', () => {
     const result = regress('1 2\n2 4\n3 6')

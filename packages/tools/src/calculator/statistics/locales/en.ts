@@ -8,7 +8,7 @@ export const statisticsEn = {
   'tool.statistics.mode.summary': 'Summary statistics of a series',
   'tool.statistics.mode.regression': 'Correlation and regression',
 
-  'tool.statistics.field.data': 'Data (numbers separated by spaces, commas or line breaks)',
+  'tool.statistics.field.data': 'Data (numbers separated by spaces, semicolons or line breaks; dot or comma as the decimal separator)',
   'tool.statistics.field.pairs': 'Value pairs (one line each: x and y)',
 
   'tool.statistics.out.count': 'Count',

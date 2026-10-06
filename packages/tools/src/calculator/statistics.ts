@@ -28,17 +28,28 @@ export interface StatisticsResult {
 }
 
 /**
- * Liest Zahlen aus freiem Text: Zeilenumbrüche, Semikolons, Leerzeichen und Komma als
- * Dezimaltrennzeichen. Nicht lesbare Stücke werden **gemeldet**, nicht stillschweigend verworfen.
+ * Grammatik eines Eingabetokens: eine **vollständige** Zahl mit optionalem Vorzeichen,
+ * genau **einem** Dezimaltrennzeichen (Punkt **oder** Komma) und optionalem Exponenten.
+ *
+ * Bewusst eng: Ein Token gilt nur als Zahl, wenn es ganz eine ist. Dadurch wird die
+ * mehrdeutige Kommaliste `1,2` nicht geraten (sie bleibt eine Dezimalzahl) und eine
+ * gemischte Gruppierung wie `1.234,56` wird **gemeldet** statt falsch gelesen. Ebenso
+ * bleibt `gcd(12,18)` unangetastet — es wird nicht zu `gcd(12.18)` verbogen.
+ */
+const ZAHLENTOKEN = /^[+-]?\d+(?:[.,]\d+)?(?:[eE][+-]?\d+)?$/u
+
+/**
+ * Liest Zahlen aus freiem Text: Zeilenumbrüche, Semikolons und Leerzeichen trennen die
+ * Werte; Punkt oder Komma ist das Dezimaltrennzeichen **innerhalb** eines Wertes.
+ * Nicht lesbare Stücke werden **gemeldet**, nicht stillschweigend verworfen.
  */
 export function parseNumbers(text: string): { numbers: number[]; ignored: string[] } {
   const chunks = text.split(/[\s;]+/u).map((chunk) => chunk.trim()).filter(Boolean)
   const numbers: number[] = []
   const ignored: string[] = []
   for (const chunk of chunks) {
-    // Ein Komma zwischen Ziffern ist das Dezimaltrennzeichen (deutsche Schreibweise).
-    const normalized = /^\d+,\d+$/u.test(chunk) ? chunk.replace(',', '.') : chunk
-    const value = Number(normalized)
+    if (!ZAHLENTOKEN.test(chunk)) { ignored.push(chunk); continue }
+    const value = Number(chunk.replace(',', '.'))
     if (Number.isFinite(value)) numbers.push(value)
     else ignored.push(chunk)
   }

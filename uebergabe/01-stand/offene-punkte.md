@@ -368,6 +368,22 @@ Diese Liste enthält bestätigte, noch nicht abgeschlossene Arbeit. Details geh�
 - [ ] **Entscheidung offen:** Soll die Signatur-Engine einen automatischen Test bekommen? Die
   Abnahme ist belegt (vier Fälle plus Sichtkontrolle), aber in der Testsuite nicht verankert.
 
+## R2 — Ergebnisrichtigkeit und Exportgrenzen (ab 2026-10-06)
+
+- [x] **M3-002 — Statistik liest lokalisierte Zahlen entgegen der Eingabeerklärung: erledigt.**
+  Die alte Regel `/^\d+,\d+$/` ließ **jedes Vorzeichen** durchfallen; `-1,5` wurde stillschweigend
+  verworfen. Neue Grammatik (vollständiger Zahlentoken mit Vorzeichen, Punkt **oder** Komma,
+  Exponent); `1,2,3` und `1.234,56` werden **gemeldet statt geraten**, `gcd(12,18)` bleibt
+  unangetastet. Hilfetexte in de/en/es berichtigt (das Komma war dort fälschlich als Listentrenner
+  genannt). 4 neue Tests (Projekt 619 → 623); Beleg an der ausgelieferten Seite mit sieben Fällen,
+  alle BESTANDEN — darunter der Abnahmefall `-1,5 2,5` → n=2, Mittel 0,5 und die sichtbare Meldung
+  „Nicht gelesen (übersprungen): 1,2,3, abc". Bericht:
+  `06-protokolle/2026-10-06-m3-002-statistik-eingabe.md`. **Offen: die Karte verlangt, die
+  Änderung des dokumentierten Importvertrags ausdrücklich abzunehmen** — der Hilfetext hat sich
+  geändert. **Nicht gepusht.**
+- [ ] **M4-001 — RPN verbindet formatierte Brüche ohne Klammern zu falschen Ausdrücken** (nächste Karte).
+- [ ] Offen in R2 außerdem: M4-002, und die weiteren Karten des Pakets (7 Gruppen).
+
 ## Pflege
 
 - Erledigte Punkte mit Verweis auf Commit oder ADR in ein Fortschrittsprotokoll übernehmen und anschließend hier entfernen.

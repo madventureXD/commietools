@@ -5,7 +5,7 @@ export const messages: Readonly<Record<string, string>> = {
   "tool.statistics.mode": "Auswertung",
   "tool.statistics.mode.summary": "Kennwerte einer Reihe",
   "tool.statistics.mode.regression": "Korrelation und Regression",
-  "tool.statistics.field.data": "Daten (Zahlen, getrennt durch Leerzeichen, Komma oder Zeilenumbruch)",
+  "tool.statistics.field.data": "Daten (Zahlen, getrennt durch Leerzeichen, Semikolon oder Zeilenumbruch; Punkt oder Komma als Dezimalzeichen)",
   "tool.statistics.field.pairs": "Wertepaare (je Zeile: x und y)",
   "tool.statistics.out.count": "Anzahl",
   "tool.statistics.out.sum": "Summe",
