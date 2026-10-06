@@ -247,6 +247,13 @@ bewusst uncommittet auf der Revision `dac33b7`; die inhaltliche Registrierung de
 `jsonc-parser` ist dagegen **committet**. Die früheren Stände (`ebabc36`, dann `c30cb74`) sind damit
 überholt, nicht falsch gewesen.
 
+*Nachtrag 2026-10-06 (nach M6-002).* Kopf ist jetzt **`15f386f`** („RPN: Eingabereducer mit
+getrenntem Zahlentoken (M6-002)"), davor `86be4d8`, `dac33b7`, `00da6c7`, `c30cb74` und `d78724f`.
+**Nichts gepusht.** Der Arbeitsbaum trägt außerhalb der Commits nur die beiden
+revisionsgebundenen Registry-Dateien (bewusst uncommittet); ihre inhaltliche Registrierung ist
+committet. Vor jedem Prüflauf ist deshalb `npm run licenses:generate` nötig, sonst ist
+`licenses:check` rot — der gemessene Vorbefund aus Abschnitt 6, Punkt 1.
+
 ## 8. Pflege dieser Datei
 
 Aktualisiert wird **nur Spalte „Stand"** in Abschnitt 4 und die Abschnitte 6 und 7 — jeweils mit

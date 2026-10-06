@@ -34,6 +34,14 @@ Register unverändert **62 Werkzeuge**, **639 Tests in 40 Dateien** (`npm run ch
 `dac33b7`). Einzelheiten: `06-protokolle/2026-10-06-m4-003-plotter-scope.md` und
 `06-protokolle/2026-10-06-m6-001-json-textedits.md`.
 
+**Zusatz 2026-10-06 (Faber), Nachtrag zu M6-002:** Das **RPN-Tastenfeld** setzt jetzt
+mehrstellige Zahlen zusammen: Ein Eingabereducer scheidet den bearbeiteten Zahlentoken von den
+abgeschlossenen Tokens (`packages/tools/src/calculator/rpnInput.ts`); `1` `2` `Enter` ergibt die
+Zahl 12 statt zweier Werte. Die Textfunktionen `appendRpnToken`, `dropRpnToken` und
+`swapRpnTokens` sind entfernt. Im Browser belegt (`12 3 +` → 15, `1,5 2 *` → 3, SWAP/DROP,
+eingefügter Text). Projekt-Tests **649 in 41 Dateien**, Startbündel **148 025 B gzip**.
+Bericht: `06-protokolle/2026-10-06-m6-002-rpn-eingabereducer.md`. **Nicht gepusht** (`15f386f`).
+
 **Zusatz 2026-10-06 (Faber), Veröffentlichung:** Welle E ist **ausgeliefert** — 31 Commits gepusht
 (`dd427df`), die Auslieferung spielte den Stand nach rund zwei Minuten aus (Katalogdatei
 `BPHs9pGK`), online nachgeprüft mit eigenem Beleg (`work/online-nachpruefung.cjs`): Suite
