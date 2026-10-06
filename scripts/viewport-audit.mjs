@@ -24,6 +24,13 @@ import { spawn } from 'node:child_process'
 import { once } from 'node:events'
 
 const mode = process.argv[2] === 'a11y' ? 'a11y' : 'overflow'
+/**
+ * Farbschema der Messung. Der Kontrast unterscheidet sich deutlich: weisse Schrift auf dem
+ * Markenrot ergibt im dunklen Schema 3,28:1, im hellen 5,65:1 (gemessen 2026-10-06).
+ * Ein vollstaendiger Barrierefreiheits-Durchgang laeuft deshalb zweimal
+ * (COMMIETOOLS_AUDIT_SCHEME=dark und =light).
+ */
+const scheme = process.env.COMMIETOOLS_AUDIT_SCHEME ?? 'dark'
 const baseUrl = process.env.COMMIETOOLS_AUDIT_URL ?? 'http://127.0.0.1:5173'
 const edgePath = process.env.EDGE_PATH ?? 'C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe'
 const catalog = await readFile(new URL('../packages/tools/src/catalog/toolIndex.ts', import.meta.url), 'utf8')
@@ -88,6 +95,15 @@ const OVERFLOW_JS = `(() => {
 const A11Y_JS = `(() => {
   const MIN_TARGET = 44;
   /**
+   * Entschiedene Ausnahme (Thomas, 2026-10-06): weisse Schrift auf dem Markenrot ergibt 3,28:1
+   * bei verlangten 4,5:1. Die Markenfarbe bleibt so. Solche Funde werden getrennt gezaehlt und im
+   * Protokoll weiterhin ausgewiesen — nicht als Befund gewertet, aber auch nicht verschwiegen.
+   */
+  const AKZEPTIERTE_KONTRASTE = [
+    { auswahl: '.button.primary, form > button[type="submit"]', grund: 'weiss auf Markenrot, Entscheidung 2026-10-06' },
+    { auswahl: '.button.active, .segmented .active', grund: 'weiss auf Markenrot, Entscheidung 2026-10-06' }
+  ];
+  /**
    * Wichtig: Chromium meldet fuer Inhalte in einem GESCHLOSSENEN details weiterhin ein Rechteck
    * (versteckt wird ueber content-visibility, nicht ueber display). Eine Sichtbarkeitspruefung
    * nur ueber display/visibility/rect zaehlt solche Inhalte faelschlich als sichtbar.
@@ -134,7 +150,7 @@ const A11Y_JS = `(() => {
   const interactiveSelector = 'a[href], button, input:not([type="hidden"]), select, textarea, summary, [role="button"], [role="link"], [role="tab"], [role="checkbox"], [role="switch"], [tabindex]:not([tabindex="-1"])';
   const controls = [...document.querySelectorAll(interactiveSelector)].filter(visible);
 
-  const findings = { controls: controls.length, targets: [], names: [], labels: [], headings: [], contrast: [], ariaHidden: [], clipped: [] };
+  const findings = { controls: controls.length, targets: [], names: [], labels: [], headings: [], contrast: [], contrastAkzeptiert: [], ariaHidden: [], clipped: [] };
 
   for (const element of controls) {
     const rect = element.getBoundingClientRect();
@@ -213,7 +229,9 @@ const A11Y_JS = `(() => {
     const required = large ? 3 : 4.5;
     const measured = Math.round(ratio(color, background) * 100) / 100;
     if (measured < required) {
-      findings.contrast.push({ element: describe(element), text: text(element).slice(0, 40), size: Math.round(size * 10) / 10, weight, required, measured });
+      const eintrag = { element: describe(element), text: text(element).slice(0, 40), size: Math.round(size * 10) / 10, weight, required, measured };
+      if (AKZEPTIERTE_KONTRASTE.some((ausnahme) => element.matches(ausnahme.auswahl))) findings.contrastAkzeptiert.push(eintrag);
+      else findings.contrast.push(eintrag);
     }
   }
   findings.skippedContrast = skippedContrast;
@@ -249,6 +267,7 @@ try {
   })
   await command('Page.enable')
   await command('Runtime.enable')
+  await command('Emulation.setEmulatedMedia', { features: [{ name: 'prefers-color-scheme', value: scheme }] })
 
   const failures = []
   let emptyRoutes = 0
@@ -279,7 +298,7 @@ try {
           + (findings.headings.h1Count !== 1 ? 1 : 0)
         console.log(`${problems ? 'BEFUND' : 'ok'} ${route} ${width}px  Bedienelemente=${findings.controls}`
           + ` Ziele<44=${findings.targets.length} ohneNamen=${findings.names.length} ohneBeschriftung=${findings.labels.length}`
-          + ` Kontrast=${findings.contrast.length} (uebersprungen=${findings.skippedContrast}) abgeschnitten=${findings.clipped.length}`
+          + ` Kontrast=${findings.contrast.length} akzeptiert=${findings.contrastAkzeptiert.length} (uebersprungen=${findings.skippedContrast}) abgeschnitten=${findings.clipped.length}`
           + ` h1=${findings.headings.h1Count} Spruenge=${findings.headings.jumps.length}/${findings.headings.jumpsOpened.length}`)
         if (problems) failures.push({ route, width, ...findings })
       }
@@ -287,7 +306,7 @@ try {
   }
   if (emptyRoutes) { console.error(`Abbruch: ${emptyRoutes} Durchgänge ohne prüfbaren Inhalt`); process.exitCode = 2 }
   else if (failures.length) { console.error(JSON.stringify(failures, null, 2)); process.exitCode = 1 }
-  else console.log(`Audit passed (${mode}): ${routes.length} routes${widths.length > 1 ? ` × ${widths.length} widths` : ''}`)
+  else console.log(`Audit passed (${mode}, Schema ${scheme}): ${routes.length} routes${widths.length > 1 ? ` × ${widths.length} widths` : ''}`)
 } finally {
   socket?.close()
   edge.kill()
