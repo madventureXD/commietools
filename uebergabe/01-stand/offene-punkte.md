@@ -592,11 +592,12 @@ Diese Liste enthält bestätigte, noch nicht abgeschlossene Arbeit. Details geh�
   gemeldet); Signatur auf `unknown`, damit „nichtstringförmiger Speicherinhalt" wirklich geprüft
   und nicht nur behauptet wird. Bericht: `06-protokolle/2026-10-06-m4-007-sprachpruefung.md`.
   **Nicht gepusht.**
-- [ ] Offen in R3: **M4-004** (Sprachladefehler bleiben gecacht), **M4-006**
-  (Objekt-URLs im PDF-Teiler), **M8-003** (fehlender Browser-Speicher blockiert statt Rückfall).
-  *(Nachtrag 2026-10-07: **M4-005** ist abgeschlossen — mit benannter Grenze; **M8-002** ist ✓.
-  Bei M4-005 blieben zwei Produktfehler zu beheben, siehe Protokoll-Nachtrag
-  `06-protokolle/2026-10-06-m4-005-m4-006-pdf-auftraege-urls.md`.)*
+- [ ] Offen in R3: **M4-004** (Sprachladefehler bleiben gecacht) und **M8-003** (fehlender
+  Browser-Speicher blockiert statt Rückfall).
+  *(Nachtrag 2026-10-07: **M4-005** und **M4-006** sind abgeschlossen — M4-005 mit benannter
+  Grenze, M4-006 vollständig; **M8-002** ist ✓. Bei beiden blieben Produktfehler zu beheben, siehe
+  Protokoll-Nachtrag `06-protokolle/2026-10-06-m4-005-m4-006-pdf-auftraege-urls.md`. Offen bleibt
+  allein der gemeinsame `useObjectUrls`-Hook — laut Karte keine Abnahmebedingung.)*
 - [ ] **Neu, nicht gemessen (2026-10-07): dasselbe Adressmuster in weiteren Werkzeugen.** Eine
   Ergebnisadresse entsteht **nach** einem `await`, ohne Aufräumen beim Aushängen — beim PDF-Teiler
   war das ein Leck von **1200 Adressen** (behoben). Dieselbe Stelle steht in

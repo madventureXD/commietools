@@ -25,6 +25,18 @@
   Startbündel 148 998 B gzip**. Protokoll-Nachtrag:
   `06-protokolle/2026-10-06-m4-005-m4-006-pdf-auftraege-urls.md`. **Nichts gepusht.**
 
+**Zusatz 2026-10-07 (Faber), Einheit 2: M4-006 abgeschlossen:**
+- **M4-006 ✓.** Der StrictMode-Zyklus ist belegt — gefahren gegen `vite dev` mit eingehaengtem
+  StrictMode (dort ruft React Effekte doppelt auf; im ausgelieferten Build nicht), Skript
+  `work/m4-006-strictmode.cjs`. **Fünf Aufträge hintereinander**: Zähler in jedem Lauf genau wie
+  erwartet (create 3n / revoke 3(n−1) / offen 3), danach **create 17 / revoke 17 / offen 0**.
+  **Mehrfachspeichern** (steht in der Abnahme): zweimal gespeichert, die kurze Downloadadresse
+  wird selbst freigegeben, die 3 Ergebniseinträge bleiben unverändert. Keine Ausnahme, keine
+  Konsolenfehler.
+- **Benannter Rest, ausdrücklich keine Abnahmebedingung:** der gemeinsame `useObjectUrls`-Hook ist
+  nicht gebaut; der Teiler räumt an vier Stellen selbst auf. Bleibt als Aufräumarbeit.
+- Prüfkette unverändert: `npm run check` 687 Tests, Exit 0. **Nichts gepusht.**
+
 **Zusatz 2026-10-06 (Faber), QM-Sanierung R3/R4 — nach dem Durchzug:**
 - **M8-002 (R3, erfüllt):** Offline-Bereitschaft des ersten Besuchs — Warmlauf der beim Start
   geholten Sprachpakete (`apps/web/src/pwaWarmCache.ts`) und **`ignoreVary: true`** in der

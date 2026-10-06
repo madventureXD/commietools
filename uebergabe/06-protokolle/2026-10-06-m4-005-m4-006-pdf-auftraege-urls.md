@@ -182,3 +182,37 @@ Startbündel **148 998 B gzip** · `node --check` für beide neuen Belegskripte.
 Die Punkte „Unmount während eines Fehlerwegs" und „Muster auf weitere asynchrone Dateiwerkzeuge"
 sind oben offen geführt. Der erste ist mit diesem Nachtrag **erledigt**; beim zweiten ist das
 Muster gefunden und benannt, die Übertragung selbst steht weiter aus.
+
+## Nachtrag 2026-10-07 (Faber), zweiter Teil: M4-006 abgeschlossen
+
+**Der StrictMode-Zyklus und die wiederholte Nutzung sind belegt — im Entwicklungsmodus, wo React
+Effekte doppelt aufruft.** Der Beleg läuft gegen `vite dev` (`npx vite --port 5199 --strictPort`,
+StrictMode ist in `apps/web/src/main.tsx` eingehaengt), nicht gegen den ausgelieferten Build —
+dort ruft React Effekte nicht doppelt auf, der Zähler wäre also nicht zusätzlich belastet.
+Skript: `work/m4-006-strictmode.cjs`.
+
+| Lauf | Ergebnis | Erwartung | Urteil |
+|---|---|---|---|
+| 1 | create 3 / revoke 0 / offen 3 | create 3 / revoke 0 / offen 3 | stimmt |
+| 2 | create 6 / revoke 3 / offen 3 | create 6 / revoke 3 / offen 3 | stimmt |
+| 3 | create 9 / revoke 6 / offen 3 | create 9 / revoke 6 / offen 3 | stimmt |
+| 4 | create 12 / revoke 9 / offen 3 | create 12 / revoke 9 / offen 3 | stimmt |
+| 5 | create 15 / revoke 12 / offen 3 | create 15 / revoke 12 / offen 3 | stimmt |
+
+**Mehrfachspeichern** (steht so in der Abnahme der Karte): zweimal gespeichert, jedes Mal Status
+„Download gestartet."; die kurze Downloadadresse wird **selbst wieder freigegeben**
+(create 16/revoke 13, dann create 17/revoke 14), die **3 Ergebniseinträge bleiben unverändert** und
+die 3 Ergebnisadressen offen. Nach dem Verlassen der Route: create **17** / revoke **17** /
+**offen 0**, keine Ausnahme, keine Konsolenfehler.
+
+**Damit ist die Abnahme der Karte vollständig:** Zähler nach Ersetzen, Unmount und verspätetem
+A-Ergebnis ausgeglichen; StrictMode-Zyklus, Mehrfachspeichern und sichtbare Ergebnisse
+funktionieren; wiederholte Nutzung ohne ansteigenden Rest (fünf Aufträge, danach 0 offen).
+
+**Benannter Rest, ausdrücklich keine Abnahmebedingung:** Der gemeinsame `useObjectUrls`-Hook bzw.
+die Erweiterung von `useDownload` auf Ergebnislisten ist **nicht** gebaut — der Teiler räumt an
+nun **vier** Stellen selbst auf (neuer Auftrag, verworfener Auftrag, Verlassen, Fehlerweg). Die
+Karte nennt den Hook als Weg, nicht als Bedingung. Bleibt als Aufräumarbeit stehen.
+
+**Prüfkette:** `npm run check` 687 Tests, Exit 0 (unverändert); im Entwicklungsmodus keine
+Ausnahme, keine Konsolenfehler. **Nicht gepusht.**
