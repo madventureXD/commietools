@@ -486,6 +486,15 @@ Diese Liste enthält bestätigte, noch nicht abgeschlossene Arbeit. Details geh�
 
 ## R3 — Datei-Aufträge, Ressourcen, Offline (ab 2026-10-06)
 
+- [ ] **M4-006 — PDF-Teiler gibt Ergebnis-URLs beim Verlassen nicht frei: Code umgesetzt, Abnahme
+  offen** *(Nachtrag 2026-10-06)*. Der Teiler erzeugte pro Ergebnis eine Objekt-URL, gab sie aber
+  nur bei `clearResults()` (Dateiwechsel, neuer Auftrag) frei — beim **Verlassen** der Route blieben
+  sie bis zum Neuladen des Dokuments am Leben. Neu: ein Aufräumeffekt ohne Abhängigkeiten gibt die
+  **aktuelle** Liste frei (über einen Ref, damit nicht die Liste des ersten Renderns widerrufen
+  wird); verworfene Aufträge aus M4-005 geben ihre URLs bereits sofort frei.
+  - [ ] **Offen:** der gemeinsame `useObjectUrls`-Hook bzw. die Erweiterung von `useDownload` (von
+    der Karte vorgeschlagen), die Zählerabnahme (create/revoke nach Ersetzen, Unmount, verspätetem
+    Ergebnis), StrictMode-Zyklus und Mehrfachspeichern.
 - [ ] **M4-005 — PDF-Ergebnisse können nach Dateiwechsel dem falschen Namen zugeordnet werden:
   Code umgesetzt, Abnahme offen** *(Nachtrag 2026-10-06)*. Zwei Befunde bestätigt: Der Ergebnisname
   kam aus `baseName(file?.name ?? 'document')` — also aus dem **aktuellen** Formularzustand; und

@@ -1,4 +1,4 @@
-import { useRef, useState, type ChangeEvent } from 'react'
+import { useEffect, useRef, useState, type ChangeEvent } from 'react'
 import { acceptAttributeFor } from '@commietools/tools'
 import { inspectPdf, parseSplitGroups, splitPdf } from '@commietools/tools/pdf/core'
 import { Button, LocalBadge } from '@commietools/ui'
@@ -22,6 +22,21 @@ export function PdfSplit({ t }: { t: Translate }) {
    * dem Formular, das sich während der Verarbeitung ändern kann.
    */
   const generationRef = useRef(0)
+  /**
+   * Beim **Verlassen** der Werkzeugroute werden die Ergebnis-URLs freigegeben (Karte M4-006).
+   * Vorher blieben sie bis zum Neuladen des Dokuments am Leben — die Blob-Adressen sind erst dann
+   * weg, wenn der Browser die Seite verlässt, und genau das hält die Karte fest.
+   *
+   * Der Ref hält die **aktuelle** Liste: Ein Aufräumeffekt ohne Abhängigkeiten hält sonst die
+   * Liste seines ersten Renderns und gäbe die falschen (längst ersetzten) Adressen frei.
+   * Freigegeben wird, was in der Liste steht — `clearResults` leert sie, damit hier nichts
+   * doppelt widerrufen wird.
+   */
+  const resultsRef = useRef(results)
+  resultsRef.current = results
+  useEffect(() => () => {
+    resultsRef.current.forEach((result) => URL.revokeObjectURL(result.url))
+  }, [])
   const thumbnails = usePdfThumbnails(file?.bytes ?? null)
 
   function clearResults() {
