@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
+import { readLocal } from '@commietools/core/storage'
 import type { ToolCategory, ToolManifest } from '@commietools/core'
 import type { ToolSearchEntry } from '@commietools/core'
 import { loadToolSearchIndex, MIN_QUERY_LENGTH, searchEntryById, searchTools, toolById, toolManifests } from '@commietools/tools'
@@ -20,7 +21,7 @@ const categoryOrder = [...new Set(toolManifests.map((tool) => tool.category))].s
 
 function readJson<T>(key: string, fallback: T): T {
   try {
-    const value = localStorage.getItem(key)
+    const value = readLocal(key).value
     return value ? JSON.parse(value) as T : fallback
   } catch {
     return fallback
@@ -37,7 +38,7 @@ export function ToolNavigation({ t, locale, activeToolId, navigate }: { t: Trans
   const [open, setOpen] = useState(false)
   const [query, setQuery] = useState('')
   const [sort, setSort] = useState<ToolSort>(() => {
-    const saved = localStorage.getItem(SORT_KEY)
+    const saved = readLocal(SORT_KEY).value
     return saved === 'az' || saved === 'recent' || saved === 'favorites' ? saved : 'category'
   })
   const [favorites, setFavorites] = useState<string[]>(() => validToolIds(readJson<string[]>(FAVORITES_KEY, []), knownIds))

@@ -1,5 +1,6 @@
 import { lazy, Suspense, useEffect, useMemo, useRef, useState } from 'react'
 import type { SuiteManifest, ToolManifest, ToolSearchEntry } from '@commietools/core'
+import { readLocal, writeLocal } from '@commietools/core/storage'
 import { createTranslator, detectLocale, isLocale, loadInterfaceMessages, localeRegistry, supportedLocales, type Locale } from '@commietools/i18n'
 import { convertCase, getSuiteTools, getTextStatistics, loadToolSearchIndex, MIN_QUERY_LENGTH, searchEntryById, suiteByRoute, suiteManifests, toolByRoute, type CaseMode } from '@commietools/tools'
 import { Button, LocalBadge } from '@commietools/ui'
@@ -82,13 +83,15 @@ type Theme = 'light' | 'dark'
 type Translate = (key: string) => string
 
 function preferredTheme(): Theme {
-  const saved = localStorage.getItem('commietools-theme')
+  // Ungeschützt würde ein `SecurityError` beim Lesen den Start abbrechen (Karte M8-003):
+  // `readLocal` meldet den Zustand statt zu werfen, der Rückfall bleibt die Systempräferenz.
+  const saved = readLocal('commietools-theme').value
   if (saved === 'light' || saved === 'dark') return saved
   return matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
 }
 
 function preferredLocale(): Locale {
-  const saved = localStorage.getItem('commietools-locale')
+  const saved = readLocal('commietools-locale').value
   return saved && isLocale(saved) ? saved : detectLocale(navigator.languages)
 }
 
@@ -372,7 +375,7 @@ export function App() {
   }, [activeTool, locale])
 
   useEffect(() => {
-    localStorage.setItem('commietools-locale', locale)
+    writeLocal('commietools-locale', locale)
     document.documentElement.lang = locale
     document.documentElement.dir = localeRegistry[locale].direction
   }, [locale])
@@ -387,7 +390,7 @@ export function App() {
   function toggleTheme() {
     const next = theme === 'light' ? 'dark' : 'light'
     setTheme(next)
-    localStorage.setItem('commietools-theme', next)
+    writeLocal('commietools-theme', next)
   }
 
   const goToSuites = () => {

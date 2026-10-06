@@ -6,7 +6,8 @@
   "type": "module",
   "exports": {
     ".": "./src/index.ts",
-    "./loadCache": "./src/loadCache.ts"
+    "./loadCache": "./src/loadCache.ts",
+    "./storage": "./src/storage.ts"
   }
 }
 
