@@ -69,6 +69,20 @@ erneutes Speichern/Öffnen." **Auf diesem Rechner ist weder Excel noch LibreOffi
 **nicht** durchgeführt. Der unabhängige Leser ersetzt sie nicht: Er prüft Quoting und Trennung,
 nicht das Verhalten eines Tabellenprogramms. Offener Punkt, keine stille Auslassung.
 
+## Nachtrag 2026-10-06: Abnahme ohne Tabellenprogramm
+
+**Entscheidung Thomas:** Die Karte wird **ohne** Tabellenprogramm-Probe abgeschlossen. Auf dem
+Rechner sind weder Excel noch LibreOffice vorhanden (geprüft: kein `soffice.exe`, kein
+Office-Verzeichnis). Das Abnahmekriterium „Excel/LibreOffice unterstützte Versionen: Direktöffnung,
+Import und erneutes Speichern/Öffnen" wird damit **bewusst fallen gelassen** und nicht als erfüllt
+ausgegeben.
+
+**Was weiterhin gilt:** Die unabhängige Gegenprobe bleibt maßgeblich — ein fremder CSV-Leser
+(Python-`csv`, `work/m8-004-pruefen.py`) liest die erzeugte Datei und stellt fest, dass **keine**
+Zelle nach dem Lesen mit einem Formelzeichen beginnt (11 Zeilen geprüft). Belegt sind damit
+Maskierung, Trennzeichen und Formelneutralisierung — **nicht** das Verhalten eines
+Tabellenprogramms.
+
 ## Kennzahlen
 
 | Kennzahl | Wert | Quelle |

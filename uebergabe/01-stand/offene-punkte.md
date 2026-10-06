@@ -413,9 +413,11 @@ Diese Liste enthält bestätigte, noch nicht abgeschlossene Arbeit. Details geh�
   **Selbstverschuldeter Umweg, offen benannt:** die Hilfsfunktion wurde durch zwei Patch-Läufe
   doppelt eingefügt und machte die Datei unbrauchbar; behoben über `git checkout` und
   kontrolliertes Neu-Anbringen mit Zählung danach.
-- [ ] **Kennzeichnung der Anzeige-Nullung entscheiden** (offene Forderung aus M4-002): Die Anzeige
-  zeigt bei trigonometrischen Restfehlern `0`, der volle Wert (`full`) ist echt — sichtbar wird die
-  Approximation nirgends. Weg: Hinweis am Ergebnis oder dritte Ampelstufe „angezeigte Null".
+- [x] **Kennzeichnung der Anzeige-Nullung entschieden** *(Thomas, 2026-10-06)*: **Hinweis am
+  Ergebnis** — bei angezeigter Null steht der echte kleine Wert daneben; **keine** neue Ampelstufe.
+  Umsetzung offen: `Calculation` braucht dafür ein Kennzeichen (heute ist `anzeigeNull` in `core.ts`
+  lokal und nicht Teil des Ergebnisses), die Rechner-Oberfläche den Hinweis und alle drei Sprachen
+  den Text.
 - [ ] **Verlauf und ANS mit echten kleinen Werten prüfen:** sie hängen an `raw`; `1e-14` steht dort
   jetzt als `1e-14` statt `0`. Gewollte Folge, aber die Oberfläche ist darauf nicht geprüft.
 - [ ] Offen in R2 außerdem: M4-003 und die weiteren Karten des Pakets (7 Gruppen).
