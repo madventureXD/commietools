@@ -4,7 +4,7 @@ export const es = {
   'tool.pdfForm.summary': 'Rellenar campos de texto, opciones, casillas de verificación y radio en archivos PDF.',
   'tool.pdfForm.terms': 'completar formulario PDF, AcroForm, campos PDF, campo de texto, casilla de verificación, campo de elección, botón de opción, guardar formulario, aplanar formulario, XFA, formulario PDF, #pdf, #formulario, #rellenar',
   'tool.pdfForm.noFields': 'No se encontraron campos AcroForm compatibles en este PDF.',
-  'tool.pdfForm.xfa': 'Este archivo contiene XFA. XFA no se edita; sólo se muestran campos adicionales de AcroForm.',
+  'tool.pdfForm.xfa': 'Este archivo contiene XFA. XFA no se edita; solo se muestran campos adicionales de AcroForm.',
   'tool.pdfForm.readOnly': 'solo lectura', 'tool.pdfForm.required': 'requerido',
   'tool.pdfForm.unsupported': 'Este tipo de campo no se puede editar.',
   'tool.pdfForm.flatten': 'Insertar campos permanentemente en las páginas.',

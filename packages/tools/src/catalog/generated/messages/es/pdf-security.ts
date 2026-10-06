@@ -13,7 +13,7 @@ export const messages: Readonly<Record<string, string>> = {
   "tool.pdfSecurity.modify": "Cambios",
   "tool.pdfSecurity.extract": "Permitir extraer texto y gráficos.",
   "tool.pdfSecurity.none": "no permitir",
-  "tool.pdfSecurity.low": "Sólo baja calidad",
+  "tool.pdfSecurity.low": "Solo baja calidad",
   "tool.pdfSecurity.full": "Permitir completamente",
   "tool.pdfSecurity.assembly": "Solo montaje de página",
   "tool.pdfSecurity.form": "Montaje, formularios y firma",

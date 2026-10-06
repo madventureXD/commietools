@@ -3,7 +3,7 @@
 
 export const messages: Readonly<Record<string, string>> = {
   "tool.pdfForm.noFields": "No se encontraron campos AcroForm compatibles en este PDF.",
-  "tool.pdfForm.xfa": "Este archivo contiene XFA. XFA no se edita; sólo se muestran campos adicionales de AcroForm.",
+  "tool.pdfForm.xfa": "Este archivo contiene XFA. XFA no se edita; solo se muestran campos adicionales de AcroForm.",
   "tool.pdfForm.readOnly": "solo lectura",
   "tool.pdfForm.required": "requerido",
   "tool.pdfForm.unsupported": "Este tipo de campo no se puede editar.",

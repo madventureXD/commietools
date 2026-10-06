@@ -1742,8 +1742,8 @@ export const searchLocale: Readonly<Record<string, ToolLocaleEntry>> = {
   },
   "lighting": {
     "title": "Planificación de iluminación por lux",
-    "summary": "Lux objetivo por tipo de sala, flujo luminoso y número de luminarias según superficie y factor de mantenimiento.",
-    "description": "Elegir la iluminancia objetivo por tipo de sala a partir de fuentes de libre acceso, introducir la superficie y el factor de mantenimiento y calcular el flujo luminoso y el número de luminarias. Cuando las fuentes discrepan, la herramienta muestra el intervalo en lugar de una media. Todo se calcula en el navegador.",
+    "summary": "Lux objetivo por tipo de estancia, flujo luminoso y número de luminarias según superficie y factor de mantenimiento.",
+    "description": "Elegir la iluminancia objetivo por tipo de estancia a partir de fuentes de libre acceso, introducir la superficie y el factor de mantenimiento y calcular el flujo luminoso y el número de luminarias. Cuando las fuentes discrepan, la herramienta muestra el intervalo en lugar de una media. Todo se calcula en el navegador.",
     "terms": [
       "iluminación",
       "luz",
@@ -1754,7 +1754,7 @@ export const searchLocale: Readonly<Record<string, ToolLocaleEntry>> = {
       "flujo luminoso",
       "lumen",
       "factor de mantenimiento",
-      "tipo de sala",
+      "tipo de estancia",
       "pasillo",
       "almacén",
       "taller",

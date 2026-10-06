@@ -30,7 +30,7 @@ export const iconGeneratorEs = {
   'tool.iconGenerator.maskableChip': 'enmascarable',
 
   'tool.iconGenerator.ico': 'Crear favicon.ico',
-  'tool.iconGenerator.icoHint': 'El archivo de Windows sólo acepta tamaños de hasta 256 píxeles. Los tamaños más grandes se mantienen como PNG.',
+  'tool.iconGenerator.icoHint': 'El archivo de Windows solo acepta tamaños de hasta 256 píxeles. Los tamaños más grandes se mantienen como PNG.',
   'tool.iconGenerator.icoOversize': 'Los tamaños superiores a 256 píxeles no caben en favicon.ico y están escritos únicamente como PNG.',
 
   'tool.iconGenerator.action': 'Crear iconos',

@@ -51,7 +51,7 @@ export const messages: Readonly<Record<string, string>> = {
   "tool.qr.style.square": "Cuadrado",
   "tool.qr.style.rounded": "Redondeado",
   "tool.qr.style.dots": "Puntos",
-  "tool.qr.style.classy": "De buen tono",
-  "tool.qr.style.classyRounded": "redondeado con clase",
+  "tool.qr.style.classy": "Clásico",
+  "tool.qr.style.classyRounded": "Clásico redondeado",
   "tool.qr.style.extraRounded": "Extra redondeado"
 }

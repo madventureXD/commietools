@@ -9,7 +9,7 @@ export const es = {
   'tool.pdfSecurity.passwordMismatch': 'Las contraseñas de apertura no coinciden.',
   'tool.pdfSecurity.passwordDistinct': 'Las contraseñas de apertura y de propietario deben ser diferentes.',
   'tool.pdfSecurity.printing': 'Impresión', 'tool.pdfSecurity.modify': 'Cambios', 'tool.pdfSecurity.extract': 'Permitir extraer texto y gráficos.',
-  'tool.pdfSecurity.none': 'no permitir', 'tool.pdfSecurity.low': 'Sólo baja calidad', 'tool.pdfSecurity.full': 'Permitir completamente',
+  'tool.pdfSecurity.none': 'no permitir', 'tool.pdfSecurity.low': 'Solo baja calidad', 'tool.pdfSecurity.full': 'Permitir completamente',
   'tool.pdfSecurity.assembly': 'Solo montaje de página', 'tool.pdfSecurity.form': 'Montaje, formularios y firma',
   'tool.pdfSecurity.annotate': 'También permitir comentarios', 'tool.pdfSecurity.all': 'Permitir todos los cambios',
   'tool.pdfSecurity.permissionsWarning': 'Los permisos de PDF son instrucciones para los lectores, no una protección de copia confiable. El cifrado AES-256 protege la apertura del archivo.',
@@ -25,7 +25,7 @@ export const es = {
   'tool.pdfCompress.lossyWarning': 'Este nivel puede convertir imágenes adecuadas que no sean JPEG a JPEG. La calidad de la imagen y la transparencia pueden cambiar.',
   'tool.pdfCompress.action': 'Optimizar PDF', 'tool.pdfCompress.result': 'PDF optimizado',
   'tool.pdfCompress.originalSize': 'Tamaño original', 'tool.pdfCompress.resultSize': 'Tamaño del resultado', 'tool.pdfCompress.saving': 'Ahorro',
-  'tool.pdfCompress.larger': 'El resultado es más grande que el original. No se guarda automáticamente; sólo se puede descargar deliberadamente.',
+  'tool.pdfCompress.larger': 'El resultado es más grande que el original. No se guarda automáticamente; solo se puede descargar deliberadamente.',
   'tool.pdfCompress.noPromise': 'La compresión estructural no necesariamente puede reducir los archivos PDF que ya están bien optimizados o que contienen principalmente imágenes JPEG.'
 } as const
 

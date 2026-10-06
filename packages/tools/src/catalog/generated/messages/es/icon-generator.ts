@@ -23,7 +23,7 @@ export const messages: Readonly<Record<string, string>> = {
   "tool.iconGenerator.maskableHint": "Los iconos enmascarables colocan la obra de arte en un círculo del 80 % del borde más corto. El sistema operativo puede recortar todo lo que esté fuera.",
   "tool.iconGenerator.maskableChip": "enmascarable",
   "tool.iconGenerator.ico": "Crear favicon.ico",
-  "tool.iconGenerator.icoHint": "El archivo de Windows sólo acepta tamaños de hasta 256 píxeles. Los tamaños más grandes se mantienen como PNG.",
+  "tool.iconGenerator.icoHint": "El archivo de Windows solo acepta tamaños de hasta 256 píxeles. Los tamaños más grandes se mantienen como PNG.",
   "tool.iconGenerator.icoOversize": "Los tamaños superiores a 256 píxeles no caben en favicon.ico y están escritos únicamente como PNG.",
   "tool.iconGenerator.action": "Crear iconos",
   "tool.iconGenerator.processing": "Calculando …",

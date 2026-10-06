@@ -2,8 +2,8 @@
 // Run `npm run catalog:generate` after changing manifests, locale catalogues or tool icons.
 
 export const messages: Readonly<Record<string, string>> = {
-  "tool.flooring.length": "Longitud de la sala (m)",
-  "tool.flooring.breadth": "Anchura de la sala (m)",
+  "tool.flooring.length": "Longitud de la estancia (m)",
+  "tool.flooring.breadth": "Anchura de la estancia (m)",
   "tool.flooring.pattern": "Tipo de colocación",
   "tool.flooring.pattern.parallel": "A junta corrida (juntas continuas)",
   "tool.flooring.pattern.staggered": "Desplazado (medio o tercio)",
@@ -24,14 +24,14 @@ export const messages: Readonly<Record<string, string>> = {
   "tool.flooring.out.perimeter": "Perímetro",
   "tool.flooring.out.trimPieces": "Rodapié (piezas)",
   "tool.flooring.out.trimMeters": "Rodapié (m)",
-  "tool.flooring.error.length": "La longitud de la sala debe estar entre 0,2 y 200 m.",
-  "tool.flooring.error.breadth": "La anchura de la sala debe estar entre 0,2 y 200 m.",
+  "tool.flooring.error.length": "La longitud de la estancia debe estar entre 0,2 y 200 m.",
+  "tool.flooring.error.breadth": "La anchura de la estancia debe estar entre 0,2 y 200 m.",
   "tool.flooring.error.package": "La superficie del paquete debe estar entre 0,5 y 10 m².",
   "tool.flooring.error.surcharge": "El margen debe estar entre 0 y 30 por ciento.",
   "tool.flooring.error.roll": "La superficie del rollo de aislante debe estar entre 1 y 60 m².",
   "tool.flooring.error.overlap": "El solape debe estar entre 0 y 20 por ciento.",
   "tool.flooring.error.trim": "La longitud de la pieza de rodapié debe estar entre 0,5 y 5 m.",
-  "tool.flooring.assumptions": "Supuestos: la superficie es longitud por anchura; la sala se toma como un rectángulo. El margen sigue al tipo de colocación y es un valor de experiencia: a junta corrida casi todos los recortes se reaprovechan, en medio o tercio desplazado aparecen inevitablemente piezas cortas en los bordes y en diagonal se añaden cortes triangulares en cada pared, por eso sube el porcentaje. Los paquetes se redondean siempre hacia arriba: un paquete abierto sigue siendo un paquete. El aislante se calcula con un margen de solape (uniones y bordes) y se entrega en rollos completos. El rodapié recorre todo el perímetro; los huecos de puerta **no** se descuentan, así que el resultado queda del lado seguro. **No incluido, a propósito:** parquet encolado (necesita adhesivo y otro procedimiento) y sistemas flotantes con aislante de superficie propia.",
+  "tool.flooring.assumptions": "Supuestos: la superficie es longitud por anchura; la estancia se toma como un rectángulo. El margen sigue al tipo de colocación y es un valor de experiencia: a junta corrida casi todos los recortes se reaprovechan, en medio o tercio desplazado aparecen inevitablemente piezas cortas en los bordes y en diagonal se añaden cortes triangulares en cada pared, por eso sube el porcentaje. Los paquetes se redondean siempre hacia arriba: un paquete abierto sigue siendo un paquete. El aislante se calcula con un margen de solape (uniones y bordes) y se entrega en rollos completos. El rodapié recorre todo el perímetro; los huecos de puerta **no** se descuentan, así que el resultado queda del lado seguro. **No incluido, a propósito:** parquet encolado (necesita adhesivo y otro procedimiento) y sistemas flotantes con aislante de superficie propia.",
   "tool.flooring.sources": "Valores propuestos: los márgenes por tipo de colocación están recogidos en el concepto del proyecto «Handwerkerwerkzeuge» expresamente como valores de experiencia sin fuente técnica citada; en la interfaz se indican como tales y se pueden modificar. La superficie del paquete, la del rollo de aislante, el solape y la longitud de la pieza de rodapié dependen del fabricante y del producto, por eso son campos con propuesta y no valores fijos. Sin tablas de normas y sin afirmaciones sobre normas: es un cálculo de necesidad para predimensionar.",
   "tool.flooring.roundNote": "Se calcula con doce cifras significativas y se muestra en el idioma del usuario. Los paquetes, rollos y piezas de rodapié se redondean siempre hacia arriba."
 }

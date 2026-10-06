@@ -17,6 +17,6 @@ export const qrCodeGeneratorEs = {
   'tool.qr.privacy': 'Su logotipo y sus datos permanecen localmente en su dispositivo.', 'tool.qr.empty': 'Introducir contenido para generar un código QR.',
   'tool.qr.scanHint': 'Probar códigos con muchos estilos con varios escáneres antes de publicarlos.',
   'tool.qr.style.square': 'Cuadrado', 'tool.qr.style.rounded': 'Redondeado', 'tool.qr.style.dots': 'Puntos',
-  'tool.qr.style.classy': 'De buen tono', 'tool.qr.style.classyRounded': 'redondeado con clase', 'tool.qr.style.extraRounded': 'Extra redondeado'
+  'tool.qr.style.classy': 'Clásico', 'tool.qr.style.classyRounded': 'Clásico redondeado', 'tool.qr.style.extraRounded': 'Extra redondeado'
 } as const
 

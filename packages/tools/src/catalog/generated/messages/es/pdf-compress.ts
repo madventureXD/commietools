@@ -12,6 +12,6 @@ export const messages: Readonly<Record<string, string>> = {
   "tool.pdfCompress.originalSize": "Tamaño original",
   "tool.pdfCompress.resultSize": "Tamaño del resultado",
   "tool.pdfCompress.saving": "Ahorro",
-  "tool.pdfCompress.larger": "El resultado es más grande que el original. No se guarda automáticamente; sólo se puede descargar deliberadamente.",
+  "tool.pdfCompress.larger": "El resultado es más grande que el original. No se guarda automáticamente; solo se puede descargar deliberadamente.",
   "tool.pdfCompress.noPromise": "La compresión estructural no necesariamente puede reducir los archivos PDF que ya están bien optimizados o que contienen principalmente imágenes JPEG."
 }
