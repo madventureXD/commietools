@@ -1,0 +1,24 @@
+Mutationsgegenproben M4-010 — 2026-10-07T18:49:21.572Z
+
+M1 — Eintrag entfernt (pdf-merge)
+  Exit 1 · Tests fehlgeschlagen: true · AssertionError-Zeilen: 1
+    AssertionError: expected [ 'pdf-merge' ] to deeply equal []
+
+M2 — Eintrag ohne Register-Werkzeug ergaenzt
+  Exit 1 · Tests fehlgeschlagen: true · AssertionError-Zeilen: 1
+    AssertionError: expected [ 'nicht-im-register' ] to deeply equal []
+
+M3 — Suche ueber `in` statt Object.hasOwn
+  Exit 1 · Tests fehlgeschlagen: true · AssertionError-Zeilen: 1
+    AssertionError: expected [Function Object] to be undefined
+
+M4 — unbekannte ID auf das Schwaerzen geleitet
+  Exit 1 · Tests fehlgeschlagen: true · AssertionError-Zeilen: 2
+    AssertionError: expected { Object ($$typeof, _payload, ...) } to be undefined
+    AssertionError: expected { Object ($$typeof, _payload, ...) } to be undefined
+
+Zusammenfassung
+  M1: GEGENPROBE GEGRIFFEN
+  M2: GEGENPROBE GEGRIFFEN
+  M3: GEGENPROBE GEGRIFFEN
+  M4: GEGENPROBE GEGRIFFEN

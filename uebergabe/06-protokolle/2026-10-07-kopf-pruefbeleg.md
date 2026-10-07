@@ -80,6 +80,14 @@ Zahl stimmt seither und ist mit dem Zähler belegbar.
   `npm run beleg:mutation-zusammenlegung` und `npm run beleg:mutation-routing`. Im **Hintergrund**
   bricht ein direkter `node`-Aufruf in dieser Umgebung ab („stdin is not a tty", Exit 1, ohne
   Wirkung) — das ist eine Eigenheit der Shell, kein Befund über das Skript.
+
+  *Berichtigung 2026-10-07 (Faber, unmittelbar danach — der Satz oben war beim Schreiben richtig und
+  ist es nicht mehr):* **Beide portierten Gegenproben sind inzwischen gefahren.**
+  M4-009: **drei von drei** gegriffen, M4-010: **vier von vier** gegriffen, jeweils mit
+  `AssertionError`-Zeile. Versionierte Belege:
+  `06-protokolle/mutationen-zusammenlegung-2026-10-07.txt` und `…-routing-2026-10-07.txt`.
+  Die Umgebungsnotiz (Vordergrund statt Hintergrund) bleibt gültig und ist der Grund, warum der
+  M4-009-Lauf zunächst kein Ergebnis hinterließ.
 - **Keine Bewertung von Recht oder Datenschutz.** Die Karte verbietet ausdrücklich, aus einer
   NEL-Kopfzeile allein eine Rechtsfolge abzuleiten.
 

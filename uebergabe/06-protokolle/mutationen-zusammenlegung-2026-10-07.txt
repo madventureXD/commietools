@@ -1,0 +1,30 @@
+Mutationsgegenproben M4-009 — 2026-10-07T18:48:56.077Z
+
+M1 — divRound rundet halbe Reste ab (statt auf)
+  Exit 1 · Tests fehlgeschlagen: true · AssertionError-Zeilen: 2
+    AssertionError: expected 0n to be 1n // Object.is equality
+    AssertionError: expected 0n to be -1n // Object.is equality
+
+M2 — gemeinsame formatBytes: MB mit einer Nachkommastelle
+  Exit 1 · Tests fehlgeschlagen: true · AssertionError-Zeilen: 1
+    AssertionError: expected '4,6 MB' to be '4,58 MB' // Object.is equality
+
+M3 — Kopie wiedereingebaut und benutzt (Wächter muss greifen)
+  Exit 1 · Tests fehlgeschlagen: true · AssertionError-Zeilen: 1
+    AssertionError: expected [ Array(1) ] to deeply equal []
+
+Zusammenfassung
+  M1: GEGENPROBE GEGRIFFEN (Test gescheitert, AssertionError belegt)
+  M2: GEGENPROBE GEGRIFFEN (Test gescheitert, AssertionError belegt)
+  M3: GEGENPROBE GEGRIFFEN (Test gescheitert, AssertionError belegt)
+
+Arbeitsbaum nach Rücknahme:
+M uebergabe/00-einstieg/vorgehen-qm-audit.md
+ M uebergabe/05-uebergaben/2026-10-07-r8-abgeschlossen.md
+ M uebergabe/05-uebergaben/2026-10-07-r9-abgeschlossen.md
+ M uebergabe/06-protokolle/2026-10-07-r9-m4-009-zusammenlegung.md
+ M uebergabe/06-protokolle/2026-10-07-r9-m4-010-routenzuordnung.md
+?? uebergabe/06-protokolle/2026-10-07-kopf-pruefbeleg.md
+?? uebergabe/06-protokolle/screenshots/2026-10-07-r9-u1-portiert/
+?? uebergabe/06-protokolle/screenshots/2026-10-07-r9-u2-portiert/
+?? uebergabe/06-protokolle/screenshots/2026-10-07-r9-u3-frost/
