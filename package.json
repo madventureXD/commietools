@@ -35,7 +35,12 @@
     "preview": "npm run preview --workspace @commietools/web",
     "akte:check": "node scripts/akte-audit.mjs",
     "beleg:sprachpakete": "node scripts/belege/sprachpakete-netzbeleg.mjs",
-    "beleg:rechner-kern": "node scripts/belege/rechner-kern-groesse.mjs"
+    "beleg:rechner-kern": "node scripts/belege/rechner-kern-groesse.mjs",
+    "beleg:zusammenlegung": "node scripts/belege/zusammenlegung-beleg.mjs",
+    "beleg:routing": "node scripts/belege/routing-beleg.mjs",
+    "beleg:mutation-zusammenlegung": "node scripts/belege/mutation-zusammenlegung.mjs",
+    "beleg:mutation-routing": "node scripts/belege/mutation-routing.mjs",
+    "beleg:kartenstand": "node scripts/belege/kartenstand.mjs"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",

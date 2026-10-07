@@ -14,3 +14,11 @@ work/
 # veröffentlichen). Soll es später versioniert werden, diese Zeile entfernen.
 QM/
 
+# Eingabedateien der Belege zur Karte M4-005 (eine langsame, eine schnelle PDF): liegen lokal und
+# sind **absichtlich** nicht versioniert — die Belege benennen oder erzeugen ihre Eingaben selbst,
+# und große Binärdateien gehören nicht in den Bestand. Sollen sie später hinein, diese Zeilen
+# entfernen. (Damit bleibt `git status` aussagekräftig: untracked heißt hier „unfertig", nicht
+# „vergessen".)
+test-assets/m4-005-langsam-A.pdf
+test-assets/m4-005-schnell-B.pdf
+
