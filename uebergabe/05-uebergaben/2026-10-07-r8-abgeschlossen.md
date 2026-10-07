@@ -147,3 +147,6 @@ behandelt worden, nicht als Produkt- oder Aktenfehler (Details in den Protokolle
   und die zwei M4-005-Testdateien (nicht angefasst)
 - **Nichts gepusht** — **130 Commits vor `origin/main`** (gemessen mit
   `git rev-list --count origin/main..HEAD` vor den Akten-Commits dieses Nachzugs)
+- **Endstand der Aktenpflege** (datiert nachgetragen 2026-10-07): Kopf **`2cbac41`**,
+  **134 Commits vor `origin/main`** — gemessen bei genau diesem Kopf, damit die Zahl auch nach
+  weiteren Commits eindeutig bleibt. `main` ist damit weiterhin **unveröffentlicht**.
