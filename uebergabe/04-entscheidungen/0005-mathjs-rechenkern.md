@@ -89,3 +89,23 @@ Funktionsnachweise in der kuratierten Variante: `2^3^2` = 512 (rechtsassoziativ)
 - Ob `function-plot` für den Funktionsplotter aufgenommen wird (Größe gemessen, Browserfähigkeit
   **nicht** geprüft).
 - Ob symbolische Gleichungslösung über Polynome hinaus gebraucht wird (`nerdamer`, 131,5 KiB gzip).
+
+*Nachtrag 2026-10-07 (Faber, Karte M2-003).* Zwei Zahlen dieses ADR sind **überholt**; der
+ursprüngliche Wortlaut bleibt stehen und wird nicht rückdatiert verändert.
+
+| Aussage im ADR (2026-10-03) | Heute gültig |
+|---|---|
+| „Startbudget **250 KiB gzip**" | **200 KiB** — `warningBudgets.entry = 200 * 1024` in `scripts/bundle-audit.mjs` (Warnschwelle) |
+| „Für die Rechner-Route … Budget von rund **95 KiB gzip**" | **110 KiB** — `routeBudget: 110 * 1024` für den Rechenkern-Chunk |
+| „die kuratierte Variante belegt **89,5 KiB**" | historische Messung vom 2026-10-03 (esbuild, gzip -9, andere Factory-Liste). Eine Nachmessung derselben Factory-Liste am 2026-10-04 ergab **100,6 KiB** (`work/rechner-mathjs-messung.mjs`). Der **ausgelieferte** Chunk misst am 2026-10-07 **103.801 B gzip** (`core-*.js`, roh 364.658 B) — er enthält zusätzlich den Rechnerrahmen, ist also **nicht** mit der reinen mathjs-Messung gleichzusetzen |
+
+**Messmethode und Umfang** stehen seit dem 2026-10-07 in
+`scripts/bundle-size-baseline.json` selbst (`_einheit`, `_umfang`, `_hinweis`): alle Zahlen sind
+gzip-Bytes; `entry` ist das Startskript aus `index.html`, die übrigen Kennzahlen sind einzelne
+Chunks bzw. Summen. Die Referenzdatei wird **nur gelesen** und **nie automatisch** nachgezogen.
+
+**Unverändert bleibt:** die Architekturentscheidung (mathjs aus kuratierten Factories) und die
+Politik, dass die Größe eine **Warnung** ist. Geprüft wird die strukturelle Regression: eine
+**zweite** mathjs-Instanz im Start wäre ein Fehler, nicht eine Funktionsausweitung.
+
+Beleg: `../06-protokolle/2026-10-07-r7-m2-003-rechner-budgets.md`.
