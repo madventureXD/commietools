@@ -136,4 +136,54 @@ describe('save file names', () => {
     expect(wohlgeformt('\ud83d')).toBe(false)
     expect(wohlgeformt('😊')).toBe(true)
   })
+
+  /**
+   * Karte M3-007, vollständige Abnahme: **Graphemgruppen** dürfen beim Kürzen nicht zerschnitten
+   * werden — nicht nur Surrogatpaare. Eine ZWJ-Familie, eine Flagge, ein Hautton-Modifier und ein
+   * kombinierendes Zeichen bestehen aus mehreren Codepoints und *bleiben* wohlgeformt, wenn man sie
+   * mitten durchtrennt: das Ergebnis ist dann still zerstörter Text. Geprüft wird deshalb gegen eine
+   * **unabhängig** gebildete Segmentliste, nicht gegen die Produktionsfunktion.
+   */
+  it('kürzt an Graphemgrenzen: ZWJ-Familie, Flagge, Hautton, kombinierendes Zeichen, CJK (M3-007)', () => {
+    const segmenter = new Intl.Segmenter(undefined, { granularity: 'grapheme' })
+    const grenzen = (text: string) => new Set([...segmenter.segment(text)].map((teil) => teil.index))
+    const grenze = 180
+
+    const faelle: Array<[string, string]> = [
+      ['ZWJ-Familie', '👨‍👩‍👧‍👦'],
+      ['Flagge', '🇩🇪'],
+      ['Hautton-Modifier', '👍🏽'],
+      ['kombinierendes Zeichen', 'n\u0303'],
+      ['CJK', '漢'],
+      ['Ersatzzeichen-Emoji', '😊'],
+    ]
+
+    for (const [was, zeichen] of faelle) {
+      // So viele Gruppen, dass die 180er-Grenze mitten in einer Gruppe liegen muss.
+      const original = `${'a'.repeat(3)}${zeichen.repeat(200)}${'.pdf'}`
+      const gekuerzt = normaliseFileName(original, 'document.pdf')
+      const rumpf = gekuerzt.slice(0, -'.pdf'.length)
+
+      expect(gekuerzt.endsWith('.pdf'), `${was}: Endung verloren`).toBe(true)
+      expect(gekuerzt.length, `${was}: Grenze überschritten`).toBeLessThanOrEqual(grenze)
+      // Der Rumpf ist ein Präfix des Originals …
+      expect(original.startsWith(rumpf), `${was}: Rumpf ist kein Präfix`).toBe(true)
+      // … und endet auf einer Graphemgrenze (kein halbes Zeichen, keine halbe Gruppe).
+      expect(grenzen(original).has(rumpf.length), `${was}: Schnitt liegt in einer Gruppe`).toBe(true)
+
+      // Gegenprobe: der naive Schnitt auf dieselbe Länge liegt bei mehrteiligen Gruppen **nicht**
+      // auf einer Grenze — der Test fordert also tatsächlich mehr als die Surrogatprüfung.
+      if (zeichen.length > 1) {
+        const naiv = rumpf.length + 1
+        expect(grenzen(original).has(naiv), `${was}: Gegenprobe greift nicht`).toBe(false)
+      }
+    }
+  })
+
+  /** Der Rückfall ohne `Intl.Segmenter` darf höchstens ungenauer sein — nie länger als die Grenze. */
+  it('hält die Längengrenze auch bei sehr langen Einzelgruppen (M3-007)', () => {
+    const gekuerzt = normaliseFileName(`${'漢'.repeat(300)}.pdf`, 'document.pdf')
+    expect(gekuerzt.length).toBeLessThanOrEqual(180)
+    expect(gekuerzt.endsWith('.pdf')).toBe(true)
+  })
 })

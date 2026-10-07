@@ -31,6 +31,39 @@ function expectedExtension(name: string): string {
   return match?.[1]?.toLowerCase() ?? ''
 }
 
+/**
+ * **Kürzt an Graphemgrenzen** (Karte M3-007).
+ *
+ * Der frühere Fix prüfte nur, ob der Schnitt auf einer **hohen Surrogathälfte** endet — das rettet
+ * Paare wie ein einzelnes Emoji, aber nicht Graphemgruppen: eine ZWJ-Familie (👨‍👩‍👧‍👦, sieben
+ * Codepoints), eine Flagge (zwei Regionalindikatoren), ein Hautton-Modifier oder ein kombinierendes
+ * Zeichen (n + U+0303) werden weiterhin mitten durchgeschnitten — der Name bleibt dann wohlgeformt,
+ * ist aber inhaltlich zerstört.
+ *
+ * Gezählt wird weiterhin in **UTF-16-Einheiten** gegen die bestehende 180er-Grenze (die Karte
+ * verlangt ausdrücklich nicht, 180 *Grapheme* zu nehmen); es werden nur vollständige Grapheme
+ * übernommen. Ohne `Intl.Segmenter` (ältere Browser) greift der bisherige Surrogatschutz als
+ * benannter Rückfall.
+ */
+function kuerzeAnGraphemgrenzen(stem: string, keep: number): string {
+  const segmenter = typeof Intl !== 'undefined' && 'Segmenter' in Intl
+    ? new Intl.Segmenter(undefined, { granularity: 'grapheme' })
+    : null
+  if (!segmenter) {
+    let gekuerzt = stem.slice(0, keep)
+    if (/[\uD800-\uDBFF]$/u.test(gekuerzt)) gekuerzt = gekuerzt.slice(0, -1)
+    return gekuerzt
+  }
+  let ergebnis = ''
+  for (const { segment } of segmenter.segment(stem)) {
+    if (ergebnis.length + segment.length > keep) break
+    ergebnis += segment
+  }
+  // Passt nicht einmal das erste Graphem in die Grenze, wird es dennoch genommen: ein zu langer,
+  // aber **vollständiger** Name ist besser als ein leerer Rumpf mit richtiger Länge.
+  return ergebnis || [...segmenter.segment(stem)][0]?.segment || ''
+}
+
 export function normaliseFileName(value: string, fallback: string): string {
   const extension = expectedExtension(fallback)
   let name = value
@@ -49,15 +82,7 @@ export function normaliseFileName(value: string, fallback: string): string {
   const maxLength = 180
   if (name.length > maxLength) {
     const keep = Math.max(1, maxLength - extension.length)
-    let gekuerzt = stem.slice(0, keep)
-    /**
-     * **Nicht mitten in einem Zeichenpaar abschneiden** (Karte M3-007): Ein Emoji besteht aus zwei
-     * UTF-16-Einheiten. Endet der gekürzte Name auf der ersten Hälfte, ist er kein gültiger Text
-     * mehr — der Browser zeigt dann ein Ersatzzeichen und der Dateiname ist beschädigt. Gemessen:
-     * `a` + 90 × 😊 wurde zu `…\uD83D.pdf` (nicht wohlgeformt).
-     */
-    if (/[\uD800-\uDBFF]$/u.test(gekuerzt)) gekuerzt = gekuerzt.slice(0, -1)
-    name = `${gekuerzt}${extension}`
+    name = `${kuerzeAnGraphemgrenzen(stem, keep)}${extension}`
   }
   return name
 }
