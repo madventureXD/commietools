@@ -15,7 +15,9 @@ Für jede Sprache werden vor der Übersetzung festgehalten:
 - Schreibrichtung `ltr` oder `rtl`;
 - Rückfallsprache;
 - Zielvariante, zum Beispiel neutrales `es` oder ausdrücklich `pt-BR`;
-- Anrede, Ton, zentrale Terminologie und unerwünschte Regionalismen;
+- Anrede, Ton, zentrale Terminologie und unerwünschte Regionalismen; **für Spanisch gilt der
+  unpersönliche Infinitiv** (Entscheidung 2026-10-06, Stilnachtrag 2026-10-07 in
+  `03-konzepte/2026-10-03-sprachpaket-spanisch.md`), geprüft mit `npm run style:check`;
 - zuständige Person für sprachliche Abnahme.
 
 Sprache und Region bleiben getrennt. Sprache bestimmt Texte und Schreibrichtung; Region bestimmt

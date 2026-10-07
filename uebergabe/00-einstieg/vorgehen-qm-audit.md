@@ -74,7 +74,7 @@ Legende: ✓ erledigt · ◐ erledigt mit offener Restforderung · ○ offen
 *Korrektur 2026-10-07 (Faber, Aktenpflege). Der vorstehende Satz widersprach der Tabelle dieses
 Abschnitts und wurde nachgezählt — nicht aus der Summe, sondern Zeile für Zeile mit einem Skript
 über die Kartentabellen: **59 Karten — 34 erledigt · 1 mit Restforderung (M8-001) · 24 offen.**
-Je Stufe: R1 5 von 6 · R2 7 von 7 · R3 6 von 6 · R4 8 von 8 · R5 7 von 9 · R6 3 von 7 (M3-001, M3-007; M3-001 vorher als Rest geführt) ·
+Je Stufe: R1 5 von 6 · R2 7 von 7 · R3 6 von 6 · R4 8 von 8 · R5 7 von 9 · R6 6 von 7 (M3-001, M3-003, M3-004, M3-006, M3-007, M3-008; offen: M3-010) ·
 R7 0 von 8 · R8 0 von 5 · R9 0 von 2 · R10 0 von 1. Die alte Zahl beschrieb den Stand vor dem
 R5-Durchzug; der Wortlaut bleibt deshalb stehen, maßgeblich ist die Tabelle mit dieser Korrektur.
 Korrektur des zweiten Halbsatzes: R5 ist **begonnen** (7 von 9), nicht „steht aus".*

@@ -19,6 +19,15 @@ sprachlichen Gegenlesen unverändert.
 - Die Selbstbezeichnung im Sprachmenü lautet **Español**; Schreibrichtung ist `ltr`, Rückfall ist
   Englisch.
 - Ansprache: **tú**, klar und freundlich, ohne regionale Umgangssprache.
+  > **Stilnachtrag 2026-10-07 (Karte M3-006, Stufe R6).** Dieser Satz beschreibt den Stand vom
+  > 2026-10-03 und bleibt als historischer Wortlaut stehen. Es gilt die Betreiberentscheidung vom
+  > **2026-10-06**: spanische Bedientexte verwenden den **unpersönlichen Infinitiv** (Abrir, Guardar,
+  > Descargar) bzw. unpersönliche Konstruktionen (`se`); die tú-Ansprache wird **nicht** wieder
+  > durchgesetzt. Zwei begründete Ausnahmen: Marken-/Slogantexte (`app.promise`: „Tus herramientas.
+  > Tu dispositivo. Tus datos.") und Platzhalter-Beispielwerte (`© Tu nombre`). Ein Stilcheck
+  > (`npm run style:check`) meldet Kandidaten; die Beurteilung erfolgt von Hand mit Kontext —
+  > dritte Person und Substantive sind keine Anrede. Protokoll:
+  > `06-protokolle/2026-10-07-m3-006-ton-terminologie.md`.
 - UI-Texte sind knapp und handlungsorientiert. Schaltflächen verwenden bevorzugt Infinitive:
   **Abrir**, **Guardar**, **Descargar**, **Eliminar**.
 - Als neutrale Leitbegriffe gelten unter anderem **archivo** statt nur *fichero*, **imagen**,
