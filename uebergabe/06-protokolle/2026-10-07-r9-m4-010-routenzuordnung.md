@@ -101,3 +101,26 @@ Register, Typprüfung und Prüfskript belegt, nicht über 62 Bildschirmabzüge.
 
 Keine neuen. `pdf-redact` ist von der Rückfallstelle zu einer regulären Zuordnung geworden; die
 frühere Sonderstellung ist damit auch in der Typprüfung sichtbar.
+
+---
+
+*Zusatz 2026-10-07 (Belegskripte versioniert):* Die in dieser Datei genannten Belegskripte lagen beim Schreiben unter `tmp/` — das ist
+durch die Projekt-`.gitignore` **nicht versioniert** und in einem frischen Checkout nicht vorhanden
+(dieselbe Lücke, die Karte M10-004 beschreibt). Sie sind **nachgezogen** und liegen jetzt versioniert
+in `scripts/belege/`:
+
+| vorher (nicht versioniert) | jetzt (versioniert) |
+|---|---|
+| `tmp/m4-009-beleg.cjs` | `scripts/belege/zusammenlegung-beleg.cjs` (`npm run beleg:zusammenlegung`) |
+| `tmp/m4-010-beleg.cjs` | `scripts/belege/routing-beleg.cjs` (`npm run beleg:routing`) |
+| `tmp/m4-009-mutationen.mjs` | `scripts/belege/mutation-zusammenlegung.mjs` (`npm run beleg:mutation-zusammenlegung`) |
+| `tmp/m4-010-mutationen.mjs` | `scripts/belege/mutation-routing.mjs` (`npm run beleg:mutation-routing`) |
+| `work/ct-harness.cjs` | `scripts/belege/cdp-harness.cjs` |
+| `tmp/kartenstand.mjs` | `scripts/belege/kartenstand.mjs` (`npm run beleg:kartenstand`) |
+
+Fachlich unverändert; portabel gemacht (Pfade relativ zum Ablageort, Browserprogramm aus
+`COMMIETOOLS_BROWSER`, Exit 2 bei fehlender Voraussetzung, Prüfbilder in den Temporärordner,
+Mutationsprotokolle datiert nach `06-protokolle/`). **Nachgemessen nach dem Umzug:** beide
+Seitenbelege melden „BELEG ERBRACHT" von ihrem neuen Ort, Ausgaben in
+`06-protokolle/screenshots/2026-10-07-r9-u1-portiert/` und `…-u2-portiert/` (die ursprünglichen
+Ordner bleiben unberührt).

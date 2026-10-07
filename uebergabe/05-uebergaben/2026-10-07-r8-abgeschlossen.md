@@ -113,6 +113,8 @@ behandelt worden, nicht als Produkt- oder Aktenfehler (Details in den Protokolle
 - [ ] **OP-064 — `HEAD` ist im frischen Checkout nicht baubar** (neu, Produktbefund): das committete
   Lizenzregister widerspricht der eigenen Hinweisdatei. Braucht eine Entscheidung von Thomas
   (Register committen oder Prüfung entschärfen) — **nicht** eigenmächtig geändert.
+  *(Erledigt am 2026-10-07 auf Entscheidung von Thomas — siehe den datierten Nachtrag am Ende dieser
+  Datei. Der Eintrag bleibt stehen, weil Akten ergänzt und nicht umgeschrieben werden.)*
 - [ ] **OP-018/OP-034 — 30 Übergaben mit 132 Lücken**: jetzt beziffert, Migration steht aus
   (datierter Ergänzungsblock je Datei, nie überschreiben).
 - [ ] **OP-062 — Entscheidung zur Strukturmigration** der vier umgeschriebenen Übergaben.
@@ -150,3 +152,28 @@ behandelt worden, nicht als Produkt- oder Aktenfehler (Details in den Protokolle
 - **Endstand der Aktenpflege** (datiert nachgetragen 2026-10-07): Kopf **`2cbac41`**,
   **134 Commits vor `origin/main`** — gemessen bei genau diesem Kopf, damit die Zahl auch nach
   weiteren Commits eindeutig bleibt. `main` ist damit weiterhin **unveröffentlicht**.
+
+---
+
+## Nachtrag 2026-10-07 (Faber, nach Stufe R9/R10) — OP-064 erledigt
+
+**OP-064 ist geschlossen.** Auf Entscheidung von Thomas („Variante A": Register committen und im
+frischen Checkout nachweisen) sind die beiden Registerdateien **erzeugt** und mit Commit `cfc2c5e`
+committet — kein von Hand geänderter Inhalt, Lizenzordnung unangetastet.
+
+**Nachweis, gemessen:** frischer Checkout (`git worktree --detach` auf `cfc2c5e`, `node_modules` per
+Junction) → `FRISCH_LICENSES_EXIT=0`, `FRISCH_BUILD_EXIT=0`,
+„License audit passed: 607 packages, 16 complete license texts, 218 preserved package documents",
+„Bundle audit passed: entry 149755 B gzip". Der in dieser Übergabe beschriebene Abbruch
+(`License audit failed: … incomplete or stale`) ist damit widerlegt, nicht nur behoben.
+Beleg: `06-protokolle/2026-10-07-op064-frischer-checkout.txt`; der Eintrag steht wörtlich mit
+Beleg-Zusatz im Archiv `06-protokolle/2026-10-07-erledigte-punkte-archiv.md`.
+
+**Weiter sind nach dieser Übergabe fertig geworden:** R9 (2 von 2 Karten) und R10 (1 von 1 Karte,
+Weg A) — siehe `05-uebergaben/2026-10-07-r9-abgeschlossen.md` und `…-r10-abgeschlossen.md`.
+Kartenstand der Sanierung, gezählt mit `npm run beleg:kartenstand`:
+**59 Karten — 58 erledigt · 1 Restforderung (M8-001) · 0 offen.**
+
+**Offen bleiben** (Stand dieses Nachtrags): der zweite Teil von OP-045, OP-062/OP-063,
+OP-018/OP-034 — und der **Push**, der erst nach der unabhängigen Abschlusskontrolle erfolgt.
+Nichts ist veröffentlicht.

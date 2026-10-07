@@ -295,11 +295,16 @@ nichts veröffentlicht, keine Kontoänderung vorgenommen.
 Messwerten und der Trennung Dokumentverarbeitung / Ressourcenabrufe / Infrastrukturberichte) und
 `docs/deployment-cloudflare-pages.md` (Abschnitt mit Nachprüf-Befehl und `max_age`-Hinweis).
 **R10 ist damit vollständig (1 von 1 Karte).** Neuer Kartenstand der Sanierung: **59 Karten —
-58 erledigt · 1 mit Restforderung (M8-001) · 0 offen.** Veröffentlicht wurde nichts.
+58 erledigt · 1 mit Restforderung (M8-001) · 0 offen** — **nachgezählt mit einem Skript**
+(`scripts/belege/kartenstand.mjs`, zeilenweise aus den Tabellen dieser Datei; Lehre aus R6/R7).
+Beim ersten Aufruf des portierten Zählers stand die **Tabellenzeile** der Karte M8-005 noch auf `○`,
+während die Überschrift schon „abgeschlossen" trug — der erste Bericht („58 erledigt") war damit
+einen Schritt zu früh. Die Zeile ist am 2026-10-07 berichtigt; die Zahl stimmt **nach** dieser
+Berichtigung und ist seither mit dem Zähler belegbar. Veröffentlicht wurde nichts.
 
 | Karte | Kurz | Stand |
 |---|---|---|
-| M8-005 | Infrastruktur-Fehlerberichte fehlen im dokumentierten Datenfluss | ○ *(braucht Betreiberautorisierung)* |
+| M8-005 | Infrastruktur-Fehlerberichte fehlen im dokumentierten Datenfluss | ✓ *(Weg A, 2026-10-07)* |
 
 ## 5. Arbeitsweise je Karte (gilt für alle)
 
