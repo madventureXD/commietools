@@ -756,8 +756,10 @@ Diese Liste enthält bestätigte, noch nicht abgeschlossene Arbeit. Details geh�
   **nicht** freigegeben (Kopplung im ADR).
 - [ ] **Auflage A1 — Schwachstellenstand des Signaturpfads** *(2026-10-07)*: Advisoryscan über
   `crates/pdf-signer-engine`/`-wasm` (nicht nur lopdf, das war M9-004).
-- [ ] **Auflage A2 — unabhängige Sicherheitsreview vor der Veröffentlichung** *(2026-10-07)*: von
-  Thomas zu beauftragen; **nicht** durch Dokumentation zu ersetzen.
+- [ ] **Auflage A2 — unabhängige Sicherheitsreview: nicht gestrichen, verlegt** *(Entscheidung Thomas,
+  2026-10-07)*. Sie erfolgt **am Ende der ganzen Sanierung** und kontrolliert dort alles noch einmal
+  (nach R8–R10). Für einen früheren Push gilt damit A1/A3/A4; ob der Push bis zur Abschlussprüfung
+  warten soll, ist eine ausdrückliche Verschärfung durch Thomas und **nicht** unterstellt.
 - [ ] **Auflage A3 — Originalhinweis der GPL-3.0-or-later-Komponente** *(2026-10-07)*: Hinweisdatei
   für `pdf_signer 0.3.2` nachtragen und im Register binden.
 - [ ] **Auflage A4 — revisionsgebundener Abnahmebericht zum M7-Korpus** *(2026-10-07)*:

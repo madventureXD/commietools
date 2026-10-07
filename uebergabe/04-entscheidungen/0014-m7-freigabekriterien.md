@@ -103,7 +103,7 @@ Text, nichts wird nachträglich als „von Anfang an entschieden" umgeschrieben.
 | # | Auflage | Adresse |
 |---|---|---|
 | **A1** | Nachweis zum Schwachstellenstand des **Signaturpfads** (Gate 3) | Advisoryscan über den Pfad; die frühere Prüfung betraf lopdf |
-| **A2** | **Unabhängige Sicherheitsreview** vor der Veröffentlichung (Gate 10) | von CommieTools/Thomas zu beauftragen |
+| **A2** | **Unabhängige Sicherheitsreview** (Gate 10) | **nicht gestrichen, verlegt**: Entscheidung Thomas, 2026-10-07 — die unabhängige Prüfung erfolgt **am Ende der ganzen Sanierung** und kontrolliert dort alles noch einmal. Sie bleibt damit eine offene Auflage mit späterem Zeitpunkt |
 | **A3** | **Originalhinweis** der GPL-3.0-or-later-Komponente nachtragen (Gate 2) | `licenses/rust-review.json`, `pdf_signer` 0.3.2 |
 | **A4** | **Revisionsgebundener** Abnahmebericht zum Korpus (Gate 9/Gate 8) | `uebergabe/07-pruefung/m7/` — nennt bisher keine Revision |
 
@@ -111,6 +111,17 @@ Text, nichts wird nachträglich als „von Anfang an entschieden" umgeschrieben.
 A1–A4 sind **vor** diesem Schritt zu erledigen oder ausdrücklich neu zu entscheiden. Die Annahme dieses
 ADR **nimmt den Push nicht vorweg** — sie ist eine Aussage über den Produktstand, keine Freigabe zur
 Veröffentlichung.
+
+*Nachtrag 2026-10-07 (nach der Entscheidung, Faber).* Thomas hat festgelegt: **„Am Ende der Sanierung
+wird ein unabhängiger Prüfer nochmal alles kontrollieren."** Damit ist **A2 nicht gestrichen, sondern
+verlegt** — der Kontrollpunkt bleibt, er liegt jetzt am Ende der gesamten Sanierung (nach R8–R10) und
+umfasst dort den Gesamtstand.
+
+**Was das für die Kopplung bedeutet — ausdrücklich benannt:** Die oben formulierte Bedingung „Push erst
+nach A1–A4" enthielt A2. Mit der Verlegung von A2 gilt für einen **früheren** Push nun **A1, A3 und
+A4**; die unabhängige Prüfung kommt danach und kann Korrekturen nach sich ziehen, die einen weiteren
+Push brauchen. Soll der Push stattdessen **bis zur Abschlussprüfung** warten, ist das eine
+Verschärfung, die Thomas aussprechen muss — sie wird hier nicht stillschweigend unterstellt.
 
 ## Verwandt
 
