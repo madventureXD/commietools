@@ -273,7 +273,9 @@ const searchCache = new Map<string, Promise<readonly ToolSearchEntry[]>>()
 
 export function loadToolSearchIndex(locale: GeneratedLocale): Promise<readonly ToolSearchEntry[]> {
   const key = locale === 'en' ? 'en' : \`\${locale}+en\`
-  return cachedLoader(searchCache, key, () => Promise.all([searchLoaders.en(), locale === 'en' ? searchLoaders.en() : searchLoaders[locale]()]).then(([english, selected]) => toolIndex.map((entry) => ({ ...entry, locales: locale === 'en' ? { en: english.searchLocale[entry.id]! } : { [locale]: selected.searchLocale[entry.id]!, en: english.searchLocale[entry.id]! } }))))
+  return cachedLoader(searchCache, key, () => (locale === 'en'
+    ? searchLoaders.en().then((english) => toolIndex.map((entry) => ({ ...entry, locales: { en: english.searchLocale[entry.id]! } })))
+    : Promise.all([searchLoaders.en(), searchLoaders[locale]()]).then(([english, selected]) => toolIndex.map((entry) => ({ ...entry, locales: { [locale]: selected.searchLocale[entry.id]!, en: english.searchLocale[entry.id]! } })))))
 }
 `
 

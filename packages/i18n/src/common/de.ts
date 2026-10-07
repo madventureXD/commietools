@@ -24,7 +24,7 @@ export const commonDe = {
   'status.local': 'Lokal verarbeitet', 'status.offline': 'Offline verfügbar',
   'catalog.title': 'Werkzeuge', 'catalog.intro': 'Klare, präzise Werkzeuge, die deine Daten respektieren.', 'catalog.open': 'Tool öffnen',
   'catalog.search': 'Werkzeuge durchsuchen', 'catalog.clear': 'Suche leeren', 'catalog.results': 'Werkzeuge gefunden', 'catalog.foundVia': 'gefunden über', 'catalog.noResults': 'Kein Werkzeug passt zu dieser Suche. Versuch es mit einem anderen Wort oder einer Dateiendung wie webp.',
-  'catalog.searchHint': 'Sucht in Suchbegriffen, Titel und Kurzbeschreibung aller Sprachen sowie in Dateitypen, Kategorie und Suite. Mindestens 2 Zeichen, zum Beispiel webp, resize, #bilder.',
+  'catalog.searchHint': 'Sucht in Suchbegriffen, Titel und Kurzbeschreibung der gewählten Sprache und auf Englisch sowie in Dateitypen, Kategorie und Suite. Mindestens 2 Zeichen, zum Beispiel webp, resize, #bilder.',
   'category.text': 'Text', 'category.pdf': 'PDF', 'category.image': 'Bilder', 'category.developer': 'Entwicklung', 'category.generator': 'Generatoren', 'category.calculator': 'Rechnen', 'category.craft': 'Handwerk',
   'tool.result': 'Ergebnis', 'tool.back': 'Zurück zu allen Tools', 'tool.formats': 'Formate', 'tool.formats.readOnly': 'Nur lesbar',
   'tool.detach': 'In eigenes Fenster auskoppeln', 'tool.detach.return': 'Zurück ins Hauptfenster',

@@ -6,6 +6,8 @@ const germanIndex = await loadToolSearchIndex('de')
 const englishIndex = await loadToolSearchIndex('en')
 const de = createTranslator('de', [await loadInterfaceMessages('de')])
 const en = createTranslator('en', [])
+const spanishIndex = await loadToolSearchIndex('es')
+const es = createTranslator('es', [await loadInterfaceMessages('es')])
 const germanIds = (query: string) => searchTools(germanIndex, { query, locale: 'de', label: de }).map((match) => match.entry.id)
 const englishIds = (query: string) => searchTools(englishIndex, { query, locale: 'en', label: en }).map((match) => match.entry.id)
 
@@ -164,5 +166,39 @@ describe('search ranking and completeness', () => {
         }
       }
     }
+  })
+})
+
+/**
+ * Karte M1-002: das Suchversprechen lautet „gewählte Sprache plus Englisch" — nicht „alle Sprachen".
+ * Der Katalog **kann** mehr Sprachen enthalten, aber nur diese zwei sind gleichzeitig durchsuchbar.
+ */
+describe('search language contract (card M1-002)', () => {
+  const spanishIds = (query: string) => searchTools(spanishIndex, { query, locale: 'es', label: es }).map((match) => match.entry.id)
+
+  it('carries exactly the selected language plus English', () => {
+    for (const entry of spanishIndex) {
+      expect(Object.keys(entry.locales).sort(), entry.id).toEqual(['en', 'es'])
+    }
+  })
+
+  it('finds a Spanish curated term and an English term in the Spanish interface', () => {
+    const statistic = spanishIndex.find((entry) => entry.id === 'text-statistics')
+    const spanishTerm = statistic?.locales.es?.terms[0]
+    expect(spanishTerm).toBeTruthy()
+    expect(spanishIds(spanishTerm ?? '')).toContain('text-statistics')
+    expect(spanishIds('resize')).toContain('image-resize')
+  })
+
+  it('does not load or find German search text in the Spanish interface', () => {
+    for (const query of ['datenschutz', 'verkleinern', 'metadaten', 'grossschreibung']) {
+      expect(spanishIds(query), query).toEqual([])
+    }
+  })
+
+  it('answers in Spanish for a hit that came from English', () => {
+    const hit = searchTools(spanishIndex, { query: 'resize', locale: 'es', label: es }).find((match) => match.entry.id === 'image-resize')
+    expect(hit?.entry.locales.es?.title).toBeTruthy()
+    expect(hit?.entry.locales.en?.title).toBeTruthy()
   })
 })

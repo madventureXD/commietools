@@ -24,7 +24,7 @@ export const commonEs = {
   'status.local': 'Procesado localmente', 'status.offline': 'Disponible sin conexión',
   'catalog.title': 'Herramientas', 'catalog.intro': 'Herramientas claras, precisas y respetuosas con tus datos.', 'catalog.open': 'Abrir herramienta',
   'catalog.search': 'Herramientas de búsqueda', 'catalog.clear': 'Borrar búsqueda', 'catalog.results': 'herramientas encontradas', 'catalog.foundVia': 'encontrado a través de', 'catalog.noResults': 'Ninguna herramienta coincide con esta búsqueda. Probar con otra palabra o extensión de archivo como webp.',
-  'catalog.searchHint': 'Busca términos, títulos y resúmenes de cada idioma, además de tipos de archivos, categorías y conjuntos. Al menos 2 caracteres, por ejemplo webp, resize o #images.',
+  'catalog.searchHint': 'Busca términos, títulos y resúmenes del idioma seleccionado y del inglés, además de tipos de archivos, categorías y conjuntos. Al menos 2 caracteres, por ejemplo webp, resize o #images.',
   'category.text': 'Texto', 'category.pdf': 'PDF', 'category.image': 'Imágenes', // Karte M3-003: «Revelador» heißt «enthüllend» — die Entwicklerkategorie ist «Desarrollo»
  'category.developer': 'Desarrollo', 'category.generator': 'Generadores', 'category.calculator': 'Cálculo', 'category.craft': 'Oficios',
   'tool.result': 'Resultado', 'tool.back': 'Volver a todas las herramientas', 'tool.formats': 'Formatos', 'tool.formats.readOnly': 'Solo lectura',

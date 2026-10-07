@@ -8,6 +8,10 @@ import { knownFormats } from '@commietools/core'
  * substring against curated text (terms, tags, title, summary, description) and
  * against material derived from the declarations (file types, category, suites).
  * Everything is deterministic and works offline.
+ *
+ * The caller hands in the entries of the **loaded** languages. By contract that set is the selected
+ * language plus English (see `loadToolSearchIndex`, card M1-002): the search never widens it, so a
+ * German-only term stays invisible while the Spanish interface is open.
  */
 
 /** Shortest query the catalogue answers; shorter input counts as no query. */
@@ -106,7 +110,9 @@ function bestMatch(entry: ToolSearchEntry, query: string, options: SearchOptions
     if (best === null || total < best.score) best = { entry, matched: reported, field, foreign, score: total }
   }
 
-  // Curated text of every language: a German query may hit English terms.
+  // Curated text of the **loaded** languages only: the selected one plus English (card M1-002).
+  // A German query finds English terms because English is always loaded; a third language is
+  // neither loaded nor searched, so a German-only term stays invisible in the Spanish interface.
   for (const language of Object.keys(entry.locales)) {
     const text = entry.locales[language]
     if (!text) continue
