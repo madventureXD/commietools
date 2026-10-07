@@ -104,6 +104,24 @@ geführt — die Einschätzung war falsch und ist berichtigt):
    `vorgehen-qm-audit.md` als nächste offene Stufe geführt.
 3. Vorher klären: soll die Restsichtenliste (25 Formatierstellen) als eigene Karte in R7/R8 laufen?
 
+## Nachtrag 2026-10-07 (nach dem Abschluss dieser Übergabe)
+
+Der oben als **offener Punkt** geführte Befund „25 Formatierstellen folgen weiter der
+Oberflächensprache" ist **erledigt** worden — auf Thomas' Anweisung („Ja, mache das nun") noch in
+derselben Sitzung, **vor** R7:
+
+- 26 Stellen beurteilt, **25 Anzeige-Stellen** auf den gemeinsamen Formatkontext umgestellt
+  (`anzeigeKontext()`, `apps/web/src/tools/formatContext.ts`); **1 technische Ausnahme** bleibt
+  begründet (`aufmassPdf.ts`, `useGrouping: false` — Exportwert).
+- Neuer Prüfer `npm run format:check`, eingehängt in `npm run check`; Gegenprobe gefahren
+  (eine Stelle zurückgestellt → Exit 1 mit Fundstelle).
+- UI-Beleg mit **abweichender** Geräte-Region: Oberfläche deutsch + Gerät en-US → „1,234,567.5" und
+  „1,523,990.25"; Oberfläche spanisch + Gerät de-DE → „1.234.567,5" und „1.523.990,25".
+- Protokoll: `06-protokolle/2026-10-07-formatkontext-reststellen.md` · Commits `34be880` (Code),
+  `40ac01c` (Akte). Prüfkette unverändert grün (715 Tests, 51 Dateien).
+
+Damit ist der Punkt **nicht mehr offen**; der Eintrag oben bleibt als damaliger Stand stehen.
+
 ## Git
 
 - Commits: `7123077`, `02af58a` (M3-001) · `0673e4f`, `360accc`, `6302ca6` (M3-007) · `0ed056c` (M3-008)
