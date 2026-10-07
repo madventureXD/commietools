@@ -48,6 +48,12 @@ export function Convert({ t, locale }: { t: Translate; locale: string }) {
   const [numerator, setNumerator] = useState('')
   const [denominator, setDenominator] = useState('2')
   const [inchDirection, setInchDirection] = useState<'toMillimetres' | 'toInch'>('toMillimetres')
+  /**
+   * Karte M3-004: „Zoll → mm" stand fest im Quelltext — auf Englisch und Spanisch blieb dort ein
+   * deutsches Wort stehen. Das Muster (Quelle → Ziel) und die Einheitenzeichen sind jetzt
+   * Sprachschlüssel; der zugängliche Name eines Knopfes ist sein sichtbarer Text, also derselbe.
+   */
+  const richtung = (von: string, nach: string) => t('tool.convert.inchDirection').replace('{from}', t(von)).replace('{to}', t(nach))
   const [calendar, setCalendar] = useState<CalendarId>('hebrew')
   const [calendarDirection, setCalendarDirection] = useState<'forward' | 'backward'>('forward')
   const [date, setDate] = useState('')
@@ -205,11 +211,13 @@ export function Convert({ t, locale }: { t: Translate; locale: string }) {
             <div className="field">
               <span>{t('tool.convert.field.value')}</span>
               <div className="segmented" role="radiogroup">
+                {/* Karte M3-004: Richtungslabels aus Sprachschluesseln mit Parametern; die */
+                /* Einheitenzeichen kommen als eigene Werte (de „Zoll", en/es „in"). */}
                 <button type="button" role="radio" aria-checked={inchDirection === 'toMillimetres'} className={inchDirection === 'toMillimetres' ? 'active' : ''} onClick={() => setInchDirection('toMillimetres')}>
-                  Zoll → mm
+                  {richtung('tool.convert.unit.inch', 'tool.convert.unit.mm')}
                 </button>
                 <button type="button" role="radio" aria-checked={inchDirection === 'toInch'} className={inchDirection === 'toInch' ? 'active' : ''} onClick={() => setInchDirection('toInch')}>
-                  mm → Zoll
+                  {richtung('tool.convert.unit.mm', 'tool.convert.unit.inch')}
                 </button>
               </div>
             </div>

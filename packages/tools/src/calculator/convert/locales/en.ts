@@ -8,6 +8,12 @@ export const convertEn = {
   'tool.convert.mode.units': 'Units',
   'tool.convert.mode.angle': 'Angles',
   'tool.convert.mode.base': 'Number bases',
+  // Karte M3-004: Richtungslabels sind Sprachschluessel mit Parametern; die Einheitenzeichen
+  // stehen als eigene Werte (sprachneutral 'in'/'mm', im Deutschen 'Zoll').
+  'tool.convert.unit.inch': 'in',
+  'tool.convert.unit.mm': 'mm',
+  'tool.convert.inchDirection': '{from} → {to}',
+
   'tool.convert.mode.inch': 'Inches and measure',
   'tool.convert.mode.calendar': 'Calendars',
 
