@@ -276,7 +276,7 @@ alle im ersten Anlauf.
 
 Kopf nach dieser Stufe: siehe „Git" der Übergabe `05-uebergaben/2026-10-07-r9-abgeschlossen.md`.
 
-### R10 — Infrastrukturberichte/NEL (P1) — **Entscheidungsvorlage vorgelegt** (2026-10-07), Entscheidung offen
+### R10 — Infrastrukturberichte/NEL (P1) — **abgeschlossen 2026-10-07** (Weg A, 1 Karte)
 
 *Zusatz 2026-10-07 (Faber, Durchzug auf Anweisung von Thomas):* Die Karte **M8-005** ist keine
 Codeänderung, sondern eine **Betreiberentscheidung**. Der gemessene Stand liegt vor: die lebende Seite
@@ -289,6 +289,13 @@ Kartenbefund). Messwerte: `06-protokolle/2026-10-07-r10-oeffentliche-header.txt`
 Wegen, Folgen und Empfehlung: `06-protokolle/2026-10-07-r10-m8-005-entscheidungsvorlage.md`.
 Die Umsetzung ist eine **autorisierte Hostingaktion** (Provider-Konto, nur Thomas) — nichts geändert,
 nichts veröffentlicht, keine Kontoänderung vorgenommen.
+
+*Nachtrag 2026-10-07 (Entscheidung Thomas): **Weg A** — behalten und dokumentieren.* Umgesetzt:
+`docs/architecture.md` (Unterabschnitt „Infrastructure error reports (Network Error Logging)" mit
+Messwerten und der Trennung Dokumentverarbeitung / Ressourcenabrufe / Infrastrukturberichte) und
+`docs/deployment-cloudflare-pages.md` (Abschnitt mit Nachprüf-Befehl und `max_age`-Hinweis).
+**R10 ist damit vollständig (1 von 1 Karte).** Neuer Kartenstand der Sanierung: **59 Karten —
+58 erledigt · 1 mit Restforderung (M8-001) · 0 offen.** Veröffentlicht wurde nichts.
 
 | Karte | Kurz | Stand |
 |---|---|---|

@@ -100,10 +100,33 @@ dann gehört die Abschaltung in dein Konto, und ich messe und dokumentiere danac
 **In beiden Fällen gleich:** die Abgrenzung Dokumentverarbeitung / Ressourcenabrufe /
 Infrastrukturberichte gehört in die Dokumentation — sie fehlt heute unabhängig von der Entscheidung.
 
-## 5. Was ich nach deiner Entscheidung tue
+## 5. Was nach der Entscheidung zu tun war
 
 - **A:** Dokumentation ergänzen (gemessene Werte, Zweck, Empfänger, Umfang, Dauer), Prüfkette
   (`check`/`build`/`akte:check`), Protokoll, Commits, Kartenstand nachziehen.
-- **B:** auf deine Rückmeldung „abgeschaltet" warten, dann **neu messen** (Kopfzeile weg?), den
+- **B:** auf die Rückmeldung „abgeschaltet" warten, dann **neu messen** (Kopfzeile weg?), den
   Nachweis ablegen und die Dokumentation auf den neuen Stand setzen.
 - **C:** Punkt offen lassen, Kartenstand auf „Entscheidung offen", nichts ändern.
+
+## 6. Entscheidung und Umsetzung
+
+*Entschieden am 2026-10-07 von Thomas: **Weg A** — behalten und den Datenfluss transparent
+dokumentieren.*
+
+Umgesetzt (zwei Dokumentänderungen, ergänzt statt umgeschrieben):
+
+- `docs/architecture.md`, Abschnitt „Security and privacy defaults" → **neu**: Unterabschnitt
+  „Infrastructure error reports (Network Error Logging)" mit den gemessenen Werten, der
+  Unterscheidung **Dokumentverarbeitung / Ressourcenabrufe / Infrastrukturberichte** und dem Hinweis,
+  dass Behalten, Ändern oder Abschalten eine Hostingaktion ist.
+- `docs/deployment-cloudflare-pages.md` → **neu**: Abschnitt „Infrastrukturberichte des Anbieters
+  (Network Error Logging)" mit Messwerten, Nachprüf-Befehl (`curl … | grep -i '^nel\|^report-to'`)
+  und dem Hinweis auf `max_age` (7 Tage — eine Änderung ist nie sofort wirksam).
+
+Der Kartenbefund ist damit geschlossen: die Infrastrukturberichte stehen im dokumentierten
+Datenfluss, ohne dass sich am Betrieb etwas ändert. Keine Kontoaktion, kein Push, keine
+Veröffentlichung.
+
+**Was weiterhin nicht vorliegt:** ein Versandnachweis (die harmlose Fehlerprobe gegen den Betrieb
+wurde bewusst nicht gefahren). Die Richtlinie selbst ist gemessen — für die Dokumentation ist das
+der tragende Beleg.
