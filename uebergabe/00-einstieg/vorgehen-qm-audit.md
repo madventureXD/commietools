@@ -211,15 +211,35 @@ maßgeblich ist die Spalte „Stand" und der Nachsatz am Ende dieses Abschnitts.
 | M2-005 | Entscheidungsindex verschweigt ADR 0006 | **✓ erledigt** (2026-10-07): Doppelnummer 0006 aufgelöst (M9-Entscheidung → **0013**, Weiterverweisakte am alten Pfad), Index vollständig; neuer Doku-Gate `npm run adr:check`. Protokoll `…-r7-m2-005-adr-index-und-gate.md`, Code `00fa7e8` |
 | M11-001 | Architekturbeschreibung führt vorhandene Grenzen als vertagt | **✓ erledigt** (2026-10-07): `docs/architecture.md` mit datiertem Iststand (Codeanker, Verantwortung, Restarbeit je Grenze); K30/K31 geschlossen; Cachenamen gegen Buildkonfiguration und `sw.js` gemessen. Protokoll `…-r7-m11-001-architektur-iststand.md`, Commit `26591fd` |
 
-### R8 — Übergaben, Abschlusskriterien, Prüfverfahren (P2) — nicht begonnen
+### R8 — Übergaben, Abschlusskriterien, Prüfverfahren (P2) — **abgeschlossen 2026-10-07** (5 Karten)
+
+*Zusatz 2026-10-07 (Faber, Durchzug auf Anweisung von Thomas): **R8 ist vollständig — 5 von 5
+Karten.** Die Überschrift dieses Abschnitts ist der Stand vom 2026-10-06 und bleibt stehen;
+maßgeblich ist die Spalte „Stand".*
 
 | Karte | Kurz | Stand |
 |---|---|---|
-| M10-001 | Erledigte Aufgaben bleiben in aktiven Listen | ○ |
-| M10-002 | Übergabevorlage und tatsächliche Aktenstruktur driften auseinander | ○ |
-| M10-003 | Übergaben werden trotz Erhaltungsregel umgeschrieben | ○ |
-| M10-004 | Wesentliche Prüfskripte fehlen im versionierten Bestand | ○ |
-| M10-005 | Abschlussbewertung nicht am dokumentierten Umfang gemessen | ○ |
+| M10-001 | Erledigte Aufgaben bleiben in aktiven Listen | **✓ erledigt** (2026-10-07): 40 erledigte und 2 überholte Einträge **wörtlich** ins Archiv `06-protokolle/2026-10-07-erledigte-punkte-archiv.md`; aktive Liste führt nur offene Arbeit mit IDs `OP-001…OP-063`; 11 Konzept-Statusköpfe datiert ergänzt; DRINGEND-Akte als historischer Vorgang eingeordnet; neuer Prüfer `scripts/akte-audit.mjs` (Regelkreis `listen`), 7/7 Mutationen erkannt. Protokoll `06-protokolle/2026-10-07-r8-m10-001-aktive-listen.md` |
+| M10-002 | Übergabevorlage und Aktenstruktur driften auseinander | **✓ erledigt** (2026-10-07): **Feldwiderspruch behoben** — `arbeitsregeln.md` verlangte `Auftrag`, die Vorlage hatte das Feld nicht; Vorlage ergänzt, Regel datiert nachgezogen. Neuer Regelkreis `uebergabe`: Kopffelder, Pflichtabschnitte **mit zugelassenen Varianten**, Prüfnachweis, Revision; Stichtag 2026-10-07 (ältere nur gemeldet). Gemessene Lückenlage: **30 von 49 Übergaben**, 132 Hinweise (OP-018/OP-034). Selbsttest 6/6, 5/5 Mutationen. Protokoll `…-r8-m10-002-uebergabespezifikation.md` |
+| M10-003 | Übergaben werden trotz Erhaltungsregel umgeschrieben | **✓ erledigt** (2026-10-07): Verfahren **„Aktenkorrektur — ergänzen statt umschreiben"** in `arbeitsregeln.md` (vier Pflichtangaben, Abrufweg der alten Fassung, keine History-Umschreibung); vier betroffene Übergaben (`6e33dc3`, `ed0ee4e`) datiert **sachlich gekennzeichnet**; neuer Regelkreis `korrektur` (Wortvergleich, Formatierung ausgenommen), 4/4 Gegenproben. Protokoll `…-r8-m10-003-aktenkorrektur.md` |
+| M10-004 | Wesentliche Prüfskripte fehlen im versionierten Bestand | **✓ erledigt** (2026-10-07): **`scripts/belege/`** mit zwei portablen, versionierten Belegen (Netzbeleg der Sprachpakete, Rechner-Kern-Größe) + Voraussetzungshilfe + README; `npm run beleg:*`. **Abnahme im frischen Checkout ohne `work/` gefahren** (beide Belege Exit 0); 4/4 Negativproben Exit 2 mit benannter Ursache. **Befund außerhalb der Karte:** `HEAD` ist im frischen Checkout **nicht baubar** (OP-064). Protokoll `…-r8-m10-004-belegskripte.md` |
+| M10-005 | Abschlussbewertung nicht am dokumentierten Umfang gemessen | **✓ erledigt** (2026-10-07): neue **`01-stand/abschlussmatrix.md`** — 19 Kriterienzeilen (elf Konzepte), je Zitat + Istwert + Revision + Nachweis + Status; Startbudget in **drei getrennte Anforderungen** zerlegt; neuer Regelkreis `abschluss`, der **jedes Zitat in seiner Quelle** sucht, 5/5 Gegenproben. Protokoll `…-r8-m10-005-abschlussmatrix.md` |
+
+R8-Protokolle: `06-protokolle/2026-10-07-r8-m10-001-aktive-listen.md`,
+`…-r8-m10-002-uebergabespezifikation.md`, `…-r8-m10-003-aktenkorrektur.md`,
+`…-r8-m10-004-belegskripte.md`, `…-r8-m10-005-abschlussmatrix.md`.
+Übergabe: `05-uebergaben/2026-10-07-r8-abgeschlossen.md`.*
+
+*Nachtrag 2026-10-07 (R8 abgeschlossen, Faber). Nachgezählt **Zeile für Zeile mit einem Skript**
+über die Kartentabellen dieses Abschnitts (nicht aus einer Summe abgeleitet):
+**59 Karten — 55 erledigt · 1 mit Restforderung (M8-001) · 3 offen.** Vollständig sind R1–R8;
+offen sind **R9 (2 Karten)** und **R10 (1 Karte, Betreiberentscheidung)**.*
+
+**Drei Produktbefunde ohne eigene Karte** kamen in R8 hinzu: die Vorlage verlangte ein Feld nicht,
+das die Regel forderte (M10-002, behoben); `HEAD` ist im frischen Checkout **nicht baubar**, weil das
+committete Lizenzregister der eigenen Hinweisdatei widerspricht (**OP-064**, gemeldet, nicht
+eigenmächtig geändert); und der Verweispruefer war für mehrfache Backtick-Folgen zu grob (behoben,
+mit Gegenprobe).
 
 ### R9 — Gemeinsame Bausteine und Routing (P2) — nicht begonnen (nach Bedarf)
 
@@ -397,3 +417,18 @@ Aktualisiert wird **nur Spalte „Stand"** in Abschnitt 4 und die Abschnitte 6 u
 Datum. Der Wortlaut von Auftrag, Reihenfolge und Arbeitsweise bleibt stehen; Änderungen daran
 bekommen einen datierten Zusatz (Korrekturregel des Projekts). Bei jedem Sitzungsabschluss
 mitführen, solange die Sanierung läuft.
+
+*Nachtrag 2026-10-07 (R8, Faber).* Kopf nach dem R8-Codestand ist **`7e95b94`**; die Akten-Commits
+dieses Nachzugs folgen darauf. `main` stand zu diesem Zeitpunkt **130 Commits vor `origin/main`** —
+**gemessen** mit `git rev-list --count origin/main..HEAD`, nicht aus einem Text abgelesen.
+**Nichts gepusht**; ein Push veröffentlicht commietools.org.
+
+R8 hat **zehn Commits** erzeugt (seit `2fd480c`, dem Kopf dieser Übergabe): je Karte Code und Akte
+getrennt, für M10-004 drei Commits (zwei Skripte/README, README-Richtigstellung, Akte).
+Neue Dauerprüfer: `npm run akte:check` mit den Regelkreisen `listen`, `uebergabe`, `korrektur`,
+`abschluss`.
+
+**Der Kartenstand dieses Abschnitts wurde Zeile für Zeile mit einem Skript gezählt** (59 Karten,
+55/1/3 — nicht aus einer Summe abgeleitet). **Weiterhin nicht bewacht:** die Leitdatei selbst hat
+keinen Prüfer; sie kann nur durch eine solche Zählung nachgezogen werden. Der Abgleich
+Karte ↔ Protokoll ↔ Commit bleibt ein offener Gedanke (`01-stand/offene-punkte.md`).*

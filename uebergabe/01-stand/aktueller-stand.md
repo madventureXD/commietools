@@ -2,6 +2,43 @@
 
 **Stand:** 2026-10-06
 
+**Zusatz 2026-10-07 (Faber), R8 abgeschlossen — 5 von 5 Karten (Übergaben, Abschlusskriterien, Prüfverfahren):**
+- **M10-001 ✓** Die verbindliche Aufgabenliste führt **nur offene Arbeit**: 40 erledigte und 2
+  überholte Einträge **wörtlich** ins Archiv `06-protokolle/2026-10-07-erledigte-punkte-archiv.md`
+  (nichts gelöscht); aktive Punkte tragen IDs `OP-001`…`OP-063`; **11 Konzept-Statusköpfe** datiert
+  ergänzt; die `DRINGEND`-Akte als **historischen Vorgang** eingeordnet; neuer Prüfer
+  `scripts/akte-audit.mjs` (Regelkreis `listen`) in `npm run check`.
+- **M10-002 ✓** **Vorlage und Regel waren widersprüchlich** — `arbeitsregeln.md` verlangte das
+  Kopffeld `Auftrag`, die Vorlage hatte es nicht. Vorlage ergänzt, Regel datiert nachgezogen. Neuer
+  Regelkreis `uebergabe` (Kopffelder, Pflichtabschnitte **mit zugelassenen Varianten**, Prüfnachweis,
+  Revision; Stichtag 2026-10-07). **Gemessen:** 30 von 49 Übergaben mit Lücke, 132 Hinweise
+  (Aufgabe OP-018/OP-034, jetzt beziffert).
+- **M10-003 ✓** Verfahren **„Aktenkorrektur — ergänzen statt umschreiben"** in `arbeitsregeln.md`
+  (ersetzte Aussage, Grund, richtige Aussage, Beleg; alte Fassung über `git show` abrufbar; keine
+  History-Umschreibung). Vier nachträglich umgeschriebene Übergaben (`6e33dc3`, `ed0ee4e`) datiert
+  **sachlich gekennzeichnet**. Neuer Regelkreis `korrektur` (Wortvergleich; reine Formatierung löst
+  **keinen** Befund aus).
+- **M10-004 ✓** **`scripts/belege/`** — die tragenden Belege sind **versioniert und portabel**
+  (Netzbeleg der Sprachpakete, Größe des Rechner-Kerns, gemeinsame Voraussetzungshilfe, README);
+  `npm run beleg:sprachpakete` / `beleg:rechner-kern`. **Abnahme im frischen Checkout ohne `work/`
+  gefahren** (beide Belege Exit 0), vier Negativproben brechen mit **Exit 2** und benannter Ursache
+  ab statt ein leeres Ergebnis zu melden. Kein `work/` entignoriert, keine private Datei hochgeladen.
+- **M10-005 ✓** Neue **`01-stand/abschlussmatrix.md`**: 19 Kriterienzeilen aus elf Konzepten, je
+  **Zitat + gemessener Istwert + Revision + Nachweis + Status**. Das Startbudget ist in **drei
+  getrennte Anforderungen** zerlegt (identischer Bytewert / kein Engine-Startimport / unter der
+  Warnschwelle) — der Bytewert ist **nicht** eingehalten (136.961 → **150.082 B gzip**) und bleibt als
+  Abweichung stehen, nicht als angepasste Anforderung. Neuer Regelkreis `abschluss`, der **jedes
+  Zitat in seiner Quelle** sucht.
+- **Drei Produktbefunde ohne eigene Karte**, alle gemeldet: Vorlage-Regel-Widerspruch (behoben);
+  **`HEAD` ist im frischen Checkout nicht baubar** — das committete Lizenzregister widerspricht der
+  eigenen Hinweisdatei (**OP-064**, nicht eigenmächtig geändert); der Verweispruefer war für
+  mehrfache Backtick-Folgen zu grob (behoben, mit Gegenprobe).
+- Prüfkette: `npm run check` Exit 0 (**719 Tests**, 51 Dateien, 0 Lint-Fehler, 109 Warnungen) ·
+  `npm run build` Exit 0 (Eingang 150.082 B gzip) · `npm run akte:check` mit **vier** Regelkreisen
+  grün. Übergabe: `05-uebergaben/2026-10-07-r8-abgeschlossen.md`. **Nichts gepusht.**
+  Gezählter Kartenstand: **59 Karten — 55 erledigt · 1 mit Restforderung (M8-001) · 3 offen**
+  (R9 2, R10 1).
+
 **Zusatz 2026-10-07 (Faber), R7 abgeschlossen — 8 von 8 Karten (Produkt- und Architekturakten):**
 - **M1-001 ✓** Umfangszahlen der README sind **generiert** (`scripts/readme-scope.mjs`,
   `npm run readme:check` in `check`); am ausgelieferten Bau gezählt **62 Tools / 7 Suiten / 23 PDF**.
