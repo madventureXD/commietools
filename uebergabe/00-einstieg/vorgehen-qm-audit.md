@@ -135,7 +135,7 @@ Teilnachweise fehlen; siehe Protokoll `06-protokolle/2026-10-06-r4-pruef-und-fre
 | M2-007 | Drei Schaltflächenregeln unter 44 Pixel | **✓ behoben** (2026-10-07) |
 | M2-008 | Oberflächenfarben umgehen das semantische Tokensystem | **✓ behoben** (2026-10-07) |
 | M7-001 | Weiße Aktionsbeschriftung im dunklen Schema zu kontrastarm | **✓ behoben** (Thomas-Entscheidung 2026-10-06): Token `--color-action-text` je Schema — dunkel `#101114` auf `#ff4b59` = 5,7562:1, hell weiß auf `#c91f2c` = 5,6514:1, beide AA; Audit-Ausnahmen entfernt |
-| M7-002 | Menü-Fokusbegrenzung berücksichtigt sichtbare Kategorien nicht | ○ |
+| M7-002 | Menü-Fokusbegrenzung berücksichtigt sichtbare Kategorien nicht | **✓ behoben** (2026-10-07): nativer modaler Dialog (`showModal`), Hintergrund inaktiv, Tabulator bleibt im Menü — gemessen bei 1360 und 390 px |
 | M7-003 | PDF-Schwärzung ohne Tastaturalternative | ○ |
 | M7-004 | PDF-Viewer stellt Text assistiver Technik nicht bereit | ○ |
 | M7-005 | Schmale Layouts verdecken Beschriftungen, Katalog läuft über | **✓ behoben** (2026-10-07) |

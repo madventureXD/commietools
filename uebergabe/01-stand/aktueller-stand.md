@@ -1,6 +1,22 @@
 # Aktueller Projektstand
 
 **Stand:** 2026-10-06
+**Zusatz 2026-10-07 (Faber), R5-Durchzug — Einheit 6: M7-002 abgeschlossen, das Menü ist ein modaler Dialog:**
+- **M7-002 ✓ behoben.** Entscheidung laut Karte: **nativer modaler Dialog** (`<dialog>` +
+  `showModal()`) statt eigener Tab-Liste. Die alte Liste (`button, input`) übersah `summary` und
+  `select` und fasste **verborgene Nachfahren geschlossener Details** mit; sie ist ersatzlos entfallen.
+  Hintergrund wird jetzt von der Plattform inaktiv gestellt, `Escape` läuft über `cancel`, die
+  Schirmfläche über `::backdrop` (Klick auf die Rückseite schließt).
+- Erste Fokussierung: ab 721 px Suchfeld, darunter der **Schließen-Knopf** (die Tastatur würde sonst
+  das Menü verdecken). Fokus-Rückkehr über nativen `close`-Zuhörer **und** Fokussetzung beim Öffnen.
+- **Gemessen** (echte Tasten- und Zeigerereignisse, 1360 und 390 px): erster Fokus richtig,
+  Hintergrund gesperrt, Tabulatorläufe (14/10/6 Schritte, geschlossene und offene Kategorien, ohne
+  Treffer, Favoriten) **0 Ziele außerhalb** und **0 verborgene Ziele**, Escape und Rücktaste schließen
+  ohne Routenwechsel und ohne übrigen Verlaufseintrag, Fokus kehrt zurück, Werkzeugwechsel per
+  Zeigerklick schließt das Menü.
+- Prüfkette: `npm run check` Exit 0 (695 Tests) · `npm run build` Exit 0. Protokoll:
+  `06-protokolle/2026-10-07-m7-002-menue-als-modaler-dialog.md`. **Nichts gepusht.**
+
 **Zusatz 2026-10-07 (Faber), R5-Durchzug — Einheit 5: M2-006 mit benannter Grenze abgeschlossen:**
 - **M2-006 ✓ mit benannter Grenze.** Gefunden wurden genau **zwei** feste englische Namen:
   `aria-label="Main navigation"` an der Hauptnavigation und `aria-label="Case mode"` an einem
