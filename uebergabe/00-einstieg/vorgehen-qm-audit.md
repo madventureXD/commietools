@@ -74,7 +74,7 @@ Legende: ✓ erledigt · ◐ erledigt mit offener Restforderung · ○ offen
 *Korrektur 2026-10-07 (Faber, Aktenpflege). Der vorstehende Satz widersprach der Tabelle dieses
 Abschnitts und wurde nachgezählt — nicht aus der Summe, sondern Zeile für Zeile mit einem Skript
 über die Kartentabellen: **59 Karten — 34 erledigt · 1 mit Restforderung (M8-001) · 24 offen.**
-Je Stufe: R1 5 von 6 · R2 7 von 7 · R3 6 von 6 · R4 8 von 8 · R5 7 von 9 · R6 1 von 7 (M3-007) ·
+Je Stufe: R1 5 von 6 · R2 7 von 7 · R3 6 von 6 · R4 8 von 8 · R5 7 von 9 · R6 3 von 7 (M3-001, M3-007; M3-001 vorher als Rest geführt) ·
 R7 0 von 8 · R8 0 von 5 · R9 0 von 2 · R10 0 von 1. Die alte Zahl beschrieb den Stand vor dem
 R5-Durchzug; der Wortlaut bleibt deshalb stehen, maßgeblich ist die Tabelle mit dieser Korrektur.
 Korrektur des zweiten Halbsatzes: R5 ist **begonnen** (7 von 9), nicht „steht aus".*
@@ -169,7 +169,7 @@ Die frühere akzeptierte Abweichung ist damit aufgehoben; die Audit-Ausnahmen wu
 | M3-003 | Spanische Kerntexte ändern die fachliche Bedeutung | ○ |
 | M3-004 | Deutsche Richtungsbeschriftungen umgehen die Sprachpakete | ○ |
 | M3-006 | Ton und Terminologie nicht durchgängig eingehalten | ○ |
-| M3-007 | Lange Unicode-Dateinamen beim Kürzen beschädigt | **✓ behoben** 2026-10-06 (bei M5-004 gefunden): `normaliseFileName` schnitt bei 180 Zeichen mitten in einem Emoji ab; Grenzprüfung ergänzt, Regressionstest in `save-file.test.ts` |
+| M3-007 | Lange Unicode-Dateinamen beim Kürzen beschädigt | **✓ erledigt — zweistufig.** 2026-10-06 (bei M5-004 gefunden): `normaliseFileName` schnitt bei 180 Zeichen mitten in einem Emoji ab; Surrogat-Grenzprüfung + Regressionstest ergänzt. **2026-10-07 (R6, Durchzug):** das war zu kurz gegriffen — es schützt nur Surrogatpaare, nicht **Graphemgruppen** (ZWJ-Familie, Flagge, Hautton, kombinierendes Zeichen bleiben beim Durchschneiden wohlgeformt und sind trotzdem zerstört). Jetzt `Intl.Segmenter` (`granularity: 'grapheme'`), gezählt weiter in UTF-16-Einheiten gegen die 180er-Grenze, benannter Rückfall. Test prüft gegen **unabhängige** Segmentliste; echte Mutationsgegenprobe (zeichenweise Segmentierung) lässt die ZWJ-Familie durchfallen — zwei frühere Mutationsanläufe scheiterten am Linter und waren wertlos (im Protokoll benannt). Protokoll `06-protokolle/2026-10-07-m3-007-graphemgrenzen.md`, Commit `0673e4f` |
 | M3-008 | Titelschreibung übersieht Wörter hinter spanischen Satzzeichen | ○ |
 | M3-010 | Zahlenformate folgen innerhalb einer Oberfläche verschiedenen Regeln | ○ |
 
