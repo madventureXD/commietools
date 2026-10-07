@@ -138,7 +138,7 @@ Teilnachweise fehlen; siehe Protokoll `06-protokolle/2026-10-06-r4-pruef-und-fre
 | M7-002 | Menü-Fokusbegrenzung berücksichtigt sichtbare Kategorien nicht | ○ |
 | M7-003 | PDF-Schwärzung ohne Tastaturalternative | ○ |
 | M7-004 | PDF-Viewer stellt Text assistiver Technik nicht bereit | ○ |
-| M7-005 | Schmale Layouts verdecken Beschriftungen, Katalog läuft über | ○ |
+| M7-005 | Schmale Layouts verdecken Beschriftungen, Katalog läuft über | **✓ behoben** (2026-10-07) |
 | M7-006 | Nicht definierte CSS-Tokens lassen Regeln ausfallen | **✓ behoben** (2026-10-07) |
 
 *Hinweis:* **M7-001 wurde am 2026-10-06 durch Thomas neu entschieden** (Markenrot bleibt, Schriftfarbe

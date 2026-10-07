@@ -1,6 +1,31 @@
 # Aktueller Projektstand
 
 **Stand:** 2026-10-06
+**Zusatz 2026-10-07 (Faber), R5-Durchzug — Einheit 4: M7-005 abgeschlossen, intrinsische Breitenfehler behoben:**
+- **M7-005 ✓ behoben.** Zwei gemessene Ursachen: (1) Der Rechner zeigte den Ausdruck
+  `div.results` als Raster **ohne Spaltendefinition** — die automatische Spur rechnete auf
+  **346,48 px** in einem **254 px** Kasten, der Inhalt wurde beschnitten, also **verdeckt**
+  (Zahl ohne Umbruchmöglichkeit). (2) In den Umbruchregeln standen blanke `1fr`-Spuren
+  (`minmax(auto,1fr)`), die nicht unter die Inhaltsmindestbreite schrumpfen; mit Textabständen nach
+  WCAG 1.4.12 schob der Katalog die Seite auf **405 px** bei 320 px Fenster. Zusätzlich konnte
+  `.card-footer` nicht umbrechen und schob den Aktionsknopf aus dem Kasten (rechts bei 380 px in
+  einem 206 px breiten Fuß).
+- **16 Regeln intrinsisch sicher gemacht:** blanke `1fr` → `minmax(0,1fr)` (Header, Section-Heading,
+  Prinzipien, große Umbruchregel, Lizenzfilter, PDF-Viewer-Layout, PDF-Formularraster); feste
+  Mindestbreiten in auto-fill-Rastern → `minmax(min(100%, X), 1fr)`; `.results` mit
+  `minmax(0,1fr)` + umbrechende Ergebniszeile; `.card-footer` mit `flex-wrap: wrap`.
+  **Kein `overflow:hidden`** als Reparatur (Karten-Abgrenzung).
+- **Gemessen nach der Änderung:** sieben Zustände je Zeile (Startseite, Menü geöffnet, Rechner mit
+  Ergebnis, langer Dateiname, Textabstände WCAG 1.4.12, 640 px und 683 px ≙ 200 % Zoom auf 1280/1366)
+  in **320/390 px × de/en/es** und 1360 px — **alle 0 Befunde**; Kopfbereich überall vollständig im
+  Bild. Textabstands-Überlauf 405 → 380 → **0** in zwei belegten Schritten.
+- Projektprüfer: `viewport:check` (320 px, 62 Routen) *Audit passed*; `a11y:check` über fünf Routen
+  in beiden Schemata je 8 Routen `ok`, keine Ziele < 44, nichts abgeschnitten.
+- **Grenzen:** kein reales Mobilgerät; Zoom ersatzweise über die CSS-Breite gemessen; Auskoppeln bei
+  320 px nicht als eigenes Fenster geprüft.
+- Prüfkette: `npm run check` Exit 0 · `npm run build` Exit 0. Protokoll:
+  `06-protokolle/2026-10-07-m7-005-schmale-layouts.md`. **Nichts gepusht.**
+
 **Zusatz 2026-10-07 (Faber), R5-Durchzug — Einheit 3: M2-007 abgeschlossen, Greifgrößen real gemessen:**
 - **M2-007 ✓ behoben.** Die Karte stimmt: Menüsortierung und PDF-Seitenaktionen waren **38 px** hoch
   (44–79 bzw. 44–84 breit), gemessen mit erzeugten Zuständen. Die Icon-Ergebnisse waren mit
