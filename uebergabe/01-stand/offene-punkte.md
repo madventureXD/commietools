@@ -2,7 +2,13 @@
 
 ## Neu aus R6 (2026-10-07)
 
-- [ ] **25 Formatierstellen folgen weiter der Oberflächensprache statt dem Formatkontext** *(2026-10-07)*.
+- [x] **ERLEDIGT 2026-10-07 (Nachtrag zu M3-010): 25 Stellen folgen jetzt dem Formatkontext.**
+  Umgesetzt mit `anzeigeKontext()` und dem neuen Prüfer `npm run format:check`, der in
+  `npm run check` hängt (Gegenprobe: eine Stelle zurückstellen → Exit 1). UI-Beleg mit abweichender
+  Region: Oberfläche de + Gerät en-US → „1,234,567.5"/„1,523,990.25"; Oberfläche es + Gerät de-DE →
+  „1.234.567,5"/„1.523.990,25". Eine technische Ausnahme (`aufmassPdf.ts`, `useGrouping: false`)
+  bleibt begründet. Protokoll: `06-protokolle/2026-10-07-formatkontext-reststellen.md`, Commit
+  `34be880`. — *Der frühere Eintrag lautete (Wortlaut bleibt stehen):*
   In R6 wurde der gemeinsame Formatkontext gebaut und die vier in Karte M3-010 benannten Stellen
   umgestellt. Gemessen bleiben **25 Stellen** mit `Intl.NumberFormat(locale, …)` bzw. festem
   `toFixed` (Aufmaß, Kabel, Beton, Trockenbau, Böden, Geometrie, Wärmelast, Icon-Generator u. a.).
