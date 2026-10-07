@@ -38,3 +38,11 @@ Eine spätere Engine muss vor der Integration alle folgenden Gates erfüllen:
 ## Alternative Prüfstrecke
 
 Die Sperre gilt nicht für einen isolierten Forschungsprototyp. Als bevorzugte neue Prüfstrecke wird `StrategicProjects/pdf_signer` zunächst nativ reproduziert und unabhängig gegengeprüft. Erst danach darf ein minimaler Rust-WASM-Adapter für PAdES B-B untersucht werden. Der vollständige Prüfauftrag liegt unter `uebergabe/07-pruefung/m7/`. Bis alle dortigen Gates erfüllt sind, bleibt jeder Build intern und unveröffentlicht.
+
+*Nachtrag 2026-10-07 (Faber, Karte M2-001).* Der vorstehende Text beschreibt den Stand vom
+**2026-10-03** und bleibt unverändert erhalten. Seitdem ist M7 gebaut: drei signaturbezogene
+Werkzeuge stehen im Katalog und werden ausgeliefert. Der tatsächliche Produktstand und der
+Nachweisstand je Gate stehen in
+[`0014-m7-freigabekriterien.md`](0014-m7-freigabekriterien.md) — Status **vorgeschlagen**, die
+Annahme ist eine Betreiberentscheidung. Dieser nachgetragene Hinweis ersetzt nichts und nimmt keine
+Freigabe vorweg.

@@ -1,0 +1,26 @@
+############ A-Startseite
+   Ueberschrift: "Kostenlose Werkzeuge für alle."
+   Anfragen engine-*.js: 0 · engine_bg-*.wasm: 0
+   Seitenfehler: []
+############ B-pdf-signature-verify
+   Ueberschrift: "PDF-Signaturen überprüfen"
+   Datei eingespeist: true (m4-005-schnell-B.pdf)
+   Ergebnisbereich (Auszug): ["Die Dokumente bleiben auf deinem Gerät.","m4-005-schnell-B.pdf","Signaturen überprüfen","Keine kryptografische PDF-Signatur gefunden."]
+   Anfragen engine-*.js: 1 · engine_bg-*.wasm: 1
+   Seitenfehler: []
+############ C-pdf-certificate-sign
+   Ueberschrift: "PDF mit Zertifikat signieren"
+   Anfragen engine-*.js: 0 · engine_bg-*.wasm: 0
+   Seitenfehler: []
+############ D-pdf-visible-signature
+   Ueberschrift: "PDF sichtbar unterschreiben"
+   Anfragen engine-*.js: 0 · engine_bg-*.wasm: 0
+   Seitenfehler: []
+--- Zusammenfassung ---
+   Startseite laedt die Signatur-Engine NICHT: js=0 wasm=0 ✓
+   Datei angenommen: ✓
+   Ergebnis statt Stillstand: ✓
+   Engine im Werkzeug geholt: js=1 wasm=1 ✓
+   Vertrauensvorbehalt sichtbar: ✓
+   Datenschutzhinweis sichtbar: ✓
+   Werkzeug rendert: ✓ (462 Zeichen)
