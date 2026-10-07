@@ -423,8 +423,14 @@ dieses Nachzugs folgen darauf. `main` stand zu diesem Zeitpunkt **130 Commits vo
 **gemessen** mit `git rev-list --count origin/main..HEAD`, nicht aus einem Text abgelesen.
 **Nichts gepusht**; ein Push veröffentlicht commietools.org.
 
-R8 hat **zehn Commits** erzeugt (seit `2fd480c`, dem Kopf dieser Übergabe): je Karte Code und Akte
-getrennt, für M10-004 drei Commits (zwei Skripte/README, README-Richtigstellung, Akte).
+R8 hat bis zum Akten-Commit dieses Nachzugs **dreizehn Commits** erzeugt (seit `2fd480c`, gemessen mit
+`git log --oneline 2fd480c..HEAD | wc -l`): je Karte Code und Akte getrennt, für M10-004 drei Commits
+(zwei Skripte/README, README-Richtigstellung, Akte). Die Berichtigung **dieser Zeile** ist ein
+weiterer Akten-Commit.
+*(Korrektur 2026-10-07, Faber: hier stand „**zehn Commits**" — **falsch gezählt**, nicht aus der
+Git-Ausgabe abgelesen. Die richtige Zahl ist gemessen. Dieselbe Regel steht seit R7 im Skill
+(`references/fallen-r7-2026-10-07.md`, Punkt 4: Zahlen **zählen**, nicht summieren) — sie gilt auch
+für Commit-Zahlen.)*
 Neue Dauerprüfer: `npm run akte:check` mit den Regelkreisen `listen`, `uebergabe`, `korrektur`,
 `abschluss`.
 
