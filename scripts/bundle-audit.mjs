@@ -41,7 +41,13 @@ const engines = [
     content: /(?:parseDependencies|DecimalError|typed-function)/u,
     filename: /(?:^|[-_])core[-_]/iu,
     /** Nachgeladen erlaubt, aber nicht unbegrenzt: gemessen 94,3 KiB, Reserve für Welle 2. */
-    routeBudget: 110 * 1024
+    routeBudget: 110 * 1024,
+    /**
+     * ADR 0005: „mathjs wird ausschliesslich nachgeladen. Es darf nie im Startbuendel liegen."
+     * Bisher fehlte diese harte Regel — ein statischer Import in den Eingang waere nur als
+     * Groessenwarnung erschienen (gemessen 2026-10-07, Karte M2-003). Jetzt wie die PDF-Engines.
+     */
+    staticBudget: 0
   }
 ]
 

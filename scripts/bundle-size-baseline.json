@@ -1,4 +1,8 @@
 {
+  "_hinweis": "Referenzstand fuer scripts/bundle-audit.mjs. Die Datei wird NUR GELESEN und nie automatisch fortgeschrieben; ein neuer Stand ist eine bewusste Entscheidung, kein Nebeneffekt eines Baus.",
+  "_einheit": "Byte, gzip (node:zlib gzipSync, Standardstufe)",
+  "_umfang": "entry = das Startskript aus apps/web/dist/index.html; catalogBase/searchLocale/uiMessages/toolMessages = einzelne Chunk-Dateien bzw. deren Summe/groesstes Paket (siehe Schluesselname)",
+  "_stand": "Die Zahlen stammen aus einem fruehreren Bau und liegen inzwischen unter dem heutigen Messwert; die Abweichung wird im Bambericht als '+N B zum Referenzstand' ausgewiesen, nicht versteckt.",
   "entry": 146417,
   "catalogBase:base": 1212,
   "searchLocale:de": 9284,
