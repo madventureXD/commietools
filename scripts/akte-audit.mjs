@@ -228,6 +228,86 @@ function checkKorrektur() {
   }
 }
 
+// ---------- M10-005 ----------
+// Die Abschlussmatrix stellt jedes urspruengliche Kriterium (Zitat) einem gemessenen Istwert
+// gegenueber. Der Pruefer sichert drei Dinge:
+//   1. jeder Status ist einer der fuenf zugelassenen Werte,
+//   2. **jedes Zitat kommt in seiner Quelle vor** — ein erfundenes oder heimlich umformuliertes
+//      Kriterium faellt damit auf ("still entfernt" ist nicht mehr moeglich),
+//   3. jedes Konzept mit einem Abnahmeabschnitt ist in der Matrix vertreten — ein ganzes
+//      Vorhaben kann nicht aus der Bewertung fallen.
+const MATRIX = join(uebergabe, '01-stand', 'abschlussmatrix.md')
+const STATUS_WERTE = ['erfüllt', 'erfüllt mit Abweichung', 'verschoben', 'offen', 'ohne schriftliches Kriterium']
+const KONZEPT_KRITERIUM = /^#{2,3}\s+.*(?:Akzeptanzkriterien|Abnahmekriterien|Abnahmekriterium|Freigabekriterien)/mu
+
+// Fuer den Zitatvergleich: Auszeichnung und Anfuehrungszeichen weg, Leerraum vereinheitlichen.
+function vergleichsform(text) {
+  return text
+    .replace(/[„“”«»‚‘’"']/gu, '')
+    .replace(/[*_`]/gu, '')
+    .replace(/\s+/gu, ' ')
+    .trim()
+}
+function checkAbschluss() {
+  const problems = []
+  const matrix = readFileSync(MATRIX, 'utf8')
+  let rows = 0
+  const zitate = []
+  for (const line of matrix.split('\n')) {
+    if (!line.startsWith('|')) continue
+    const zellen = line.split('|').slice(1, -1).map((z) => z.trim())
+    if (zellen.length !== 7 || zellen[0] === 'Vorhaben') continue
+    if (zellen.every((z) => /^-+$/u.test(z))) continue // Trennzeile der Tabelle
+    rows += 1
+    const [, zitat, quelle, istwert, revision, nachweis, status] = zellen
+    const kurz = zellen[0].slice(0, 45)
+    const statusWert = status.replace(/\*/gu, '').trim()
+    if (!STATUS_WERTE.includes(statusWert)) {
+      problems.push(`${kurz}: Status "${statusWert}" ist keiner der fuenf zugelassenen Werte`)
+    }
+    if (!istwert.replace(/\*/gu, '').trim()) problems.push(`${kurz}: kein Istwert`)
+    if (!/^\d{4}-\d{2}-\d{2}/u.test(revision.replace(/\*/gu, '').trim())) problems.push(`${kurz}: keine Revision (Datum JJJJ-MM-TT)`)
+    const nachweisPfad = /`([^`]+)`/u.exec(nachweis)?.[1] ?? (nachweis.includes('/') ? nachweis.replace(/\*/gu, '').trim() : null)
+    if (nachweisPfad && !/^(?:npm|node|cargo) /u.test(nachweisPfad)) {
+      // Nachweise stehen teils relativ zur Akte, teils relativ zum Projektwurzelverzeichnis.
+      const kandidaten = [resolve(uebergabe, nachweisPfad), resolve(root, nachweisPfad)]
+      if (!kandidaten.some((p) => existsSync(p))) {
+        problems.push(`${kurz}: Nachweis zeigt auf eine fehlende Stelle: ${nachweisPfad}`)
+      }
+    }
+    const quellePfad = quelle.replace(/[`*]/gu, '').trim()
+    if (!existsSync(resolve(uebergabe, quellePfad))) {
+      problems.push(`${kurz}: Quelle existiert nicht: ${quellePfad}`)
+    } else if (!/kein schriftliches Kriterium/u.test(zitat)) {
+      const quelleText = vergleichsform(readFileSync(resolve(uebergabe, quellePfad), 'utf8'))
+      const zitatText = vergleichsform(zitat)
+      if (!quelleText.includes(zitatText)) {
+        problems.push(`${kurz}: das Zitat steht nicht in der Quelle ${quellePfad} — Zitat: "${zitatText}"`)
+      }
+      zitate.push(quellePfad)
+    }
+  }
+  if (!rows) problems.push(`${rel(MATRIX)}: keine Matrixzeile gefunden (7 Spalten erwartet)`)
+
+  // Jedes Konzept mit Abnahmeabschnitt muss in der Matrix vertreten sein.
+  const konzeptDir = join(uebergabe, '03-konzepte')
+  let konzepte = 0
+  for (const name of readdirSync(konzeptDir)) {
+    if (!name.endsWith('.md') || name === 'README.md') continue
+    if (!KONZEPT_KRITERIUM.test(readFileSync(join(konzeptDir, name), 'utf8'))) continue
+    konzepte += 1
+    if (!zitate.includes(`03-konzepte/${name}`)) {
+      problems.push(`03-konzepte/${name}: hat einen Abnahmeabschnitt, fehlt aber in der Abschlussmatrix`)
+    }
+  }
+
+  if (problems.length) return { problems }
+  return {
+    problems: [],
+    detail: `${rows} Kriterienzeilen geprueft, jedes Zitat in seiner Quelle gefunden, ${konzepte} Konzepte mit Abnahmeabschnitt vertreten`,
+  }
+}
+
 // ---------- M10-002 ----------
 const PLACEHOLDER = /(<[A-Za-zÄÖÜäöüß][^>]*>|YYYY-MM-DD|noch nicht committed|<Hash)/u
 const SECTIONS = [
@@ -347,10 +427,11 @@ const registry = {
   listen: checkListen,
   uebergabe: () => pruefeUebergabe(join(uebergabe, '05-uebergaben')),
   korrektur: checkKorrektur,
+  abschluss: checkAbschluss,
   'uebergabe-selftest': selftestUebergabe,
 }
 const requested = process.argv.slice(2)
-const run = requested.length ? requested : ['listen', 'uebergabe', 'korrektur']
+const run = requested.length ? requested : ['listen', 'uebergabe', 'korrektur', 'abschluss']
 for (const name of run) {
   if (!registry[name]) fail(`unbekannter Regelkreis "${name}" (bekannt: ${Object.keys(registry).join(', ')})`)
   const result = registry[name]()
