@@ -15,10 +15,12 @@
 //                          (Commit-Hash oder ausdrueckliches "nichts committet") sind Pflicht
 //                        - Uebergaben vor dem Stichtag sind historisch: Luecken werden gemeldet,
 //                          aber nicht gewertet (Auftrag: OP-018/OP-036)
+//   abschluss (M10-005) Die Abschlussmatrix traegt je Kriterium Istwert, Revision, Nachweis, Status.
 //
 // Usage: node scripts/akte-audit.mjs [listen] [uebergabe] [abschluss] [uebergabe-selftest]
 //        ohne Argument laufen die Regelkreise der Akte (nicht der Selbsttest).
 import { existsSync, mkdtempSync, readFileSync, readdirSync, rmSync, statSync, writeFileSync } from 'node:fs'
+import { execFileSync } from 'node:child_process'
 import { tmpdir } from 'node:os'
 import { dirname, join, relative, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
@@ -158,6 +160,74 @@ function checkListen() {
   }
 }
 
+// ---------- M10-003 ----------
+// Geschuetzte Akten: was einmal uebergeben/entschieden/protokolliert ist, wird ergaenzt, nicht
+// umgeschrieben. Der Pruefer vergleicht den Arbeitsbaum gegen HEAD und sucht VERSCHWUNDENE Worte.
+// Reine Formatierung (Absatzumbruch, Einrueckung, Leerzeichen) veraendert kein Wort und loest
+// deshalb keinen Befund aus — genau das verlangt die Karte.
+const PROTECTED = ['uebergabe/05-uebergaben', 'uebergabe/06-protokolle', 'uebergabe/03-konzepte', 'uebergabe/04-entscheidungen']
+const KORREKTUR_MARKER = /(?:Nachtrag|Zusatz|Korrektur|Hinweis zur Fassung)\s*\(?\s*\d{4}-\d{2}-\d{2}/u
+function tokens(text) {
+  return text
+    .replace(/[^\p{L}\p{N}]+/gu, ' ')
+    .trim()
+    .toLowerCase()
+    .split(' ')
+    .filter(Boolean)
+}
+function multiset(list) {
+  const map = new Map()
+  for (const token of list) map.set(token, (map.get(token) ?? 0) + 1)
+  return map
+}
+function verschwundeneWorte(alt, neu) {
+  const a = multiset(tokens(alt))
+  const b = multiset(tokens(neu))
+  const fehlend = []
+  for (const [token, count] of a) {
+    const rest = count - (b.get(token) ?? 0)
+    for (let i = 0; i < rest; i += 1) fehlend.push(token)
+  }
+  return fehlend
+}
+function checkKorrektur() {
+  const problems = []
+  let diff
+  try {
+    diff = execFileSync('git', ['diff', '-U0', 'HEAD', '--', ...PROTECTED], { cwd: root, encoding: 'utf8', maxBuffer: 64 * 1024 * 1024 })
+  } catch {
+    return { problems: [], detail: 'kein Git-Vergleich moeglich (kein Repository oder kein HEAD) — uebersprungen' }
+  }
+  const files = new Map()
+  let current = null
+  for (const line of diff.split('\n')) {
+    if (line.startsWith('+++ b/')) { current = line.slice(6); files.set(current, { alt: [], neu: [] }); continue }
+    if (line.startsWith('--- ') || line.startsWith('+++ ') || line.startsWith('@@') || line.startsWith('diff ') || line.startsWith('index ')) continue
+    if (!current) continue
+    if (line.startsWith('-')) files.get(current).alt.push(line.slice(1))
+    else if (line.startsWith('+')) files.get(current).neu.push(line.slice(1))
+  }
+  const betroffen = []
+  for (const [file, { alt, neu }] of files) {
+    if (!alt.length) continue
+    const fehlend = verschwundeneWorte(alt.join('\n'), neu.join('\n'))
+    if (!fehlend.length) continue
+    const body = existsSync(join(root, file)) ? readFileSync(join(root, file), 'utf8') : ''
+    const marker = KORREKTUR_MARKER.test(body)
+    betroffen.push({ file, fehlend, marker })
+    if (!marker) {
+      problems.push(`${file}: ${fehlend.length} Wort(e) verschwinden ohne datierten Nachtrag (z. B. "${fehlend.slice(0, 6).join(' ')}") — Akten werden ergaenzt, nicht umgeschrieben`)
+    }
+  }
+  if (problems.length) return { problems }
+  return {
+    problems: [],
+    detail: betroffen.length
+      ? `${betroffen.length} geschuetzte Akte(n) mit verschwundenen Worten, jede mit datiertem Nachtrag (${betroffen.map((b) => b.file.split('/').pop()).join(', ')})`
+      : 'keine verschwundenen Worte in geschuetzten Akten',
+  }
+}
+
 // ---------- M10-002 ----------
 const PLACEHOLDER = /(<[A-Za-zÄÖÜäöüß][^>]*>|YYYY-MM-DD|noch nicht committed|<Hash)/u
 const SECTIONS = [
@@ -276,10 +346,11 @@ function selftestUebergabe() {
 const registry = {
   listen: checkListen,
   uebergabe: () => pruefeUebergabe(join(uebergabe, '05-uebergaben')),
+  korrektur: checkKorrektur,
   'uebergabe-selftest': selftestUebergabe,
 }
 const requested = process.argv.slice(2)
-const run = requested.length ? requested : ['listen', 'uebergabe']
+const run = requested.length ? requested : ['listen', 'uebergabe', 'korrektur']
 for (const name of run) {
   if (!registry[name]) fail(`unbekannter Regelkreis "${name}" (bekannt: ${Object.keys(registry).join(', ')})`)
   const result = registry[name]()
