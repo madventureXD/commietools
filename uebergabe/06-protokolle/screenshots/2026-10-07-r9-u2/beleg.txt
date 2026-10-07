@@ -1,0 +1,22 @@
+Beleg M4-010 — 2026-10-07T16:35:54.084Z
+Basis: http://localhost:4173
+Fall A — unbekannte Adresse liefert keine Werkzeugoberfläche
+  Meldung: Diese Werkzeugadresse gibt es nicht. Die Übersicht zeigt alle Werkzeuge.
+  Werkzeughüllen: 0
+  ok: keine Werkzeugoberfläche gezeichnet
+  ok: die Meldung „Diese Werkzeugadresse gibt es nicht" steht da
+  ok: kein Schwärzen-Werkzeug geöffnet (die frühere Voreinstellung)
+Fall B — /tools/text-statistics zeichnet seine Oberfläche
+  Überschrift: Textstatistik
+  ok: genau eine Werkzeughülle (/tools/text-statistics)
+  ok: Überschrift nennt „Textstatistik"
+Fall B — /tools/image-resize zeichnet seine Oberfläche
+  Überschrift: Bild skalieren
+  ok: genau eine Werkzeughülle (/tools/image-resize)
+  ok: Überschrift nennt „Bild skalieren"
+Fall C — Prototyp-Namen finden nichts
+  ok: /tools/constructor: keine Werkzeugoberfläche
+  ok: /tools/constructor: Meldung steht da
+  ok: /tools/toString: keine Werkzeugoberfläche
+  ok: /tools/toString: Meldung steht da
+Ergebnis: BELEG ERBRACHT
