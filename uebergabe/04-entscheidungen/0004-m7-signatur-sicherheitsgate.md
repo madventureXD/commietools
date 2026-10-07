@@ -46,3 +46,9 @@ Nachweisstand je Gate stehen in
 [`0014-m7-freigabekriterien.md`](0014-m7-freigabekriterien.md) — Status **vorgeschlagen**, die
 Annahme ist eine Betreiberentscheidung. Dieser nachgetragene Hinweis ersetzt nichts und nimmt keine
 Freigabe vorweg.
+
+*Zusatz 2026-10-07 (nach der Entscheidung).* Die Betreiberentscheidung ist gefallen: **ADR 0014 ist
+angenommen** — mit den **Auflagen A1–A4** (Schwachstellenstand des Signaturpfads, unabhängige
+Sicherheitsreview, GPL-Originalhinweis, revisionsgebundener Korpusbericht). Die Sperre dieses ADR gilt
+damit für die drei gebauten Werkzeuge als durch die dort benannten Kriterien ersetzt; der **Push ist
+darin nicht enthalten**.

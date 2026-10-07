@@ -750,11 +750,18 @@ Diese Liste enthält bestätigte, noch nicht abgeschlossene Arbeit. Details geh�
 - [x] **Alle acht Karten abgeschlossen** *(2026-10-07)*: M1-001, M1-002, M2-001, M2-002, M2-003,
   M2-004, M2-005, M11-001. Protokolle unter `06-protokolle/2026-10-07-r7-*.md`, Übergabe
   `05-uebergaben/2026-10-07-r7-abgeschlossen.md`.
-- [ ] **ADR 0014 (M7-Freigabekriterien) ist `vorgeschlagen` und braucht eine Betreiberentscheidung**
-  *(2026-10-07)*. Offen vor einer Annahme: Nachweis zum Schwachstellenstand des Signaturpfads
-  (Gate 3), unabhängige Sicherheitsreview (Gate 10), fehlender Originalhinweis der GPL-Komponente
-  (Gate 2) und ein **revisionsgebundener** Abnahmebericht zum Korpus `07-pruefung/m7/`.
-  Der Beschluss ist ausdrücklich **nicht** durch Dokumentation zu ersetzen.
+- [x] **Entschieden am 2026-10-07 (Thomas): ADR 0014 angenommen — mit vier Auflagen.** Die drei
+  signaturbezogenen Werkzeuge bleiben im Katalog; die Sperre aus ADR 0004 gilt für sie als durch die
+  benannten Kriterien ersetzt, die Sicherheitsanforderungen bleiben bestehen. Der Push ist damit
+  **nicht** freigegeben (Kopplung im ADR).
+- [ ] **Auflage A1 — Schwachstellenstand des Signaturpfads** *(2026-10-07)*: Advisoryscan über
+  `crates/pdf-signer-engine`/`-wasm` (nicht nur lopdf, das war M9-004).
+- [ ] **Auflage A2 — unabhängige Sicherheitsreview vor der Veröffentlichung** *(2026-10-07)*: von
+  Thomas zu beauftragen; **nicht** durch Dokumentation zu ersetzen.
+- [ ] **Auflage A3 — Originalhinweis der GPL-3.0-or-later-Komponente** *(2026-10-07)*: Hinweisdatei
+  für `pdf_signer 0.3.2` nachtragen und im Register binden.
+- [ ] **Auflage A4 — revisionsgebundener Abnahmebericht zum M7-Korpus** *(2026-10-07)*:
+  `uebergabe/07-pruefung/m7/` nennt keine Revision; Bericht mit Commit-Bezug nachziehen.
 - [ ] **Kein Prüfer bewacht die Leitdatei** `00-einstieg/vorgehen-qm-audit.md` *(2026-10-07, gemessen)*.
   Nach dem R6-Durchzug standen dort **fünf** Karten (M3-003, M3-004, M3-006, M3-008, M3-010) noch auf
   „○", obwohl sie erledigt waren — kein Lauf hat das gemeldet. Nachgetragen; ein Abgleich

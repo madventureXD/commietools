@@ -56,6 +56,10 @@ signaturbezogene Werkzeuge stehen im Katalog (`pdf-visible-signature`,
 2026-10-03 vor" aus `07-pruefung/m7/07-freigabecheckliste.txt` — die Liste nennt **keine Revision**.
 Sie steht im ADR als historische Angabe ohne Nachweis.
 
+*Nachtrag 2026-10-07 (nach dem Durchzug).* Thomas hat die Karte **angenommen (Weg A)**: ADR 0014 steht
+auf **`angenommen` mit den Auflagen A1–A4**; die Werkzeuge bleiben im Katalog; der **Push ist darin
+nicht enthalten**. Der obige Text beschreibt den Stand des Vorschlags und bleibt stehen.
+
 ## Mutationsgegenproben
 
 | # | Mutation | Meldung |

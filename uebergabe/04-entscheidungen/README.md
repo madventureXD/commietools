@@ -27,7 +27,7 @@ Wird eine Entscheidung ersetzt, bleiben beide Dateien erhalten und verweisen geg
 - [`0011-werkzeugtextsumme-je-paket.md`](0011-werkzeugtextsumme-je-paket.md): Die Summe der Werkzeugtextpakete wird je Paket gemessen (850 B), nicht gegen eine feste Obergrenze — angenommen.
 - [`0012-json-formatierung-als-textedit.md`](0012-json-formatierung-als-textedit.md): JSON-Formatierung sind Textedits; `jsonc-parser` (MIT) als neue Abhängigkeit, Werkzeug aus dem Startbündel gelöst — angenommen.
 - [`0013-m9-konformitaetsgate.md`](0013-m9-konformitaetsgate.md): M9 veröffentlicht keine unbelegte PDF/A- oder Office-Konvertierung — angenommen (Entscheidung vom 2026-10-04, Nummer am 2026-10-07 nachvergeben).
-- [`0014-m7-freigabekriterien.md`](0014-m7-freigabekriterien.md): M7 — tatsächlicher Produktstand und Freigabekriterien der PDF-Signatur; ergänzt ADR 0004 — **vorgeschlagen** (Betreiberentscheidung offen).
+- [`0014-m7-freigabekriterien.md`](0014-m7-freigabekriterien.md): M7 — tatsächlicher Produktstand und Freigabekriterien der PDF-Signatur; ergänzt ADR 0004 — **angenommen am 2026-10-07 (Thomas) mit vier Auflagen A1–A4**; am selben Tag zuvor als `vorgeschlagen` geführt.
 
 *Nachtrag 2026-10-07 (Faber, Karte M2-005): Bis zu diesem Tag fehlte in diesem Index jede Angabe zur
 M9-Konformitätsentscheidung, und **zwei** angenommene Dateien trugen die Nummer **0006**

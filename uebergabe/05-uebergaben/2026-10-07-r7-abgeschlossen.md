@@ -114,6 +114,24 @@ dort noch auf „○". Datiert nachgetragen (alter Stand bleibt erkennbar).
 3. **Push-Entscheidung** bleibt bei Thomas: `main` liegt weit vor `origin/main`, ein Push
    veröffentlicht commietools.org.
 
+## Nachtrag 2026-10-07 (nach dem Abschluss dieser Übergabe, Faber)
+
+**Die oben als offen geführte Entscheidung ist gefallen.** Thomas hat **Weg A angenommen**: ADR 0014
+steht jetzt auf **`angenommen`** (Entscheidung datiert im ADR), die drei signaturbezogenen Werkzeuge
+bleiben im Katalog, und die vier Punkte bleiben als **Auflagen A1–A4** ausdrücklich offen:
+
+- **A1** Nachweis zum Schwachstellenstand des Signaturpfads (Advisoryscan über die Signatur-Crates)
+- **A2** unabhängige Sicherheitsreview — von Thomas zu beauftragen, **nicht** durch Dokumentation ersetzbar
+- **A3** Originalhinweis der GPL-3.0-or-later-Komponente nachtragen
+- **A4** revisionsgebundener Abnahmebericht zum M7-Korpus
+
+**Kopplung:** Die Annahme **nimmt den Push nicht vorweg**. Ein Push veröffentlicht commietools.org; die
+Auflagen sind vor diesem Schritt zu erledigen oder ausdrücklich neu zu entscheiden. Der oben als
+„Empfohlener nächster Schritt 1" genannte Punkt ist damit **erledigt**; offen bleibt „Push" (Punkt 3)
+sowie die Auflagen.
+
+Der obige Eintrag bleibt als damaliger Stand stehen.
+
 ## Git
 
 - Commits: `85e2cd0`, `ca2abeb` (M1-001) · `a1e0e11`, `eb354bc` (M1-002) · `00fa7e8`, `d3fd994` (M2-005)

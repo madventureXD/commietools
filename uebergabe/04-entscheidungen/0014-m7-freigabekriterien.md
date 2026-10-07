@@ -1,6 +1,7 @@
 # ADR 0014: M7 — tatsächlicher Produktstand und Freigabekriterien der PDF-Signatur
 
-**Status:** **vorgeschlagen** — die Annahme ist eine Betreiberentscheidung und steht aus
+**Status:** **angenommen am 2026-10-07** durch Thomas — **mit vier benannten Auflagen**; zuvor am
+selben Tag als `vorgeschlagen` geführt (Betreiberentscheidung)
 **Datum:** 2026-10-07 (Faber, Karte M2-001)
 **Verhältnis zu ADR 0004:** Dieser ADR **ergänzt** [`0004-m7-signatur-sicherheitsgate.md`](0004-m7-signatur-sicherheitsgate.md).
 Der Wortlaut von ADR 0004 bleibt vollständig erhalten; seine dort beschriebene Sperre beschreibt den
@@ -87,6 +88,29 @@ gepusht; siehe M8-001-Protokoll). Bleibt offen.
 
 - Produkt, Manifest und Akte sind bis auf die **eine** offene Freigabeentscheidung widerspruchsfrei.
 - Die Entscheidung bleibt **sichtbar offen**; der ADR wird nicht stillschweigend „angenommen".
+
+## Entscheidung (2026-10-07, Thomas)
+
+Thomas hat den Vorschlag oben **angenommen**: Die Sperre aus ADR 0004 gilt für die drei gebauten
+Werkzeuge als durch die hier benannten Kriterien ersetzt; die Sicherheitsanforderungen selbst bleiben
+Wort für Wort bestehen. Der Vorschlagstext oben bleibt **im Wortlaut stehen** — er ist der angenommene
+Text, nichts wird nachträglich als „von Anfang an entschieden" umgeschrieben. Die Abschnitte
+„Vorschlag" und „Folgen" oben beschreiben damit den Stand des Vorschlags vom selben Tag; der Satz
+„Die Entscheidung bleibt sichtbar offen" ist mit diesem Abschnitt **erledigt**.
+
+**Auflagen — offen, und ausdrücklich *nicht* durch Dokumentation erledigt:**
+
+| # | Auflage | Adresse |
+|---|---|---|
+| **A1** | Nachweis zum Schwachstellenstand des **Signaturpfads** (Gate 3) | Advisoryscan über den Pfad; die frühere Prüfung betraf lopdf |
+| **A2** | **Unabhängige Sicherheitsreview** vor der Veröffentlichung (Gate 10) | von CommieTools/Thomas zu beauftragen |
+| **A3** | **Originalhinweis** der GPL-3.0-or-later-Komponente nachtragen (Gate 2) | `licenses/rust-review.json`, `pdf_signer` 0.3.2 |
+| **A4** | **Revisionsgebundener** Abnahmebericht zum Korpus (Gate 9/Gate 8) | `uebergabe/07-pruefung/m7/` — nennt bisher keine Revision |
+
+**Kopplung an die Veröffentlichung:** Ein Push von `main` veröffentlicht commietools.org. Die Auflagen
+A1–A4 sind **vor** diesem Schritt zu erledigen oder ausdrücklich neu zu entscheiden. Die Annahme dieses
+ADR **nimmt den Push nicht vorweg** — sie ist eine Aussage über den Produktstand, keine Freigabe zur
+Veröffentlichung.
 
 ## Verwandt
 

@@ -7,8 +7,9 @@
   `npm run readme:check` in `check`); am ausgelieferten Bau gezählt **62 Tools / 7 Suiten / 23 PDF**.
 - **M1-002 ✓** Suchversprechen überall auf **gewählte Sprache plus Englisch**; der erzeugte Lader ruft
   Englisch nicht mehr doppelt auf; Vertragstest + vier Browserfälle.
-- **M2-001 ✓** neuer **ADR 0014** (`vorgeschlagen`) für die tatsächlichen M7-Freigabekriterien;
-  ADR 0004 datiert verknüpft, Wortlaut erhalten.
+- **M2-001 ✓** neuer **ADR 0014** für die tatsächlichen M7-Freigabekriterien; ADR 0004 datiert
+  verknüpft, Wortlaut erhalten. **(Entscheidung Thomas, 2026-10-07: angenommen mit vier Auflagen
+  A1–A4; der Push ist darin nicht enthalten.)**
 - **M2-002 ✓** Größenpolitik datiert festgehalten (Budget = **Warnung**, strukturelle Regel = **harter
   Fehler**), zwei Gegenproben.
 - **M2-003 ✓** Rechner-Budgets richtiggestellt (200 KiB / 110 KiB); Baseline selbsterklärend; **harte
