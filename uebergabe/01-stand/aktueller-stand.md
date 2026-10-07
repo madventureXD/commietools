@@ -1,6 +1,27 @@
 # Aktueller Projektstand
 
 **Stand:** 2026-10-06
+**Zusatz 2026-10-07 (Faber), R5-Durchzug — Einheit 2: M2-008 abgeschlossen, Farben nach Verantwortung getrennt:**
+- **M2-008 ✓ behoben.** Vier neue Tokens je Schema (`--color-document-stage`, `--color-plot-grid`,
+  `--color-plot-axis`, `--color-plot-label`); der Plotter speist Raster, Achsen und Beschriftung
+  daraus, die Kurvenfarben-Palette bleibt **Datenfarbe**. Dokumentbühne für Viewer und
+  Schwärzungseditor aus einem Token (vorher zwei verschiedene Grautöne — bewusste Vereinheitlichung,
+  im Schwärzungseditor sichtbar von `#777` auf `#303238`).
+- **Drei übersehene Stellen desselben Musters wie M7-001 gefunden:** `color: white` auf Markenrot
+  stand noch in `.brand-mark`, `.keypad-key.equals` (dunkel 3,16:1 bei verlangten 4,5:1) und in
+  `.anchor-grid .active` — dort **ohne** Markenfläche, im hellen Schema also weiße Schrift auf weißem
+  Grund, Beschriftung unsichtbar. `a11y:check` sah sie nicht, weil diese Elemente in den geprüften
+  Startzuständen nicht sichtbar sind. Alle drei auf `--color-action-text` umgestellt.
+- **Rohfarben werden jetzt geprüft:** `npm run tokens:check` meldet Rohfarben und **scheitert** ohne
+  begründete Ausnahme; sechs eng gefasste Ausnahmen mit Grund (Dokumentpapier, QR-Papier,
+  Unterschriftenpapier, Schwärzungsmarke, Pipetten-Fadenkreuz, Abdunklung).
+- **Gemessen (beide Schemata, Zustände erzeugt):** Kurvenfarben identisch; Achsenbeschriftung
+  **5,36:1 hell / 11,83:1 dunkel** (vorher dunkel `#666666` auf `rgb(16,17,20)` = **3,29:1**,
+  im Browser überschrieben gemessen); Raster `#dddddd`/`#3a404b`; Bühne `#303238`/`#22262c`;
+  Papier weiß in beiden; QR-Zeichnung in beiden Schemata identisch (Prüfsumme `83d3a137a49edae1`).
+- Prüfkette: `npm run check` Exit 0 (695 Tests, 48 Dateien) · `npm run build` Exit 0. Protokoll:
+  `06-protokolle/2026-10-07-m2-008-farben-nach-verantwortung.md`. **Nichts gepusht.**
+
 **Zusatz 2026-10-07 (Faber), R5-Durchzug — Einheit 1: M7-006 abgeschlossen, Tokenschutz als Pflichtprüfung:**
 - **M7-006 ✓ behoben.** Bestandsaufnahme mit dem Stylesheet-Parser: **20 Verwendungen von acht
   Namen, die nirgends definiert waren**, 18 davon **ohne** Fallback. Eine unaufgelöste `var()`-Referenz
