@@ -132,6 +132,12 @@ sowie die Auflagen.
 
 Der obige Eintrag bleibt als damaliger Stand stehen.
 
+*Zweiter Nachtrag 2026-10-07.* Thomas, wörtlich: „**Push wird erst nach der unabhängigen Kontrolle
+erfolgen**." Damit ist die Veröffentlichung an die **unabhängige Abschlusskontrolle** gebunden; A1, A3
+und A4 sind erledigte Nachweise (Protokoll `06-protokolle/2026-10-07-r7-auflagen-a1-a3-a4.md`) und
+**keine** Push-Vorbedingung mehr. Der oben genannte „Empfohlene nächste Schritt 3" (Push) ist damit
+**terminiert**: er kommt nach der Abschlussprüfung, nicht vorher.
+
 ## Git
 
 - Commits: `85e2cd0`, `ca2abeb` (M1-001) · `a1e0e11`, `eb354bc` (M1-002) · `00fa7e8`, `d3fd994` (M2-005)

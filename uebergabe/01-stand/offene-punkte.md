@@ -758,8 +758,11 @@ Diese Liste enthält bestätigte, noch nicht abgeschlossene Arbeit. Details geh�
   `crates/pdf-signer-engine`/`-wasm` (nicht nur lopdf, das war M9-004).
 - [ ] **Auflage A2 — unabhängige Sicherheitsreview: nicht gestrichen, verlegt** *(Entscheidung Thomas,
   2026-10-07)*. Sie erfolgt **am Ende der ganzen Sanierung** und kontrolliert dort alles noch einmal
-  (nach R8–R10). Für einen früheren Push gilt damit A1/A3/A4; ob der Push bis zur Abschlussprüfung
-  warten soll, ist eine ausdrückliche Verschärfung durch Thomas und **nicht** unterstellt.
+  (nach R8–R10). **Sie ist die Bedingung für den Push** (siehe nächster Punkt).
+- [ ] **Push erst nach der unabhängigen Kontrolle** *(Entscheidung Thomas, 2026-10-07, wörtlich:
+  „Push wird erst nach der unabhängigen Kontrolle erfolgen")*. Damit sind **A1, A3 und A4 erledigte
+  Nachweise, keine Push-Vorbedingung**; die frühere Kopplung „Push erst nach A1–A4" ist überholt.
+  `main` bleibt bis dahin **unveröffentlicht** (Cloudflare Pages veröffentlicht bei Push).
 - [ ] **Auflage A3 — Originalhinweis der GPL-3.0-or-later-Komponente** *(2026-10-07)*: Hinweisdatei
   für `pdf_signer 0.3.2` nachtragen und im Register binden.
 - [ ] **Auflage A4 — revisionsgebundener Abnahmebericht zum M7-Korpus** *(2026-10-07)*:

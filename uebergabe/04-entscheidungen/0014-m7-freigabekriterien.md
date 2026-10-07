@@ -123,6 +123,17 @@ A4**; die unabhängige Prüfung kommt danach und kann Korrekturen nach sich zieh
 Push brauchen. Soll der Push stattdessen **bis zur Abschlussprüfung** warten, ist das eine
 Verschärfung, die Thomas aussprechen muss — sie wird hier nicht stillschweigend unterstellt.
 
+*Nachtrag 2026-10-07, zweite Fassung (Faber).* **Die Verschärfung ist ausgesprochen.** Thomas,
+wörtlich: „**Push wird erst nach der unabhängigen Kontrolle erfolgen**." Damit gilt:
+
+- Ein Push von `main` (und damit die Veröffentlichung von commietools.org) erfolgt **erst nach der
+  unabhängigen Abschlusskontrolle** am Ende der Sanierung.
+- **A1, A3 und A4 sind damit keine Push-Vorbedingung mehr**, sondern erledigte Nachweise des
+  Produktstands. Der Satz oben („für einen früheren Push gilt A1/A3/A4") ist damit **überholt** und
+  bleibt nur als Verlauf stehen.
+- Für die Abschlusskontrolle bleibt A2 offen: sie prüft den Gesamtstand, kann Korrekturen nach sich
+  ziehen und wird von Thomas beauftragt.
+
 ## Verwandt
 
 - [`0004-m7-signatur-sicherheitsgate.md`](0004-m7-signatur-sicherheitsgate.md) — Vorgänger (Sperre, Wortlaut erhalten)
