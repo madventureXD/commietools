@@ -103,3 +103,16 @@ npm run beleg:kartenstand   # erwartet: 59 Karten — 58 erledigt, 1 Restforderu
 
 Für die Seitenbelege zusätzlich `npm run preview` in einem zweiten Terminal, dann
 `npm run beleg:zusammenlegung` und `npm run beleg:routing` (erwartet: „BELEG ERBRACHT").
+
+---
+
+*Nachtrag 2026-10-07 (Faber, nach den zugehörigen Akten-Commits — gemessen, nicht geschätzt):*
+Codestand bleibt **`ca3b23b`** (die Commits danach tragen **nur** Akten). Kopf des Aktenstands:
+**`7a9f19c`**, **150 Commits vor `origin/main`**. Kartenstand erneut gezählt mit
+`npm run beleg:kartenstand`: **59 Karten — 58 erledigt · 1 Restforderung (M8-001) · 0 offen**.
+Arbeitsbaum: **sauber** (`git status --porcelain` leer; die zwei M4-005-Prüfdateien sind jetzt in
+`.gitignore` festgeschrieben). `npm run akte:check`: Exit 0.
+
+**Einstieg für die Prüfung:** `uebergabe/00-einstieg/vorgehen-qm-audit.md` (Leitdatei mit Kartenstand),
+`uebergabe/01-stand/offene-punkte.md` (offene Punkte), `uebergabe/05-uebergaben/` (Übergaben je Stufe),
+`uebergabe/06-protokolle/` (Belege je Karte) und dieser Beleg als Ablaufanleitung.
