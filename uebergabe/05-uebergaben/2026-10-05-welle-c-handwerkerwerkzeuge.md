@@ -43,6 +43,16 @@ Belegaufnahmen versehen. Das Register umfasst jetzt **54 Werkzeuge**, die Suite 
 - `uebergabe/06-protokolle/screenshots/2026-10-05-welle-c/` (18 Aufnahmen, zwei Protokolldateien)
 - `uebergabe/01-stand/aktueller-stand.md`, `uebergabe/01-stand/offene-punkte.md`
 
+## Nachtrag 2026-10-07 (QM-Stufe R8, Karte M10-004): Belegaufnahmen sind ersetzt
+
+Die beiden Aufnahmeskripte `work/paving-shots.cjs` und `work/tires-shots.cjs` sind **nicht**
+versioniert worden. An ihre Stelle tritt der **versionierte** Prüfer `scripts/viewport-audit.mjs`
+(`npm run viewport:check`, `npm run a11y:check`), der **dieselben Routen** mechanisch prüft
+(Überläufe, Bedienzielgrößen, Kontrast, abgeschnittener Inhalt) — **er erzeugt keine Bilder**; das
+ist der Unterschied und wird hier ausdrücklich benannt. Die 18 Aufnahmen selbst liegen versioniert
+unter `uebergabe/06-protokolle/screenshots/2026-10-05-welle-c/` und bleiben damit erhalten.
+Der Wortlaut oben bleibt unverändert stehen.
+
 ## Entscheidungen und Annahmen
 
 - **Rastermaß beim Pflaster** (Stein plus Fuge): Beim Pflaster ist die Fuge Bestandteil des

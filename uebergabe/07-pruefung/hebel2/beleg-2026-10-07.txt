@@ -1,0 +1,65 @@
+Netzbeleg Werkzeugtexte je Werkzeug, 2026-10-07T15:32:23.104Z
+Grundlage: http://localhost:4173
+Browser: C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe
+
+=== Startseite: /
+   149860 B gzip  assets/index-Sf197zhA.js
+    12574 B gzip  assets/search-de-gEeq6FeQ.js
+    11223 B gzip  assets/search-en-B19y3lpY.js
+     3247 B gzip  assets/ui-de-CDao7Xy3.js
+     2871 B gzip  assets/ui-en-_isIYciI.js
+     2357 B gzip  assets/workbox-window.prod.es5-BBnX5xw4.js
+     1400 B gzip  assets/catalog-base-BPHs9pGK.js
+  Summe der geholten JavaScript-Dateien: 183532 B gzip
+  ok nicht geholt: nichts mit "tools-de-"
+  ok nicht geholt: nichts mit "tools-en-"
+
+=== Werkzeugroute (Rechner): /tools/calculator
+   149860 B gzip  assets/index-Sf197zhA.js
+   103563 B gzip  assets/core-BC2Jk-3u.js
+    12574 B gzip  assets/search-de-gEeq6FeQ.js
+    11223 B gzip  assets/search-en-B19y3lpY.js
+     7381 B gzip  assets/calculator-frame-BtAbotSc.js
+     3454 B gzip  assets/tools-de-common-BuJqLqW_.js
+     3247 B gzip  assets/ui-de-CDao7Xy3.js
+     3205 B gzip  assets/textLoaders-B74uuBP4.js
+     3096 B gzip  assets/tools-en-common-BcpCY6_6.js
+     2871 B gzip  assets/ui-en-_isIYciI.js
+     2357 B gzip  assets/workbox-window.prod.es5-BBnX5xw4.js
+     1400 B gzip  assets/catalog-base-BPHs9pGK.js
+      586 B gzip  assets/indexedStore-DEaCTbSG.js
+      455 B gzip  assets/Calculator-CghO3fh5.js
+      239 B gzip  assets/tools-de-calculator-BQXPdwM6.js
+      220 B gzip  assets/tools-en-calculator-3Z_StFyp.js
+  Summe der geholten JavaScript-Dateien: 305731 B gzip
+  ok geholt: assets/tools-de-calculator-BQXPdwM6.js
+  ok geholt: assets/tools-de-common-BuJqLqW_.js
+  ok nicht geholt: nichts mit "tools-de-image-metadata-"
+  ok nicht geholt: nichts mit "tools-de-aufmass-"
+
+=== Werkzeugroute (Bild-Metadaten): /tools/image-metadata
+   149860 B gzip  assets/index-Sf197zhA.js
+    12574 B gzip  assets/search-de-gEeq6FeQ.js
+    11223 B gzip  assets/search-en-B19y3lpY.js
+     3454 B gzip  assets/tools-de-common-BuJqLqW_.js
+     3247 B gzip  assets/ui-de-CDao7Xy3.js
+     3205 B gzip  assets/textLoaders-B74uuBP4.js
+     3096 B gzip  assets/tools-en-common-BcpCY6_6.js
+     2871 B gzip  assets/ui-en-_isIYciI.js
+     2357 B gzip  assets/workbox-window.prod.es5-BBnX5xw4.js
+     1817 B gzip  assets/tools-de-image-metadata-C0wYy7k9.js
+     1659 B gzip  assets/tools-en-image-metadata-CH5FxbJi.js
+     1400 B gzip  assets/catalog-base-BPHs9pGK.js
+  Summe der geholten JavaScript-Dateien: 196763 B gzip
+  ok geholt: assets/tools-de-image-metadata-C0wYy7k9.js
+  ok geholt: assets/tools-de-common-BuJqLqW_.js
+  ok nicht geholt: nichts mit "tools-de-calculator-"
+
+Ergebnis:
+  Startseite: 7 JavaScript-Dateien, 183532 B gzip, Werkzeug-Textpaket nicht geholt
+  Werkzeugroute (Rechner): 16 JavaScript-Dateien, 305731 B gzip, Werkzeug-Textpaket geholt
+  Werkzeugroute (Bild-Metadaten): 12 JavaScript-Dateien, 196763 B gzip, Werkzeug-Textpaket geholt
+  Startseite ohne Werkzeugtexte: 183532 B gzip
+  Werkzeugroute (Rechner): 305731 B gzip (nur eigenes Werkzeug)
+  Werkzeugroute (Bild-Metadaten): 196763 B gzip (nur eigenes Werkzeug)
+BELEG ERBRACHT

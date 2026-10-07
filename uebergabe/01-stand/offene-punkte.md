@@ -343,6 +343,30 @@ Diese Liste enthält bestätigte, noch nicht abgeschlossene Arbeit. Details geh�
   gibt es für diese vier Dateien nicht. **Keine Schuldzuweisung, keine Behauptung verlorener
   Historie** (die Karte verbietet beides ausdrücklich). Protokoll:
   `06-protokolle/2026-10-07-r8-m10-003-aktenkorrektur.md`.
+- [ ] OP-063 — **Nicht übernommene Belegskripte der Wellen A–E** *(2026-10-07, Karte M10-004)*.
+  Aus der historischen 18er-Liste (`QM/20-messungen/M10/evidence.json`) sind die **tragenden**
+  Belege portiert und versioniert (`scripts/belege/`, `npm run beleg:sprachpakete` /
+  `beleg:rechner-kern`). **Nicht** übernommen und weiterhin nur lokal unter `work/`:
+  `sprachpaket-verteilung.cjs`, `sprachpaket-funktionspruefung.cjs`, `ampel-focus-probe.cjs`,
+  `displayhoehe-messen.cjs`, `rechner-vier-werkzeuge-beleg.cjs`, `werkzeugseite-diagnose.cjs` sowie
+  die neun Screenshot-Erzeuger (letztere durch `viewport:check`/`a11y:check` **mechanisch** ersetzt,
+  ohne Bilder zu erzeugen). **Offen:** entscheiden, ob einzelne davon ebenfalls portiert werden
+  sollen — der Aufwand je Skript ist das Umstellen auf Umgebungsvariablen, Voraussetzungsprüfung
+  und Aufräumen. Entscheidung von Thomas vom 2026-10-06 (Punkt 6) war ausdrücklich **nur die
+  tragenden** Skripte; dieser Punkt hält fest, was damit bewusst liegen bleibt.
+- [ ] OP-064 — **`HEAD` ist im frischen Checkout nicht baubar** *(2026-10-07, gefunden beim
+  Abnahmelauf zu Karte M10-004; Produktfehler ohne eigene Karte)*. Ein frischer Checkout von `HEAD`
+  scheitert bei `npm run build` an der ersten Stufe: `licenses:check` meldet
+  „`licenses/registry.json` is incomplete or stale". **Ursache, gemessen:** das committete Register
+  sagt `withNotices: 171 von 176` und `noticeMissing: true` für `pdf_signer`, **obwohl**
+  `crates/pdf-signer-engine/LICENSE` (die Auflage-A3-Datei, 34.906 B) in `HEAD` liegt; `lockfileSha256`
+  und die Revisionszeile weichen ebenfalls ab. Die Registerdateien werden im Arbeitsbaum lokal
+  erzeugt und **bewusst nicht committet** — der geprüfte Stand liegt damit nicht in `HEAD`.
+  **Folge:** wer nur `HEAD` auscheckt, kann das Projekt nicht bauen und den `check`-Lauf nicht
+  fahren, obwohl alle Prüfungen im Arbeitsbaum grün sind. **Nicht eigenmächtig geändert** (die
+  Registerdateien sind eine getroffene Entscheidung, siehe OP-036/Sanierungsleitfaden Punkt 1).
+  Ersatzweise genügt für die Belege `npm run build --workspace @commietools/web`, so steht es in
+  `scripts/belege/README.md`. Protokoll: `06-protokolle/2026-10-07-r8-m10-004-belegskripte.md`.
 
 ## Pflege
 

@@ -140,3 +140,26 @@ Die Fassung **davor** ist unverändert abrufbar:
 Aktenkorrekturverfahren in `00-einstieg/arbeitsregeln.md`, Abschnitt „Aktenkorrektur":
 ergänzen statt umschreiben, datierter Nachtrag mit ersetzter Aussage, Grund, richtiger Aussage
 und Beleg.*
+
+---
+
+## Nachtrag 2026-10-07 (QM-Stufe R8, Karte M10-004): Belegskripte sind umgezogen
+
+Die oben genannten Belege lagen unter `work/` — das ist durch die Projekt-`.gitignore` **nicht
+versioniert**, in einem frischen Checkout also nicht vorhanden. Der **tragende** Netzbeleg ist
+portiert und liegt jetzt versioniert:
+
+- Aufruf **`npm run beleg:sprachpakete`**, Skript `scripts/belege/sprachpakete-netzbeleg.mjs`,
+  hervorgegangen aus `work/hebel2-netzbeleg.cjs` (fachlich unverändert).
+- Ergebnis jetzt **datiert** unter `uebergabe/07-pruefung/hebel2/beleg-<Datum>.txt`; der damalige
+  `beleg.txt` bleibt als Fassung vom 2026-10-05 **unverändert** stehen.
+- Erster Lauf der portablen Fassung am 2026-10-07: Startseite 183.532 B gzip **ohne** Werkzeugtexte,
+  Rechnerroute `tools-de-calculator` + `tools-de-common` und **kein** fremdes Werkzeug,
+  Bild-Metadaten-Route `tools-de-image-metadata` und **nicht** den Rechner — dieselben drei
+  Feststellungen wie oben, andere Zahlen (der Bau hat sich seither geändert).
+
+Voraussetzungen, Grenzen und die Liste der **nicht** übernommenen Proben: `scripts/belege/README.md`.
+`work/sprachpaket-funktionspruefung.cjs` und `work/rechner-vier-werkzeuge-beleg.cjs` sind **nicht**
+übernommen (Sitzungsbelege dieser Welle); der Rechenkern hat mit `npm run beleg:rechner-kern` einen
+versionierten Nachfolger, der Rest steht als offener Punkt in `01-stand/offene-punkte.md`.
+Der Wortlaut oben bleibt unverändert stehen.
