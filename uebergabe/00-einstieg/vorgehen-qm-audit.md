@@ -336,8 +336,9 @@ committet. Vor jedem Prüflauf ist deshalb `npm run licenses:generate` nötig, s
 *Nachtrag 2026-10-07 (Aktenpflege, Faber).* Kopf ist **`3ca76bf`** („Uebergabe-README: Zahl der
 lueckenhaften Alt-Uebergaben berichtigt (elf)"), davor `895a30a` („Uebergabe R5 (sechs Karten) und
 Befund zu zehn lueckenhaften Alt-Uebergaben"). `main` stand **73 Commits vor `origin/main`**
-(gemessen am 2026-10-07 **vor** diesem Akten-Commit; mit ihm sind es **74**) — **nichts gepusht**;
-ein Push veröffentlicht commietools.org. Außerhalb der Commits
+(gemessen am 2026-10-07 **vor** der Aktenpflege) — **nichts gepusht**; ein Push veröffentlicht
+commietools.org. Die Zahl ist bewusst eine Messung mit Zeitpunkt, keine Dauerangabe: jeder
+Akten-Commit erhöht sie, deshalb vor jedem Bericht neu messen statt abschreiben. Außerhalb der Commits
 trägt der Arbeitsbaum die beiden revisionsgebundenen Registry-Dateien (bewusst uncommittet), zwei
 Testdateien aus dem M4-005-Nachweis (`test-assets/m4-005-langsam-A.pdf`, `…-schnell-B.pdf`) und die
 fremde Konzeptdatei `03-konzepte/2026-10-06-tooltip-und-kontexthilfe.md` (nicht angefasst).
