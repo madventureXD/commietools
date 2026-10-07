@@ -1,6 +1,24 @@
 # Aktueller Projektstand
 
 **Stand:** 2026-10-06
+**Zusatz 2026-10-07 (Faber), R5-Durchzug — Einheit 3: M2-007 abgeschlossen, Greifgrößen real gemessen:**
+- **M2-007 ✓ behoben.** Die Karte stimmt: Menüsortierung und PDF-Seitenaktionen waren **38 px** hoch
+  (44–79 bzw. 44–84 breit), gemessen mit erzeugten Zuständen. Die Icon-Ergebnisse waren mit
+  68×44 ✓ — der historische Verdacht ist auch hier widerlegt.
+- Statt drei verstreuter Kleinvarianten (`2.35rem`, `38px`, `2.25rem`) jetzt **eine gemeinsame
+  Variante** `.button.compact` (44×44 als Untergrenze, 0.35rem/0.7rem Innenabstand), angewandt in
+  `ToolNavigation.tsx` (4 Sortierknöpfe) und `PdfOrganize.tsx` (6 Seitenaktionen). Die globale
+  44-px-Regel blieb unangetastet.
+- **Sechs Messzeilen** (320/390/1360 px × spanisch/deutsch × hell/dunkel, längste Sprache ist
+  spanisch): alles ≥ 44 außer dem Zähler `<span>` in der Kategoriezeile (29×29, **kein Bedienziel** —
+  Klickfläche ist die Zeile mit 294×48). PDF-Seiten- und -Zeilenaktionen jetzt 44×44,
+  Icon-Ergebnisse 68–128 × 44–61, alle Summary-Ziele 45–78 hoch.
+- Gegenprobe mit dem Projektprüfer über sechs Routen, beide Schemata: „Ziele<44=0",
+  „MenueZiele<44=0". `/licenses` bricht der Prüfer mit „Route ohne Inhalt" ab (785 Paketzeilen);
+  die Summarys dort sind im eigenen Beleg gemessen.
+- Prüfkette: `npm run check` Exit 0 · `npm run build` Exit 0 (149495 B gzip). Protokoll:
+  `06-protokolle/2026-10-07-m2-007-greifgroessen-gemessen.md`. **Nichts gepusht.**
+
 **Zusatz 2026-10-07 (Faber), R5-Durchzug — Einheit 2: M2-008 abgeschlossen, Farben nach Verantwortung getrennt:**
 - **M2-008 ✓ behoben.** Vier neue Tokens je Schema (`--color-document-stage`, `--color-plot-grid`,
   `--color-plot-axis`, `--color-plot-label`); der Plotter speist Raster, Achsen und Beschriftung
