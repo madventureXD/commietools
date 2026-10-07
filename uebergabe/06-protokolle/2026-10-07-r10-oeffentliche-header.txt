@@ -1,0 +1,46 @@
+R10 / M8-005 — öffentliche Antwortheader, frisch erfasst
+Zeitpunkt (UTC): 2026-10-07T18:34:54Z
+
+--- GET / (Dokument)
+curl: (23) client returned ERROR on write of 233 bytes
+HTTP/1.1 200 OK
+Date: Wed, 07 Oct 2026 18:34:54 GMT
+Content-Type: text/html; charset=utf-8
+Transfer-Encoding: chunked
+Connection: keep-alive
+x-frame-options: DENY
+Report-To: {"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=q%2FxkcHxvWM7bSfh1Ap2NCsWtoEscZftoWm0BRB4nwb8Gg0mKiCFPXqKGGd2ijFsw2Tx3BBJjgZTDYhm76JSKqxi3OP4emiMAPbg17P9g899gBwou0McUjZZBJjXH%2BxD7pH5CiqwE5fGWEn0oS8s%3D"}]}
+Nel: {"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}
+Access-Control-Allow-Origin: *
+Cache-Control: public, max-age=0, must-revalidate
+content-security-policy: default-src 'self'; base-uri 'none'; object-src 'none'; frame-ancestors 'none'; form-action 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self'; worker-src 'self' blob:; manifest-src 'self'
+permissions-policy: camera=(), geolocation=(), microphone=(), payment=(), usb=()
+referrer-policy: no-referrer
+x-content-type-options: nosniff
+Server: cloudflare
+cf-cache-status: DYNAMIC
+CF-RAY: a46f00a8cac13c43-DUS
+alt-svc: h3=":443"; ma=86400
+
+--- GET /sw.js (Dienst-Worker)
+curl: (23) client returned ERROR on write of 178 bytes
+HTTP/1.1 200 OK
+Date: Wed, 07 Oct 2026 18:34:54 GMT
+Content-Type: application/javascript
+Transfer-Encoding: chunked
+Connection: keep-alive
+Report-To: {"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=r8M8m3F3czssNymwSv%2Fe7t%2FywsbJhuTOeuEOIRKZwzWnqy8pVeF15fO98XsjEo0%2BfDTIZEvqyaSH8NIeGmKUVB4RsWRgKavSEne4R39x00uzRd9f6MKIXR%2BElwUilhziizbx%2FOCuYII67EgyaGY%3D"}]}
+Nel: {"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}
+Access-Control-Allow-Origin: *
+Cache-Control: max-age=14400
+x-frame-options: DENY
+content-security-policy: default-src 'self'; base-uri 'none'; object-src 'none'; frame-ancestors 'none'; form-action 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self'; worker-src 'self' blob:; manifest-src 'self'
+permissions-policy: camera=(), geolocation=(), microphone=(), payment=(), usb=()
+referrer-policy: no-referrer
+x-content-type-options: nosniff
+ETag: W/"b880f1797858bccd4049a8a13742144b"
+vary: accept-encoding
+Server: cloudflare
+cf-cache-status: REVALIDATED
+CF-RAY: a46f00a9cd50f641-DUS
+alt-svc: h3=":443"; ma=86400

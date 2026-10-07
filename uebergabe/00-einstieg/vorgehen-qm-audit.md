@@ -276,7 +276,19 @@ alle im ersten Anlauf.
 
 Kopf nach dieser Stufe: siehe „Git" der Übergabe `05-uebergaben/2026-10-07-r9-abgeschlossen.md`.
 
-### R10 — Infrastrukturberichte/NEL (P1) — nicht begonnen, **Betreiberentscheidung**
+### R10 — Infrastrukturberichte/NEL (P1) — **Entscheidungsvorlage vorgelegt** (2026-10-07), Entscheidung offen
+
+*Zusatz 2026-10-07 (Faber, Durchzug auf Anweisung von Thomas):* Die Karte **M8-005** ist keine
+Codeänderung, sondern eine **Betreiberentscheidung**. Der gemessene Stand liegt vor: die lebende Seite
+trägt (18:34:54 UTC) `Nel: {"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}` und eine
+`Report-To`-Gruppe `cf-nel` mit Endpunkt `https://a.nel.cloudflare.com/report/v4?s=…`; die Kopfzeile
+setzt der **Anbieter**, sie steht **nicht** in `apps/web/public/_headers`. Nur **Fehlschläge** werden
+berichtet (`success_fraction: 0.0`), Gültigkeit 7 Tage. Die Anwendung selbst sendet keine Telemetrie;
+`docs/architecture.md` zusagt das auch — Infrastrukturberichte kommen dort aber nicht vor (genau der
+Kartenbefund). Messwerte: `06-protokolle/2026-10-07-r10-oeffentliche-header.txt`; Vorlage mit zwei
+Wegen, Folgen und Empfehlung: `06-protokolle/2026-10-07-r10-m8-005-entscheidungsvorlage.md`.
+Die Umsetzung ist eine **autorisierte Hostingaktion** (Provider-Konto, nur Thomas) — nichts geändert,
+nichts veröffentlicht, keine Kontoänderung vorgenommen.
 
 | Karte | Kurz | Stand |
 |---|---|---|
