@@ -330,6 +330,20 @@ Diese Liste enthält bestätigte, noch nicht abgeschlossene Arbeit. Details geh�
   Markdown-Links `](…)`; ein Verweis in Backticks wird nicht auf Existenz geprüft. Bewusst so
   gelassen (Projektstil), aber bekannt.
 
+## R8 — Übergaben, Abschlusskriterien, Prüfverfahren (ab 2026-10-07)
+
+- [ ] OP-062 — **Nachträgliche Entscheidung zur Strukturmigration von vier Übergaben** *(2026-10-07,
+  Karte M10-003)*. Bei der Angleichung an die Vorlage wurden vier Übergaben **umgeschrieben** statt
+  ergänzt: `6e33dc3` (2026-10-04, drei Dateien, +179/−82) und `ed0ee4e` (2026-10-05, +94/−39). Die
+  vier Dateien tragen seit dem 2026-10-07 einen datierten **„Hinweis zur Fassung"** mit Umfang und
+  Abrufweg der Fassung davor (`git show <commit>^:<pfad>`); die Git-Geschichte ist unverändert.
+  **Offen ist allein die Entscheidung**, ob das nachträglich als *beschlossene Ausnahme* gilt oder ob
+  für künftige Strukturmigrationen eine Archivfassung im Baum geführt werden soll — das
+  Aktenkorrekturverfahren in `00-einstieg/arbeitsregeln.md` verlangt eine solche Ausnahme, eine
+  gibt es für diese vier Dateien nicht. **Keine Schuldzuweisung, keine Behauptung verlorener
+  Historie** (die Karte verbietet beides ausdrücklich). Protokoll:
+  `06-protokolle/2026-10-07-r8-m10-003-aktenkorrektur.md`.
+
 ## Pflege
 
 - **Erledigte Punkte werden hier nicht abgehakt, sondern übernommen:** Eintrag wörtlich nach

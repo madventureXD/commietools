@@ -122,3 +122,21 @@ die Vorlage angleichen.
   Aus demselben Auftrag: **`4caa7b8`** (Katalogkorrektur) und **`3283172`** (Dokumentation dazu).
 - **Gepusht am 2026-10-05:** `git push origin main` → `1c74d29..cdc8854  main -> main` (26 Commits).
 - Arbeitsbaum sauber bis auf die fremden Änderungen an `COPYRIGHT` und `LICENSE` (nicht angefasst).
+
+---
+
+## Hinweis zur Fassung (2026-10-07)
+
+Diese Übergabe wurde am 2026-10-05 im Commit `ed0ee4e` **strukturell an die
+Vorlage angeglichen** (Abschnitte umgestellt, Text verschoben); dabei wurden in dieser Datei
+**39 Zeile(n) entfernt oder ersetzt** (94 hinzugefügt). Die Angleichung ist hier
+**sachlich gekennzeichnet**, nicht bewertet, und es wird keine Absicht zugeschrieben.
+
+Die Fassung **davor** ist unverändert abrufbar:
+`git show ed0ee4e^:uebergabe/05-uebergaben/2026-10-05-werkzeugtexte-je-werkzeug.md`. Die Git-Geschichte selbst ist
+**nicht** verändert worden.
+
+*Aufgenommen im Durchzug der QM-Stufe R8 (Karte M10-003). Ab dem 2026-10-07 gilt das
+Aktenkorrekturverfahren in `00-einstieg/arbeitsregeln.md`, Abschnitt „Aktenkorrektur":
+ergänzen statt umschreiben, datierter Nachtrag mit ersetzter Aussage, Grund, richtiger Aussage
+und Beleg.*

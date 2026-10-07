@@ -98,3 +98,21 @@ Welle 3 ist in derselben Sitzung umgesetzt worden — siehe
 
 - Arbeitsbaum gemeinsam mit der parallel laufenden PDF-Arbeit; Commit **`af3c019`** (Welle 2 und
   Welle 3 in einem Commit), siehe Welle-3-Übergabe. Nicht gepusht.
+
+---
+
+## Hinweis zur Fassung (2026-10-07)
+
+Diese Übergabe wurde am 2026-10-04 im Commit `6e33dc3` **strukturell an die
+Vorlage angeglichen** (Abschnitte umgestellt, Text verschoben); dabei wurden in dieser Datei
+**1 Zeile(n) entfernt oder ersetzt** (19 hinzugefügt). Die Angleichung ist hier
+**sachlich gekennzeichnet**, nicht bewertet, und es wird keine Absicht zugeschrieben.
+
+Die Fassung **davor** ist unverändert abrufbar:
+`git show 6e33dc3^:uebergabe/05-uebergaben/2026-10-03-rechner-welle2-oberflaeche.md`. Die Git-Geschichte selbst ist
+**nicht** verändert worden.
+
+*Aufgenommen im Durchzug der QM-Stufe R8 (Karte M10-003). Ab dem 2026-10-07 gilt das
+Aktenkorrekturverfahren in `00-einstieg/arbeitsregeln.md`, Abschnitt „Aktenkorrektur":
+ergänzen statt umschreiben, datierter Nachtrag mit ersetzter Aussage, Grund, richtiger Aussage
+und Beleg.*

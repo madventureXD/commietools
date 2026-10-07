@@ -164,3 +164,21 @@ Messwerte gegen die vorige Welle:
   `tool-catalog.test.ts`) sind mitgenommen, weil sie die parallele PDF-Arbeit bereits enthalten;
   deren Quelldateien (`pdf/m5.ts`, `pdf/m8.ts`, `pdfUi.tsx`, PDF-Tests, PDF-Komponenten) sind
   **unangetastet** und nicht committet.
+
+---
+
+## Hinweis zur Fassung (2026-10-07)
+
+Diese Übergabe wurde am 2026-10-04 im Commit `6e33dc3` **strukturell an die
+Vorlage angeglichen** (Abschnitte umgestellt, Text verschoben); dabei wurden in dieser Datei
+**80 Zeile(n) entfernt oder ersetzt** (127 hinzugefügt). Die Angleichung ist hier
+**sachlich gekennzeichnet**, nicht bewertet, und es wird keine Absicht zugeschrieben.
+
+Die Fassung **davor** ist unverändert abrufbar:
+`git show 6e33dc3^:uebergabe/05-uebergaben/2026-10-04-rechner-welle5.md`. Die Git-Geschichte selbst ist
+**nicht** verändert worden.
+
+*Aufgenommen im Durchzug der QM-Stufe R8 (Karte M10-003). Ab dem 2026-10-07 gilt das
+Aktenkorrekturverfahren in `00-einstieg/arbeitsregeln.md`, Abschnitt „Aktenkorrektur":
+ergänzen statt umschreiben, datierter Nachtrag mit ersetzter Aussage, Grund, richtiger Aussage
+und Beleg.*

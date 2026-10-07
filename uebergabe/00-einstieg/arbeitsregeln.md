@@ -100,6 +100,41 @@ Gleichwertige Überschriften sind zugelassen und werden nur gemeldet; ein fehlen
 ein Mangel. Übergaben vor dem 2026-10-07 sind historisch: Lücken werden gemeldet, nicht gewertet
 (siehe `01-stand/offene-punkte.md`, OP-018/OP-034).*
 
+## Aktenkorrektur — ergänzen statt umschreiben
+
+Gilt für alles, was in der Akte steht: Übergaben, Protokolle, Konzepte, ADRs, Stand und offene
+Punkte. Eine bestehende Aussage wird **nicht ersetzt** — sie bleibt im Wortlaut stehen und bekommt
+einen **datierten Nachtrag**. Der Nachtrag nennt vier Dinge:
+
+1. **die ersetzte Aussage** — im Wortlaut zitiert oder mit Zeilenverweis,
+2. **den Grund** — was sie widerlegt (Messung, Entscheidung, Commit),
+3. **die richtige Aussage** — der heutige Stand,
+4. **den Beleg** — Commit, Protokoll, ADR oder Messung.
+
+Die **ursprüngliche Fassung bleibt abrufbar**: sie steht in der Git-Geschichte
+(`git show <revision>:<pfad>`), und der Nachtrag nennt die Revision. Die Git-Geschichte wird **nie**
+umgeschrieben — kein Rebase, kein Amend an veröffentlichten Ständen, kein Revert zum Aufräumen.
+
+**Strukturmigration** (eine Akte auf eine neue Vorlage bringen) ist nur mit **beschlossener Ausnahme**
+zulässig; die Fassung davor bleibt als Archivfassung erhalten und wird im Kopf der Akte benannt.
+Ohne Beschluss gilt der Nachtrag.
+
+**Wortwahl:** „Wortlaut bleibt stehen" darf nur schreiben, wer den Vergleich gemacht hat. Eine
+Behauptung über die eigene Sorgfalt ist selbst eine Aussage, die belegt werden muss.
+
+**Maschinelle Prüfung:** `npm run akte:check` (Regelkreis `korrektur`) vergleicht den Arbeitsbaum
+gegen `HEAD` und sucht **verschwundene Worte** in den geschützten Akten (`05-uebergaben/`,
+`06-protokolle/`, `03-konzepte/`, `04-entscheidungen/`). Reine Formatierung — Absatzumbruch,
+Einrückung, Leerzeichen — verändert kein Wort und löst **keinen** Befund aus. Eine inhaltliche
+Änderung ohne datierten Nachtrag scheitert. Eine **Vollsperre** gibt es bewusst nicht: Metadaten-,
+Link- und Ergänzungskorrekturen müssen möglich bleiben.
+
+*Aufgenommen am 2026-10-07 (QM-Karte M10-003). Anlass, gemessen: vier Übergaben waren bei der
+Angleichung an die Vorlage umgeschrieben worden — `6e33dc3` (drei Dateien, +179/−82) und `ed0ee4e`
+(+94/−39) —, ohne dass die Akte das kennzeichnete. Die betroffenen Dateien tragen seit dem
+2026-10-07 einen datierten „Hinweis zur Fassung" mit dem Abrufweg der Fassung davor; ihre
+Git-Geschichte ist unverändert.*
+
 ## Dokumentationspflicht nach Änderungen
 
 - tatsächlichen Projektstand in `01-stand/aktueller-stand.md` aktualisieren,
