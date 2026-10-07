@@ -92,6 +92,14 @@ Pflicht dabei:
 *Aufgenommen am 2026-10-04 auf Thomas' Anweisung, weil die Welle-5-Übergabe der Vorlage nicht
 folgte und zwei ältere Übergaben Lücken hatten.*
 
+*Zusatz 2026-10-07 (Faber, QM-Karte M10-002): Die Prüfung ist ab jetzt **maschinell**:
+`npm run akte:check` (Teil von `npm run check`) prüft die Kopffelder, die Pflichtabschnitte,
+den Prüfnachweis und die Revision. Die **Vorlage** trägt den Kopf jetzt ebenfalls mit `Auftrag` —
+bis dahin verlangte diese Regel ein Feld, das die Vorlage nicht hatte (gefundene Abweichung).
+Gleichwertige Überschriften sind zugelassen und werden nur gemeldet; ein fehlender Abschnitt ist
+ein Mangel. Übergaben vor dem 2026-10-07 sind historisch: Lücken werden gemeldet, nicht gewertet
+(siehe `01-stand/offene-punkte.md`, OP-018/OP-034).*
+
 ## Dokumentationspflicht nach Änderungen
 
 - tatsächlichen Projektstand in `01-stand/aktueller-stand.md` aktualisieren,

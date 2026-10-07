@@ -118,6 +118,16 @@ Diese Liste enthält bestätigte, noch nicht abgeschlossene Arbeit. Details geh�
   Bereiche" statt „Geänderte Bereiche" …). Es sind also **keine leeren** Übergaben — die Prüfung
   ist eine Überschriftenprüfung, und wer die Akte gewohnt ist, findet die Angaben nicht dort, wo
   sie stehen müssen.*
+  *(Zusatz 2026-10-07, QM-Karte M10-002: **Die Lücken sind jetzt einzeln messbar.** `npm run akte:check`
+  prüft jede Übergabe gegen die Spezifikation; der Lauf vom 2026-10-07 meldet **30 von 49 Übergaben mit
+  einer Lücke, zusammen 132 Hinweise** (5 Übergaben ab dem 2026-10-07 sind streng geprüft und
+  fehlerfrei). Häufigste Lücken: Kopffeld `Auftrag` (29 ×), `Bearbeitet durch` (13 ×), Abschnitt
+  `Entscheidungen und Annahmen` (11 ×), keine Revision (10 ×), `Offene Punkte` (9 ×),
+  `Geänderte Bereiche` (9 ×), `Ziel der Sitzung` (8 ×), `Git` (8 ×), `Status` (6 ×), `Datum` (5 ×),
+  `Prüfungen` (4 ×), kein Prüfnachweis (4 ×). Damit ist der Umfang dieser Aufgabe zum ersten Mal
+  vollständig aufgezählt statt geschätzt. Zusammen mit **OP-034** zu erledigen; Vorgehen: datierter
+  Ergänzungsblock je Datei, **nie** überschreiben — genau so ist am 2026-10-07
+  `05-uebergaben/2026-10-07-r6-abgeschlossen.md` behandelt worden.)*
 - [ ] OP-019 — **96 Lint-Warnungen abarbeiten** (angefangen bei `no-misused-promises`, 60 Treffer).
 - [ ] OP-020 — **CI-Workflow in Betrieb nehmen** (Karte M1-003): `.github/workflows/quality.yml` liegt
   versioniert, ist aber **nie gelaufen** (es wird nicht gepusht). Offen: Actions auf Commit-SHAs

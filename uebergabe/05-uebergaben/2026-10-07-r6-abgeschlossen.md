@@ -2,6 +2,7 @@
 
 **Datum:** 2026-10-07
 **Bearbeitet durch:** Faber (Hermes, Team 2), Durchzug auf Anweisung von Thomas
+**Auftrag:** *(nachgetragen 2026-10-07, QM-Karte M10-002 — das Kopffeld fehlte in dieser Übergabe.)* Thomas, wörtlich: „R6 Go, durchziehen." — die Karten der Stufe R6 aus `QM/70-reparaturempfehlungen/R6.md` abarbeiten, **kein Push**, R7–R10 nicht Teil. Der Wortlaut steht unverändert auch im Abschnitt „Ziel der Sitzung" unten.
 **Status:** abgeschlossen — **R6 ist 7 von 7 Karten erledigt**
 
 ## Ziel der Sitzung
