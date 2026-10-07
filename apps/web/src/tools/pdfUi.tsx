@@ -147,7 +147,17 @@ export async function extractPdfText(bytes: Uint8Array, pages?: readonly number[
   }
 }
 
-export async function comparePdfRendering(left: Uint8Array, right: Uint8Array, channelTolerance = 16): Promise<number[]> {
+/**
+ * Die drei Renderpfade laufen mit **Zeitgrenze**: Gemessen am 2026-10-07 bleibt der pdf.js-Renderer
+ * nach mehreren Ladevorgängen einer Sitzung stehen — im Bilderexport stand der Knopf dann dauerhaft
+ * auf „Verarbeitung läuft" („Procesando PDF…") und nichts erschien. Ein Aufruf ohne Frist ist kein
+ * Fehlerweg; die Werkzeuge zeigen die Überschreitung als `tool.pdf.error.timeout`.
+ */
+export function comparePdfRendering(left: Uint8Array, right: Uint8Array, channelTolerance = 16): Promise<number[]> {
+  return withTimeout(vergleicheOhneFrist(left, right, channelTolerance))
+}
+
+async function vergleicheOhneFrist(left: Uint8Array, right: Uint8Array, channelTolerance: number): Promise<number[]> {
   const { GlobalWorkerOptions, getDocument } = await import('pdfjs-dist')
   GlobalWorkerOptions.workerSrc = workerUrl
   const leftTask = getDocument({ data: left.slice() }), rightTask = getDocument({ data: right.slice() })
@@ -171,7 +181,11 @@ export async function comparePdfRendering(left: Uint8Array, right: Uint8Array, c
   } finally { await Promise.all([leftTask.destroy(),rightTask.destroy()]) }
 }
 
-export async function renderPdfPagePreview(bytes: Uint8Array, pageNumber: number, scale: number, rotation: number): Promise<Blob> {
+export function renderPdfPagePreview(bytes: Uint8Array, pageNumber: number, scale: number, rotation: number): Promise<Blob> {
+  return withTimeout(vorschauOhneFrist(bytes, pageNumber, scale, rotation))
+}
+
+async function vorschauOhneFrist(bytes: Uint8Array, pageNumber: number, scale: number, rotation: number): Promise<Blob> {
   const { GlobalWorkerOptions, getDocument } = await import('pdfjs-dist')
   GlobalWorkerOptions.workerSrc = workerUrl
   const task = getDocument({ data: bytes.slice() })
@@ -195,7 +209,11 @@ export async function renderPdfPagePreview(bytes: Uint8Array, pageNumber: number
   }
 }
 
-export async function renderPdfPages(bytes: Uint8Array, pages: readonly number[], options: { dpi: number; format: 'png' | 'jpeg'; quality: number; background: string }): Promise<RenderedPdfPage[]> {
+export function renderPdfPages(bytes: Uint8Array, pages: readonly number[], options: { dpi: number; format: 'png' | 'jpeg'; quality: number; background: string }): Promise<RenderedPdfPage[]> {
+  return withTimeout(seitenOhneFrist(bytes, pages, options))
+}
+
+async function seitenOhneFrist(bytes: Uint8Array, pages: readonly number[], options: { dpi: number; format: 'png' | 'jpeg'; quality: number; background: string }): Promise<RenderedPdfPage[]> {
   const { GlobalWorkerOptions, getDocument } = await import('pdfjs-dist')
   GlobalWorkerOptions.workerSrc = workerUrl
   const task = getDocument({ data: bytes.slice() })
