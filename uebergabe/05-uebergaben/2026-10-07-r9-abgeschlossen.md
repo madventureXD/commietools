@@ -90,6 +90,15 @@ Menüeintrag statt die Werkzeugtaste) — alle benannt und behoben.
 
 - [ ] **OP-064** (aus R8) — `npm run build` scheitert im **frischen Checkout** an
   `licenses/registry.json` (`pdf_signer`); Betreiberentscheidung, nicht angefasst.
+
+  *Nachtrag 2026-10-07 (Faber):* **erledigt.** Auf Entscheidung von Thomas (Variante A) sind die
+  beiden Registerdateien **erzeugt** und mit Commit `cfc2c5e` committet; der Nachweis im frischen
+  Checkout ist gefahren: `FRISCH_LICENSES_EXIT=0`, `FRISCH_BUILD_EXIT=0`,
+  „License audit passed: 607 packages, 16 complete license texts, 218 preserved package documents",
+  „Bundle audit passed: entry 149755 B gzip". Beleg:
+  `06-protokolle/2026-10-07-op064-frischer-checkout.txt`; der Eintrag steht wörtlich mit Beleg-Zusatz
+  im Archiv `…-erledigte-punkte-archiv.md`. Der Punkt ist damit **kein** Blocker der
+  Abschlusskontrolle mehr.
 - [ ] **OP-045** — zweiter Teil offen (Adressmuster **nach** `await` in `PdfToImages`, `ImageMetadata`,
   `ImageResize`, `ImageWatermark`, `IconGenerator`); in R9 nicht gemessen.
 - [ ] **OP-062/OP-063** (aus R8) — Strukturmigration nachträglich billigen?, weitere Belegskripte

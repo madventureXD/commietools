@@ -1,0 +1,11 @@
+OP-064 — Nachweis im frischen Checkout (QM-Sanierung, 2026-10-07)
+Arbeitsbaum: /c/Users/madve/AppData/Local/Temp/ct-frisch-op064 (git worktree --detach auf cfc2c5e), node_modules per Junction
+
+--- npm run licenses:check
+  Auslegung: unicode-properties 0.1.4: "MIT/Apache-2.0" als ODER gelesen
+  Auslegung: version_check 0.9.5: "MIT/Apache-2.0" als ODER gelesen
+FRISCH_LICENSES_EXIT=0
+--- npm run build
+License audit passed: 607 packages, 16 complete license texts, 218 preserved package documents.
+Bundle audit passed: entry 149755 B gzip; optional PDF artifacts: 19
+FRISCH_BUILD_EXIT=0

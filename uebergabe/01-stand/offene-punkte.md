@@ -361,33 +361,3 @@ Diese Liste enthält bestätigte, noch nicht abgeschlossene Arbeit. Details geh�
   sollen — der Aufwand je Skript ist das Umstellen auf Umgebungsvariablen, Voraussetzungsprüfung
   und Aufräumen. Entscheidung von Thomas vom 2026-10-06 (Punkt 6) war ausdrücklich **nur die
   tragenden** Skripte; dieser Punkt hält fest, was damit bewusst liegen bleibt.
-- [ ] OP-064 — **`HEAD` ist im frischen Checkout nicht baubar** *(2026-10-07, gefunden beim
-  Abnahmelauf zu Karte M10-004; Produktfehler ohne eigene Karte)*. Ein frischer Checkout von `HEAD`
-  scheitert bei `npm run build` an der ersten Stufe: `licenses:check` meldet
-  „`licenses/registry.json` is incomplete or stale". **Ursache, gemessen:** das committete Register
-  sagt `withNotices: 171 von 176` und `noticeMissing: true` für `pdf_signer`, **obwohl**
-  `crates/pdf-signer-engine/LICENSE` (die Auflage-A3-Datei, 34.906 B) in `HEAD` liegt; `lockfileSha256`
-  und die Revisionszeile weichen ebenfalls ab. Die Registerdateien werden im Arbeitsbaum lokal
-  erzeugt und **bewusst nicht committet** — der geprüfte Stand liegt damit nicht in `HEAD`.
-  **Folge:** wer nur `HEAD` auscheckt, kann das Projekt nicht bauen und den `check`-Lauf nicht
-  fahren, obwohl alle Prüfungen im Arbeitsbaum grün sind. **Nicht eigenmächtig geändert** (die
-  Registerdateien sind eine getroffene Entscheidung, siehe OP-036/Sanierungsleitfaden Punkt 1).
-  Ersatzweise genügt für die Belege `npm run build --workspace @commietools/web`, so steht es in
-  `scripts/belege/README.md`. Protokoll: `06-protokolle/2026-10-07-r8-m10-004-belegskripte.md`.
-
-## Pflege
-
-- **Erledigte Punkte werden hier nicht abgehakt, sondern übernommen:** Eintrag wörtlich nach
-  `06-protokolle/2026-10-07-erledigte-punkte-archiv.md` (mit Beleg: Commit, Protokoll, ADR oder
-  Übergabe) und hier entfernen. Die ID wird **nicht** wiederverwendet.
-- Neue Punkte mit Priorität, klarer Definition und möglichst einem nächsten Schritt eintragen und
-  die nächste freie `OP`-Nummer vergeben.
-- Bleibt von einem Eintrag nur ein Teil offen, bleibt der offene Teil stehen — mit Verweis auf die
-  Archivstelle, die den erledigten Teil trägt.
-- Vermutungen oder lose Ideen gehören zunächst nach `03-konzepte/`, nicht in diese verbindliche Aufgabenliste.
-
-*(Fassung 2026-10-07. Die frühere Regel lautete: „Erledigte Punkte mit Verweis auf Commit oder ADR in
-ein Fortschrittsprotokoll übernehmen und anschließend hier entfernen." — sie bleibt gültig und ist hier
-nur um die Archivstelle, die ID-Regel und den Teilerledigt-Fall ergänzt.)*
-
-
