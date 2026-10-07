@@ -745,6 +745,36 @@ Diese Liste enthält bestätigte, noch nicht abgeschlossene Arbeit. Details geh�
   über die CSS-Breite (320/390/640/683 px ≙ 200 % Zoom) gemessen, nicht auf einem Gerät; das
   Auskoppeln bei 320 px ist nicht als eigenes Fenster geprüft.
 
+## R7 — Wahrheitsgemäße Produkt- und Architekturakten (abgeschlossen 2026-10-07)
+
+- [x] **Alle acht Karten abgeschlossen** *(2026-10-07)*: M1-001, M1-002, M2-001, M2-002, M2-003,
+  M2-004, M2-005, M11-001. Protokolle unter `06-protokolle/2026-10-07-r7-*.md`, Übergabe
+  `05-uebergaben/2026-10-07-r7-abgeschlossen.md`.
+- [ ] **ADR 0014 (M7-Freigabekriterien) ist `vorgeschlagen` und braucht eine Betreiberentscheidung**
+  *(2026-10-07)*. Offen vor einer Annahme: Nachweis zum Schwachstellenstand des Signaturpfads
+  (Gate 3), unabhängige Sicherheitsreview (Gate 10), fehlender Originalhinweis der GPL-Komponente
+  (Gate 2) und ein **revisionsgebundener** Abnahmebericht zum Korpus `07-pruefung/m7/`.
+  Der Beschluss ist ausdrücklich **nicht** durch Dokumentation zu ersetzen.
+- [ ] **Kein Prüfer bewacht die Leitdatei** `00-einstieg/vorgehen-qm-audit.md` *(2026-10-07, gemessen)*.
+  Nach dem R6-Durchzug standen dort **fünf** Karten (M3-003, M3-004, M3-006, M3-008, M3-010) noch auf
+  „○", obwohl sie erledigt waren — kein Lauf hat das gemeldet. Nachgetragen; ein Abgleich
+  Karte ↔ Protokoll ↔ Commit wäre als Prüfer denkbar (Kartengrenze von M2-005 war der ADR-Index).
+- [ ] **Kein Prüfer bewacht `docs/`** *(2026-10-07)*. Die Tafel „Actual state 2026-10-07" in
+  `docs/architecture.md` ist eine **Messung**, keine Zusicherung: ein umbenannter Cache oder ein
+  entfernter Codeanker fiele niemandem automatisch auf. Die Empfindlichkeit der Messung wurde
+  geprüft (Cachename geändert ⇒ `sw.js` folgt), aber es gibt keine Kopplung.
+- [ ] **Die Größenreferenz ist weiterhin der Stand eines früheren Baus** *(2026-10-07)*. Der
+  Baubricht meldet deshalb durchweg große positive Abweichungen (Eingang 150.082 B gegen 146.417 B).
+  Eine bewusste Neusetzung der Referenz ist eine eigene Entscheidung — sie darf **nicht** nebenbei
+  geschehen, sonst verschwinden Warnungen still.
+- [ ] **Prüfer erkennen nur gepflegte Signaturen** *(2026-10-07)*. Zwei Lücken wurden in diesem
+  Durchzug geschlossen (qpdf-Laufzeitsignatur, harte mathjs-Regel); eine künftige Engine-Brücke ohne
+  passende Signatur oder Dateiname kann dem Bundle-Prüfer weiter entgehen. Die Sperrliste braucht bei
+  jeder neuen Engine-Klasse einen Eintrag.
+- [ ] **Verweise auf Protokolle stehen als Code-Spans** *(2026-10-07)*. `npm run adr:check` prüft nur
+  Markdown-Links `](…)`; ein Verweis in Backticks wird nicht auf Existenz geprüft. Bewusst so
+  gelassen (Projektstil), aber bekannt.
+
 ## Pflege
 
 - Erledigte Punkte mit Verweis auf Commit oder ADR in ein Fortschrittsprotokoll übernehmen und anschließend hier entfernen.

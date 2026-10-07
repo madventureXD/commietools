@@ -1,6 +1,33 @@
 # Aktueller Projektstand
 
 **Stand:** 2026-10-06
+
+**Zusatz 2026-10-07 (Faber), R7 abgeschlossen — 8 von 8 Karten (Produkt- und Architekturakten):**
+- **M1-001 ✓** Umfangszahlen der README sind **generiert** (`scripts/readme-scope.mjs`,
+  `npm run readme:check` in `check`); am ausgelieferten Bau gezählt **62 Tools / 7 Suiten / 23 PDF**.
+- **M1-002 ✓** Suchversprechen überall auf **gewählte Sprache plus Englisch**; der erzeugte Lader ruft
+  Englisch nicht mehr doppelt auf; Vertragstest + vier Browserfälle.
+- **M2-001 ✓** neuer **ADR 0014** (`vorgeschlagen`) für die tatsächlichen M7-Freigabekriterien;
+  ADR 0004 datiert verknüpft, Wortlaut erhalten.
+- **M2-002 ✓** Größenpolitik datiert festgehalten (Budget = **Warnung**, strukturelle Regel = **harter
+  Fehler**), zwei Gegenproben.
+- **M2-003 ✓** Rechner-Budgets richtiggestellt (200 KiB / 110 KiB); Baseline selbsterklärend; **harte
+  Regel „mathjs nie im Startbündel"** ergänzt.
+- **M2-004 ✓** QPDF-Anwendungsbereich umfasst jetzt auch die **Reparatur**; beide Pfade holen dieselbe
+  `qpdf-*.wasm`.
+- **M2-005 ✓** Doppelnummer 0006 aufgelöst (M9 → **0013**, Weiterverweisakte), Index vollständig,
+  neuer Doku-Gate **`npm run adr:check`** in `check`.
+- **M11-001 ✓** `docs/architecture.md` mit datiertem Iststand (Codeanker, Verantwortung, Restarbeit),
+  Behauptungen K30/K31 geschlossen.
+- **Zwei Prüfmittel-Fehler gefunden und behoben:** der Bundle-Prüfer war blind für die statisch
+  eingebundene qpdf-Brücke (Signatur `qpdf-wasm` statt Laufzeitname `qpdf.wasm`); das neue ADR-Gate
+  prüfte den Rückverweis nur als Text. Beide nachgeschärft und mit Gegenprobe belegt.
+- **Unterlassung berichtigt:** die Leitdatei war nach R6 nicht nachgezogen (fünf Karten standen auf
+  „○"); datiert nachgetragen. Gezählter Stand: **59 Karten — 50 erledigt · 1 mit Restforderung
+  (M8-001) · 8 offen** (R8 5, R9 2, R10 1).
+- Prüfkette: `npm run check` Exit 0 (**719 Tests**) · `npm run build` Exit 0 · `npm run adr:check`
+  grün (15 Dateien). Übergabe: `05-uebergaben/2026-10-07-r7-abgeschlossen.md`. **Nichts gepusht.**
+
 **Zusatz 2026-10-07 (Faber), R5-Durchzug — Einheit 6: M7-002 abgeschlossen, das Menü ist ein modaler Dialog:**
 - **M7-002 ✓ behoben.** Entscheidung laut Karte: **nativer modaler Dialog** (`<dialog>` +
   `showModal()`) statt eigener Tab-Liste. Die alte Liste (`button, input`) übersah `summary` und

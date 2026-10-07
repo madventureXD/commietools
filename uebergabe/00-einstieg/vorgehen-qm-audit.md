@@ -87,6 +87,24 @@ Tabelle nicht mitgezogen; die Tabelle war richtig, die Summe nicht.
 sind vollständig; offen sind R6 (6), R7 (8), R8 (5), R9 (2) und R10 (1, Betreiberentscheidung).
 Übergabe: `05-uebergaben/2026-10-07-r5-abgeschlossen.md`.*
 
+*Nachtrag 2026-10-07 (R6 und R7 abgeschlossen, Faber).* Nachgezählt **Zeile für Zeile mit einem
+Skript** über die Kartentabellen dieses Abschnitts (nicht aus einer Summe abgeleitet):
+**59 Karten — 50 erledigt · 1 mit Restforderung (M8-001) · 8 offen.** Vollständig sind R1, R2, R3,
+R4, R5, **R6 (7 von 7)** und **R7 (8 von 8)**; offen sind R8 (5), R9 (2) und R10 (1,
+Betreiberentscheidung).
+
+**Dabei eine Unterlassung berichtigt:** die Tabelle zu R6 war nach dem R6-Durchzug **nicht
+nachgezogen** worden — fünf Karten (M3-003, M3-004, M3-006, M3-008, M3-010) standen weiter auf „○",
+obwohl sie laut Übergabe `05-uebergaben/2026-10-07-r6-abgeschlossen.md` erledigt sind und dafür
+Protokolle und Commits vorliegen. Sie sind jetzt **datiert nachgetragen** (Zusatz „nachgetragen“).
+Die alte Angabe bleibt damit als damaliger Stand erkennbar; es wurde nichts umgeschrieben.
+
+R7-Protokolle: `06-protokolle/2026-10-07-r7-m1-001-readme-umfang.md`, `…-r7-m1-002-suchsprachen.md`,
+`…-r7-m2-001-m7-freigabekriterien.md`, `…-r7-m2-002-groessenpolitik.md`,
+`…-r7-m2-003-rechner-budgets.md`, `…-r7-m2-004-qpdf-anwendungsbereich.md`,
+`…-r7-m2-005-adr-index-und-gate.md`, `…-r7-m11-001-architektur-iststand.md`.
+Übergabe: `05-uebergaben/2026-10-07-r7-abgeschlossen.md`.*
+
 ### R1 — PDF-Engines, Signaturen, Lizenzen (P0) — **abgeschlossen**
 
 | Karte | Kurz | Stand |
@@ -166,28 +184,32 @@ Die frühere akzeptierte Abweichung ist damit aufgehoben; die Audit-Ausnahmen wu
 | Karte | Kurz | Stand |
 |---|---|---|
 | M3-001 | Spanische Übersetzung beschädigt drei technische Platzhalter | **✓ erledigt** (2026-10-07): Die drei Stellen tragen `{number}`; Sprachvertragstest vorhanden, **Mutationsgegenprobe über die Kette** (`catalog:check` Exit 1 mit „out of date", zurückgenommen Exit 0) — der Einzeltest bleibt dabei grün, weil er die generierten Pakete liest. UI-Beleg in drei Werkzeugen (spanisch, echte Nummer, 0 Restklammern). **Mitbehoben:** die drei pdf.js-Renderpfade hatten keine Zeitgrenze — im Bilderexport stand der Knopf dauerhaft auf „Procesando PDF…"; jetzt Meldung statt Dauerlauf. Nebenbefund: `tool.pdfToImages.download` wird im Code nicht mehr verwendet. Protokoll `06-protokolle/2026-10-07-m3-001-platzhalter.md`, Commit `7123077` |
-| M3-003 | Spanische Kerntexte ändern die fachliche Bedeutung | ○ |
-| M3-004 | Deutsche Richtungsbeschriftungen umgehen die Sprachpakete | ○ |
-| M3-006 | Ton und Terminologie nicht durchgängig eingehalten | ○ |
+| M3-003 | Spanische Kerntexte ändern die fachliche Bedeutung | **✓ erledigt** (2026-10-07, nachgetragen): vier Sinnverwechslungen behoben (`Revelador`, `Ahorro` ×2, `software gratuito`), Fachglossar + `glossary:check` mit Gegenprobe; Commits `bf65c01`, `d7ff3ae`, `03850ab`; Protokoll `06-protokolle/2026-10-07-m3-003-spanische-kerntexte.md` |
+| M3-004 | Deutsche Richtungsbeschriftungen umgehen die Sprachpakete | **✓ erledigt** (2026-10-07, nachgetragen): Zoll-Richtungen über Sprachschlüssel mit Parametern; neuer Prüfer `jsx:check`; Commit `ba3098e`; siehe R6-Übergabe `05-uebergaben/2026-10-07-r6-abgeschlossen.md` |
+| M3-006 | Ton und Terminologie nicht durchgängig eingehalten | **✓ erledigt** (2026-10-07, nachgetragen): vier Anredeverstöße auf den unpersönlichen Infinitiv umgestellt, fünf Positivkontrollen begründet unverändert; Commits `66be1cb`, `5a1ff4d`; Protokoll `06-protokolle/2026-10-07-m3-006-ton-terminologie.md` |
 | M3-007 | Lange Unicode-Dateinamen beim Kürzen beschädigt | **✓ erledigt — zweistufig.** 2026-10-06 (bei M5-004 gefunden): `normaliseFileName` schnitt bei 180 Zeichen mitten in einem Emoji ab; Surrogat-Grenzprüfung + Regressionstest ergänzt. **Nachtrag 2026-10-07 (nach R6):** Die Karte war richtig, aber halb umgesetzt — 25 weitere Stellen
 benutzten weiter die Oberflächensprache. Nachgezogen: `anzeigeKontext()` für alle Anzeige-Stellen und
 Prüfer `npm run format:check` (in `npm run check`); Beleg mit abweichender Geräte-Region. Protokoll
 `06-protokolle/2026-10-07-formatkontext-reststellen.md`. **2026-10-07 (R6, Durchzug):** das war zu kurz gegriffen — es schützt nur Surrogatpaare, nicht **Graphemgruppen** (ZWJ-Familie, Flagge, Hautton, kombinierendes Zeichen bleiben beim Durchschneiden wohlgeformt und sind trotzdem zerstört). Jetzt `Intl.Segmenter` (`granularity: 'grapheme'`), gezählt weiter in UTF-16-Einheiten gegen die 180er-Grenze, benannter Rückfall. Test prüft gegen **unabhängige** Segmentliste; echte Mutationsgegenprobe (zeichenweise Segmentierung) lässt die ZWJ-Familie durchfallen — zwei frühere Mutationsanläufe scheiterten am Linter und waren wertlos (im Protokoll benannt). Protokoll `06-protokolle/2026-10-07-m3-007-graphemgrenzen.md`, Commit `0673e4f` |
-| M3-008 | Titelschreibung übersieht Wörter hinter spanischen Satzzeichen | ○ |
-| M3-010 | Zahlenformate folgen innerhalb einer Oberfläche verschiedenen Regeln | ○ |
+| M3-008 | Titelschreibung übersieht Wörter hinter spanischen Satzzeichen | **✓ erledigt** (2026-10-07, nachgetragen): Wortgrenzen über `Intl.Segmenter`/`isWordLike`; Bindestrich-/Apostrophregel festgelegt; Commit `0ed056c`; Protokoll `06-protokolle/2026-10-07-m3-008-titelschreibung.md` |
+| M3-010 | Zahlenformate folgen innerhalb einer Oberfläche verschiedenen Regeln | **✓ erledigt** (2026-10-07, nachgetragen): gemeinsamer Formatkontext, vier genannte Stellen umgestellt; **Nachtrag:** weitere 25 Anzeige-Stellen folgen dem Kontext, Prüfer `format:check`; Commits `33278da`, `fdbbb91`, `34be880`; Protokolle `06-protokolle/2026-10-07-m3-010-zahlenformate.md`, `…-formatkontext-reststellen.md` |
 
 ### R7 — Wahrheitsgemäße Produkt- und Architekturakten (P2) — nicht begonnen
 
+*Zusatz 2026-10-07 (Faber, Durchzug auf Anweisung von Thomas): **R7 ist vollständig — 8 von 8
+Karten.** Die Überschrift dieses Abschnitts ist der Stand vom 2026-10-06 und bleibt stehen;
+maßgeblich ist die Spalte „Stand" und der Nachsatz am Ende dieses Abschnitts.*
+
 | Karte | Kurz | Stand |
 |---|---|---|
-| M1-001 | Haupt-README beschreibt veralteten Produktumfang | ○ |
-| M1-002 | „Suche über alle Sprachen" widerspricht dem Ladeverhalten | ○ |
-| M2-001 | Sicherheits-ADR verbietet veröffentlichte M7-Werkzeuge | ○ |
-| M2-002 | ADR verspricht harten Größenabbruch, das Gate warnt nur | ○ |
-| M2-003 | Rechner-ADR enthält zwei überholte Budgets | ○ |
-| M2-004 | QPDF-ADR beschränkt die Engine fälschlich auf M5 | ○ |
-| M2-005 | Entscheidungsindex verschweigt ADR 0006 | ○ |
-| M11-001 | Architekturbeschreibung führt vorhandene Grenzen als vertagt | ○ |
+| M1-001 | Haupt-README beschreibt veralteten Produktumfang | **✓ erledigt** (2026-10-07): Umfangszahlen stehen in einem **generierten** README-Block (`scripts/readme-scope.mjs`, `npm run readme:check` in `check`); am Bau nachgezählt 62 Tools / 7 Suiten / 23 PDF. Protokoll `06-protokolle/2026-10-07-m1-001-readme-umfang.md`, Commit `85e2cd0` |
+| M1-002 | „Suche über alle Sprachen" widerspricht dem Ladeverhalten | **✓ erledigt** (2026-10-07): README, Hinweistext de/en/es und Suchkommentar sagen „gewählte Sprache plus Englisch"; der erzeugte Lader ruft Englisch nicht mehr doppelt auf; Vertragstest. Beleg: 4 Browserfälle. Protokoll `…-r7-m1-002-suchsprachen.md`, Commit `a1e0e11` |
+| M2-001 | Sicherheits-ADR verbietet veröffentlichte M7-Werkzeuge | **✓ erledigt** (2026-10-07): neuer **ADR 0014** (Status `vorgeschlagen`) mit Produktstand und Nachweis je Gate; ADR 0004 datiert verknüpft und im Wortlaut erhalten. Protokoll `…-r7-m2-001-m7-freigabekriterien.md`, Commit `9d87eb7` |
+| M2-002 | ADR verspricht harten Größenabbruch, das Gate warnt nur | **✓ erledigt** (2026-10-07): datierter Nachtrag in ADR 0003 (Warnung vs. harter Fehler); zwei Gegenproben. **Prüfmittel-Lücke dabei gefunden und behoben:** die qpdf-Laufzeitsignatur fehlte, ein statischer Engine-Import blieb unentdeckt. Protokoll `…-r7-m2-002-groessenpolitik.md`, Code `e72c403` |
+| M2-003 | Rechner-ADR enthält zwei überholte Budgets | **✓ erledigt** (2026-10-07): Nachtrag in ADR 0005 (250→200 KiB, 95→110 KiB, Herkunft der 89,5/100,6/103.801 B getrennt); Baseline selbsterklärend; **harte Regel** „mathjs nicht im Start" ergänzt. Protokoll `…-r7-m2-003-rechner-budgets.md`, Code `607c2d7` |
+| M2-004 | QPDF-ADR beschränkt die Engine fälschlich auf M5 | **✓ erledigt** (2026-10-07): Anwendungsbereich in ADR 0002 auf Sicherheit **und** Reparatur erweitert, Aufrufer und Ladegrenze belegt; Browser zeigt in beiden Pfaden dieselbe `qpdf-*.wasm`. Protokoll `…-r7-m2-004-qpdf-anwendungsbereich.md`, Commit `f0b6f7a` |
+| M2-005 | Entscheidungsindex verschweigt ADR 0006 | **✓ erledigt** (2026-10-07): Doppelnummer 0006 aufgelöst (M9-Entscheidung → **0013**, Weiterverweisakte am alten Pfad), Index vollständig; neuer Doku-Gate `npm run adr:check`. Protokoll `…-r7-m2-005-adr-index-und-gate.md`, Code `00fa7e8` |
+| M11-001 | Architekturbeschreibung führt vorhandene Grenzen als vertagt | **✓ erledigt** (2026-10-07): `docs/architecture.md` mit datiertem Iststand (Codeanker, Verantwortung, Restarbeit je Grenze); K30/K31 geschlossen; Cachenamen gegen Buildkonfiguration und `sw.js` gemessen. Protokoll `…-r7-m11-001-architektur-iststand.md`, Commit `26591fd` |
 
 ### R8 — Übergaben, Abschlusskriterien, Prüfverfahren (P2) — nicht begonnen
 
@@ -354,6 +376,20 @@ fremde Konzeptdatei `03-konzepte/2026-10-06-tooltip-und-kontexthilfe.md` (nicht 
 In dieser Aktenpflege berichtigt: die ausgezählte Summe in Abschnitt 4 (28/1/30 → **34/1/24**, mit
 Grund), die R5-Überschrift (7 von 9) und der Push-Abstand in Abschnitt 6 Punkt 8. Die Kartenstände
 der Tabelle selbst waren bereits nachgeführt und blieben unverändert.
+
+*Nachtrag 2026-10-07 (R6 und R7, Faber).* Kopf nach dem R7-Codestand ist **`26591fd`**; die
+Akten-Commits dieses Nachzugs folgen darauf. `main` stand zu diesem Zeitpunkt **114 Commits vor
+`origin/main`** — **gemessen** mit `git rev-list --count origin/main..HEAD`, nicht aus einem Text
+abgelesen. **Nichts gepusht**; ein Push veröffentlicht commietools.org.
+
+In diesem Durchzug zusätzlich eingerichtet: der Doku-Gate `npm run adr:check` (Teil von `check`).
+**Zwei Prüflücken wurden dabei gefunden und behoben** (das ADR-Gate war zu weich, der Bundle-Prüfer
+blind für die qpdf-Brücke). **Nicht** behoben und ausdrücklich benannt: die Leitdatei selbst wird von
+keinem Prüfer bewacht — die R6-Zeilen standen fünf Karten lang falsch, ohne dass etwas anschlug.
+
+Außerhalb der Commits trägt der Arbeitsbaum die beiden revisionsgebundenen Registry-Dateien
+(`licenses/registry.json`, `apps/web/public/licenses/registry.json`), die zwei Testdateien aus dem
+M4-005-Nachweis und die Belege unter `work/` (durch die Projekt-.gitignore nicht versioniert).
 
 ## 8. Pflege dieser Datei
 
