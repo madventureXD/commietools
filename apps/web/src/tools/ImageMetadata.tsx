@@ -3,6 +3,7 @@ import {
   acceptAttributeFor,
   detectImageFormat,
   findMetadataSegments,
+  formatBytes,
   formatNames,
   inputMimeTypes,
   readOnlyFormatNames,
@@ -32,13 +33,6 @@ const groupOrder: readonly MetadataGroup[] = ['camera', 'time', 'exposure', 'ima
 function translated(t: Translate, key: string, fallback: string): string {
   const value = t(key)
   return value === key ? fallback : value
-}
-
-function formatBytes(bytes: number, locale: Locale): string {
-  const formatter = new Intl.NumberFormat(anzeigeKontext(locale).regionLocale, { maximumFractionDigits: bytes < 1024 * 1024 ? 1 : 2 })
-  if (bytes < 1024) return `${formatter.format(bytes)} B`
-  if (bytes < 1024 * 1024) return `${formatter.format(bytes / 1024)} kB`
-  return `${formatter.format(bytes / (1024 * 1024))} MB`
 }
 
 function cleanedName(name: string): string {
@@ -158,7 +152,7 @@ export function ImageMetadata({ t, locale }: { t: Translate; locale: Locale }) {
                 {bytes && (
                   <div>
                     <dt>{t('tool.imageMetadata.size')}</dt>
-                    <dd className="fact-text">{formatBytes(bytes.length, locale)}</dd>
+                    <dd className="fact-text">{formatBytes(bytes.length, anzeigeKontext(locale))}</dd>
                   </div>
                 )}
                 {dimensions && (
@@ -266,7 +260,7 @@ export function ImageMetadata({ t, locale }: { t: Translate; locale: Locale }) {
             </>
           )}
           <p className="scan-note">
-            {t('tool.imageMetadata.savedBytes')}: {formatBytes(Math.max(cleaned.saved, 0), locale)}
+            {t('tool.imageMetadata.savedBytes')}: {formatBytes(Math.max(cleaned.saved, 0), anzeigeKontext(locale))}
           </p>
           <p className="privacy-note">{t('tool.imageMetadata.lossless')}</p>
           <SaveFileControl url={cleaned.url} suggestedName={cleanedName(fileName)} mimeType={fileType || 'application/octet-stream'} t={t} />

@@ -5,6 +5,7 @@ import {
   MASKABLE_SAFE_ZONE,
   acceptAttributeFor,
   buildManifestIcons,
+  formatBytes,
   formatNames,
   inputMimeTypes,
   planIcon,
@@ -30,13 +31,6 @@ const DEFAULT_SIZES = [16, 32, 48, 180, 192, 512]
 
 /** Edge length of the preview tiles; only shows the arrangement, not the final detail. */
 const PREVIEW_EDGE = 160
-
-function formatBytes(bytes: number, locale: Locale): string {
-  const formatter = new Intl.NumberFormat(anzeigeKontext(locale).regionLocale, { maximumFractionDigits: 1 })
-  if (bytes < 1024) return `${formatter.format(bytes)} B`
-  if (bytes < 1024 * 1024) return `${formatter.format(bytes / 1024)} kB`
-  return `${formatter.format(bytes / (1024 * 1024))} MB`
-}
 
 function iconFileName(size: number, maskable: boolean): string {
   return `${maskable ? 'icon-maskable' : 'icon'}-${size}.png`
@@ -224,7 +218,7 @@ export function IconGenerator({ t, locale }: { t: Translate; locale: Locale }) {
                 )}
                 <div>
                   <dt>{t('tool.imageMetadata.size')}</dt>
-                  <dd className="fact-text">{formatBytes(fileSize, locale)}</dd>
+                  <dd className="fact-text">{formatBytes(fileSize, anzeigeKontext(locale))}</dd>
                 </div>
               </dl>
             )}
@@ -319,7 +313,7 @@ export function IconGenerator({ t, locale }: { t: Translate; locale: Locale }) {
                 <img src={entry.url} alt="" width={entry.icon.size} height={entry.icon.size} />
                 <figcaption>
                   <span>{entry.file}</span>
-                  <span className="scan-note">{formatBytes(entry.icon.blob.size, locale)}</span>
+                  <span className="scan-note">{formatBytes(entry.icon.blob.size, anzeigeKontext(locale))}</span>
                   <SaveFileControl blob={entry.icon.blob} suggestedName={entry.file} mimeType="image/png" t={t} />
                 </figcaption>
               </figure>
@@ -329,7 +323,7 @@ export function IconGenerator({ t, locale }: { t: Translate; locale: Locale }) {
                 <img src={result.ico.url} alt="" width={48} height={48} />
                 <figcaption>
                   <span>favicon.ico</span>
-                  <span className="scan-note">{formatBytes(result.ico.size, locale)}</span>
+                  <span className="scan-note">{formatBytes(result.ico.size, anzeigeKontext(locale))}</span>
                   <SaveFileControl blob={result.ico.blob} suggestedName="favicon.ico" mimeType="image/x-icon" t={t} />
                 </figcaption>
               </figure>

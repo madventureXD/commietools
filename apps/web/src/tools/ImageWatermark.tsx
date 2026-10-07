@@ -6,6 +6,7 @@ import {
   acceptAttributeFor,
   auxiliaryMimeTypes,
   clampOpacity,
+  formatBytes,
   formatNames,
   inputMimeTypes,
   placeWatermark,
@@ -43,13 +44,6 @@ const ANCHOR_KEYS: Record<WatermarkAnchor, string> = {
   'bottom-left': 'tool.watermark.anchor.bottomLeft',
   bottom: 'tool.watermark.anchor.bottom',
   'bottom-right': 'tool.watermark.anchor.bottomRight'
-}
-
-function formatBytes(bytes: number, locale: Locale): string {
-  const formatter = new Intl.NumberFormat(anzeigeKontext(locale).regionLocale, { maximumFractionDigits: 1 })
-  if (bytes < 1024) return `${formatter.format(bytes)} B`
-  if (bytes < 1024 * 1024) return `${formatter.format(bytes / 1024)} kB`
-  return `${formatter.format(bytes / (1024 * 1024))} MB`
 }
 
 function outputName(name: string, type: string): string {
@@ -233,7 +227,7 @@ export function ImageWatermark({ t, locale }: { t: Translate; locale: Locale }) 
                 )}
                 <div>
                   <dt>{t('tool.imageMetadata.size')}</dt>
-                  <dd className="fact-text">{formatBytes(fileSize, locale)}</dd>
+                  <dd className="fact-text">{formatBytes(fileSize, anzeigeKontext(locale))}</dd>
                 </div>
               </dl>
             )}
@@ -380,7 +374,7 @@ export function ImageWatermark({ t, locale }: { t: Translate; locale: Locale }) 
           <dl className="results metadata-facts">
             <div>
               <dt>{t('tool.imageMetadata.size')}</dt>
-              <dd className="fact-text">{formatBytes(result.size, locale)}</dd>
+              <dd className="fact-text">{formatBytes(result.size, anzeigeKontext(locale))}</dd>
             </div>
           </dl>
           <img className="resize-result" src={result.url} alt="" />

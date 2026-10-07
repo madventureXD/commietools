@@ -1,6 +1,6 @@
-import { useEffect, useMemo, useState } from 'react'
-import type { ToolSearchEntry } from '@commietools/core'
-import { loadToolSearchIndex, MIN_QUERY_LENGTH, searchTools, toolById, toolManifests } from '@commietools/tools'
+import { useMemo } from 'react'
+import { MIN_QUERY_LENGTH, searchTools, toolById, toolManifests } from '@commietools/tools'
+import { useToolSearchIndex } from './useToolSearchIndex'
 import { ToolCard, type Translate } from './ToolCard'
 
 /**
@@ -8,8 +8,6 @@ import { ToolCard, type Translate } from './ToolCard'
  * from two characters on it shows matches with the reason they matched.
  */
 export function CatalogSection({ t, locale, navigate, query, onQuery }: { t: Translate; locale: string; navigate: (path: string) => void; query: string; onQuery: (value: string) => void }) {
-  const [toolIndex, setToolIndex] = useState<readonly ToolSearchEntry[]>([])
-  const [searchReady, setSearchReady] = useState(false)
   /**
    * **Fehlerweg des Katalogindex (Karte M4-004).** Ohne ihn blieb eine unbehandelte Ablehnung
    * stehen (`.then` ohne zweites Argument gibt die Ablehnung an eine neue Zusage weiter, die
@@ -17,8 +15,7 @@ export function CatalogSection({ t, locale, navigate, query, onQuery }: { t: Tra
    * übersetzte Meldung da; die Liste der Werkzeuge kommt weiter aus dem Register selbst, nur die
    * Katalogtexte fehlen.
    */
-  const [searchFailed, setSearchFailed] = useState(false)
-  useEffect(() => { let current=true;setSearchReady(false);setSearchFailed(false);void loadToolSearchIndex(locale as 'de'|'en'|'es').then((index)=>{if(current){setToolIndex(index);setSearchReady(true)}},()=>{if(current){setToolIndex([]);setSearchReady(true);setSearchFailed(true)}});return()=>{current=false} },[locale])
+  const { index: toolIndex, ready: searchReady, failed: searchFailed } = useToolSearchIndex(locale)
   const trimmed = query.trim()
   const isSearching = trimmed.length >= MIN_QUERY_LENGTH
   const results = useMemo(() => searchTools(toolIndex, { query: trimmed, locale, label: t }), [toolIndex, trimmed, locale, t])

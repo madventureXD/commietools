@@ -1,4 +1,4 @@
-import { useEffect, useState, type ChangeEvent, type ReactNode } from 'react'
+import { useState, type ChangeEvent, type ReactNode } from 'react'
 import {
   acceptAttributeFor,
   auxiliaryMimeTypes
@@ -16,6 +16,7 @@ import {
 import { Button, LocalBadge } from '@commietools/ui'
 import { SignaturePad, canvasPng, type SignatureSource } from './SignaturePad'
 import { PdfWarnings, baseName, pdfErrorKey, usePdfThumbnails, type LoadedPdf, type Translate } from './pdfUi'
+import { useResultUrl } from './resultUrl'
 import { SaveFileControl } from './SaveFileControl'
 
 const anchors: readonly PdfPlacementAnchor[] = ['top-left', 'top-center', 'top-right', 'middle-left', 'center', 'middle-right', 'bottom-left', 'bottom-center', 'bottom-right']
@@ -80,12 +81,7 @@ function Result({ url, name, title, t }: { url: string; name: string; title: str
 }
 
 function usePdfResult() {
-  const [url, setUrl] = useState('')
-  useEffect(() => () => { if (url) URL.revokeObjectURL(url) }, [url])
-  return [url, (bytes?: Uint8Array) => setUrl((old) => {
-    if (old) URL.revokeObjectURL(old)
-    return bytes ? URL.createObjectURL(new Blob([new Uint8Array(bytes)], { type: 'application/pdf' })) : ''
-  })] as const
+  return useResultUrl('application/pdf')
 }
 
 function NumberField({ label, value, onChange, min, max, step = 1 }: { label: string; value: number; onChange: (value: number) => void; min: number; max: number; step?: number }) {

@@ -1,8 +1,8 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { readLocal } from '@commietools/core/storage'
 import type { ToolCategory, ToolManifest } from '@commietools/core'
-import type { ToolSearchEntry } from '@commietools/core'
-import { loadToolSearchIndex, MIN_QUERY_LENGTH, searchEntryById, searchTools, toolById, toolManifests } from '@commietools/tools'
+import { MIN_QUERY_LENGTH, searchEntryById, searchTools, toolById, toolManifests } from '@commietools/tools'
+import { useToolSearchIndex } from './useToolSearchIndex'
 import { toolTextsFrom } from './tool-texts'
 import { addRecentTool, toggleToolId, validRecentTools, validToolIds, type RecentTool, type ToolSort } from './toolNavigationState'
 
@@ -33,8 +33,6 @@ function writeJson(key: string, value: unknown): void {
 }
 
 export function ToolNavigation({ t, locale, activeToolId, navigate }: { t: Translate; locale: string; activeToolId?: string; navigate: (path: string) => void }) {
-  const [toolIndex, setToolIndex] = useState<readonly ToolSearchEntry[]>([])
-  const [searchReady, setSearchReady] = useState(false)
   const [open, setOpen] = useState(false)
   const [query, setQuery] = useState('')
   const [sort, setSort] = useState<ToolSort>(() => {
@@ -55,8 +53,7 @@ export function ToolNavigation({ t, locale, activeToolId, navigate }: { t: Trans
    * stehen — `.then` ohne zweites Argument gibt sie an eine neue Zusage weiter, die niemand
    * behandelt. Sichtbar war das als Menü, das für immer „wird geladen" zeigt.
    */
-  const [searchFailed, setSearchFailed] = useState(false)
-  useEffect(() => { let current=true;setSearchReady(false);setSearchFailed(false);void loadToolSearchIndex(locale as 'de'|'en'|'es').then((index)=>{if(current){setToolIndex(index);setSearchReady(true)}},()=>{if(current){setToolIndex([]);setSearchReady(true);setSearchFailed(true)}});return()=>{current=false} },[locale])
+  const { index: toolIndex, ready: searchReady, failed: searchFailed } = useToolSearchIndex(locale)
 
   useEffect(() => {
     if (!activeToolId || !knownIds.has(activeToolId)) return

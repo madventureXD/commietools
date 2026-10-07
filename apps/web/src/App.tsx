@@ -1,9 +1,10 @@
 import { lazy, Suspense, useEffect, useMemo, useRef, useState } from 'react'
-import type { SuiteManifest, ToolManifest, ToolSearchEntry } from '@commietools/core'
+import type { SuiteManifest, ToolManifest } from '@commietools/core'
 import { readLocal, writeLocal } from '@commietools/core/storage'
 import { createTranslator, detectLocale, isLocale, loadInterfaceMessages, localeRegistry, supportedLocales, type Locale } from '@commietools/i18n'
 import { convertCase, getSuiteTools, getTextStatistics, loadToolSearchIndex, MIN_QUERY_LENGTH, searchEntryById, suiteByRoute, suiteManifests, toolByRoute, type CaseMode } from '@commietools/tools'
 import { Button, LocalBadge } from '@commietools/ui'
+import { useToolSearchIndex } from './useToolSearchIndex'
 import { PipTrigger, PipWrapper } from '@pip-it-up/react'
 import { CatalogSection } from './CatalogSection'
 import { LicensePage } from './LicensePage'
@@ -131,12 +132,7 @@ function ToolPage({ tool, t, locale, navigate, ready, loadFailed }: { tool: Tool
    * weil die Werkzeugschublade im Kopfbereich steckt; das Textpaket dieses Werkzeugs enthält sie
    * deshalb nicht mehr. `loadToolSearchIndex` liefert die zwischengespeicherte Zusage.
    */
-  const [toolCatalogue, setToolCatalogue] = useState<readonly ToolSearchEntry[]>([])
-  useEffect(() => {
-    let current = true
-    void loadToolSearchIndex(locale).then((entries) => { if (current) setToolCatalogue(entries) }, () => { if (current) setToolCatalogue([]) })
-    return () => { current = false }
-  }, [locale])
+  const { index: toolCatalogue } = useToolSearchIndex(locale)
   const toolsKopf = toolTextsFrom(toolCatalogue, tool, locale, t)
   // Groesse, die das Werkzeug im Hauptfenster hat, bevor es hinauswandert.
   // Kein Wert aus einem Katalog, sondern gemessen - sie stimmt auch dann, wenn
@@ -287,12 +283,7 @@ function SuitePage({ suite, t, locale, navigate }: { suite: SuiteManifest; t: Tr
    * Die Suiten-Seite braucht das **Suchpaket**: Titel, Kurztext und Schlagwörter der Karten stehen
    * dort (2026-10-05), nicht im Textpaket — das wird erst auf einer Werkzeugroute geladen.
    */
-  const [index, setIndex] = useState<readonly ToolSearchEntry[]>([])
-  useEffect(() => {
-    let current = true
-    void loadToolSearchIndex(locale as 'de' | 'en' | 'es').then((entries) => { if (current) setIndex(entries) }, () => { if (current) setIndex([]) })
-    return () => { current = false }
-  }, [locale])
+  const { index } = useToolSearchIndex(locale)
   return <main className="detail-page"><button className="text-link back" onClick={() => navigate('/')}>← {t('tool.back')}</button><section className="suite-hero"><p className="eyebrow">Suite</p><h1>{t(suite.titleKey)}</h1><p>{t(suite.descriptionKey)}</p><span>{tools.length} {t('suite.tools')}</span></section><div className="catalog-grid">{tools.map((tool) => <ToolCard key={tool.id} tool={tool} t={t} locale={locale} navigate={navigate} index={index} />)}</div></main>
 }
 

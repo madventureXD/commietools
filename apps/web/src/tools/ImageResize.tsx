@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState, type ChangeEvent } from 'react'
-import { acceptAttributeFor, cropBoxFraction, fitScale, formatNames, inputMimeTypes, planResize, readOnlyFormatNames, type CropRect, type ResizeMode } from '@commietools/tools'
+import { acceptAttributeFor, cropBoxFraction, fitScale, formatBytes, formatNames, inputMimeTypes, planResize, readOnlyFormatNames, type CropRect, type ResizeMode } from '@commietools/tools'
 import type { Locale } from '@commietools/i18n'
 import { Button, LocalBadge } from '@commietools/ui'
 import { renderOrientationPreview, renderPlan } from './imageResizeRender'
@@ -15,13 +15,6 @@ type Translate = (key: string) => string
 
 /** Preview box the orientated image is fitted into. */
 const previewBox = { width: 560, height: 420 }
-
-function formatBytes(bytes: number, locale: Locale): string {
-  const formatter = new Intl.NumberFormat(anzeigeKontext(locale).regionLocale, { maximumFractionDigits: 1 })
-  if (bytes < 1024) return `${formatter.format(bytes)} B`
-  if (bytes < 1024 * 1024) return `${formatter.format(bytes / 1024)} kB`
-  return `${formatter.format(bytes / (1024 * 1024))} MB`
-}
 
 function outputName(name: string, width: number, height: number, type: string): string {
   const dot = name.lastIndexOf('.')
@@ -186,7 +179,7 @@ export function ImageResize({ t, locale }: { t: Translate; locale: Locale }) {
                 )}
                 <div>
                   <dt>{t('tool.imageMetadata.size')}</dt>
-                  <dd className="fact-text">{formatBytes(fileSize, locale)}</dd>
+                  <dd className="fact-text">{formatBytes(fileSize, anzeigeKontext(locale))}</dd>
                 </div>
               </dl>
             )}
@@ -328,7 +321,7 @@ export function ImageResize({ t, locale }: { t: Translate; locale: Locale }) {
             </div>
             <div>
               <dt>{t('tool.imageMetadata.size')}</dt>
-              <dd className="fact-text">{formatBytes(result.size, locale)}</dd>
+              <dd className="fact-text">{formatBytes(result.size, anzeigeKontext(locale))}</dd>
             </div>
           </dl>
           <img className="resize-result" src={result.url} alt="" />

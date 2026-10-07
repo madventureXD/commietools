@@ -19,6 +19,7 @@
     "./calculator/statistics": "./src/calculator/statistics.ts",
     "./calculator/plotter": "./src/calculator/plotter.ts",
     "./calculator/aufmass": "./src/calculator/aufmass.ts",
+  "./calculator/rounding": "./src/calculator/rounding.ts",
     "./calculator/aufmassStore": "./src/calculator/aufmassStore.ts",
     "./craft/concrete": "./src/craft/concrete.ts",
     "./craft/roof": "./src/craft/roof.ts",

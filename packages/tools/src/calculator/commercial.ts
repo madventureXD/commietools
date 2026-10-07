@@ -12,6 +12,7 @@
  * Die Rechenwege sind öffentlich (Prozentrechnung, kaufmännisches Rechnen, Annuitätenformel);
  * die Quelle je Rechenart steht in den Sprachkatalogen.
  */
+import { divRound } from './rounding'
 
 /** Interne Skala: 12 Nachkommastellen. Cent-genauigkeit ist damit deutlich übererfüllt. */
 const SCALE = 10n ** 12n
@@ -32,15 +33,7 @@ export interface CommercialResult {
   readonly error: CommercialErrorCode | null
 }
 
-/** Kaufmännische Rundung (halbe auf), vorzeichenunabhängig. */
-function divRound(numerator: bigint, denominator: bigint): bigint {
-  if (denominator === 0n) throw new Error('zeroDivisor')
-  const negative = (numerator < 0n) !== (denominator < 0n)
-  const a = numerator < 0n ? -numerator : numerator
-  const b = denominator < 0n ? -denominator : denominator
-  const quotient = (a * 2n + b) / (b * 2n)
-  return negative ? -quotient : quotient
-}
+/** Kaufmännische Rundung (halbe auf), vorzeichenunabhängig — gemeinsam mit `aufmass.ts`. */
 
 /**
  * Zahleneingabe. Dokumentierte Annahmen (stehen so auch in der Oberfläche):

@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, type ChangeEvent, type PointerEvent } from 'react'
+import { useRef, useState, type ChangeEvent, type PointerEvent } from 'react'
 import {
   acceptAttributeFor
 } from '@commietools/tools'
@@ -19,14 +19,9 @@ import {
 import { Button, LocalBadge } from '@commietools/ui'
 import { PdfWarnings, baseName, pdfErrorKey, usePdfThumbnails, type LoadedPdf, type Translate } from './pdfUi'
 import { SaveFileControl } from './SaveFileControl'
+import { useResultUrl } from './resultUrl'
 
 type InteractivePdf = LoadedPdf & { form?: PdfFormInspection }
-
-function usePdfDownload() {
-  const [url, setUrl] = useState('')
-  useEffect(() => () => { if (url) URL.revokeObjectURL(url) }, [url])
-  return [url, (bytes?: Uint8Array) => setUrl((old) => { if (old) URL.revokeObjectURL(old); return bytes ? URL.createObjectURL(new Blob([new Uint8Array(bytes)], { type: 'application/pdf' })) : '' })] as const
-}
 
 function Result({ url, name, title, t }: { url: string; name: string; title: string; t: Translate }) {
   return <section className="settings-card stack" aria-live="polite"><div className="preview-heading"><h2>{title}</h2><LocalBadge>{t('status.local')}</LocalBadge></div><SaveFileControl url={url} suggestedName={name} mimeType="application/pdf" t={t} /></section>
@@ -51,7 +46,7 @@ export function PdfFormFill({ t }: { t: Translate }) {
   const [flatten, setFlatten] = useState(false)
   const [error, setError] = useState('')
   const [processing, setProcessing] = useState(false)
-  const [url, setResult] = usePdfDownload()
+  const [url, setResult] = useResultUrl('application/pdf')
   async function selectFile(event: ChangeEvent<HTMLInputElement>) {
     const selected = event.target.files?.[0]; if (!selected) return
     try {
@@ -89,7 +84,7 @@ export function PdfAnnotate({ t }: { t: Translate }) {
   const drawing = useRef(false)
   const [error, setError] = useState('')
   const [processing, setProcessing] = useState(false)
-  const [url, setResult] = usePdfDownload()
+  const [url, setResult] = useResultUrl('application/pdf')
   async function load(name: string, bytes: Uint8Array) { const inspection = await inspectPdf(bytes); setFile({ id: crypto.randomUUID(), name, bytes, inspection }); setAnnotations(inspectPdfAnnotations(bytes)); setResult(bytes) }
   async function selectFile(event: ChangeEvent<HTMLInputElement>) { const selected = event.target.files?.[0]; if (!selected) return; try { await load(selected.name, new Uint8Array(await selected.arrayBuffer())); setError('') } catch (caught) { setError(pdfErrorKey(caught)) } event.target.value = '' }
   async function add() {

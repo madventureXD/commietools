@@ -1,7 +1,8 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import workerUrl from 'pdfjs-dist/build/pdf.worker.min.mjs?url'
 import { PdfToolError, type PdfInspection } from '@commietools/tools/pdf/core'
 import type { PdfPageGeometry } from './pdfGeometry'
+import { useResultUrl } from './resultUrl'
 
 export type Translate = (key: string) => string
 
@@ -95,17 +96,10 @@ export function usePdfThumbnails(bytes: Uint8Array | null, maxWidth = 150) {
 }
 
 export function useDownload(bytes: Uint8Array | null) {
-  const [url, setUrl] = useState('')
-  useEffect(() => {
-    if (!bytes) {
-      setUrl('')
-      return
-    }
-    const blobBytes = new Uint8Array(bytes)
-    const next = URL.createObjectURL(new Blob([blobBytes], { type: 'application/pdf' }))
-    setUrl(next)
-    return () => URL.revokeObjectURL(next)
-  }, [bytes])
+  const [url, setUrl] = useResultUrl('application/pdf')
+  const setze = useRef(setUrl)
+  setze.current = setUrl
+  useEffect(() => { setze.current(bytes) }, [bytes])
   return url
 }
 

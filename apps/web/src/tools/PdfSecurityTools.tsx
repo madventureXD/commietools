@@ -1,4 +1,4 @@
-import { useEffect, useState, type ChangeEvent, type ReactNode } from 'react'
+import { useState, type ChangeEvent, type ReactNode } from 'react'
 import {
   acceptAttributeFor
 } from '@commietools/tools'
@@ -19,12 +19,19 @@ import { Button, LocalBadge } from '@commietools/ui'
 import { PdfWarnings, baseName, pdfErrorKey, usePdfThumbnails, type Translate } from './pdfUi'
 import { SaveFileControl } from './SaveFileControl'
 
+import { useResultUrl } from './resultUrl'
+
 type PdfFile = { name: string; bytes: Uint8Array; inspection?: PdfInspection }
 
 function useResult() {
-  const [result, setResult] = useState<{ bytes: Uint8Array; url: string } | null>(null)
-  useEffect(() => () => { if (result) URL.revokeObjectURL(result.url) }, [result])
-  return [result, (bytes?: Uint8Array) => setResult((old) => { if (old) URL.revokeObjectURL(old.url); return bytes ? { bytes, url: URL.createObjectURL(new Blob([new Uint8Array(bytes)], { type: 'application/pdf' })) } : null })] as const
+  const [bytes, setBytes] = useState<Uint8Array | null>(null)
+  const [url, setzeAdresse] = useResultUrl('application/pdf')
+  /**
+   * Die Adresse entsteht und vergeht an **einer** Stelle (`useResultUrl`, Karte M4-009); hier liegt
+   * nur noch der Byteinhalt dazu. Das Freigeben der alten Adresse macht der gemeinsame Haken.
+   */
+  const setze = (next?: Uint8Array) => { setBytes(next ?? null); setzeAdresse(next ?? null) }
+  return [bytes ? { bytes, url } : null, setze] as const
 }
 
 function Facts({ file, t }: { file: PdfFile; t: Translate }) {

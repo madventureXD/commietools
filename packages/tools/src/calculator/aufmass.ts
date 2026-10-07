@@ -21,6 +21,7 @@
  * Fehler sind Codes.
  */
 import { numberCell, spreadsheetRow, textCell, type CsvCell } from './spreadsheet'
+import { divRound } from './rounding'
 
 /** Interne Skala: 12 Nachkommastellen. Für Maße und Beträge deutlich übererfüllt. */
 const SCALE = 10n ** 12n
@@ -75,15 +76,7 @@ export const MONEY_DECIMALS = 2
 
 // — Auswerter ——————————————————————————————————————————————————————————————
 
-/** Kaufmännische Rundung (halbe auf), vorzeichenunabhängig. */
-function divRound(numerator: bigint, denominator: bigint): bigint {
-  if (denominator === 0n) throw new Error('zeroDivisor')
-  const negative = (numerator < 0n) !== (denominator < 0n)
-  const a = numerator < 0n ? -numerator : numerator
-  const b = denominator < 0n ? -denominator : denominator
-  const quotient = (a * 2n + b) / (b * 2n)
-  return negative ? -quotient : quotient
-}
+/** Kaufmännische Rundung (halbe auf), vorzeichenunabhängig — gemeinsam mit `commercial.ts`. */
 
 /**
  * Zahleneingabe. Dokumentierte Annahmen (stehen so auch in der Oberfläche):
