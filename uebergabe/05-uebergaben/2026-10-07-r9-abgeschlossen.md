@@ -114,11 +114,14 @@ Menüeintrag statt die Werkzeugtaste) — alle benannt und behoben.
 
 - Commit (Code M4-009): `4a37e50` · Commit (Akte M4-009): `71864ed`
 - Commit (Code M4-010): `b192eba` · Commit (Akte M4-010): `bfa723d`
-- Commit dieser Übergabe und der Aktenpflege: Akten-Commit **nach** `bfa723d` (diese Datei wird mit
-  ihm abgelegt)
+- Commit dieser Übergabe und der Aktenpflege: `28a37aa` (Kartenstand, OP-045-Zusatz, diese Datei)
 - Arbeitsbaum: nur die bekannten, bewusst nicht committeten Ausnahmen
   (`licenses/registry.json`, `apps/web/public/licenses/registry.json`, zwei
   `test-assets/m4-005-*.pdf`)
+
+*Nachtrag 2026-10-07 (Faber, gemessen statt geschätzt):* Kopf nach dieser Stufe ist **`28a37aa`**.
+R9 hat **fünf** Commits erzeugt (seit dem R8-Kopf `5769598`, gezählt mit
+`git rev-list --count 5769598..HEAD`). Abstand zu `origin/main`: **140 Commits**.
 - **Nichts gepusht.**
 
 ---
