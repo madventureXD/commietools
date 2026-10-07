@@ -1,5 +1,20 @@
 # Offene Punkte
 
+## Neu aus R6 (2026-10-07)
+
+- [ ] **25 Formatierstellen folgen weiter der Oberflächensprache statt dem Formatkontext** *(2026-10-07)*.
+  In R6 wurde der gemeinsame Formatkontext gebaut und die vier in Karte M3-010 benannten Stellen
+  umgestellt. Gemessen bleiben **25 Stellen** mit `Intl.NumberFormat(locale, …)` bzw. festem
+  `toFixed` (Aufmaß, Kabel, Beton, Trockenbau, Böden, Geometrie, Wärmelast, Icon-Generator u. a.).
+  Die Karte verbietet die pauschale Umstellung („Nicht tun"); sie gehört als eigene Karte mit Abnahme
+  je Werkzeug. Messbar: Anzahl der Stellen gegen 0. Beleg:
+  `06-protokolle/2026-10-07-m3-010-zahlenformate.md`, Abschnitt „Befund".
+- [ ] **Keine muttersprachliche Abnahme des Spanischen** *(2026-10-07)*. Die Stil- und
+  Glossarentscheidungen aus R6 sind fachlich begründet, aber nicht von einer spanischsprachigen
+  Person bestätigt; die Karte M3-003 verbietet, einen Regexlauf so zu bezeichnen.
+- [ ] **`tool.pdfToImages.download` ist ungenutzt** *(2026-10-07)* — der Schlüssel lebt nur im
+  Sprachvertragstest; die Ergebnisdateien heißen sprachneutral `page-N.png`.
+
 - [ ] Anbieterneutralen Übersetzungsablauf mit Google Cloud Translation Advanced gemäß
   `uebergabe/03-konzepte/2026-10-03-automatisierte-sprachpakete.md` erst bei der nächsten
   geplanten Sprache umsetzen.
