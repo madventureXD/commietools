@@ -11,5 +11,10 @@ export const messages: Readonly<Record<string, string>> = {
   "tool.pdfViewer.searchPlaceholder": "Search text in PDF …",
   "tool.pdfViewer.matches": "Matches",
   "tool.pdfViewer.noMatches": "No matches found.",
-  "tool.pdfViewer.textUnavailable": "This page has no readable text. Use text recognition (OCR) for scans."
+  "tool.pdfViewer.textUnavailable": "This page has no readable text. Use text recognition (OCR) for scans.",
+  "tool.pdfViewer.textView": "Document text",
+  "tool.pdfViewer.textOfPage": "Text of page {page}",
+  "tool.pdfViewer.showText": "Show text view",
+  "tool.pdfViewer.hideText": "Hide text view",
+  "tool.pdfViewer.textViewHint": "The text comes from the file text layer, not from the image in this view. Its order follows the content stream of the file: on multi-column pages sentences may run differently than in the image, and pure scans have no text here."
 }

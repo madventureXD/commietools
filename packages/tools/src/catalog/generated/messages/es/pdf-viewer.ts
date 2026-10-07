@@ -11,5 +11,10 @@ export const messages: Readonly<Record<string, string>> = {
   "tool.pdfViewer.searchPlaceholder": "Buscar texto en el PDF …",
   "tool.pdfViewer.matches": "Resultados",
   "tool.pdfViewer.noMatches": "No se encontraron resultados.",
-  "tool.pdfViewer.textUnavailable": "Esta página no contiene texto legible. Usar el reconocimiento de texto (OCR) para documentos escaneados."
+  "tool.pdfViewer.textUnavailable": "Esta página no contiene texto legible. Usar el reconocimiento de texto (OCR) para documentos escaneados.",
+  "tool.pdfViewer.textView": "Texto del documento",
+  "tool.pdfViewer.textOfPage": "Texto de la página {page}",
+  "tool.pdfViewer.showText": "Mostrar vista de texto",
+  "tool.pdfViewer.hideText": "Ocultar vista de texto",
+  "tool.pdfViewer.textViewHint": "El texto procede de la capa de texto del archivo, no de la imagen de esta vista. El orden sigue el flujo de contenido del archivo: en páginas a varias columnas las frases pueden leerse de otra forma que en la imagen, y los documentos escaneados no tienen texto aquí."
 }

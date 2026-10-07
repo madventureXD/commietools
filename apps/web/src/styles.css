@@ -321,6 +321,10 @@ a.button { display: inline-flex; align-items: center; justify-content: center; t
 .pdf-page-card, .pdf-organizer-card { margin: 0; display: grid; justify-items: center; align-content: start; gap: .55rem; padding: .75rem; border: 1px solid var(--color-border); border-radius: 12px; background: var(--color-surface); overflow: hidden; }
 .pdf-page-card img, .pdf-organizer-card img { display: block; max-width: 100%; height: 160px; object-fit: contain; transition: transform .15s ease; box-shadow: 0 2px 12px rgb(0 0 0 / 12%); }
 .pdf-page-card figcaption { font-weight: 700; }
+.pdf-text-view { display: grid; gap: var(--space-2); padding: var(--space-3); border: 1px solid var(--color-border); border-radius: var(--radius-md); background: var(--color-surface); }
+.pdf-text-view-head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--space-2); }
+.pdf-text-view-head h2 { margin: 0; }
+.pdf-text-content { margin: 0; max-height: 24rem; overflow: auto; white-space: pre-wrap; overflow-wrap: anywhere; }
 .redaction-editor { position: relative; width: min(100%, 700px); margin-inline: auto; cursor: crosshair; touch-action: none; user-select: none; border: 1px solid var(--color-border); background: var(--color-document-stage); }
 .redaction-editor img { display: block; width: 100%; height: auto; pointer-events: none; }
 .redaction-box { position: absolute; background: rgb(0 0 0 / 72%); border: 2px solid var(--color-brand); pointer-events: none; }

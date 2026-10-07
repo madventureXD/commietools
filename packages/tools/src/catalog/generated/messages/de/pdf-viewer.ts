@@ -11,5 +11,10 @@ export const messages: Readonly<Record<string, string>> = {
   "tool.pdfViewer.searchPlaceholder": "Text im PDF suchen …",
   "tool.pdfViewer.matches": "Treffer",
   "tool.pdfViewer.noMatches": "Keine Treffer gefunden.",
-  "tool.pdfViewer.textUnavailable": "Diese Seite enthält keinen auslesbaren Text. Für Scans nutze Texterkennung (OCR)."
+  "tool.pdfViewer.textUnavailable": "Diese Seite enthält keinen auslesbaren Text. Für Scans nutze Texterkennung (OCR).",
+  "tool.pdfViewer.textView": "Dokumenttext",
+  "tool.pdfViewer.textOfPage": "Text der Seite {page}",
+  "tool.pdfViewer.showText": "Textansicht zeigen",
+  "tool.pdfViewer.hideText": "Textansicht ausblenden",
+  "tool.pdfViewer.textViewHint": "Der Text stammt aus der Textebene der Datei, nicht aus dem Bild dieser Ansicht. Die Reihenfolge folgt dem Inhaltsstrom der Datei: Bei mehrspaltigen Seiten können Sätze anders laufen als im Bild, und reine Scans haben hier keinen Text."
 }
