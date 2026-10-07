@@ -681,8 +681,21 @@ Diese Liste enthält bestätigte, noch nicht abgeschlossene Arbeit. Details geh�
   desselben Musters (PDF-Teiler) prüfen.
 - [ ] **Offen aus M7-003: Zoom nur bei 100 % gemessen** *(2026-10-07)*. Die Skalierung ist im
   Zeigerweg belegt, eine abweichende Zoomstufe wurde nicht geprüft.
-- [ ] **M7-004 — PDF-Viewer stellt Text assistiver Technik nicht bereit: nicht begonnen.**
-  Anknüpfungspunkt ebd. („Anknüpfungspunkt U8").
+- [x] **M7-004 — PDF-Viewer stellt Text assistiver Technik nicht bereit: erledigt mit benannten
+  Grenzen** *(2026-10-07)*. Zugängliche Textansicht je Seite (Überschrift und Textabsatz im
+  Accessibility-Baum), `aria-current` an der aktiven Miniatur, Vorschaubild dekorativ (`alt=""`,
+  Seitenzahl als `aria-label` — keine doppelte Lesung), Ein-/Ausblenden mit `aria-expanded`,
+  Fokus bleibt beim Blättern und Zoomen. **Gemessener Sonderfall:** Auf der letzten Seite wird
+  „Nächste Seite" deaktiviert, ein deaktiviertes Element verliert den Fokus (blur-Spur: ein
+  Ereignis, danach `body`) — der Fokus wandert deshalb auf „Vorherige Seite". Beleg
+  `work/m7-004-beleg.cjs` (Baum, Fokus, Suche, Scan, mehrspaltige Reihenfolge). Protokoll
+  `06-protokolle/2026-10-07-m7-004-viewer-text.md`, Commit `da78588`.
+- [ ] **Offen aus M7-004: kein Vorleserlauf gemessen** *(2026-10-07)*. Belegt sind Accessibility-Baum,
+  Fokusverhalten und sichtbare Beschriftung; eine echte Vorleseransage (NVDA/Narrator) fehlt in
+  dieser Umgebung und bleibt Handarbeit.
+- [ ] **Offen aus M7-004: Lesereihenfolge ist flach** *(2026-10-07)*. Der Text folgt dem Inhaltsstrom
+  der Datei (mehrspaltig gemessen: spaltenweise). Ein Umbruch-/Spaltenmodell gibt es nicht; der
+  Hinweis steht sichtbar im Werkzeug.
 - [ ] **M2-006 — echter Vorleserlauf nicht herstellbar** *(2026-10-07)*: belegt sind
   Accessibility-Baum (drei Sprachen) und Tastaturbedienung; die gesprochene Ansage bleibt Handarbeit
   und ist **nicht** als erfüllt verbucht. Nächster Schritt: ein Vorleserdurchlauf (NVDA oder
