@@ -27,8 +27,11 @@ const engines = [
   {
     label: 'PDF',
     // Package/runtime signatures, not plain product names that may legitimately
-    // occur in the searchable catalogue or explanatory copy.
-    content: /(?:pdfjs-dist|pdf-lib|mupdf-wasm|qpdf-wasm|PDFDocument)/u,
+    // occur in the searchable catalogue or explanatory copy. `qpdf.wasm` ist der
+    // Laufzeitname der Emscripten-Bruecke: eine statisch eingebundene Bruecke wird
+    // sonst NICHT erkannt (gemessen 2026-10-07, Karte M2-002: statischer Import in den
+    // Eingang liess den Eintrag von 150.082 auf 167.133 B gzip wachsen, der Pruefer blieb gruen).
+    content: /(?:pdfjs-dist|pdf-lib|mupdf-wasm|qpdf-wasm|qpdf\.wasm|PDFDocument)/u,
     filename: /(?:pdfjs|pdf-lib|mupdf|qpdf|pdf\.worker)/iu,
     /** Engines, die beim Start erreichbar sein dürfen, gibt es nicht. */
     staticBudget: 0
