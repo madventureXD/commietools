@@ -11,6 +11,9 @@ export const commonEs = {
   'catalog.loadFailed': 'No se ha podido cargar el catálogo de herramientas. La conexión se interrumpió o falta un archivo.',
   'tool.chunkStale': 'Esta versión del programa está desactualizada: la página se ha actualizado mientras tanto y falta una parte del programa. Al recargar se obtiene la versión actual.',
   'tool.chunkFailed': 'No se ha podido cargar una parte de esta herramienta.',
+  /* Error de configuración: ninguna interfaz está asignada a este identificador de herramienta. */
+  'tool.missingRenderer': 'En esta versión del programa no hay ninguna interfaz asignada a esta herramienta. Es un error de asignación, no de tu entrada — por favor, avísalo.',
+  'tool.notFound': 'Esta dirección de herramienta no existe. La vista general muestra todas las herramientas.',
   'tool.reloadLosesInput': 'Los datos introducidos y no guardados de esta herramienta se pierden al recargar.',
   'tool.reloadAgain': 'Se acaba de recargar. Si el error persiste, la versión del servidor es defectuosa; inténtalo más tarde.',
   'storage.volatile': 'El almacenamiento de este dispositivo no está disponible. El historial, las variables y los ajustes solo valen para esta sesión; no se guarda nada.',

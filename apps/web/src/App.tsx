@@ -1,8 +1,8 @@
-import { lazy, Suspense, useEffect, useMemo, useRef, useState } from 'react'
+import { lazy, Suspense, useEffect, useMemo, useRef, useState, type ComponentType } from 'react'
 import type { SuiteManifest, ToolManifest } from '@commietools/core'
 import { readLocal, writeLocal } from '@commietools/core/storage'
 import { createTranslator, detectLocale, isLocale, loadInterfaceMessages, localeRegistry, supportedLocales, type Locale } from '@commietools/i18n'
-import { convertCase, getSuiteTools, getTextStatistics, loadToolSearchIndex, MIN_QUERY_LENGTH, searchEntryById, suiteByRoute, suiteManifests, toolByRoute, type CaseMode } from '@commietools/tools'
+import { convertCase, getSuiteTools, getTextStatistics, loadToolSearchIndex, MIN_QUERY_LENGTH, searchEntryById, suiteByRoute, suiteManifests, toolByRoute, type CaseMode, type ToolId } from '@commietools/tools'
 import { Button, LocalBadge } from '@commietools/ui'
 import { useToolSearchIndex } from './useToolSearchIndex'
 import { PipTrigger, PipWrapper } from '@pip-it-up/react'
@@ -126,6 +126,94 @@ function CaseConverterTool({ t, locale }: { t: Translate; locale: Locale }) {
   return <div className="stack"><TextArea label={t('tool.caseConverter.input')} value={text} onChange={setText} /><div className="segmented" role="group" aria-label={t('caseConverter.mode')}>{(['upper', 'lower', 'title'] as const).map((item) => <Button key={item} className={mode === item ? 'active' : ''} aria-pressed={mode === item} onClick={() => setMode(item)}>{t(labels[item])}</Button>)}</div><TextArea label={t('tool.result')} value={output} readOnly /></div>
 }
 
+/**
+ * **Die Zuordnung Werkzeug → Bildschirm** (QM-Karte M4-010, Stufe R9).
+ *
+ * Vorher stand hier eine Kette aus Vergleichen, die in `<PdfRedactTool/>` endete: Ein Werkzeug
+ * ohne eigenen Zweig öffnete stillschweigend das **Schwärzen** — ein fachfremdes Werkzeug.
+ * Jetzt ist die Zuordnung eine Tabelle mit zwei Sicherungen:
+ *
+ *  * `satisfies Record<ToolId, …>` — fehlt ein Eintrag für eine Werkzeug-ID des Registers oder
+ *    kommt eine neue ID ohne Eintrag dazu, scheitert die Übersetzung. `ToolId` liefert der
+ *    Katalogerzeuger (`scripts/catalog-generate.mjs`) aus dem Register selbst.
+ *  * `rendererFor` antwortet nur für **eigene** Schlüssel (`Object.hasOwn`): Eine Adresse wie
+ *    `/tools/constructor` findet nichts aus der Objektvorlage.
+ *
+ * Die Ladegrenzen bleiben unverändert: Jede Komponente lädt weiterhin erst auf ihrer Route.
+ */
+export type WerkzeugKomponente = ComponentType<{ t: Translate; locale: Locale }>
+
+export const toolRenderers = {
+  'text-statistics': TextStatisticsTool,
+  'case-converter': CaseConverterTool,
+  'json-formatter': JsonFormatter,
+  'qr-code-generator': QrCodeGenerator,
+  'image-metadata': ImageMetadata,
+  'image-resize': ImageResize,
+  'icon-generator': IconGenerator,
+  'image-watermark': ImageWatermark,
+  'color-tools': ColorTools,
+  'calculator': Calculator,
+  'scientific-calculator': ScientificCalculator,
+  'programmer-calculator': ProgrammerCalculator,
+  'rpn-calculator': RpnCalculator,
+  'commercial': Commercial,
+  'geometry': Geometry,
+  'convert': Convert,
+  'datetime': DateTime,
+  'plotter': Plotter,
+  'statistics': Statistics,
+  'equations': Equations,
+  'aufmass': Aufmass,
+  'concrete': Concrete,
+  'roof': Roof,
+  'metal-weight': MetalWeight,
+  'wood': Wood,
+  'tiles': Tiles,
+  'paint': Paint,
+  'drywall': Drywall,
+  'flooring': Flooring,
+  'paving': Paving,
+  'tires': Tires,
+  'inspection': Inspection,
+  'photo-caption': PhotoCaption,
+  'handover-report': HandoverReport,
+  'threads': Threads,
+  'lighting': Lighting,
+  'heatload': Heatload,
+  'cable': Cable,
+  'pipes': PipesTool,
+  'pdf-merge': PdfMerge,
+  'pdf-split': PdfSplit,
+  'pdf-organize': PdfOrganize,
+  'images-to-pdf': ImagesToPdf,
+  'pdf-to-images': PdfToImages,
+  'pdf-watermark': PdfWatermark,
+  'pdf-page-numbers': PdfPageNumbers,
+  'pdf-visible-signature': PdfVisibleSignature,
+  'pdf-form-fill': PdfFormFill,
+  'pdf-annotate': PdfAnnotate,
+  'pdf-security': PdfSecurity,
+  'pdf-compress': PdfCompress,
+  'pdf-viewer': PdfViewer,
+  'pdf-text-ocr': PdfTextOcr,
+  'pdf-certificate-sign': PdfCertificateSign,
+  'pdf-signature-verify': PdfSignatureVerify,
+  'pdf-metadata': PdfMetadataTool,
+  'pdf-crop': PdfCropTool,
+  'pdf-repair': PdfRepairTool,
+  'pdf-attachments': PdfAttachmentsTool,
+  'pdf-compare': PdfCompareTool,
+  'pdf-a-preflight': PdfAPreflightTool,
+  'pdf-redact': PdfRedactTool,
+} satisfies Record<ToolId, WerkzeugKomponente>
+
+/** Die Komponente zu einem Werkzeugbezeichner — `undefined`, wenn es keine gibt. */
+export function rendererFor(id: string): WerkzeugKomponente | undefined {
+  if (!Object.hasOwn(toolRenderers, id)) return undefined
+  return (toolRenderers as Record<string, WerkzeugKomponente>)[id]
+}
+
 function ToolPage({ tool, t, locale, navigate, ready, loadFailed }: { tool: ToolManifest; t: Translate; locale: Locale; navigate: (path: string) => void; ready: boolean; loadFailed: boolean }) {
   /**
    * Titel und Beschreibung stehen im **Suchpaket** (2026-10-05) — es ist auf jeder Seite geladen,
@@ -158,68 +246,14 @@ function ToolPage({ tool, t, locale, navigate, ready, loadFailed }: { tool: Tool
       ? <LoadFailureNotice t={t} messageKey="tool.loadFailed" />
       : <div className="settings-card stack"><p aria-live="polite">…</p></div>}</main>
   }
-  const content = tool.id === 'text-statistics' ? <TextStatisticsTool t={t} />
-    : tool.id === 'case-converter' ? <CaseConverterTool t={t} locale={locale} />
-      : tool.id === 'json-formatter' ? <Suspense fallback={<p aria-live="polite">…</p>}><JsonFormatter t={t} /></Suspense>
-        : tool.id === 'qr-code-generator' ? <QrCodeGenerator t={t} />
-          : tool.id === 'image-metadata' ? <ImageMetadata t={t} locale={locale} />
-            : tool.id === 'image-resize' ? <ImageResize t={t} locale={locale} />
-              : tool.id === 'icon-generator' ? <IconGenerator t={t} locale={locale} />
-                : tool.id === 'image-watermark' ? <ImageWatermark t={t} locale={locale} />
-                  : tool.id === 'color-tools' ? <ColorTools t={t} />
-                    : tool.id === 'calculator' ? <Suspense fallback={<p aria-live="polite">…</p>}><Calculator t={t} locale={locale} /></Suspense>
-                      : tool.id === 'scientific-calculator' ? <Suspense fallback={<p aria-live="polite">…</p>}><ScientificCalculator t={t} locale={locale} /></Suspense>
-                        : tool.id === 'programmer-calculator' ? <Suspense fallback={<p aria-live="polite">…</p>}><ProgrammerCalculator t={t} locale={locale} /></Suspense>
-                          : tool.id === 'rpn-calculator' ? <Suspense fallback={<p aria-live="polite">…</p>}><RpnCalculator t={t} locale={locale} /></Suspense>
-                      : tool.id === 'commercial' ? <Suspense fallback={<p aria-live="polite">…</p>}><Commercial t={t} locale={locale} /></Suspense>
-                        : tool.id === 'geometry' ? <Suspense fallback={<p aria-live="polite">…</p>}><Geometry t={t} locale={locale} /></Suspense>
-                        : tool.id === 'convert' ? <Suspense fallback={<p aria-live="polite">…</p>}><Convert t={t} locale={locale} /></Suspense>
-                          : tool.id === 'datetime' ? <Suspense fallback={<p aria-live="polite">…</p>}><DateTime t={t} /></Suspense>
-                            : tool.id === 'plotter' ? <Suspense fallback={<p aria-live="polite">…</p>}><Plotter t={t} /></Suspense>
-                              : tool.id === 'statistics' ? <Suspense fallback={<p aria-live="polite">…</p>}><Statistics t={t} locale={locale} /></Suspense>
-                                : tool.id === 'equations' ? <Suspense fallback={<p aria-live="polite">…</p>}><Equations t={t} locale={locale} /></Suspense>
-                                  : tool.id === 'aufmass' ? <Suspense fallback={<p aria-live="polite">…</p>}><Aufmass t={t} locale={locale} /></Suspense>
-                                  : tool.id === 'concrete' ? <Suspense fallback={<p aria-live="polite">…</p>}><Concrete t={t} locale={locale} /></Suspense>
-                                  : tool.id === 'roof' ? <Suspense fallback={<p aria-live="polite">…</p>}><Roof t={t} locale={locale} /></Suspense>
-                                  : tool.id === 'metal-weight' ? <Suspense fallback={<p aria-live="polite">…</p>}><MetalWeight t={t} locale={locale} /></Suspense>
-                                  : tool.id === 'wood' ? <Suspense fallback={<p aria-live="polite">…</p>}><Wood t={t} locale={locale} /></Suspense>
-                                  : tool.id === 'tiles' ? <Suspense fallback={<p aria-live="polite">…</p>}><Tiles t={t} locale={locale} /></Suspense>
-                                  : tool.id === 'paint' ? <Suspense fallback={<p aria-live="polite">…</p>}><Paint t={t} locale={locale} /></Suspense>
-                                  : tool.id === 'drywall' ? <Suspense fallback={<p aria-live="polite">…</p>}><Drywall t={t} locale={locale} /></Suspense>
-                                  : tool.id === 'flooring' ? <Suspense fallback={<p aria-live="polite">…</p>}><Flooring t={t} locale={locale} /></Suspense>
-                                  : tool.id === 'paving' ? <Suspense fallback={<p aria-live="polite">…</p>}><Paving t={t} locale={locale} /></Suspense>
-                                  : tool.id === 'tires' ? <Suspense fallback={<p aria-live="polite">…</p>}><Tires t={t} locale={locale} /></Suspense>
-                                  : tool.id === 'inspection' ? <Suspense fallback={<p aria-live="polite">…</p>}><Inspection t={t} locale={locale} /></Suspense>
-                                    : tool.id === 'photo-caption' ? <Suspense fallback={<p aria-live="polite">…</p>}><PhotoCaption t={t} locale={locale} /></Suspense>
-                                      : tool.id === 'handover-report' ? <Suspense fallback={<p aria-live="polite">…</p>}><HandoverReport t={t} locale={locale} /></Suspense>
-                                        : tool.id === 'threads' ? <Suspense fallback={<p aria-live="polite">…</p>}><Threads t={t} locale={locale} /></Suspense>
-                                            : tool.id === 'lighting' ? <Suspense fallback={<p aria-live="polite">…</p>}><Lighting t={t} locale={locale} /></Suspense>
-                                              : tool.id === 'heatload' ? <Suspense fallback={<p aria-live="polite">…</p>}><Heatload t={t} locale={locale} /></Suspense>
-                                                : tool.id === 'cable' ? <Suspense fallback={<p aria-live="polite">…</p>}><Cable t={t} locale={locale} /></Suspense>
-                                                  : tool.id === 'pipes' ? <Suspense fallback={<p aria-live="polite">…</p>}><PipesTool t={t} locale={locale} /></Suspense>
-              : tool.id === 'pdf-merge' ? <Suspense fallback={<p aria-live="polite">…</p>}><PdfMerge t={t} /></Suspense>
-                : tool.id === 'pdf-split' ? <Suspense fallback={<p aria-live="polite">…</p>}><PdfSplit t={t} /></Suspense>
-                  : tool.id === 'pdf-organize' ? <Suspense fallback={<p aria-live="polite">…</p>}><PdfOrganize t={t} /></Suspense>
-                    : tool.id === 'images-to-pdf' ? <Suspense fallback={<p aria-live="polite">…</p>}><ImagesToPdf t={t} /></Suspense>
-                      : tool.id === 'pdf-to-images' ? <Suspense fallback={<p aria-live="polite">…</p>}><PdfToImages t={t} /></Suspense>
-                        : tool.id === 'pdf-watermark' ? <Suspense fallback={<p aria-live="polite">…</p>}><PdfWatermark t={t} /></Suspense>
-                          : tool.id === 'pdf-page-numbers' ? <Suspense fallback={<p aria-live="polite">…</p>}><PdfPageNumbers t={t} /></Suspense>
-                            : tool.id === 'pdf-visible-signature' ? <Suspense fallback={<p aria-live="polite">…</p>}><PdfVisibleSignature t={t} /></Suspense>
-                              : tool.id === 'pdf-form-fill' ? <Suspense fallback={<p aria-live="polite">…</p>}><PdfFormFill t={t} /></Suspense>
-                                : tool.id === 'pdf-annotate' ? <Suspense fallback={<p aria-live="polite">…</p>}><PdfAnnotate t={t} /></Suspense>
-                                  : tool.id === 'pdf-security' ? <Suspense fallback={<p aria-live="polite">…</p>}><PdfSecurity t={t} /></Suspense>
-                                    : tool.id === 'pdf-compress' ? <Suspense fallback={<p aria-live="polite">…</p>}><PdfCompress t={t} /></Suspense>
-                                      : tool.id === 'pdf-viewer' ? <Suspense fallback={<p aria-live="polite">…</p>}><PdfViewer t={t} /></Suspense>
-                                        : tool.id === 'pdf-text-ocr' ? <Suspense fallback={<p aria-live="polite">…</p>}><PdfTextOcr t={t} /></Suspense>
-                                          : tool.id === 'pdf-certificate-sign' ? <Suspense fallback={<p aria-live="polite">…</p>}><PdfCertificateSign t={t} /></Suspense>
-                                            : tool.id === 'pdf-signature-verify' ? <Suspense fallback={<p aria-live="polite">…</p>}><PdfSignatureVerify t={t} /></Suspense>
-                                              : tool.id === 'pdf-metadata' ? <Suspense fallback={<p aria-live="polite">…</p>}><PdfMetadataTool t={t} /></Suspense>
-                                                : tool.id === 'pdf-crop' ? <Suspense fallback={<p aria-live="polite">…</p>}><PdfCropTool t={t} /></Suspense>
-                                                  : tool.id === 'pdf-repair' ? <Suspense fallback={<p aria-live="polite">…</p>}><PdfRepairTool t={t} /></Suspense>
-                                                    : tool.id === 'pdf-attachments' ? <Suspense fallback={<p aria-live="polite">…</p>}><PdfAttachmentsTool t={t} /></Suspense>
-                                                      : tool.id === 'pdf-compare' ? <Suspense fallback={<p aria-live="polite">…</p>}><PdfCompareTool t={t} /></Suspense>
-                                                        : tool.id === 'pdf-a-preflight' ? <Suspense fallback={<p aria-live="polite">…</p>}><PdfAPreflightTool t={t} /></Suspense>
-                                                          : <Suspense fallback={<p aria-live="polite">…</p>}><PdfRedactTool t={t} /></Suspense>
+  const Renderer = rendererFor(tool.id)
+  /**
+   * **Kein fachfremdes Werkzeug mehr.** Fehlt die Zuordnung, steht hier ein klarer
+   * Konfigurationsfehler — vorher öffnete derselbe Fall `<PdfRedactTool/>`, also das Schwärzen.
+   */
+  const content = Renderer
+    ? <Suspense fallback={<p aria-live="polite">…</p>}><Renderer t={t} locale={locale} /></Suspense>
+    : <div className="settings-card stack" role="alert"><p className="error">{t('tool.missingRenderer')}</p></div>
   const icon = searchEntryById.get(tool.id)?.icon
   // Auskoppeln: eine Instanz, zwei Orte. Der Inhalt wandert per Portal in das eigene
   // Fenster und kommt beim Schliessen unveraendert zurueck. Ohne Unterstuetzung
@@ -422,5 +456,5 @@ export function App() {
     requestAnimationFrame(() => document.getElementById('suites')?.scrollIntoView())
   }
 
-  return <div className="app" data-theme={theme}><header className="site-header"><div className="header-leading"><ToolNavigation t={t} locale={locale} activeToolId={activeTool?.id} navigate={navigate} /><button className="brand button-reset" onClick={() => navigate('/')} aria-label={t('app.name')}><span className="brand-mark" aria-hidden="true">★</span><span>Commie<span>Tools</span></span></button></div><nav aria-label={t('nav.main')}><button className="button-reset" onClick={() => navigate('/')}>{t('nav.tools')}</button><button className="button-reset" onClick={goToSuites}>{t('nav.suites')}</button></nav><div className="header-actions"><select className="language-select" value={locale} aria-label={t('action.language')} onChange={(event) => { if (isLocale(event.target.value)) setLocale(event.target.value) }}>{supportedLocales.map((code) => <option key={code} value={code}>{localeRegistry[code].label}</option>)}</select><Button onClick={toggleTheme} aria-label={t('action.theme')}><span aria-hidden="true">{theme === 'light' ? '☾' : '☀'}</span></Button></div></header>{interfaceError && <div className="settings-card stack" role="alert"><p className="error">{t('app.loadError')}</p><button type="button" className="button" onClick={() => setInterfaceAttempt((attempt) => attempt + 1)}>{t('action.retry')}</button></div>}{pathname === '/licenses' ? <LicensePage t={t} navigate={navigate} /> : pathname === '/impressum' ? <LegalNoticePage t={t} navigate={navigate} /> : activeTool ? <ToolPage tool={activeTool} t={t} locale={locale} navigate={navigate} ready={toolTextsLocale === locale && toolTextsTool === activeTool.id} loadFailed={toolTextsError} /> : activeSuite ? <SuitePage suite={activeSuite} t={t} locale={locale} navigate={navigate} /> : <main><section className="hero"><p className="eyebrow">CommieTools.org</p><h1>{t('app.tagline')}</h1><p className="hero-copy">{t('app.promise')}</p><div className="badges"><LocalBadge>{t('status.local')}</LocalBadge><LocalBadge>{t('status.offline')}</LocalBadge></div></section><section className="section" id="tools"><CatalogSection t={t} locale={locale} navigate={navigate} query={query} onQuery={setQuery} /></section>{!searching && <section className="section" id="suites"><div className="section-heading"><div><p className="eyebrow">02</p><h2>{t('suite.heading')}</h2></div><p>{t('suite.intro')}</p></div><div className="catalog-grid suites">{suiteManifests.map((suite) => <article className="catalog-card suite-card" key={suite.id}><p className="category">Suite</p><h3>{t(suite.titleKey)}</h3><p>{t(suite.descriptionKey)}</p><div className="card-footer"><span>{suite.toolIds.length} {t('suite.tools')}</span><button className="text-link" onClick={() => navigate(suite.route)}>{t('suite.open')} →</button></div></article>)}</div></section>}</main>}<footer className="site-footer"><span>© 2026 CommieTools contributors · AGPL-3.0-only</span><div className="footer-links"><button className="text-link" onClick={() => navigate('/impressum')}>{t('footer.legal')}</button><button className="text-link" onClick={() => navigate('/licenses')}>{t('footer.licenses')}</button></div></footer></div>
+  return <div className="app" data-theme={theme}><header className="site-header"><div className="header-leading"><ToolNavigation t={t} locale={locale} activeToolId={activeTool?.id} navigate={navigate} /><button className="brand button-reset" onClick={() => navigate('/')} aria-label={t('app.name')}><span className="brand-mark" aria-hidden="true">★</span><span>Commie<span>Tools</span></span></button></div><nav aria-label={t('nav.main')}><button className="button-reset" onClick={() => navigate('/')}>{t('nav.tools')}</button><button className="button-reset" onClick={goToSuites}>{t('nav.suites')}</button></nav><div className="header-actions"><select className="language-select" value={locale} aria-label={t('action.language')} onChange={(event) => { if (isLocale(event.target.value)) setLocale(event.target.value) }}>{supportedLocales.map((code) => <option key={code} value={code}>{localeRegistry[code].label}</option>)}</select><Button onClick={toggleTheme} aria-label={t('action.theme')}><span aria-hidden="true">{theme === 'light' ? '☾' : '☀'}</span></Button></div></header>{interfaceError && <div className="settings-card stack" role="alert"><p className="error">{t('app.loadError')}</p><button type="button" className="button" onClick={() => setInterfaceAttempt((attempt) => attempt + 1)}>{t('action.retry')}</button></div>}{pathname === '/licenses' ? <LicensePage t={t} navigate={navigate} /> : pathname === '/impressum' ? <LegalNoticePage t={t} navigate={navigate} /> : activeTool ? <ToolPage tool={activeTool} t={t} locale={locale} navigate={navigate} ready={toolTextsLocale === locale && toolTextsTool === activeTool.id} loadFailed={toolTextsError} /> : activeSuite ? <SuitePage suite={activeSuite} t={t} locale={locale} navigate={navigate} /> : pathname.startsWith('/tools/') ? <main className="detail-page"><div className="settings-card stack" role="alert"><p className="error">{t('tool.notFound')}</p><button type="button" className="button" onClick={() => navigate('/')}>{t('nav.tools')}</button></div></main> : <main><section className="hero"><p className="eyebrow">CommieTools.org</p><h1>{t('app.tagline')}</h1><p className="hero-copy">{t('app.promise')}</p><div className="badges"><LocalBadge>{t('status.local')}</LocalBadge><LocalBadge>{t('status.offline')}</LocalBadge></div></section><section className="section" id="tools"><CatalogSection t={t} locale={locale} navigate={navigate} query={query} onQuery={setQuery} /></section>{!searching && <section className="section" id="suites"><div className="section-heading"><div><p className="eyebrow">02</p><h2>{t('suite.heading')}</h2></div><p>{t('suite.intro')}</p></div><div className="catalog-grid suites">{suiteManifests.map((suite) => <article className="catalog-card suite-card" key={suite.id}><p className="category">Suite</p><h3>{t(suite.titleKey)}</h3><p>{t(suite.descriptionKey)}</p><div className="card-footer"><span>{suite.toolIds.length} {t('suite.tools')}</span><button className="text-link" onClick={() => navigate(suite.route)}>{t('suite.open')} →</button></div></article>)}</div></section>}</main>}<footer className="site-footer"><span>© 2026 CommieTools contributors · AGPL-3.0-only</span><div className="footer-links"><button className="text-link" onClick={() => navigate('/impressum')}>{t('footer.legal')}</button><button className="text-link" onClick={() => navigate('/licenses')}>{t('footer.licenses')}</button></div></footer></div>
 }

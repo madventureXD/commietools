@@ -11,6 +11,9 @@ export const commonEn = {
   'catalog.loadFailed': 'The tool catalogue could not be loaded. The connection was interrupted or a file is missing.',
   'tool.chunkStale': 'This program version is outdated: the page has since been updated and part of the program is missing. Reloading fetches the current version.',
   'tool.chunkFailed': 'Part of this tool could not be loaded.',
+  /* Configuration error: no interface is mapped to this tool id. Must never open another tool. */
+  'tool.missingRenderer': 'No interface is mapped to this tool in this program version. This is a routing error, not a mistake in your input — please report it.',
+  'tool.notFound': 'This tool address does not exist. The overview lists every tool.',
   'tool.reloadLosesInput': 'Unsaved input in this tool is lost when reloading.',
   'tool.reloadAgain': 'A reload just happened. If the error persists, the version on the server is faulty — please try again later.',
   'storage.volatile': 'Storage on this device is unavailable. History, variables and settings apply to this session only — nothing is being saved.',

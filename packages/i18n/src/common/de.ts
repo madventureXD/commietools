@@ -11,6 +11,11 @@ export const commonDe = {
   'catalog.loadFailed': 'Der Werkzeugkatalog konnte nicht geladen werden. Die Verbindung wurde unterbrochen oder eine Datei fehlt.',
   'tool.chunkStale': 'Diese Programmfassung ist veraltet: Die Seite wurde inzwischen aktualisiert, und ein Teil des Programms fehlt. Ein Neuladen holt die aktuelle Fassung.',
   'tool.chunkFailed': 'Ein Teil dieses Werkzeugs konnte nicht geladen werden.',
+  /* Konfigurationsfehler: Für diese Werkzeug-ID gibt es keine Zuordnung zur Oberfläche. Der Fall
+     darf **nie** ein anderes Werkzeug öffnen (Karte M4-010). */
+  'tool.missingRenderer': 'Für dieses Werkzeug ist in dieser Programmfassung keine Oberfläche hinterlegt. Das ist ein Fehler der Zuordnung, nicht deiner Eingabe — bitte melde ihn.',
+  /* Unbekannte Adresse unter /tools/ — vorher fiel sie still auf die Startseite zurück. */
+  'tool.notFound': 'Diese Werkzeugadresse gibt es nicht. Die Übersicht zeigt alle Werkzeuge.',
   'tool.reloadLosesInput': 'Nicht gespeicherte Eingaben in diesem Werkzeug gehen beim Neuladen verloren.',
   'tool.reloadAgain': 'Es wurde gerade schon neu geladen. Bleibt der Fehler, ist die Fassung auf dem Server fehlerhaft — bitte später erneut versuchen.',
   'storage.volatile': 'Der Speicher dieses Geräts ist nicht verfügbar. Verlauf, Variablen und Einstellungen gelten nur für diese Sitzung — gespeichert wird nichts.',

@@ -229,7 +229,8 @@ const entries = toolManifests.map((tool) => {
 })
 
 const baseEntries = entries.map(({ locales: _locales, ...entry }) => entry)
-const fileText = `${banner}import type { ToolCatalogEntry } from '@commietools/core'\n\nexport const toolIndex: readonly ToolCatalogEntry[] = ${JSON.stringify(baseEntries, null, 2)}\n`
+const toolIdUnion = toolManifests.map((tool) => `  | ${JSON.stringify(tool.id)}`).join('\n')
+const fileText = `${banner}import type { ToolCatalogEntry } from '@commietools/core'\n\nexport const toolIndex: readonly ToolCatalogEntry[] = ${JSON.stringify(baseEntries, null, 2)}\n\n/**\n * Die Werkzeugbezeichner des kanonischen Registers als **Literalunion** (QM-Karte M4-010, Stufe R9).\n *\n * Erzeugt der Uebersetzer sie, kann eine Zuordnung ihre Vollstaendigkeit pruefen\n * (\`satisfies Record<ToolId, ...>\`) statt still auf ein fachfremdes Werkzeug zurueckzufallen.\n * Die Liste kommt aus dem Register selbst — sie wird hier nicht zweitgepflegt.\n */\nexport type ToolId =\n${toolIdUnion}\n`
 const searchFiles = Object.fromEntries(languages.map((language) => [language, `${banner}import type { ToolLocaleEntry } from '@commietools/core'\n\nexport const searchLocale: Readonly<Record<string, ToolLocaleEntry>> = ${JSON.stringify(Object.fromEntries(entries.map((entry) => [entry.id, entry.locales[language]])), null, 2)}\n`]))
 // Werkzeugtexte liegen **je Werkzeug** und **je Sprache** (Entscheidung 2026-10-05). Im Suchpaket
 // stehen Titel, Kurztext, Beschreibung und Suchbegriffe; im Textpaket bleibt nur, was die

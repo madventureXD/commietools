@@ -5,6 +5,7 @@ import { toolIndex } from './catalog/toolIndex'
 
 export { suiteManifests, toolManifests } from './catalog/manifests'
 export { toolIndex } from './catalog/toolIndex'
+export type { ToolId } from './catalog/toolIndex'
 export { loadToolSearchIndex, type GeneratedLocale } from './catalog/generated/loaders'
 export {
   MIN_QUERY_LENGTH,
