@@ -5,6 +5,26 @@ import type { PdfPageGeometry } from './pdfGeometry'
 
 export type Translate = (key: string) => string
 
+/**
+ * **Zeitgrenze für Engine-Aufrufe.** Gemessen am 2026-10-07: Nach mehreren Ladevorgängen derselben
+ * Route in einer Browser-Sitzung kommt die pdf.js-Arbeit (Miniaturen, Seitengeometrie) nicht mehr
+ * zum Ende — der dynamische Import gelingt, die Worker-Arbeit aber nicht. Das Werkzeug hing dann
+ * **ohne jede Meldung**: die Datei war angenommen, Vorschau und Zeichenfläche fehlten für immer.
+ * Ein Aufruf ohne Zeitgrenze ist deshalb kein Fehlerweg. Überschreitung ergibt einen sichtbaren
+ * Fehler (`tool.pdf.error.timeout`), der zum Neuladen auffordert.
+ */
+export const ENGINE_TIMEOUT_MS = 20_000
+
+export function withTimeout<T>(arbeit: Promise<T>, ms: number = ENGINE_TIMEOUT_MS): Promise<T> {
+  return new Promise<T>((erfuellen, ablehnen) => {
+    const wecker = setTimeout(() => ablehnen(new PdfToolError('timeout', 'PDF engine did not finish in time')), ms)
+    arbeit.then(
+      (wert) => { clearTimeout(wecker); erfuellen(wert) },
+      (fehler: unknown) => { clearTimeout(wecker); ablehnen(fehler instanceof Error ? fehler : new Error(String(fehler))) }
+    )
+  })
+}
+
 export interface LoadedPdf {
   readonly id: string
   readonly name: string
@@ -43,7 +63,7 @@ export function usePdfThumbnails(bytes: Uint8Array | null, maxWidth = 150) {
     }
     setError(false)
     let task: { destroy: () => Promise<void> } | undefined
-    void import('pdfjs-dist').then(async ({ GlobalWorkerOptions, getDocument }) => {
+    void withTimeout(import('pdfjs-dist').then(async ({ GlobalWorkerOptions, getDocument }) => {
       GlobalWorkerOptions.workerSrc = workerUrl
       const loadingTask = getDocument({ data: bytes.slice() })
       task = loadingTask
@@ -65,7 +85,7 @@ export function usePdfThumbnails(bytes: Uint8Array | null, maxWidth = 150) {
         if (!cancelled) setImages([...next])
       }
       await document.cleanup()
-    }).catch(() => !cancelled && setError(true))
+    })).catch(() => !cancelled && setError(true))
     return () => {
       cancelled = true
       if (task) void task.destroy()

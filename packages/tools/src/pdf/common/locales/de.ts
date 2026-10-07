@@ -24,5 +24,6 @@ export const pdfCommonDe = {
   'tool.pdf.error.empty': 'Die PDF-Datei ist leer.',
   'tool.pdf.error.range': 'Die Seitenangabe ist ungültig. Beispiel: 1-3, 7, 10-8.',
   'tool.pdf.error.unsupported': 'Die Datei oder das gewählte Format wird nicht unterstützt oder ist beschädigt.',
-  'tool.pdf.error.generic': 'Die PDF konnte nicht verarbeitet werden.'
+  'tool.pdf.error.generic': 'Die PDF konnte nicht verarbeitet werden.',
+  'tool.pdf.error.timeout': 'Die Vorschau wurde nicht fertig geladen. Lade die Seite neu und öffne die Datei erneut.'
 } as const

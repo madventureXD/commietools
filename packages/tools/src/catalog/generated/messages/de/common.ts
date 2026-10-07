@@ -143,6 +143,7 @@ export const messages: Readonly<Record<string, string>> = {
   "tool.pdf.error.range": "Die Seitenangabe ist ungültig. Beispiel: 1-3, 7, 10-8.",
   "tool.pdf.error.unsupported": "Die Datei oder das gewählte Format wird nicht unterstützt oder ist beschädigt.",
   "tool.pdf.error.generic": "Die PDF konnte nicht verarbeitet werden.",
+  "tool.pdf.error.timeout": "Die Vorschau wurde nicht fertig geladen. Lade die Seite neu und öffne die Datei erneut.",
   "tool.pdf.result": "Ergebnis",
   "tool.pdfPlacement.pages": "Seiten",
   "tool.pdfPlacement.pagesHint": "Zum Beispiel 1-3, 5 oder 8-6.",

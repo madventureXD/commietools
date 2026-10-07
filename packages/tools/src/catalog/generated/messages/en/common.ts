@@ -143,6 +143,7 @@ export const messages: Readonly<Record<string, string>> = {
   "tool.pdf.error.range": "The page selection is invalid. Example: 1-3, 7, 10-8.",
   "tool.pdf.error.unsupported": "The file or selected format is unsupported or damaged.",
   "tool.pdf.error.generic": "The PDF could not be processed.",
+  "tool.pdf.error.timeout": "The preview did not finish loading. Reload the page and open the file again.",
   "tool.pdf.result": "Result",
   "tool.pdfPlacement.pages": "Pages",
   "tool.pdfPlacement.pagesHint": "For example 1-3, 5 or 8-6.",

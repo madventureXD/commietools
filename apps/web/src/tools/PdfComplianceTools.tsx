@@ -4,7 +4,7 @@ import { inspectPdf, type PdfInspection } from '@commietools/tools/pdf/core'
 import { normaliseRedactionArea, nudgeRedactionArea, preflightPdfA, redactPdf, type PdfAPreflight, type PdfRedactionArea } from '@commietools/tools/pdf/m9'
 import { Button, LocalBadge } from '@commietools/ui'
 import { SaveFileControl } from './SaveFileControl'
-import { baseName, pdfErrorKey, readPdfGeometry, useDownload, usePdfThumbnails, type Translate } from './pdfUi'
+import { baseName, pdfErrorKey, readPdfGeometry, useDownload, usePdfThumbnails, withTimeout, type Translate } from './pdfUi'
 import { redactionBounds, type PdfPageGeometry } from './pdfGeometry'
 
 type Loaded = { name: string; bytes: Uint8Array; inspection: PdfInspection }
@@ -66,7 +66,7 @@ export function PdfRedactTool({t}:{t:Translate}){
     try{
       const next=await select(event)
       setFile(next);setPage(1);setAreas([]);setDraft(EMPTY_DRAFT);setDraftError('');setPending(null);setSelected('');setResult(null);setConfirmed(false);setError('')
-      setGeometry(next?await readPdfGeometry(next.bytes):[])
+      setGeometry(next?await withTimeout(readPdfGeometry(next.bytes)):[])
     }catch(e){setFile(null);setGeometry([]);setError(pdfErrorKey(e))}
   }
   function selectPage(next:number){setPage(next);setPending(null);setSelected('');setConfirmed(false)}
@@ -133,6 +133,12 @@ export function PdfRedactTool({t}:{t:Translate}){
       <label className="field"><span>{t('tool.pdf.choose')}</span><input type="file" accept={acceptAttributeFor('pdf-redact')} onChange={choose}/></label>
       <p className="warning">{t('tool.pdfRedact.warning')}</p>
       {file&&<>
+        {/*
+          Die Miniaturen laufen ebenfalls über pdf.js. Bleibt die Arbeit stehen (gemessen: ab dem
+          fünften Laden derselben Route in einer Sitzung), muss das **sichtbar** werden statt in
+          einer leeren Fläche zu enden.
+        */}
+        <ErrorText value={thumbs.error?'tool.pdf.error.timeout':''} t={t}/>
         <div className="pdf-thumbnail-grid">{thumbs.images.map((image,index)=><button className={`pdf-page-card button-reset ${page===index+1?'selected':''}`} key={image} aria-current={page===index+1?'page':undefined} onClick={()=>selectPage(index+1)}><img src={image} alt={`${t('tool.pdf.page')} ${index+1}`}/><span>{index+1}</span></button>)}</div>
         {thumbs.images[page-1]&&current&&<>
           <p>{t('tool.pdfRedact.draw')}</p>

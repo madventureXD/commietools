@@ -24,5 +24,6 @@ export const pdfCommonEn = {
   'tool.pdf.error.empty': 'The PDF file is empty.',
   'tool.pdf.error.range': 'The page selection is invalid. Example: 1-3, 7, 10-8.',
   'tool.pdf.error.unsupported': 'The file or selected format is unsupported or damaged.',
-  'tool.pdf.error.generic': 'The PDF could not be processed.'
+  'tool.pdf.error.generic': 'The PDF could not be processed.',
+  'tool.pdf.error.timeout': 'The preview did not finish loading. Reload the page and open the file again.'
 } as const

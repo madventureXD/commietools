@@ -24,6 +24,7 @@ export const pdfCommonEs = {
   'tool.pdf.error.empty': 'El archivo PDF está vacío.',
   'tool.pdf.error.range': 'La selección de página no es válida. Ejemplo: 1-3, 7, 10-8.',
   'tool.pdf.error.unsupported': 'El archivo o formato seleccionado no es compatible o está dañado.',
-  'tool.pdf.error.generic': 'No se pudo procesar el PDF.'
+  'tool.pdf.error.generic': 'No se pudo procesar el PDF.',
+  'tool.pdf.error.timeout': 'La vista previa no terminó de cargarse. Recargar la página y volver a abrir el archivo.'
 } as const
 

@@ -2,7 +2,7 @@ import { useEffect, useMemo, useRef, useState, type ChangeEvent, type MouseEvent
 import { acceptAttributeFor } from '@commietools/tools'
 import { inspectPdf } from '@commietools/tools/pdf/core'
 import { Button } from '@commietools/ui'
-import { extractPdfText, PdfWarnings, pdfErrorKey, renderPdfPagePreview, usePdfThumbnails, type ExtractedPdfPage, type LoadedPdf, type Translate } from './pdfUi'
+import { extractPdfText, PdfWarnings, pdfErrorKey, renderPdfPagePreview, usePdfThumbnails, withTimeout, type ExtractedPdfPage, type LoadedPdf, type Translate } from './pdfUi'
 
 export function PdfViewer({ t }: { t: Translate }) {
   const [file, setFile] = useState<LoadedPdf | null>(null)
@@ -14,6 +14,7 @@ export function PdfViewer({ t }: { t: Translate }) {
   const [query, setQuery] = useState('')
   const [error, setError] = useState('')
   const [showText, setShowText] = useState(true)
+  const [textError, setTextError] = useState('')
   const thumbnails = usePdfThumbnails(file?.bytes ?? null, 110)
 
   /**
@@ -49,7 +50,11 @@ export function PdfViewer({ t }: { t: Translate }) {
   useEffect(() => {
     if (!file) return
     let cancelled = false
-    void extractPdfText(file.bytes).then((value) => { if (!cancelled) setTexts(value) }).catch(() => {})
+    // Mit Zeitgrenze: Bleibt die Textextraktion stehen, darf die Ansicht nicht „kein Text"
+    // behaupten — das wäre eine falsche Aussage über die Datei.
+    void withTimeout(extractPdfText(file.bytes))
+      .then((value) => { if (!cancelled) { setTexts(value); setTextError('') } })
+      .catch((caught: unknown) => { if (!cancelled) setTextError(pdfErrorKey(caught)) })
     return () => { cancelled = true }
   }, [file])
 
@@ -107,7 +112,7 @@ export function PdfViewer({ t }: { t: Translate }) {
         <p className="scan-note">{t('tool.pdfViewer.textViewHint')}</p>
         {showText && <div id="pdf-text-view-body" className="stack">
           <h3>{t('tool.pdfViewer.textOfPage').replace('{page}', String(page))}</h3>
-          {pageText ? <p className="pdf-text-content">{pageText}</p> : <p className="scan-note">{t('tool.pdfViewer.textUnavailable')}</p>}
+          {textError ? <p className="error" role="alert">{t(textError)}</p> : pageText ? <p className="pdf-text-content">{pageText}</p> : <p className="scan-note">{t('tool.pdfViewer.textUnavailable')}</p>}
         </div>}
       </section>
     </>}
