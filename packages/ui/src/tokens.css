@@ -12,6 +12,7 @@
   --color-border: #dfe1e6;
   --color-focus: #3b82f6;
   --color-success: #147d50;
+  --color-warning: #b66a00;
   --shadow-card: 0 8px 24px rgb(20 22 26 / 8%);
   --radius-sm: 0.5rem;
   --radius-md: 0.875rem;
@@ -40,6 +41,7 @@
   --color-border: #343842;
   --color-focus: #73a7ff;
   --color-success: #5bd39a;
+  --color-warning: #e0a65c;
   --shadow-card: 0 12px 30px rgb(0 0 0 / 24%);
 }
 
