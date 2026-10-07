@@ -38,6 +38,37 @@ const WURZELN = ['apps/web/src', 'packages/ui/src']
  */
 const ERLAUBT = new Map()
 
+/**
+ * **Rohfarben-Ausnahmen (Karte M2-008).** Eine Farbe, die nicht aus dem Tokensystem kommt, ist
+ * eine Umgehung — es sei denn, sie hat eine *andere Verantwortung* als die Benutzeroberflaeche.
+ * Jeder Eintrag nennt Selektor, Eigenschaft und Grund; eng gefasst, nie „alle Farben in Datei X".
+ */
+const FARBAUSNAHMEN = [
+  { selektor: '.pdf-viewer-thumbs img', eigenschaft: 'background', grund: 'Dokumentpapier — die Vorschau zeigt die weisse Seite des Dokuments, nicht eine UI-Flaeche (schemaunabhaengig gewollt)' },
+  { selektor: '.color-cursor', eigenschaft: 'border', grund: 'Fadenkreuz der Farbpipette: muss ueber JEDEM Bildinhalt sichtbar bleiben, kann also keine Themefarbe sein' },
+  { selektor: '.tool-menu-scrim', eigenschaft: 'background', grund: 'Abdunklung hinter einer modalen Flaeche — eine Verdunklung, keine Oberflaechenfarbe' },
+  { selektor: '.redaction-box', eigenschaft: 'background', grund: 'Schwaerzungsmarke, also Dokumentinhalt; dieselbe Farbe wie im Export' },
+  { selektor: '.qr-canvas', eigenschaft: 'background', grund: 'QR-Papier — ein QR-Code braucht weissen Grund, sonst ist er nicht lesbar (Dokumentfarbe)' },
+  { selektor: '.signature-pad canvas', eigenschaft: 'background', grund: 'Unterschriftenpapier — die Flaeche wird als Bild ausgegeben, ist also Dokumentinhalt' }
+]
+
+/** Schatten und Filter sind keine Flaechen- oder Textfarben. */
+const SCHATTEN_EIGENSCHAFTEN = new Set(['box-shadow', 'text-shadow', 'filter', 'backdrop-filter', '-webkit-box-shadow'])
+
+/** Farbangaben, die keine Farbe setzen. */
+const OHNE_FARBE = /^(transparent|currentcolor|none|inherit|initial|unset|revert)$/i
+
+/** Vollstaendig durchsichtige Farbangabe: setzt ebenfalls keine Farbe (#0000, #00000000). */
+function istDurchsichtig(treffer) {
+  if (!treffer.startsWith('#')) return false
+  const ziffern = treffer.slice(1)
+  if (ziffern.length === 4) return ziffern[3] === '0'
+  if (ziffern.length === 8) return ziffern.slice(6) === '00'
+  return false
+}
+
+const FARBMUSTER = /#[0-9a-fA-F]{3,8}|rgba?\([^)]*\)|hsla?\([^)]*\)|(?<![A-Za-z0-9_-])(?:white|black|red|blue|green|gray|grey|silver|orange|yellow|maroon|navy|teal|olive|lime|aqua|fuchsia|purple)(?![A-Za-z0-9_-])/g
+
 /** Alle CSS-Dateien unter den Wurzeln, rekursiv. */
 async function cssDateien(wurzel) {
   const gefunden = []
@@ -101,6 +132,7 @@ function selektor(node) {
 async function sammeln() {
   const definitionen = new Map()   // name -> { geltungsbereiche:Set, dateien:Set }
   const verwendungen = []          // { name, mitFallback, datei, selektor, eigenschaft, wert }
+  const rohfarben = []             // { farbe, datei, selektor, eigenschaft, grund }
   const dateien = []
   for (const wurzel of WURZELN) {
     for (const pfad of await cssDateien(wurzel)) {
@@ -117,13 +149,20 @@ async function sammeln() {
         for (const bezug of varBezuege(decl.value)) {
           verwendungen.push({ ...bezug, datei: pfad, selektor: selektor(decl), eigenschaft: decl.prop, wert: decl.value })
         }
+        if (pfad.includes('tokens.css')) return           // Tokens SELBST sind die Farbquelle
+        if (SCHATTEN_EIGENSCHAFTEN.has(decl.prop)) return // Schatten sind keine Farbflaeche
+        for (const treffer of decl.value.match(FARBMUSTER) ?? []) {
+          if (OHNE_FARBE.test(treffer.trim()) || istDurchsichtig(treffer)) continue
+          const ausnahme = FARBAUSNAHMEN.find((a) => a.selektor === selektor(decl) && decl.prop.startsWith(a.eigenschaft))
+          rohfarben.push({ farbe: treffer, datei: pfad, selektor: selektor(decl), eigenschaft: decl.prop, grund: ausnahme?.grund ?? null })
+        }
       })
     }
   }
-  return { dateien, definitionen, verwendungen }
+  return { dateien, definitionen, verwendungen, rohfarben }
 }
 
-const { dateien, definitionen, verwendungen } = await sammeln()
+const { dateien, definitionen, verwendungen, rohfarben } = await sammeln()
 
 if (process.argv[2] === 'liste') {
   console.log(`Dateien: ${dateien.length} · Definitionen: ${definitionen.size} · Verwendungen: ${verwendungen.length}\n`)
@@ -134,6 +173,9 @@ if (process.argv[2] === 'liste') {
   }
   const nieBenutzt = [...definitionen.keys()].filter((name) => !verwendungen.some((v) => v.name === name)).sort()
   console.log(`\nDefiniert, aber nie benutzt (${nieBenutzt.length}): ${nieBenutzt.join(', ') || '—'}`)
+  console.log(`
+Rohfarben (${rohfarben.length}):`)
+  for (const r of rohfarben) console.log(`  ${r.farbe.padEnd(20)} ${r.selektor} { ${r.eigenschaft} } ${r.grund ? '[Ausnahme]' : '[OHNE GRUND]'}`)
   process.exit(0)
 }
 
@@ -160,5 +202,18 @@ if (ohneFallback.length) {
   process.exit(1)
 }
 
-console.log(`Tokenschutz: ${dateien.length} Datei(en), ${verwendungen.length} Verwendungen, ${definitionen.size} Definitionen — alle Referenzen aufgelöst.`)
+console.log(`Tokenschutz: ${dateien.length} Datei(en), ${verwendungen.length} Verwendungen, ${definitionen.size} Definitionen — alle Referenzen aufgeloest.`)
+
+const ohneGrund = rohfarben.filter((r) => !r.grund)
+if (rohfarben.length) {
+  console.log(`Rohfarben: ${rohfarben.length} Stelle(n), davon ${rohfarben.length - ohneGrund.length} mit begruendeter Ausnahme.`)
+  for (const r of rohfarben.filter((eintrag) => eintrag.grund)) console.log(`  · ${r.farbe}  ${r.selektor} { ${r.eigenschaft} } — ${r.grund}`)
+}
+if (ohneGrund.length) {
+  console.error(`FEHLER: ${ohneGrund.length} Rohfarbe(n) ohne begruendete Ausnahme.`)
+  console.error('  Entweder ein semantisches Token in packages/ui/src/tokens.css einfuehren oder eine')
+  console.error('  eng gefasste Ausnahme in FARBAUSNAHMEN mit Grund eintragen (Karte M2-008).')
+  for (const r of ohneGrund) console.error(`  · ${r.farbe}  in ${r.datei}: ${r.selektor} { ${r.eigenschaft} }`)
+  process.exit(1)
+}
 if (mitFallback.length) console.log('(Mit den oben genannten Fallback-Meldungen.)')

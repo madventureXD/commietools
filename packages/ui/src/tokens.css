@@ -13,6 +13,10 @@
   --color-focus: #3b82f6;
   --color-success: #147d50;
   --color-warning: #b66a00;
+  --color-document-stage: #303238;
+  --color-plot-grid: #dddddd;
+  --color-plot-axis: #888888;
+  --color-plot-label: #666666;
   --shadow-card: 0 8px 24px rgb(20 22 26 / 8%);
   --radius-sm: 0.5rem;
   --radius-md: 0.875rem;
@@ -42,6 +46,10 @@
   --color-focus: #73a7ff;
   --color-success: #5bd39a;
   --color-warning: #e0a65c;
+  --color-document-stage: #22262c;
+  --color-plot-grid: #3a404b;
+  --color-plot-axis: #77808f;
+  --color-plot-label: #c8cdd6;
   --shadow-card: 0 12px 30px rgb(0 0 0 / 24%);
 }
 

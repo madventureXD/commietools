@@ -111,18 +111,18 @@ export function Plotter({ t }: { t: Translate }) {
           <div className="plot-target">
             <svg viewBox={`0 0 ${result.geometry.width} ${result.geometry.height}`} role="img" aria-label={t('tool.plotter.out.plot')}>
               {result.geometry.grid.map((line) => line.axis === 'x'
-                ? <line key={`gx-${line.value}`} x1={line.position} y1={0} x2={line.position} y2={result.geometry.height} stroke="#dddddd" strokeWidth={1} />
-                : <line key={`gy-${line.value}`} x1={0} y1={line.position} x2={result.geometry.width} y2={line.position} stroke="#dddddd" strokeWidth={1} />)}
-              <line x1={0} y1={result.geometry.zeroLine} x2={result.geometry.width} y2={result.geometry.zeroLine} stroke="#888888" strokeWidth={1.4} />
-              <line x1={46} y1={0} x2={46} y2={result.geometry.height} stroke="#888888" strokeWidth={1.4} />
+                ? <line key={`gx-${line.value}`} x1={line.position} y1={0} x2={line.position} y2={result.geometry.height} className="plot-grid" />
+                : <line key={`gy-${line.value}`} x1={0} y1={line.position} x2={result.geometry.width} y2={line.position} className="plot-grid" />)}
+              <line x1={0} y1={result.geometry.zeroLine} x2={result.geometry.width} y2={result.geometry.zeroLine} className="plot-axis" />
+              <line x1={46} y1={0} x2={46} y2={result.geometry.height} className="plot-axis" />
               {result.geometry.paths.flatMap((path) => path.segments.map((segment, index) => (
                 <path key={`${path.expression}-${index}`} d={segmentToPath(segment)} fill="none" stroke={path.color} strokeWidth={1.8} />
               )))}
               {result.geometry.xLabels.map((label) => (
-                <text key={`lx-${label.label}-${label.x}`} x={label.x} y={result.geometry.height - 8} fontSize={11} textAnchor="middle" fill="#666666">{label.label}</text>
+                <text key={`lx-${label.label}-${label.x}`} x={label.x} y={result.geometry.height - 8} textAnchor="middle" className="plot-label">{label.label}</text>
               ))}
               {result.geometry.yLabels.map((label) => (
-                <text key={`ly-${label.label}-${label.y}`} x={38} y={label.y + 4} fontSize={11} textAnchor="end" fill="#666666">{label.label}</text>
+                <text key={`ly-${label.label}-${label.y}`} x={38} y={label.y + 4} textAnchor="end" className="plot-label">{label.label}</text>
               ))}
             </svg>
           </div>
