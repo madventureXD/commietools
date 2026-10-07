@@ -1,5 +1,6 @@
 import { useMemo, useState, type FormEvent } from 'react'
 import { LocalBadge } from '@commietools/ui'
+import { anzeigeKontext } from './formatContext'
 import {
   annuityPlan,
   cashDiscount,
@@ -46,7 +47,7 @@ const OPERATIONS: readonly {
 function formatAmount(text: string, locale: string): string {
   const value = Number(text)
   if (!Number.isFinite(value)) return text
-  return new Intl.NumberFormat(locale, { minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(value)
+  return new Intl.NumberFormat(anzeigeKontext(locale).regionLocale, { minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(value)
 }
 
 /** Einheitliches Ergebnis der Oberfläche, unabhängig davon, welcher Kernaufruf dahintersteht. */

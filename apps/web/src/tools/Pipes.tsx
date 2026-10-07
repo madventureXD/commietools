@@ -1,5 +1,6 @@
 import { useMemo, useState, type FormEvent } from 'react'
 import { LocalBadge } from '@commietools/ui'
+import { anzeigeKontext } from './formatContext'
 import {
   RECOMMENDED_PRESSURE_GRADIENT,
   RECOMMENDED_VELOCITY,
@@ -28,7 +29,7 @@ interface PipesProps {
 /** Zwölf gültige Stellen, in der Sprache des Nutzers geschrieben. */
 function formatValue(value: number, locale: string, digits = 12): string {
   if (!Number.isFinite(value)) return '—'
-  return new Intl.NumberFormat(locale, { maximumFractionDigits: digits }).format(roundForDisplay(value))
+  return new Intl.NumberFormat(anzeigeKontext(locale).regionLocale, { maximumFractionDigits: digits }).format(roundForDisplay(value))
 }
 
 /** Liest eine Zahl aus einem Textfeld: Komma oder Punkt als Dezimaltrennzeichen. */

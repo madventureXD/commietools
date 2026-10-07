@@ -1,5 +1,6 @@
 import { useState, type FormEvent } from 'react'
 import { LocalBadge } from '@commietools/ui'
+import { anzeigeKontext } from './formatContext'
 import {
   PAINT_DEFAULTS,
   PAINT_LIMITS,
@@ -15,7 +16,7 @@ const REPEATS: readonly PatternRepeat[] = ['free', 'straight', 'half']
 
 /** Zwölf gültige Stellen, in der Sprache des Nutzers geschrieben. */
 function formatValue(value: number, locale: string, digits = 12): string {
-  return new Intl.NumberFormat(locale, { maximumFractionDigits: digits }).format(roundForDisplay(value))
+  return new Intl.NumberFormat(anzeigeKontext(locale).regionLocale, { maximumFractionDigits: digits }).format(roundForDisplay(value))
 }
 
 /** Liest eine Zahl aus einem Textfeld: Komma oder Punkt als Dezimaltrennzeichen. */

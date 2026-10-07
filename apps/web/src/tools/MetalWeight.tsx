@@ -1,5 +1,6 @@
 import { useState, type FormEvent } from 'react'
 import { LocalBadge } from '@commietools/ui'
+import { anzeigeKontext } from './formatContext'
 import {
   METAL_LIMITS,
   metalFieldUse,
@@ -14,7 +15,7 @@ import {
 type Translate = (key: string) => string
 
 function formatValue(value: number, locale: string, digits = 12): string {
-  return new Intl.NumberFormat(locale, { maximumFractionDigits: digits }).format(value)
+  return new Intl.NumberFormat(anzeigeKontext(locale).regionLocale, { maximumFractionDigits: digits }).format(value)
 }
 
 function parseNumber(raw: string): number {

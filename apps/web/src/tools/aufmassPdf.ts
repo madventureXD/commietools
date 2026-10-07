@@ -10,6 +10,7 @@
  * kaputte Datei zu erzeugen.
  */
 import type { ComputedDocument, MeasureUnit } from '@commietools/tools/calculator/aufmass'
+import { anzeigeKontext } from './formatContext'
 
 export interface AufmassPdfLabels {
   readonly title: string
@@ -59,7 +60,7 @@ function winAnsi(text: string): string {
 function measure(text: string, locale: string): string {
   const value = Number(text)
   if (!Number.isFinite(value)) return text
-  return new Intl.NumberFormat(locale, { minimumFractionDigits: 3, maximumFractionDigits: 3 }).format(value)
+  return new Intl.NumberFormat(anzeigeKontext(locale).regionLocale, { minimumFractionDigits: 3, maximumFractionDigits: 3 }).format(value)
 }
 
 /** Geldbetrag mit zwei Nachkommastellen; ohne Tausenderzeichen, damit die Datei ruhig bleibt. */

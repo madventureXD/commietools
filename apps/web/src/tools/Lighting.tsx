@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { anzeigeKontext } from './formatContext'
 import {
   lightingErrorKeys,
   lightingMaintenanceFactor,
@@ -27,7 +28,7 @@ function alsZahl(text: string): number {
 
 /** Anzeige einer Zahl in der Sprache des Nutzers; `stellen` steuert die Nachkommastellen. */
 function zahl(wert: number, locale: string, stellen = 0): string {
-  return new Intl.NumberFormat(locale, { maximumFractionDigits: stellen }).format(wert)
+  return new Intl.NumberFormat(anzeigeKontext(locale).regionLocale, { maximumFractionDigits: stellen }).format(wert)
 }
 
 export function Lighting({ t, locale }: LightingProps) {

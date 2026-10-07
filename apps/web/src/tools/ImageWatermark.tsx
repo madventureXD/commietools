@@ -16,6 +16,7 @@ import type { Locale } from '@commietools/i18n'
 import { Button, LocalBadge } from '@commietools/ui'
 import { drawMark, measureMark, plannedMarkSize, renderWatermark, type MarkSource } from './imageWatermarkRender'
 import { SaveFileControl } from './SaveFileControl'
+import { anzeigeKontext } from './formatContext'
 
 type Translate = (key: string) => string
 
@@ -45,7 +46,7 @@ const ANCHOR_KEYS: Record<WatermarkAnchor, string> = {
 }
 
 function formatBytes(bytes: number, locale: Locale): string {
-  const formatter = new Intl.NumberFormat(locale, { maximumFractionDigits: 1 })
+  const formatter = new Intl.NumberFormat(anzeigeKontext(locale).regionLocale, { maximumFractionDigits: 1 })
   if (bytes < 1024) return `${formatter.format(bytes)} B`
   if (bytes < 1024 * 1024) return `${formatter.format(bytes / 1024)} kB`
   return `${formatter.format(bytes / (1024 * 1024))} MB`

@@ -17,6 +17,7 @@ import {
 import type { Locale } from '@commietools/i18n'
 import { Button, LocalBadge } from '@commietools/ui'
 import { SaveFileControl } from './SaveFileControl'
+import { anzeigeKontext } from './formatContext'
 
 /** Formats offered by this tool, straight from the manifest. */
 const acceptedFormatNames = formatNames(inputMimeTypes('image-metadata'))
@@ -34,7 +35,7 @@ function translated(t: Translate, key: string, fallback: string): string {
 }
 
 function formatBytes(bytes: number, locale: Locale): string {
-  const formatter = new Intl.NumberFormat(locale, { maximumFractionDigits: bytes < 1024 * 1024 ? 1 : 2 })
+  const formatter = new Intl.NumberFormat(anzeigeKontext(locale).regionLocale, { maximumFractionDigits: bytes < 1024 * 1024 ? 1 : 2 })
   if (bytes < 1024) return `${formatter.format(bytes)} B`
   if (bytes < 1024 * 1024) return `${formatter.format(bytes / 1024)} kB`
   return `${formatter.format(bytes / (1024 * 1024))} MB`
@@ -218,7 +219,7 @@ export function ImageMetadata({ t, locale }: { t: Translate; locale: Locale }) {
                     {position.altitude !== null && (
                       <div>
                         <dt>{t('tool.imageMetadata.altitude')}</dt>
-                        <dd>{`${new Intl.NumberFormat(locale, { maximumFractionDigits: 1 }).format(position.altitude)} m`}</dd>
+                        <dd>{`${new Intl.NumberFormat(anzeigeKontext(locale).regionLocale, { maximumFractionDigits: 1 }).format(position.altitude)} m`}</dd>
                       </div>
                     )}
                   </dl>

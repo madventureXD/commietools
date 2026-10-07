@@ -1,5 +1,6 @@
 import { useMemo, useState } from 'react'
 import { LocalBadge } from '@commietools/ui'
+import { anzeigeKontext } from './formatContext'
 import {
   AIR_DENSITY,
   AIR_DENSITY_SOURCE,
@@ -66,7 +67,7 @@ function preset(value: number): string {
 
 /** Zahl in der Sprache des Nutzers. */
 function formatValue(value: number, locale: string, digits = 1): string {
-  return new Intl.NumberFormat(locale, { maximumFractionDigits: digits }).format(value)
+  return new Intl.NumberFormat(anzeigeKontext(locale).regionLocale, { maximumFractionDigits: digits }).format(value)
 }
 
 function leereFlaeche(): SurfaceDraft {

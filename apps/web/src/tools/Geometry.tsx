@@ -1,13 +1,14 @@
 import { useState, type FormEvent } from 'react'
 import { LocalBadge } from '@commietools/ui'
 import { geometryShapes, geometryUnitSymbols, roundForDisplay } from '@commietools/tools/calculator/geometry'
+import { anzeigeKontext } from './formatContext'
 
 type Translate = (key: string) => string
 
 /** Zwölf gültige Stellen, in der Sprache des Nutzers geschrieben. */
 function formatValue(value: number, locale: string): string {
   const rounded = roundForDisplay(value)
-  return new Intl.NumberFormat(locale, { maximumFractionDigits: 12 }).format(rounded)
+  return new Intl.NumberFormat(anzeigeKontext(locale).regionLocale, { maximumFractionDigits: 12 }).format(rounded)
 }
 
 export function Geometry({ t, locale }: { t: Translate; locale: string }) {

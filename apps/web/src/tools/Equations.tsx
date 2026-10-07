@@ -1,6 +1,7 @@
 import { useState, type FormEvent } from 'react'
 import { LocalBadge } from '@commietools/ui'
 import { solve, type EquationDegree, type EquationSolution } from '@commietools/tools/calculator/equations'
+import { anzeigeKontext } from './formatContext'
 
 type Translate = (key: string) => string
 
@@ -30,7 +31,7 @@ export function Equations({ t, locale }: { t: Translate; locale: string }) {
     setSolution(outcome)
   }
 
-  const format = (value: number): string => new Intl.NumberFormat(locale, { maximumFractionDigits: 12 }).format(value)
+  const format = (value: number): string => new Intl.NumberFormat(anzeigeKontext(locale).regionLocale, { maximumFractionDigits: 12 }).format(value)
 
   return (
     <div className="stack">

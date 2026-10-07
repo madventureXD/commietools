@@ -19,6 +19,7 @@ import {
 import { clearSheet, readSheet, writeSheet } from '@commietools/tools/calculator/aufmassStore'
 import { SaveFileControl } from './SaveFileControl'
 import { buildAufmassPdf } from './aufmassPdf'
+import { anzeigeKontext } from './formatContext'
 
 type Translate = (key: string) => string
 
@@ -33,7 +34,7 @@ function formatValue(text: string, locale: string, decimals: number): string {
   if (!text) return '—'
   const value = Number(text)
   if (!Number.isFinite(value)) return text
-  return new Intl.NumberFormat(locale, { minimumFractionDigits: decimals, maximumFractionDigits: decimals }).format(value)
+  return new Intl.NumberFormat(anzeigeKontext(locale).regionLocale, { minimumFractionDigits: decimals, maximumFractionDigits: decimals }).format(value)
 }
 
 /**

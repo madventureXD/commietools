@@ -1,5 +1,6 @@
 import { useMemo, useState, type FormEvent } from 'react'
 import { LocalBadge } from '@commietools/ui'
+import { anzeigeKontext } from './formatContext'
 import {
   KERN_D1_FAKTOR,
   THREAD_RETRIEVED,
@@ -30,7 +31,7 @@ function parseNumber(raw: string): number {
 
 /** Zahl in der Sprache des Nutzers, ohne überflüssige Nullen. */
 function formatNumber(value: number, locale: string): string {
-  return new Intl.NumberFormat(locale, { maximumFractionDigits: 4 }).format(value)
+  return new Intl.NumberFormat(anzeigeKontext(locale).regionLocale, { maximumFractionDigits: 4 }).format(value)
 }
 
 /** Quellenkürzel einer Zeile als Text; leer bedeutet: kein Beleg geführt. */

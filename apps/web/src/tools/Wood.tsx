@@ -1,5 +1,6 @@
 import { useState, type FormEvent } from 'react'
 import { LocalBadge } from '@commietools/ui'
+import { anzeigeKontext } from './formatContext'
 import {
   planWoodDryMass,
   planWoodMoisture,
@@ -15,7 +16,7 @@ type Mode = 'moisture' | 'dryMass' | 'weight'
 const MODES: readonly Mode[] = ['moisture', 'dryMass', 'weight']
 
 function formatValue(value: number, locale: string, digits = 12): string {
-  return new Intl.NumberFormat(locale, { maximumFractionDigits: digits }).format(value)
+  return new Intl.NumberFormat(anzeigeKontext(locale).regionLocale, { maximumFractionDigits: digits }).format(value)
 }
 
 function parseNumber(raw: string): number {
