@@ -21,6 +21,31 @@ npm run beleg:rechner-kern         # Größe des mathjs-Rechenkerns je Rechnerar
 Modulordner. **Jeder Lauf prüft seine Voraussetzungen selbst** und bricht mit **Exit 2** und einer
 benannten Ursache ab; Exit **1** ist dem Befund vorbehalten („Beleg nicht erbracht").
 
+### Wenn `npm run build` im frischen Checkout scheitert
+
+Gemessen am 2026-10-07 in einem frischen Checkout von `HEAD`: **`npm run build` bricht ab**, und zwar
+an der **ersten** Stufe — `licenses:check`:
+
+```
+License audit failed: licenses\registry.json is incomplete or stale; run npm run licenses:generate
+```
+
+**Ursache, gemessen:** das committete `licenses/registry.json` von `HEAD` sagt weiterhin
+`withNotices: 171 von 176` und `noticeMissing: true` für `pdf_signer`, **obwohl** der zugehörige
+Hinweis `crates/pdf-signer-engine/LICENSE` in `HEAD` liegt (Auflage A3, 34.906 B). Das Register wird
+im Arbeitsbaum lokal erzeugt und **bewusst nicht committet** — der so erzeugte Stand liegt damit
+nicht in `HEAD`. **Das ist kein Fehler dieser Belegskripte**, sondern ein eigener Befund
+(`01-stand/offene-punkte.md`, OP-064).
+
+**Für die Belege genügt der Bau der Weboberfläche** — die Lizenzprüfung wird dabei nicht gebraucht:
+
+```bash
+npm run build --workspace @commietools/web   # erzeugt apps/web/dist
+```
+
+Damit laufen beide Belege auch im frischen Checkout. Voraussetzung bleibt `npm install` (bzw. ein
+vorhandener `node_modules`-Ordner); der Ordner `work/` wird **nicht** gebraucht.
+
 ## Die Belege
 
 | Skript | Was es belegt | Voraussetzungen |
