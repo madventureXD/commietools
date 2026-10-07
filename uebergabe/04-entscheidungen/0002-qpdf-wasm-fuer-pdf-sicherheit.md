@@ -27,3 +27,31 @@ Das npm-Paket allein genügt nicht für die Lizenztransparenz, weil das WASM QPD
 - Berechtigungsflags werden nicht als unüberwindbarer Kopierschutz versprochen.
 - QPDF-Kompression wird als Strukturkompression bezeichnet; Bildoptimierung ist separat und verlustbehaftet gekennzeichnet.
 - Updates des Wrappers oder WASM schlagen bei abweichender Prüfsumme im Lizenzcheck sichtbar auf und erfordern eine erneute Komponentenprüfung.
+
+*Nachtrag 2026-10-07 (Faber, Karte M2-004).* Die Aussage „Die Engine wird **ausschließlich auf
+M5-Routen** geladen" ist zu eng und wird hiermit richtiggestellt; der Ursprungstext bleibt stehen.
+
+Tatsächlich genutzte Funktionen und Aufrufer:
+
+| Fachaktion | Funktion | Aufrufer |
+|---|---|---|
+| PDF schützen | `protectPdf` (`pdf/m5.ts`) | Werkzeug `pdf-security` |
+| PDF entsperren | `unlockPdf` (`pdf/m5.ts`) | Werkzeug `pdf-security` |
+| Strukturkompression | `compressPdf` (`pdf/m5.ts`) | Werkzeug `pdf-compress` |
+| **PDF reparieren** | `repairPdfWithQpdf` (`pdf/m5.ts:100`) | `pdf/m8.ts:3` (Import), `pdf/m8.ts:46` (Aufruf) → Werkzeug `pdf-repair` |
+
+- **Eine** Importstelle der Engine: `packages/tools/src/pdf/m5.ts:1`
+  (`@neslinesli93/qpdf-wasm ^0.3.0`, QPDF 12.2.0). Beide Werkzeugpfade laufen damit über
+  **dieselbe** Engineversion.
+- **Ladegrenze:** Der Engine-Adapter liegt hinter den eigenen Werkzeugeinstiegen
+  (`packages/tools/package.json` → `./pdf/m5`, `./pdf/m8`), die die Oberfläche erst mit der
+  Werkzeugroute lädt. Er wird **nicht** über `packages/tools/src/index.ts` reexportiert und ist
+  nicht statisch vom Start erreichbar (`scripts/bundle-audit.mjs`, Engine-Klasse mit
+  `staticBudget: 0`).
+- Der Engine-Adapter ist eine **gemeinsame technische Zuständigkeit**; die Fachaktionen
+  (Schützen, Entsperren, Komprimieren, Reparieren) bleiben getrennt.
+- Herkunft, Lizenz und Versionsbindung werden **nicht hier** geregelt, sondern im Lizenzregister
+  (`licenses/registry.json`, Komponente samt Hash) und in der R1-Übergabe
+  (`../05-uebergaben/2026-10-06-r1-sanierungsleitfaden.md`); das Offlineverhalten in R3.
+
+Abnahme und Messung: `../06-protokolle/2026-10-07-r7-m2-004-qpdf-anwendungsbereich.md`.

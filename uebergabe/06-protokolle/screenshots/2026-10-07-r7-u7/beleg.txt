@@ -1,0 +1,27 @@
+############ A-Startseite  /
+   Ueberschrift: "Kostenlose Werkzeuge für alle."
+   qpdf-WASM-Anfragen: []
+   Seitenfehler: []
+############ B-pdf-repair  /tools/pdf-repair
+   Ueberschrift: "PDF reparieren und prüfen"
+   Datei eingespeist: true
+   Knopf: "Prüfen und reparieren"
+   Ergebnis (Auszug): ["Lokal verarbeitet","Dateiname","Speichern unter …"]
+   qpdf-WASM-Anfragen: ["qpdf-C3Giu3T4.wasm"]
+   Seitenfehler: []
+############ C-pdf-compress  /tools/pdf-compress
+   Ueberschrift: "PDF komprimieren"
+   Datei eingespeist: true
+   Knopf: "PDF optimieren"
+   Ergebnis (Auszug): ["Das Ergebnis ist größer als das Original. Es wird nicht automatisch gespeichert; du kannst es nur bewusst herunterladen.","Dateiname","Speichern unter …"]
+   qpdf-WASM-Anfragen: ["qpdf-C3Giu3T4.wasm"]
+   Seitenfehler: []
+--- Zusammenfassung ---
+   Startseite laedt QPDF nicht: 0 Datei(en) ✓
+   Aktion ausgeloest: ✓
+   Ausgabe sichtbar: ✓
+   Reparatur holt QPDF: ✓ (qpdf-C3Giu3T4.wasm)
+   Aktion ausgeloest: ✓
+   Ausgabe sichtbar: ✓
+   Kompression holt QPDF: ✓ (qpdf-C3Giu3T4.wasm)
+   gleiche Datei in B und C: true
