@@ -47,7 +47,7 @@ anmeckern oder den echten Fehler übersehen. Der Prüfer nennt deshalb Datei **u
 ## Prüfkette
 
 `npm run check` **Exit 0** (709 Tests in 50 Dateien, 0 Fehler; `glossary:check` und `jsx:check`
-laufen mit) · `npm run build` **Exit 0**. Commit `0f3c452`. Nichts gepusht.
+laufen mit) · `npm run build` **Exit 0**. Commit `bf65c01` (Code) und `d7ff3ae` (Akte). Nichts gepusht.
 
 ## Grenzen
 
