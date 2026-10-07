@@ -241,12 +241,40 @@ committete Lizenzregister der eigenen Hinweisdatei widerspricht (**OP-064**, gem
 eigenmächtig geändert); und der Verweispruefer war für mehrfache Backtick-Folgen zu grob (behoben,
 mit Gegenprobe).
 
-### R9 — Gemeinsame Bausteine und Routing (P2) — nicht begonnen (nach Bedarf)
+### R9 — Gemeinsame Bausteine und Routing (P2) — **abgeschlossen 2026-10-07** (2 Karten)
 
 | Karte | Kurz | Stand |
 |---|---|---|
-| M4-009 | Gemeinsame technische Verantwortlichkeiten mehrfach implementiert | ○ |
-| M4-010 | Routenzuordnung hat fachfremden Standardfall statt Vollständigkeitsprüfung | ○ |
+| M4-009 | Gemeinsame technische Verantwortlichkeiten mehrfach implementiert | ✓ |
+| M4-010 | Routenzuordnung hat fachfremden Standardfall statt Vollständigkeitsprüfung | ✓ |
+
+*Zusatz 2026-10-07 (Faber, Durchzug auf Anweisung von Thomas): **R9 ist vollständig — 2 von 2
+Karten.** Beide mit Bestandsaufnahme am Live-Stand, kleinstmöglichem Eingriff, Prüfkette
+(`npm run check`/`npm run build`), Browserbeleg gegen den ausgelieferten Bau und
+Mutationsgegenproben; Protokolle `06-protokolle/2026-10-07-r9-m4-009-zusammenlegung.md` und
+`…-m4-010-routenzuordnung.md`.*
+
+**M4-009** legte vier doppelte Verantwortlichkeiten zusammen, nach Vertrag getrennt: `divRound`
+(zwei wörtlich gleiche Kopien → `packages/tools/src/calculator/rounding.ts`), `formatBytes` (**vier**
+Kopien statt der drei genannten, alle vier wichen von der geprüften Form aus R6 ab → gemeinsame Form),
+Ergebnis-Adresse der Einzel-Ausgabe (**vier** Umsetzungen statt der zwei genannten →
+`apps/web/src/tools/resultUrl.ts`) und Ladezustand der Werkzeugsuche (**fünf** Stellen statt zweier →
+`apps/web/src/useToolSearchIndex.ts`; `App.tsx` behält einen abgeleiteten Effekt mit eigenem
+Fehlerweg). **Nicht** zusammengelegt, mit Grund benannt: `PdfSplit` (Adressen für eine Liste),
+`PdfSecurityTools.formatBytes` (Anzeigekontext ohne Sprachzusage — die dokumentierte Ausnahme),
+der abgeleitete Katalogschlüssel-Effekt. Wächter: `apps/web/src/consolidation.test.ts`.
+
+**M4-010** ersetzte die Kette aus **61** Vergleichen samt Rückfall auf `<PdfRedactTool/>` durch eine
+Zuordnungstabelle mit `satisfies Record<ToolId, …>`; `ToolId` (alle **62** Bezeichner) schreibt
+`scripts/catalog-generate.mjs` in den Katalog. Unbekannte Adresse und fehlende Zuordnung führen jetzt
+zu klaren Meldungen (`tool.notFound`, `tool.missingRenderer`), nie zu einem fremden Werkzeug; das
+Nachschlagen nutzt `Object.hasOwn`. Wächter: `apps/web/src/tool-routing.test.ts`.
+
+**Mutationsgegenproben:** M4-009 drei (davon eine erst nach Behebung einer Lücke im Prüfmittel —
+`divRound` war von keiner Prüfung gefasst; `apps/web/src/rounding.test.ts` ergänzt), M4-010 vier,
+alle im ersten Anlauf.
+
+Kopf nach dieser Stufe: siehe „Git" der Übergabe `05-uebergaben/2026-10-07-r9-abgeschlossen.md`.
 
 ### R10 — Infrastrukturberichte/NEL (P1) — nicht begonnen, **Betreiberentscheidung**
 

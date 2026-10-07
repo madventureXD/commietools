@@ -749,4 +749,3 @@ echte Restarbeit führt.
 **Belege:** Welle C → Commits `b80f527`, `3972f59` · Werkzeugtexte → ADR 0010/0011 ·
 „Offen in R2 außerdem" → durch die R2-Nachträge überholt · A1/A3/A4 →
 `06-protokolle/2026-10-07-r7-auflagen-a1-a3-a4.md`.
-

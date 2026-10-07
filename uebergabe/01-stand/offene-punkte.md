@@ -265,6 +265,13 @@ Diese Liste enthält bestätigte, noch nicht abgeschlossene Arbeit. Details geh�
   `PdfSecurityTools.tsx`, `PdfPlacementTools.tsx`. **Nicht geprüft, nicht behoben** — die Angabe
   ist ein Fund am Quelltext, kein Messergebnis. Nächster Schritt: für **ein** Werkzeug denselben
   Zählerbeleg fahren; erst wenn er das Leck zeigt, ist es eine Fehlerklasse und keine Vermutung.
+  *Zusatz 2026-10-07 (Faber, R9):* **Teilweise erledigt.** Der erste Teil — die Adressgeber der
+  **Einzel-Ausgabe** (`useDownload`, `usePdfDownload`, `useResult`, `usePdfResult`) — ist mit der
+  Karte M4-009 auf **eine** Stelle zusammengelegt (`apps/web/src/tools/resultUrl.ts`), mit Beleg im
+  Protokoll `2026-10-07-r9-m4-009-zusammenlegung.md`. **Offen bleibt der zweite Teil:** dasselbe
+  Muster **nach** einem `await` in `PdfToImages.tsx`, `ImageMetadata.tsx`, `ImageResize.tsx`,
+  `ImageWatermark.tsx` und `IconGenerator.tsx`. Dazu wurde in R9 **nichts gemessen und nichts
+  geändert** — der Punkt bleibt deshalb offen stehen.
 - [ ] OP-046 — **Der Browserjob im CI ist nie gelaufen** *(2026-10-07)*. `.github/workflows/quality.yml`
   hat jetzt einen Job `browser` auf `windows-latest` (Bau, Vorschaudienst, `a11y:check` in beiden
   Schemata, `viewport:check`) — aber es wird nicht gepusht, also hat GitHub ihn nie ausgeführt.
