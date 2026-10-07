@@ -122,6 +122,11 @@ Menüeintrag statt die Werkzeugtaste) — alle benannt und behoben.
 *Nachtrag 2026-10-07 (Faber, gemessen statt geschätzt):* Kopf nach dieser Stufe ist **`28a37aa`**.
 R9 hat **fünf** Commits erzeugt (seit dem R8-Kopf `5769598`, gezählt mit
 `git rev-list --count 5769598..HEAD`). Abstand zu `origin/main`: **140 Commits**.
+
+*Zur Genauigkeit dieser Angabe:* Die Hash-Werte oben sind **gemessen**, aber sie altern mit jedem
+weiteren Akten-Commit. Der Kopf `28a37aa` bezeichnet den Stand, in dem alle R9-Arbeit und die
+Aktenpflege liegen; die Commits danach (`055f73e` u. a.) tragen **nur** Nachträge in dieser
+Übergabedatei und ändern keinen Code. Maßgeblich ist der Codestand `b192eba`.
 - **Nichts gepusht.**
 
 ---
