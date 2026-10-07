@@ -631,8 +631,8 @@ export const searchLocale: Readonly<Record<string, ToolLocaleEntry>> = {
   },
   "pdf-visible-signature": {
     "title": "Firmar PDF visiblemente",
-    "summary": "Coloca una firma electrónica visible en un PDF.",
-    "description": "Coloca una imagen de firma visiblemente en una página PDF, localmente y claramente separada de la firma de un certificado.",
+    "summary": "Colocar una firma electrónica visible en un PDF.",
+    "description": "Colocar una imagen de firma visiblemente en una página PDF, localmente y claramente separada de la firma de un certificado.",
     "terms": [
       "firmar PDF",
       "firma PDF",
@@ -740,7 +740,7 @@ export const searchLocale: Readonly<Record<string, ToolLocaleEntry>> = {
   "pdf-viewer": {
     "title": "Visor de PDF",
     "summary": "Lee, busca, amplía y gira archivos PDF localmente.",
-    "description": "Abre y busca en archivos PDF directamente en el navegador, sin subirlos.",
+    "description": "Abrir y buscar en archivos PDF directamente en el navegador, sin subirlos.",
     "terms": [
       "visor PDF",
       "leer PDF",

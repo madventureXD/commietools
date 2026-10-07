@@ -24,7 +24,7 @@ export const calcShellEs = {
   'tool.calc.copyExpression': 'Copiar término',
   'tool.calc.copyResult': 'Copiar resultado',
   'tool.calc.copyDone': 'Copiado.',
-  'tool.calc.copyFailed': 'No se puede copiar; selecciona el texto a mano.',
+  'tool.calc.copyFailed': 'No se puede copiar; el texto debe seleccionarse a mano.',
   'tool.calc.keypad': 'Teclado',
   'tool.calc.key.clear': 'Borrar todo',
   'tool.calc.key.ans': 'Último resultado',

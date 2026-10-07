@@ -30,7 +30,7 @@ export const commonEs = {
   'tool.result': 'Resultado', 'tool.back': 'Volver a todas las herramientas', 'tool.formats': 'Formatos', 'tool.formats.readOnly': 'Solo lectura',
   'tool.detach': 'Desacoplar en su propia ventana', 'tool.detach.return': 'Volver a la ventana principal',
   'tool.detach.placeholder': 'Esta herramienta se ejecuta en su propia ventana.',
-  'tool.detach.placeholderHint': 'Puedes seguir trabajando allí; la ventana permanece por encima de todo lo demás si quieres.',
+  'tool.detach.placeholderHint': 'Se puede seguir trabajando allí; la ventana permanece por encima de todo lo demás si se desea.',
   'tool.detach.fit': 'Ajustar al tamaño de la herramienta',
   'tool.detach.fitHint': 'La ventana es más grande o más pequeña que la herramienta. Un clic la ajusta.',
   'save.fileName': 'Nombre del archivo', 'save.saveAs': 'Guardar como…', 'save.download': 'Descargar', // Karte M3-003: «Ahorro» ist die Ersparnis, nicht das Speichern

@@ -1,5 +1,5 @@
 export const es = {
-  'tool.pdfViewer.title': 'Visor de PDF', 'tool.pdfViewer.description': 'Abre y busca en archivos PDF directamente en el navegador, sin subirlos.',
+  'tool.pdfViewer.title': 'Visor de PDF', 'tool.pdfViewer.description': 'Abrir y buscar en archivos PDF directamente en el navegador, sin subirlos.',
   'tool.pdfViewer.summary': 'Lee, busca, amplía y gira archivos PDF localmente.', 'tool.pdfViewer.terms': 'visor PDF,leer PDF,abrir PDF,buscar PDF,mostrar PDF,vista de página,zoom,#pdf,#visor,#leer',
   'tool.pdfViewer.previous': 'Página anterior', 'tool.pdfViewer.next': 'Página siguiente', 'tool.pdfViewer.zoomOut': 'Alejar', 'tool.pdfViewer.zoomIn': 'Acercar', 'tool.pdfViewer.rotate': 'Girar',
   'tool.pdfViewer.search': 'Buscar en el documento', 'tool.pdfViewer.searchPlaceholder': 'Buscar texto en el PDF …', 'tool.pdfViewer.matches': 'Resultados', 'tool.pdfViewer.noMatches': 'No se encontraron resultados.',
