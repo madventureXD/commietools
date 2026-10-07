@@ -15,7 +15,7 @@
 import { execFileSync } from 'node:child_process'
 import { createHash } from 'node:crypto'
 import { existsSync, mkdirSync, readFileSync, readdirSync, rmSync, writeFileSync, statSync } from 'node:fs'
-import { join, resolve } from 'node:path'
+import { join, resolve, dirname } from 'node:path'
 import { homedir } from 'node:os'
 
 const wurzel = resolve('.')
@@ -32,12 +32,21 @@ const dateiHash = (pfad) => (existsSync(pfad) ? kurz(readFileSync(pfad)) : null)
 /** Alle Dateien, die als Originalhinweis zählen. */
 const istHinweis = (name) => /^(LICENSE|LICENCE|COPYING|NOTICE|UNLICENSE|COPYRIGHT)/i.test(name)
 
-function quelleVerzeichnis(name, version) {
+function quelleVerzeichnis(name, version, manifestPath) {
   const basis = join(homedir(), '.cargo', 'registry', 'src')
-  if (!existsSync(basis)) return null
-  for (const register of readdirSync(basis)) {
-    const ordner = join(basis, register, `${name}-${version}`)
-    if (existsSync(ordner)) return ordner
+  if (existsSync(basis)) {
+    for (const register of readdirSync(basis)) {
+      const ordner = join(basis, register, `${name}-${version}`)
+      if (existsSync(ordner)) return ordner
+    }
+  }
+  // Pfad-Abhaengigkeiten (vendorte Crates wie pdf_signer) stehen NICHT im Registry-Zwischenspeicher.
+  // Vorher wurden sie deshalb als "Paketquelle nicht im Zwischenspeicher" gefuehrt und ihr
+  // Originalhinweis fehlte im Register (gemessen 2026-10-07, Karte M2-001 Auflage A3). Jetzt gilt
+  // das Verzeichnis des Manifests als Quelle.
+  if (manifestPath) {
+    const ordner = dirname(manifestPath)
+    if (existsSync(ordner)) return { ordner, herkunft: 'pfad' }
   }
   return null
 }
@@ -59,6 +68,7 @@ function komponenten() {
       license: p.license ?? null,
       repository: p.repository ?? null,
       edition: p.edition ?? null,
+      manifestPath: p.manifest_path ?? null,
     }))
     .sort((a, b) => (a.name + a.version).localeCompare(b.name + b.version))
 }
@@ -83,12 +93,13 @@ function sammeln(pruefen) {
   const fehlend = []
   const gesammelt = []
   for (const k of liste) {
-    const quelle = quelleVerzeichnis(k.name, k.version)
+    const quelle = quelleVerzeichnis(k.name, k.version, k.manifestPath)
+    const quelleOrdner = typeof quelle === 'string' ? quelle : quelle?.ordner ?? null
     let hinweise = []
-    if (quelle) hinweise = readdirSync(quelle).filter(istHinweis)
+    if (quelleOrdner) hinweise = readdirSync(quelleOrdner).filter(istHinweis)
     if (hinweise.length === 0) {
       fehlend.push(`${k.name} ${k.version}`)
-      gesammelt.push({ ...k, noticeFiles: [], noticeMissing: true, noticeSource: quelle ? 'Paket ohne Hinweisdatei' : 'Paketquelle nicht im Zwischenspeicher' })
+      gesammelt.push({ ...k, noticeFiles: [], noticeMissing: true, noticeSource: quelleOrdner ? 'Paket ohne Hinweisdatei' : 'Paketquelle nicht im Zwischenspeicher' })
       continue
     }
     const zielOrdner = join(HINWEISE, `${k.name}-${k.version}`)
@@ -96,10 +107,10 @@ function sammeln(pruefen) {
     const kopiert = []
     for (const datei of hinweise) {
       const ziel = join(zielOrdner, datei)
-      if (!pruefen) writeFileSync(ziel, readFileSync(join(quelle, datei)))
+      if (!pruefen) writeFileSync(ziel, readFileSync(join(quelleOrdner, datei)))
       kopiert.push(`notices/rust/${k.name}-${k.version}/${datei}`)
     }
-    gesammelt.push({ ...k, noticeFiles: kopiert })
+    gesammelt.push({ ...k, noticeFiles: kopiert, noticeSource: quelle?.herkunft === 'pfad' ? 'Pfad-Abhaengigkeit' : undefined })
   }
   const kopf = {
     schemaVersion: 1,
