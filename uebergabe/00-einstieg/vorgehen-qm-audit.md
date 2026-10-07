@@ -165,7 +165,7 @@ Die frühere akzeptierte Abweichung ist damit aufgehoben; die Audit-Ausnahmen wu
 
 | Karte | Kurz | Stand |
 |---|---|---|
-| M3-001 | Spanische Übersetzung beschädigt drei technische Platzhalter | ○ *(laut README bereits korrigiert — prüfen)* |
+| M3-001 | Spanische Übersetzung beschädigt drei technische Platzhalter | **✓ erledigt** (2026-10-07): Die drei Stellen tragen `{number}`; Sprachvertragstest vorhanden, **Mutationsgegenprobe über die Kette** (`catalog:check` Exit 1 mit „out of date", zurückgenommen Exit 0) — der Einzeltest bleibt dabei grün, weil er die generierten Pakete liest. UI-Beleg in drei Werkzeugen (spanisch, echte Nummer, 0 Restklammern). **Mitbehoben:** die drei pdf.js-Renderpfade hatten keine Zeitgrenze — im Bilderexport stand der Knopf dauerhaft auf „Procesando PDF…"; jetzt Meldung statt Dauerlauf. Nebenbefund: `tool.pdfToImages.download` wird im Code nicht mehr verwendet. Protokoll `06-protokolle/2026-10-07-m3-001-platzhalter.md`, Commit `7123077` |
 | M3-003 | Spanische Kerntexte ändern die fachliche Bedeutung | ○ |
 | M3-004 | Deutsche Richtungsbeschriftungen umgehen die Sprachpakete | ○ |
 | M3-006 | Ton und Terminologie nicht durchgängig eingehalten | ○ |
