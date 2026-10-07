@@ -17,10 +17,10 @@ Eine Übergabe beantwortet knapp:
 
 Übergaben sind chronologische Momentaufnahmen. Dauerhafte Regeln gehören in die Fach- oder Architekturdokumentation, Aufgaben in `01-stand/offene-punkte.md` und verbindliche Entscheidungen in einen ADR.
 
-## Nachtrag 2026-10-07 (Faber): zehn ältere Übergaben erfüllen die Vorlage nicht
+## Nachtrag 2026-10-07 (Faber): elf ältere Übergaben erfüllen die Vorlage nicht
 
 Bei der Prüfung der neuen Übergabe (`2026-10-07-r5-sechs-karten-abgeschlossen.md`) gegen
-`uebergabe/vorlagen/uebergabe.md` wurden die **bestehenden** Übergaben mitgeprüft. Zehn von ihnen
+`uebergabe/vorlagen/uebergabe.md` wurden die **bestehenden** Übergaben mitgeprüft. Elf von ihnen
 tragen die Pflichtabschnitte nicht vollständig:
 
 - `2026-10-03-cloudflare-pages.md` — es fehlen: Ziel der Sitzung, Geänderte Bereiche, Entscheidungen, Prüfungen, Offene Punkte, nächster Schritt, Git
