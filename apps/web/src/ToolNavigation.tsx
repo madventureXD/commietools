@@ -45,6 +45,8 @@ export function ToolNavigation({ t, locale, activeToolId, navigate }: { t: Trans
   const [recent, setRecent] = useState<RecentTool[]>(() => validRecentTools(readJson<RecentTool[]>(RECENT_KEY, []), knownIds))
   const triggerRef = useRef<HTMLButtonElement>(null)
   const drawerRef = useRef<HTMLElement>(null)
+  const dialogRef = useRef<HTMLDialogElement>(null)
+  const closeRef = useRef<HTMLButtonElement>(null)
   const searchRef = useRef<HTMLInputElement>(null)
   const pushedHistory = useRef(false)
 
@@ -71,42 +73,57 @@ export function ToolNavigation({ t, locale, activeToolId, navigate }: { t: Trans
     document.body.style.overflow = 'hidden'
     // On phones, focusing search immediately opens the software keyboard and
     // hides most of the navigation. Desktop keeps the keyboard-first flow.
+    /**
+     * **Modaler Dialog (Karte M7-002).** showModal() legt den Dialog in die oberste Ebene, macht
+     * alles dahinter inaktiv (Tastatur wie Hilfstechnik) und haelt den Fokus im Dialog. Die frueher
+     * eigene Tab-Liste ist entfallen: sie uebersah sichtbare Kategorien (summary) und fasste
+     * verborgene Nachfahren geschlossener Details mit.
+     * Erste Fokussierung: auf Telefonen der Schliessen-Knopf (die Suche wuerde die Tastatur
+     * aufklappen und das Menue verdecken), auf grossen Bildschirmen wie bisher die Suche.
+     */
+    const dialog = dialogRef.current
+    dialog?.showModal()
     if (matchMedia('(min-width: 721px)').matches) requestAnimationFrame(() => searchRef.current?.focus())
-    const onKeyDown = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') {
-        event.preventDefault()
-        closeMenu()
-        return
-      }
-      if (event.key !== 'Tab' || !drawerRef.current) return
-      const focusable = [...drawerRef.current.querySelectorAll<HTMLElement>('button:not(:disabled), input:not(:disabled)')]
-      if (!focusable.length) return
-      const first = focusable[0]!
-      const last = focusable.at(-1)!
-      if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last.focus() }
-      else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus() }
-    }
+    else requestAnimationFrame(() => closeRef.current?.focus())
     const onPopState = () => {
       pushedHistory.current = false
       setOpen(false)
       triggerRef.current?.focus()
     }
-    addEventListener('keydown', onKeyDown)
+    // Der Fokus kehrt ueber das native `close`-Ereignis zurueck: React reicht es nicht durch
+    // (gemessen: der Handler lief nicht, der Fokus blieb auf `body`). Das Ereignis kommt NACH dem
+    // Schliessen, also nach der Fokus-Rueckgabe des Browsers — nur dann bleibt die Rueckfuehrung
+    // stehen (Karte M7-002).
+    const beiSchliessen = () => triggerRef.current?.focus()
+    dialog?.addEventListener('close', beiSchliessen)
     addEventListener('popstate', onPopState)
     return () => {
       document.body.style.overflow = previousOverflow
-      removeEventListener('keydown', onKeyDown)
+      dialog?.removeEventListener('close', beiSchliessen)
       removeEventListener('popstate', onPopState)
+      // Beim Schliessen oder Abbauen zuruecknehmen, sonst bleibt der Dialog in der obersten Ebene.
+      if (dialog?.open) dialog.close()
+      // Der Fokus wird beim Schliessen ausdruecklich zurueckgefuehrt — siehe onClose am Dialog.
     }
   }, [open])
 
   function openMenu() {
     if (open) return
+    // Der Ausloeser bekommt den Fokus schon beim Oeffnen. Ein Klick tut das ohnehin; hier steht es
+    // ausdruecklich, weil der Browser den Fokus beim Schliessen eines modalen Dialogs an genau das
+    // Element zurueckgibt, das beim Oeffnen fokussiert war (gemessen 2026-10-07, Karte M7-002).
+    triggerRef.current?.focus()
     history.pushState({ ...history.state, commieToolsMenu: true }, '', location.href)
     pushedHistory.current = true
     setOpen(true)
   }
 
+  /**
+   * Der Fokus kehrt ueber `onClose` am Dialog zurueck: das Ereignis kommt NACH dem Schliessen.
+   * Beim ersten Versuch stand die Rueckfuehrung im Aufraeumen des Effekts — dort hat die
+   * Fokus-Rueckgabe des Browsers sie wieder ueberschrieben, und der Fokus landete auf `body`
+   * (gemessen 2026-10-07, Karte M7-002).
+   */
   function closeMenu() {
     setOpen(false)
     setQuery('')
@@ -181,10 +198,9 @@ export function ToolNavigation({ t, locale, activeToolId, navigate }: { t: Trans
 
   return <>
     <button ref={triggerRef} className="button tool-menu-trigger" onClick={openMenu} aria-label={t('toolMenu.open')} aria-expanded={open} aria-controls="tool-navigation"><span aria-hidden="true">☰</span></button>
-    <div className={`tool-menu-layer${open ? ' open' : ''}`} aria-hidden={!open}>
-      <button className="tool-menu-scrim" aria-label={t('toolMenu.close')} onClick={closeMenu} tabIndex={open ? 0 : -1} />
-      <aside ref={drawerRef} id="tool-navigation" className="tool-menu-drawer" aria-label={t('toolMenu.title')}>
-        <header className="tool-menu-heading"><div><h2>{t('toolMenu.title')}</h2><p>{t('toolMenu.intro')}</p></div><button className="button tool-menu-close" onClick={closeMenu} aria-label={t('toolMenu.close')}>×</button></header>
+    <dialog ref={dialogRef} id="tool-navigation" className="tool-menu-dialog" aria-label={t('toolMenu.title')} onCancel={(event) => { event.preventDefault(); closeMenu() }} onClick={(event) => { if (event.target === dialogRef.current) closeMenu() }}>
+      <aside ref={drawerRef} className="tool-menu-drawer">
+        <header className="tool-menu-heading"><div><h2>{t('toolMenu.title')}</h2><p>{t('toolMenu.intro')}</p></div><button ref={closeRef} className="button tool-menu-close" onClick={closeMenu} aria-label={t('toolMenu.close')}>×</button></header>
         <label className="tool-menu-search"><span aria-hidden="true">⌕</span><input ref={searchRef} type="search" value={query} onChange={(event) => setQuery(event.target.value)} placeholder={t('toolMenu.search')} aria-label={t('toolMenu.search')} /></label>
         <div className="tool-menu-sorts" role="group" aria-label={t('toolMenu.sort')}>
           {(['category', 'az', 'recent', 'favorites'] as const).map((item) => <button key={item} className={`button compact${sort === item ? ' active' : ''}`} aria-pressed={sort === item} onClick={() => selectSort(item)}>{t(`toolMenu.sort.${item}`)}</button>)}
@@ -192,6 +208,6 @@ export function ToolNavigation({ t, locale, activeToolId, navigate }: { t: Trans
         <div className="tool-menu-content" aria-live="polite">{content}</div>
         <footer className="tool-menu-footer"><span>{visible.length} {t('toolMenu.tools')}</span><span>{t('toolMenu.local')}</span></footer>
       </aside>
-    </div>
+    </dialog>
   </>
 }

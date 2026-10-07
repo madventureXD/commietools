@@ -20,12 +20,13 @@ nav button:hover { color: var(--color-text); }
 .button-reset { padding: 0; border: 0; color: inherit; background: none; cursor: pointer; }
 .header-actions { display: flex; justify-content: flex-end; gap: var(--space-2); }
 .tool-menu-trigger { flex: 0 0 auto; font-size: 1.15rem; }
-.tool-menu-layer { position: fixed; inset: 4.5rem 0 0; z-index: 30; min-height: 0; pointer-events: none; isolation: isolate; }
-.tool-menu-layer.open { pointer-events: auto; }
-.tool-menu-scrim { position: absolute; inset: 0; padding: 0; border: 0; background: rgb(0 0 0 / 52%); opacity: 0; transition: opacity 180ms ease; }
-.tool-menu-layer.open .tool-menu-scrim { opacity: 1; }
+/* Das Werkzeugmenue ist ein **modaler Dialog** (Karte M7-002): nativ ueber showModal(), damit der
+   Hintergrund wirklich inaktiv ist und der Fokus im Dialog bleibt — eine eigene Tab-Liste kann das
+   nicht leisten (sie uebersah sichtbare Kategorien und fasste verborgene Nachfahren mit). */
+.tool-menu-dialog { position: fixed; inset: 0; width: 100%; max-width: none; height: 100%; max-height: none; margin: 0; padding: 0; border: 0; background: transparent; overflow: hidden; }
+.tool-menu-dialog::backdrop { background: rgb(0 0 0 / 52%); }
 .tool-menu-drawer { position: absolute; inset: 0 auto 0 0; display: flex; flex-direction: column; width: min(24.5rem, 92vw); min-height: 0; border-right: 1px solid var(--color-border); color: var(--color-text); background-color: var(--color-surface); box-shadow: var(--shadow-card); transform: translateX(-101%); visibility: hidden; transition: transform 200ms ease, visibility 200ms step-end; }
-.tool-menu-layer.open .tool-menu-drawer { transform: translateX(0); visibility: visible; transition: transform 200ms ease; }
+.tool-menu-dialog[open] .tool-menu-drawer { transform: translateX(0); visibility: visible; transition: transform 200ms ease; }
 .tool-menu-heading { display: flex; flex: 0 0 auto; align-items: flex-start; justify-content: space-between; gap: var(--space-4); padding: var(--space-4) var(--space-4) var(--space-3); }
 .tool-menu-heading h2 { margin: 0; font-size: 1.55rem; letter-spacing: -0.03em; }
 .tool-menu-heading p { margin: 0.2rem 0 0; color: var(--color-text-muted); }
@@ -265,7 +266,6 @@ a.button { display: inline-flex; align-items: center; justify-content: center; t
 @media (max-width: 720px) {
   .site-header { grid-template-columns: minmax(0, 1fr) auto; }
   .header-leading { gap: var(--space-2); }
-  .tool-menu-layer { inset-block-start: 4.5rem; height: calc(100dvh - 4.5rem); }
   .tool-menu-drawer { width: 100%; border-right: 0; }
   .tool-menu-heading { padding: var(--space-4) var(--space-4) var(--space-3); }
   .tool-menu-search { margin-inline: var(--space-4); }

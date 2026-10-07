@@ -46,7 +46,7 @@ const ERLAUBT = new Map()
 const FARBAUSNAHMEN = [
   { selektor: '.pdf-viewer-thumbs img', eigenschaft: 'background', grund: 'Dokumentpapier — die Vorschau zeigt die weisse Seite des Dokuments, nicht eine UI-Flaeche (schemaunabhaengig gewollt)' },
   { selektor: '.color-cursor', eigenschaft: 'border', grund: 'Fadenkreuz der Farbpipette: muss ueber JEDEM Bildinhalt sichtbar bleiben, kann also keine Themefarbe sein' },
-  { selektor: '.tool-menu-scrim', eigenschaft: 'background', grund: 'Abdunklung hinter einer modalen Flaeche — eine Verdunklung, keine Oberflaechenfarbe' },
+  { selektor: '.tool-menu-dialog::backdrop', eigenschaft: 'background', grund: 'Abdunklung hinter der modalen Flaeche — eine Verdunklung, keine Oberflaechenfarbe' },
   { selektor: '.redaction-box', eigenschaft: 'background', grund: 'Schwaerzungsmarke, also Dokumentinhalt; dieselbe Farbe wie im Export' },
   { selektor: '.qr-canvas', eigenschaft: 'background', grund: 'QR-Papier — ein QR-Code braucht weissen Grund, sonst ist er nicht lesbar (Dokumentfarbe)' },
   { selektor: '.signature-pad canvas', eigenschaft: 'background', grund: 'Unterschriftenpapier — die Flaeche wird als Bild ausgegeben, ist also Dokumentinhalt' }
