@@ -1,0 +1,39 @@
+Beleg M4-009 — 2026-10-07T16:29:26.665Z
+Basis: http://localhost:4173
+Fall A — Anzeigeformat (Bildwerkzeug, gemeinsame Form aus R6)
+  Prüfbilder erzeugt: groß 2881298 B (2.75 MiB), klein 10928 B
+  [groß] gefundene Größenangaben: ["2,75 MB"]
+  [groß] erwartete Angabe (gemeinsame Form): „2,75 MB"
+  ok: [groß] die Seite zeigt mindestens eine Größenangabe
+  ok: [groß] die Seite zeigt genau die gemeinsame Form „2,75 MB"
+  ok: [groß] keine kleingeschriebene Einheit „kB" mehr
+  ok: [groß] über 1 MiB wird in MB angezeigt
+  ok: [groß] MB mit zwei Nachkommastellen (2,75 MB)
+  [klein] gefundene Größenangaben: ["10,7 KB"]
+  [klein] erwartete Angabe (gemeinsame Form): „10,7 KB"
+  ok: [klein] die Seite zeigt mindestens eine Größenangabe
+  ok: [klein] die Seite zeigt genau die gemeinsame Form „10,7 KB"
+  ok: [klein] keine kleingeschriebene Einheit „kB" mehr
+  ok: [klein] unter 1 MiB wird in KB angezeigt
+  ok: [klein] KB mit einer Nachkommastelle (10,7 KB)
+Fall B — Suchladezustand (Katalogsuche und Werkzeugmenü)
+  ok: Suchfeld im Katalog gefunden und gesetzt
+  Kataloglage: {"zaehler":"2 Werkzeuge gefunden","leer":null,"karten":2,"knoepfe":["Suche leeren","Tool öffnen →","Tool öffnen →"],"verweise":[]}
+  ok: die Katalogsuche zeigt ihren Trefferzähler (Suche greift)
+  ok: die Katalogsuche listet Treffer auf
+  ok: die Katalogsuche meldet **nicht** „keine Treffer"
+  ok: Werkzeugmenü lässt sich öffnen
+  ok: Suchfeld im Menü gefunden und gesetzt
+  Menütreffer: 4
+  ok: das Werkzeugmenü liefert Treffer
+Fall C — Ergebnis-Adresse (Werkzeug erzeugt blob:-Adresse)
+  Datei: m4-005-schnell-B.pdf
+  Dateifelder: {"anzahl":1,"belegt":[0],"sichtbar":[true]}
+  ok: die Werkzeugtaste wurde im Werkzeugbereich gefunden und geklickt
+  Werkzeugknöpfe: ["In eigenes Fenster auskoppeln","PDF optimieren","Speichern unter …"]
+  blob:-Adressen: 0, Speicherknöpfe: ["Speichern unter …"]
+  Fehlermeldung: keine
+  Inhalt: In eigenes Fenster auskoppelnPDFPDF komprimierenOptimiert PDF-Strukturen lokal und bietet wahlweise eine klar gekennzeichnete Bildkompression.●Lokal verarbeitetPDF-Datei auswählenDie Dokumente bleiben auf deinem Gerät.m4-005-schnell-B.pdf2,1 KB3 Seiten123KompressionsartStrukturell – verlustfreiAusge
+  ok: das Werkzeug meldet keinen Fehler
+  ok: nach dem Lauf steht ein Speicherknopf bereit (Ergebnis-Adresse gesetzt)
+Ergebnis: BELEG ERBRACHT
