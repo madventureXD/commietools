@@ -73,6 +73,32 @@ languages or heavy processing engines in the initial import graph remain hard bu
 - Tool dependencies are reviewed for unexpected network access.
 - Content Security Policy and deployment headers are added with the hosting configuration.
 
+### Infrastructure error reports (Network Error Logging)
+
+The hosting provider adds a **Network Error Logging** policy to every response of `commietools.org`.
+It is set by Cloudflare, **not** by this repository (`apps/web/public/_headers` contains no such
+header) and not by the application. Measured against the deployed site on 2026-10-07 18:34 UTC:
+
+- `Nel: {"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}` — **only failures** are
+  reported; successful requests are not sampled.
+- `Report-To`: group `cf-nel`, endpoint `https://a.nel.cloudflare.com/report/v4?s=…`, operated by
+  Cloudflare.
+- `max_age: 604800` (seven days): a policy already delivered to a browser stays in effect for that
+  period, so a change is never immediate.
+
+Three data flows are deliberately kept apart:
+
+| Flow | Started by | What leaves the device | Recipient |
+|---|---|---|---|
+| Document processing in a tool | the user | nothing — it stays in the browser | nobody |
+| Resource fetch (page, assets) | the browser | the request itself (IP address, URL); a few tools additionally load documented third-party resources, named by the CSP `connect-src` | Cloudflare (delivery), plus the named third-party hosts |
+| Infrastructure error report (NEL) | the browser, after a delivery failure | failure metadata (URL, error kind, timestamp, client identifier) as documented by the operator | Cloudflare (`a.nel.cloudflare.com`) |
+
+Keeping, changing or disabling this policy is a **hosting action** in the Cloudflare zone settings,
+not a change in this repository; the operating steps and the verification are described in
+`deployment-cloudflare-pages.md`. The application's own promise — no analytics, advertising or
+telemetry dependency — is unaffected: no such module exists, and nothing here was added by the tools.
+
 ## Open-source-first implementation policy
 
 CommieTools provides tools primarily by integrating suitable open-source solutions. Before a processing capability is implemented, maintained open-source libraries and applications must be researched and compared. An existing solution is preferred when it adequately satisfies the required function, browser or target-platform support, Local-/Offline-First operation, security, privacy, accessibility, performance and license compatibility.

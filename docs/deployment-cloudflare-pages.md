@@ -56,6 +56,35 @@ Die Nameserver sind kontospezifisch und dürfen nicht geraten oder aus einer fre
 - `commietools.org` und `www.commietools.org` auf gültiges TLS und die gewünschte Weiterleitung prüfen.
 - DNS-Einträge für vorhandene E-Mail-Dienste prüfen.
 
+## Infrastrukturberichte des Anbieters (Network Error Logging)
+
+Cloudflare hängt **jeder** Antwort der Zone `commietools.org` eine NEL-Richtlinie an. Sie steht
+**nicht** in `apps/web/public/_headers` und wird nicht von der Anwendung gesetzt. Am ausgelieferten
+Stand gemessen (2026-10-07 18:34 UTC):
+
+```
+Nel: {"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}
+Report-To: {"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=…"}]}
+```
+
+- **Berichtet werden nur Fehlschläge** (`success_fraction: 0.0`); erfolgreiche Anfragen werden nicht
+  stichprobenartig erfasst.
+- Empfänger ist Cloudflare (`a.nel.cloudflare.com`) als Betreiber der Zustellung.
+- `max_age: 604800` gilt **sieben Tage**: eine bereits an einen Browser ausgelieferte Richtlinie
+  wirkt so lange weiter. Eine Änderung ist deshalb nie sofort wirksam — nach einer Umstellung
+  frühestens nach dieser Frist erneut messen.
+
+**Nachprüfen** (jederzeit, ohne Konto):
+
+```bash
+curl -sS -D - -o /dev/null https://commietools.org/ | grep -i "^nel\|^report-to"
+```
+
+**Abschalten** wäre eine Zone-Einstellung im Cloudflare-Konto (Network Error Logging), nicht eine
+Änderung an diesem Repository. Die Entscheidung dazu ist im Sanierungsleitfaden festgehalten
+(Karte M8-005): die Richtlinie bleibt bewusst aktiv, weil die Anwendung selbst nichts sendet und nur
+Fehlschläge berichtet werden — der Datenfluss steht dafür in `architecture.md`.
+
 ## Spätere Erweiterung
 
 Ein Hetzner-Cloud-Server wird erst ergänzt, wenn Konten, Synchronisierung, Datenbank oder andere serverseitige Funktionen tatsächlich benötigt werden. Große Modelle über dem Pages-Einzeldateilimit werden separat und versioniert gespeichert.
