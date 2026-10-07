@@ -2,7 +2,7 @@
 
 ## Decision status
 
-This is a deliberately small foundation. Decisions that are expensive to reverse are documented here; backend, account, sync, native-shell and Rust/WASM choices remain open until a real tool requires them.
+This is a deliberately small foundation. Decisions that are expensive to reverse are documented here; backend, account, sync, native-shell and Rust/WASM choices remain open until a real tool requires them. *(Updated 2026-10-07: the Rust/WebAssembly bridge is no longer a deferred choice — it exists for the PDF signing engine, see "Actual state 2026-10-07" below. Backend, account, sync and native-shell choices remain open.)*
 
 ## Boundaries
 
@@ -54,7 +54,7 @@ The UI must show this classification before users provide data.
 
 ## Offline model
 
-The PWA service worker precaches the application shell and compiled assets. Tools that need large engines or datasets will add versioned, opt-in caches later. User documents are never placed into a shared application cache. Persistent user data will use an explicit storage adapter (for example IndexedDB) and remain separate from processing logic.
+The PWA service worker precaches the application shell and compiled assets. Tools that need large engines or datasets use **versioned, opt-in runtime caches** (see "Actual state 2026-10-07"): the PDF engines, the calculator engine and the language/tool text packages each have their own named cache and are fetched on use, never precached. *(Corrected 2026-10-07 — the earlier wording said these caches "will add … later"; they exist.)* User documents are never placed into a shared application cache. Persistent user data uses an explicit storage adapter (`packages/tools/src/storage/indexedStore.ts`, with the states `ok`/`unavailable`/`quota`/`invalid`) and stays separate from processing logic.
 
 ## Internationalization
 
@@ -86,9 +86,28 @@ The required order for a new capability is therefore: define requirements, resea
 - Node.js API and PostgreSQL schema
 - accounts and settings synchronization
 - cloud storage connectors
-- Rust/WebAssembly tool engine boundary
+- Rust/WebAssembly tool engine boundary — **realized for the PDF signing engine** (see "Actual state 2026-10-07"); other engine classes still have no Rust boundary
 - desktop and mobile wrappers
 - third-party tool/plugin distribution
 
 Deferring these avoids creating infrastructure before a validated tool requires it.
+
+## Actual state 2026-10-07
+
+*Added for card M11-001. Each boundary names its code anchor, its responsibility and the work that is
+actually left. Measured on the delivered build of 2026-10-07, not planned.*
+
+| Boundary | Code anchor | Responsibility | Open work |
+|---|---|---|---|
+| Browser app / lazy tool modules | `apps/web/src/App.tsx`, `packages/tools/src/catalog/generated/textLoaders.ts` | shell, routing, per-tool dynamic import of tool code and text packages | unchanged |
+| PDF engines (JavaScript) | `packages/tools/src/pdf/m5.ts` (QPDF), `pdf/m7.ts` (Rust bridge), `pdfjs`/`mupdf` behind the PDF tool entry points | viewing, OCR, security, compression, repair | new engine classes need a size budget (rule already in `scripts/bundle-audit.mjs`) |
+| **Rust/WebAssembly bridge** | `crates/pdf-signer-wasm` + `crates/pdf-signer-engine` → `packages/tools/src/pdf/m7-wasm/`, imported dynamically in `pdf/m7.ts:30` | PAdES B-B signing and verification, in memory, no network | **only the signing engine** has a Rust boundary; the release criteria of that engine are open (`04-entscheidungen/0014-m7-freigabekriterien.md`, status *proposed*) |
+| Runtime caches | `apps/web/vite.config.ts` → `commietools-pdf-engines-v2`, `commietools-calculator-engines-v1`, `commietools-language-packs-v1` (`ignoreVary: true`) | fetch-on-use, danach Offline-Wiederverwendung **des bereits Geholten** — keine Zusage für den ersten Besuch oder einen Versionswechsel (M8-002) | a cache bump currently means editing the name by hand; no automated invalidation rule |
+| Language/tool package granularity | `scripts/catalog-generate.mjs`, ADR 0010 / 0011 | one search pack, one shared text pack and one text pack **per tool and language** | — |
+| Persistent user data | `packages/tools/src/storage/indexedStore.ts` | explicit storage states for calculator history, measurements and inspection intervals | not a general contract for future tools |
+
+**Checked against the build configuration (2026-10-07):** all three cache names appear exactly once in
+`vite.config.ts` and exactly once in the generated `apps/web/dist/sw.js`; the Rust bridge is reached
+only through a dynamic `import()` and is not statically reachable from the start page.
+
 
