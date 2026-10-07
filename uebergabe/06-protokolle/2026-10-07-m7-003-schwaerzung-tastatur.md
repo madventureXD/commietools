@@ -94,6 +94,43 @@ Y 86,7 / Breite 55,3 / Höhe 161,2 · **Text „DREHTEXT" entfernt** · Fläche 
    bei einer von 100 % abweichenden Zoomstufe gemessen.
 5. Echte Vorleseransage (NVDA/Narrator) fehlt in dieser Umgebung.
 
+## Nachtrag 2026-10-07 (nach dem Sitzungsabschluss): Punkt 2 ist geklärt — und es war ein Produktmangel
+
+Der unter „Grenzen" als ungeklärt geführte Punkt („zweites Setzen einer Datei reagiert nicht") ist
+gemessen und geschlossen. Die Kette in Kurzform:
+
+1. **Das Einspeisen war es nicht.** Das `change`-Ereignis kommt mit der Datei an (Capture und Blase,
+   `files.length = 1`, richtiger Name). Der Verdacht „Prüfmittel" ist widerlegt.
+2. **Der Dateiwechsel ist es nicht.** In derselben Seite funktionieren zweite und dritte Datei.
+3. **Der Auslöser ist die Zahl der Ladevorgänge.** Messreihe über sechs Ladevorgänge derselben
+   Route (`work/m7-003-dateiwechsel-klarung3.cjs`): **1–4 in Ordnung** (Zeichenfläche nach ~0,5 s),
+   **5 und 6 hängen dauerhaft** — bei 32 s Wartezeit keine Miniatur, keine Zeichenfläche, keine
+   Meldung. Der PDF-Teiler (nur MuPDF, kein pdf.js-Rendering) war nicht betroffen.
+4. **Wie weit es kommt:** `dateiAngenommen: true` — die Datei **wird** angenommen; die pdf.js-Arbeit
+   (Miniaturen, Seitengeometrie) endet nicht. Der **Modul-Import gelingt** (Chunk sofort verfügbar),
+   die **Worker-Arbeit** läuft nicht weiter. Das ist Browser-/pdf.js-Ebene, nicht Produktcode.
+
+**Der eigentliche Produktmangel war die Stille:** Ein Engine-Aufruf ohne Zeitgrenze ist kein
+Fehlerweg — das Werkzeug hing und behauptete nichts. Behoben in `93b1a7e`:
+`withTimeout` (20 s) in `pdfUi.tsx` für Miniaturen, Seitengeometrie und Textextraktion, neuer
+Fehlercode `timeout` (`packages/tools/src/pdf/core.ts`) mit übersetzter Meldung in **de/en/es**
+(„Die Vorschau wurde nicht fertig geladen. Lade die Seite neu und öffne die Datei erneut."); im
+Schwärzungswerkzeug ist ein Miniaturfehler jetzt sichtbar, im Viewer steht die Meldung **statt**
+„Diese Seite enthält keinen auslesbaren Text" (das wäre eine falsche Aussage über die Datei).
+
+**Beleg des Fehlerwegs:** Derselbe Lauf, nach der Korrektur — in **beiden** hängenden Ladevorgängen
+erscheint die Meldung (`FEHLERWEG: Meldung sichtbar = true`), URTEIL: „in ALLEN Fällen erschien die
+Meldung". Prüfkette: `npm run check` Exit 0 (706 Tests, 0 Lint-Fehler), `npm run build` Exit 0.
+
+**Ein eigener Fehler, der dabei auffiel und korrigiert wurde:** Die erste Fassung des Fixes hängte
+`.catch(...)` an die Import-Kette **innerhalb** von `withTimeout` — die Zeitüberschreitung selbst
+blieb damit unbehandelt und es erschien keine Meldung (gemessen). Erst mit `.catch(...)` **außen**
+greift der Fehlerweg. Ohne den Beleglauf wäre ein wirkungsloser Fix als „behoben" gemeldet worden.
+
+**Was offen bleibt:** Der Auslöser auf Browser-Ebene (warum die pdf.js-Worker-Arbeit nach mehreren
+Ladevorgängen stehenbleibt) ist **nicht** behoben und nicht vollständig erklärt; das Werkzeug meldet
+ihn jetzt, statt zu schweigen. Grenze: kopflose Edge, ein Renderer-Prozess, sechs Ladevorgänge.
+
 ## Nebenbefund
 
 `npm run tokens:check` hat die erste CSS-Fassung **abgelehnt** (Rohfarbe `rgb(0 0 0 / 35%)` für den

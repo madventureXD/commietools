@@ -672,13 +672,25 @@ Diese Liste enthält bestätigte, noch nicht abgeschlossene Arbeit. Details geh�
   `apps/web/src/pdf-redaction-rotation.test.ts` hält beide Hälften fest. Beleg der Tastaturabnahme:
   `work/m7-003-beleg.cjs` — Text weg (pdf.js), 1700/1700 Rasterpunkte schwarz im Bereich, außerhalb
   weiß (MuPDF). Protokoll `06-protokolle/2026-10-07-m7-003-schwaerzung-tastatur.md`, Commit `17ce942`.
-- [ ] **Offen aus M7-003: zweites Setzen einer Datei im Prüfmittel ungeklärt** *(2026-10-07)*.
-  Wird dieselbe Route in derselben Browser-Sitzung ein zweites Mal geladen oder eine zweite Datei
-  ins Feld gelegt, kommt ein `change`-Ereignis an, die Seite reagiert aber nicht (beide
-  Einspeisewege geprüft, keine Konsolenmeldung; `work/m7-003-diag2.cjs`). Ob das ein Produkt- oder
-  ein Prüfmittelverhalten ist, ist **nicht geklärt**; der echte Nutzerweg (nativer Dateidialog) ist
-  nicht messbar. Nächster Schritt: dasselbe mit einem echten Dialog oder einem zweiten Werkzeug
-  desselben Musters (PDF-Teiler) prüfen.
+- [x] **Geklärt und geschlossen: „zweites Setzen einer Datei reagiert nicht"** *(2026-10-07, nach dem
+  Sitzungsabschluss)*. Es war **kein** Prüfmittelproblem: Das `change`-Ereignis kommt mit der Datei
+  an, der Dateiwechsel funktioniert — aber **ab dem fünften Ladevorgang derselben Route in einer
+  Browsersitzung** endet die pdf.js-Arbeit (Miniaturen, Seitengeometrie) nicht mehr; die Datei wird
+  angenommen, Vorschau und Zeichenfläche bleiben aus. Modul-Import gelingt, Worker-Arbeit läuft
+  nicht. **Produktmangel war die Stille** — behoben in `93b1a7e`: `withTimeout` (20 s) für
+  Miniaturen, Geometrie und Textextraktion, neuer Fehlercode `timeout` mit Meldung in de/en/es
+  („Die Vorschau wurde nicht fertig geladen …"), Miniaturfehler sichtbar, Viewer meldet statt
+  „kein Text" zu behaupten. Beleg: `work/m7-003-dateiwechsel-klarung3.cjs` — in beiden hängenden
+  Ladevorgängen erscheint die Meldung. Protokoll-Nachtrag in
+  `06-protokolle/2026-10-07-m7-003-schwaerzung-tastatur.md`. **Offen bleibt** der Auslöser auf
+  Browser-Ebene und die Grenze der Messreihe (kopflose Edge, sechs Ladevorgänge).
+- [x] **Überholt (2026-10-07) — der frühere Eintrag lautete:** *(Wortlaut bleibt stehen, weil die
+  Einschätzung sich geändert hat.)* „Wird dieselbe Route in derselben Browser-Sitzung ein zweites
+  Mal geladen oder eine zweite Datei ins Feld gelegt, kommt ein `change`-Ereignis an, die Seite
+  reagiert aber nicht (beide Einspeisewege geprüft, keine Konsolenmeldung;
+  `work/m7-003-diag2.cjs`). Ob das ein Produkt- oder ein Prüfmittelverhalten ist, ist **nicht
+  geklärt**." — Nachgemessen und geklärt: siehe den Eintrag darüber (Auslöser ist die Zahl der
+  Ladevorgänge, der Mangel war die fehlende Meldung, behoben in `93b1a7e`).
 - [ ] **Offen aus M7-003: Zoom nur bei 100 % gemessen** *(2026-10-07)*. Die Skalierung ist im
   Zeigerweg belegt, eine abweichende Zoomstufe wurde nicht geprüft.
 - [x] **M7-004 — PDF-Viewer stellt Text assistiver Technik nicht bereit: erledigt mit benannten
