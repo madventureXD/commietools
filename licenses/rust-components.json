@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "erzeugt": "2026-10-06T13:35:12.041Z",
+  "erzeugt": "2026-10-07T15:05:28.188Z",
   "grundlage": {
     "zielprofil": "wasm32-unknown-unknown",
     "manifest": "crates/pdf-signer-wasm/Cargo.toml",
@@ -15,7 +15,7 @@
     "hinweis": "Bindet die Liste an Werkzeugstand und Ausgabe; ändert sich eine Größe, ist die Liste neu zu erzeugen."
   },
   "anzahl": 176,
-  "mitOriginalhinweis": 171,
+  "mitOriginalhinweis": 172,
   "komponenten": [
     {
       "name": "adler2",
@@ -23,6 +23,7 @@
       "license": "0BSD OR MIT OR Apache-2.0",
       "repository": "https://github.com/oyvindln/adler2",
       "edition": "2021",
+      "manifestPath": "C:\\Users\\madve\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\adler2-2.0.1\\Cargo.toml",
       "noticeFiles": [
         "notices/rust/adler2-2.0.1/LICENSE-0BSD",
         "notices/rust/adler2-2.0.1/LICENSE-APACHE",
@@ -35,6 +36,7 @@
       "license": "MIT OR Apache-2.0",
       "repository": "https://github.com/RustCrypto/block-ciphers",
       "edition": "2021",
+      "manifestPath": "C:\\Users\\madve\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\aes-0.8.4\\Cargo.toml",
       "noticeFiles": [
         "notices/rust/aes-0.8.4/LICENSE-APACHE",
         "notices/rust/aes-0.8.4/LICENSE-MIT"
@@ -46,6 +48,7 @@
       "license": "MIT OR Apache-2.0",
       "repository": "https://github.com/rusticata/asn1-rs.git",
       "edition": "2018",
+      "manifestPath": "C:\\Users\\madve\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\asn1-rs-derive-0.6.0\\Cargo.toml",
       "noticeFiles": [
         "notices/rust/asn1-rs-derive-0.6.0/LICENSE-APACHE",
         "notices/rust/asn1-rs-derive-0.6.0/LICENSE-MIT"
@@ -57,6 +60,7 @@
       "license": "MIT/Apache-2.0",
       "repository": "https://github.com/rusticata/asn1-rs.git",
       "edition": "2018",
+      "manifestPath": "C:\\Users\\madve\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\asn1-rs-impl-0.2.0\\Cargo.toml",
       "noticeFiles": [],
       "noticeMissing": true,
       "noticeSource": "Paket ohne Hinweisdatei"
@@ -67,6 +71,7 @@
       "license": "MIT OR Apache-2.0",
       "repository": "https://github.com/rusticata/asn1-rs.git",
       "edition": "2018",
+      "manifestPath": "C:\\Users\\madve\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\asn1-rs-0.7.2\\Cargo.toml",
       "noticeFiles": [
         "notices/rust/asn1-rs-0.7.2/LICENSE-APACHE",
         "notices/rust/asn1-rs-0.7.2/LICENSE-MIT"
@@ -78,6 +83,7 @@
       "license": "Apache-2.0 OR MIT",
       "repository": "https://github.com/cuviper/autocfg",
       "edition": "2015",
+      "manifestPath": "C:\\Users\\madve\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\autocfg-1.5.1\\Cargo.toml",
       "noticeFiles": [
         "notices/rust/autocfg-1.5.1/LICENSE-APACHE",
         "notices/rust/autocfg-1.5.1/LICENSE-MIT"
@@ -89,6 +95,7 @@
       "license": "Apache-2.0 OR MIT",
       "repository": "https://github.com/RustCrypto/formats/tree/master/base16ct",
       "edition": "2021",
+      "manifestPath": "C:\\Users\\madve\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\base16ct-0.2.0\\Cargo.toml",
       "noticeFiles": [
         "notices/rust/base16ct-0.2.0/LICENSE-APACHE",
         "notices/rust/base16ct-0.2.0/LICENSE-MIT"
@@ -100,6 +107,7 @@
       "license": "Apache-2.0 OR MIT",
       "repository": "https://github.com/RustCrypto/formats",
       "edition": "2024",
+      "manifestPath": "C:\\Users\\madve\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\base64ct-1.8.3\\Cargo.toml",
       "noticeFiles": [
         "notices/rust/base64ct-1.8.3/LICENSE-APACHE",
         "notices/rust/base64ct-1.8.3/LICENSE-MIT"
@@ -111,6 +119,7 @@
       "license": "MIT/Apache-2.0",
       "repository": "https://github.com/bitflags/bitflags",
       "edition": "2018",
+      "manifestPath": "C:\\Users\\madve\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\bitflags-1.3.2\\Cargo.toml",
       "noticeFiles": [
         "notices/rust/bitflags-1.3.2/LICENSE-APACHE",
         "notices/rust/bitflags-1.3.2/LICENSE-MIT"
@@ -122,6 +131,7 @@
       "license": "MIT OR Apache-2.0",
       "repository": "https://github.com/bitflags/bitflags",
       "edition": "2021",
+      "manifestPath": "C:\\Users\\madve\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\bitflags-2.13.2\\Cargo.toml",
       "noticeFiles": [
         "notices/rust/bitflags-2.13.2/LICENSE-APACHE",
         "notices/rust/bitflags-2.13.2/LICENSE-MIT"
@@ -133,6 +143,7 @@
       "license": "MIT OR Apache-2.0",
       "repository": "https://github.com/RustCrypto/utils",
       "edition": "2018",
+      "manifestPath": "C:\\Users\\madve\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\block-buffer-0.10.4\\Cargo.toml",
       "noticeFiles": [
         "notices/rust/block-buffer-0.10.4/LICENSE-APACHE",
         "notices/rust/block-buffer-0.10.4/LICENSE-MIT"
@@ -144,6 +155,7 @@
       "license": "MIT OR Apache-2.0",
       "repository": "https://github.com/RustCrypto/utils",
       "edition": "2021",
+      "manifestPath": "C:\\Users\\madve\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\block-padding-0.3.3\\Cargo.toml",
       "noticeFiles": [
         "notices/rust/block-padding-0.3.3/LICENSE-APACHE",
         "notices/rust/block-padding-0.3.3/LICENSE-MIT"
@@ -155,6 +167,7 @@
       "license": "MIT OR Apache-2.0",
       "repository": "https://github.com/fitzgen/bumpalo",
       "edition": "2021",
+      "manifestPath": "C:\\Users\\madve\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\bumpalo-3.20.3\\Cargo.toml",
       "noticeFiles": [
         "notices/rust/bumpalo-3.20.3/LICENSE-APACHE",
         "notices/rust/bumpalo-3.20.3/LICENSE-MIT"
@@ -166,6 +179,7 @@
       "license": "MIT OR Apache-2.0",
       "repository": "https://github.com/RustCrypto/block-modes",
       "edition": "2021",
+      "manifestPath": "C:\\Users\\madve\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\cbc-0.1.2\\Cargo.toml",
       "noticeFiles": [
         "notices/rust/cbc-0.1.2/LICENSE-APACHE",
         "notices/rust/cbc-0.1.2/LICENSE-MIT"
@@ -177,6 +191,7 @@
       "license": "MIT OR Apache-2.0",
       "repository": "https://github.com/rust-lang/cfg-if",
       "edition": "2018",
+      "manifestPath": "C:\\Users\\madve\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\cfg-if-1.0.5\\Cargo.toml",
       "noticeFiles": [
         "notices/rust/cfg-if-1.0.5/LICENSE-APACHE",
         "notices/rust/cfg-if-1.0.5/LICENSE-MIT"
@@ -188,6 +203,7 @@
       "license": "MIT OR Apache-2.0",
       "repository": "https://github.com/RustCrypto/stream-ciphers",
       "edition": "2024",
+      "manifestPath": "C:\\Users\\madve\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\chacha20-0.10.2\\Cargo.toml",
       "noticeFiles": [
         "notices/rust/chacha20-0.10.2/LICENSE-APACHE",
         "notices/rust/chacha20-0.10.2/LICENSE-MIT"
@@ -199,6 +215,7 @@
       "license": "MIT OR Apache-2.0",
       "repository": "https://github.com/chronotope/chrono",
       "edition": "2021",
+      "manifestPath": "C:\\Users\\madve\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\chrono-0.4.45\\Cargo.toml",
       "noticeFiles": [
         "notices/rust/chrono-0.4.45/LICENSE.txt"
       ]
@@ -209,6 +226,7 @@
       "license": "MIT OR Apache-2.0",
       "repository": "https://github.com/RustCrypto/traits",
       "edition": "2021",
+      "manifestPath": "C:\\Users\\madve\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\cipher-0.4.4\\Cargo.toml",
       "noticeFiles": [
         "notices/rust/cipher-0.4.4/LICENSE-APACHE",
         "notices/rust/cipher-0.4.4/LICENSE-MIT"
@@ -220,6 +238,7 @@
       "license": "Apache-2.0 OR MIT",
       "repository": "https://github.com/RustCrypto/formats/tree/master/cms",
       "edition": "2021",
+      "manifestPath": "C:\\Users\\madve\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\cms-0.2.3\\Cargo.toml",
       "noticeFiles": [],
       "noticeMissing": true,
       "noticeSource": "Paket ohne Hinweisdatei"
@@ -230,6 +249,7 @@
       "license": "Apache-2.0 OR MIT",
       "repository": "https://github.com/RustCrypto/formats/tree/master/const-oid",
       "edition": "2021",
+      "manifestPath": "C:\\Users\\madve\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\const-oid-0.9.6\\Cargo.toml",
       "noticeFiles": [
         "notices/rust/const-oid-0.9.6/LICENSE-APACHE",
         "notices/rust/const-oid-0.9.6/LICENSE-MIT"
@@ -241,6 +261,7 @@
       "license": "MIT OR Apache-2.0",
       "repository": "https://github.com/srijs/rust-crc32fast",
       "edition": "2021",
+      "manifestPath": "C:\\Users\\madve\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\crc32fast-1.5.2\\Cargo.toml",
       "noticeFiles": [
         "notices/rust/crc32fast-1.5.2/LICENSE-APACHE",
         "notices/rust/crc32fast-1.5.2/LICENSE-MIT"
@@ -252,6 +273,7 @@
       "license": "MIT OR Apache-2.0",
       "repository": "https://github.com/crossbeam-rs/crossbeam",
       "edition": "2021",
+      "manifestPath": "C:\\Users\\madve\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\crossbeam-deque-0.8.8\\Cargo.toml",
       "noticeFiles": [
         "notices/rust/crossbeam-deque-0.8.8/LICENSE-APACHE",
         "notices/rust/crossbeam-deque-0.8.8/LICENSE-MIT"
@@ -263,6 +285,7 @@
       "license": "MIT OR Apache-2.0",
       "repository": "https://github.com/crossbeam-rs/crossbeam",
       "edition": "2021",
+      "manifestPath": "C:\\Users\\madve\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\crossbeam-epoch-0.9.21\\Cargo.toml",
       "noticeFiles": [
         "notices/rust/crossbeam-epoch-0.9.21/LICENSE-APACHE",
         "notices/rust/crossbeam-epoch-0.9.21/LICENSE-MIT"
@@ -274,6 +297,7 @@
       "license": "MIT OR Apache-2.0",
       "repository": "https://github.com/crossbeam-rs/crossbeam",
       "edition": "2021",
+      "manifestPath": "C:\\Users\\madve\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\crossbeam-utils-0.8.23\\Cargo.toml",
       "noticeFiles": [
         "notices/rust/crossbeam-utils-0.8.23/LICENSE-APACHE",
         "notices/rust/crossbeam-utils-0.8.23/LICENSE-MIT"
@@ -285,6 +309,7 @@
       "license": "Apache-2.0 OR MIT",
       "repository": "https://github.com/RustCrypto/crypto-bigint",
       "edition": "2021",
+      "manifestPath": "C:\\Users\\madve\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\crypto-bigint-0.5.5\\Cargo.toml",
       "noticeFiles": [
         "notices/rust/crypto-bigint-0.5.5/LICENSE-APACHE",
         "notices/rust/crypto-bigint-0.5.5/LICENSE-MIT"
@@ -296,6 +321,7 @@
       "license": "MIT OR Apache-2.0",
       "repository": "https://github.com/RustCrypto/traits",
       "edition": "2018",
+      "manifestPath": "C:\\Users\\madve\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\crypto-common-0.1.7\\Cargo.toml",
       "noticeFiles": [
         "notices/rust/crypto-common-0.1.7/LICENSE-APACHE",
         "notices/rust/crypto-common-0.1.7/LICENSE-MIT"
@@ -307,6 +333,7 @@
       "license": "BSD-3-Clause",
       "repository": "https://github.com/dalek-cryptography/curve25519-dalek/tree/main/curve25519-dalek",
       "edition": "2021",
+      "manifestPath": "C:\\Users\\madve\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\curve25519-dalek-4.1.3\\Cargo.toml",
       "noticeFiles": [
         "notices/rust/curve25519-dalek-4.1.3/LICENSE"
       ]
@@ -317,6 +344,7 @@
       "license": "MIT",
       "repository": "https://github.com/ia0/data-encoding",
       "edition": "2018",
+      "manifestPath": "C:\\Users\\madve\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\data-encoding-2.11.1\\Cargo.toml",
       "noticeFiles": [
         "notices/rust/data-encoding-2.11.1/LICENSE"
       ]
@@ -327,6 +355,7 @@
       "license": "MIT OR Apache-2.0",
       "repository": "https://github.com/knurling-rs/defmt",
       "edition": "2021",
+      "manifestPath": "C:\\Users\\madve\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\defmt-macros-1.1.1\\Cargo.toml",
       "noticeFiles": [
         "notices/rust/defmt-macros-1.1.1/LICENSE-APACHE",
         "notices/rust/defmt-macros-1.1.1/LICENSE-MIT"
@@ -338,6 +367,7 @@
       "license": "MIT OR Apache-2.0",
       "repository": "https://github.com/knurling-rs/defmt",
       "edition": "2021",
+      "manifestPath": "C:\\Users\\madve\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\defmt-parser-1.0.0\\Cargo.toml",
       "noticeFiles": [],
       "noticeMissing": true,
       "noticeSource": "Paket ohne Hinweisdatei"
@@ -348,6 +378,7 @@
       "license": "MIT OR Apache-2.0",
       "repository": "https://github.com/knurling-rs/defmt",
       "edition": "2021",
+      "manifestPath": "C:\\Users\\madve\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\defmt-1.1.1\\Cargo.toml",
       "noticeFiles": [
         "notices/rust/defmt-1.1.1/LICENSE-APACHE",
         "notices/rust/defmt-1.1.1/LICENSE-MIT"
@@ -359,6 +390,7 @@
       "license": "Apache-2.0 OR MIT",
       "repository": "https://github.com/RustCrypto/formats/tree/master/der/derive",
       "edition": "2021",
+      "manifestPath": "C:\\Users\\madve\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\der_derive-0.7.3\\Cargo.toml",
       "noticeFiles": [
         "notices/rust/der_derive-0.7.3/LICENSE-APACHE",
         "notices/rust/der_derive-0.7.3/LICENSE-MIT"
@@ -370,6 +402,7 @@
       "license": "MIT OR Apache-2.0",
       "repository": "https://github.com/rusticata/der-parser.git",
       "edition": "2018",
+      "manifestPath": "C:\\Users\\madve\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\der-parser-10.0.0\\Cargo.toml",
       "noticeFiles": [
         "notices/rust/der-parser-10.0.0/LICENSE-APACHE",
         "notices/rust/der-parser-10.0.0/LICENSE-MIT"
@@ -381,6 +414,7 @@
       "license": "Apache-2.0 OR MIT",
       "repository": "https://github.com/RustCrypto/formats/tree/master/der",
       "edition": "2021",
+      "manifestPath": "C:\\Users\\madve\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\der-0.7.10\\Cargo.toml",
       "noticeFiles": [
         "notices/rust/der-0.7.10/LICENSE-APACHE",
         "notices/rust/der-0.7.10/LICENSE-MIT"
@@ -392,6 +426,7 @@
       "license": "MIT OR Apache-2.0",
       "repository": "https://github.com/jhpratt/deranged",
       "edition": "2021",
+      "manifestPath": "C:\\Users\\madve\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\deranged-0.5.8\\Cargo.toml",
       "noticeFiles": [
         "notices/rust/deranged-0.5.8/LICENSE-Apache",
         "notices/rust/deranged-0.5.8/LICENSE-MIT"
@@ -403,6 +438,7 @@
       "license": "MIT OR Apache-2.0",
       "repository": "https://github.com/RustCrypto/block-ciphers",
       "edition": "2021",
+      "manifestPath": "C:\\Users\\madve\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\des-0.8.1\\Cargo.toml",
       "noticeFiles": [
         "notices/rust/des-0.8.1/LICENSE-APACHE",
         "notices/rust/des-0.8.1/LICENSE-MIT"
@@ -414,6 +450,7 @@
       "license": "MIT OR Apache-2.0",
       "repository": "https://github.com/RustCrypto/traits",
       "edition": "2018",
+      "manifestPath": "C:\\Users\\madve\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\digest-0.10.7\\Cargo.toml",
       "noticeFiles": [
         "notices/rust/digest-0.10.7/LICENSE-APACHE",
         "notices/rust/digest-0.10.7/LICENSE-MIT"
@@ -425,6 +462,7 @@
       "license": "MIT OR Apache-2.0",
       "repository": "https://github.com/yaahc/displaydoc",
       "edition": "2021",
+      "manifestPath": "C:\\Users\\madve\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\displaydoc-0.2.7\\Cargo.toml",
       "noticeFiles": [
         "notices/rust/displaydoc-0.2.7/LICENSE-APACHE",
         "notices/rust/displaydoc-0.2.7/LICENSE-MIT"
@@ -436,6 +474,7 @@
       "license": "MIT",
       "repository": "https://github.com/magic-akari/ecb",
       "edition": "2021",
+      "manifestPath": "C:\\Users\\madve\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\ecb-0.1.2\\Cargo.toml",
       "noticeFiles": [
         "notices/rust/ecb-0.1.2/LICENSE"
       ]
@@ -446,6 +485,7 @@
       "license": "Apache-2.0 OR MIT",
       "repository": "https://github.com/RustCrypto/signatures/tree/master/ecdsa",
       "edition": "2021",
+      "manifestPath": "C:\\Users\\madve\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\ecdsa-0.16.9\\Cargo.toml",
       "noticeFiles": [
         "notices/rust/ecdsa-0.16.9/LICENSE-APACHE",
         "notices/rust/ecdsa-0.16.9/LICENSE-MIT"
@@ -457,6 +497,7 @@
       "license": "BSD-3-Clause",
       "repository": "https://github.com/dalek-cryptography/curve25519-dalek/tree/main/ed25519-dalek",
       "edition": "2021",
+      "manifestPath": "C:\\Users\\madve\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\ed25519-dalek-2.2.0\\Cargo.toml",
       "noticeFiles": [
         "notices/rust/ed25519-dalek-2.2.0/LICENSE"
       ]
@@ -467,6 +508,7 @@
       "license": "Apache-2.0 OR MIT",
       "repository": "https://github.com/RustCrypto/signatures/tree/master/ed25519",
       "edition": "2021",
+      "manifestPath": "C:\\Users\\madve\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\ed25519-2.2.3\\Cargo.toml",
       "noticeFiles": [
         "notices/rust/ed25519-2.2.3/LICENSE-APACHE",
         "notices/rust/ed25519-2.2.3/LICENSE-MIT"
@@ -478,6 +520,7 @@
       "license": "MIT OR Apache-2.0",
       "repository": "https://github.com/rayon-rs/either",
       "edition": "2021",
+      "manifestPath": "C:\\Users\\madve\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\either-1.18.0\\Cargo.toml",
       "noticeFiles": [
         "notices/rust/either-1.18.0/LICENSE-APACHE",
         "notices/rust/either-1.18.0/LICENSE-MIT"
@@ -489,6 +532,7 @@
       "license": "Apache-2.0 OR MIT",
       "repository": "https://github.com/RustCrypto/traits/tree/master/elliptic-curve",
       "edition": "2021",
+      "manifestPath": "C:\\Users\\madve\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\elliptic-curve-0.13.8\\Cargo.toml",
       "noticeFiles": [
         "notices/rust/elliptic-curve-0.13.8/LICENSE-APACHE",
         "notices/rust/elliptic-curve-0.13.8/LICENSE-MIT"
@@ -500,6 +544,7 @@
       "license": "(Apache-2.0 OR MIT) AND BSD-3-Clause",
       "repository": "https://github.com/hsivonen/encoding_rs",
       "edition": "2024",
+      "manifestPath": "C:\\Users\\madve\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\encoding_rs-0.8.42\\Cargo.toml",
       "noticeFiles": [
         "notices/rust/encoding_rs-0.8.42/COPYRIGHT",
         "notices/rust/encoding_rs-0.8.42/LICENSE-APACHE",
@@ -513,6 +558,7 @@
       "license": "Apache-2.0 OR MIT",
       "repository": "https://github.com/indexmap-rs/equivalent",
       "edition": "2015",
+      "manifestPath": "C:\\Users\\madve\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\equivalent-1.0.2\\Cargo.toml",
       "noticeFiles": [
         "notices/rust/equivalent-1.0.2/LICENSE-APACHE",
         "notices/rust/equivalent-1.0.2/LICENSE-MIT"
@@ -524,6 +570,7 @@
       "license": "MIT OR Apache-2.0",
       "repository": "https://github.com/image-rs/fdeflate",
       "edition": "2021",
+      "manifestPath": "C:\\Users\\madve\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\fdeflate-0.3.7\\Cargo.toml",
       "noticeFiles": [
         "notices/rust/fdeflate-0.3.7/LICENSE-APACHE",
         "notices/rust/fdeflate-0.3.7/LICENSE-MIT"
@@ -535,6 +582,7 @@
       "license": "MIT/Apache-2.0",
       "repository": "https://github.com/zkcrypto/ff",
       "edition": "2021",
+      "manifestPath": "C:\\Users\\madve\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\ff-0.13.1\\Cargo.toml",
       "noticeFiles": [
         "notices/rust/ff-0.13.1/LICENSE-APACHE",
         "notices/rust/ff-0.13.1/LICENSE-MIT"
@@ -546,6 +594,7 @@
       "license": "Apache-2.0",
       "repository": "https://github.com/enarx/flagset",
       "edition": "2021",
+      "manifestPath": "C:\\Users\\madve\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\flagset-0.4.7\\Cargo.toml",
       "noticeFiles": [
         "notices/rust/flagset-0.4.7/LICENSE"
       ]
@@ -556,6 +605,7 @@
       "license": "MIT OR Apache-2.0",
       "repository": "https://github.com/rust-lang/flate2-rs",
       "edition": "2018",
+      "manifestPath": "C:\\Users\\madve\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\flate2-1.1.10\\Cargo.toml",
       "noticeFiles": [
         "notices/rust/flate2-1.1.10/LICENSE-APACHE",
         "notices/rust/flate2-1.1.10/LICENSE-MIT"
@@ -567,6 +617,7 @@
       "license": "MIT OR Apache-2.0",
       "repository": "https://github.com/rust-lang/futures-rs",
       "edition": "2018",
+      "manifestPath": "C:\\Users\\madve\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\futures-core-0.3.34\\Cargo.toml",
       "noticeFiles": [
         "notices/rust/futures-core-0.3.34/LICENSE-APACHE",
         "notices/rust/futures-core-0.3.34/LICENSE-MIT"
@@ -578,6 +629,7 @@
       "license": "MIT OR Apache-2.0",
       "repository": "https://github.com/rust-lang/futures-rs",
       "edition": "2018",
+      "manifestPath": "C:\\Users\\madve\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\futures-task-0.3.34\\Cargo.toml",
       "noticeFiles": [
         "notices/rust/futures-task-0.3.34/LICENSE-APACHE",
         "notices/rust/futures-task-0.3.34/LICENSE-MIT"
@@ -589,6 +641,7 @@
       "license": "MIT OR Apache-2.0",
       "repository": "https://github.com/rust-lang/futures-rs",
       "edition": "2018",
+      "manifestPath": "C:\\Users\\madve\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\futures-util-0.3.34\\Cargo.toml",
       "noticeFiles": [
         "notices/rust/futures-util-0.3.34/LICENSE-APACHE",
         "notices/rust/futures-util-0.3.34/LICENSE-MIT"
@@ -600,6 +653,7 @@
       "license": "MIT",
       "repository": "https://github.com/fizyk20/generic-array.git",
       "edition": "2015",
+      "manifestPath": "C:\\Users\\madve\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\generic-array-0.14.7\\Cargo.toml",
       "noticeFiles": [
         "notices/rust/generic-array-0.14.7/LICENSE"
       ]
@@ -610,6 +664,7 @@
       "license": "MIT OR Apache-2.0",
       "repository": "https://github.com/rust-random/getrandom",
       "edition": "2018",
+      "manifestPath": "C:\\Users\\madve\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\getrandom-0.2.17\\Cargo.toml",
       "noticeFiles": [
         "notices/rust/getrandom-0.2.17/LICENSE-APACHE",
         "notices/rust/getrandom-0.2.17/LICENSE-MIT"
@@ -621,6 +676,7 @@
       "license": "MIT OR Apache-2.0",
       "repository": "https://github.com/rust-random/getrandom",
       "edition": "2021",
+      "manifestPath": "C:\\Users\\madve\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\getrandom-0.3.4\\Cargo.toml",
       "noticeFiles": [
         "notices/rust/getrandom-0.3.4/LICENSE-APACHE",
         "notices/rust/getrandom-0.3.4/LICENSE-MIT"
@@ -632,6 +688,7 @@
       "license": "MIT OR Apache-2.0",
       "repository": "https://github.com/rust-random/getrandom",
       "edition": "2024",
+      "manifestPath": "C:\\Users\\madve\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\getrandom-0.4.3\\Cargo.toml",
       "noticeFiles": [
         "notices/rust/getrandom-0.4.3/LICENSE-APACHE",
         "notices/rust/getrandom-0.4.3/LICENSE-MIT"
@@ -643,6 +700,7 @@
       "license": "MIT/Apache-2.0",
       "repository": "https://github.com/zkcrypto/group",
       "edition": "2021",
+      "manifestPath": "C:\\Users\\madve\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\group-0.13.0\\Cargo.toml",
       "noticeFiles": [
         "notices/rust/group-0.13.0/COPYRIGHT",
         "notices/rust/group-0.13.0/LICENSE-APACHE",
@@ -655,6 +713,7 @@
       "license": "MIT OR Apache-2.0",
       "repository": "https://github.com/rust-lang/hashbrown",
       "edition": "2024",
+      "manifestPath": "C:\\Users\\madve\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\hashbrown-0.17.1\\Cargo.toml",
       "noticeFiles": [
         "notices/rust/hashbrown-0.17.1/LICENSE-APACHE",
         "notices/rust/hashbrown-0.17.1/LICENSE-MIT"
@@ -666,6 +725,7 @@
       "license": "MIT OR Apache-2.0",
       "repository": "https://github.com/KokaKiwi/rust-hex",
       "edition": "2018",
+      "manifestPath": "C:\\Users\\madve\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\hex-0.4.3\\Cargo.toml",
       "noticeFiles": [
         "notices/rust/hex-0.4.3/LICENSE-APACHE",
         "notices/rust/hex-0.4.3/LICENSE-MIT"
@@ -677,6 +737,7 @@
       "license": "MIT OR Apache-2.0",
       "repository": "https://github.com/RustCrypto/KDFs/",
       "edition": "2018",
+      "manifestPath": "C:\\Users\\madve\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\hkdf-0.12.4\\Cargo.toml",
       "noticeFiles": [
         "notices/rust/hkdf-0.12.4/LICENSE-APACHE",
         "notices/rust/hkdf-0.12.4/LICENSE-MIT"
@@ -688,6 +749,7 @@
       "license": "MIT OR Apache-2.0",
       "repository": "https://github.com/RustCrypto/MACs",
       "edition": "2018",
+      "manifestPath": "C:\\Users\\madve\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\hmac-0.12.1\\Cargo.toml",
       "noticeFiles": [
         "notices/rust/hmac-0.12.1/LICENSE-APACHE",
         "notices/rust/hmac-0.12.1/LICENSE-MIT"
@@ -699,6 +761,7 @@
       "license": "Apache-2.0 OR MIT",
       "repository": "https://github.com/indexmap-rs/indexmap",
       "edition": "2024",
+      "manifestPath": "C:\\Users\\madve\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\indexmap-2.14.2\\Cargo.toml",
       "noticeFiles": [
         "notices/rust/indexmap-2.14.2/LICENSE-APACHE",
         "notices/rust/indexmap-2.14.2/LICENSE-MIT"
@@ -710,6 +773,7 @@
       "license": "MIT OR Apache-2.0",
       "repository": "https://github.com/RustCrypto/utils",
       "edition": "2021",
+      "manifestPath": "C:\\Users\\madve\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\inout-0.1.4\\Cargo.toml",
       "noticeFiles": [
         "notices/rust/inout-0.1.4/LICENSE-APACHE",
         "notices/rust/inout-0.1.4/LICENSE-MIT"
@@ -721,6 +785,7 @@
       "license": "MIT OR Apache-2.0",
       "repository": "https://github.com/dtolnay/itoa",
       "edition": "2021",
+      "manifestPath": "C:\\Users\\madve\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\itoa-1.0.18\\Cargo.toml",
       "noticeFiles": [
         "notices/rust/itoa-1.0.18/LICENSE-APACHE",
         "notices/rust/itoa-1.0.18/LICENSE-MIT"
@@ -732,6 +797,7 @@
       "license": "Unlicense OR MIT",
       "repository": "https://github.com/BurntSushi/jiff",
       "edition": "2021",
+      "manifestPath": "C:\\Users\\madve\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\jiff-core-0.1.1\\Cargo.toml",
       "noticeFiles": [
         "notices/rust/jiff-core-0.1.1/COPYING",
         "notices/rust/jiff-core-0.1.1/LICENSE-MIT",
@@ -744,6 +810,7 @@
       "license": "Unlicense OR MIT",
       "repository": "https://github.com/BurntSushi/jiff",
       "edition": "2021",
+      "manifestPath": "C:\\Users\\madve\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\jiff-static-0.2.37\\Cargo.toml",
       "noticeFiles": [
         "notices/rust/jiff-static-0.2.37/COPYING",
         "notices/rust/jiff-static-0.2.37/LICENSE-MIT",
@@ -756,6 +823,7 @@
       "license": "Unlicense OR MIT",
       "repository": "https://github.com/BurntSushi/jiff",
       "edition": "2021",
+      "manifestPath": "C:\\Users\\madve\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\jiff-tzdb-platform-0.1.3\\Cargo.toml",
       "noticeFiles": [
         "notices/rust/jiff-tzdb-platform-0.1.3/COPYING",
         "notices/rust/jiff-tzdb-platform-0.1.3/LICENSE-MIT",
@@ -768,6 +836,7 @@
       "license": "Unlicense OR MIT",
       "repository": "https://github.com/BurntSushi/jiff",
       "edition": "2021",
+      "manifestPath": "C:\\Users\\madve\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\jiff-tzdb-0.1.8\\Cargo.toml",
       "noticeFiles": [
         "notices/rust/jiff-tzdb-0.1.8/COPYING",
         "notices/rust/jiff-tzdb-0.1.8/LICENSE-MIT",
@@ -780,6 +849,7 @@
       "license": "Unlicense OR MIT",
       "repository": "https://github.com/BurntSushi/jiff",
       "edition": "2021",
+      "manifestPath": "C:\\Users\\madve\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\jiff-0.2.37\\Cargo.toml",
       "noticeFiles": [
         "notices/rust/jiff-0.2.37/COPYING",
         "notices/rust/jiff-0.2.37/LICENSE-MIT",
@@ -792,6 +862,7 @@
       "license": "MIT OR Apache-2.0",
       "repository": "https://github.com/wasm-bindgen/wasm-bindgen/tree/master/crates/js-sys",
       "edition": "2021",
+      "manifestPath": "C:\\Users\\madve\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\js-sys-0.3.106\\Cargo.toml",
       "noticeFiles": [
         "notices/rust/js-sys-0.3.106/LICENSE-APACHE",
         "notices/rust/js-sys-0.3.106/LICENSE-MIT"
@@ -803,6 +874,7 @@
       "license": "Apache-2.0 OR MIT",
       "repository": "https://github.com/RustCrypto/sponges/tree/master/keccak",
       "edition": "2018",
+      "manifestPath": "C:\\Users\\madve\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\keccak-0.1.6\\Cargo.toml",
       "noticeFiles": [
         "notices/rust/keccak-0.1.6/LICENSE-APACHE",
         "notices/rust/keccak-0.1.6/LICENSE-MIT"
@@ -814,6 +886,7 @@
       "license": "MIT OR Apache-2.0",
       "repository": "https://github.com/rust-lang-nursery/lazy-static.rs",
       "edition": "2015",
+      "manifestPath": "C:\\Users\\madve\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\lazy_static-1.5.1\\Cargo.toml",
       "noticeFiles": [
         "notices/rust/lazy_static-1.5.1/LICENSE-APACHE",
         "notices/rust/lazy_static-1.5.1/LICENSE-MIT"
@@ -825,6 +898,7 @@
       "license": "MIT",
       "repository": "https://github.com/rust-lang/compiler-builtins",
       "edition": "2021",
+      "manifestPath": "C:\\Users\\madve\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\libm-0.2.16\\Cargo.toml",
       "noticeFiles": [
         "notices/rust/libm-0.2.16/LICENSE.txt"
       ]
@@ -835,6 +909,7 @@
       "license": "MIT OR Apache-2.0",
       "repository": "https://github.com/rust-lang/log",
       "edition": "2021",
+      "manifestPath": "C:\\Users\\madve\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\log-0.4.34\\Cargo.toml",
       "noticeFiles": [
         "notices/rust/log-0.4.34/LICENSE-APACHE",
         "notices/rust/log-0.4.34/LICENSE-MIT"
@@ -846,6 +921,7 @@
       "license": "MIT",
       "repository": "https://github.com/J-F-Liu/lopdf.git",
       "edition": "2024",
+      "manifestPath": "C:\\Users\\madve\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\lopdf-0.42.0\\Cargo.toml",
       "noticeFiles": [
         "notices/rust/lopdf-0.42.0/LICENSE"
       ]
@@ -856,6 +932,7 @@
       "license": "MIT OR Apache-2.0",
       "repository": "https://github.com/RustCrypto/hashes",
       "edition": "2018",
+      "manifestPath": "C:\\Users\\madve\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\md-5-0.10.6\\Cargo.toml",
       "noticeFiles": [
         "notices/rust/md-5-0.10.6/LICENSE-APACHE",
         "notices/rust/md-5-0.10.6/LICENSE-MIT"
@@ -867,6 +944,7 @@
       "license": "Unlicense OR MIT",
       "repository": "https://github.com/BurntSushi/memchr",
       "edition": "2021",
+      "manifestPath": "C:\\Users\\madve\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\memchr-2.8.3\\Cargo.toml",
       "noticeFiles": [
         "notices/rust/memchr-2.8.3/COPYING",
         "notices/rust/memchr-2.8.3/LICENSE-MIT",
@@ -879,6 +957,7 @@
       "license": "MIT/Apache-2.0",
       "repository": "https://github.com/Alexhuszagh/minimal-lexical",
       "edition": "2018",
+      "manifestPath": "C:\\Users\\madve\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\minimal-lexical-0.2.1\\Cargo.toml",
       "noticeFiles": [
         "notices/rust/minimal-lexical-0.2.1/LICENSE-APACHE",
         "notices/rust/minimal-lexical-0.2.1/LICENSE-MIT",
@@ -891,6 +970,7 @@
       "license": "MIT OR Zlib OR Apache-2.0",
       "repository": "https://github.com/Frommi/miniz_oxide/tree/master/miniz_oxide",
       "edition": "2021",
+      "manifestPath": "C:\\Users\\madve\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\miniz_oxide-0.8.9\\Cargo.toml",
       "noticeFiles": [
         "notices/rust/miniz_oxide-0.8.9/LICENSE",
         "notices/rust/miniz_oxide-0.8.9/LICENSE-APACHE.md",
@@ -904,6 +984,7 @@
       "license": "MIT OR Zlib OR Apache-2.0",
       "repository": "https://github.com/Frommi/miniz_oxide/tree/master/miniz_oxide",
       "edition": "2021",
+      "manifestPath": "C:\\Users\\madve\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\miniz_oxide-0.9.1\\Cargo.toml",
       "noticeFiles": [
         "notices/rust/miniz_oxide-0.9.1/LICENSE",
         "notices/rust/miniz_oxide-0.9.1/LICENSE-APACHE.md",
@@ -917,6 +998,7 @@
       "license": "Apache-2.0 OR MIT",
       "repository": "https://github.com/hsivonen/multiversion_no_op",
       "edition": "2021",
+      "manifestPath": "C:\\Users\\madve\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\multiversion_no_op-1.0.0\\Cargo.toml",
       "noticeFiles": [
         "notices/rust/multiversion_no_op-1.0.0/COPYRIGHT",
         "notices/rust/multiversion_no_op-1.0.0/LICENSE-APACHE",
@@ -929,6 +1011,7 @@
       "license": "MIT",
       "repository": "https://github.com/Geal/nom",
       "edition": "2018",
+      "manifestPath": "C:\\Users\\madve\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\nom-7.1.3\\Cargo.toml",
       "noticeFiles": [
         "notices/rust/nom-7.1.3/LICENSE"
       ]
@@ -939,6 +1022,7 @@
       "license": "MIT",
       "repository": "https://github.com/rust-bakery/nom",
       "edition": "2021",
+      "manifestPath": "C:\\Users\\madve\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\nom-8.0.0\\Cargo.toml",
       "noticeFiles": [
         "notices/rust/nom-8.0.0/LICENSE"
       ]
@@ -949,6 +1033,7 @@
       "license": "MIT/Apache-2.0",
       "repository": "https://github.com/dignifiedquire/num-bigint",
       "edition": "2021",
+      "manifestPath": "C:\\Users\\madve\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\num-bigint-dig-0.8.6\\Cargo.toml",
       "noticeFiles": [
         "notices/rust/num-bigint-dig-0.8.6/LICENSE-APACHE",
         "notices/rust/num-bigint-dig-0.8.6/LICENSE-MIT"
@@ -960,6 +1045,7 @@
       "license": "MIT OR Apache-2.0",
       "repository": "https://github.com/rust-num/num-bigint",
       "edition": "2021",
+      "manifestPath": "C:\\Users\\madve\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\num-bigint-0.4.8\\Cargo.toml",
       "noticeFiles": [
         "notices/rust/num-bigint-0.4.8/LICENSE-APACHE",
         "notices/rust/num-bigint-0.4.8/LICENSE-MIT"
@@ -971,6 +1057,7 @@
       "license": "MIT OR Apache-2.0",
       "repository": "https://github.com/jhpratt/num-conv",
       "edition": "2021",
+      "manifestPath": "C:\\Users\\madve\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\num-conv-0.2.2\\Cargo.toml",
       "noticeFiles": [
         "notices/rust/num-conv-0.2.2/LICENSE-Apache",
         "notices/rust/num-conv-0.2.2/LICENSE-MIT"
@@ -982,6 +1069,7 @@
       "license": "MIT OR Apache-2.0",
       "repository": "https://github.com/rust-num/num-integer",
       "edition": "2018",
+      "manifestPath": "C:\\Users\\madve\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\num-integer-0.1.47\\Cargo.toml",
       "noticeFiles": [
         "notices/rust/num-integer-0.1.47/LICENSE-APACHE",
         "notices/rust/num-integer-0.1.47/LICENSE-MIT"
@@ -993,6 +1081,7 @@
       "license": "MIT OR Apache-2.0",
       "repository": "https://github.com/rust-num/num-iter",
       "edition": "2018",
+      "manifestPath": "C:\\Users\\madve\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\num-iter-0.1.46\\Cargo.toml",
       "noticeFiles": [
         "notices/rust/num-iter-0.1.46/LICENSE-APACHE",
         "notices/rust/num-iter-0.1.46/LICENSE-MIT"
@@ -1004,6 +1093,7 @@
       "license": "MIT OR Apache-2.0",
       "repository": "https://github.com/rust-num/num-traits",
       "edition": "2021",
+      "manifestPath": "C:\\Users\\madve\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\num-traits-0.2.19\\Cargo.toml",
       "noticeFiles": [
         "notices/rust/num-traits-0.2.19/LICENSE-APACHE",
         "notices/rust/num-traits-0.2.19/LICENSE-MIT"
@@ -1015,6 +1105,7 @@
       "license": "MIT OR Apache-2.0",
       "repository": "https://github.com/rusticata/oid-registry.git",
       "edition": "2018",
+      "manifestPath": "C:\\Users\\madve\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\oid-registry-0.8.1\\Cargo.toml",
       "noticeFiles": [
         "notices/rust/oid-registry-0.8.1/LICENSE-APACHE",
         "notices/rust/oid-registry-0.8.1/LICENSE-MIT"
@@ -1026,6 +1117,7 @@
       "license": "MIT OR Apache-2.0",
       "repository": "https://github.com/matklad/once_cell",
       "edition": "2021",
+      "manifestPath": "C:\\Users\\madve\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\once_cell-1.21.4\\Cargo.toml",
       "noticeFiles": [
         "notices/rust/once_cell-1.21.4/LICENSE-APACHE",
         "notices/rust/once_cell-1.21.4/LICENSE-MIT"
@@ -1037,6 +1129,7 @@
       "license": "MIT/Apache-2.0",
       "repository": "https://github.com/ancwrd1/p12-keystore",
       "edition": "2021",
+      "manifestPath": "C:\\Users\\madve\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\p12-keystore-0.1.5\\Cargo.toml",
       "noticeFiles": [],
       "noticeMissing": true,
       "noticeSource": "Paket ohne Hinweisdatei"
@@ -1047,6 +1140,7 @@
       "license": "Apache-2.0 OR MIT",
       "repository": "https://github.com/RustCrypto/elliptic-curves/tree/master/p256",
       "edition": "2021",
+      "manifestPath": "C:\\Users\\madve\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\p256-0.13.2\\Cargo.toml",
       "noticeFiles": [
         "notices/rust/p256-0.13.2/LICENSE-APACHE",
         "notices/rust/p256-0.13.2/LICENSE-MIT"
@@ -1058,6 +1152,7 @@
       "license": "Apache-2.0 OR MIT",
       "repository": "https://github.com/RustCrypto/elliptic-curves/tree/master/p384",
       "edition": "2021",
+      "manifestPath": "C:\\Users\\madve\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\p384-0.13.1\\Cargo.toml",
       "noticeFiles": [
         "notices/rust/p384-0.13.1/LICENSE-APACHE",
         "notices/rust/p384-0.13.1/LICENSE-MIT"
@@ -1069,6 +1164,7 @@
       "license": "MIT OR Apache-2.0",
       "repository": "https://github.com/RustCrypto/password-hashes/tree/master/pbkdf2",
       "edition": "2021",
+      "manifestPath": "C:\\Users\\madve\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\pbkdf2-0.12.2\\Cargo.toml",
       "noticeFiles": [
         "notices/rust/pbkdf2-0.12.2/LICENSE-APACHE",
         "notices/rust/pbkdf2-0.12.2/LICENSE-MIT"
@@ -1080,9 +1176,11 @@
       "license": "GPL-3.0-or-later",
       "repository": "https://github.com/StrategicProjects/pdf_signer",
       "edition": "2021",
-      "noticeFiles": [],
-      "noticeMissing": true,
-      "noticeSource": "Paketquelle nicht im Zwischenspeicher"
+      "manifestPath": "C:\\Projekte mit ChatGPT\\commietools\\crates\\pdf-signer-engine\\Cargo.toml",
+      "noticeFiles": [
+        "notices/rust/pdf_signer-0.3.2/LICENSE"
+      ],
+      "noticeSource": "Pfad-Abhaengigkeit"
     },
     {
       "name": "pem-rfc7468",
@@ -1090,6 +1188,7 @@
       "license": "Apache-2.0 OR MIT",
       "repository": "https://github.com/RustCrypto/formats/tree/master/pem-rfc7468",
       "edition": "2021",
+      "manifestPath": "C:\\Users\\madve\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\pem-rfc7468-0.7.0\\Cargo.toml",
       "noticeFiles": [
         "notices/rust/pem-rfc7468-0.7.0/LICENSE-APACHE",
         "notices/rust/pem-rfc7468-0.7.0/LICENSE-MIT"
@@ -1101,6 +1200,7 @@
       "license": "Apache-2.0 OR MIT",
       "repository": "https://github.com/taiki-e/pin-project-lite",
       "edition": "2018",
+      "manifestPath": "C:\\Users\\madve\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\pin-project-lite-0.2.17\\Cargo.toml",
       "noticeFiles": [
         "notices/rust/pin-project-lite-0.2.17/LICENSE-APACHE",
         "notices/rust/pin-project-lite-0.2.17/LICENSE-MIT"
@@ -1112,6 +1212,7 @@
       "license": "Apache-2.0 OR MIT",
       "repository": "https://github.com/RustCrypto/formats/tree/master/pkcs1",
       "edition": "2021",
+      "manifestPath": "C:\\Users\\madve\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\pkcs1-0.7.5\\Cargo.toml",
       "noticeFiles": [
         "notices/rust/pkcs1-0.7.5/LICENSE-APACHE",
         "notices/rust/pkcs1-0.7.5/LICENSE-MIT"
@@ -1123,6 +1224,7 @@
       "license": "Apache-2.0 OR MIT",
       "repository": "https://github.com/RustCrypto/formats/tree/master/pkcs12",
       "edition": "2021",
+      "manifestPath": "C:\\Users\\madve\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\pkcs12-0.1.0\\Cargo.toml",
       "noticeFiles": [
         "notices/rust/pkcs12-0.1.0/LICENSE-APACHE",
         "notices/rust/pkcs12-0.1.0/LICENSE-MIT"
@@ -1134,6 +1236,7 @@
       "license": "Apache-2.0 OR MIT",
       "repository": "https://github.com/RustCrypto/formats/tree/master/pkcs5",
       "edition": "2021",
+      "manifestPath": "C:\\Users\\madve\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\pkcs5-0.7.1\\Cargo.toml",
       "noticeFiles": [
         "notices/rust/pkcs5-0.7.1/LICENSE-APACHE",
         "notices/rust/pkcs5-0.7.1/LICENSE-MIT"
@@ -1145,6 +1248,7 @@
       "license": "Apache-2.0 OR MIT",
       "repository": "https://github.com/RustCrypto/formats/tree/master/pkcs8",
       "edition": "2021",
+      "manifestPath": "C:\\Users\\madve\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\pkcs8-0.10.2\\Cargo.toml",
       "noticeFiles": [
         "notices/rust/pkcs8-0.10.2/LICENSE-APACHE",
         "notices/rust/pkcs8-0.10.2/LICENSE-MIT"
@@ -1156,6 +1260,7 @@
       "license": "MIT OR Apache-2.0",
       "repository": "https://github.com/image-rs/image-png",
       "edition": "2021",
+      "manifestPath": "C:\\Users\\madve\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\png-0.18.1\\Cargo.toml",
       "noticeFiles": [
         "notices/rust/png-0.18.1/LICENSE-APACHE",
         "notices/rust/png-0.18.1/LICENSE-MIT"
@@ -1167,6 +1272,7 @@
       "license": "MIT OR Apache-2.0",
       "repository": "https://github.com/jhpratt/powerfmt",
       "edition": "2021",
+      "manifestPath": "C:\\Users\\madve\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\powerfmt-0.2.0\\Cargo.toml",
       "noticeFiles": [
         "notices/rust/powerfmt-0.2.0/LICENSE-Apache",
         "notices/rust/powerfmt-0.2.0/LICENSE-MIT"
@@ -1178,6 +1284,7 @@
       "license": "MIT OR Apache-2.0",
       "repository": "https://github.com/cryptocorrosion/cryptocorrosion",
       "edition": "2021",
+      "manifestPath": "C:\\Users\\madve\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\ppv-lite86-0.2.21\\Cargo.toml",
       "noticeFiles": [
         "notices/rust/ppv-lite86-0.2.21/LICENSE-APACHE",
         "notices/rust/ppv-lite86-0.2.21/LICENSE-MIT"
@@ -1189,6 +1296,7 @@
       "license": "Apache-2.0 OR MIT",
       "repository": "https://github.com/RustCrypto/elliptic-curves/tree/master/primeorder",
       "edition": "2021",
+      "manifestPath": "C:\\Users\\madve\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\primeorder-0.13.6\\Cargo.toml",
       "noticeFiles": [
         "notices/rust/primeorder-0.13.6/LICENSE-APACHE",
         "notices/rust/primeorder-0.13.6/LICENSE-MIT"
@@ -1200,6 +1308,7 @@
       "license": "MIT OR Apache-2.0",
       "repository": "https://github.com/dtolnay/proc-macro2",
       "edition": "2021",
+      "manifestPath": "C:\\Users\\madve\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\proc-macro2-1.0.107\\Cargo.toml",
       "noticeFiles": [
         "notices/rust/proc-macro2-1.0.107/LICENSE-APACHE",
         "notices/rust/proc-macro2-1.0.107/LICENSE-MIT"
@@ -1211,6 +1320,7 @@
       "license": "MIT OR Apache-2.0",
       "repository": "https://github.com/dtolnay/quote",
       "edition": "2021",
+      "manifestPath": "C:\\Users\\madve\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\quote-1.0.47\\Cargo.toml",
       "noticeFiles": [
         "notices/rust/quote-1.0.47/LICENSE-APACHE",
         "notices/rust/quote-1.0.47/LICENSE-MIT"
@@ -1222,6 +1332,7 @@
       "license": "MIT OR Apache-2.0",
       "repository": "https://github.com/rust-random/rand",
       "edition": "2018",
+      "manifestPath": "C:\\Users\\madve\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\rand_chacha-0.3.1\\Cargo.toml",
       "noticeFiles": [
         "notices/rust/rand_chacha-0.3.1/COPYRIGHT",
         "notices/rust/rand_chacha-0.3.1/LICENSE-APACHE",
@@ -1234,6 +1345,7 @@
       "license": "MIT OR Apache-2.0",
       "repository": "https://github.com/rust-random/rand",
       "edition": "2021",
+      "manifestPath": "C:\\Users\\madve\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\rand_chacha-0.9.0\\Cargo.toml",
       "noticeFiles": [
         "notices/rust/rand_chacha-0.9.0/COPYRIGHT",
         "notices/rust/rand_chacha-0.9.0/LICENSE-APACHE",
@@ -1246,6 +1358,7 @@
       "license": "MIT OR Apache-2.0",
       "repository": "https://github.com/rust-random/rand_core",
       "edition": "2024",
+      "manifestPath": "C:\\Users\\madve\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\rand_core-0.10.1\\Cargo.toml",
       "noticeFiles": [
         "notices/rust/rand_core-0.10.1/COPYRIGHT",
         "notices/rust/rand_core-0.10.1/LICENSE-APACHE",
@@ -1258,6 +1371,7 @@
       "license": "MIT OR Apache-2.0",
       "repository": "https://github.com/rust-random/rand",
       "edition": "2018",
+      "manifestPath": "C:\\Users\\madve\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\rand_core-0.6.4\\Cargo.toml",
       "noticeFiles": [
         "notices/rust/rand_core-0.6.4/COPYRIGHT",
         "notices/rust/rand_core-0.6.4/LICENSE-APACHE",
@@ -1270,6 +1384,7 @@
       "license": "MIT OR Apache-2.0",
       "repository": "https://github.com/rust-random/rand",
       "edition": "2021",
+      "manifestPath": "C:\\Users\\madve\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\rand_core-0.9.5\\Cargo.toml",
       "noticeFiles": [
         "notices/rust/rand_core-0.9.5/COPYRIGHT",
         "notices/rust/rand_core-0.9.5/LICENSE-APACHE",
@@ -1282,6 +1397,7 @@
       "license": "MIT OR Apache-2.0",
       "repository": "https://github.com/rust-random/rand",
       "edition": "2024",
+      "manifestPath": "C:\\Users\\madve\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\rand-0.10.3\\Cargo.toml",
       "noticeFiles": [
         "notices/rust/rand-0.10.3/COPYRIGHT",
         "notices/rust/rand-0.10.3/LICENSE-APACHE",
@@ -1294,6 +1410,7 @@
       "license": "MIT OR Apache-2.0",
       "repository": "https://github.com/rust-random/rand",
       "edition": "2018",
+      "manifestPath": "C:\\Users\\madve\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\rand-0.8.8\\Cargo.toml",
       "noticeFiles": [
         "notices/rust/rand-0.8.8/COPYRIGHT",
         "notices/rust/rand-0.8.8/LICENSE-APACHE",
@@ -1306,6 +1423,7 @@
       "license": "MIT OR Apache-2.0",
       "repository": "https://github.com/rust-random/rand",
       "edition": "2021",
+      "manifestPath": "C:\\Users\\madve\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\rand-0.9.5\\Cargo.toml",
       "noticeFiles": [
         "notices/rust/rand-0.9.5/COPYRIGHT",
         "notices/rust/rand-0.9.5/LICENSE-APACHE",
@@ -1318,6 +1436,7 @@
       "license": "MIT/Apache-2.0",
       "repository": "https://github.com/jeffparsons/rangemap",
       "edition": "2018",
+      "manifestPath": "C:\\Users\\madve\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\rangemap-1.8.0\\Cargo.toml",
       "noticeFiles": [
         "notices/rust/rangemap-1.8.0/LICENSE-APACHE",
         "notices/rust/rangemap-1.8.0/LICENSE-MIT"
@@ -1329,6 +1448,7 @@
       "license": "MIT OR Apache-2.0",
       "repository": "https://github.com/rayon-rs/rayon",
       "edition": "2021",
+      "manifestPath": "C:\\Users\\madve\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\rayon-core-1.13.0\\Cargo.toml",
       "noticeFiles": [
         "notices/rust/rayon-core-1.13.0/LICENSE-APACHE",
         "notices/rust/rayon-core-1.13.0/LICENSE-MIT"
@@ -1340,6 +1460,7 @@
       "license": "MIT OR Apache-2.0",
       "repository": "https://github.com/rayon-rs/rayon",
       "edition": "2021",
+      "manifestPath": "C:\\Users\\madve\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\rayon-1.12.0\\Cargo.toml",
       "noticeFiles": [
         "notices/rust/rayon-1.12.0/LICENSE-APACHE",
         "notices/rust/rayon-1.12.0/LICENSE-MIT"
@@ -1351,6 +1472,7 @@
       "license": "MIT OR Apache-2.0",
       "repository": "https://github.com/RustCrypto/block-ciphers",
       "edition": "2021",
+      "manifestPath": "C:\\Users\\madve\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\rc2-0.8.1\\Cargo.toml",
       "noticeFiles": [
         "notices/rust/rc2-0.8.1/LICENSE-APACHE",
         "notices/rust/rc2-0.8.1/LICENSE-MIT"
@@ -1362,6 +1484,7 @@
       "license": "Apache-2.0 OR MIT",
       "repository": "https://github.com/RustCrypto/signatures/tree/master/rfc6979",
       "edition": "2021",
+      "manifestPath": "C:\\Users\\madve\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\rfc6979-0.4.0\\Cargo.toml",
       "noticeFiles": [
         "notices/rust/rfc6979-0.4.0/LICENSE-APACHE",
         "notices/rust/rfc6979-0.4.0/LICENSE-MIT"
@@ -1373,6 +1496,7 @@
       "license": "MIT OR Apache-2.0",
       "repository": "https://github.com/RustCrypto/RSA",
       "edition": "2021",
+      "manifestPath": "C:\\Users\\madve\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\rsa-0.9.10\\Cargo.toml",
       "noticeFiles": [
         "notices/rust/rsa-0.9.10/LICENSE-APACHE",
         "notices/rust/rsa-0.9.10/LICENSE-MIT"
@@ -1384,6 +1508,7 @@
       "license": "MIT OR Apache-2.0",
       "repository": "https://github.com/djc/rustc-version-rs",
       "edition": "2018",
+      "manifestPath": "C:\\Users\\madve\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\rustc_version-0.4.1\\Cargo.toml",
       "noticeFiles": [
         "notices/rust/rustc_version-0.4.1/LICENSE-APACHE",
         "notices/rust/rustc_version-0.4.1/LICENSE-MIT"
@@ -1395,6 +1520,7 @@
       "license": "MIT/Apache-2.0",
       "repository": "https://github.com/rusticata/rusticata-macros.git",
       "edition": "2018",
+      "manifestPath": "C:\\Users\\madve\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\rusticata-macros-4.1.0\\Cargo.toml",
       "noticeFiles": [
         "notices/rust/rusticata-macros-4.1.0/LICENSE-APACHE",
         "notices/rust/rusticata-macros-4.1.0/LICENSE-MIT"
@@ -1406,6 +1532,7 @@
       "license": "MIT OR Apache-2.0",
       "repository": "https://github.com/dtolnay/rustversion",
       "edition": "2018",
+      "manifestPath": "C:\\Users\\madve\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\rustversion-1.0.23\\Cargo.toml",
       "noticeFiles": [
         "notices/rust/rustversion-1.0.23/LICENSE-APACHE",
         "notices/rust/rustversion-1.0.23/LICENSE-MIT"
@@ -1417,6 +1544,7 @@
       "license": "MIT OR Apache-2.0",
       "repository": "https://github.com/RustCrypto/stream-ciphers",
       "edition": "2021",
+      "manifestPath": "C:\\Users\\madve\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\salsa20-0.10.2\\Cargo.toml",
       "noticeFiles": [
         "notices/rust/salsa20-0.10.2/LICENSE-APACHE",
         "notices/rust/salsa20-0.10.2/LICENSE-MIT"
@@ -1428,6 +1556,7 @@
       "license": "MIT OR Apache-2.0",
       "repository": "https://github.com/bluss/scopeguard",
       "edition": "2015",
+      "manifestPath": "C:\\Users\\madve\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\scopeguard-1.2.0\\Cargo.toml",
       "noticeFiles": [
         "notices/rust/scopeguard-1.2.0/LICENSE-APACHE",
         "notices/rust/scopeguard-1.2.0/LICENSE-MIT"
@@ -1439,6 +1568,7 @@
       "license": "MIT OR Apache-2.0",
       "repository": "https://github.com/RustCrypto/password-hashes/tree/master/scrypt",
       "edition": "2021",
+      "manifestPath": "C:\\Users\\madve\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\scrypt-0.11.0\\Cargo.toml",
       "noticeFiles": [
         "notices/rust/scrypt-0.11.0/LICENSE-APACHE",
         "notices/rust/scrypt-0.11.0/LICENSE-MIT"
@@ -1450,6 +1580,7 @@
       "license": "Apache-2.0 OR MIT",
       "repository": "https://github.com/RustCrypto/formats/tree/master/sec1",
       "edition": "2021",
+      "manifestPath": "C:\\Users\\madve\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\sec1-0.7.3\\Cargo.toml",
       "noticeFiles": [
         "notices/rust/sec1-0.7.3/LICENSE-APACHE",
         "notices/rust/sec1-0.7.3/LICENSE-MIT"
@@ -1461,6 +1592,7 @@
       "license": "MIT OR Apache-2.0",
       "repository": "https://github.com/dtolnay/semver",
       "edition": "2021",
+      "manifestPath": "C:\\Users\\madve\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\semver-1.0.28\\Cargo.toml",
       "noticeFiles": [
         "notices/rust/semver-1.0.28/LICENSE-APACHE",
         "notices/rust/semver-1.0.28/LICENSE-MIT"
@@ -1472,6 +1604,7 @@
       "license": "MIT OR Apache-2.0",
       "repository": "https://github.com/serde-rs/serde",
       "edition": "2021",
+      "manifestPath": "C:\\Users\\madve\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\serde_core-1.0.229\\Cargo.toml",
       "noticeFiles": [
         "notices/rust/serde_core-1.0.229/LICENSE-APACHE",
         "notices/rust/serde_core-1.0.229/LICENSE-MIT"
@@ -1483,6 +1616,7 @@
       "license": "MIT OR Apache-2.0",
       "repository": "https://github.com/serde-rs/serde",
       "edition": "2021",
+      "manifestPath": "C:\\Users\\madve\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\serde_derive-1.0.229\\Cargo.toml",
       "noticeFiles": [
         "notices/rust/serde_derive-1.0.229/LICENSE-APACHE",
         "notices/rust/serde_derive-1.0.229/LICENSE-MIT"
@@ -1494,6 +1628,7 @@
       "license": "MIT",
       "repository": "https://github.com/RReverser/serde-wasm-bindgen",
       "edition": "2018",
+      "manifestPath": "C:\\Users\\madve\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\serde-wasm-bindgen-0.6.5\\Cargo.toml",
       "noticeFiles": [
         "notices/rust/serde-wasm-bindgen-0.6.5/LICENSE"
       ]
@@ -1504,6 +1639,7 @@
       "license": "MIT OR Apache-2.0",
       "repository": "https://github.com/serde-rs/serde",
       "edition": "2021",
+      "manifestPath": "C:\\Users\\madve\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\serde-1.0.229\\Cargo.toml",
       "noticeFiles": [
         "notices/rust/serde-1.0.229/LICENSE-APACHE",
         "notices/rust/serde-1.0.229/LICENSE-MIT"
@@ -1515,6 +1651,7 @@
       "license": "MIT OR Apache-2.0",
       "repository": "https://github.com/RustCrypto/hashes",
       "edition": "2018",
+      "manifestPath": "C:\\Users\\madve\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\sha1-0.10.7\\Cargo.toml",
       "noticeFiles": [
         "notices/rust/sha1-0.10.7/LICENSE-APACHE",
         "notices/rust/sha1-0.10.7/LICENSE-MIT"
@@ -1526,6 +1663,7 @@
       "license": "MIT OR Apache-2.0",
       "repository": "https://github.com/RustCrypto/hashes",
       "edition": "2018",
+      "manifestPath": "C:\\Users\\madve\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\sha2-0.10.9\\Cargo.toml",
       "noticeFiles": [
         "notices/rust/sha2-0.10.9/LICENSE-APACHE",
         "notices/rust/sha2-0.10.9/LICENSE-MIT"
@@ -1537,6 +1675,7 @@
       "license": "MIT OR Apache-2.0",
       "repository": "https://github.com/RustCrypto/hashes",
       "edition": "2018",
+      "manifestPath": "C:\\Users\\madve\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\sha3-0.10.9\\Cargo.toml",
       "noticeFiles": [
         "notices/rust/sha3-0.10.9/LICENSE-APACHE",
         "notices/rust/sha3-0.10.9/LICENSE-MIT"
@@ -1548,6 +1687,7 @@
       "license": "Apache-2.0 OR MIT",
       "repository": "https://github.com/RustCrypto/traits/tree/master/signature",
       "edition": "2021",
+      "manifestPath": "C:\\Users\\madve\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\signature-2.2.0\\Cargo.toml",
       "noticeFiles": [
         "notices/rust/signature-2.2.0/LICENSE-APACHE",
         "notices/rust/signature-2.2.0/LICENSE-MIT"
@@ -1559,6 +1699,7 @@
       "license": "MIT",
       "repository": "https://github.com/mcountryman/simd-adler32",
       "edition": "2018",
+      "manifestPath": "C:\\Users\\madve\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\simd-adler32-0.3.10\\Cargo.toml",
       "noticeFiles": [
         "notices/rust/simd-adler32-0.3.10/LICENSE.md"
       ]
@@ -1569,6 +1710,7 @@
       "license": "MIT",
       "repository": "https://github.com/tokio-rs/slab",
       "edition": "2018",
+      "manifestPath": "C:\\Users\\madve\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\slab-0.4.12\\Cargo.toml",
       "noticeFiles": [
         "notices/rust/slab-0.4.12/LICENSE"
       ]
@@ -1579,6 +1721,7 @@
       "license": "MIT OR Apache-2.0",
       "repository": "https://github.com/servo/rust-smallvec",
       "edition": "2018",
+      "manifestPath": "C:\\Users\\madve\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\smallvec-1.16.2\\Cargo.toml",
       "noticeFiles": [
         "notices/rust/smallvec-1.16.2/LICENSE-APACHE",
         "notices/rust/smallvec-1.16.2/LICENSE-MIT"
@@ -1590,6 +1733,7 @@
       "license": "MIT",
       "repository": "https://github.com/mvdnes/spin-rs.git",
       "edition": "2015",
+      "manifestPath": "C:\\Users\\madve\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\spin-0.9.9\\Cargo.toml",
       "noticeFiles": [
         "notices/rust/spin-0.9.9/LICENSE"
       ]
@@ -1600,6 +1744,7 @@
       "license": "Apache-2.0 OR MIT",
       "repository": "https://github.com/RustCrypto/formats/tree/master/spki",
       "edition": "2021",
+      "manifestPath": "C:\\Users\\madve\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\spki-0.7.3\\Cargo.toml",
       "noticeFiles": [
         "notices/rust/spki-0.7.3/LICENSE-APACHE",
         "notices/rust/spki-0.7.3/LICENSE-MIT"
@@ -1611,6 +1756,7 @@
       "license": "MIT/Apache-2.0",
       "repository": "https://github.com/sfackler/rust-stringprep",
       "edition": "2015",
+      "manifestPath": "C:\\Users\\madve\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\stringprep-0.1.5\\Cargo.toml",
       "noticeFiles": [
         "notices/rust/stringprep-0.1.5/LICENSE-APACHE",
         "notices/rust/stringprep-0.1.5/LICENSE-MIT"
@@ -1622,6 +1768,7 @@
       "license": "BSD-3-Clause",
       "repository": "https://github.com/dalek-cryptography/subtle",
       "edition": "2018",
+      "manifestPath": "C:\\Users\\madve\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\subtle-2.6.1\\Cargo.toml",
       "noticeFiles": [
         "notices/rust/subtle-2.6.1/LICENSE"
       ]
@@ -1632,6 +1779,7 @@
       "license": "MIT OR Apache-2.0",
       "repository": "https://github.com/dtolnay/syn",
       "edition": "2021",
+      "manifestPath": "C:\\Users\\madve\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\syn-2.0.119\\Cargo.toml",
       "noticeFiles": [
         "notices/rust/syn-2.0.119/LICENSE-APACHE",
         "notices/rust/syn-2.0.119/LICENSE-MIT"
@@ -1643,6 +1791,7 @@
       "license": "MIT OR Apache-2.0",
       "repository": "https://github.com/dtolnay/syn",
       "edition": "2021",
+      "manifestPath": "C:\\Users\\madve\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\syn-3.0.6\\Cargo.toml",
       "noticeFiles": [
         "notices/rust/syn-3.0.6/LICENSE-APACHE",
         "notices/rust/syn-3.0.6/LICENSE-MIT"
@@ -1654,6 +1803,7 @@
       "license": "MIT",
       "repository": "https://github.com/mystor/synstructure",
       "edition": "2018",
+      "manifestPath": "C:\\Users\\madve\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\synstructure-0.13.2\\Cargo.toml",
       "noticeFiles": [
         "notices/rust/synstructure-0.13.2/LICENSE"
       ]
@@ -1664,6 +1814,7 @@
       "license": "MIT OR Apache-2.0",
       "repository": "https://github.com/dtolnay/thiserror",
       "edition": "2021",
+      "manifestPath": "C:\\Users\\madve\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\thiserror-impl-2.0.21\\Cargo.toml",
       "noticeFiles": [
         "notices/rust/thiserror-impl-2.0.21/LICENSE-APACHE",
         "notices/rust/thiserror-impl-2.0.21/LICENSE-MIT"
@@ -1675,6 +1826,7 @@
       "license": "MIT OR Apache-2.0",
       "repository": "https://github.com/dtolnay/thiserror",
       "edition": "2021",
+      "manifestPath": "C:\\Users\\madve\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\thiserror-2.0.21\\Cargo.toml",
       "noticeFiles": [
         "notices/rust/thiserror-2.0.21/LICENSE-APACHE",
         "notices/rust/thiserror-2.0.21/LICENSE-MIT"
@@ -1686,6 +1838,7 @@
       "license": "MIT OR Apache-2.0",
       "repository": "https://github.com/time-rs/time",
       "edition": "2024",
+      "manifestPath": "C:\\Users\\madve\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\time-core-0.1.9\\Cargo.toml",
       "noticeFiles": [
         "notices/rust/time-core-0.1.9/LICENSE-Apache",
         "notices/rust/time-core-0.1.9/LICENSE-MIT"
@@ -1697,6 +1850,7 @@
       "license": "MIT OR Apache-2.0",
       "repository": "https://github.com/time-rs/time",
       "edition": "2024",
+      "manifestPath": "C:\\Users\\madve\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\time-macros-0.2.32\\Cargo.toml",
       "noticeFiles": [
         "notices/rust/time-macros-0.2.32/LICENSE-Apache",
         "notices/rust/time-macros-0.2.32/LICENSE-MIT"
@@ -1708,6 +1862,7 @@
       "license": "MIT OR Apache-2.0",
       "repository": "https://github.com/time-rs/time",
       "edition": "2024",
+      "manifestPath": "C:\\Users\\madve\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\time-0.3.55\\Cargo.toml",
       "noticeFiles": [
         "notices/rust/time-0.3.55/LICENSE-Apache",
         "notices/rust/time-0.3.55/LICENSE-MIT"
@@ -1719,6 +1874,7 @@
       "license": "Zlib OR Apache-2.0 OR MIT",
       "repository": "https://github.com/Lokathor/tinyvec",
       "edition": "2018",
+      "manifestPath": "C:\\Users\\madve\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\tinyvec-1.13.3\\Cargo.toml",
       "noticeFiles": [
         "notices/rust/tinyvec-1.13.3/LICENSE-APACHE.md",
         "notices/rust/tinyvec-1.13.3/LICENSE-MIT.md",
@@ -1731,6 +1887,7 @@
       "license": "Apache-2.0 OR MIT",
       "repository": "https://github.com/RustCrypto/formats",
       "edition": "2021",
+      "manifestPath": "C:\\Users\\madve\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\tls_codec_derive-0.4.2\\Cargo.toml",
       "noticeFiles": [
         "notices/rust/tls_codec_derive-0.4.2/LICENSE-APACHE",
         "notices/rust/tls_codec_derive-0.4.2/LICENSE-MIT"
@@ -1742,6 +1899,7 @@
       "license": "Apache-2.0 OR MIT",
       "repository": "https://github.com/RustCrypto/formats",
       "edition": "2021",
+      "manifestPath": "C:\\Users\\madve\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\tls_codec-0.4.2\\Cargo.toml",
       "noticeFiles": [
         "notices/rust/tls_codec-0.4.2/LICENSE-APACHE",
         "notices/rust/tls_codec-0.4.2/LICENSE-MIT"
@@ -1753,6 +1911,7 @@
       "license": "MIT OR Apache-2.0",
       "repository": "https://github.com/harfbuzz/ttf-parser",
       "edition": "2018",
+      "manifestPath": "C:\\Users\\madve\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\ttf-parser-0.25.1\\Cargo.toml",
       "noticeFiles": [
         "notices/rust/ttf-parser-0.25.1/LICENSE-APACHE",
         "notices/rust/ttf-parser-0.25.1/LICENSE-MIT"
@@ -1764,6 +1923,7 @@
       "license": "MIT OR Apache-2.0",
       "repository": "https://github.com/paholg/typenum",
       "edition": "2018",
+      "manifestPath": "C:\\Users\\madve\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\typenum-1.20.1\\Cargo.toml",
       "noticeFiles": [
         "notices/rust/typenum-1.20.1/LICENSE",
         "notices/rust/typenum-1.20.1/LICENSE-APACHE",
@@ -1776,6 +1936,7 @@
       "license": "MIT OR Apache-2.0",
       "repository": "https://github.com/servo/unicode-bidi",
       "edition": "2018",
+      "manifestPath": "C:\\Users\\madve\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\unicode-bidi-0.3.18\\Cargo.toml",
       "noticeFiles": [
         "notices/rust/unicode-bidi-0.3.18/COPYRIGHT",
         "notices/rust/unicode-bidi-0.3.18/LICENSE-APACHE",
@@ -1788,6 +1949,7 @@
       "license": "(MIT OR Apache-2.0) AND Unicode-3.0",
       "repository": "https://github.com/dtolnay/unicode-ident",
       "edition": "2021",
+      "manifestPath": "C:\\Users\\madve\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\unicode-ident-1.0.26\\Cargo.toml",
       "noticeFiles": [
         "notices/rust/unicode-ident-1.0.26/LICENSE-APACHE",
         "notices/rust/unicode-ident-1.0.26/LICENSE-MIT",
@@ -1800,6 +1962,7 @@
       "license": "MIT OR Apache-2.0",
       "repository": "https://github.com/unicode-rs/unicode-normalization",
       "edition": "2018",
+      "manifestPath": "C:\\Users\\madve\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\unicode-normalization-0.1.25\\Cargo.toml",
       "noticeFiles": [
         "notices/rust/unicode-normalization-0.1.25/COPYRIGHT",
         "notices/rust/unicode-normalization-0.1.25/LICENSE-APACHE",
@@ -1812,6 +1975,7 @@
       "license": "MIT/Apache-2.0",
       "repository": "https://github.com/unicode-rs/unicode-properties",
       "edition": "2021",
+      "manifestPath": "C:\\Users\\madve\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\unicode-properties-0.1.4\\Cargo.toml",
       "noticeFiles": [
         "notices/rust/unicode-properties-0.1.4/COPYRIGHT",
         "notices/rust/unicode-properties-0.1.4/LICENSE-APACHE",
@@ -1824,6 +1988,7 @@
       "license": "MIT/Apache-2.0",
       "repository": "https://github.com/SergioBenitez/version_check",
       "edition": "2015",
+      "manifestPath": "C:\\Users\\madve\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\version_check-0.9.5\\Cargo.toml",
       "noticeFiles": [
         "notices/rust/version_check-0.9.5/LICENSE-APACHE",
         "notices/rust/version_check-0.9.5/LICENSE-MIT"
@@ -1835,6 +2000,7 @@
       "license": "MIT OR Apache-2.0",
       "repository": "https://github.com/wasm-bindgen/wasm-bindgen/tree/main/crates/macro-support",
       "edition": "2021",
+      "manifestPath": "C:\\Users\\madve\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\wasm-bindgen-macro-support-0.2.129\\Cargo.toml",
       "noticeFiles": [
         "notices/rust/wasm-bindgen-macro-support-0.2.129/LICENSE-APACHE",
         "notices/rust/wasm-bindgen-macro-support-0.2.129/LICENSE-MIT"
@@ -1846,6 +2012,7 @@
       "license": "MIT OR Apache-2.0",
       "repository": "https://github.com/wasm-bindgen/wasm-bindgen/tree/master/crates/macro",
       "edition": "2021",
+      "manifestPath": "C:\\Users\\madve\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\wasm-bindgen-macro-0.2.129\\Cargo.toml",
       "noticeFiles": [
         "notices/rust/wasm-bindgen-macro-0.2.129/LICENSE-APACHE",
         "notices/rust/wasm-bindgen-macro-0.2.129/LICENSE-MIT"
@@ -1857,6 +2024,7 @@
       "license": "MIT OR Apache-2.0",
       "repository": "https://github.com/wasm-bindgen/wasm-bindgen/tree/master/crates/shared",
       "edition": "2021",
+      "manifestPath": "C:\\Users\\madve\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\wasm-bindgen-shared-0.2.129\\Cargo.toml",
       "noticeFiles": [
         "notices/rust/wasm-bindgen-shared-0.2.129/LICENSE-APACHE",
         "notices/rust/wasm-bindgen-shared-0.2.129/LICENSE-MIT"
@@ -1868,6 +2036,7 @@
       "license": "MIT OR Apache-2.0",
       "repository": "https://github.com/wasm-bindgen/wasm-bindgen",
       "edition": "2021",
+      "manifestPath": "C:\\Users\\madve\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\wasm-bindgen-0.2.129\\Cargo.toml",
       "noticeFiles": [
         "notices/rust/wasm-bindgen-0.2.129/LICENSE-APACHE",
         "notices/rust/wasm-bindgen-0.2.129/LICENSE-MIT"
@@ -1879,6 +2048,7 @@
       "license": "MIT OR Apache-2.0",
       "repository": "https://github.com/image-rs/weezl",
       "edition": "2018",
+      "manifestPath": "C:\\Users\\madve\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\weezl-0.1.12\\Cargo.toml",
       "noticeFiles": [
         "notices/rust/weezl-0.1.12/LICENSE-APACHE",
         "notices/rust/weezl-0.1.12/LICENSE-MIT"
@@ -1890,6 +2060,7 @@
       "license": "Apache-2.0 OR MIT",
       "repository": "https://github.com/RustCrypto/formats/tree/master/x509-cert",
       "edition": "2021",
+      "manifestPath": "C:\\Users\\madve\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\x509-cert-0.2.5\\Cargo.toml",
       "noticeFiles": [
         "notices/rust/x509-cert-0.2.5/LICENSE-APACHE",
         "notices/rust/x509-cert-0.2.5/LICENSE-MIT"
@@ -1901,6 +2072,7 @@
       "license": "Apache-2.0 OR MIT",
       "repository": "https://github.com/RustCrypto/formats/tree/master/x509-ocsp",
       "edition": "2021",
+      "manifestPath": "C:\\Users\\madve\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\x509-ocsp-0.2.1\\Cargo.toml",
       "noticeFiles": [
         "notices/rust/x509-ocsp-0.2.1/LICENSE-APACHE",
         "notices/rust/x509-ocsp-0.2.1/LICENSE-MIT"
@@ -1912,6 +2084,7 @@
       "license": "MIT OR Apache-2.0",
       "repository": "https://github.com/rusticata/x509-parser.git",
       "edition": "2018",
+      "manifestPath": "C:\\Users\\madve\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\x509-parser-0.17.0\\Cargo.toml",
       "noticeFiles": [
         "notices/rust/x509-parser-0.17.0/LICENSE-APACHE",
         "notices/rust/x509-parser-0.17.0/LICENSE-MIT"
@@ -1923,6 +2096,7 @@
       "license": "BSD-2-Clause OR Apache-2.0 OR MIT",
       "repository": "https://github.com/google/zerocopy",
       "edition": "2021",
+      "manifestPath": "C:\\Users\\madve\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\zerocopy-0.8.59\\Cargo.toml",
       "noticeFiles": [
         "notices/rust/zerocopy-0.8.59/LICENSE-APACHE",
         "notices/rust/zerocopy-0.8.59/LICENSE-BSD",
@@ -1935,6 +2109,7 @@
       "license": "Apache-2.0 OR MIT",
       "repository": "https://github.com/RustCrypto/utils",
       "edition": "2024",
+      "manifestPath": "C:\\Users\\madve\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\zeroize_derive-1.5.0\\Cargo.toml",
       "noticeFiles": [
         "notices/rust/zeroize_derive-1.5.0/LICENSE-APACHE",
         "notices/rust/zeroize_derive-1.5.0/LICENSE-MIT"
@@ -1946,6 +2121,7 @@
       "license": "Apache-2.0 OR MIT",
       "repository": "https://github.com/RustCrypto/utils",
       "edition": "2024",
+      "manifestPath": "C:\\Users\\madve\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\zeroize-1.9.0\\Cargo.toml",
       "noticeFiles": [
         "notices/rust/zeroize-1.9.0/LICENSE-APACHE",
         "notices/rust/zeroize-1.9.0/LICENSE-MIT"
@@ -1957,6 +2133,7 @@
       "license": "Zlib",
       "repository": "https://github.com/trifectatechfoundation/zlib-rs",
       "edition": "2021",
+      "manifestPath": "C:\\Users\\madve\\.cargo\\registry\\src\\index.crates.io-1949cf8c6b5b557f\\zlib-rs-0.6.8\\Cargo.toml",
       "noticeFiles": [
         "notices/rust/zlib-rs-0.6.8/LICENSE"
       ]

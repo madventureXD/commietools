@@ -21,7 +21,7 @@
       "name": "pdf_signer",
       "version": "0.3.2",
       "license": "GPL-3.0-or-later",
-      "reason": "Copyleft-Abhaengigkeit der Signatur-Engine. ENTSCHEIDUNG Thomas, 2026-10-06: enge Einzel-Ausnahme — GPL-3.0-or-later wird NUR fuer dieses Paket gefuehrt, nicht generell in allowedExpressions aufgenommen. Grund: Die Kombination GPL-3.0-or-later mit dem Projekt unter AGPL-3.0-only ist zulaessig (AGPL-3.0 Paragraph 13); das Gesamtwerk bleibt AGPL, das GPL-Teil behaelt seine Lizenz. Quellangebot: Das Register verlinkt Quelle und Build; Originalhinweis weiterhin aus dem Repository nachzutragen.",
+      "reason": "Copyleft-Abhaengigkeit der Signatur-Engine. ENTSCHEIDUNG Thomas, 2026-10-06: enge Einzel-Ausnahme — GPL-3.0-or-later wird NUR fuer dieses Paket gefuehrt, nicht generell in allowedExpressions aufgenommen. Grund: Die Kombination GPL-3.0-or-later mit dem Projekt unter AGPL-3.0-only ist zulaessig (AGPL-3.0 Paragraph 13); das Gesamtwerk bleibt AGPL, das GPL-Teil behaelt seine Lizenz. Quellangebot: Das Register verlinkt Quelle und Build; Originalhinweis weiterhin aus dem Repository nachzutragen. NACHTRAG 2026-10-07 (Auflage A3 aus ADR 0014 erledigt): Der Upstream fuehrt am vendorten Commit 6cc0218100d9ffc038f8dccee3b707e5bd136100 KEINE Hinweisdatei — der Baum wurde geprueft (28 Eintraege, keine LICENSE/COPYING/NOTICE). Deshalb liegt der vollstaendige GPL-3.0-or-later-Text als Originalhinweis unter licenses/notices/rust/pdf_signer-0.3.2/LICENSE; scripts/rust-components.mjs findet ihn seit demselben Tag auch fuer Pfad-Abhaengigkeiten (vorher: 'Paketquelle nicht im Zwischenspeicher').",
       "needsDecision": false,
       "recorded": "2026-10-06"
     },
