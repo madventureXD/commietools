@@ -1,6 +1,27 @@
 # Aktueller Projektstand
 
 **Stand:** 2026-10-06
+**Zusatz 2026-10-07 (Faber), R5-Durchzug — Einheit 1: M7-006 abgeschlossen, Tokenschutz als Pflichtprüfung:**
+- **M7-006 ✓ behoben.** Bestandsaufnahme mit dem Stylesheet-Parser: **20 Verwendungen von acht
+  Namen, die nirgends definiert waren**, 18 davon **ohne** Fallback. Eine unaufgelöste `var()`-Referenz
+  macht die ganze Deklaration ungültig: Der Werkzeugschubkasten hatte deshalb **keine Innenabstände**
+  (Kopf/Suche/Sortierung/Inhalt/Fuß), der Inhalt klebte am Rand. Kein vorhandener Prüfer sah es —
+  Größen-, Kontrast- und Bündelprüfung betrachten keine Variablen.
+- Acht falsche Namen auf semantische Tokens abgebildet; **`--space-5` bewusst nicht eingeführt** (die
+  Skala ist 1/2/3/4/6/8/12, eine 1,25-rem-Stufe bräche das Muster) — die sieben Stellen liegen auf
+  `--space-4`. Neue Farbe **`--color-warning`** je Schema: hell `#b66a00` (wie der bisherige Fallback),
+  dunkel `#e0a65c` (8,11:1 auf der dunklen Fläche, verlangt 3:1).
+- **Neu: `npm run tokens:check`** (`scripts/token-audit.mjs`, postcss) als **Pflichtteil von
+  `npm run check`**: unaufgelöste Referenzen **ohne** Fallback brechen die Kette; Referenzen **mit**
+  Fallback werden als Meldung ausgegeben (der Fallback verdeckt den Namen). Liste erlaubter
+  Laufzeit-Tokens vorhanden und leer. Mutationsgegenprobe: alter Name → Exit 1 mit Fundort,
+  zurückgenommen → sauber.
+- Wirkung im echten Layout belegt (beide Schemata, berechnete Werte): Schubladen-Innenabstände
+  16/16/12, Rahmenfarben `rgb(223,225,230)` hell / `rgb(52,56,66)` dunkel, Faktenfläche
+  `rgb(255,255,255)` / `rgb(32,35,42)`, aktive Vorschau `rgb(201,31,44)` / `rgb(255,75,89)`.
+- Prüfkette: `npm run check` Exit 0 (695 Tests, 48 Dateien) · `npm run build` Exit 0 (Startbündel
+  149486 B gzip). Protokoll: `06-protokolle/2026-10-07-m7-006-tokens-und-tokenschutz.md`.
+  **Nichts gepusht** (`575a875`).
 **Zusatz 2026-10-07 (Faber), R3/M2-009-Durchzug — Einheit 1: M4-005 abgeschlossen, ein Leck behoben:**
 - **M4-005 ✓ mit benannter Grenze.** Abnahme auf dem heutigen Stand **neu gefahren**: A (1200 Seiten)
   verworfen, B (3 Seiten) allein sichtbar und speicherbar, über **60 s** unverändert; Zähler

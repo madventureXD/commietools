@@ -127,7 +127,7 @@ Protokoll: `06-protokolle/2026-10-06-r1-*.md`, `…-m9-004-lopdf-anhebung.md`, `
 zwei Breiten. Der Punkt bleibt trotzdem auf ◐, weil die Abdeckung erweitert wurde und zwei
 Teilnachweise fehlen; siehe Protokoll `06-protokolle/2026-10-06-r4-pruef-und-freigabeschranken.md`.)*
 
-### R5 — Barrierefreiheit und Designsystem (P1) — nicht begonnen
+### R5 — Barrierefreiheit und Designsystem (P1) — begonnen 2026-10-07
 
 | Karte | Kurz | Stand |
 |---|---|---|
@@ -139,7 +139,7 @@ Teilnachweise fehlen; siehe Protokoll `06-protokolle/2026-10-06-r4-pruef-und-fre
 | M7-003 | PDF-Schwärzung ohne Tastaturalternative | ○ |
 | M7-004 | PDF-Viewer stellt Text assistiver Technik nicht bereit | ○ |
 | M7-005 | Schmale Layouts verdecken Beschriftungen, Katalog läuft über | ○ |
-| M7-006 | Nicht definierte CSS-Tokens lassen Regeln ausfallen | ○ |
+| M7-006 | Nicht definierte CSS-Tokens lassen Regeln ausfallen | **✓ behoben** (2026-10-07) |
 
 *Hinweis:* **M7-001 wurde am 2026-10-06 durch Thomas neu entschieden** (Markenrot bleibt, Schriftfarbe
 schemaabhängig) und ist **behoben** — siehe Protokoll `06-protokolle/2026-10-06-m7-001-kontrast-token.md`.
