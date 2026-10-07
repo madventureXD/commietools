@@ -1,0 +1,13 @@
+############ M1-001 — README-Umfang gegen den ausgelieferten Bau
+Startseite: Karten gesamt (.catalog-card): 69
+Startseite: Werkzeuge (ohne .suite-card): 62 · davon Kategorie PDF: 23
+Startseite: Suiten (.suite-card): 7
+Startseite: Ueberschriften: ["Werkzeuge","Kostenlose Werkzeuge für alle.","Werkzeuge","Werkzeug-Suites"]
+--- Werkzeugkatalog /tools ---
+Katalog: Werkzeuge: 62 · davon Kategorie PDF: 23 · Suiten: 7
+--- Zusammenfassung ---
+   README-Bestandsblock (generiert): 62 Tools, 7 Suiten, 23 PDF-Werkzeuge
+   Anwendung /tools: Werkzeuge = 62, PDF = 23, Suiten = 7
+   deckungsgleich: true
+   Seitenfehler: []
+   Anfragen an fremde Hosts: 0
