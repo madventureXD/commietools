@@ -324,6 +324,14 @@ a.button { display: inline-flex; align-items: center; justify-content: center; t
 .redaction-editor { position: relative; width: min(100%, 700px); margin-inline: auto; cursor: crosshair; touch-action: none; user-select: none; border: 1px solid var(--color-border); background: var(--color-document-stage); }
 .redaction-editor img { display: block; width: 100%; height: auto; pointer-events: none; }
 .redaction-box { position: absolute; background: rgb(0 0 0 / 72%); border: 2px solid var(--color-brand); pointer-events: none; }
+.redaction-box.selected { outline: 2px solid var(--color-action-text); outline-offset: 2px; }
+.redaction-box.draft { border-style: dashed; opacity: .7; }
+.redaction-form { border: 0; padding: 0; margin: 0; }
+.redaction-form legend { font-weight: 700; padding: 0; }
+.redaction-list { display: grid; gap: var(--space-2); margin: 0; padding: 0; list-style: none; }
+.redaction-list li { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-2); }
+.redaction-area-select { flex: 1 1 16rem; min-height: 2.75rem; min-width: 0; padding: 0.45rem 0.7rem; border: 1px solid var(--color-border); border-radius: var(--radius-md); background: var(--color-surface); color: inherit; font: inherit; text-align: start; overflow-wrap: anywhere; cursor: pointer; }
+.redaction-area-select[aria-pressed='true'] { border-color: var(--color-brand); border-width: 2px; }
 .pdf-organizer-card > span { color: var(--color-text-muted); font-size: .88rem; text-align: center; }
 .pdf-page-actions { justify-content: center; }
 .pdf-result-list { grid-template-columns: repeat(auto-fit, minmax(min(100%, 180px), 1fr)); }

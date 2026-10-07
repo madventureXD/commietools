@@ -8,5 +8,20 @@ export const messages: Readonly<Record<string, string>> = {
   "tool.pdfRedact.clearMetadata": "Borrar los metadatos del documento de salida",
   "tool.pdfRedact.removeAnnotations": "Eliminar anotaciones de la página afectada",
   "tool.pdfRedact.confirm": "He comprobado el área y la página y quiero censurar permanentemente.",
-  "tool.pdfRedact.action": "Censurar área permanentemente"
+  "tool.pdfRedact.action": "Censurar área permanentemente",
+  "tool.pdfRedact.keyboard": "Sin dispositivo señalador: introducir los valores en puntos PDF y añadir el área. Las teclas de flecha desplazan un área marcada (con Mayús, pasos de 10 puntos).",
+  "tool.pdfRedact.areaX": "X en puntos PDF",
+  "tool.pdfRedact.areaY": "Y en puntos PDF",
+  "tool.pdfRedact.areaWidth": "Ancho en puntos PDF",
+  "tool.pdfRedact.areaHeight": "Alto en puntos PDF",
+  "tool.pdfRedact.addArea": "Añadir área",
+  "tool.pdfRedact.areaList": "Áreas marcadas",
+  "tool.pdfRedact.noAreas": "Todavía no hay ninguna área marcada.",
+  "tool.pdfRedact.draft": "Área nueva desde los campos de entrada",
+  "tool.pdfRedact.areaItem": "Área {index}, página {page}: X {x}, Y {y}, ancho {w}, alto {h} puntos PDF",
+  "tool.pdfRedact.remove": "Eliminar",
+  "tool.pdfRedact.pageSize": "Tamaño de página {w} × {h} puntos PDF",
+  "tool.pdfRedact.errorNumber": "Introducir números en los cuatro campos.",
+  "tool.pdfRedact.errorSize": "El ancho y el alto deben ser mayores que 0.",
+  "tool.pdfRedact.errorBounds": "El área queda total o parcialmente fuera de la página."
 }

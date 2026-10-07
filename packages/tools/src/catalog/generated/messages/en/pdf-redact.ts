@@ -8,5 +8,20 @@ export const messages: Readonly<Record<string, string>> = {
   "tool.pdfRedact.clearMetadata": "Clear document metadata in the output",
   "tool.pdfRedact.removeAnnotations": "Remove annotations from the affected page",
   "tool.pdfRedact.confirm": "I checked the area and page and want to redact permanently.",
-  "tool.pdfRedact.action": "Redact area permanently"
+  "tool.pdfRedact.action": "Redact area permanently",
+  "tool.pdfRedact.keyboard": "Without a pointing device: enter the values in PDF points and add the area. Arrow keys move a marked area (hold Shift for 10-point steps).",
+  "tool.pdfRedact.areaX": "X in PDF points",
+  "tool.pdfRedact.areaY": "Y in PDF points",
+  "tool.pdfRedact.areaWidth": "Width in PDF points",
+  "tool.pdfRedact.areaHeight": "Height in PDF points",
+  "tool.pdfRedact.addArea": "Add area",
+  "tool.pdfRedact.areaList": "Marked areas",
+  "tool.pdfRedact.noAreas": "No area marked yet.",
+  "tool.pdfRedact.draft": "New area from the input fields",
+  "tool.pdfRedact.areaItem": "Area {index}, page {page}: X {x}, Y {y}, width {w}, height {h} PDF points",
+  "tool.pdfRedact.remove": "Remove",
+  "tool.pdfRedact.pageSize": "Page size {w} × {h} PDF points",
+  "tool.pdfRedact.errorNumber": "Please enter numbers in all four fields.",
+  "tool.pdfRedact.errorSize": "Width and height must be greater than 0.",
+  "tool.pdfRedact.errorBounds": "The area lies wholly or partly outside the page."
 }

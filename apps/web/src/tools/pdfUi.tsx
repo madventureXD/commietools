@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import workerUrl from 'pdfjs-dist/build/pdf.worker.min.mjs?url'
 import { PdfToolError, type PdfInspection } from '@commietools/tools/pdf/core'
+import type { PdfPageGeometry } from './pdfGeometry'
 
 export type Translate = (key: string) => string
 
@@ -202,6 +203,38 @@ export async function renderPdfPages(bytes: Uint8Array, pages: readonly number[]
     }
     await document.cleanup()
     return results
+  } finally {
+    await task.destroy()
+  }
+}
+
+/**
+ * Liest die Seitengeometrie (Rotation und Maße) eines PDF. Die reine Umrechnung steht in
+ * `pdfGeometry.ts`; hier wird nur pdf.js geladen und dessen Arbeiterskript gesetzt.
+ */
+export async function readPdfGeometry(bytes: Uint8Array): Promise<PdfPageGeometry[]> {
+  const { GlobalWorkerOptions, getDocument } = await import('pdfjs-dist')
+  GlobalWorkerOptions.workerSrc = workerUrl
+  const task = getDocument({ data: bytes.slice() })
+  try {
+    const document = await task.promise
+    const result: PdfPageGeometry[] = []
+    for (let number = 1; number <= document.numPages; number += 1) {
+      const page = await document.getPage(number)
+      const displayed = page.getViewport({ scale: 1 })
+      const plain = page.getViewport({ scale: 1, rotation: 0 })
+      result.push({
+        pageNumber: number,
+        rotation: ((Math.round(page.rotate / 90) * 90) % 360 + 360) % 360,
+        width: plain.width,
+        height: plain.height,
+        viewWidth: displayed.width,
+        viewHeight: displayed.height
+      })
+      page.cleanup()
+    }
+    await document.cleanup()
+    return result
   } finally {
     await task.destroy()
   }

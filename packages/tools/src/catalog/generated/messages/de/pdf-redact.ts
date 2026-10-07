@@ -8,5 +8,20 @@ export const messages: Readonly<Record<string, string>> = {
   "tool.pdfRedact.clearMetadata": "Dokument-Metadaten in der Ausgabe leeren",
   "tool.pdfRedact.removeAnnotations": "Anmerkungen auf der betroffenen Seite entfernen",
   "tool.pdfRedact.confirm": "Ich habe Bereich und Seite geprüft und möchte dauerhaft schwärzen.",
-  "tool.pdfRedact.action": "Bereich dauerhaft schwärzen"
+  "tool.pdfRedact.action": "Bereich dauerhaft schwärzen",
+  "tool.pdfRedact.keyboard": "Ohne Zeigegerät: Werte in PDF-Punkten eintragen und den Bereich hinzufügen. Mit den Pfeiltasten lässt sich ein markierter Bereich verschieben (mit Umschalttaste in 10-Punkt-Schritten).",
+  "tool.pdfRedact.areaX": "X in PDF-Punkten",
+  "tool.pdfRedact.areaY": "Y in PDF-Punkten",
+  "tool.pdfRedact.areaWidth": "Breite in PDF-Punkten",
+  "tool.pdfRedact.areaHeight": "Höhe in PDF-Punkten",
+  "tool.pdfRedact.addArea": "Bereich hinzufügen",
+  "tool.pdfRedact.areaList": "Markierte Bereiche",
+  "tool.pdfRedact.noAreas": "Noch kein Bereich markiert.",
+  "tool.pdfRedact.draft": "Neuer Bereich aus den Eingabefeldern",
+  "tool.pdfRedact.areaItem": "Bereich {index}, Seite {page}: X {x}, Y {y}, Breite {w}, Höhe {h} PDF-Punkte",
+  "tool.pdfRedact.remove": "Entfernen",
+  "tool.pdfRedact.pageSize": "Seitengröße {w} × {h} PDF-Punkte",
+  "tool.pdfRedact.errorNumber": "Bitte in alle vier Felder Zahlen eintragen.",
+  "tool.pdfRedact.errorSize": "Breite und Höhe müssen größer als 0 sein.",
+  "tool.pdfRedact.errorBounds": "Der Bereich liegt ganz oder teilweise außerhalb der Seite."
 }
