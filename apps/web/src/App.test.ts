@@ -33,6 +33,39 @@ describe('local tool engines', () => {
     expect(convertCase('hallo welt', 'title')).toBe('Hallo Welt')
   })
 
+  /**
+   * Karte M3-008: Wörter hinter spanischen Satzzeichen wurden nicht groß geschrieben, weil die Regel
+   * nur Leerraum und Zeilenanfang als Wortgrenze kannte. Umsetzung: locale-bewusste Segmentierung
+   * (`Intl.Segmenter`, `isWordLike`), nicht ein erweitertes Satzzeichen-Muster.
+   *
+   * Festgelegter Vertrag: erster Buchstabe jedes Wortes groß; Bindestrich trennt Wortteile,
+   * Apostroph trennt nicht; Satzzeichen, Klammern und Anführungszeichen bleiben unverändert.
+   */
+  it('schreibt Wörter hinter spanischen Satzzeichen groß (M3-008)', () => {
+    expect(convertCase('¡hola! ¿qué tal?', 'title', 'es')).toBe('¡Hola! ¿Qué Tal?')
+    // Anführungen und Klammern sind keine Wortzeichen.
+    expect(convertCase('"hola" mundo', 'title', 'es')).toBe('"Hola" Mundo')
+    expect(convertCase('(hola) mundo', 'title', 'es')).toBe('(Hola) Mundo')
+    // Festgelegte Sonderfälle.
+    expect(convertCase('casa-mundo', 'title', 'es')).toBe('Casa-Mundo')
+    expect(convertCase("don't stop", 'title', 'en')).toBe("Don't Stop")
+    // Buchstaben mit Diakritika: ñ als eigener Codepoint und als kombinierende Folge.
+    expect(convertCase('niño', 'title', 'es')).toBe('Niño')
+    const kombiniert = 'nin\u0303o'
+    const kombiniertGross = convertCase(kombiniert, 'title', 'es')
+    expect(kombiniertGross).toBe('Nin\u0303o')
+    // Das kombinierende Zeichen bleibt beim Buchstaben (kein abgetrenntes Zeichen am Wortanfang).
+    expect(kombiniertGross.codePointAt(1)).toBe(0x0069)
+    // Zeilen: jedes Zeilenanfangs-Wort wird erfasst.
+    expect(convertCase('línea uno\nsegunda línea', 'title', 'es')).toBe('Línea Uno\nSegunda Línea')
+    // Ein Eingabestring aus Leerraum bleibt unverändert.
+    expect(convertCase('   ', 'title', 'es')).toBe('   ')
+    // Gegenprobe zur alten Regel: „¿qué" wäre klein geblieben.
+    expect(convertCase('¿qué tal?', 'title', 'es')).not.toContain('¿qué')
+    // Groß-/Kleinschreibung bleiben die bewährten Locale-Operationen.
+    expect(convertCase('straße', 'upper', 'de-DE')).toBe('STRASSE')
+  })
+
   it('formats valid JSON and reports invalid JSON', () => {
     expect(formatJson('{"ok":true}').value).toBe('{\n  "ok": true\n}')
     expect(formatJson('{').error).toBe('invalid-json')

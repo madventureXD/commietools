@@ -168,10 +168,47 @@ export function getTextStatistics(input: string): TextStatistics {
 
 export type CaseMode = 'upper' | 'lower' | 'title'
 
+/**
+ * Titelschreibung (Karte M3-008).
+ *
+ * **Produktvertrag:** Der erste Buchstabe jedes Wortes wird groß geschrieben — das ist *keine*
+ * sprachwissenschaftliche Überschriftenkorrektur (kleine Wörter wie „y", „de", „el" bleiben groß).
+ *
+ * Die frühere Regel `(^|\s)(\p{L})` kannte nur Leerraum und Zeilenanfang als Wortgrenze. Vor
+ * spanischen Satzzeichen stand ein Wort damit ohne Großschreibung: „¿qué tal?" blieb klein. Die Karte
+ * verbietet ausdrücklich, nur `¡`/`¿` in die Regex zu ergänzen — stattdessen wird locale-bewusst
+ * segmentiert (`Intl.Segmenter`, `granularity: 'word'`, `isWordLike`). `¡¿`, Anführungszeichen und
+ * Klammern sind danach keine Wortzeichen mehr, sondern werden unverändert übernommen.
+ *
+ * **Festgelegte Sonderfälle** (die Karte verlangt eine ausdrückliche Festlegung):
+ * - **Bindestrich trennt** Wortteile: `casa-mundo` → `Casa-Mundo`.
+ * - **Apostroph trennt nicht**: `don't` → `Don't`.
+ * - Groß-/Kleinschreibung bleibt bei den bewährten Locale-Operationen (`toLocaleUpperCase`).
+ */
 export function convertCase(input: string, mode: CaseMode, locale = 'de-DE'): string {
   if (mode === 'upper') return input.toLocaleUpperCase(locale)
   if (mode === 'lower') return input.toLocaleLowerCase(locale)
-  return input.toLocaleLowerCase(locale).replace(/(^|\s)(\p{L})/gu, (_, space: string, letter: string) => `${space}${letter.toLocaleUpperCase(locale)}`)
+  const klein = input.toLocaleLowerCase(locale)
+  const kannSegmentieren = typeof Intl !== 'undefined' && 'Segmenter' in Intl
+  if (!kannSegmentieren) {
+    // Benannter Rückfall für ältere Browser: die bisherige Wortanfangsregel.
+    return klein.replace(/(^|\s)(\p{L})/gu, (_, lücke: string, buchstabe: string) => `${lücke}${buchstabe.toLocaleUpperCase(locale)}`)
+  }
+  const wortSegmenter = new Intl.Segmenter(locale, { granularity: 'word' })
+  const zeichenSegmenter = new Intl.Segmenter(locale, { granularity: 'grapheme' })
+  const grossErster = (wort: string): string => {
+    const graphen = [...zeichenSegmenter.segment(wort)].map((teil) => teil.segment)
+    const [erster, ...rest] = graphen
+    if (erster === undefined) return wort
+    return `${erster.toLocaleUpperCase(locale)}${rest.join('')}`
+  }
+  let ergebnis = ''
+  for (const teil of wortSegmenter.segment(klein)) {
+    // Satzzeichen, Leerraum, Klammern und Anführungszeichen bleiben unverändert.
+    if (!teil.isWordLike) { ergebnis += teil.segment; continue }
+    ergebnis += teil.segment.split('-').map(grossErster).join('-')
+  }
+  return ergebnis
 }
 
 export type QrContentType = 'text' | 'url' | 'wifi' | 'contact' | 'email' | 'phone' | 'sms' | 'geo'
