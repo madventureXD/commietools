@@ -1,6 +1,9 @@
 # Konzept: Spanisches Sprachpaket
 
 **Status:** lokal als Testpaket umgesetzt, sprachliches Gegenlesen ausstehend
+
+**Zusatz 2026-10-07 (Faber, QM-Karte M10-001) — aktueller Statuskopf.** Das **sprachliche Gegenlesen ist erfolgt** (2026-10-06, zwei Durchgänge: zehn Handwerk-Werkzeuge und das gesamte Register, Protokolle `06-protokolle/2026-10-06-sprachabnahme-spanisch-handwerk.md`, `…-2026-10-06-entscheidungen-umgesetzt.md`). Der **Status bleibt trotzdem „lokales Testpaket"** nach `02-architektur/sprachpakete.md` §11: es fehlt die **muttersprachliche** Abnahme, und ein Regexlauf darf nicht als solche bezeichnet werden (Karte M3-003).
+Der Statuskopf oben bleibt als Stand vom 2026-10-03 stehen (Korrekturregel: ergänzen, nicht überschreiben).
 **Datum:** 2026-10-03  
 **Sprachkennung:** `es`
 

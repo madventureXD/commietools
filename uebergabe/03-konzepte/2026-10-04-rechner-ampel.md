@@ -1,6 +1,9 @@
 # Konzept: Ampel für Rechengenauigkeit (Rechner)
 
 **Status:** entwurf — berichtigt am 2026-10-04, siehe Nachtrag am Ende (der Wortlaut oben bleibt stehen)
+
+**Zusatz 2026-10-07 (Faber, QM-Karte M10-001) — aktueller Statuskopf.** Die Ampel ist **umgesetzt und entschieden**: **ADR 0006** (`04-entscheidungen/0006-voller-wert-und-genauigkeitsampel.md`) trägt den vollen Wert getrennt von der Anzeige; die Oberfläche zeigt grün `=` oder rot `≈`, der einmalige Rückfall ins Dezimalmodell ist sichtbar. Der Statuskopf oben bleibt als damaliger Stand stehen.
+Der Statuskopf oben bleibt als Stand vom 2026-10-04 stehen (Korrekturregel: ergänzen, nicht überschreiben).
 **Datum:** 2026-10-04  
 **Verantwortlich:** Faber (Umsetzung) · Thomas (Entscheidung)
 

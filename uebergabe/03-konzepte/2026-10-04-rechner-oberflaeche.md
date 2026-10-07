@@ -1,6 +1,9 @@
 # Konzept: Oberfläche des Rechners — Tastenfeld und zweidimensionale Anzeige
 
 **Status:** entwurf
+
+**Zusatz 2026-10-07 (Faber, QM-Karte M10-001) — aktueller Statuskopf.** Die Oberfläche ist **umgesetzt** (Wellen 2 und 6): Tastenfeld, feste Anzeigefläche (damit das Tastenfeld beim Rechnen nicht wandert), Ergebnis oben und rohe Eingabezeile darunter; im RPN-Rechner mit sichtbarem Stapel und Rechenweg. Belege: `05-uebergaben/2026-10-04-rechner-welle2-oberflaeche.md`, `…-rechner-vier-werkzeuge.md`.
+Der Statuskopf oben bleibt als Stand vom 2026-10-04 stehen (Korrekturregel: ergänzen, nicht überschreiben).
 **Datum:** 2026-10-04
 **Verantwortlich:** Faber (Hermes Agent, Rolle: Werkzeuge und Kontrolle), im Auftrag von Thomas
 **Bezug:** `2026-10-03-taschenrechner-suite.md` (Suite „Rechnen"), Werkzeuge 1 der Suite.

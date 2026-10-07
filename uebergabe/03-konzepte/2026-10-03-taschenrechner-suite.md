@@ -3,6 +3,9 @@
 **Datum:** 2026-10-03
 **Verfasst von:** Faber (Hermes Agent, Rolle: Werkzeuge und Kontrolle)
 **Status:** Vorschlag — nicht entschieden, nichts umgesetzt
+
+**Zusatz 2026-10-07 (Faber, QM-Karte M10-001) — aktueller Statuskopf.** Der Vorgang ist **umgesetzt**: die Suite „Rechnen" ist vollständig — **12 Werkzeuge** der Kategorie `calculator` (Rechner, wissenschaftlicher Rechner, Programmiererrechner, RPN-Rechner, Kaufmännisch, Umrechnen, Zeit und Datum, Gleichungslöser, Statistik, Funktionsplotter, Geometrie, Aufmaß). Belege: `packages/tools/src/catalog/manifests.ts`, Übergaben `05-uebergaben/2026-10-04-rechner-*.md`.
+Der Statuskopf oben bleibt als Stand vom 2026-10-03 stehen (Korrekturregel: ergänzen, nicht überschreiben).
 **Auftrag:** Thomas, 2026-10-03. Erst Open-Source-Lage recherchieren, danach Gruppierung
 bestimmen. **Währungsrechner ausdrücklich nicht aufnehmen.**
 **Recherche:** 42 Registry-Inventare (13,7 s) und 15 Websuchen; Quellen unten je Aussage.

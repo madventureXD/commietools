@@ -3,6 +3,9 @@
 **Datum:** 2026-10-06 · **Bearbeiter:** Faber · **Zweck:** Entscheidungsgrundlage für Q2.
 **Status:** Recherche abgeschlossen, **Entscheidung offen** — gebaut wird erst danach.
 
+**Zusatz 2026-10-07 (Faber, QM-Karte M10-001) — aktueller Statuskopf.** Die **Entscheidung ist gefallen und die Welle E gebaut**: Q2 wurde auf belegter Grundlage entschieden, alle fünf Werkzeuge (13–16, 18) sind gebaut, geprüft und am 2026-10-06 **ausgeliefert** (`06-protokolle/2026-10-06-welle-e-bericht.md`). Werkzeug 13 trägt die Strombelastbarkeit als **Eingabefeld** statt als übernommene Tabelle; die übrigen vier nennen Quelle und Abrufdatum je Wert.
+Der Statuskopf oben bleibt als Stand vom 2026-10-06 stehen (Korrekturregel: ergänzen, nicht überschreiben).
+
 Grundlage: `03-konzepte/2026-10-03-handwerkerwerkzeuge.md`, Q2 und Welle E. Die dortige Sperre
 („Erst nach Klärung der Normfrage") wurde eingehalten: Der Auftrag „Welle E" wurde **nicht** als
 Bauauftrag ausgeführt, sondern zuerst die Datenlage erhoben.

@@ -1,6 +1,9 @@
 # Konzept: Bild-Suite
 
 **Status:** in-pruefung  
+
+**Zusatz 2026-10-07 (Faber, QM-Karte M10-001) — aktueller Statuskopf.** Der Vorgang ist **umgesetzt und ausgeliefert**: die Kategorie `image` des Registers führt **6 Werkzeuge** (Bild-Metadaten, Bild skalieren, Icon-Generator, Wasserzeichen, Farbwerkzeuge, Baustellenfoto-Beschrifter). Gemessen am 2026-10-07 in `packages/tools/src/catalog/manifests.ts` (62 Werkzeuge gesamt).
+Der Statuskopf oben bleibt als Stand vom 2026-10-02 stehen (Korrekturregel: ergänzen, nicht überschreiben).
 **Datum:** 2026-10-02  
 **Verantwortlich:** Faber (Hermes Agent), auf Vorschlag von Thomas
 

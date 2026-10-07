@@ -1,5 +1,8 @@
 # Konzept und Umsetzung: sprachgetrennte Suchpakete
 
+**Zusatz 2026-10-07 (Faber, QM-Karte M10-001) — Statuskopf nachgetragen.** Der Vorgang ist **umgesetzt** — **ADR 0010** (`04-entscheidungen/0010-werkzeugtexte-je-werkzeug.md`) legt die Werkzeugtexte je Werkzeug und Sprache an, **ADR 0011** (`0011-werkzeugtextsumme-je-paket.md`) misst die Summe je Paket statt als Gesamtsumme. Belege: `05-uebergaben/2026-10-05-sprachpakete-beim-oeffnen-laden.md`, `07-pruefung/hebel2/beleg.txt`.
+Diese Datei hatte bis zum 2026-10-07 **keinen** Statuskopf; er ist hier datiert nachgetragen, der Planstand oben bleibt unverändert stehen.
+
 ## Ziel
 
 Die Startseite soll nicht mit jeder zukünftigen Übersetzung wachsen. Katalogstruktur und Symbole

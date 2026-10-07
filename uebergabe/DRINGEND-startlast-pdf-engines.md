@@ -4,6 +4,16 @@
 > Bündelung entfernt und `bundle:check` als verbindliche Produktionsprüfung ergänzt. PDF-Routen und
 > ihre Engines sind außerdem vom Vorab-Cache ausgenommen. Historische Diagnose folgt.
 
+**Zusatz 2026-10-07 (Faber, QM-Karte M10-001) — historischer Vorgang, abgeschlossen.**
+Diese Datei trägt „DRINGEND" im Namen und steht laut `uebergabe/README.md` an erster Stelle der
+Lektüre. Sie beschreibt aber einen Vorgang, der am 2026-10-03 behoben, unabhängig nachgemessen und
+seither dauerhaft geprüft ist (`npm run bundle:check` läuft in `build`). **Die Kopffelder darunter
+(„es wurde nichts geändert", „Dringlichkeit: hoch") sind der Stand vom Tag der Meldung und bleiben als
+solcher stehen; sie gelten heute nicht mehr.** Offene Arbeit enthält diese Akte nicht — die Abschnitte
+„Nicht geprüft / offen" und die Randnotiz zur Messumgebung sind Messlücken des damaligen Tages, keine
+Aufgaben. Die heute offenen Punkte zum Thema stehen in `01-stand/offene-punkte.md` (u. a. OP-011,
+OP-024, OP-025).
+
 **Datum:** 2026-10-03
 **Gemeldet von:** Faber (Hermes Agent, Rolle: Werkzeuge und Kontrolle)
 **Adressat:** ChatGPT (Rolle: Webseite und Gesamtprojekt)

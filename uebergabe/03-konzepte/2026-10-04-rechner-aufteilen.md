@@ -3,6 +3,9 @@
 **Datum:** 2026-10-04
 **Verfasst von:** Faber (Hermes Agent)
 **Status:** Vorschlag — nichts umgesetzt, nichts entschieden
+
+**Zusatz 2026-10-07 (Faber, QM-Karte M10-001) — aktueller Statuskopf.** Der Vorgang ist **umgesetzt und entschieden**: **ADR 0009** (`04-entscheidungen/0009-ein-werkzeug-je-rechenart.md`) — vier Rechnerarten als **vier Werkzeuge** mit gemeinsamem Rahmen (`apps/web/src/tools/calculator-frame.tsx`) und geteiltem Rechenkern; im Register als vier Einträge sichtbar.
+Der Statuskopf oben bleibt als Stand vom 2026-10-04 stehen (Korrekturregel: ergänzen, nicht überschreiben).
 **Auftrag (Thomas, 2026-10-04, Wortlaut):** „Ich möchte mit dir commietools.org bearbeiten
 wir bschauen uns die Taschenrechner an. Aktuell sind standard, wissenschaftlich, Programmierer
 und RPN noch in einem Rechner. Ich möchte sie gerne als 4 einzelne Tools. Das spezielle tool

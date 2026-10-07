@@ -2,6 +2,9 @@
 
 **Datum:** 2026-10-04
 **Status:** Vorschlag — wartet auf Entscheidung und Go
+
+**Zusatz 2026-10-07 (Faber, QM-Karte M10-001) — aktueller Statuskopf.** Der Vorgang ist **gebaut, aber nicht veröffentlicht**: M0–M7 sind abgeschlossen und auf allen 41 damaligen Werkzeug-Routen belegt (`05-uebergaben/2026-10-04-desktop-auskoppeln-m3-m5.md`, `…-m7.md`); Regeln und Grenzen stehen in `docs/ui-system.md`. **Offen:** Firefox-Messung (geckodriver fehlt), Desktop-Breiten 1920/1366/1024/768 px, Auskoppeln bei 320 px als eigenes Fenster und die Veröffentlichung.
+Der Statuskopf oben bleibt als Stand vom 2026-10-04 stehen (Korrekturregel: ergänzen, nicht überschreiben).
 **Grundlage:** `05-uebergaben/2026-10-04-desktop-auskoppeln-m0.md` (Messungen), ADR 0001, ADR 0003,
 `02-architektur/werkzeug-erstellen.md`, `docs/ui-system.md`
 

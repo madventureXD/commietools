@@ -15,6 +15,10 @@ Der Ordnername `uebergabe` verwendet bewusst nur ASCII-Zeichen, damit Skripte, G
 5. **`DRINGEND-*`-Dateien in diesem Ordner zuerst lesen.** Sie enthalten Befunde, die keinen
    Aufschub dulden, mit Messwerten und Lösungsweg. Steht dort etwas, hat es Vorrang vor der
    regulären Arbeit; die Punkte tauchen zusätzlich in `01-stand/offene-punkte.md` auf.
+   *(Zusatz 2026-10-07, QM-Karte M10-001: Die Regel gilt für **offene** Dringlichkeitsakten. Ist der
+   Vorgang behoben, trägt die Datei oben einen datierten Zusatz „historischer Vorgang,
+   abgeschlossen"; dann ist sie eine Fundstelle, keine Aufgabe, und hat **keinen** Vorrang mehr. Der
+   historische Wortlaut der Akte bleibt unverändert.)*
 6. Die **jüngste Übergabe** unter [`05-uebergaben/`](05-uebergaben/) lesen (Dateiname `YYYY-MM-DD-…`, neuestes Datum zuerst): dort stehen die zuletzt geänderten Bereiche, die dort gelaufenen Prüfungen und der empfohlene nächste Schritt.
 7. Betroffene Originaldokumente und den aktuellen Code lesen.
 8. Vor einer größeren oder schwer umkehrbaren Entscheidung die Entscheidungsübersicht prüfen und bei Bedarf einen ADR anlegen.

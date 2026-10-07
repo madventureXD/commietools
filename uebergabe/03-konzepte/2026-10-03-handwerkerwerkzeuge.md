@@ -3,6 +3,9 @@
 **Datum:** 2026-10-03
 **Verfasst von:** Faber (Hermes Agent, Rolle: Werkzeuge und Kontrolle)
 **Status:** Vorschlag — nicht entschieden, nichts umgesetzt
+
+**Zusatz 2026-10-07 (Faber, QM-Karte M10-001) — aktueller Statuskopf.** Der Vorgang ist **umgesetzt**: die Suite „Handwerk" führt **17 Werkzeuge** (Kategorie `craft`), gebaut in den Wellen A–E; Welle E ist am 2026-10-06 **veröffentlicht** worden. Belege: `packages/tools/src/catalog/manifests.ts` (17 × `craft`), `05-uebergaben/2026-10-05-welle-{a,b,c}-handwerkerwerkzeuge.md`, `06-protokolle/2026-10-06-welle-e-bericht.md`. **Offen bleibt allein die fachliche Abnahme durch eine Elektro-/SHK-Fachkraft** — sie ist durch Belege nicht ersetzbar und wird ausdrücklich nicht beansprucht.
+Der Statuskopf oben bleibt als Stand vom 2026-10-03 stehen (Korrekturregel: ergänzen, nicht überschreiben).
 **Grundlage:** Auftrag von Thomas vom 2026-10-03 (24 Werkzeugvorschläge mit Open-Source-Lage und
 Machbarkeit). Recherche: 25 Registry-Inventare und 23 Websuchen; Quellen unten je Aussage.
 
