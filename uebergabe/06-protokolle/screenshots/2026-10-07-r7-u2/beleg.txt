@@ -1,0 +1,60 @@
+############ Fall A (Oberflaeche: es)
+   Hilfetext: "Busca términos, títulos y resúmenes del idioma seleccionado y del inglés, además de tipos de archivos, categorías y conjuntos. Al menos 2 caracteres, por ejemplo webp, resize o #images."
+   Werkzeuge ohne Suche: 62
+   "resize" (es) → 1 Treffer ["Cambiar el tamaño de la imagen"] · erwartet >=1: ✓
+   "verkleinern" (es) → 0 Treffer [] · erwartet 0: ✓
+   "estad" (es) → 2 Treffer ["Estadísticas de texto","Estadística"] · erwartet >=1: ✓
+   Anfragen auf Suchdateien: 6 auf 2 verschiedene Adresse(n)
+     search-en-B19y3lpY.js → 3x
+     search-es-BJ0E84hq.js → 3x
+   geladene Suchsprachen: ["en","es"] (erwartet ["en","es"])
+   Seitenfehler: []
+############ Fall B (Oberflaeche: en)
+   Hilfetext: "Searches the terms, titles and summaries of the selected language and English, plus file types, category and suite. At least 2 characters, for example webp, resize or #images."
+   Werkzeuge ohne Suche: 62
+   "resize" (en) → 1 Treffer ["Resize image"] · erwartet >=1: ✓
+   "verkleinern" (en) → 0 Treffer [] · erwartet 0: ✓
+   "estad" (en) → 0 Treffer [] · erwartet 0: ✓
+   Anfragen auf Suchdateien: 3 auf 1 verschiedene Adresse(n)
+     search-en-B19y3lpY.js → 3x
+   geladene Suchsprachen: ["en"] (erwartet ["en"])
+   Seitenfehler: []
+############ Fall C (Oberflaeche: de)
+   Hilfetext: "Sucht in Suchbegriffen, Titel und Kurzbeschreibung der gewählten Sprache und auf Englisch sowie in Dateitypen, Kategorie und Suite. Mindestens 2 Zeichen, zum Beispiel webp, resize, #bilder."
+   Werkzeuge ohne Suche: 62
+   "resize" (de) → 1 Treffer ["Bild skalieren"] · erwartet >=1: ✓
+   "verkleinern" (de) → 2 Treffer ["Bild skalieren","PDF komprimieren"] · erwartet >=1: ✓
+   "estad" (de) → 0 Treffer [] · erwartet 0: ✓
+   Anfragen auf Suchdateien: 4 auf 2 verschiedene Adresse(n)
+     search-en-B19y3lpY.js → 2x
+     search-de-gEeq6FeQ.js → 2x
+   geladene Suchsprachen: ["de","en"] (erwartet ["de","en"])
+   Seitenfehler: []
+############ Fall D (Sprachwechsel im laufenden Betrieb: de)
+   Umschalter gefunden: {"selects":[["de","en","es"]],"umschalter":["Cambiar idioma"]}
+   Wechsel ausgefuehrt: ["de","en","es"]
+   Hilfetext nach dem Wechsel: "Sucht in Suchbegriffen, Titel und Kurzbeschreibung der gewählten Sprache und auf Englisch sowie in Dateitypen, Kategorie und Suite. Mindestens 2 Zeichen, zum Beispiel webp, resize, #bilder."
+   "verkleinern" nach dem Wechsel → 2 Treffer ["Bild skalieren","PDF komprimieren"]: ✓
+   "resize" nach dem Wechsel → 1 Treffer ["Bild skalieren"]: ✓
+   "estad" nach dem Wechsel → 0 Treffer []: ✓
+   Seitenfehler: []
+--- Zusammenfassung ---
+   "resize" in Oberflaeche es: 1 Treffer (erwartet >=1) ✓
+   "verkleinern" in Oberflaeche es: 0 Treffer (erwartet 0) ✓
+   "estad" in Oberflaeche es: 2 Treffer (erwartet >=1) ✓
+   geladene Suchsprachen ["en","es"] == ["en","es"]: ✓
+   je geladener Sprache genau eine Suchdatei-Adresse: 2 Adresse(n) / 2 Sprache(n) ✓
+   "resize" in Oberflaeche en: 1 Treffer (erwartet >=1) ✓
+   "verkleinern" in Oberflaeche en: 0 Treffer (erwartet 0) ✓
+   "estad" in Oberflaeche en: 0 Treffer (erwartet 0) ✓
+   geladene Suchsprachen ["en"] == ["en"]: ✓
+   je geladener Sprache genau eine Suchdatei-Adresse: 1 Adresse(n) / 1 Sprache(n) ✓
+   "resize" in Oberflaeche de: 1 Treffer (erwartet >=1) ✓
+   "verkleinern" in Oberflaeche de: 2 Treffer (erwartet >=1) ✓
+   "estad" in Oberflaeche de: 0 Treffer (erwartet 0) ✓
+   geladene Suchsprachen ["de","en"] == ["de","en"]: ✓
+   je geladener Sprache genau eine Suchdatei-Adresse: 2 Adresse(n) / 2 Sprache(n) ✓
+   nach dem Wechsel ist die Oberflaeche deutsch: ✓
+   "verkleinern" nach Wechsel auf Deutsch: 2 Treffer (erwartet >=1) ✓
+   "resize" nach Wechsel auf Deutsch: 1 Treffer (erwartet >=1) ✓
+   "estad" nach Wechsel auf Deutsch: 0 Treffer (erwartet 0) ✓
