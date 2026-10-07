@@ -1,5 +1,5 @@
 import { useState, type ChangeEvent } from 'react'
-import { acceptAttributeFor } from '@commietools/tools'
+import { acceptAttributeFor, createFormatContext, deviceTimeZone, formatDateTime } from '@commietools/tools'
 import { inspectPdf, parsePageSelection, type PdfInspection } from '@commietools/tools/pdf/core'
 import { addPdfAttachments, cleanPdfMetadata, comparePdfStructure, cropPdfPages, listPdfAttachments, readPdfMetadata, removePdfAttachment, renamePdfAttachment, repairAndValidatePdf, safeAttachmentName, type PdfAttachment, type PdfComparison, type PdfMetadata } from '@commietools/tools/pdf/m8'
 import { Button, LocalBadge } from '@commietools/ui'
@@ -12,10 +12,13 @@ function Result({ bytes, name, t }: { bytes: Uint8Array; name: string; t: Transl
 function ErrorText({ error, t }: { error: string; t: Translate }) { return error ? <p className="error" role="alert">{t(error)}</p> : null }
 
 export function PdfMetadataTool({ t }: { t: Translate }) {
+  // Karte M3-010: Datum/Uhrzeit über den Formatkontext, mit sichtbarer Zeitzone. `toLocaleString()`
+  // benutzte vorher still den `navigator`.
+  const formatKontext = createFormatContext(document.documentElement.lang || 'de', navigator.languages)
   const [file, setFile] = useState<Loaded | null>(null), [metadata, setMetadata] = useState<PdfMetadata | null>(null), [result, setResult] = useState<Uint8Array | null>(null), [error, setError] = useState('')
   async function choose(e: ChangeEvent<HTMLInputElement>) { try { const next = await selected(e); setFile(next); setMetadata(next ? await readPdfMetadata(next.bytes) : null); setResult(null); setError('') } catch (x) { setError(pdfErrorKey(x)) } }
   async function clean() { if (!file) return; try { setResult(await cleanPdfMetadata(file.bytes)); setError('') } catch (x) { setError(pdfErrorKey(x)) } }
-  return <div className="stack"><section className="settings-card stack"><label className="field"><span>{t('tool.pdf.choose')}</span><input type="file" accept={acceptAttributeFor('pdf-metadata')} onChange={choose} /></label><p className="privacy-note">{t('tool.pdf.local')}</p>{metadata && <dl className="results">{Object.entries(metadata).filter(([,v]) => v && (!Array.isArray(v) || v.length)).map(([key,value]) => <div key={key}><dt>{t(`tool.pdfMetadata.${key}`)}</dt><dd>{value instanceof Date ? value.toLocaleString() : Array.isArray(value) ? value.join(', ') : String(value)}</dd></div>)}</dl>}{file && <><p className="warning">{t('tool.pdfMetadata.scope')}</p><Button className="primary" onClick={clean}>{t('tool.pdfMetadata.clean')}</Button></>}<ErrorText error={error} t={t} /></section>{result && file && <Result bytes={result} name={`${baseName(file.name)}-metadata-cleaned.pdf`} t={t} />}</div>
+  return <div className="stack"><section className="settings-card stack"><label className="field"><span>{t('tool.pdf.choose')}</span><input type="file" accept={acceptAttributeFor('pdf-metadata')} onChange={choose} /></label><p className="privacy-note">{t('tool.pdf.local')}</p>{metadata && <dl className="results">{Object.entries(metadata).filter(([,v]) => v && (!Array.isArray(v) || v.length)).map(([key,value]) => <div key={key}><dt>{t(`tool.pdfMetadata.${key}`)}</dt><dd>{value instanceof Date ? `${formatDateTime(value, formatKontext)} (${deviceTimeZone()})` : Array.isArray(value) ? value.join(', ') : String(value)}</dd></div>)}</dl>}{file && <><p className="warning">{t('tool.pdfMetadata.scope')}</p><Button className="primary" onClick={clean}>{t('tool.pdfMetadata.clean')}</Button></>}<ErrorText error={error} t={t} /></section>{result && file && <Result bytes={result} name={`${baseName(file.name)}-metadata-cleaned.pdf`} t={t} />}</div>
 }
 
 export function PdfCropTool({ t }: { t: Translate }) {

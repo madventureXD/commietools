@@ -14,6 +14,7 @@ import {
   type PdfModifyPermission,
   type PdfPrintPermission
 } from '@commietools/tools/pdf/m5'
+import { createFormatContext, formatBytes as anzeigeBytes } from '@commietools/tools'
 import { Button, LocalBadge } from '@commietools/ui'
 import { PdfWarnings, baseName, pdfErrorKey, usePdfThumbnails, type Translate } from './pdfUi'
 import { SaveFileControl } from './SaveFileControl'
@@ -35,10 +36,13 @@ function DownloadResult({ url, name, title, t, children }: { url: string; name: 
   return <section className="settings-card stack" aria-live="polite"><div className="preview-heading"><h2>{title}</h2><LocalBadge>{t('status.local')}</LocalBadge></div>{children}<SaveFileControl url={url} suggestedName={name} mimeType="application/pdf" t={t} /></section>
 }
 
-function formatBytes(bytes: number): string {
-  if (bytes < 1024) return `${bytes} B`
-  if (bytes < 1024 * 1024) return `${(bytes / 1024).toFixed(1)} KB`
-  return `${(bytes / 1024 / 1024).toFixed(2)} MB`
+/**
+ * Karte M3-010: Die Byte-Angabe benutzte `toFixed` und damit immer den **Punkt** — in einer
+ * deutschen Oberfläche stand dort „4.5 KB" statt „4,5 KB". Jetzt über den gemeinsamen
+ * Formatkontext (Region), nicht über die Oberflächensprache.
+ */
+function formatBytes(bytes: number, context = createFormatContext(document.documentElement.lang || 'de', navigator.languages)): string {
+  return anzeigeBytes(bytes, context)
 }
 
 export function PdfSecurity({ t }: { t: Translate }) {

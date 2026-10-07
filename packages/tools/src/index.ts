@@ -166,6 +166,9 @@ export function getTextStatistics(input: string): TextStatistics {
   }
 }
 
+export type { FormatContext } from './format'
+export { createFormatContext, deviceTimeZone, formatBytes, formatDateTime, formatNumber, formatTechnicalNumber } from './format'
+
 export type CaseMode = 'upper' | 'lower' | 'title'
 
 /**

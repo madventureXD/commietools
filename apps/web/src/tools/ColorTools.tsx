@@ -15,6 +15,7 @@ import {
   type CvdType,
   type Rgb
 } from '@commietools/tools'
+import { createFormatContext, formatNumber as anzeigeZahl } from '@commietools/tools'
 import { Button } from '@commietools/ui'
 
 type Translate = (key: string) => string
@@ -35,8 +36,13 @@ const CVD_KEYS: Record<CvdType, string> = {
   achromatopsia: 'tool.colorTools.achromatopsia'
 }
 
+/**
+ * Karte M3-010: vorher `Intl.NumberFormat(undefined, …)` — das hing still am `navigator`. Jetzt über
+ * den gemeinsamen Formatkontext, der Sprache und Region trennt und den Default benennt.
+ */
 function formatNumber(value: number, digits = 1): string {
-  return new Intl.NumberFormat(undefined, { maximumFractionDigits: digits, minimumFractionDigits: digits }).format(value)
+  const kontext = createFormatContext(document.documentElement.lang || 'de', navigator.languages)
+  return anzeigeZahl(value, kontext, { maximumFractionDigits: digits, minimumFractionDigits: digits })
 }
 
 function distinct(colors: readonly Rgb[]): Rgb[] {

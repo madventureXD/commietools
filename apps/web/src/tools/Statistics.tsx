@@ -1,6 +1,7 @@
 import { useState, type FormEvent } from 'react'
 import { LocalBadge } from '@commietools/ui'
 import { regress, regressionText, summarise, type StatisticsResult } from '@commietools/tools/calculator/statistics'
+import { createFormatContext, formatNumber } from '@commietools/tools'
 
 type Translate = (key: string) => string
 
@@ -17,6 +18,8 @@ const SUMMARY_KEYS = [
 const REGRESSION_KEYS = ['count', 'meanX', 'meanY', 'slope', 'intercept', 'line', 'correlation', 'rSquared', 'sumX', 'sumY'] as const
 
 export function Statistics({ t, locale }: { t: Translate; locale: string }) {
+  // Karte M3-010: Zahlen folgen der **Region**, die Texte der Oberflächensprache.
+  const formatKontext = createFormatContext(locale, navigator.languages)
   const [mode, setMode] = useState<Mode>('summary')
   const [data, setData] = useState('')
   const [pairs, setPairs] = useState('')
@@ -53,7 +56,7 @@ export function Statistics({ t, locale }: { t: Translate; locale: string }) {
 
   const format = (value: number | undefined): string => {
     if (value === undefined || !Number.isFinite(value)) return '—'
-    return new Intl.NumberFormat(locale, { maximumFractionDigits: 12 }).format(value)
+    return formatNumber(value, formatKontext, { maximumFractionDigits: 12 })
   }
 
   const keys = mode === 'summary' ? SUMMARY_KEYS : REGRESSION_KEYS
