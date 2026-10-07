@@ -131,7 +131,7 @@ Teilnachweise fehlen; siehe Protokoll `06-protokolle/2026-10-06-r4-pruef-und-fre
 
 | Karte | Kurz | Stand |
 |---|---|---|
-| M2-006 | Zugängliche Namen bleiben sprachunabhängig englisch | ○ |
+| M2-006 | Zugängliche Namen bleiben sprachunabhängig englisch | **✓ mit benannter Grenze** (2026-10-07): Namen im Accessibility-Baum in de/en/es korrekt, Modusgruppe als `role="group"` mit `aria-pressed`, Tastatur wechselt den Modus — **nicht herstellbar: echte Vorleseransage** (kein NVDA/Narrator in dieser Umgebung); Protokoll `06-protokolle/2026-10-07-m2-006-zugaengliche-namen.md` |
 | M2-007 | Drei Schaltflächenregeln unter 44 Pixel | **✓ behoben** (2026-10-07) |
 | M2-008 | Oberflächenfarben umgehen das semantische Tokensystem | **✓ behoben** (2026-10-07) |
 | M7-001 | Weiße Aktionsbeschriftung im dunklen Schema zu kontrastarm | **✓ behoben** (Thomas-Entscheidung 2026-10-06): Token `--color-action-text` je Schema — dunkel `#101114` auf `#ff4b59` = 5,7562:1, hell weiß auf `#c91f2c` = 5,6514:1, beide AA; Audit-Ausnahmen entfernt |

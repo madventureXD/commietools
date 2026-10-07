@@ -1,6 +1,27 @@
 # Aktueller Projektstand
 
 **Stand:** 2026-10-06
+**Zusatz 2026-10-07 (Faber), R5-Durchzug — Einheit 5: M2-006 mit benannter Grenze abgeschlossen:**
+- **M2-006 ✓ mit benannter Grenze.** Gefunden wurden genau **zwei** feste englische Namen:
+  `aria-label="Main navigation"` an der Hauptnavigation und `aria-label="Case mode"` an einem
+  `div.segmented` **ohne Rolle**. Beide sind jetzt Schlüssel (`nav.main`, `caseConverter.mode`) in
+  allen drei common-Dateien; die Modusgruppe ist `role="group"` mit übersetztem Namen, jeder Knopf
+  trägt `aria-pressed` (vorher stand die aktive Kennzeichnung nur als CSS-Klasse).
+- **Gemessen am Accessibility-Baum** (`Accessibility.getFullAXTree`) nach echtem Sprachwechsel:
+  Navigation **„Hauptnavigation" / „Main navigation" / „Navegación principal"**, Gruppe
+  **„Schreibweise" / „Case mode" / „Mayúsculas y minúsculas"** — drei verschiedene Namen, also
+  sprachgebunden. Tastatur mit echten Enter-Ereignissen: Modus wechselt in allen drei Sprachen
+  (`true,false,false` → `false,true,false`).
+- **Nicht herstellbar: echte Vorleseransage** — in dieser Umgebung gibt es keinen NVDA/Narrator.
+  Belegt sind Baum und Tastatur; die gesprochene Ansage bleibt Handarbeit und ist **nicht** als
+  erfüllt verbucht.
+- Erstellungsregeln festgeschrieben: `docs/ui-system.md` (Abschnitt „Accessible names are interface
+  text, not source text") und Skill `commietools-werkzeug-bauen` — sichtbare Literale und
+  ARIA-Attribute werden **zusammen** geprüft. Literale bleiben nur, wo sie keine Oberflächentexte
+  sind (Datumsbeispiele, Terme wie `x^2 - 4`).
+- Prüfkette: `npm run check` Exit 0 (695 Tests) · `npm run build` Exit 0. Protokoll:
+  `06-protokolle/2026-10-07-m2-006-zugaengliche-namen.md`. **Nichts gepusht.**
+
 **Zusatz 2026-10-07 (Faber), R5-Durchzug — Einheit 4: M7-005 abgeschlossen, intrinsische Breitenfehler behoben:**
 - **M7-005 ✓ behoben.** Zwei gemessene Ursachen: (1) Der Rechner zeigte den Ausdruck
   `div.results` als Raster **ohne Spaltendefinition** — die automatische Spur rechnete auf
