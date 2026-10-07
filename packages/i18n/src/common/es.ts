@@ -1,6 +1,10 @@
 export const commonEs = {
   'app.name': 'CommieTools', 'app.tagline': 'Herramientas gratuitas para todos.', 'app.promise': 'Tus herramientas. Tu dispositivo. Tus datos.',
   'nav.tools': 'Herramientas', 'nav.suites': 'Suites', 'nav.about': 'Principios',
+  /* Nombres accesibles como claves propias: deben cambiar con el idioma igual que el texto
+     visible (tarjeta M2-006). */
+  'nav.main': 'Navegación principal',
+  'caseConverter.mode': 'Mayúsculas y minúsculas',
   'action.theme': 'Cambiar tema de color', 'action.language': 'Cambiar idioma', 'action.retry': 'Reintentar',
   'app.loadError': 'No se han podido cargar los textos de la interfaz. La conexión se interrumpió o falta un archivo.',
   'tool.loadFailed': 'No se han podido cargar los textos de esta herramienta. La conexión se interrumpió o falta un archivo.',

@@ -1,6 +1,10 @@
 export const commonDe = {
   'app.name': 'CommieTools', 'app.tagline': 'Kostenlose Werkzeuge für alle.', 'app.promise': 'Deine Werkzeuge. Dein Gerät. Deine Daten.',
   'nav.tools': 'Werkzeuge', 'nav.suites': 'Suites', 'nav.about': 'Prinzipien',
+  /* Zugängliche Namen als eigene Schlüssel: Sie müssen sich beim Sprachwechsel genauso
+     mitändern wie sichtbare Texte (Karte M2-006). */
+  'nav.main': 'Hauptnavigation',
+  'caseConverter.mode': 'Schreibweise',
   'action.theme': 'Farbschema wechseln', 'action.language': 'Sprache wechseln', 'action.retry': 'Erneut versuchen',
   'app.loadError': 'Die Texte der Oberfläche konnten nicht geladen werden. Die Verbindung wurde unterbrochen oder eine Datei fehlt.',
   'tool.loadFailed': 'Die Texte dieses Werkzeugs konnten nicht geladen werden. Die Verbindung wurde unterbrochen oder eine Datei fehlt.',

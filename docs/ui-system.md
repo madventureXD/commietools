@@ -36,6 +36,37 @@ Light and dark modes share identical structure. Semantic design tokens define su
 
 Semantic HTML, visible keyboard focus, 44px minimum interactive targets, sufficient contrast, zoom-safe layouts and localized accessible names are required. Automated accessibility checks should be added with the first component test suite.
 
+### Accessible names are interface text, not source text (card M2-006)
+
+- Accessible names (`aria-label`, `aria-labelledby`, `alt`, group labels) come from the i18n keys —
+  **never** as literal text in JSX. They must change with the language like any visible text.
+  Measured 2026-10-07: `aria-label="Main navigation"` and `aria-label="Case mode"` stayed English
+  in all three languages; both are now `nav.main` and `caseConverter.mode` in
+  `packages/i18n/src/common/*`.
+- A group needs a **semantic contract**, not just an attribute on a plain `div`: a named
+  `role="group"` (or `fieldset`/`legend` where a form is involved) with a translated label.
+- The **active selection must be exposed**: a segmented control marks its current choice with
+  `aria-pressed` (or a radio contract), so the state is part of the accessibility tree instead of
+  only a CSS class.
+- Literal strings that are *not* interface text stay literal: date/time format examples
+  (`2026-10-03`) and mathematical expressions (`x^2 - 4`) are not translated.
+- When a workflow is created, visible JSX literals and accessible attributes are checked
+  **together** — a visible label that is translated while its ARIA attribute stays English is the
+  normal case of this mistake.
+
+### Layout contracts for narrow widths (card M7-005)
+
+- Grid tracks are declared **intrinsically safe**: `minmax(0, 1fr)` instead of a bare `1fr`
+  (a bare `1fr` is `minmax(auto, 1fr)` and cannot shrink below its content's minimum size), and
+  `minmax(min(100%, X), 1fr)` instead of a fixed `minmax(X, 1fr)` in `auto-fill`/`auto-fit` grids.
+  Measured 2026-10-07: a bare `1fr` in the narrow-width rules pushed the catalogue to 405px inside
+  a 320px viewport once text spacing was applied.
+- Flex/grid children that carry text get `min-width: 0`; rows whose labels can grow get
+  `flex-wrap: wrap` so an action label moves to the next line instead of leaving the box.
+- **`overflow: hidden` is not a repair.** It hides the symptom and the function with it.
+- Checked states: home, menu open, a tool with a result, long file names — in de/en/es at
+  320px and 390px, plus text spacing (WCAG 1.4.12) and 200% zoom.
+
 ## Catalogue and search
 
 The tool catalogue is the platform's entry surface and follows its own visible rules:

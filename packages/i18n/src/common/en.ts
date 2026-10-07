@@ -1,6 +1,10 @@
 export const commonEn = {
   'app.name': 'CommieTools', 'app.tagline': 'Free tools for everyone.', 'app.promise': 'Your tools. Your device. Your data.',
   'nav.tools': 'Tools', 'nav.suites': 'Suites', 'nav.about': 'Principles',
+  /* Accessible names as their own keys: they must follow a language change just like visible
+     text (card M2-006). */
+  'nav.main': 'Main navigation',
+  'caseConverter.mode': 'Case mode',
   'action.theme': 'Switch color theme', 'action.language': 'Switch language', 'action.retry': 'Try again',
   'app.loadError': 'The interface texts could not be loaded. The connection was interrupted or a file is missing.',
   'tool.loadFailed': 'The texts for this tool could not be loaded. The connection was interrupted or a file is missing.',
