@@ -187,7 +187,7 @@ export function ToolNavigation({ t, locale, activeToolId, navigate }: { t: Trans
         <header className="tool-menu-heading"><div><h2>{t('toolMenu.title')}</h2><p>{t('toolMenu.intro')}</p></div><button className="button tool-menu-close" onClick={closeMenu} aria-label={t('toolMenu.close')}>×</button></header>
         <label className="tool-menu-search"><span aria-hidden="true">⌕</span><input ref={searchRef} type="search" value={query} onChange={(event) => setQuery(event.target.value)} placeholder={t('toolMenu.search')} aria-label={t('toolMenu.search')} /></label>
         <div className="tool-menu-sorts" role="group" aria-label={t('toolMenu.sort')}>
-          {(['category', 'az', 'recent', 'favorites'] as const).map((item) => <button key={item} className={`button${sort === item ? ' active' : ''}`} aria-pressed={sort === item} onClick={() => selectSort(item)}>{t(`toolMenu.sort.${item}`)}</button>)}
+          {(['category', 'az', 'recent', 'favorites'] as const).map((item) => <button key={item} className={`button compact${sort === item ? ' active' : ''}`} aria-pressed={sort === item} onClick={() => selectSort(item)}>{t(`toolMenu.sort.${item}`)}</button>)}
         </div>
         <div className="tool-menu-content" aria-live="polite">{content}</div>
         <footer className="tool-menu-footer"><span>{visible.length} {t('toolMenu.tools')}</span><span>{t('toolMenu.local')}</span></footer>

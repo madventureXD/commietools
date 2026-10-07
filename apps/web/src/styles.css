@@ -33,7 +33,7 @@ nav button:hover { color: var(--color-text); }
 .tool-menu-search { display: flex; flex: 0 0 auto; align-items: center; gap: var(--space-2); margin: 0 var(--space-4) var(--space-3); padding: 0 var(--space-3); border: 1px solid var(--color-border); border-radius: var(--radius-sm); background: var(--color-background); }
 .tool-menu-search input { width: 100%; min-height: 2.75rem; padding: 0; border: 0; outline: 0; color: var(--color-text); background: transparent; }
 .tool-menu-sorts { display: flex; flex: 0 0 auto; gap: var(--space-2); padding: 0 var(--space-4) var(--space-3); overflow-x: auto; scrollbar-width: thin; }
-.tool-menu-sorts .button { min-height: 2.35rem; padding: 0.35rem 0.75rem; border-radius: 999px; white-space: nowrap; font-size: 0.86rem; }
+.tool-menu-sorts .button { border-radius: 999px; white-space: nowrap; }
 .tool-menu-sorts .button.active { border-color: var(--color-text); color: var(--color-surface); background: var(--color-text); }
 .tool-menu-content { flex: 1 1 auto; min-height: 0; overflow-y: auto; padding: 0 var(--space-3) var(--space-4); overscroll-behavior: contain; }
 .tool-menu-categories { display: grid; gap: var(--space-2); padding-top: var(--space-2); }
@@ -61,6 +61,12 @@ nav button:hover { color: var(--color-text); }
 .tool-menu-footer { display: flex; flex: 0 0 auto; justify-content: space-between; gap: var(--space-3); padding: var(--space-3) var(--space-4); border-top: 1px solid var(--color-border); color: var(--color-text-muted); font-size: 0.78rem; }
 .button, form > button[type="submit"] { min-width: 2.75rem; min-height: 2.75rem; padding: var(--space-2) var(--space-3); border: 1px solid var(--color-border); border-radius: var(--radius-sm); color: var(--color-text); background: var(--color-surface); cursor: pointer; font-weight: 700; }
 .button.primary, form > button[type="submit"] { border-color: var(--color-brand); color: var(--color-action-text); background: var(--color-brand); }
+/* Kompakte Groessenvariante fuer dichte Bedienreihen — die verbindliche Untergrenze bleibt
+   44x44 (Projektregel, docs/ui-system.md; Karte M2-007). Sie ersetzt drei verstreute
+   Einzelregeln, die 37,6 px bzw. 38 px setzten (.tool-menu-sorts, .pdf-page-actions,
+   .icon-result figcaption). Gemessen 2026-10-07: Menusortierung und PDF-Seitenaktionen waren
+   real 38 px hoch. */
+.button.compact { min-width: 2.75rem; min-height: 2.75rem; padding: 0.35rem 0.7rem; font-size: 0.85rem; }
 .button:disabled, form > button[type="submit"]:disabled { opacity: 0.5; cursor: not-allowed; }
 .button:hover, form > button[type="submit"]:hover { border-color: var(--color-brand); }
 .button:focus-visible, button:focus-visible, textarea:focus-visible, select:focus-visible { outline: 3px solid var(--color-focus); outline-offset: 3px; }
@@ -314,7 +320,6 @@ a.button { display: inline-flex; align-items: center; justify-content: center; t
 .redaction-box { position: absolute; background: rgb(0 0 0 / 72%); border: 2px solid var(--color-brand); pointer-events: none; }
 .pdf-organizer-card > span { color: var(--color-text-muted); font-size: .88rem; text-align: center; }
 .pdf-page-actions { justify-content: center; }
-.pdf-page-actions .button { min-height: 38px; padding: .45rem .6rem; font-size: .82rem; }
 .pdf-result-list { grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); }
 .pdf-image-results { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: .8rem; }
 .pdf-image-results .pdf-page-card img { height: 220px; }
@@ -354,7 +359,7 @@ a.button { display: inline-flex; align-items: center; justify-content: center; t
 .icon-result { display: grid; justify-items: center; gap: var(--space-2); margin: 0; padding: var(--space-4); border: 1px solid var(--color-border); border-radius: var(--radius-md); background: var(--color-background); }
 .icon-result img { max-width: 72px; max-height: 72px; border-radius: 4px; background-color: var(--color-background); background-image: conic-gradient(from 90deg at 50% 50%, #0000 50%, color-mix(in srgb, var(--color-text-muted) 18%, transparent) 50%); background-size: 12px 12px; }
 .icon-result figcaption { display: grid; justify-items: center; gap: 0.35rem; overflow-wrap: anywhere; text-align: center; font-size: 0.82rem; font-weight: 700; }
-.icon-result figcaption .button { min-height: 2.25rem; padding: 0.25rem 0.6rem; font-size: 0.82rem; }
+.icon-result figcaption .button { padding: 0.25rem 0.6rem; font-size: 0.82rem; }
 .icon-manifest { min-height: 12rem; font: 0.82rem/1.5 ui-monospace, SFMono-Regular, Consolas, monospace; }
 
 @media (max-width: 620px) {
