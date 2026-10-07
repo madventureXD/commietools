@@ -26,7 +26,7 @@ Vollständiges Umsetzungskonzept: [`../03-konzepte/2026-10-03-pdf-suite.md`](../
 - M6: eigenständiger Viewer, Textextraktion und OCR – veröffentlicht
 - M7: digitale Signaturen – lokal abgeschlossen; Rust-WASM, BER-/DER-CMS, inkrementelle Mehrfachsignaturen, PAdES B-B/T/LT/LTA und EU-DSS-Referenzkorpus geprüft
 - M8: Dokumentprüfung und -pflege – Viewer, Metadaten, Beschneiden, QPDF-Reparatur, sichere Anhangverwaltung sowie getrennter Struktur-, Text- und Renderingvergleich lokal umgesetzt
-- M9: sichere grafische Schwärzung und PDF/A-Vorcheck lokal umgesetzt; echte PDF/A- und Office-Konvertierung nach Recherche und ADR 0006 bewusst nicht freigegeben
+- M9: sichere grafische Schwärzung und PDF/A-Vorcheck lokal umgesetzt; echte PDF/A- und Office-Konvertierung nach Recherche und ADR 0006 bewusst nicht freigegeben *(Zusatz 2026-10-07: die Entscheidung führt seit dem 2026-10-07 die Nummer [`0013-m9-konformitaetsgate.md`](../04-entscheidungen/0013-m9-konformitaetsgate.md); die Nummer 0006 war doppelt vergeben — Karte M2-005)*
 
 ## Phase 2 – Suite „Rechnen"
 

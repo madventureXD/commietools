@@ -1,7 +1,14 @@
-# ADR 0006: M9 veröffentlicht keine unbelegte PDF/A- oder Office-Konvertierung
+# ADR 0013: M9 veröffentlicht keine unbelegte PDF/A- oder Office-Konvertierung
 
 **Datum:** 2026-10-04
 **Status:** angenommen; Gate abschließend bewertet
+**Nummer nachvergeben am 2026-10-07 (Faber):** Diese Entscheidung stand bis dahin fälschlich unter
+**0006** — derselben Nummer wie
+[`0006-voller-wert-und-genauigkeitsampel.md`](0006-voller-wert-und-genauigkeitsampel.md). Zwei
+angenommene Entscheidungen unter einer Nummer lassen sich nicht auflösen; von beiden trug diese die
+weniger Verweise und wandert deshalb. Der ursprüngliche Inhalt unten ist **unverändert**; der alte
+Pfad [`0006-m9-konformitaetsgate.md`](0006-m9-konformitaetsgate.md) führt als Weiterverweisakte
+weiter hierher.
 
 ## Kontext
 
