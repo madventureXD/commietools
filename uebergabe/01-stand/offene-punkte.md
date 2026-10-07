@@ -662,8 +662,25 @@ Diese Liste enthält bestätigte, noch nicht abgeschlossene Arbeit. Details geh�
   unsichtbar); Plotter-Achsenbeschriftung dunkel 3,29:1; Rasterspur 346 px in einem 254-px-Kasten;
   Katalog schob die Seite auf 405 px bei 320 px Fenster; Tab-Liste erreichte verborgene Nachfahren
   geschlossener Details. Übergabe: `05-uebergaben/2026-10-07-r5-sechs-karten-abgeschlossen.md`.
-- [ ] **M7-003 — PDF-Schwärzung ohne Tastaturalternative: nicht begonnen.** Anknüpfungspunkt mit
-  Dateien, Zuständen und Belegplan in `work/r5-fortschritt.md` („Anknüpfungspunkt U7").
+- [x] **M7-003 — PDF-Schwärzung ohne Tastaturalternative: erledigt mit benannten Grenzen**
+  *(2026-10-07)*. Rechteckmodell für Zeiger **und** Tastaturformular (X/Y/Breite/Höhe in Punkten),
+  Bereichsliste mit Entfernen, Pfeiltasten (1 Punkt, mit Umschalttaste 10), Fehlermeldungen mit
+  `aria-invalid` am betroffenen Feld, gemeinsame Prüfstelle `normaliseRedactionArea` im Kern.
+  **Dabei ein echter Fehler gefunden und behoben:** MuPDF setzt Redaktionsrechtecke im
+  **angezeigten** Seitenraum — auf gedrehten Seiten traf die bisherige Umrechnung nicht (Sonde
+  `work/m7-003-rotation-sonde.mjs` mit fünf Kandidaten, nur der Anzeigeraum trifft). Regressionstest
+  `apps/web/src/pdf-redaction-rotation.test.ts` hält beide Hälften fest. Beleg der Tastaturabnahme:
+  `work/m7-003-beleg.cjs` — Text weg (pdf.js), 1700/1700 Rasterpunkte schwarz im Bereich, außerhalb
+  weiß (MuPDF). Protokoll `06-protokolle/2026-10-07-m7-003-schwaerzung-tastatur.md`, Commit `17ce942`.
+- [ ] **Offen aus M7-003: zweites Setzen einer Datei im Prüfmittel ungeklärt** *(2026-10-07)*.
+  Wird dieselbe Route in derselben Browser-Sitzung ein zweites Mal geladen oder eine zweite Datei
+  ins Feld gelegt, kommt ein `change`-Ereignis an, die Seite reagiert aber nicht (beide
+  Einspeisewege geprüft, keine Konsolenmeldung; `work/m7-003-diag2.cjs`). Ob das ein Produkt- oder
+  ein Prüfmittelverhalten ist, ist **nicht geklärt**; der echte Nutzerweg (nativer Dateidialog) ist
+  nicht messbar. Nächster Schritt: dasselbe mit einem echten Dialog oder einem zweiten Werkzeug
+  desselben Musters (PDF-Teiler) prüfen.
+- [ ] **Offen aus M7-003: Zoom nur bei 100 % gemessen** *(2026-10-07)*. Die Skalierung ist im
+  Zeigerweg belegt, eine abweichende Zoomstufe wurde nicht geprüft.
 - [ ] **M7-004 — PDF-Viewer stellt Text assistiver Technik nicht bereit: nicht begonnen.**
   Anknüpfungspunkt ebd. („Anknüpfungspunkt U8").
 - [ ] **M2-006 — echter Vorleserlauf nicht herstellbar** *(2026-10-07)*: belegt sind

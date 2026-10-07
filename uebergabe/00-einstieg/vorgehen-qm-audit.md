@@ -138,7 +138,7 @@ Protokoll: `06-protokolle/2026-10-06-r1-*.md`, `…-m9-004-lopdf-anhebung.md`, `
 zwei Breiten. Der Punkt bleibt trotzdem auf ◐, weil die Abdeckung erweitert wurde und zwei
 Teilnachweise fehlen; siehe Protokoll `06-protokolle/2026-10-06-r4-pruef-und-freigabeschranken.md`.)*
 
-### R5 — Barrierefreiheit und Designsystem (P1) — 7 von 9 Karten erledigt, offen M7-003 und M7-004 (Stand 2026-10-07)
+### R5 — Barrierefreiheit und Designsystem (P1) — 8 von 9 Karten erledigt, offen M7-004 (Stand 2026-10-07)
 
 | Karte | Kurz | Stand |
 |---|---|---|
@@ -147,7 +147,7 @@ Teilnachweise fehlen; siehe Protokoll `06-protokolle/2026-10-06-r4-pruef-und-fre
 | M2-008 | Oberflächenfarben umgehen das semantische Tokensystem | **✓ behoben** (2026-10-07) |
 | M7-001 | Weiße Aktionsbeschriftung im dunklen Schema zu kontrastarm | **✓ behoben** (Thomas-Entscheidung 2026-10-06): Token `--color-action-text` je Schema — dunkel `#101114` auf `#ff4b59` = 5,7562:1, hell weiß auf `#c91f2c` = 5,6514:1, beide AA; Audit-Ausnahmen entfernt |
 | M7-002 | Menü-Fokusbegrenzung berücksichtigt sichtbare Kategorien nicht | **✓ behoben** (2026-10-07): nativer modaler Dialog (`showModal`), Hintergrund inaktiv, Tabulator bleibt im Menü — gemessen bei 1360 und 390 px |
-| M7-003 | PDF-Schwärzung ohne Tastaturalternative | ○ |
+| M7-003 | PDF-Schwärzung ohne Tastaturalternative | **✓ mit benannten Grenzen** (2026-10-07): Rechteckmodell für Zeiger **und** Tastaturformular, Bereichsliste mit Entfernen, Pfeiltasten (1/10 Punkte), Fehlermeldung mit `aria-invalid`, gemeinsame Prüfstelle im Kern. **Fund: MuPDF erwartet Rechtecke im angezeigten Raum** — auf gedrehten Seiten war die bisherige Umrechnung falsch (Sonde mit fünf Kandidaten); Anzeigemaße sind jetzt der gültige Koordinatenraum, Regressionstest hält beide Hälften fest. Beleg: Tastaturabnahme mit unabhängiger Textprüfung (pdf.js) und Pixelmessung (MuPDF), Rotationslauf separat. Protokoll `06-protokolle/2026-10-07-m7-003-schwaerzung-tastatur.md`. **Grenzen:** nativer Dateidialog kein DOM, Touchgerät fehlt, Zoom nur bei 100 %, zweites Setzen einer Datei im Prüfmittel unklar |
 | M7-004 | PDF-Viewer stellt Text assistiver Technik nicht bereit | ○ |
 | M7-005 | Schmale Layouts verdecken Beschriftungen, Katalog läuft über | **✓ behoben** (2026-10-07) |
 | M7-006 | Nicht definierte CSS-Tokens lassen Regeln ausfallen | **✓ behoben** (2026-10-07) |
