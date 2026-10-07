@@ -71,6 +71,17 @@ Legende: ✓ erledigt · ◐ erledigt mit offener Restforderung · ○ offen
 **Stand am 2026-10-07 (ausgezählt): 59 Karten — 28 erledigt · 1 mit Restforderung (M8-001) ·
 30 offen.** R1, R2, R3 und R4 sind vollständig; R5–R10 stehen aus (R10 ist Betreiberentscheidung).
 
+*Korrektur 2026-10-07 (Faber, Aktenpflege). Der vorstehende Satz widersprach der Tabelle dieses
+Abschnitts und wurde nachgezählt — nicht aus der Summe, sondern Zeile für Zeile mit einem Skript
+über die Kartentabellen: **59 Karten — 34 erledigt · 1 mit Restforderung (M8-001) · 24 offen.**
+Je Stufe: R1 5 von 6 · R2 7 von 7 · R3 6 von 6 · R4 8 von 8 · R5 7 von 9 · R6 1 von 7 (M3-007) ·
+R7 0 von 8 · R8 0 von 5 · R9 0 von 2 · R10 0 von 1. Die alte Zahl beschrieb den Stand vor dem
+R5-Durchzug; der Wortlaut bleibt deshalb stehen, maßgeblich ist die Tabelle mit dieser Korrektur.
+Korrektur des zweiten Halbsatzes: R5 ist **begonnen** (7 von 9), nicht „steht aus".*
+
+Grund der Abweichung: Die Summe wurde beim Anlegen der Übersicht gesetzt und beim Nachführen der
+Tabelle nicht mitgezogen; die Tabelle war richtig, die Summe nicht.
+
 ### R1 — PDF-Engines, Signaturen, Lizenzen (P0) — **abgeschlossen**
 
 | Karte | Kurz | Stand |
@@ -127,7 +138,7 @@ Protokoll: `06-protokolle/2026-10-06-r1-*.md`, `…-m9-004-lopdf-anhebung.md`, `
 zwei Breiten. Der Punkt bleibt trotzdem auf ◐, weil die Abdeckung erweitert wurde und zwei
 Teilnachweise fehlen; siehe Protokoll `06-protokolle/2026-10-06-r4-pruef-und-freigabeschranken.md`.)*
 
-### R5 — Barrierefreiheit und Designsystem (P1) — begonnen 2026-10-07
+### R5 — Barrierefreiheit und Designsystem (P1) — 7 von 9 Karten erledigt, offen M7-003 und M7-004 (Stand 2026-10-07)
 
 | Karte | Kurz | Stand |
 |---|---|---|
@@ -235,6 +246,8 @@ R1, M9-004) — vor einer neuen Welle dort nachsehen statt neu zu stolpern.
 8. **Push** der lokalen Commits — **vorerst zurückgestellt** (Thomas, 2026-10-06): `main` ist der
    Produktionsbranch bei Cloudflare Pages, ein Push veröffentlicht commietools.org. Entscheidung
    später; Stand damals: 33 Commits vor `origin/main`.
+   *(Zusatz 2026-10-07: Abstand **73 Commits** — gemessen mit `git rev-list --count origin/main..HEAD`,
+   nicht aus einem Text abgelesen. Beim Nachführen vor jedem Bericht neu messen.)*
 
 ### Entschieden am 2026-10-06 (im Gespräch, Thomas)
 
@@ -318,6 +331,19 @@ getrenntem Zahlentoken (M6-002)"), davor `86be4d8`, `dac33b7`, `00da6c7`, `c30cb
 revisionsgebundenen Registry-Dateien (bewusst uncommittet); ihre inhaltliche Registrierung ist
 committet. Vor jedem Prüflauf ist deshalb `npm run licenses:generate` nötig, sonst ist
 `licenses:check` rot — der gemessene Vorbefund aus Abschnitt 6, Punkt 1.
+
+
+*Nachtrag 2026-10-07 (Aktenpflege, Faber).* Kopf ist **`3ca76bf`** („Uebergabe-README: Zahl der
+lueckenhaften Alt-Uebergaben berichtigt (elf)"), davor `895a30a` („Uebergabe R5 (sechs Karten) und
+Befund zu zehn lueckenhaften Alt-Uebergaben"). `main` steht **73 Commits vor `origin/main`**
+(gemessen) — **nichts gepusht**; ein Push veröffentlicht commietools.org. Außerhalb der Commits
+trägt der Arbeitsbaum die beiden revisionsgebundenen Registry-Dateien (bewusst uncommittet), zwei
+Testdateien aus dem M4-005-Nachweis (`test-assets/m4-005-langsam-A.pdf`, `…-schnell-B.pdf`) und die
+fremde Konzeptdatei `03-konzepte/2026-10-06-tooltip-und-kontexthilfe.md` (nicht angefasst).
+
+In dieser Aktenpflege berichtigt: die ausgezählte Summe in Abschnitt 4 (28/1/30 → **34/1/24**, mit
+Grund), die R5-Überschrift (7 von 9) und der Push-Abstand in Abschnitt 6 Punkt 8. Die Kartenstände
+der Tabelle selbst waren bereits nachgeführt und blieben unverändert.
 
 ## 8. Pflege dieser Datei
 

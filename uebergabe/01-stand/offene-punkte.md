@@ -249,9 +249,16 @@ Diese Liste enthält bestätigte, noch nicht abgeschlossene Arbeit. Details geh�
   `no-misused-promises` (60) und die `no-unsafe-*`-Gruppe. Protokoll:
   `06-protokolle/2026-10-06-m4-008-lint.md`.
 - [ ] **96 Lint-Warnungen abarbeiten** (angefangen bei `no-misused-promises`, 60 Treffer).
-- [ ] **Kontrastprüfung des a11y-Scanners untersuchen** (Karte M2-009, offener Befund): Ein
+- [x] **Kontrastprüfung des a11y-Scanners untersuchen** (Karte M2-009): erledigt *(2026-10-07)*. Ein
   absichtlich kontrastarmer Absatz (`#c9c9c9` auf Weiß) erzeugt **keinen** Kontrastbefund; der
   Prüfer meldet für diese Seite `skippedContrast: 3`. Ursache nicht geklärt — bewusst nicht geraten.
+  *(Zusatz 2026-10-07: **geklärt und behoben, die Ursache lag im Prüfmittel.** Ohne deckende
+  Vorfahrenfläche brach die Hintergrundauflösung ab und der Kandidat wurde still übersprungen —
+  belegt mit zwei Wegwerf-Seiten: ohne Hintergrund `Kontrast=0` bei übersprungen 3, mit deckendem
+  Weiß `Kontrast=1` (gemessen 1,66 bei verlangten 4,5). Jetzt Leinwandrückfall (Weiß) mit
+  ausgewiesener Zahl je Route, nicht messbare Stellen mit Element und Grund benannt. Gesamtlauf
+  62 Routen × 2 Breiten in beiden Schemata Exit 0. Protokoll:
+  `06-protokolle/2026-10-07-m2-009-kontrast-und-ci.md`.)*
 - [ ] **CI-Workflow in Betrieb nehmen** (Karte M1-003): `.github/workflows/quality.yml` liegt
   versioniert, ist aber **nie gelaufen** (es wird nicht gepusht). Offen: Actions auf Commit-SHAs
   pinnen, Browserjob plattformunabhängig machen, Branchschutz und erforderliche Checks im Konto
@@ -322,7 +329,11 @@ Diese Liste enthält bestätigte, noch nicht abgeschlossene Arbeit. Details geh�
   Offen bleibt: Firefox-Messung, Desktop-Breiten (1920/1366/1024/768),
   **Veröffentlichung** (`05-uebergaben/2026-10-04-desktop-auskoppeln-m3-m5.md`,
   `05-uebergaben/2026-10-04-desktop-auskoppeln-m7.md`).
-- [ ] Speicheradapter für persistente lokale Nutzerdaten definieren.
+- [x] Speicheradapter für persistente lokale Nutzerdaten definieren. *(Zusatz 2026-10-07: **mit
+  M8-003 gebaut** — `packages/tools/src/storage/indexedStore.ts` mit expliziten Zuständen
+  `ok`/`unavailable`/`quota`/`invalid` für Rechnerverlauf, Aufmaß und Prüffristen; Engine und
+  Speicher getrennt geladen, flüchtiger Sitzungsbetrieb mit sichtbarer Warnung. **Grenze:** gilt für
+  diese drei Bereiche, ist kein allgemeiner Vertrag für künftige Werkzeuge.)*
 - [ ] Bei wachsender Werkzeug- und Sprachenzahl den Bundlezuwachs des Registers messen; Ausweg ist eine abgerufene Registerdatei mit Ladezustand.
 - [ ] Desktop- und Mobile-Shells evaluieren. *(2026-10-04: Das Auskoppeln ist der erste Teil davon;
   der Punkt bleibt für die übrige Shell-Frage stehen.)*
@@ -534,8 +545,8 @@ Diese Liste enthält bestätigte, noch nicht abgeschlossene Arbeit. Details geh�
 
 ## R3 — Datei-Aufträge, Ressourcen, Offline (ab 2026-10-06)
 
-- [ ] **M4-006 — PDF-Teiler gibt Ergebnis-URLs beim Verlassen nicht frei: Code umgesetzt, Zählerabnahme erbracht,
-  offen** *(Nachtrag 2026-10-06)*. Der Teiler erzeugte pro Ergebnis eine Objekt-URL, gab sie aber
+- [x] **M4-006 — PDF-Teiler gibt Ergebnis-URLs beim Verlassen nicht frei: erledigt** *(Nachtrag 2026-10-06, Abschluss 2026-10-07)*.
+  Der Teiler erzeugte pro Ergebnis eine Objekt-URL, gab sie aber
   nur bei `clearResults()` (Dateiwechsel, neuer Auftrag) frei — beim **Verlassen** der Route blieben
   sie bis zum Neuladen des Dokuments am Leben. Neu: ein Aufräumeffekt ohne Abhängigkeiten gibt die
   **aktuelle** Liste frei (über einen Ref, damit nicht die Liste des ersten Renderns widerrufen
@@ -543,13 +554,16 @@ Diese Liste enthält bestätigte, noch nicht abgeschlossene Arbeit. Details geh�
   - [x] **Zählerabnahme erbracht** *(2026-10-06)*: create 1203 / revoke 1200 / offen 3 bei
     sichtbarem Ergebnis; nach **clientseitigem** Routenwechsel (gleiches Dokument, echter Unmount)
     revoke 1203 / offen 0. A's 1200 verworfene Ausgaben wurden sofort freigegeben.
-  - [ ] **Offen:** der gemeinsame `useObjectUrls`-Hook bzw. die Erweiterung von `useDownload` (von
-    der Karte vorgeschlagen, **nicht** Abnahmebedingung — der Teiler räumt an drei Stellen selbst
-    auf), StrictMode-Zyklus (im ausgelieferten Build ruft React Effekte nicht doppelt auf; ein Lauf
-    gegen `vite dev` fehlt) und Mehrfachspeichern.
-- [ ] **M4-005 — PDF-Ergebnisse können nach Dateiwechsel dem falschen Namen zugeordnet werden:
-  Code umgesetzt, Abnahme weitgehend erbracht, ein Fall nicht herstellbar** *(Nachtrag 2026-10-06)*. Zwei Befunde bestätigt: Der Ergebnisname
-  kam aus `baseName(file?.name ?? 'document')` — also aus dem **aktuellen** Formularzustand; und
+  - [x] **StrictMode-Zyklus und Mehrfachspeichern belegt** *(2026-10-07)*: gegen `vite dev` mit
+    eingehaengtem StrictMode fünf Aufträge hintereinander, Zähler in jedem Lauf wie erwartet
+    (create 3n / revoke 3(n−1) / offen 3), Endstand create 17 / revoke 17 / **offen 0**; zweimal
+    gespeichert, die kurze Downloadadresse wird selbst freigegeben, die 3 Ergebniseinträge bleiben
+    unverändert. Beleg: `work/m4-006-strictmode.cjs`.
+  - [ ] **Offen (keine Abnahmebedingung):** der gemeinsame `useObjectUrls`-Hook bzw. die Erweiterung
+    von `useDownload` — der Teiler räumt an drei Stellen selbst auf.
+- [x] **M4-005 — PDF-Ergebnisse können nach Dateiwechsel dem falschen Namen zugeordnet werden:
+  erledigt mit benannter Grenze** *(Nachtrag 2026-10-06, Abschluss 2026-10-07)*. Zwei Befunde
+  bestätigt: Der Ergebnisname kam aus `baseName(file?.name ?? 'document')` — also aus dem **aktuellen** Formularzustand; und
   `process()` setzte Ergebnis, Fehler und Fortschritt ohne Prüfung, ob der Auftrag noch aktuell ist
   (spätes Ergebnis der alten Datei überschrieb die Liste der neuen). Neu: unveränderlicher
   Auftrags-Snapshot (`name`, `bytes`, `pageCount`, `mode`, `selection`) und `generationRef`;
@@ -568,9 +582,11 @@ Diese Liste enthält bestätigte, noch nicht abgeschlossene Arbeit. Details geh�
   - [ ] **Nicht erfüllt:** der Abnahmefall „A zuletzt fertig" ließ sich **nicht herstellen** — der
     Teiler ist schneller als jede Bedienhandlung (1200 Seiten → 1200 Dokumente in rund 0,6 s,
     Zeitmarken im Protokoll). Künstliche Verlängerungen wurden als Prüfmittel-Eingriffe verworfen.
-  - [ ] **Offen:** Unmount während eines **Fehler**wegs (Erfolgsweg belegt).
-  - [ ] Muster auf weitere asynchrone Dateiwerkzeuge übertragen (von der Karte verlangt).
-- [ ] **M4-004 — Sprachladefehler bleiben gecacht: TEILWEISE** *(Nachtrag 2026-10-06)*. Ursache
+  - [x] **Unmount auch im Fehlerweg belegt** *(2026-10-07)*: Verlassen aus dem Fehlerzustand ergibt
+    0/0/0, keine Ausnahme, keine Konsolenfehler.
+  - [ ] Muster auf weitere asynchrone Dateiwerkzeuge übertragen (von der Karte verlangt) — Fund am
+    Quelltext, kein Messergebnis; siehe den Punkt „Neu, nicht gemessen (2026-10-07)" unten.
+- [x] **M4-004 — Sprachladefehler bleiben gecacht: erledigt mit benannter Abweichung** *(Nachtrag 2026-10-06, Abschluss 2026-10-07)*. Ursache
   behoben: Alle fünf Lader (`loadToolSearchIndex`, `loadCommonToolTexts`, `loadToolTexts`,
   `loadAllToolTexts`, `loadInterfaceMessages`) legten das Import-Promise ab, ohne es bei einer
   Ablehnung wieder zu entfernen — der nächste Versuch bekam für immer den alten Fehler. Neu:
@@ -578,10 +594,16 @@ Diese Liste enthält bestätigte, noch nicht abgeschlossene Arbeit. Details geh�
   nur **dieses** Promise und nur **solange es das aktuelle ist** entfernt; der Generator wurde
   geändert und die erzeugten Dateien neu erzeugt. Bericht:
   `06-protokolle/2026-10-06-m4-004-ladecache-teil1.md`.
-  - [ ] **Der von der Karte verlangte UI-Teil fehlt:** sichtbarer, übersetzter Fehlerzustand mit
-    Wiederholung (`LoadState`, `requestKey`, Retry ohne Dokumentreload, Schutz vor
-    Reloadschleifen) in `App.tsx`/`CatalogSection.tsx`/`ToolNavigation.tsx`. Die Abnahme der Karte
-    ist damit **nicht** erfüllt.
+  - [x] **Der von der Karte verlangte UI-Teil ist gebaut** *(2026-10-07)*, **mit einer benannten
+    Abweichung:** sichtbarer, übersetzter Fehlerzustand mit kontrolliertem Neuladen, Schleifensperre
+    im Gerätespeicher und Hinweis auf verlorene Eingaben in Werkzeugtexten, Katalog, Werkzeugmenü und
+    Suiten-Seite, dazu eine **Fehlergrenze** für die nachgeladenen Werkzeuge mit getrennten Meldungen
+    (veralteter Chunk / Auswertungsfehler). Abnahme über einen Fehler-Proxy vor dem Browser:
+    7 Prüfungen grün, **0 unbehandelte Zusagen**. **Abweichung (gemessen):** „Retry ohne
+    Dokumentreload" ist bei einem gescheiterten **Modulimport** nicht möglich — der Browser merkt
+    sich die Adresse im Dokument (Minimalversuch `work/modulimport-probe.cjs`: 3 Versuche,
+    1 Netzanfrage); statt eines wirkungslosen Knopfes steht das Neuladen. Protokoll:
+    `06-protokolle/2026-10-07-m4-004-ladefehler-und-fehlerwege.md`.
 - [x] **M4-007 — Sprach-Type-Guard akzeptiert geerbte Objektschlüssel: erledigt** *(Nachtrag
   2026-10-06)*. `isLocale` fragte mit `value in localeRegistry` und damit die **Prototypenkette**
   mit: `__proto__`, `constructor`, `toString` galten als Sprachen und erreichten über
@@ -596,7 +618,7 @@ Diese Liste enthält bestätigte, noch nicht abgeschlossene Arbeit. Details geh�
   Abweichung: kein Retry im selben Dokument möglich, gemessen), **M4-005** (mit benannter Grenze),
   **M4-006**, **M4-007**, **M8-002**, **M8-003**. Offen aus dieser Stufe bleibt allein der
   gemeinsame `useObjectUrls`-Hook — laut Karte keine Abnahmebedingung.
-- [ ] Offen in R3: *(nichts mehr)*.
+- [x] Offen in R3: *(nichts mehr)*.
 - [ ] **Kein Retry im selben Dokument möglich** *(2026-10-07, gemessen)*. Ein gescheiterter
   dynamischer Modulimport lässt sich im laufenden Dokument nicht wiederholen: Der Browser merkt
   sich die Adresse, jeder weitere Versuch scheitert ohne neue Netzanfrage (Minimalversuch:
@@ -627,6 +649,38 @@ Diese Liste enthält bestätigte, noch nicht abgeschlossene Arbeit. Details geh�
   Tastaturdurchlauf, 400 % Zoom, Fokusreihenfolge, reduzierte Bewegung. Der Prüfer gibt sie am
   Ende jedes Laufs selbst aus. Nächster Schritt: bei Gelegenheit ein Vorleserdurchlauf (NVDA oder
   Narrator) auf einer Werkzeugroute, dokumentiert.
+
+## R5 — Barrierefreiheit und Designsystem (ab 2026-10-07)
+
+- [x] **R5 zur Hälfte durchgezogen** *(2026-10-07)*: **sechs Karten** im Durchzug abgeschlossen —
+  M7-006, M2-008, M2-007, M7-005, M2-006, M7-002 (M7-001 war bereits am 2026-10-06 entschieden und
+  behoben); R5 steht damit bei **7 von 9 Karten**. Neu dauerhaft: `npm run tokens:check` als
+  Pflichtteil von `check` — prüft ungelöste CSS-Variablen **und** Rohfarben ohne begründete Ausnahme.
+  **Sieben Produktfehler gefunden, die keine Karte nannte**, alle behoben: Werkzeugschubkasten ohne
+  Innenabstände (18 ungültige `var()`-Deklarationen); 1200 Objekt-URLs offen beim Verlassen während
+  eines laufenden Auftrags; weiße Beschriftung auf Markenrot an drei Stellen (im hellen Schema
+  unsichtbar); Plotter-Achsenbeschriftung dunkel 3,29:1; Rasterspur 346 px in einem 254-px-Kasten;
+  Katalog schob die Seite auf 405 px bei 320 px Fenster; Tab-Liste erreichte verborgene Nachfahren
+  geschlossener Details. Übergabe: `05-uebergaben/2026-10-07-r5-sechs-karten-abgeschlossen.md`.
+- [ ] **M7-003 — PDF-Schwärzung ohne Tastaturalternative: nicht begonnen.** Anknüpfungspunkt mit
+  Dateien, Zuständen und Belegplan in `work/r5-fortschritt.md` („Anknüpfungspunkt U7").
+- [ ] **M7-004 — PDF-Viewer stellt Text assistiver Technik nicht bereit: nicht begonnen.**
+  Anknüpfungspunkt ebd. („Anknüpfungspunkt U8").
+- [ ] **M2-006 — echter Vorleserlauf nicht herstellbar** *(2026-10-07)*: belegt sind
+  Accessibility-Baum (drei Sprachen) und Tastaturbedienung; die gesprochene Ansage bleibt Handarbeit
+  und ist **nicht** als erfüllt verbucht. Nächster Schritt: ein Vorleserdurchlauf (NVDA oder
+  Narrator) auf einer Werkzeugroute, dokumentiert.
+- [ ] **`/licenses` bricht im Projektprüfer ab** *(2026-10-07, neu)*: `a11y:check`/`viewport:check`
+  melden „Route ohne Inhalt" — 785 Paketzeilen, für den Prüfer zu lang. Nicht durch die
+  R5-Änderungen verursacht, Ursache ungeklärt. Nächster Schritt: Prüfer für lange Routen messen
+  oder die Route aufteilen.
+- [ ] **`a11y:check` nicht über alle Routen gefahren** *(2026-10-07)*: belegt sind 62 Routen ×
+  2 Breiten in beiden Schemata; der Gesamtlauf über alle Routen lief in dieser Sitzung **nicht**
+  (Laufzeit über dem Zeitfenster; im Vordergrund nötig, im Hintergrund „stdin is not a tty").
+  Nächster Schritt: vollständiger Lauf im Vordergrund mit großzügigem Zeitfenster.
+- [ ] **Kein reales Mobilgerät, kein echter Browserzoom** *(2026-10-07)*: die schmalen Layouts sind
+  über die CSS-Breite (320/390/640/683 px ≙ 200 % Zoom) gemessen, nicht auf einem Gerät; das
+  Auskoppeln bei 320 px ist nicht als eigenes Fenster geprüft.
 
 ## Pflege
 
