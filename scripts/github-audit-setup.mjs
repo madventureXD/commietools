@@ -51,7 +51,7 @@ if (process.argv.includes('runs')) {
   result.runs = []
   for (const run of list.workflow_runs) {
     const jobs = await api(`actions/runs/${run.id}/jobs`)
-    result.runs.push({ id: run.id, url: run.html_url, sha: run.head_sha, status: run.status, conclusion: run.conclusion, jobs: jobs.jobs.map((job) => ({ id: job.id, name: job.name, status: job.status, conclusion: job.conclusion, failedSteps: job.steps.filter((step) => step.conclusion === 'failure').map((step) => step.name) })) })
+    result.runs.push({ id: run.id, url: run.html_url, sha: run.head_sha, status: run.status, conclusion: run.conclusion, jobs: jobs.jobs.map((job) => ({ id: job.id, name: job.name, status: job.status, conclusion: job.conclusion, activeSteps: job.steps.filter((step) => step.status === 'in_progress').map((step) => step.name), failedSteps: job.steps.filter((step) => step.conclusion === 'failure').map((step) => step.name) })) })
   }
 }
 if (process.argv.includes('pr')) {

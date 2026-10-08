@@ -118,17 +118,20 @@ try {
   await browser.oeffne(service.origin + '/tools/photo-caption')
   console.log('CRAFT stage: measured photo load')
   await until('!!document.querySelector("main input[type=file]")')
-  const large = await browser.evaluate(`(async()=>{const m=await import('/audit-reader.js');return m.colourImage('#4499aa',4000,3000)})()`)
+  for (const [count, width, height] of [[60, 4000, 3000], [24, 8000, 6000]]) {
+  await browser.oeffne(service.origin + '/tools/photo-caption')
+  const large = await browser.evaluate(`(async()=>{const m=await import('/audit-reader.js');return m.colourImage('#4499aa',${width},${height})})()`)
   const samples = []
-  for (let n = 0; n < 12; n += 1) { const path = resolve(output, `load-${n}.png`); writeFileSync(path, Buffer.from(large, 'base64')); samples.push(path) }
+  for (let n = 0; n < count; n += 1) { const path = resolve(output, `load-${width}-${n}.png`); writeFileSync(path, Buffer.from(large, 'base64')); samples.push(path) }
   const before = workingSet(); const started = Date.now(); let peak = before
   const poll = setInterval(() => { peak = Math.max(peak, workingSet()) }, 500)
   try {
-    await choose(samples); await until('document.querySelectorAll("main .caption-canvas").length===12', 500)
+    await choose(samples); await until(`document.querySelectorAll("main .caption-canvas").length===${count}`, 1800)
     await browser.evaluate('document.querySelector("main button.primary").click()')
-    await until('document.querySelectorAll("main .save-file-control").length===13', 1000)
+    await until(`document.querySelectorAll("main .save-file-control").length===${count + 1}`, 2400)
   } finally { clearInterval(poll) }
-  passed.push({ tool: 'photo-caption', measuredLoad: { count: 12, width: 4000, height: 3000, totalPixels: 144_000_000, elapsedMs: Date.now() - started, allEdgeWorkingSetBefore: before, allEdgeWorkingSetPeak: peak, processScope: 'all Edge processes; includes any existing unrelated Edge processes', result: 'passed; tested load, not maximum or crash boundary' } })
+  passed.push({ tool: 'photo-caption', measuredLoad: { count, width, height, totalPixels: count * width * height, elapsedMs: Date.now() - started, allEdgeWorkingSetBefore: before, allEdgeWorkingSetPeak: peak, processScope: 'all Edge processes; includes any existing unrelated Edge processes', result: 'passed; tested load, not maximum or crash boundary' } })
+  }
   const external = browser.anfragen.filter((url) => !url.startsWith(service.origin) && !url.startsWith('data:') && !url.startsWith('blob:'))
   assert.deepEqual(external, []); assert.deepEqual(browser.fehler, [])
   console.log(JSON.stringify({ passed, externalBrowserRequests: 0, limits: 'Measured supported load does not establish a hardware-independent maximum.' }, null, 2))

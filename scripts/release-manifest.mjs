@@ -31,7 +31,7 @@ const provenance = {
   toolchain: JSON.parse(readFileSync('licenses/rust-components.json', 'utf8')).grundlage.werkzeuge,
   distDigest: hash(JSON.stringify(files)), files,
   taskAuthorization: 'MS1–MS7 authorized by user; no repeat approval required within scope',
-  releaseApproval: 'scope authorized; independent release conditions still outstanding', independentA2: 'not-recorded', deployment: null
+  releaseApproval: 'scope authorized; original native/device and production conditions still outstanding', independentA2: { reviewer: 'Codex', appointedBy: 'Thomas, explicit instruction 2026-10-08', report: 'abschlusspruefung.md', personalSeparationFromImplementation: false, scope: 'Review and executable counterchecks; unavailable native/device criteria remain explicit' }, deployment: null
 }
 const path = process.argv[2] ?? 'uebergabe/07-pruefung/fertigstellung/2026-10-08-ms1-ms7/release-candidate.json'
 writeFileSync(path, JSON.stringify(provenance, null, 2) + '\n')

@@ -41,7 +41,7 @@
     "beleg:mutation-zusammenlegung": "node scripts/belege/mutation-zusammenlegung.mjs",
     "beleg:mutation-routing": "node scripts/belege/mutation-routing.mjs",
     "beleg:kartenstand": "node scripts/belege/kartenstand.mjs",
-    "policy:test": "node --test scripts/rust-review-policy.test.mjs && node scripts/license-mutants.mjs",
+    "policy:test": "node --test scripts/rust-review-policy.test.mjs scripts/build-identity.test.mjs && node scripts/license-mutants.mjs",
     "m7:check": "node scripts/m7-eu-dss-audit.mjs",
     "verify:finish": "node scripts/verify-fertigstellung.mjs",
     "pdf:browser": "node scripts/pdf-browser-audit.mjs",
