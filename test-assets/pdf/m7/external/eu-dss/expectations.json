@@ -3,7 +3,7 @@
   "fixtures": [
     {
       "name": "BadEncodedCMS.pdf",
-      "sha256": "08a33cdbf5b278673a014dfef524cd029fd13c2a286c1deeb91d9c4b60e5ade1",
+      "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
       "source": "https://github.com/esig/dss/blob/c8aea1f90958a851f651fe39f1575fcbd6d4a11d/dss-pades/src/test/resources/validation/BadEncodedCMS.pdf",
       "license": "LGPL-2.1-or-later",
       "expectationSource": "README.md#erwartung-und-commietools-ergebnis",
