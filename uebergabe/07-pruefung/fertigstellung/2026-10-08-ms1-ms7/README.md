@@ -95,3 +95,20 @@ physischer Touch und originale noch nicht gemessene Liefer-/Altprofil-/NEL-Empf�
 Windows verweigert auch nach erneuter Vollzugriffsfreigabe `GetCursorPos` mit `0x80070005`.
 Diese Messungen werden nicht durch Häkchen ersetzt. Keine neue technische Betreiberentscheidung
 und keine erneute Arbeitsfreigabe erforderlich.
+
+## Nachtrag 2026-10-08 — tatsächlicher grüner Kandidat
+
+Die noch offene erfolgreiche CI in den früheren Tabellen ist für Revision
+`524f0738f1c04a997735b82174b2c18b3adb0e44` durch
+[Run 37768849407](https://github.com/madventureXD/commietools/actions/runs/37768849407)
+erfüllt: alle vier Pflichtjobs erfolgreich. `github-artifact.json` bindet die komplette
+öffentliche Vorschau an das tatsächliche CI-Archiv, 696 öffentliche Dateien ohne Abweichung;
+die frühere pauschale Aussage über einen fehlenden kompletten Artefaktnachweis ist überholt.
+Quell-/Buildlinks, NEL-Beobachtung im ursprünglichen begrenzten Vertrag und echter
+Service-Worker-Buildwechsel sind ebenfalls geprüft. Siehe [Abschlussprüfung](abschlusspruefung.md).
+
+Die eingefrorene 21-Stufen-Messung gehört zu `release-candidate-21-stages.json`.
+Die abschließende CSS-Korrektur und die ergänzte 54-Fälle-Ergebnismatrix werden separat
+geprüft; kein rückwirkendes Umetikettieren der 21 Stufen. Zusätzlich ausführbar:
+`npm run verify:finish result-states` und `npm run verify:finish de-regions`.
+Native Originalabnahmen bleiben wegen des erneut bestätigten Windows-Zugriffsfehlers offen.

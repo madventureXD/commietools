@@ -1,0 +1,11 @@
+{
+  "checkedDate": "2026-10-08",
+  "timestampPrecision": "date; direct tool result after latest user full-access instruction",
+  "authorization": "User latest full-access instruction; no additional approval required",
+  "method": "Computer Use @oai/sky list_apps followed by launch_app for installed Microsoft Edge",
+  "target": "C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe",
+  "nativeBrowserWindowsReturned": 0,
+  "launchSucceeded": false,
+  "error": "GetCursorPos failed: Zugriff verweigert (0x80070005)",
+  "scope": "No native picker, spoken screen reader, OS keyboard, real browser zoom or physical touch PASS inferred. No security or privacy settings changed."
+}

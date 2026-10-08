@@ -638,3 +638,47 @@ Weg A bleibt unverändert; der begrenzte Originalvertrag ist damit abgenommen. B
 Feldpräzisierung mit Primärquellen in `docs/architecture.md`. Die Aussagen über diese beiden
 technischen Restbedingungen im Stand `77d38e51979cd9eff2813fe0d67b1e94ed5ca34b` sind überholt.
 Native/physische Originalkriterien und Gesamtproduktionsfreigabe bleiben davon getrennt offen.
+
+## Nachtrag 2026-10-08 — abschließende Einzelkartenabgrenzung
+
+Die frühere offene Kandidaten-CI aus Revision `524f0738f1c04a997735b82174b2c18b3adb0e44`
+ist durch [Run 37768849407](https://github.com/madventureXD/commietools/actions/runs/37768849407)
+erfüllt: alle vier Jobs erfolgreich. Die zusätzliche Ergebnisprüfung hat zwei Layoutfehler
+gefunden und nach Korrektur alle 54 Kombinationen bestanden. Beleg:
+[result-states.json](../07-pruefung/fertigstellung/2026-10-08-ms1-ms7/result-states.json).
+Der korrigierte Kandidat und seine spätere CI-/Lieferprüfung werden separat gebunden.
+Die 21-Stufen-Kette ist unter `release-candidate-21-stages.json` unverändert eingefroren.
+
+Von den 26 ursprünglichen Restverträgen sind 19 innerhalb ihrer dokumentierten Abgrenzung
+technisch geprüft. Sieben Karten behalten echte native/physische Restkriterien. Die 33 B-Karten
+behalten ihre ursprüngliche begrenzte Bewertung; kein pauschales WCAG-/Sicherheits-Gesamturteil.
+
+| Karten | Abschließende Disposition und Beleg |
+|---|---|
+| M8-001 | Öffentliche Kandidaten-CSP, tatsächliches WASM und eng/deu/spa-OCR bestanden; `preview-delivery.json` |
+| M9-001 | Gebundene genehmigte Ausnahmen, 174 Originalhinweise und zwei bis 2026-11-08 befristete Hinweisausnahmen; drei rote Lizenzmutanten; OP-067 ist Nachverfolgung |
+| M9-002 | Integrierte benannte Sicherheitsreview mit Parser-/Größen-/Kryptogrenzen und aktuellen Advisories; verbleibender RSA-Hinweis mittel ohne Fix sichtbar, keine pauschale Entwarnung |
+| M9-003 | Tatsächliche veröffentlichte modifizierte Quellen, Buildanleitung und QPDF-Upstreamressourcen geprüft; `github-sources.json`; kompletter CI-/Preview-Bytevergleich |
+| M9-004 | Native/wasm32-Pflichtjobs und bytegleicher eigener Windows-WASM-Neubau; frischer Clone ohne QM/work bestanden |
+| M4-004, M8-002 | Reguläre Offline-/Quota-/Eviction-/drei-Sprachen-Proben plus echter alter/neuer Build, Controllerwechsel, erhaltene Daten und tatsächliche de/en-PDF-Ausgabe offline; `sw-upgrade.json` |
+| M1-003, M5-003 | SHA-gebundene Actions, tatsächlicher strenger main-Schutz auch für Administratoren, grüner CI-Stand und wirkliche rote Hashprobe; skipped Browser verhindert Releasepflicht-PASS |
+| M4-005, M4-009 | Echte Auswahl-/await-/URL-/StrictMode-Gegenproben, eindeutige Eigentümer und Fehlerwege; integrierte Review |
+| M3-009 | Alle Rohtextklassen automatisiert; vier echte vollständige Root-Mutationen jeweils rot und exakt wiederhergestellt |
+| M2-007 | Tatsächlich erzeugte PDF-Seitenaktionen, Icon-Ergebnisse, Details und Menüsortierung bei 320/390/1360 px, de/en/es und beiden Themes: 54/54 Fälle bestanden; 44 px unverändert |
+| M2-001, M2-004 | ADR-/Gate-/Quellstatus mit konkreten Reports konsistent; QPDF-/P12-/DSS-/Effektgates bestanden; Gesamtproduktionsfreigabe bleibt ausdrücklich bedingt |
+| M10-003, M10-004 | Vier unveränderte historische Aktenfassungen archiviert, OP-062 regelgerecht erledigt, tragende Prüfer versioniert und aus frischem Clone ausführbar |
+| M10-005 | Ursprüngliche Umfangsmatrix und neue D/E-Routen separat geprüft; sechs Rechenfälle in beiden Regionen, Fremdfoto/EXIF/Pixel/PDF, zwei Unterschriften und sechs gerenderte PDF-Seiten, große Fotostapel; native Restfälle ausdrücklich benannt |
+| M8-005 | Originalvertrag "soweit prüfbar" erfüllt: öffentliche Header mit Zeit/Revision, frisches/benutztes Profil, harmlose eigene Fehlerprobe und Felder/Zweck/Empfänger; kein Versand beobachtbar, kein Versand-PASS |
+| M5-002 | **Offen:** echte native Picker, Abbruch und native Schreibfehler. Tatsächliche Downloadbytes/Unicode sind geprüft, ersetzen diese Fälle nicht |
+| M2-009 | **Offen:** echte Vorleserprüfung Viewer und Rechner/Menü sowie manuelle native Zoomprobe; automatische Scanner-/Menü-/Gegenproben und tatsächliche Tastaturdurchläufe bestanden |
+| M2-006 | **Offen:** tatsächliche gesprochene Vorleseransagen; lokalisierte DOM-/Accessibility-Namen geprüft |
+| M7-002 | **Offen:** tatsächliche Hilfstechnik und reale Such-/Menübedienung; sieben Tastaturgruppen/278 Tab-Ereignisse einschließlich Rückkehr bestanden |
+| M7-003 | **Offen:** physischer Touch, Rotation, native Bildschirmtastatur und Dateiauswahl; echte Tastatur-Schwärzung und unabhängig gelesene Exportwirkung bestanden |
+| M7-004 | **Offen:** reale gesprochene Vorleser-/Lesereihenfolge und natives Auskoppeln; Textbaum, gedrehte/leertextige Seiten und Tastatur geprüft |
+| M7-005 | **Offen:** echter 200/400-%-Browserzoom und reale mobile Zielgeräte; Headless-Reflow und aktive Ergebniszustände bestanden |
+
+MS1/MS2/MS4/MS5 haben damit ihre ausführbaren technischen Exits. MS3/MS6/MS7 bleiben für
+die sieben ausdrücklich genannten Original-Geräteverträge und daraus folgende Gesamtfreigabe
+teilweise. Windows verweigert den nativen Edge-Start auch nach Thomas' neuester Freigabe mit
+`GetCursorPos ... 0x80070005`; reale physische Zielgeräte sind nicht erreichbar. Kein fehlender
+Betreiberentscheid, keine neue Prüferbenennung und keine technische Frage an Thomas.

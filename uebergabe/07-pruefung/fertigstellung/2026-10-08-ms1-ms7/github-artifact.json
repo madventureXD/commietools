@@ -1,10 +1,10 @@
 {
-  "checkedAt": "2026-10-08T11:01:15.947Z",
+  "checkedAt": "2026-10-08T11:20:07.786Z",
   "artifact": {
-    "sha": "77d38e51979cd9eff2813fe0d67b1e94ed5ca34b",
-    "run": 37766781687,
-    "origin": "https://66e9076e.commietools.pages.dev",
-    "archiveSha256": "140bcbccc7fecace15a2ae2fd5d9dcdfc6ed04da102da0c1fdabd2f97aaf81f3",
+    "sha": "524f0738f1c04a997735b82174b2c18b3adb0e44",
+    "run": 37768849407,
+    "origin": "https://c8ff7b8c.commietools.pages.dev",
+    "archiveSha256": "323c903894041adc1610d97d56740cb3d484d00f0310dbe117801d91d13848a5",
     "checkedFiles": 696,
     "hostingControlFiles": [
       {

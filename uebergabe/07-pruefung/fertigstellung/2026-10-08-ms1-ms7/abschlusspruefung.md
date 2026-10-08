@@ -190,3 +190,34 @@ die dritte Gegenprobe vor Produktkorrektur zeigt den tatsächlichen veralteten S
 [sw-upgrade-before-fix.json](sw-upgrade-before-fix.json). Eine weitere einmalige Bereitschafts-
 Timeoutprobe wird nicht als PASS behandelt. Der gemeinsame endgültige Wiederholungslauf wird
 separat ausgewiesen.
+
+## Nachtrag 2026-10-08 — erfolgreicher integrierter Kandidat und letzte Layoutkorrektur
+
+Die oben noch verlangte erfolgreiche Kandidaten-CI ist für
+`524f0738f1c04a997735b82174b2c18b3adb0e44` tatsächlich erfüllt:
+[Run 37768849407](https://github.com/madventureXD/commietools/actions/runs/37768849407),
+alle vier Jobs abgeschlossen und erfolgreich, einschließlich Windows-Browser, Rust-Neubau
+und Releasepflicht. Die 21 integrierten lokalen Stufen gehören zum selben Produktstand:
+[eingefrorener Kandidat](release-candidate-21-stages.json), Quellidentität
+`339a777072bfb1e7ceb1a058a3224a63e5792a2475d5c6ba0f44eaa6d883de04`.
+Spätere Root-Läufe überschreiben diese eingefrorene Messung nicht.
+
+Die zusätzliche aktive Ergebnisprüfung fand bei 320 px einen abgeschnittenen Auskoppelknopf
+und zu schmale Icon-Dateinamensfelder. Der Knopf darf jetzt umbrechen; die Icon-Ergebniszellen
+haben mindestens 14 rem und auf schmalen Geräten eine Spalte. Die fehlgeschlagenen Messungen
+bleiben in `result-states-before-fix.json` und `result-states-icon-before-fix.json` erhalten.
+Der ergänzte Browserpflichtschritt erzeugt echte PDF-Seitenaktionen und Icon-Ergebnisse und
+prüft 54 Kombinationen: drei Werkzeuge, drei Sprachen, drei Breiten und beide Themes.
+Sein endgültiger Lauf und die CI des korrigierten Stands werden separat gebunden.
+
+Ein absichtlich langer Dateiname scrollt in einem einzeiligen, bearbeitbaren Textfeld.
+Das ist kein verschwundener Knopf: rohe Clipping-Messwerte bleiben erhalten, und nur bei
+nachgewiesener unveränderter Eingabe, End-Cursor am vollständigen Ende mit Scrollbewegung
+und Home-Cursor am Anfang wird dieser konkrete Befund gesondert eingeordnet. Andere
+Clipping-Befunde bleiben Fehler. Dies belegt Browser-Tastaturbedienung, keinen nativen Picker.
+
+Nach der neuesten Vollzugriffsfreigabe erneut mit dem Computer-Use-Plugin versucht:
+native Edge-Ausführung scheitert weiterhin mit `GetCursorPos failed: Zugriff verweigert
+(0x80070005)`. Keine weitere Betreiberentscheidung fehlt. Tatsächlich nicht gemessene native
+und physische Originalkriterien bleiben als Rest erhalten; die Produktionsfreigabe folgt daraus
+noch nicht. Die genaue Kartenabgrenzung steht ausschließlich im laufenden QM-Leitfaden.

@@ -1,0 +1,37 @@
+{
+  "checkedAt": "2026-10-08T11:23:11.783Z",
+  "build": "339a777072bfb1e7ceb1a058a3224a63e5792a2475d5c6ba0f44eaa6d883de04",
+  "scannerSha256": "7075cc5081cf9326b0666588b432229d02291941dad09550059f752a7ae09de1",
+  "cases": [
+    {
+      "scheme": "light",
+      "locale": "de",
+      "route": "pdf-viewer",
+      "width": 320,
+      "controls": 18,
+      "menuControls": 137,
+      "headings": {
+        "sequence": [
+          1,
+          2,
+          3
+        ],
+        "h1Count": 1,
+        "jumps": [],
+        "jumpsOpened": [],
+        "closedSections": 7
+      },
+      "skippedContrast": [],
+      "problems": [
+        {
+          "kind": "clipped",
+          "element": "button.button.detach",
+          "clientWidth": 236,
+          "scrollWidth": 239,
+          "name": "In eigenes Fenster auskoppeln"
+        }
+      ]
+    }
+  ],
+  "scope": "Actual generated PDF viewer/icon states and opened details, three locales, three widths, both schemes. Heuristic scanner, no native zoom/reader/touch claim."
+}

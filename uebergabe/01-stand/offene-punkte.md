@@ -431,3 +431,14 @@ Kein Versand beobachtbar; diese Grenze ist dokumentiert und wird nicht als zusä
 Originalvertrag nicht geforderter Kontozugang blockierend geführt. Belege im Abschlussbericht.
 Die Bündelpunkte bleiben wegen tatsächlich fehlender nativer/physischer Originalabnahmen und
 dadurch fehlender Gesamtproduktionsfreigabe offen; Prüferrolle/technische Zuständigkeit sind geklärt.
+
+### Nachtrag 2026-10-08 — verbleibende Original-Gerätekriterien
+
+Die aktuelle Einzelkartenkontrolle ergibt 19 technisch geprüfte Restverträge und sieben Karten
+mit tatsächlichen nativen/physikalischen Restmessungen: M5-002, M2-009, M2-006, M7-002,
+M7-003, M7-004 und M7-005. Maßgebliche Abgrenzung und Belege im datierten QM-Leitfaden.
+Die neue aktive Ergebnismatrix M2-007 besteht 54/54 Fälle; die tatsächliche CI von Revision
+`524f0738f1c04a997735b82174b2c18b3adb0e44` besteht alle vier Jobs. Der nochmals versuchte native
+Edge-Start scheitert weiterhin mit 0x80070005. OP-065/066 bleiben ausschließlich für diese
+konkreten Originalmessungen und die daraus folgende Gesamtfreigabe offen; OP-067 bleibt die
+bereits genehmigte befristete Hinweisnachverfolgung. Kein weiterer Genehmigungs-/Prüferdialog.

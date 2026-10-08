@@ -663,3 +663,19 @@ plattformabhängige Text-Zeilenenden; Binärbytes bleiben exakt gebunden.
 separat geführt. Native Dateidialoge, echte Vorleseransagen/Browserzoom/physischer Touch und noch
 unbestätigte originale Betriebsbedingungen bleiben offen. Windows-Bedienzugriff scheitert auch
 nach erneuter Vollzugriffsfreigabe mit 0x80070005; kein erfundenes Gesamt-PASS.
+
+## Nachtrag 2026-10-08 — grüner integrierter CI-Stand
+
+Revision `524f0738f1c04a997735b82174b2c18b3adb0e44` besteht alle vier Pflichtjobs im
+[tatsächlichen GitHub-Lauf](https://github.com/madventureXD/commietools/actions/runs/37768849407).
+Die zugehörige Vorschau ist mit allen 696 öffentlichen Dateien bytegleich zum CI-Artefakt;
+WASM und eng/deu/spa-OCR unter öffentlicher CSP bestehen. Echter Buildwechsel mit erhaltenen
+Prüffristdaten und Offline-PDF in de/en ist ausgeführt. Der gefundene veraltete warme
+Sprachstatus ist repariert. NEL wurde nach dem Originalvertrag "soweit prüfbar" beobachtet;
+kein Versand beobachtbar, kein interner Empfängerzugang als zusätzliche Voraussetzung.
+
+Die anschließende zusätzliche Ergebnismatrix fand zwei Layoutfehler (Auskoppelknopf und
+Icon-Ergebnisfelder). CSS-Korrektur und weiterer Browserpflichtschritt sind im Abschlussbericht
+benannt. Der zugehörige spätere Kandidat erhält eigene Messungen; die 21-Stufen-Messung bleibt
+an ihren tatsächlich geprüften Stand gebunden. Native Bedienung erneut versucht, weiterhin
+Windows-Fehler 0x80070005. Technische Zuständigkeit und Arbeitsfreigabe sind vollständig geklärt.

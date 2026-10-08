@@ -137,6 +137,7 @@ jobs:
       - run: node scripts/craft-browser-audit.mjs
       - run: node scripts/offline-locale-audit.mjs
       - run: node scripts/pdf-ui-acceptance.mjs
+      - run: node scripts/result-states-audit.mjs
 
   rust:
     name: Rust-Prüfungen (nativ und wasm32)

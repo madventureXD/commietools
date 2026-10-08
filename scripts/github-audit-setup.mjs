@@ -39,7 +39,15 @@ if (process.argv.includes('sources')) {
     if (normalize(bytes) !== normalize(readFileSync(path))) throw new Error('Published build/source differs: ' + path)
     files.push({ path, gitBlob: file.sha, publicSha256: hash(bytes), currentSourceEqualIgnoringCheckoutLineEndings: true })
   }
-  result.sources = { deploymentRevision: delivery.delivery.sha, publishedSourceRevision: revision, origin, source: signer.source, build: signer.build, wasmSha256: signer.sha256, engineSourceFiles: tree.tree.filter((item) => item.type === 'blob' && item.path.startsWith('crates/pdf-signer-engine/')).length, files, scope: 'Actual published registry links and immutable GitHub source/build instructions; no upstream-only link substituted for modified GPL sources.' }
+  const qpdf = registry.artifacts.find((item) => item.id === 'qpdf-wasm-12.2.0')
+  const upstreamResources = []
+  for (const [url, expected] of [[qpdf.source, '0.3.0'], [qpdf.build.replace('https://github.com/', 'https://raw.githubusercontent.com/').replace('/blob/', '/'), '12.2.0']]) {
+    const response = await fetch(url, { signal: AbortSignal.timeout(30000) })
+    const bytes = Buffer.from(await response.arrayBuffer())
+    if (response.status !== 200 || !bytes.toString('utf8').includes(expected)) throw new Error('Wrong upstream source/build resource: ' + url)
+    upstreamResources.push({ url, status: response.status, expectedContent: expected, sha256: hash(bytes), bytes: bytes.length })
+  }
+  result.sources = { deploymentRevision: delivery.delivery.sha, publishedSourceRevision: revision, origin, source: signer.source, build: signer.build, wasmSha256: signer.sha256, engineSourceFiles: tree.tree.filter((item) => item.type === 'blob' && item.path.startsWith('crates/pdf-signer-engine/')).length, files, upstreamResources, scope: 'Actual published registry links and immutable GitHub source/build instructions; no upstream-only link substituted for modified GPL sources. QPDF release and pinned Dockerfile are actual upstream resources, not own SPA fallback.' }
 }
 if (process.argv.includes('artifact')) {
   const delivery = JSON.parse(readFileSync('uebergabe/07-pruefung/fertigstellung/2026-10-08-ms1-ms7/github-delivery.json'))

@@ -94,3 +94,22 @@ eigene Offline-Fehlerprobe ausgeführt. Kein Versand beobachtbar. Der ursprüngl
 Beobachtung "soweit prüfbar", keinen internen Empfängerzugang; kein künstlicher zusätzlicher
 Freigabeblocker. Veröffentlichte Engine-Quellen/Buildlinks tatsächlich gegen acht tragende Dateien
 und den vollständigen Git-Baum geprüft. Die native/physische Messgrenze bleibt unverändert.
+
+## Nachtrag 2026-10-08 — abschließende Kandidatenprüfung
+
+Die vorherige Zeile "laufend ist kein PASS" bleibt für damalige laufende Prüfungen richtig.
+Inzwischen ist Revision `524f0738f1c04a997735b82174b2c18b3adb0e44` im tatsächlichen
+[GitHub-Lauf 37768849407](https://github.com/madventureXD/commietools/actions/runs/37768849407)
+mit vier erfolgreichen Pflichtjobs abgeschlossen. Die 21 lokalen Stufen sind separat
+eingefroren, komplette Vorschau/CI-Artefaktidentität ist mit 696 Dateien belegt.
+
+Eine zusätzliche Ergebnismatrix hat noch zwei CSS-Layoutfehler aufgedeckt und zur Korrektur
+geführt. Sie prüft echte erzeugte PDF-/Icon-Zustände statt leerer Formulare, 54 Kombinationen
+mit de/en/es, 320/390/1360 px und beiden Themes. Der korrigierte Produktstand wird separat
+mit Root-Check/Build und realer CI geprüft; vorherige Fehlmessungen sind erhalten.
+
+Die Aussage "Originale Produktiv-/Altprofil-/NEL-Empfängerbedingungen noch nicht vollständig
+belegt" ist für Buildwechsel und NEL durch die dokumentierten tatsächlichen Prüfungen überholt.
+Offen bleiben die ausdrücklich benannten nativen/physikalischen Originalmessungen. Nach
+der jüngsten Vollzugriffsfreigabe scheitert die native Edge-Ausführung weiterhin mit 0x80070005.
+Status dieser Gesamtübergabe bleibt deshalb teilweise; keine neue Genehmigung ist erforderlich.

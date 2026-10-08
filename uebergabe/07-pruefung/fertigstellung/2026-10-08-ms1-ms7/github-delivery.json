@@ -1,60 +1,60 @@
 {
-  "checkedAt": "2026-10-08T10:59:24.432Z",
+  "checkedAt": "2026-10-08T11:19:15.422Z",
   "delivery": {
-    "sha": "77d38e51979cd9eff2813fe0d67b1e94ed5ca34b",
+    "sha": "524f0738f1c04a997735b82174b2c18b3adb0e44",
     "checks": [
       {
         "name": "Barrierefreiheit und Überbreite (Windows, Edge)",
         "conclusion": null,
-        "details_url": "https://github.com/madventureXD/commietools/actions/runs/37766781687/job/113276734280",
+        "details_url": "https://github.com/madventureXD/commietools/actions/runs/37768849407/job/113283473121",
         "output": {
           "title": null,
           "summary": null,
           "text": null,
           "annotations_count": 0,
-          "annotations_url": "https://api.github.com/repos/madventureXD/commietools/check-runs/113276734280/annotations"
+          "annotations_url": "https://api.github.com/repos/madventureXD/commietools/check-runs/113283473121/annotations"
         }
       },
       {
         "name": "Cloudflare Pages",
         "conclusion": "success",
-        "details_url": "https://dash.cloudflare.com/?to=/d5ebb6bc5a0df900080fa689a273d6c5/pages/view/commietools/66e9076e-f3fc-40ea-96be-6db379f75b2d",
+        "details_url": "https://dash.cloudflare.com/?to=/d5ebb6bc5a0df900080fa689a273d6c5/pages/view/commietools/c8ff7b8c-a8f8-47fc-bc92-1b6dbd2148f1",
         "output": {
           "title": "Deployed successfully",
-          "summary": "<table><tr><td><strong>Latest commit:</strong> </td><td>\n<code>77d38e5</code>\n</td></tr>\n<tr><td><strong>Status:</strong></td><td>&nbsp;✅&nbsp; Deploy successful!</td></tr>\n<tr><td><strong>Preview URL:</strong></td><td>\n<a href='https://66e9076e.commietools.pages.dev'>https://66e9076e.commietools.pages.dev</a>\n</td></tr>\n<tr><td><strong>Branch Preview URL:</strong></td><td>\n<a href='https://audit-fertigstellung-2026-10.commietools.pages.dev'>https://audit-fertigstellung-2026-10.commietools.pages.dev</a>\n</td></tr>\n</table>\n\n[View logs](https://dash.cloudflare.com/?to=/d5ebb6bc5a0df900080fa689a273d6c5/pages/view/commietools/66e9076e-f3fc-40ea-96be-6db379f75b2d)\n",
+          "summary": "<table><tr><td><strong>Latest commit:</strong> </td><td>\n<code>524f073</code>\n</td></tr>\n<tr><td><strong>Status:</strong></td><td>&nbsp;✅&nbsp; Deploy successful!</td></tr>\n<tr><td><strong>Preview URL:</strong></td><td>\n<a href='https://c8ff7b8c.commietools.pages.dev'>https://c8ff7b8c.commietools.pages.dev</a>\n</td></tr>\n<tr><td><strong>Branch Preview URL:</strong></td><td>\n<a href='https://audit-fertigstellung-2026-10.commietools.pages.dev'>https://audit-fertigstellung-2026-10.commietools.pages.dev</a>\n</td></tr>\n</table>\n\n[View logs](https://dash.cloudflare.com/?to=/d5ebb6bc5a0df900080fa689a273d6c5/pages/view/commietools/c8ff7b8c-a8f8-47fc-bc92-1b6dbd2148f1)\n",
           "text": null,
           "annotations_count": 0,
-          "annotations_url": "https://api.github.com/repos/madventureXD/commietools/check-runs/113276626086/annotations"
+          "annotations_url": "https://api.github.com/repos/madventureXD/commietools/check-runs/113283359426/annotations"
         }
       },
       {
         "name": "Lizenz, Katalog, Lint, Typen, Tests, Bau",
         "conclusion": "success",
-        "details_url": "https://github.com/madventureXD/commietools/actions/runs/37766781687/job/113276272407",
+        "details_url": "https://github.com/madventureXD/commietools/actions/runs/37768849407/job/113283077577",
         "output": {
           "title": null,
           "summary": null,
           "text": null,
           "annotations_count": 12,
-          "annotations_url": "https://api.github.com/repos/madventureXD/commietools/check-runs/113276272407/annotations"
+          "annotations_url": "https://api.github.com/repos/madventureXD/commietools/check-runs/113283077577/annotations"
         }
       },
       {
         "name": "Rust-Prüfungen (nativ und wasm32)",
         "conclusion": null,
-        "details_url": "https://github.com/madventureXD/commietools/actions/runs/37766781687/job/113276272211",
+        "details_url": "https://github.com/madventureXD/commietools/actions/runs/37768849407/job/113283077064",
         "output": {
           "title": null,
           "summary": null,
           "text": null,
           "annotations_count": 0,
-          "annotations_url": "https://api.github.com/repos/madventureXD/commietools/check-runs/113276272211/annotations"
+          "annotations_url": "https://api.github.com/repos/madventureXD/commietools/check-runs/113283077064/annotations"
         }
       }
     ],
     "comments": [
       {
-        "body": "## Deploying commietools with &nbsp;<a href=\"https://pages.dev\"><img alt=\"Cloudflare Pages\" src=\"https://user-images.githubusercontent.com/23264/106598434-9e719e00-654f-11eb-9e59-6167043cfa01.png\" width=\"16\"></a> &nbsp;Cloudflare Pages\n\n<table><tr><td><strong>Latest commit:</strong> </td><td>\n<code>77d38e5</code>\n</td></tr>\n<tr><td><strong>Status:</strong></td><td>&nbsp;✅&nbsp; Deploy successful!</td></tr>\n<tr><td><strong>Preview URL:</strong></td><td>\n<a href='https://66e9076e.commietools.pages.dev'>https://66e9076e.commietools.pages.dev</a>\n</td></tr>\n<tr><td><strong>Branch Preview URL:</strong></td><td>\n<a href='https://audit-fertigstellung-2026-10.commietools.pages.dev'>https://audit-fertigstellung-2026-10.commietools.pages.dev</a>\n</td></tr>\n</table>\n\n[View logs](https://dash.cloudflare.com/?to=/d5ebb6bc5a0df900080fa689a273d6c5/pages/view/commietools/66e9076e-f3fc-40ea-96be-6db379f75b2d)\n",
+        "body": "## Deploying commietools with &nbsp;<a href=\"https://pages.dev\"><img alt=\"Cloudflare Pages\" src=\"https://user-images.githubusercontent.com/23264/106598434-9e719e00-654f-11eb-9e59-6167043cfa01.png\" width=\"16\"></a> &nbsp;Cloudflare Pages\n\n<table><tr><td><strong>Latest commit:</strong> </td><td>\n<code>524f073</code>\n</td></tr>\n<tr><td><strong>Status:</strong></td><td>&nbsp;✅&nbsp; Deploy successful!</td></tr>\n<tr><td><strong>Preview URL:</strong></td><td>\n<a href='https://c8ff7b8c.commietools.pages.dev'>https://c8ff7b8c.commietools.pages.dev</a>\n</td></tr>\n<tr><td><strong>Branch Preview URL:</strong></td><td>\n<a href='https://audit-fertigstellung-2026-10.commietools.pages.dev'>https://audit-fertigstellung-2026-10.commietools.pages.dev</a>\n</td></tr>\n</table>\n\n[View logs](https://dash.cloudflare.com/?to=/d5ebb6bc5a0df900080fa689a273d6c5/pages/view/commietools/c8ff7b8c-a8f8-47fc-bc92-1b6dbd2148f1)\n",
         "html_url": "https://github.com/madventureXD/commietools/pull/1#issuecomment-6057679861"
       }
     ],

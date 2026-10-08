@@ -1,6 +1,47 @@
 {
-  "checkedAt": "2026-10-08T11:10:13.905Z",
+  "checkedAt": "2026-10-08T11:28:36.092Z",
   "runs": [
+    {
+      "id": 37768849407,
+      "url": "https://github.com/madventureXD/commietools/actions/runs/37768849407",
+      "sha": "524f0738f1c04a997735b82174b2c18b3adb0e44",
+      "status": "completed",
+      "conclusion": "success",
+      "jobs": [
+        {
+          "id": 113283077064,
+          "name": "Rust-Prüfungen (nativ und wasm32)",
+          "status": "completed",
+          "conclusion": "success",
+          "activeSteps": [],
+          "failedSteps": []
+        },
+        {
+          "id": 113283077577,
+          "name": "Lizenz, Katalog, Lint, Typen, Tests, Bau",
+          "status": "completed",
+          "conclusion": "success",
+          "activeSteps": [],
+          "failedSteps": []
+        },
+        {
+          "id": 113283473121,
+          "name": "Barrierefreiheit und Überbreite (Windows, Edge)",
+          "status": "completed",
+          "conclusion": "success",
+          "activeSteps": [],
+          "failedSteps": []
+        },
+        {
+          "id": 113287834053,
+          "name": "Releasepflicht",
+          "status": "completed",
+          "conclusion": "success",
+          "activeSteps": [],
+          "failedSteps": []
+        }
+      ]
+    },
     {
       "id": 37766781687,
       "url": "https://github.com/madventureXD/commietools/actions/runs/37766781687",
@@ -171,51 +212,6 @@
         },
         {
           "id": 113268723870,
-          "name": "Releasepflicht",
-          "status": "completed",
-          "conclusion": "failure",
-          "activeSteps": [],
-          "failedSteps": [
-            "Alle Pflichtjobs müssen erfolgreich sein"
-          ]
-        }
-      ]
-    },
-    {
-      "id": 37762288848,
-      "url": "https://github.com/madventureXD/commietools/actions/runs/37762288848",
-      "sha": "8a084a0a8b06cd83b1ab0ebddb47e5e32feb896f",
-      "status": "completed",
-      "conclusion": "failure",
-      "jobs": [
-        {
-          "id": 113261379360,
-          "name": "Rust-Prüfungen (nativ und wasm32)",
-          "status": "completed",
-          "conclusion": "success",
-          "activeSteps": [],
-          "failedSteps": []
-        },
-        {
-          "id": 113261379430,
-          "name": "Lizenz, Katalog, Lint, Typen, Tests, Bau",
-          "status": "completed",
-          "conclusion": "success",
-          "activeSteps": [],
-          "failedSteps": []
-        },
-        {
-          "id": 113261950833,
-          "name": "Barrierefreiheit und Überbreite (Windows, Edge)",
-          "status": "completed",
-          "conclusion": "failure",
-          "activeSteps": [],
-          "failedSteps": [
-            "Run npm run a11y:check"
-          ]
-        },
-        {
-          "id": 113264718013,
           "name": "Releasepflicht",
           "status": "completed",
           "conclusion": "failure",

@@ -1,0 +1,1905 @@
+{
+  "checkedAt": "2026-10-08T11:25:41.402Z",
+  "build": "aa234501ae5e144fa3676163524daf45e4de213104dc5b4a134421b70480aed0",
+  "scannerSha256": "7075cc5081cf9326b0666588b432229d02291941dad09550059f752a7ae09de1",
+  "cases": [
+    {
+      "scheme": "light",
+      "locale": "de",
+      "route": "pdf-viewer",
+      "width": 320,
+      "controls": 18,
+      "menuControls": 137,
+      "headings": {
+        "sequence": [
+          1,
+          2,
+          3
+        ],
+        "h1Count": 1,
+        "jumps": [],
+        "jumpsOpened": [],
+        "closedSections": 7
+      },
+      "skippedContrast": [],
+      "problems": []
+    },
+    {
+      "scheme": "light",
+      "locale": "de",
+      "route": "pdf-viewer",
+      "width": 390,
+      "controls": 18,
+      "menuControls": 137,
+      "headings": {
+        "sequence": [
+          1,
+          2,
+          3
+        ],
+        "h1Count": 1,
+        "jumps": [],
+        "jumpsOpened": [],
+        "closedSections": 0
+      },
+      "skippedContrast": [],
+      "problems": []
+    },
+    {
+      "scheme": "light",
+      "locale": "de",
+      "route": "pdf-viewer",
+      "width": 1360,
+      "controls": 20,
+      "menuControls": 137,
+      "headings": {
+        "sequence": [
+          1,
+          2,
+          3
+        ],
+        "h1Count": 1,
+        "jumps": [],
+        "jumpsOpened": [],
+        "closedSections": 0
+      },
+      "skippedContrast": [],
+      "problems": []
+    },
+    {
+      "scheme": "light",
+      "locale": "de",
+      "route": "icon-generator",
+      "width": 320,
+      "controls": 56,
+      "menuControls": 137,
+      "headings": {
+        "sequence": [
+          1,
+          2,
+          2,
+          2,
+          2,
+          2,
+          3
+        ],
+        "h1Count": 1,
+        "jumps": [],
+        "jumpsOpened": [],
+        "closedSections": 7
+      },
+      "skippedContrast": [],
+      "problems": [
+        {
+          "kind": "clipped",
+          "element": "input",
+          "clientWidth": 66,
+          "scrollWidth": 94,
+          "name": "Dateiname"
+        },
+        {
+          "kind": "clipped",
+          "element": "input",
+          "clientWidth": 66,
+          "scrollWidth": 94,
+          "name": "Dateiname"
+        },
+        {
+          "kind": "clipped",
+          "element": "input",
+          "clientWidth": 66,
+          "scrollWidth": 94,
+          "name": "Dateiname"
+        },
+        {
+          "kind": "clipped",
+          "element": "input",
+          "clientWidth": 70,
+          "scrollWidth": 101,
+          "name": "Dateiname"
+        },
+        {
+          "kind": "clipped",
+          "element": "input",
+          "clientWidth": 70,
+          "scrollWidth": 101,
+          "name": "Dateiname"
+        },
+        {
+          "kind": "clipped",
+          "element": "input",
+          "clientWidth": 70,
+          "scrollWidth": 101,
+          "name": "Dateiname"
+        },
+        {
+          "kind": "clipped",
+          "element": "input",
+          "clientWidth": 66,
+          "scrollWidth": 155,
+          "name": "Dateiname"
+        },
+        {
+          "kind": "clipped",
+          "element": "input",
+          "clientWidth": 66,
+          "scrollWidth": 155,
+          "name": "Dateiname"
+        },
+        {
+          "kind": "clipped",
+          "element": "input",
+          "clientWidth": 66,
+          "scrollWidth": 155,
+          "name": "Dateiname"
+        },
+        {
+          "kind": "clipped",
+          "element": "input",
+          "clientWidth": 70,
+          "scrollWidth": 163,
+          "name": "Dateiname"
+        },
+        {
+          "kind": "clipped",
+          "element": "input",
+          "clientWidth": 70,
+          "scrollWidth": 163,
+          "name": "Dateiname"
+        },
+        {
+          "kind": "clipped",
+          "element": "input",
+          "clientWidth": 70,
+          "scrollWidth": 163,
+          "name": "Dateiname"
+        },
+        {
+          "kind": "clipped",
+          "element": "input",
+          "clientWidth": 66,
+          "scrollWidth": 87,
+          "name": "Dateiname"
+        }
+      ]
+    },
+    {
+      "scheme": "light",
+      "locale": "de",
+      "route": "icon-generator",
+      "width": 390,
+      "controls": 56,
+      "menuControls": 137,
+      "headings": {
+        "sequence": [
+          1,
+          2,
+          2,
+          2,
+          2,
+          2,
+          3
+        ],
+        "h1Count": 1,
+        "jumps": [],
+        "jumpsOpened": [],
+        "closedSections": 0
+      },
+      "skippedContrast": [],
+      "problems": [
+        {
+          "kind": "clipped",
+          "element": "input",
+          "clientWidth": 101,
+          "scrollWidth": 155,
+          "name": "Dateiname"
+        },
+        {
+          "kind": "clipped",
+          "element": "input",
+          "clientWidth": 101,
+          "scrollWidth": 155,
+          "name": "Dateiname"
+        },
+        {
+          "kind": "clipped",
+          "element": "input",
+          "clientWidth": 101,
+          "scrollWidth": 155,
+          "name": "Dateiname"
+        },
+        {
+          "kind": "clipped",
+          "element": "input",
+          "clientWidth": 101,
+          "scrollWidth": 163,
+          "name": "Dateiname"
+        },
+        {
+          "kind": "clipped",
+          "element": "input",
+          "clientWidth": 101,
+          "scrollWidth": 163,
+          "name": "Dateiname"
+        },
+        {
+          "kind": "clipped",
+          "element": "input",
+          "clientWidth": 101,
+          "scrollWidth": 163,
+          "name": "Dateiname"
+        }
+      ]
+    },
+    {
+      "scheme": "light",
+      "locale": "de",
+      "route": "icon-generator",
+      "width": 1360,
+      "controls": 58,
+      "menuControls": 137,
+      "headings": {
+        "sequence": [
+          1,
+          2,
+          2,
+          2,
+          2,
+          2,
+          3
+        ],
+        "h1Count": 1,
+        "jumps": [],
+        "jumpsOpened": [],
+        "closedSections": 0
+      },
+      "skippedContrast": [],
+      "problems": [
+        {
+          "kind": "clipped",
+          "element": "input",
+          "clientWidth": 126,
+          "scrollWidth": 155,
+          "name": "Dateiname"
+        },
+        {
+          "kind": "clipped",
+          "element": "input",
+          "clientWidth": 126,
+          "scrollWidth": 155,
+          "name": "Dateiname"
+        },
+        {
+          "kind": "clipped",
+          "element": "input",
+          "clientWidth": 126,
+          "scrollWidth": 155,
+          "name": "Dateiname"
+        },
+        {
+          "kind": "clipped",
+          "element": "input",
+          "clientWidth": 126,
+          "scrollWidth": 163,
+          "name": "Dateiname"
+        },
+        {
+          "kind": "clipped",
+          "element": "input",
+          "clientWidth": 126,
+          "scrollWidth": 163,
+          "name": "Dateiname"
+        },
+        {
+          "kind": "clipped",
+          "element": "input",
+          "clientWidth": 126,
+          "scrollWidth": 163,
+          "name": "Dateiname"
+        }
+      ]
+    },
+    {
+      "scheme": "light",
+      "locale": "en",
+      "route": "pdf-viewer",
+      "width": 320,
+      "controls": 18,
+      "menuControls": 137,
+      "headings": {
+        "sequence": [
+          1,
+          2,
+          3
+        ],
+        "h1Count": 1,
+        "jumps": [],
+        "jumpsOpened": [],
+        "closedSections": 7
+      },
+      "skippedContrast": [],
+      "problems": []
+    },
+    {
+      "scheme": "light",
+      "locale": "en",
+      "route": "pdf-viewer",
+      "width": 390,
+      "controls": 18,
+      "menuControls": 137,
+      "headings": {
+        "sequence": [
+          1,
+          2,
+          3
+        ],
+        "h1Count": 1,
+        "jumps": [],
+        "jumpsOpened": [],
+        "closedSections": 0
+      },
+      "skippedContrast": [],
+      "problems": []
+    },
+    {
+      "scheme": "light",
+      "locale": "en",
+      "route": "pdf-viewer",
+      "width": 1360,
+      "controls": 20,
+      "menuControls": 137,
+      "headings": {
+        "sequence": [
+          1,
+          2,
+          3
+        ],
+        "h1Count": 1,
+        "jumps": [],
+        "jumpsOpened": [],
+        "closedSections": 0
+      },
+      "skippedContrast": [],
+      "problems": []
+    },
+    {
+      "scheme": "light",
+      "locale": "en",
+      "route": "icon-generator",
+      "width": 320,
+      "controls": 56,
+      "menuControls": 137,
+      "headings": {
+        "sequence": [
+          1,
+          2,
+          2,
+          2,
+          2,
+          2,
+          3
+        ],
+        "h1Count": 1,
+        "jumps": [],
+        "jumpsOpened": [],
+        "closedSections": 7
+      },
+      "skippedContrast": [],
+      "problems": [
+        {
+          "kind": "clipped",
+          "element": "input",
+          "clientWidth": 66,
+          "scrollWidth": 94,
+          "name": "File name"
+        },
+        {
+          "kind": "clipped",
+          "element": "input",
+          "clientWidth": 66,
+          "scrollWidth": 94,
+          "name": "File name"
+        },
+        {
+          "kind": "clipped",
+          "element": "input",
+          "clientWidth": 66,
+          "scrollWidth": 94,
+          "name": "File name"
+        },
+        {
+          "kind": "clipped",
+          "element": "input",
+          "clientWidth": 70,
+          "scrollWidth": 101,
+          "name": "File name"
+        },
+        {
+          "kind": "clipped",
+          "element": "input",
+          "clientWidth": 70,
+          "scrollWidth": 101,
+          "name": "File name"
+        },
+        {
+          "kind": "clipped",
+          "element": "input",
+          "clientWidth": 70,
+          "scrollWidth": 101,
+          "name": "File name"
+        },
+        {
+          "kind": "clipped",
+          "element": "input",
+          "clientWidth": 66,
+          "scrollWidth": 155,
+          "name": "File name"
+        },
+        {
+          "kind": "clipped",
+          "element": "input",
+          "clientWidth": 66,
+          "scrollWidth": 155,
+          "name": "File name"
+        },
+        {
+          "kind": "clipped",
+          "element": "input",
+          "clientWidth": 66,
+          "scrollWidth": 155,
+          "name": "File name"
+        },
+        {
+          "kind": "clipped",
+          "element": "input",
+          "clientWidth": 70,
+          "scrollWidth": 163,
+          "name": "File name"
+        },
+        {
+          "kind": "clipped",
+          "element": "input",
+          "clientWidth": 70,
+          "scrollWidth": 163,
+          "name": "File name"
+        },
+        {
+          "kind": "clipped",
+          "element": "input",
+          "clientWidth": 70,
+          "scrollWidth": 163,
+          "name": "File name"
+        },
+        {
+          "kind": "clipped",
+          "element": "input",
+          "clientWidth": 66,
+          "scrollWidth": 87,
+          "name": "File name"
+        }
+      ]
+    },
+    {
+      "scheme": "light",
+      "locale": "en",
+      "route": "icon-generator",
+      "width": 390,
+      "controls": 56,
+      "menuControls": 137,
+      "headings": {
+        "sequence": [
+          1,
+          2,
+          2,
+          2,
+          2,
+          2,
+          3
+        ],
+        "h1Count": 1,
+        "jumps": [],
+        "jumpsOpened": [],
+        "closedSections": 0
+      },
+      "skippedContrast": [],
+      "problems": [
+        {
+          "kind": "clipped",
+          "element": "input",
+          "clientWidth": 101,
+          "scrollWidth": 155,
+          "name": "File name"
+        },
+        {
+          "kind": "clipped",
+          "element": "input",
+          "clientWidth": 101,
+          "scrollWidth": 155,
+          "name": "File name"
+        },
+        {
+          "kind": "clipped",
+          "element": "input",
+          "clientWidth": 101,
+          "scrollWidth": 155,
+          "name": "File name"
+        },
+        {
+          "kind": "clipped",
+          "element": "input",
+          "clientWidth": 101,
+          "scrollWidth": 163,
+          "name": "File name"
+        },
+        {
+          "kind": "clipped",
+          "element": "input",
+          "clientWidth": 101,
+          "scrollWidth": 163,
+          "name": "File name"
+        },
+        {
+          "kind": "clipped",
+          "element": "input",
+          "clientWidth": 101,
+          "scrollWidth": 163,
+          "name": "File name"
+        }
+      ]
+    },
+    {
+      "scheme": "light",
+      "locale": "en",
+      "route": "icon-generator",
+      "width": 1360,
+      "controls": 58,
+      "menuControls": 137,
+      "headings": {
+        "sequence": [
+          1,
+          2,
+          2,
+          2,
+          2,
+          2,
+          3
+        ],
+        "h1Count": 1,
+        "jumps": [],
+        "jumpsOpened": [],
+        "closedSections": 0
+      },
+      "skippedContrast": [],
+      "problems": [
+        {
+          "kind": "clipped",
+          "element": "input",
+          "clientWidth": 126,
+          "scrollWidth": 155,
+          "name": "File name"
+        },
+        {
+          "kind": "clipped",
+          "element": "input",
+          "clientWidth": 126,
+          "scrollWidth": 155,
+          "name": "File name"
+        },
+        {
+          "kind": "clipped",
+          "element": "input",
+          "clientWidth": 126,
+          "scrollWidth": 155,
+          "name": "File name"
+        },
+        {
+          "kind": "clipped",
+          "element": "input",
+          "clientWidth": 126,
+          "scrollWidth": 163,
+          "name": "File name"
+        },
+        {
+          "kind": "clipped",
+          "element": "input",
+          "clientWidth": 126,
+          "scrollWidth": 163,
+          "name": "File name"
+        },
+        {
+          "kind": "clipped",
+          "element": "input",
+          "clientWidth": 126,
+          "scrollWidth": 163,
+          "name": "File name"
+        }
+      ]
+    },
+    {
+      "scheme": "light",
+      "locale": "es",
+      "route": "pdf-viewer",
+      "width": 320,
+      "controls": 18,
+      "menuControls": 137,
+      "headings": {
+        "sequence": [
+          1,
+          2,
+          3
+        ],
+        "h1Count": 1,
+        "jumps": [],
+        "jumpsOpened": [],
+        "closedSections": 7
+      },
+      "skippedContrast": [],
+      "problems": []
+    },
+    {
+      "scheme": "light",
+      "locale": "es",
+      "route": "pdf-viewer",
+      "width": 390,
+      "controls": 18,
+      "menuControls": 137,
+      "headings": {
+        "sequence": [
+          1,
+          2,
+          3
+        ],
+        "h1Count": 1,
+        "jumps": [],
+        "jumpsOpened": [],
+        "closedSections": 0
+      },
+      "skippedContrast": [],
+      "problems": []
+    },
+    {
+      "scheme": "light",
+      "locale": "es",
+      "route": "pdf-viewer",
+      "width": 1360,
+      "controls": 20,
+      "menuControls": 137,
+      "headings": {
+        "sequence": [
+          1,
+          2,
+          3
+        ],
+        "h1Count": 1,
+        "jumps": [],
+        "jumpsOpened": [],
+        "closedSections": 0
+      },
+      "skippedContrast": [],
+      "problems": []
+    },
+    {
+      "scheme": "light",
+      "locale": "es",
+      "route": "icon-generator",
+      "width": 320,
+      "controls": 56,
+      "menuControls": 137,
+      "headings": {
+        "sequence": [
+          1,
+          2,
+          2,
+          2,
+          2,
+          2,
+          3
+        ],
+        "h1Count": 1,
+        "jumps": [],
+        "jumpsOpened": [],
+        "closedSections": 7
+      },
+      "skippedContrast": [],
+      "problems": [
+        {
+          "kind": "clipped",
+          "element": "input",
+          "clientWidth": 66,
+          "scrollWidth": 94,
+          "name": "Nombre del archivo"
+        },
+        {
+          "kind": "clipped",
+          "element": "input",
+          "clientWidth": 66,
+          "scrollWidth": 94,
+          "name": "Nombre del archivo"
+        },
+        {
+          "kind": "clipped",
+          "element": "input",
+          "clientWidth": 66,
+          "scrollWidth": 94,
+          "name": "Nombre del archivo"
+        },
+        {
+          "kind": "clipped",
+          "element": "input",
+          "clientWidth": 70,
+          "scrollWidth": 101,
+          "name": "Nombre del archivo"
+        },
+        {
+          "kind": "clipped",
+          "element": "input",
+          "clientWidth": 70,
+          "scrollWidth": 101,
+          "name": "Nombre del archivo"
+        },
+        {
+          "kind": "clipped",
+          "element": "input",
+          "clientWidth": 70,
+          "scrollWidth": 101,
+          "name": "Nombre del archivo"
+        },
+        {
+          "kind": "clipped",
+          "element": "input",
+          "clientWidth": 66,
+          "scrollWidth": 155,
+          "name": "Nombre del archivo"
+        },
+        {
+          "kind": "clipped",
+          "element": "input",
+          "clientWidth": 66,
+          "scrollWidth": 155,
+          "name": "Nombre del archivo"
+        },
+        {
+          "kind": "clipped",
+          "element": "input",
+          "clientWidth": 66,
+          "scrollWidth": 155,
+          "name": "Nombre del archivo"
+        },
+        {
+          "kind": "clipped",
+          "element": "input",
+          "clientWidth": 70,
+          "scrollWidth": 163,
+          "name": "Nombre del archivo"
+        },
+        {
+          "kind": "clipped",
+          "element": "input",
+          "clientWidth": 70,
+          "scrollWidth": 163,
+          "name": "Nombre del archivo"
+        },
+        {
+          "kind": "clipped",
+          "element": "input",
+          "clientWidth": 70,
+          "scrollWidth": 163,
+          "name": "Nombre del archivo"
+        },
+        {
+          "kind": "clipped",
+          "element": "input",
+          "clientWidth": 66,
+          "scrollWidth": 87,
+          "name": "Nombre del archivo"
+        }
+      ]
+    },
+    {
+      "scheme": "light",
+      "locale": "es",
+      "route": "icon-generator",
+      "width": 390,
+      "controls": 56,
+      "menuControls": 137,
+      "headings": {
+        "sequence": [
+          1,
+          2,
+          2,
+          2,
+          2,
+          2,
+          3
+        ],
+        "h1Count": 1,
+        "jumps": [],
+        "jumpsOpened": [],
+        "closedSections": 0
+      },
+      "skippedContrast": [],
+      "problems": [
+        {
+          "kind": "clipped",
+          "element": "input",
+          "clientWidth": 101,
+          "scrollWidth": 155,
+          "name": "Nombre del archivo"
+        },
+        {
+          "kind": "clipped",
+          "element": "input",
+          "clientWidth": 101,
+          "scrollWidth": 155,
+          "name": "Nombre del archivo"
+        },
+        {
+          "kind": "clipped",
+          "element": "input",
+          "clientWidth": 101,
+          "scrollWidth": 155,
+          "name": "Nombre del archivo"
+        },
+        {
+          "kind": "clipped",
+          "element": "input",
+          "clientWidth": 101,
+          "scrollWidth": 163,
+          "name": "Nombre del archivo"
+        },
+        {
+          "kind": "clipped",
+          "element": "input",
+          "clientWidth": 101,
+          "scrollWidth": 163,
+          "name": "Nombre del archivo"
+        },
+        {
+          "kind": "clipped",
+          "element": "input",
+          "clientWidth": 101,
+          "scrollWidth": 163,
+          "name": "Nombre del archivo"
+        }
+      ]
+    },
+    {
+      "scheme": "light",
+      "locale": "es",
+      "route": "icon-generator",
+      "width": 1360,
+      "controls": 58,
+      "menuControls": 137,
+      "headings": {
+        "sequence": [
+          1,
+          2,
+          2,
+          2,
+          2,
+          2,
+          3
+        ],
+        "h1Count": 1,
+        "jumps": [],
+        "jumpsOpened": [],
+        "closedSections": 0
+      },
+      "skippedContrast": [],
+      "problems": [
+        {
+          "kind": "clipped",
+          "element": "input",
+          "clientWidth": 126,
+          "scrollWidth": 155,
+          "name": "Nombre del archivo"
+        },
+        {
+          "kind": "clipped",
+          "element": "input",
+          "clientWidth": 126,
+          "scrollWidth": 155,
+          "name": "Nombre del archivo"
+        },
+        {
+          "kind": "clipped",
+          "element": "input",
+          "clientWidth": 126,
+          "scrollWidth": 155,
+          "name": "Nombre del archivo"
+        },
+        {
+          "kind": "clipped",
+          "element": "input",
+          "clientWidth": 126,
+          "scrollWidth": 163,
+          "name": "Nombre del archivo"
+        },
+        {
+          "kind": "clipped",
+          "element": "input",
+          "clientWidth": 126,
+          "scrollWidth": 163,
+          "name": "Nombre del archivo"
+        },
+        {
+          "kind": "clipped",
+          "element": "input",
+          "clientWidth": 126,
+          "scrollWidth": 163,
+          "name": "Nombre del archivo"
+        }
+      ]
+    },
+    {
+      "scheme": "dark",
+      "locale": "de",
+      "route": "pdf-viewer",
+      "width": 320,
+      "controls": 18,
+      "menuControls": 137,
+      "headings": {
+        "sequence": [
+          1,
+          2,
+          3
+        ],
+        "h1Count": 1,
+        "jumps": [],
+        "jumpsOpened": [],
+        "closedSections": 7
+      },
+      "skippedContrast": [],
+      "problems": []
+    },
+    {
+      "scheme": "dark",
+      "locale": "de",
+      "route": "pdf-viewer",
+      "width": 390,
+      "controls": 18,
+      "menuControls": 137,
+      "headings": {
+        "sequence": [
+          1,
+          2,
+          3
+        ],
+        "h1Count": 1,
+        "jumps": [],
+        "jumpsOpened": [],
+        "closedSections": 0
+      },
+      "skippedContrast": [],
+      "problems": []
+    },
+    {
+      "scheme": "dark",
+      "locale": "de",
+      "route": "pdf-viewer",
+      "width": 1360,
+      "controls": 20,
+      "menuControls": 137,
+      "headings": {
+        "sequence": [
+          1,
+          2,
+          3
+        ],
+        "h1Count": 1,
+        "jumps": [],
+        "jumpsOpened": [],
+        "closedSections": 0
+      },
+      "skippedContrast": [],
+      "problems": []
+    },
+    {
+      "scheme": "dark",
+      "locale": "de",
+      "route": "icon-generator",
+      "width": 320,
+      "controls": 56,
+      "menuControls": 137,
+      "headings": {
+        "sequence": [
+          1,
+          2,
+          2,
+          2,
+          2,
+          2,
+          3
+        ],
+        "h1Count": 1,
+        "jumps": [],
+        "jumpsOpened": [],
+        "closedSections": 7
+      },
+      "skippedContrast": [],
+      "problems": [
+        {
+          "kind": "clipped",
+          "element": "input",
+          "clientWidth": 66,
+          "scrollWidth": 94,
+          "name": "Dateiname"
+        },
+        {
+          "kind": "clipped",
+          "element": "input",
+          "clientWidth": 66,
+          "scrollWidth": 94,
+          "name": "Dateiname"
+        },
+        {
+          "kind": "clipped",
+          "element": "input",
+          "clientWidth": 66,
+          "scrollWidth": 94,
+          "name": "Dateiname"
+        },
+        {
+          "kind": "clipped",
+          "element": "input",
+          "clientWidth": 70,
+          "scrollWidth": 101,
+          "name": "Dateiname"
+        },
+        {
+          "kind": "clipped",
+          "element": "input",
+          "clientWidth": 70,
+          "scrollWidth": 101,
+          "name": "Dateiname"
+        },
+        {
+          "kind": "clipped",
+          "element": "input",
+          "clientWidth": 70,
+          "scrollWidth": 101,
+          "name": "Dateiname"
+        },
+        {
+          "kind": "clipped",
+          "element": "input",
+          "clientWidth": 66,
+          "scrollWidth": 155,
+          "name": "Dateiname"
+        },
+        {
+          "kind": "clipped",
+          "element": "input",
+          "clientWidth": 66,
+          "scrollWidth": 155,
+          "name": "Dateiname"
+        },
+        {
+          "kind": "clipped",
+          "element": "input",
+          "clientWidth": 66,
+          "scrollWidth": 155,
+          "name": "Dateiname"
+        },
+        {
+          "kind": "clipped",
+          "element": "input",
+          "clientWidth": 70,
+          "scrollWidth": 163,
+          "name": "Dateiname"
+        },
+        {
+          "kind": "clipped",
+          "element": "input",
+          "clientWidth": 70,
+          "scrollWidth": 163,
+          "name": "Dateiname"
+        },
+        {
+          "kind": "clipped",
+          "element": "input",
+          "clientWidth": 70,
+          "scrollWidth": 163,
+          "name": "Dateiname"
+        },
+        {
+          "kind": "clipped",
+          "element": "input",
+          "clientWidth": 66,
+          "scrollWidth": 87,
+          "name": "Dateiname"
+        }
+      ]
+    },
+    {
+      "scheme": "dark",
+      "locale": "de",
+      "route": "icon-generator",
+      "width": 390,
+      "controls": 56,
+      "menuControls": 137,
+      "headings": {
+        "sequence": [
+          1,
+          2,
+          2,
+          2,
+          2,
+          2,
+          3
+        ],
+        "h1Count": 1,
+        "jumps": [],
+        "jumpsOpened": [],
+        "closedSections": 0
+      },
+      "skippedContrast": [],
+      "problems": [
+        {
+          "kind": "clipped",
+          "element": "input",
+          "clientWidth": 101,
+          "scrollWidth": 155,
+          "name": "Dateiname"
+        },
+        {
+          "kind": "clipped",
+          "element": "input",
+          "clientWidth": 101,
+          "scrollWidth": 155,
+          "name": "Dateiname"
+        },
+        {
+          "kind": "clipped",
+          "element": "input",
+          "clientWidth": 101,
+          "scrollWidth": 155,
+          "name": "Dateiname"
+        },
+        {
+          "kind": "clipped",
+          "element": "input",
+          "clientWidth": 101,
+          "scrollWidth": 163,
+          "name": "Dateiname"
+        },
+        {
+          "kind": "clipped",
+          "element": "input",
+          "clientWidth": 101,
+          "scrollWidth": 163,
+          "name": "Dateiname"
+        },
+        {
+          "kind": "clipped",
+          "element": "input",
+          "clientWidth": 101,
+          "scrollWidth": 163,
+          "name": "Dateiname"
+        }
+      ]
+    },
+    {
+      "scheme": "dark",
+      "locale": "de",
+      "route": "icon-generator",
+      "width": 1360,
+      "controls": 58,
+      "menuControls": 137,
+      "headings": {
+        "sequence": [
+          1,
+          2,
+          2,
+          2,
+          2,
+          2,
+          3
+        ],
+        "h1Count": 1,
+        "jumps": [],
+        "jumpsOpened": [],
+        "closedSections": 0
+      },
+      "skippedContrast": [],
+      "problems": [
+        {
+          "kind": "clipped",
+          "element": "input",
+          "clientWidth": 126,
+          "scrollWidth": 155,
+          "name": "Dateiname"
+        },
+        {
+          "kind": "clipped",
+          "element": "input",
+          "clientWidth": 126,
+          "scrollWidth": 155,
+          "name": "Dateiname"
+        },
+        {
+          "kind": "clipped",
+          "element": "input",
+          "clientWidth": 126,
+          "scrollWidth": 155,
+          "name": "Dateiname"
+        },
+        {
+          "kind": "clipped",
+          "element": "input",
+          "clientWidth": 126,
+          "scrollWidth": 163,
+          "name": "Dateiname"
+        },
+        {
+          "kind": "clipped",
+          "element": "input",
+          "clientWidth": 126,
+          "scrollWidth": 163,
+          "name": "Dateiname"
+        },
+        {
+          "kind": "clipped",
+          "element": "input",
+          "clientWidth": 126,
+          "scrollWidth": 163,
+          "name": "Dateiname"
+        }
+      ]
+    },
+    {
+      "scheme": "dark",
+      "locale": "en",
+      "route": "pdf-viewer",
+      "width": 320,
+      "controls": 18,
+      "menuControls": 137,
+      "headings": {
+        "sequence": [
+          1,
+          2,
+          3
+        ],
+        "h1Count": 1,
+        "jumps": [],
+        "jumpsOpened": [],
+        "closedSections": 7
+      },
+      "skippedContrast": [],
+      "problems": []
+    },
+    {
+      "scheme": "dark",
+      "locale": "en",
+      "route": "pdf-viewer",
+      "width": 390,
+      "controls": 18,
+      "menuControls": 137,
+      "headings": {
+        "sequence": [
+          1,
+          2,
+          3
+        ],
+        "h1Count": 1,
+        "jumps": [],
+        "jumpsOpened": [],
+        "closedSections": 0
+      },
+      "skippedContrast": [],
+      "problems": []
+    },
+    {
+      "scheme": "dark",
+      "locale": "en",
+      "route": "pdf-viewer",
+      "width": 1360,
+      "controls": 20,
+      "menuControls": 137,
+      "headings": {
+        "sequence": [
+          1,
+          2,
+          3
+        ],
+        "h1Count": 1,
+        "jumps": [],
+        "jumpsOpened": [],
+        "closedSections": 0
+      },
+      "skippedContrast": [],
+      "problems": []
+    },
+    {
+      "scheme": "dark",
+      "locale": "en",
+      "route": "icon-generator",
+      "width": 320,
+      "controls": 56,
+      "menuControls": 137,
+      "headings": {
+        "sequence": [
+          1,
+          2,
+          2,
+          2,
+          2,
+          2,
+          3
+        ],
+        "h1Count": 1,
+        "jumps": [],
+        "jumpsOpened": [],
+        "closedSections": 7
+      },
+      "skippedContrast": [],
+      "problems": [
+        {
+          "kind": "clipped",
+          "element": "input",
+          "clientWidth": 66,
+          "scrollWidth": 94,
+          "name": "File name"
+        },
+        {
+          "kind": "clipped",
+          "element": "input",
+          "clientWidth": 66,
+          "scrollWidth": 94,
+          "name": "File name"
+        },
+        {
+          "kind": "clipped",
+          "element": "input",
+          "clientWidth": 66,
+          "scrollWidth": 94,
+          "name": "File name"
+        },
+        {
+          "kind": "clipped",
+          "element": "input",
+          "clientWidth": 70,
+          "scrollWidth": 101,
+          "name": "File name"
+        },
+        {
+          "kind": "clipped",
+          "element": "input",
+          "clientWidth": 70,
+          "scrollWidth": 101,
+          "name": "File name"
+        },
+        {
+          "kind": "clipped",
+          "element": "input",
+          "clientWidth": 70,
+          "scrollWidth": 101,
+          "name": "File name"
+        },
+        {
+          "kind": "clipped",
+          "element": "input",
+          "clientWidth": 66,
+          "scrollWidth": 155,
+          "name": "File name"
+        },
+        {
+          "kind": "clipped",
+          "element": "input",
+          "clientWidth": 66,
+          "scrollWidth": 155,
+          "name": "File name"
+        },
+        {
+          "kind": "clipped",
+          "element": "input",
+          "clientWidth": 66,
+          "scrollWidth": 155,
+          "name": "File name"
+        },
+        {
+          "kind": "clipped",
+          "element": "input",
+          "clientWidth": 70,
+          "scrollWidth": 163,
+          "name": "File name"
+        },
+        {
+          "kind": "clipped",
+          "element": "input",
+          "clientWidth": 70,
+          "scrollWidth": 163,
+          "name": "File name"
+        },
+        {
+          "kind": "clipped",
+          "element": "input",
+          "clientWidth": 70,
+          "scrollWidth": 163,
+          "name": "File name"
+        },
+        {
+          "kind": "clipped",
+          "element": "input",
+          "clientWidth": 66,
+          "scrollWidth": 87,
+          "name": "File name"
+        }
+      ]
+    },
+    {
+      "scheme": "dark",
+      "locale": "en",
+      "route": "icon-generator",
+      "width": 390,
+      "controls": 56,
+      "menuControls": 137,
+      "headings": {
+        "sequence": [
+          1,
+          2,
+          2,
+          2,
+          2,
+          2,
+          3
+        ],
+        "h1Count": 1,
+        "jumps": [],
+        "jumpsOpened": [],
+        "closedSections": 0
+      },
+      "skippedContrast": [],
+      "problems": [
+        {
+          "kind": "clipped",
+          "element": "input",
+          "clientWidth": 101,
+          "scrollWidth": 155,
+          "name": "File name"
+        },
+        {
+          "kind": "clipped",
+          "element": "input",
+          "clientWidth": 101,
+          "scrollWidth": 155,
+          "name": "File name"
+        },
+        {
+          "kind": "clipped",
+          "element": "input",
+          "clientWidth": 101,
+          "scrollWidth": 155,
+          "name": "File name"
+        },
+        {
+          "kind": "clipped",
+          "element": "input",
+          "clientWidth": 101,
+          "scrollWidth": 163,
+          "name": "File name"
+        },
+        {
+          "kind": "clipped",
+          "element": "input",
+          "clientWidth": 101,
+          "scrollWidth": 163,
+          "name": "File name"
+        },
+        {
+          "kind": "clipped",
+          "element": "input",
+          "clientWidth": 101,
+          "scrollWidth": 163,
+          "name": "File name"
+        }
+      ]
+    },
+    {
+      "scheme": "dark",
+      "locale": "en",
+      "route": "icon-generator",
+      "width": 1360,
+      "controls": 58,
+      "menuControls": 137,
+      "headings": {
+        "sequence": [
+          1,
+          2,
+          2,
+          2,
+          2,
+          2,
+          3
+        ],
+        "h1Count": 1,
+        "jumps": [],
+        "jumpsOpened": [],
+        "closedSections": 0
+      },
+      "skippedContrast": [],
+      "problems": [
+        {
+          "kind": "clipped",
+          "element": "input",
+          "clientWidth": 126,
+          "scrollWidth": 155,
+          "name": "File name"
+        },
+        {
+          "kind": "clipped",
+          "element": "input",
+          "clientWidth": 126,
+          "scrollWidth": 155,
+          "name": "File name"
+        },
+        {
+          "kind": "clipped",
+          "element": "input",
+          "clientWidth": 126,
+          "scrollWidth": 155,
+          "name": "File name"
+        },
+        {
+          "kind": "clipped",
+          "element": "input",
+          "clientWidth": 126,
+          "scrollWidth": 163,
+          "name": "File name"
+        },
+        {
+          "kind": "clipped",
+          "element": "input",
+          "clientWidth": 126,
+          "scrollWidth": 163,
+          "name": "File name"
+        },
+        {
+          "kind": "clipped",
+          "element": "input",
+          "clientWidth": 126,
+          "scrollWidth": 163,
+          "name": "File name"
+        }
+      ]
+    },
+    {
+      "scheme": "dark",
+      "locale": "es",
+      "route": "pdf-viewer",
+      "width": 320,
+      "controls": 18,
+      "menuControls": 137,
+      "headings": {
+        "sequence": [
+          1,
+          2,
+          3
+        ],
+        "h1Count": 1,
+        "jumps": [],
+        "jumpsOpened": [],
+        "closedSections": 7
+      },
+      "skippedContrast": [],
+      "problems": []
+    },
+    {
+      "scheme": "dark",
+      "locale": "es",
+      "route": "pdf-viewer",
+      "width": 390,
+      "controls": 18,
+      "menuControls": 137,
+      "headings": {
+        "sequence": [
+          1,
+          2,
+          3
+        ],
+        "h1Count": 1,
+        "jumps": [],
+        "jumpsOpened": [],
+        "closedSections": 0
+      },
+      "skippedContrast": [],
+      "problems": []
+    },
+    {
+      "scheme": "dark",
+      "locale": "es",
+      "route": "pdf-viewer",
+      "width": 1360,
+      "controls": 20,
+      "menuControls": 137,
+      "headings": {
+        "sequence": [
+          1,
+          2,
+          3
+        ],
+        "h1Count": 1,
+        "jumps": [],
+        "jumpsOpened": [],
+        "closedSections": 0
+      },
+      "skippedContrast": [],
+      "problems": []
+    },
+    {
+      "scheme": "dark",
+      "locale": "es",
+      "route": "icon-generator",
+      "width": 320,
+      "controls": 56,
+      "menuControls": 137,
+      "headings": {
+        "sequence": [
+          1,
+          2,
+          2,
+          2,
+          2,
+          2,
+          3
+        ],
+        "h1Count": 1,
+        "jumps": [],
+        "jumpsOpened": [],
+        "closedSections": 7
+      },
+      "skippedContrast": [],
+      "problems": [
+        {
+          "kind": "clipped",
+          "element": "input",
+          "clientWidth": 66,
+          "scrollWidth": 94,
+          "name": "Nombre del archivo"
+        },
+        {
+          "kind": "clipped",
+          "element": "input",
+          "clientWidth": 66,
+          "scrollWidth": 94,
+          "name": "Nombre del archivo"
+        },
+        {
+          "kind": "clipped",
+          "element": "input",
+          "clientWidth": 66,
+          "scrollWidth": 94,
+          "name": "Nombre del archivo"
+        },
+        {
+          "kind": "clipped",
+          "element": "input",
+          "clientWidth": 70,
+          "scrollWidth": 101,
+          "name": "Nombre del archivo"
+        },
+        {
+          "kind": "clipped",
+          "element": "input",
+          "clientWidth": 70,
+          "scrollWidth": 101,
+          "name": "Nombre del archivo"
+        },
+        {
+          "kind": "clipped",
+          "element": "input",
+          "clientWidth": 70,
+          "scrollWidth": 101,
+          "name": "Nombre del archivo"
+        },
+        {
+          "kind": "clipped",
+          "element": "input",
+          "clientWidth": 66,
+          "scrollWidth": 155,
+          "name": "Nombre del archivo"
+        },
+        {
+          "kind": "clipped",
+          "element": "input",
+          "clientWidth": 66,
+          "scrollWidth": 155,
+          "name": "Nombre del archivo"
+        },
+        {
+          "kind": "clipped",
+          "element": "input",
+          "clientWidth": 66,
+          "scrollWidth": 155,
+          "name": "Nombre del archivo"
+        },
+        {
+          "kind": "clipped",
+          "element": "input",
+          "clientWidth": 70,
+          "scrollWidth": 163,
+          "name": "Nombre del archivo"
+        },
+        {
+          "kind": "clipped",
+          "element": "input",
+          "clientWidth": 70,
+          "scrollWidth": 163,
+          "name": "Nombre del archivo"
+        },
+        {
+          "kind": "clipped",
+          "element": "input",
+          "clientWidth": 70,
+          "scrollWidth": 163,
+          "name": "Nombre del archivo"
+        },
+        {
+          "kind": "clipped",
+          "element": "input",
+          "clientWidth": 66,
+          "scrollWidth": 87,
+          "name": "Nombre del archivo"
+        }
+      ]
+    },
+    {
+      "scheme": "dark",
+      "locale": "es",
+      "route": "icon-generator",
+      "width": 390,
+      "controls": 56,
+      "menuControls": 137,
+      "headings": {
+        "sequence": [
+          1,
+          2,
+          2,
+          2,
+          2,
+          2,
+          3
+        ],
+        "h1Count": 1,
+        "jumps": [],
+        "jumpsOpened": [],
+        "closedSections": 0
+      },
+      "skippedContrast": [],
+      "problems": [
+        {
+          "kind": "clipped",
+          "element": "input",
+          "clientWidth": 101,
+          "scrollWidth": 155,
+          "name": "Nombre del archivo"
+        },
+        {
+          "kind": "clipped",
+          "element": "input",
+          "clientWidth": 101,
+          "scrollWidth": 155,
+          "name": "Nombre del archivo"
+        },
+        {
+          "kind": "clipped",
+          "element": "input",
+          "clientWidth": 101,
+          "scrollWidth": 155,
+          "name": "Nombre del archivo"
+        },
+        {
+          "kind": "clipped",
+          "element": "input",
+          "clientWidth": 101,
+          "scrollWidth": 163,
+          "name": "Nombre del archivo"
+        },
+        {
+          "kind": "clipped",
+          "element": "input",
+          "clientWidth": 101,
+          "scrollWidth": 163,
+          "name": "Nombre del archivo"
+        },
+        {
+          "kind": "clipped",
+          "element": "input",
+          "clientWidth": 101,
+          "scrollWidth": 163,
+          "name": "Nombre del archivo"
+        }
+      ]
+    },
+    {
+      "scheme": "dark",
+      "locale": "es",
+      "route": "icon-generator",
+      "width": 1360,
+      "controls": 58,
+      "menuControls": 137,
+      "headings": {
+        "sequence": [
+          1,
+          2,
+          2,
+          2,
+          2,
+          2,
+          3
+        ],
+        "h1Count": 1,
+        "jumps": [],
+        "jumpsOpened": [],
+        "closedSections": 0
+      },
+      "skippedContrast": [],
+      "problems": [
+        {
+          "kind": "clipped",
+          "element": "input",
+          "clientWidth": 126,
+          "scrollWidth": 155,
+          "name": "Nombre del archivo"
+        },
+        {
+          "kind": "clipped",
+          "element": "input",
+          "clientWidth": 126,
+          "scrollWidth": 155,
+          "name": "Nombre del archivo"
+        },
+        {
+          "kind": "clipped",
+          "element": "input",
+          "clientWidth": 126,
+          "scrollWidth": 155,
+          "name": "Nombre del archivo"
+        },
+        {
+          "kind": "clipped",
+          "element": "input",
+          "clientWidth": 126,
+          "scrollWidth": 163,
+          "name": "Nombre del archivo"
+        },
+        {
+          "kind": "clipped",
+          "element": "input",
+          "clientWidth": 126,
+          "scrollWidth": 163,
+          "name": "Nombre del archivo"
+        },
+        {
+          "kind": "clipped",
+          "element": "input",
+          "clientWidth": 126,
+          "scrollWidth": 163,
+          "name": "Nombre del archivo"
+        }
+      ]
+    }
+  ],
+  "scope": "Actual generated PDF viewer/icon states and opened details, three locales, three widths, both schemes. Heuristic scanner, no native zoom/reader/touch claim.",
+  "passed": false
+}
