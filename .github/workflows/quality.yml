@@ -24,18 +24,22 @@
 # und ein Lauf auf einem fremden Rechner beweist die Auslieferung nicht — er belegt nur, dass die
 # Prüfung dort greift, wo sie läuft. Siehe die Anmerkungen am Job selbst.
 name: Prüfungen
+# Nachtrag 2026-10-08: Die historischen Tag-/fehlender-Job-Kommentare oben gelten nicht
+# mehr für die Konfiguration darunter. Alle Actions sind an geprüfte Commits gebunden.
+# Browser prüft das hochgeladene Qualitätsartefakt; Releasepflicht verlangt drei success.
+# Reale Konto-/Deploymentkopplung und ein tatsächlicher GitHub-Lauf bleiben unbelegt.
 
 on:
   push:
     branches: [main]
   pull_request:
+  workflow_dispatch:
 
 # Minimale Rechte: Lesen genügt zum Prüfen.
 permissions:
   contents: read
 
 # Läuft von Hand gestartet genauso wie automatisch.
-workflow_dispatch:
 
 jobs:
   qualitaet:
@@ -44,8 +48,8 @@ jobs:
     steps:
       # Versionen mit Tag gepinnt. **Offen:** auf Commit-SHAs umstellen, sobald der Workflow in
       # Betrieb geht (Karte M1-003 verlangt es) — ein erfundener SHA wäre schlimmer als ein Tag.
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
         with:
           node-version: '22'
           cache: npm
@@ -55,6 +59,11 @@ jobs:
       - run: npm run check
       # Der Bau prüft zusätzlich das Startbudget und die Sperre gegen PDF-Engines im Startbündel.
       - run: npm run build
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: checked-dist
+          path: apps/web/dist
+          if-no-files-found: error
 
   # Barrierefreiheit und Überbreite im echten Browser (Karte M2-009).
   #
@@ -78,19 +87,22 @@ jobs:
   # grüner Lauf ohne Messung wäre der schlimmere Ausgang.
   browser:
     name: Barrierefreiheit und Überbreite (Windows, Edge)
+    needs: qualitaet
     runs-on: windows-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
         with:
           node-version: '22'
           cache: npm
       - run: npm ci
       # Der Prüfer läuft gegen die BAUdateien: erst bauen, dann ausliefern.
-      - run: npm run build
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
+        with:
+          name: checked-dist
+          path: apps/web/dist
       - name: Vorschaudienst starten
-        working-directory: apps/web
-        run: Start-Process -FilePath "npx.cmd" -ArgumentList "vite","preview","--host","127.0.0.1","--port","4173","--strictPort" -WindowStyle Hidden
+        run: Start-Process -FilePath "node" -ArgumentList "scripts/belege/dist-server-cli.mjs" -WindowStyle Hidden
       - name: Auf den Vorschaudienst warten
         shell: pwsh
         run: |
@@ -113,18 +125,49 @@ jobs:
       - run: npm run viewport:check
         env:
           COMMIETOOLS_AUDIT_URL: http://127.0.0.1:4173
+      - run: npm run async:browser
+      - run: npm run pdf:browser
+      - run: node scripts/ocr-browser-audit.mjs
+      - run: node scripts/offline-browser-audit.mjs
+      - run: node scripts/menu-keyboard-audit.mjs
+      - run: node scripts/download-browser-audit.mjs
+      - run: node scripts/menu-mutants.mjs
+      - run: node scripts/pdf-mutants.mjs
+      - run: node scripts/de-browser-audit.mjs
+      - run: node scripts/craft-browser-audit.mjs
+      - run: node scripts/offline-locale-audit.mjs
+      - run: node scripts/pdf-ui-acceptance.mjs
 
   rust:
     name: Rust-Prüfungen (nativ und wasm32)
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: dtolnay/rust-toolchain@stable
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
         with:
+          node-version: '22'
+      - uses: dtolnay/rust-toolchain@7e38f4b43b4db5c8dd498af069a4f6196df1d067
+        with:
+          toolchain: '1.99.0'
           targets: wasm32-unknown-unknown
-      - uses: Swatinem/rust-cache@v2
+      - uses: Swatinem/rust-cache@779680da715d629ac1d338a641029a2f4372abb5
       # Beide Ziele, weil die WASM-Hülle andere Abhängigkeiten sieht als der native Bau
       # (siehe die getrandom-Falle aus M9-004).
-      - run: cargo check --manifest-path crates/pdf-signer-engine/Cargo.toml
-      - run: cargo test --manifest-path crates/pdf-signer-engine/Cargo.toml
-      - run: cargo check --manifest-path crates/pdf-signer-wasm/Cargo.toml --target wasm32-unknown-unknown
+      - run: cargo check --locked --manifest-path crates/pdf-signer-engine/Cargo.toml
+      - run: cargo test --locked --manifest-path crates/pdf-signer-engine/Cargo.toml
+      - run: cargo check --locked --manifest-path crates/pdf-signer-wasm/Cargo.toml --target wasm32-unknown-unknown
+      - run: cargo install wasm-bindgen-cli --locked --version 0.2.129
+      - run: node scripts/build-signer.mjs tmp/ci-wasm tmp/rebuilt-wasm
+      - run: node -e "const fs=require('fs'); if(!fs.readFileSync('packages/tools/src/pdf/m7-wasm/engine_bg.wasm').equals(fs.readFileSync('tmp/rebuilt-wasm/engine_bg.wasm'))) process.exit(1)"
+
+  required:
+    name: Releasepflicht
+    if: ${{ always() }}
+    needs: [qualitaet, browser, rust]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Alle Pflichtjobs müssen erfolgreich sein
+        env:
+          RESULTS: ${{ toJSON(needs) }}
+        run: |
+          node -e 'const n=JSON.parse(process.env.RESULTS); const ids=["qualitaet","browser","rust"]; if(ids.some(id=>n[id]?.result!=="success") || Object.keys(n).length!==ids.length) process.exit(1)'

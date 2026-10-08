@@ -12,7 +12,7 @@ export function LegalNoticePage({ t, navigate }: { t: Translate; navigate: (path
       <h2>{t('legal.provider')}</h2>
       <address><strong>{t('legal.name')}</strong><br />{t('legal.street')}<br />{t('legal.city')}<br />{t('legal.country')}</address>
       <h2>{t('legal.contact')}</h2>
-      <p>{t('legal.email')}: <a href="mailto:thomasprassel@googlemail.com">thomasprassel@googlemail.com</a></p>
+      <p>{t('legal.email')}: <a className="button" href="mailto:thomasprassel@googlemail.com">thomasprassel@googlemail.com</a></p>
     </section>
   </main>
 }

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 
 /**
  * Ergebnis-Adresse für **eine** Ausgabe — die eine Stelle, an der eine Objekt-Adresse entsteht und
@@ -20,12 +20,23 @@ import { useEffect, useState } from 'react'
  */
 export function useResultUrl(mimeType: string) {
   const [url, setUrl] = useState('')
-  useEffect(() => () => { if (url) URL.revokeObjectURL(url) }, [url])
-  const set = (bytes?: Uint8Array | null) => {
-    setUrl((old) => {
-      if (old) URL.revokeObjectURL(old)
-      return bytes ? URL.createObjectURL(new Blob([new Uint8Array(bytes)], { type: mimeType })) : ''
-    })
-  }
+  const owner = useRef('')
+  const mounted = useRef(true)
+  useEffect(() => {
+    mounted.current = true
+    return () => {
+      mounted.current = false
+      if (owner.current) URL.revokeObjectURL(owner.current)
+      owner.current = ''
+    }
+  }, [])
+  const set = useCallback((bytes?: Uint8Array | null) => {
+    if (!mounted.current) return
+    // Creation precedes replacement so a failed allocation preserves the old result.
+    const next = bytes ? URL.createObjectURL(new Blob([new Uint8Array(bytes)], { type: mimeType })) : ''
+    if (owner.current) URL.revokeObjectURL(owner.current)
+    owner.current = next
+    setUrl(next)
+  }, [mimeType])
   return [url, set] as const
 }

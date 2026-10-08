@@ -1,8 +1,12 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import { VitePWA } from 'vite-plugin-pwa'
+import { buildIdentity } from '../../scripts/build-identity.mjs'
+
+const buildId = buildIdentity()
 
 export default defineConfig({
+  define: { __APP_BUILD_ID__: JSON.stringify(buildId) },
   optimizeDeps: { exclude: ['mupdf'] },
   build: {
     rollupOptions: {
@@ -31,6 +35,17 @@ export default defineConfig({
   },
   plugins: [
     react(),
+    {
+      name: 'used-asset-graph',
+      generateBundle(_options, bundle) {
+        const assets: Record<string, string[]> = {}
+        for (const item of Object.values(bundle)) {
+          if (item.type === 'chunk') assets[item.fileName] = [...item.imports, ...item.referencedFiles]
+        }
+        this.emitFile({ type: 'asset', fileName: 'asset-map.json', source: JSON.stringify({ buildId, assets }) })
+        this.emitFile({ type: 'asset', fileName: 'build.json', source: JSON.stringify({ buildId }) })
+      }
+    },
     VitePWA({
       registerType: 'autoUpdate',
       manifest: {
@@ -51,6 +66,7 @@ export default defineConfig({
         cleanupOutdatedCaches: true,
         globPatterns: ['**/*.{js,css,html,ico,png,svg,json,txt,wasm}'],
         globIgnores: [
+          '**/build.json',
           '**/Pdf*.js',
           '**/ImagesToPdf-*.js',
           '**/pdf-*.js',
@@ -74,6 +90,13 @@ export default defineConfig({
           '**/ui-*.js'
         ],
         runtimeCaching: [{
+          urlPattern: ({ url }) => url.pathname === '/build.json',
+          handler: 'NetworkOnly'
+        }, {
+          urlPattern: ({ url }) => url.origin === self.location.origin && url.pathname.startsWith('/assets/'),
+          handler: 'CacheFirst',
+          options: { cacheName: `commietools-used-assets-${buildId}`, matchOptions: { ignoreVary: true } }
+        }, {
           urlPattern: /\/assets\/(?:Pdf|ImagesToPdf-|pdf-|pdfUi-|pdfjs-|pdf-lib-|mupdf-|qpdf-|engine-|engine_bg-|tesseract-|worker\.min-|pdf\.worker)/,
           handler: 'CacheFirst',
           options: { cacheName: 'commietools-pdf-engines-v2' }

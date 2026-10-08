@@ -12,7 +12,7 @@
     "packages/*"
   ],
   "scripts": {
-    "m7:build": "cargo build --manifest-path crates/pdf-signer-wasm/Cargo.toml --release --target wasm32-unknown-unknown && wasm-bindgen crates/pdf-signer-wasm/target/wasm32-unknown-unknown/release/commietools_pdf_signer_wasm.wasm --target web --out-dir packages/tools/src/pdf/m7-wasm --out-name engine",
+    "m7:build": "node scripts/build-signer.mjs",
     "dev": "npm run dev --workspace @commietools/web",
     "build": "npm run licenses:check && npm run catalog:check && npm run build --workspaces --if-present",
     "catalog:check": "node scripts/catalog-generate.mjs check",
@@ -28,7 +28,7 @@
     "glossary:check": "node scripts/glossary-audit.mjs",
     "style:check": "node scripts/style-audit.mjs",
     "format:check": "node scripts/format-audit.mjs",
-    "check": "npm run licenses:check && npm run catalog:check && npm run readme:check && npm run adr:check && npm run akte:check && npm run tokens:check && npm run jsx:check && npm run glossary:check && npm run format:check && npm run lint && npm run typecheck --workspaces --if-present && npm run test --workspaces --if-present",
+    "check": "npm run policy:test && npm run licenses:check && npm run catalog:check && npm run readme:check && npm run adr:check && npm run akte:check && npm run tokens:check && npm run jsx:check && npm run glossary:check && npm run format:check && npm run lint && npm run typecheck --workspaces --if-present && npm run test --workspaces --if-present && npm run m7:check",
     "licenses:generate": "node scripts/license-audit.mjs generate",
     "licenses:check": "node scripts/license-audit.mjs check",
     "lint": "eslint .",
@@ -40,7 +40,12 @@
     "beleg:routing": "node scripts/belege/routing-beleg.mjs",
     "beleg:mutation-zusammenlegung": "node scripts/belege/mutation-zusammenlegung.mjs",
     "beleg:mutation-routing": "node scripts/belege/mutation-routing.mjs",
-    "beleg:kartenstand": "node scripts/belege/kartenstand.mjs"
+    "beleg:kartenstand": "node scripts/belege/kartenstand.mjs",
+    "policy:test": "node --test scripts/rust-review-policy.test.mjs && node scripts/license-mutants.mjs",
+    "m7:check": "node scripts/m7-eu-dss-audit.mjs",
+    "verify:finish": "node scripts/verify-fertigstellung.mjs",
+    "pdf:browser": "node scripts/pdf-browser-audit.mjs",
+    "async:browser": "node scripts/async-browser-audit.mjs"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",

@@ -118,3 +118,31 @@ Registerdateien sind erzeugt und committet (`cfc2c5e`), und ein frischer Checkou
 (`FRISCH_LICENSES_EXIT=0`, `FRISCH_BUILD_EXIT=0`). Der obige Hinweis auf
 `npm run build --workspace @commietools/web` bleibt als **Notweg** gültig, ist aber nicht mehr nötig.
 Beleg: `uebergabe/06-protokolle/2026-10-07-op064-frischer-checkout.txt`.
+
+## Nachtrag 2026-10-08 — eingefrorene MS0-Kriterienbasis
+
+`node scripts/belege/fertigstellung-basis.mjs` prüft die versionierbare Basis unter
+`uebergabe/07-pruefung/fertigstellung/2026-10-08-ms0/` ohne ursprüngliches `QM/` oder `work/`:
+23 Quellenhashes, 59 Originalkarten mit exakten Abnahmen/Abgrenzungen, 26 offene Zuordnungen,
+neun wieder geöffnete Karten und acht tatsächliche D/E-Routen. Bei Abweichung Exit 1.
+Das PASS ist ausschließlich ein Zuordnungs-/Integritätsnachweis, keine Produktabnahme.
+`kartenstand.mjs` zählt weiterhin die historischen R1–R10-Tabellen; der aktuelle fachliche
+Nachprüfungsstand ist im datierten Leitfadennachtrag getrennt geführt.
+
+## Nachtrag 2026-10-08 — Wirkungsbelege MS1–MS7
+
+`npm run verify:finish` / `npm run verify:finish final` bündeln die freigegebenen lokalen
+Prüfungen. Neue Belege liegen unter `scripts/` und `apps/web/src/test-fixtures/`, gemeinsamer
+CDP-Aufsatz/Dist-Dienst unter `scripts/belege/`. Der Dist-Dienst setzt die echten lokalen
+`_headers` um. PDF-/OCR-/Async-/Offline-/Download-/Menü-/D/E-Skripte starten ihren Dienst und
+Browser selbst, benötigen weder ursprüngliches QM noch work und schließen eigene Prozesse.
+Fehlende Engine/Fixture/Browser oder falsche Wirkung ist Fehler, kein stilles PASS.
+
+Das [MS1–MS7-Paket](../../uebergabe/07-pruefung/fertigstellung/2026-10-08-ms1-ms7/README.md)
+nennt genaue Beleggrenzen, Aufrufvarianten und Ergebnisdateien. Es gibt echte negative
+Lizenz-/UI-Sprach-/Menü-/PDF-Effektproben, einen frischen Clone und zwei getrennte WASM-Bauten.
+CLI-Versionen und Action-SHAs sind gebunden; Windows-Referenzbau braucht freies J: und Rust
+1.99.0/wasm-bindgen 0.2.129. Ein gleicher Computer wird nicht als Zweitrechner bezeichnet.
+Root-Check enthält Policy-/DSS-Gates; der Workflow ergänzt obligatorische Browserwirkung.
+Die historische Behauptung „Belege werden nicht automatisch gefahren“ gilt damit nicht für
+diese neuen Pflichtgates. Reale Vorleser-/Picker-/Touch-/Zoom-/Fachabnahmen ersetzt das nicht.

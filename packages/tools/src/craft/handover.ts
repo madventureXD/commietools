@@ -102,7 +102,7 @@ export interface WarrantyDeadline {
 /**
  * Gewährleistungsfristen aus dem Abnahmedatum.
  *
- * BGB § 634a Abs. 1 Nr. 2: fünf Jahre bei einem Bauwerk. VOB/B § 13 Abs. 4 Nr. 2: vier Jahre,
+ * BGB § 634a Abs. 1 Nr. 2: fünf Jahre bei einem Bauwerk. VOB/B § 13 Abs. 4 Nr. 1: vier Jahre,
  * wenn VOB/B vereinbart ist. **Beide Zahlen sind Rechtsanwendung, keine Rechtsberatung** — das
  * steht als Hinweis in der Oberfläche. Ob VOB/B gilt, entscheidet der Vertrag, nicht das Werkzeug.
  */

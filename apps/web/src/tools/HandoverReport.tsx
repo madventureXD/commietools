@@ -47,6 +47,8 @@ export function HandoverReport({ t }: HandoverReportProps) {
   const [photos, setPhotos] = useState<readonly ReportPhoto[]>([])
   const [clientSignature, setClientSignature] = useState<SignatureSource | null>(null)
   const [contractorSignature, setContractorSignature] = useState<SignatureSource | null>(null)
+  const [clientPending, setClientPending] = useState(false)
+  const [contractorPending, setContractorPending] = useState(false)
   const [warranty, setWarranty] = useState<readonly WarrantyDeadline[]>([])
   const [fehler, setFehler] = useState<readonly string[]>([])
   const [hinweis, setHinweis] = useState<string | null>(null)
@@ -221,9 +223,9 @@ export function HandoverReport({ t }: HandoverReportProps) {
       <section className="settings-card">
         <h2>{t('tool.handover.signatures')}</h2>
         <p className="scan-note">{t('tool.handover.signatureClient')}</p>
-        <SignaturePad onChange={setClientSignature} clearLabel={t('tool.handover.clearSignature')} label={t('tool.handover.signatureClient')} />
+        <SignaturePad onChange={setClientSignature} onPendingChange={setClientPending} clearLabel={t('tool.handover.clearSignature')} label={t('tool.handover.signatureClient')} />
         <p className="scan-note">{t('tool.handover.signatureContractor')}</p>
-        <SignaturePad onChange={setContractorSignature} clearLabel={t('tool.handover.clearSignature')} label={t('tool.handover.signatureContractor')} />
+        <SignaturePad onChange={setContractorSignature} onPendingChange={setContractorPending} clearLabel={t('tool.handover.clearSignature')} label={t('tool.handover.signatureContractor')} />
       </section>
 
       {warranty.length > 0 && (
@@ -246,7 +248,7 @@ export function HandoverReport({ t }: HandoverReportProps) {
       )}
 
       <div className="download-row">
-        <Button className="primary" disabled={busy} onClick={erzeuge}>{busy ? t('tool.handover.processing') : t('tool.handover.action')}</Button>
+        <Button className="primary" disabled={busy || clientPending || contractorPending} onClick={erzeuge}>{busy || clientPending || contractorPending ? t('tool.handover.processing') : t('tool.handover.action')}</Button>
       </div>
 
       {hinweis && <p className="scan-note" role="status">{t(hinweis)}</p>}

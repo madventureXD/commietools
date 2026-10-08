@@ -1,0 +1,235 @@
+# R7 – Produkt- und Architekturdokumentation
+
+Priorität P2. Empfehlung, keine Umsetzung/Freigabe. Basis a041ee0efda6b07687b3586977bb0d90bf1c89a8.
+
+[Leseregeln und Reihenfolge](README.md) · [Architektur/Migration](01-architektur-und-migration.md) · [Abnahme](03-pruef-und-uebergabeplan.md)
+
+Zeilen beziehen sich auf die eingefrorene Basis. Vor Änderungen Hash/Anker gegen den aktuellen Stand vergleichen. Zielpfade sind bestehende Projektdateien; neu vorgeschlagene Dateien werden im Text ausdrücklich benannt. Quellbelege bestätigen Mechanismen/Standards, nicht bereits getestete Reparaturen.
+
+## M1-001 – Haupt-README beschreibt einen veralteten Produktumfang
+
+**Stand dieser Empfehlung:** README-Umfang veraltet; aktueller Snapshot enthält 62 Tools.
+
+**Historischer M12-Vermerk (cd556d1, keine neue Messung):** README unverändert veraltet; aktuell 54 Tools statt historischer 41. Keine Aussage über identischen öffentlichen Build.
+
+### Konkrete Eingriffs- und Prüfstellen
+
+- [README.md:68](<C:/Projekte mit ChatGPT/commietools/README.md:68>) — Anker: „twenty-three“.
+- [packages/tools/src/catalog/manifests.ts:8](<C:/Projekte mit ChatGPT/commietools/packages/tools/src/catalog/manifests.ts:8>) — Anker: „export“.
+- [scripts/catalog-generate.mjs:32](<C:/Projekte mit ChatGPT/commietools/scripts/catalog-generate.mjs:32>) — Anker: „function“.
+
+### Dauerhafte Lösung
+
+Aktuelle Umfangszahlen aus kanonischem Katalog ableiten. Bevorzugt kleiner generierter, klar markierter README-Bestandsblock mit Generator-check statt Zahlen über Fließtext zu verteilen. Beschreibende Aussagen, Toolverfügbarkeit und Offlinebedingungen weiterhin redaktionell prüfen. Zahlen nach Revision/Datum kennzeichnen, historische Protokolle behalten ihre damaligen Werte. Katalog-, Routen- und Implementierungsabgleich zusammen mit R9 durchführen.
+
+### Abnahme
+
+Im Snapshot 62 Tools, 7 Suites und 23 PDF-Routen gegen Generator/Registry prüfen. Testtool in isolierter Kopie ergänzen: veralteter Bestandsblock wird erkannt; Neugenerierung deterministisch. Links funktionieren.
+
+### Nicht tun / Abgrenzung
+
+Nicht alle historischen 41/54 automatisch durch 62 ersetzen. Keine unbefristeten hartgeschriebenen neuen Zahlen als nachhaltige Lösung.
+
+### Verifizierte Grundlage
+
+[S32 · MADR: Architekturentscheidungen](<https://adr.github.io/madr/>) ([Prüfvermerk](02-quellen.md#s32)); [S33 · TypeScript: Exhaustiveness checking](<https://www.typescriptlang.org/docs/handbook/2/narrowing.html#exhaustiveness-checking>) ([Prüfvermerk](02-quellen.md#s33)).
+
+## M1-002 – Behauptung „Suche über alle Sprachen“ widerspricht dem Ladeverhalten
+
+**Stand dieser Empfehlung:** Suchversprechen weiterhin an tatsächliche Ladegrenzen anzupassen; umfasst Alias M3-005.
+
+**Historischer M12-Vermerk (cd556d1, keine neue Messung):** Leitbefund der falschen Suchzusage; M3-005 ist dieselbe Abweichung in der Oberfläche.
+
+### Konkrete Eingriffs- und Prüfstellen
+
+- [README.md:68](<C:/Projekte mit ChatGPT/commietools/README.md:68>) — Anker: „across every language“.
+- [packages/tools/src/catalog/search.ts:37](<C:/Projekte mit ChatGPT/commietools/packages/tools/src/catalog/search.ts:37>) — Anker: „language“.
+- [packages/i18n/src/common/de.ts:13](<C:/Projekte mit ChatGPT/commietools/packages/i18n/src/common/de.ts:13>) — Anker: „catalog.searchHint“.
+- [packages/i18n/src/common/en.ts:13](<C:/Projekte mit ChatGPT/commietools/packages/i18n/src/common/en.ts:13>) — Anker: „catalog.searchHint“.
+- [packages/i18n/src/common/es.ts:13](<C:/Projekte mit ChatGPT/commietools/packages/i18n/src/common/es.ts:13>) — Anker: „catalog.searchHint“.
+- [packages/tools/src/catalog/generated/loaders.ts:15](<C:/Projekte mit ChatGPT/commietools/packages/tools/src/catalog/generated/loaders.ts:15>) — Anker: „loadToolSearchIndex“.
+
+### Dauerhafte Lösung
+
+Produktversprechen auf aktive Sprache plus Englisch präzisieren; Katalog kann insgesamt mehr Sprachen enthalten, aber nicht alle sind gleichzeitig durchsuchbar. README, UI-Hinweis de/en/es und Suchkommentar im selben Änderungspaket. Netzwerk-/Suchvertrag als dauerhaftes Gate: Localewechsel tauscht das Zusatzpaket, Englisch bleibt Fallback; inaktive dritte Sprache wird nicht automatisch geladen. Generated-Loader nur über Generator ändern, wenn Verhalten tatsächlich geändert werden muss.
+
+### Abnahme
+
+Spanische UI findet spanische und englische Begriffe, nicht zwingend deutsche; nach Wechsel auf Deutsch entsprechende Treffer. Ressourcennetztrace und sichtbare Hilfetexte decken sich. Zweimal Englisch nicht laden.
+
+### Nicht tun / Abgrenzung
+
+Nicht zur alten Allsprachen-Suche zurückkehren, um den Satz wahrzumachen. M3-005 ist keine zusätzliche Reparaturgruppe.
+
+### Verifizierte Grundlage
+
+[S15 · MDN: import()](<https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/import>) ([Prüfvermerk](02-quellen.md#s15)); [S19 · Workbox: Warm strategy cache](<https://developer.chrome.com/docs/workbox/modules/workbox-recipes>) ([Prüfvermerk](02-quellen.md#s19)).
+
+## M2-001 – Angenommener Sicherheits-ADR verbietet veröffentlichte M7-Werkzeuge
+
+**Stand dieser Empfehlung:** Alter M7-Sicherheits-ADR und veröffentlichte Routen widersprechen sich.
+
+**Historischer M12-Vermerk (cd556d1, keine neue Messung):** Alter Sicherheits-ADR weiterhin angenommen; Routen vorhanden. Widersprüchliche Dokumentation, kein Nachweis unzulässiger Nutzerfreigabe.
+
+### Konkrete Eingriffs- und Prüfstellen
+
+- [uebergabe/04-entscheidungen/0004-m7-signatur-sicherheitsgate.md:1](<C:/Projekte mit ChatGPT/commietools/uebergabe/04-entscheidungen/0004-m7-signatur-sicherheitsgate.md:1>) — Anker: „#“.
+- [uebergabe/04-entscheidungen/README.md:19](<C:/Projekte mit ChatGPT/commietools/uebergabe/04-entscheidungen/README.md:19>) — Anker: „0004“.
+- [packages/tools/src/catalog/manifests.ts:207](<C:/Projekte mit ChatGPT/commietools/packages/tools/src/catalog/manifests.ts:207>) — Anker: „pdf-signature“.
+
+### Dauerhafte Lösung
+
+Neuen, noch freien ADR für tatsächliche M7-Freigabekriterien vorbereiten: erfüllte Nachweise, offene Einschränkungen, unterstützte Signaturprofile, Rücknahmestrategie. Alten ADR datiert als ersetzt/ergänzt verknüpfen, ursprünglichen Inhalt erhalten. Historisch nicht belegte Freigaben ausdrücklich unbekannt lassen. Neue Entscheidung erst nach R1-/R4-Nachweisen annehmen; bis dahin Diskrepanz sichtbar, kein rückwirkendes Erfinden eines Sicherheitsgates.
+
+### Abnahme
+
+Jede Gatebehauptung verweist auf konkrete Revision und Bericht; Produktstatus/Manifest/ADR konsistent. Fehlender Rust- oder CSP-Nachweis bleibt offen. Index verlinkt Vorgänger/Nachfolger eindeutig.
+
+### Nicht tun / Abgrenzung
+
+Nicht die Sicherheitsanforderungen löschen, nur weil Funktionen bereits im Katalog stehen. Neue Entscheidung benötigt Betreiberfreigabe.
+
+### Verifizierte Grundlage
+
+[S32 · MADR: Architekturentscheidungen](<https://adr.github.io/madr/>) ([Prüfvermerk](02-quellen.md#s32)); [S07 · Reproducible Builds: Definition](<https://reproducible-builds.org/docs/definition/>) ([Prüfvermerk](02-quellen.md#s07)).
+
+## M2-002 – ADR verspricht harten Größenabbruch, aktuelles Gate warnt nur
+
+**Stand dieser Empfehlung:** ADR-Hartgrenze passt nicht zur bestätigten Warnpolitik.
+
+**Historischer M12-Vermerk (cd556d1, keine neue Messung):** Nutzerentscheidung für Warnungen gilt. ADR berichtigen, keinesfalls harte Größenstopps aus dem alten ADR wiedereinführen.
+
+### Konkrete Eingriffs- und Prüfstellen
+
+- [uebergabe/04-entscheidungen/0003-datensparsame-ladegrenzen.md:1](<C:/Projekte mit ChatGPT/commietools/uebergabe/04-entscheidungen/0003-datensparsame-ladegrenzen.md:1>) — Anker: „#“.
+- [scripts/bundle-audit.mjs:11](<C:/Projekte mit ChatGPT/commietools/scripts/bundle-audit.mjs:11>) — Anker: „warn“.
+- [scripts/bundle-size-baseline.json:1](<C:/Projekte mit ChatGPT/commietools/scripts/bundle-size-baseline.json:1>) — Anker: „{“.
+
+### Dauerhafte Lösung
+
+Datierten ADR-Nachtrag anlegen: Größenbudgets sind Warnschwellen gemäß Nutzerentscheidung; strukturelle Regeln (kein globales Sprach-/Engineladen, kein unerlaubter Import) bleiben harte Fehler. Berichte trennen Messwert, Referenz, Abweichung und Prüfklasse. Eine Warnung muss sichtbar in Übergabe/Release landen, aber darf nicht indirekt über generisches warnings-as-errors zum Größenverbot werden.
+
+### Abnahme
+
+Synthetische Größenüberschreitung → sichtbare Warnung/erfolgreicher Strukturcheck; unerlaubter globaler Import → Fehler. Dokumentation nennt dieselbe Politik wie Gate.
+
+### Nicht tun / Abgrenzung
+
+Keine Wiederherstellung harter Bytebudgets; keine still automatisch nach oben angepasste Baseline, die Warnungen verschwinden lässt.
+
+### Verifizierte Grundlage
+
+[S32 · MADR: Architekturentscheidungen](<https://adr.github.io/madr/>) ([Prüfvermerk](02-quellen.md#s32)).
+
+## M2-003 – Angenommener Rechner-ADR enthält zwei überholte Budgets
+
+**Stand dieser Empfehlung:** Rechner-ADR enthält überholte Größen-/Budgetaussagen.
+
+**Historischer M12-Vermerk (cd556d1, keine neue Messung):** Überholte Budgetzahlen getrennt vom Warnungs-/Abbruchvertrag; gemeinsame Dokumentpflege mit M2-002 möglich.
+
+### Konkrete Eingriffs- und Prüfstellen
+
+- [uebergabe/04-entscheidungen/0005-mathjs-rechenkern.md:1](<C:/Projekte mit ChatGPT/commietools/uebergabe/04-entscheidungen/0005-mathjs-rechenkern.md:1>) — Anker: „#“.
+- [scripts/bundle-audit.mjs:37](<C:/Projekte mit ChatGPT/commietools/scripts/bundle-audit.mjs:37>) — Anker: „math“.
+- [packages/tools/src/calculator/core.ts:15](<C:/Projekte mit ChatGPT/commietools/packages/tools/src/calculator/core.ts:15>) — Anker: „create“.
+
+### Dauerhafte Lösung
+
+Architekturentscheidung für kuratierte mathjs-Factory beibehalten. Historische 250KiB-/Welle-2-Angaben mit datiertem Nachtrag vom aktuellen gemessenen Stand und gültiger Warnschwelle unterscheiden; nicht nachträglich alte Messwerte verfälschen. Baseline erklärt Messmethode roh/gzip und Chunkumfang. Überflüssige Parallelimporte als strukturelle Regression prüfen, nicht jede Funktionsausweitung allein wegen Größe verhindern.
+
+### Abnahme
+
+Buildreport und aktiver ADR-Nachtrag nennen konsistente Einheit/Umfang/Revision. Plotter-/RPN-Reparaturen ziehen keine zweite komplette mathjs-Instanz in den Startchunk. Größenwarnung bleibt Warnung.
+
+### Nicht tun / Abgrenzung
+
+Kein pauschales Upgrade/Rewrite des Rechenkerns und keine Vollfactory als schnelle Scope-Lösung.
+
+### Verifizierte Grundlage
+
+[S09 · mathjs: Ausdrücke und Scope](<https://mathjs.org/docs/expressions/parsing.html>) ([Prüfvermerk](02-quellen.md#s09)); [S32 · MADR: Architekturentscheidungen](<https://adr.github.io/madr/>) ([Prüfvermerk](02-quellen.md#s32)).
+
+## M2-004 – QPDF-ADR beschränkt die Engine fälschlich auf M5
+
+**Stand dieser Empfehlung:** QPDF-Reparaturpfad wird vom alten Anwendungsbereich nicht beschrieben.
+
+**Historischer M12-Vermerk (cd556d1, keine neue Messung):** QPDF-Verwendung für Reparatur sachlich legitim, nur der verengte ADR-Wortlaut ist falsch.
+
+### Konkrete Eingriffs- und Prüfstellen
+
+- [uebergabe/04-entscheidungen/0002-qpdf-wasm-fuer-pdf-sicherheit.md:1](<C:/Projekte mit ChatGPT/commietools/uebergabe/04-entscheidungen/0002-qpdf-wasm-fuer-pdf-sicherheit.md:1>) — Anker: „#“.
+- [packages/tools/src/pdf/m8.ts:3](<C:/Projekte mit ChatGPT/commietools/packages/tools/src/pdf/m8.ts:3>) — Anker: „repairPdfWithQpdf“.
+- [packages/tools/src/pdf/m5.ts:1](<C:/Projekte mit ChatGPT/commietools/packages/tools/src/pdf/m5.ts:1>) — Anker: „qpdf“.
+
+### Dauerhafte Lösung
+
+ADR-Anwendungsbereich auf tatsächlich genutzte Sicherheits- UND Reparaturfunktionen erweitern, mit exakten Aufrufern und Lazy-Load-Grenze. Engineadapter als technische gemeinsame Zuständigkeit, Fachaktionen weiterhin getrennt. Herkunft/Lizenz/Versionsbindung und Offlineverhalten an R1/R3 referenzieren statt im ADR eigene abweichende Regeln zu kopieren.
+
+### Abnahme
+
+Importkarte weist m5-/m8-Pfade aus; Startseite lädt QPDF nicht, beide Toolpfade laufen mit identischer Engineversion. Dokumentation und tatsächliche Aufrufargumente passen.
+
+### Nicht tun / Abgrenzung
+
+Keine zusätzliche QPDF-Engine nur zur Herstellung der alten M5-Grenze.
+
+### Verifizierte Grundlage
+
+[S32 · MADR: Architekturentscheidungen](<https://adr.github.io/madr/>) ([Prüfvermerk](02-quellen.md#s32)); [S15 · MDN: import()](<https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/import>) ([Prüfvermerk](02-quellen.md#s15)).
+
+## M2-005 – Entscheidungsindex verschweigt ADR 0006
+
+**Stand dieser Empfehlung:** Doppelnummer 0006 und Entscheidungsindex müssen nachvollziehbar bereinigt werden.
+
+**Historischer M12-Vermerk (cd556d1, keine neue Messung):** PDF-ADR fehlt weiterhin im Index; inzwischen zusätzlich doppelte Nummer 0006. Index nicht mehr pauschal nur bis 0005.
+
+### Konkrete Eingriffs- und Prüfstellen
+
+- [uebergabe/04-entscheidungen/README.md:1](<C:/Projekte mit ChatGPT/commietools/uebergabe/04-entscheidungen/README.md:1>) — Anker: „#“.
+- [uebergabe/04-entscheidungen/0006-m9-konformitaetsgate.md:1](<C:/Projekte mit ChatGPT/commietools/uebergabe/04-entscheidungen/0006-m9-konformitaetsgate.md:1>) — Anker: „#“.
+- [uebergabe/04-entscheidungen/0006-voller-wert-und-genauigkeitsampel.md:1](<C:/Projekte mit ChatGPT/commietools/uebergabe/04-entscheidungen/0006-voller-wert-und-genauigkeitsampel.md:1>) — Anker: „#“.
+
+### Dauerhafte Lösung
+
+Index zunächst vollständig machen und doppelte Nummer explizit benennen. Für dauerhafte eindeutige IDs eine dokumentierte Migration wählen: einen Konflikt unter neuer freier Nummer führen, am alten Pfad kurze Weiterverweisakte behalten und alle aktiven Referenzen aktualisieren; historische Links bleiben auflösbar. Keine rückwirkliche inhaltliche Verschmelzung zweier Entscheidungen. Künftiger Dokugate prüft ID-Eindeutigkeit, Existenz und Indexvollständigkeit.
+
+### Abnahme
+
+Jede aktive ADR-Datei hat genau einen Indexeintrag, keine zwei aktiven Entscheidungen dieselbe ID; sämtliche alten und neuen Links landen bei der richtigen fachlichen Entscheidung.
+
+### Nicht tun / Abgrenzung
+
+Nicht nur einen Dateinamen umbenennen und Verweise verlieren; keine erfundene historische Annahmezeit.
+
+### Verifizierte Grundlage
+
+[S32 · MADR: Architekturentscheidungen](<https://adr.github.io/madr/>) ([Prüfvermerk](02-quellen.md#s32)).
+
+## M11-001 – Architekturbeschreibung führt vorhandene Engine- und Cachegrenzen als vertagt
+
+**Stand dieser Empfehlung:** Rust-/Cachegrenzen existieren bereits; Doku beschreibt sie teils als vertagt.
+
+**Historischer M12-Vermerk (cd556d1, keine neue Messung):** Architektur-Dokumentwiderspruch aus M11; keine neue Laufzeitprüfung in M12.
+
+### Konkrete Eingriffs- und Prüfstellen
+
+- [docs/architecture.md:5](<C:/Projekte mit ChatGPT/commietools/docs/architecture.md:5>) — Anker: „Rust“.
+- [apps/web/vite.config.ts:88](<C:/Projekte mit ChatGPT/commietools/apps/web/vite.config.ts:88>) — Anker: „commietools-language-packs“.
+- [packages/tools/src/pdf/m7.ts:29](<C:/Projekte mit ChatGPT/commietools/packages/tools/src/pdf/m7.ts:29>) — Anker: „import“.
+- [crates/pdf-signer-wasm/Cargo.toml:1](<C:/Projekte mit ChatGPT/commietools/crates/pdf-signer-wasm/Cargo.toml:1>) — Anker: „[package]“.
+
+### Dauerhafte Lösung
+
+Architektur um aktuellen datierten Iststand ergänzen: Browser-App, Lazy-Toolmodule, Rust-WASM-Brücke, reale Cachegruppen und Sprach-/Toolpaketgranularität. Je Grenze Codeanker, Verantwortung und reale Restarbeit benennen. Rust-Neubau und sichere Offlinebereitschaft sind offene Qualitätseigenschaften vorhandener Architektur, kein Beleg fehlender Architektur. Kurze dependency/import-Prüfung schützt wichtige Schichtgrenzen bei neuen Tools.
+
+### Abnahme
+
+Behauptungstafel K30/K31 durch Istbeleg schließen; Import- und Cachekarte stimmen mit Buildkonfiguration überein. Keine Formulierung vertagt für bereits vorhandenen Pfad ohne präzise Einschränkung.
+
+### Nicht tun / Abgrenzung
+
+Keine zweite Rust-Brücke oder neue Cacheversion allein wegen falscher Dokumentation bauen.
+
+### Verifizierte Grundlage
+
+[S32 · MADR: Architekturentscheidungen](<https://adr.github.io/madr/>) ([Prüfvermerk](02-quellen.md#s32)); [S19 · Workbox: Warm strategy cache](<https://developer.chrome.com/docs/workbox/modules/workbox-recipes>) ([Prüfvermerk](02-quellen.md#s19)).

@@ -1,0 +1,33 @@
+# Nachprüfung der 59 Sanierungskarten — 2026-10-07
+
+Status: erste unabhängige Nachprüfung aller 59 Karten abgeschlossen; **keine Freigabe**. Die unten und in der Matrix benannten Restabnahmen sind nicht erledigt.
+
+Basis: `556159f58ac3beac3b6349851dae7326558b7fbb`, sauberer Arbeitsbaum zu Beginn. Alle eigenen Dateien ausschließlich in diesem QM-Unterordner; keine Reparatur, kein Commit, kein Push. Historische Auditakten bleiben unverändert.
+
+Die Dokumentation zählt 58 erledigte Karten und M8-001 mit Restforderung. Dieser administrative Zähler ist **keine fachliche Abnahme**. Eigene Einordnung: **33 Befundkerne nachvollzogen · 16 Restabnahmen · 9 erneut zu öffnende Karten · 1 bekannte offene Restforderung**. Summe und vollständige ID-Zuordnung sind maschinell gegen die 59 Originalkarten geprüft (`matrix-count.json`, keine fehlenden/zusätzlichen IDs).
+
+Eigene Grundmessungen: `npm run check` Exit 0, 54 Testdateien / 733 Tests, 110 ESLint-Warnungen / 0 Fehler. `npm run build` Exit 0, Startlast 149755 B gzip, Rechnerkern 103801 B gzip. Größenüberschreitungen der Werkzeugtext-Gesamtpakete sind Warnungen und nicht als verbotene Budgetverletzung bewertet.
+
+Die gebauten 62 Werkzeugrouten bestehen den vorhandenen 320-px-Prüfer. Beide a11y-Themes bestehen 62 × 2 Breiten; ihre Menü-Aussagen sind wegen des nachgewiesenen Selektorfehlers nicht belastbar. Grüne heuristische Prüfungen sind kein WCAG-Konformitätsnachweis. Die frühere Kontrastausnahme wurde dagegen **wirklich korrigiert**: die Aktionsbeschriftung nutzt je Theme einen passenden Token.
+
+Weitere positive Belege: sieben ursprüngliche Anforderungsregressionen grün; Netzbeleg der drei Start-/Toolrouten grün; 13 öffentliche EU-DSS-Dateien durch die aktuelle echte WASM-Engine erneut verarbeitet. Das belegt einen begrenzten Korpus, keine allgemeine kryptografische Zertifizierung und keinen unabhängigen Rust-Neubau. lopdf 0.42.0 liegt im [offiziellen Fixbereich von RUSTSEC-2026-0187](https://rustsec.org/advisories/RUSTSEC-2026-0187.html). Das bekannte [rsa/Marvin-Risiko](https://rustsec.org/advisories/RUSTSEC-2023-0071.html) hat weiterhin keinen Patch; RustSec nennt lokalen Einsatz auf nicht kompromittiertem Rechner als möglichen sicheren Einsatzrahmen. Beide Quellen am 2026-10-07 geprüft; keine daraus abgeleitete pauschale Browser-Sicherheitsgarantie.
+
+## Wichtigste Gegenbelege
+
+1. **N2:** Rust-Lizenzsperre verwechselt einen offenen Eintrag mit Genehmigung und bindet eine Ausnahme nicht an den tatsächlichen Lizenzausdruck. Blockierend für eine belastbare Lizenz-Freigabe, kein behaupteter Rechtsverstoß.
+2. **N1/N7:** CI-Trigger syntaktisch falsch eingeordnet; verlangte echte PDF-Wirkungs-/Signaturjobs fehlen im normal sperrenden Releaseweg.
+3. **N3:** Verspätet gelesene PDF A überschreibt vollständig geladene jüngere Auswahl B.
+4. **N6:** Erstbesuch sichert verwendete PDF-Abhängigkeiten nicht dauerhaft; echter Netzverlust ergibt unbenutzbares Werkzeug und falsche „veraltet“-Ursache.
+5. **N4/N8:** Menü-Prüfung öffnet kein Menü; Sprachvertrag erkennt einen beschädigten UI-Unicode-Mutanten nicht.
+
+**N5** ist ein zusätzlicher handwerklicher Befund: zentraler URL-Hook mit Seiteneffekten im React-State-Updater; zwei offene Adressen im StrictMode-Test. Im getesteten Production-Fall keine offene Adresse — die Schwere ist entsprechend geringer.
+
+## Gesamturteil und nächster Schritt
+
+Die Sanierung ist substanziell, nicht bloße Dokumentpflege: Fehlerkerne wurden repariert, neue Verträge und Prüfmittel eingeführt. Ihre Abnahme bleibt aber zu stark auf ausgewählte Positivläufe und administrative Abschlussmarken gestützt. Besonders neue zentrale Helfer und Qualitätsgates benötigen Gegenproben **über ihren tatsächlichen Vertrag**, nicht nur Mengen-/Regexprüfungen.
+
+**Noch nicht veröffentlichen auf Grundlage dieses Audits.** Zunächst die neun F-Karten gezielt korrigieren, ihre Gegenbelege in verlässliche reguläre Prüfungen übernehmen und erneut unabhängig prüfen; danach die 16 R-Karten und M8-001 gemäß dokumentiertem ursprünglichem Kriterium abnehmen oder ausdrücklich entscheiden. Dieser Bericht erledigt die positive Auflage A2 nicht automatisch.
+
+Detail: [acht Befunde mit Ort, Beleg und Lösungsempfehlung](10-befunde.md), [59-Karten-Matrix](20-kartenmatrix.md), [Prüfgrenzen](90-nicht-geprueft.md), [Dateiindex](INDEX.md).
+
+Keine Produktdatei geändert, keine Abhängigkeit installiert, kein Commit/Push/Hostingwechsel. HEAD am Ende unverändert. `QM/` ist durch die Projekt-`.gitignore` ignoriert: diese Ergebnisse liegen **lokal**, werden nicht automatisch mit veröffentlicht.

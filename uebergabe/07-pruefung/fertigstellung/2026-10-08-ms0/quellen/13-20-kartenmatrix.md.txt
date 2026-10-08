@@ -1,0 +1,122 @@
+# Einzelprüfung aller 59 Sanierungskarten
+
+Basis `556159f58ac3beac3b6349851dae7326558b7fbb`, 2026-10-07. Pfade sind relativ zum Repository `C:/Projekte mit ChatGPT/commietools`.
+
+**Keine Übernahme der Häkchen aus der Leitdatei als Abnahme.** Jede Karte ist anhand Empfehlung, Sanierungsdokumentation, aktuellem Code/Prüfweg und nachfolgend benannten eigenen Messungen eingeordnet. Kein zweites vollständiges Audit jeder Funktion aller 62 Werkzeuge; Ergebnis-/Fehlerzustände und externe Abnahmen bleiben ausdrücklich begrenzt.
+
+- **B** — Befundkern nachvollzogen: Umsetzung im Code/Verfahren vorhanden und relevante reguläre Prüfungen im eigenen Lauf grün; kein neuer Gegenbeleg. Nicht gleichbedeutend mit vollständiger Geräte-/Releaseabnahme.
+- **R** — Restabnahme: umgesetzt/verbessert, aber wichtiges ursprüngliches Kriterium noch offen oder unabhängig nicht ausreichend belegt.
+- **F** — erneut zu öffnen: Gegenbeleg oder weiterhin nicht erfüllte Kernanforderung; Befund N1–N8.
+- **O** — bereits dokumentierte offene Restforderung.
+
+Gemeinsame eigene Belege: `check.log` (733 Tests), `build.log`, `regression.log` (sieben ursprüngliche Anforderungsfälle), `viewport-escalated.log` (62 Routen bei 320 px), beide `a11y-*-escalated.log` (Grundzustände, Menüteil fehlerhaft), `m7-eu-dss-current.json` (13 echte WASM-Verifikationen), `sprachpakete.log` (Netzbeleg dreier Routen). Eine Testdatei in der Tabelle bedeutet: tatsächlich im eigenen `check` ausgeführt, nicht nur gefunden.
+
+## R1
+
+| Karte | Urteil | Aktueller Eingriffspfad / eigener Beleg / Grenze |
+|---|---|---|
+| M8-001 | O | `apps/web/public/_headers`, `apps/web/src/tools/PdfTextOcr.tsx`: CSP geändert; beschädigtes OCR-Modell, Offlinewiederholung und real ausgelieferte neue Header nicht unabhängig abgenommen. Historischer Proxy-Erfolg ersetzt dies nicht. |
+| M9-001 | R | `licenses/rust-components.json`, `licenses/notices/rust/`, `scripts/license-audit.mjs`, `apps/web/src/LicensePage.tsx`: eigener Check zählt 176 / **172** Originalhinweise, vier ohne Original; Entscheidungen N2 und unabhängiger Liefer-/Neubaunachweis offen. |
+| M9-002 | F | `scripts/license-audit.mjs`, `licenses/rust-review.json`: N2, zwei nicht erlaubte Entscheidungszustände bestehen die isolierte Originalfunktion. |
+| M9-003 | R | `licenses/artifacts.json`, `licenses/registry.json`, `apps/web/src/LicensePage.tsx`: absolute revisionsgebundene Quelle/Buildlinks vorhanden, Registercheck grün. Vollständige unabhängige Source→Lock→Build→Binary-Zuordnung/Reproduzierbarkeit nicht erneut gebaut. |
+| M9-004 | R | `crates/pdf-signer-engine/Cargo.toml`, beide `crates/*/Cargo.lock`, `packages/tools/src/pdf/m7-wasm/engine_bg.wasm`: lopdf 0.42.0 liegt im offiziell bestätigten Fixbereich; 13 aktuelle WASM-Korpusläufe. Neuer eigener Rust-Build und tiefer Parser-Grenzkorpus nicht wiederholt; keine umfassende Sicherheitsfreigabe. |
+| M6-003 | B | `crates/pdf-signer-wasm/src/lib.rs`, `apps/web/src/tools/PdfCertificateTools.tsx`: getrennte Integrität/Änderungshinweis-Dimensionen; aktueller Korpus bestätigt u.a. beschädigte einfache Signatur → unknown, Seiten-/Annotationsänderung → pages/annotation. |
+
+## R2
+
+| Karte | Urteil | Aktueller Eingriffspfad / eigener Beleg / Grenze |
+|---|---|---|
+| M3-002 | B | `packages/tools/src/calculator/statistics.ts`, `apps/web/src/math-tools.test.ts`; eigene Originalprobe `-1,5 2,5` → Anzahl 2, Mittelwert 0,5. Neuer bewusst entschiedener Komma-/Semikolonvertrag berücksichtigt. |
+| M4-001 | B | `packages/tools/src/calculator/core.ts`, `apps/web/src/calculator-core.test.ts`; eigene Originalprobe rationales RPN → `3/2`. |
+| M4-002 | B | `packages/tools/src/calculator/core.ts`, `apps/web/src/calculator-ampel.test.ts`; eigener Vollwert bei `1e-14` nicht null, Anzeige-Nullung markiert. |
+| M4-003 | B | `packages/tools/src/calculator/plotter.ts`, `apps/web/src/math-tools.test.ts`; eigene Probe `exp(x)` bei 0 → 1, Scope statt Zeichenersetzung. |
+| M6-001 | B | `packages/tools/src/developer/json-formatter/format.ts`, `apps/web/src/json-formatter.test.ts`: Textedits auf Originaltext, keine Zahl-Neuserialisierung; reguläre Lexem-/Fehlerproben grün, Lazy-Unterpfad vorhanden. |
+| M6-002 | B | `packages/tools/src/calculator/rpnInput.ts`, `apps/web/src/rpn-input.test.ts`: getrenntes Eingabetoken/Reducer, reguläre Tastenfolgen grün. Kein zusätzlicher eigener Geräte-Tastaturlauf. |
+| M8-004 | B | `packages/tools/src/calculator/spreadsheet.ts`, `apps/web/src/aufmass-csv.test.ts`: typisierte Text-/Zahlzellen, Neutralisierung und Grenzhinweis vorhanden. Bewusst genehmigte Abnahme ohne Tabellenprogramm berücksichtigt; keine universelle Importersicherheit behauptet. |
+
+## R3
+
+| Karte | Urteil | Aktueller Eingriffspfad / eigener Beleg / Grenze |
+|---|---|---|
+| M4-004 | F | `apps/web/src/tool-load-recovery.ts`, `apps/web/src/App.tsx`, `apps/web/src/useToolSearchIndex.ts`: Cache-/Fehlerwege verbessert und Reload-Abweichung dokumentiert; N6 beweist falsche Deployment-Ursache bei unverändertem Offline-Build. |
+| M4-005 | F | `apps/web/src/tools/PdfSplit.tsx`: Verarbeitungsauftrag geschützt, Eingangsauftrag nicht; N3 reproduziert A/B-Umkehr. |
+| M4-006 | B | `apps/web/src/tools/PdfSplit.tsx`: Ergebnis-Ref und Generation-Cleanup vorhanden, historischer aktueller Zählerbeleg nachvollziehbar. Eigener großer 1200-Seiten-Cleanup-/StrictMode-Lauf nicht wiederholt; N5 betrifft den **anderen**, neu gemeinsamen Einzel-URL-Hook. |
+| M4-007 | B | `packages/i18n/src/registry.ts`, `apps/web/src/App.test.ts`: own-key + Typprüfung; eigene `__proto__`-Probe und reguläre Prototypfälle grün. |
+| M8-002 | F | `apps/web/src/pwaWarmCache.ts`, `apps/web/vite.config.ts`: Sprach-Warmlauf ist real, aber verwendete PDF-Abhängigkeiten nicht gesichert; N6. Weitere Locale-/SW-/Quota-Abnahmen ebenfalls offen. |
+| M8-003 | B | `packages/core/src/storage.ts`, `packages/tools/src/storage/indexedStore.ts`, `apps/web/src/storage.test.ts`, `apps/web/src/indexed-store.test.ts`: abgesicherte Speicherung/flüchtiger Betrieb; reguläre Fehlerproben grün. Keine Gleichsetzung mit allen echten Privatmodi. |
+
+## R4
+
+| Karte | Urteil | Aktueller Eingriffspfad / eigener Beleg / Grenze |
+|---|---|---|
+| M1-003 | F | `.github/workflows/quality.yml`: drei sinnvolle Jobs, aber Triggerstruktur N1; kein eigener externer Lauf/Branchschutz, SHA-Pinning weiterhin offen. |
+| M4-008 | B | `eslint.config.js`, `apps/web/src/*`, `scripts/*`: eigener vollständiger Lint-/Checklauf Exit 0, **0 Fehler / 110 Warnungen**. Warnungen nicht als Nullbefund ausgegeben. |
+| M5-001 | B | `apps/web/src/pdf-tools.test.ts`: echte Inhalts-/Seitenzusicherungen mit unabhängigem pdf.js-Leser; eigener regulärer Lauf grün. |
+| M5-002 | R | `apps/web/src/tools/SaveFileControl.tsx`, `apps/web/src/save-file.test.ts`: injizierbarer Adapter, Bytes/Picker/Abbruch/Write/Close geprüft. Eigener echter abgefangener Browserdownload und native Zielgeräte-Dialogabnahme fehlen; Mock-Vertrag ist kein Platte-Beleg. |
+| M5-003 | F | `package.json`, `.github/workflows/quality.yml`, `scripts/m7-eu-dss-audit.mjs`: N7; einmaliger Enginebeleg ersetzt das verlangte normal sperrende Wirkungs-/Releasegate nicht. |
+| M5-004 | B | `apps/web/src/calculator-core.test.ts`, `math-tools.test.ts`, `App.test.ts`, `save-file.test.ts`: historische Regressionen übernommen; sieben eigene Originalanforderungen erneut grün. |
+| M2-009 | F | `scripts/viewport-audit.mjs`: grüne Grundzustandsläufe in beiden Themes; Menüzustand wird tatsächlich nicht geprüft, N4. CI-Lauf und manuelle Kriterien offen. |
+| M3-009 | F | `apps/web/src/language-contract.test.ts`, `scripts/catalog-generate.mjs`: Werkzeugvertrag verbessert; Unicode-Mutant der Schnittstellentexte besteht alle sechs Originaltests, N8. |
+
+## R5
+
+| Karte | Urteil | Aktueller Eingriffspfad / eigener Beleg / Grenze |
+|---|---|---|
+| M2-006 | R | `packages/i18n/src/common/{de,en,es}.ts`, `apps/web/src/App.tsx`: übersetzte zugängliche Namen vorhanden, Grundzustandsprüfung ohne Namensbefunde; echter Vorleserlauf OP-051 fehlt. |
+| M2-007 | R | `apps/web/src/styles.css`, `packages/ui/src/tokens.css`: benannte kleinere Regeln korrigiert, Grundzustände grün; Menübeleg N4 ungültig, Ergebnis-/Fehler-/Menüzustände nicht vollständig unabhängig gemessen. |
+| M2-008 | B | `packages/ui/src/tokens.css`, `apps/web/src/styles.css`, `scripts/token-audit.mjs`: semantische Tokens eingeführt, eigener Tokencheck grün. |
+| M7-001 | B | `packages/ui/src/tokens.css`: **tatsächlich behoben**, nicht mehr nur Ausnahme — dunkel dunkle Schrift auf Markenrot, hell weiße Schrift; Dokumentmessung 5,7562:1 / 5,6514:1 und eigene Grundzustandsscans ohne Kontrastbefund. Keine alte 3,28:1-Ausnahme fortgeschrieben. |
+| M7-002 | R | `apps/web/src/ToolNavigation.tsx`: nativer `showModal`-Dialog vorhanden und im eigenen Browser geöffnet; vollständiger neuer Tab/Shift-Tab/summary/Escape/Zurück/Fokusrückgabe-Durchlauf fehlt, N4 macht Scannerbeleg hierfür unbrauchbar. |
+| M7-003 | R | `apps/web/src/tools/PdfInteractiveTools.tsx`, `apps/web/src/pdf-redaction-area.test.ts`, `pdf-redaction-rotation.test.ts`: Tastaturformular und gemeinsamer Rechteckvertrag, reguläre geometrische/Rotationsproben grün. Reales Touchgerät/abweichender Zoom offen (OP-048/054). |
+| M7-004 | R | `apps/web/src/tools/PdfViewer.tsx`: zugängliche Textansicht, Navigation und Grenzhinweise vorhanden; Vorleser und komplexe Lesereihenfolge nicht abschließend geprüft (OP-049/050). |
+| M7-005 | R | `apps/web/src/styles.css`: 62 Grundzustände bei 320 px bestehen eigene Breitenprüfung. Keine pauschale Abnahme aller Ergebnis-, Menü-, Auskoppel- und echten Browserzoomzustände; N4, OP-054. |
+| M7-006 | B | `packages/ui/src/tokens.css`, `scripts/token-audit.mjs`: Tokenprüfung im eigenen `check` grün; historische undefinierte Variablen nicht als aktuellen Befund übernommen. |
+
+## R6
+
+| Karte | Urteil | Aktueller Eingriffspfad / eigener Beleg / Grenze |
+|---|---|---|
+| M3-001 | B | `packages/tools/src/pdf/{pdf-split,pdf-to-images,pdf-organize}/locales/es.ts`, generierte Nachrichten: `{number}` erhalten; eigene drei-Sprachen-Platzhalterprobe grün. |
+| M3-003 | B | `packages/i18n/src/common/es.ts`, `scripts/glossary-audit.mjs`: benannte Bedeutungsfehler korrigiert; eigener Glossarcheck grün. Keine native Volllektoratszertifizierung aller spanischen Texte. |
+| M3-004 | B | `apps/web/src/tools/Commercial.tsx`, `scripts/jsx-literal-audit.mjs`: benannte Richtungsbeschriftungen über Sprachschlüssel, Literalcheck im eigenen Lauf grün. |
+| M3-006 | B | Spanische Katalogtexte unter `packages/tools/src/`, `scripts/style-audit.mjs`: dokumentierter unpersönlicher Infinitiv statt rückwirklicher tú-Regel, benannte Verstöße korrigiert. `style:check` nicht im Root-Check enthalten; separate Wiederholung siehe Messverzeichnis. |
+| M3-007 | B | `apps/web/src/tools/SaveFileControl.tsx`, `apps/web/src/save-file.test.ts`: Graphemgrenzen und Feldpfade vereinheitlicht; eigene lange Emoji-Probe wohlgeformt. Alte Browser ohne Segmenter nur dokumentierter Surrogat-Rückfall. |
+| M3-008 | B | `packages/tools/src/index.ts`, `apps/web/src/App.test.ts`: Segmenter-Wortgrenzen, Satzzeichen-/Bindestrichregeln; reguläre spanische Titelproben grün. |
+| M3-010 | B | `packages/tools/src/format.ts`, `apps/web/src/format-context.test.ts`, `scripts/format-audit.mjs`: gemeinsamer Formatkontext/Techniksyntax, eigener Formatcheck grün. Kein Anspruch, jede künftige Ausgabe durch Regex automatisch vollständig zu erkennen. |
+
+## R7
+
+| Karte | Urteil | Aktueller Eingriffspfad / eigener Beleg / Grenze |
+|---|---|---|
+| M1-001 | B | `README.md`, `scripts/readme-scope.mjs`: eigener Katalog-/READMEcheck **62 Tools / 7 Suiten / 23 PDF**; generierter Block statt manuell veralteter Zahlen. |
+| M1-002 | B | `README.md`, `packages/tools/src/catalog/generated/loaders.ts`, UI-Hinweise: aktive Sprache + Englisch dokumentiert; reguläre Suchverträge und eigener Netzbeleg ohne fremde Tooltexte grün. Alias M3-005 hier enthalten. |
+| M2-001 | R | `uebergabe/04-entscheidungen/0014-m7-freigabekriterien.md`, Vorgänger 0004: neue Entscheidung mit vier Auflagen vorhanden, Push nach unabhängiger Kontrolle. Diese Nachprüfung ist **keine automatische positive Sicherheitsfreigabe**; N2/N7 und restliche A2-Abnahme offen. |
+| M2-002 | B | ADR 0003, `scripts/bundle-audit.mjs`: Warnschwellen/Struktursperren getrennt, eigener Build warnt bei Werkzeugtext-Gesamtbudgets und besteht; Nutzerregel eingehalten. |
+| M2-003 | B | ADR 0005, `scripts/bundle-size-baseline.json`: aktualisierte Budgets/Istwerte; eigener Kern **103801 B gzip** und keine mathjs-Startverletzung gemeldet. Baseline nicht still verändert. |
+| M2-004 | R | ADR 0002, `packages/tools/src/pdf/{m5,m8}.ts`: Sicherheit **und** Reparatur dokumentiert, gemeinsame QPDF-Engine; unabhängiger neuer Browser-CSP-Wirkungsnachweis beider Pfade fehlt. Kein Auftrag, zweite Engine zu bauen. |
+| M2-005 | B | `uebergabe/04-entscheidungen/README.md`, ADR 0013 / Weiterverweis 0006, `scripts/adr-audit.mjs`: eigener Check **15 Dateien / 14 Entscheidungen + 1 Weiterverweis**, Index vollständig, IDs eindeutig. |
+| M11-001 | B | `docs/architecture.md`, `apps/web/vite.config.ts`, M7-Adapter: vorhandene Rust-/Cachegrenzen als Iststand dokumentiert; tatsächlicher Build hat entsprechende Lazy-/Cachegruppen. Offline-Qualität bleibt eigene Karte N6. |
+
+## R8
+
+| Karte | Urteil | Aktueller Eingriffspfad / eigener Beleg / Grenze |
+|---|---|---|
+| M10-001 | B | `uebergabe/01-stand/offene-punkte.md`, Archiv, `scripts/akte-audit.mjs`: eigener Listencheck **63 aktive eindeutige OPs**, historische Erledigungen getrennt. Die 63 OPs sind keine 63 zusätzlichen Auditkarten. |
+| M10-002 | B | `uebergabe/vorlagen/uebergabe.md`, Arbeitsregeln, `scripts/akte-audit.mjs`: neue Spezifikation/Gate vorhanden, historischer Stichtag und Alt-Lücken sichtbar; eigener Gatecheck grün. Nicht behauptet, alle Altakten seien repariert. |
+| M10-003 | R | Arbeitsregeln und vier „Hinweis zur Fassung“-Akten: Rekonstruktion/Korrekturverfahren vorhanden, eigener Wortvergleich grün. Nachträgliche Ausnahme-/Archiventscheidung OP-062 nicht erledigt. |
+| M10-004 | R | `scripts/belege/`, `package.json`: tragende Programme versioniert, eigener Sprach-Netzbeleg läuft ohne `work/`. Kein neuer eigener Zweitrechner-/frischer-Checkout-Lauf; Browseraufbereitung nicht vollständig portabel, ausgewählte übrige Proben OP-063 offen. |
+| M10-005 | R | `uebergabe/01-stand/abschlussmatrix.md`, `scripts/akte-audit.mjs`: Kriterienmatrix/Quellenprüfung vorhanden und eigener Gatecheck grün. Inhaltliche Freigaben für sämtliche neuen D/E-Funktionen/ursprünglichen Kriterien nicht unabhängig komplett neu durchgespielt; zählt nicht automatisch als Produkterfüllung. |
+
+## R9 und R10
+
+| Karte | Urteil | Aktueller Eingriffspfad / eigener Beleg / Grenze |
+|---|---|---|
+| M4-009 | F | `apps/web/src/tools/resultUrl.ts`, `apps/web/src/useToolSearchIndex.ts`, gemeinsame Formate/Rundung: Konsolidierung vorhanden, aber neuer URL-Lebenszyklus verletzt Reinheit und leckt im StrictMode, N5. |
+| M4-010 | B | `apps/web/src/App.tsx`, `apps/web/src/tool-routing.test.ts`, generierte Tool-ID-Union: vollständige Rendererzuordnung und Not-found statt fachfremdem Standard; reguläre Mengen-/Routingtests und 62 gebaute Routen grün. |
+| M8-005 | R | `docs/architecture.md`, Cloudflare-Betriebsdoku, `uebergabe/06-protokolle/2026-10-07-r10-m8-005-entscheidungsvorlage.md`: Betreiberwahl **Weg A** und Infrastruktur-NEL transparent dokumentiert. Kein neuer eigener aktueller Header-/Altprofil-/Versandlauf, kein daraus erfundener Upload-/Rechtsbefund. |
+
+## Zählung und Konsequenz
+
+59 eindeutige Karten: **33 B · 16 R · 9 F · 1 O**. Acht neue/fortbestehende Befunde betreffen neun wieder zu öffnende Karten (N6 betrifft zwei). **Nicht** „50 repariert, 9 kaputt“: B ist Befundkern, R ist Abnahme-/Beleggrenze, F umfasst Produkt- **und** Prüfsicherungsfehler.
+
+Priorität: N2 Lizenz-Freigabesicherung; N1/N7 realer Releaseweg; N3/N6 Daten-/Offlineverhalten; N4/N8 verlässliche Qualitätsgates; N5 URL-Vertrag. Bestehende Restabnahmen anschließend dokumentiert durchführen. Keine Freigabe zur Veröffentlichung.

@@ -92,11 +92,25 @@ export function ToolNavigation({ t, locale, activeToolId, navigate }: { t: Trans
     // Schliessen, also nach der Fokus-Rueckgabe des Browsers — nur dann bleibt die Rueckfuehrung
     // stehen (Karte M7-002).
     const beiSchliessen = () => triggerRef.current?.focus()
+    // 2026-10-08: Native Edge could move Tab from the final item to browser chrome.
+    // Supplement only the two boundaries; showModal still owns modality/inertness.
+    // Build the current visible list on each event, including summary and excluding closed descendants.
+    const beiTab = (event: KeyboardEvent) => {
+      if (event.key !== 'Tab' || !dialog) return
+      const controls = [...dialog.querySelectorAll<HTMLElement>('button:not(:disabled), input:not(:disabled), select:not(:disabled), textarea:not(:disabled), a[href], summary, [tabindex]:not([tabindex="-1"])')]
+        .filter((element) => element.tabIndex >= 0 && element.getClientRects().length > 0 && getComputedStyle(element).visibility !== 'hidden')
+      const first = controls[0]
+      const last = controls.at(-1)
+      if (event.shiftKey && document.activeElement === first && last) { event.preventDefault(); last.focus() }
+      else if (!event.shiftKey && document.activeElement === last && first) { event.preventDefault(); first.focus() }
+    }
     dialog?.addEventListener('close', beiSchliessen)
+    dialog?.addEventListener('keydown', beiTab)
     addEventListener('popstate', onPopState)
     return () => {
       document.body.style.overflow = previousOverflow
       dialog?.removeEventListener('close', beiSchliessen)
+      dialog?.removeEventListener('keydown', beiTab)
       removeEventListener('popstate', onPopState)
       // Beim Schliessen oder Abbauen zuruecknehmen, sonst bleibt der Dialog in der obersten Ebene.
       if (dialog?.open) dialog.close()

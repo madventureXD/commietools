@@ -8,11 +8,12 @@ import { darfNeuLaden, istVeralteteFassung, NEULADEN_ABSTAND_MS } from './tool-l
 describe('istVeralteteFassung (M4-004)', () => {
   it('erkennt die Meldungen eines gescheiterten dynamischen Imports', () => {
     // Die Wortlaute stammen aus Chromium und Vite, nicht aus der Vorstellung.
-    expect(istVeralteteFassung('Failed to fetch dynamically imported module: https://x/assets/pdf-split-a1.js')).toBe(true)
-    expect(istVeralteteFassung('TypeError: error loading dynamically imported module')).toBe(true)
-    expect(istVeralteteFassung('Importing a module script failed.')).toBe(true)
-    expect(istVeralteteFassung('ChunkLoadError: Loading chunk 12 failed')).toBe(true)
-    expect(istVeralteteFassung('GET https://x/assets/old-hash.js 404 (Not Found)')).toBe(true)
+    expect(istVeralteteFassung('Failed to fetch dynamically imported module: https://x/assets/pdf-split-a1.js')).toBe(false)
+    expect(istVeralteteFassung('TypeError: error loading dynamically imported module')).toBe(false)
+    expect(istVeralteteFassung('Importing a module script failed.')).toBe(false)
+    expect(istVeralteteFassung('ChunkLoadError: Loading chunk 12 failed')).toBe(false)
+    expect(istVeralteteFassung('GET https://x/assets/old-hash.js 404 (Not Found)')).toBe(false)
+    expect(istVeralteteFassung('Failed to fetch', true)).toBe(true)
   })
 
   it('hält einen Auswertungsfehler NICHT für einen veralteten Chunk', () => {

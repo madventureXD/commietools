@@ -1,0 +1,264 @@
+# R5 – Zugänglichkeit und Designsystem
+
+Priorität P1. Empfehlung, keine Umsetzung/Freigabe. Basis a041ee0efda6b07687b3586977bb0d90bf1c89a8.
+
+[Leseregeln und Reihenfolge](README.md) · [Architektur/Migration](01-architektur-und-migration.md) · [Abnahme](03-pruef-und-uebergabeplan.md)
+
+Zeilen beziehen sich auf die eingefrorene Basis. Vor Änderungen Hash/Anker gegen den aktuellen Stand vergleichen. Zielpfade sind bestehende Projektdateien; neu vorgeschlagene Dateien werden im Text ausdrücklich benannt. Quellbelege bestätigen Mechanismen/Standards, nicht bereits getestete Reparaturen.
+
+## M2-006 – Zugängliche Namen bleiben unabhängig von der Sprache Englisch
+
+**Stand dieser Empfehlung:** Englische zugängliche Namen im aktuellen JSX noch vorhanden.
+
+**Historischer M12-Vermerk (cd556d1, keine neue Messung):** Englischer NAV-Name belegt. Generisches Case-mode-div nicht als sicher vorgelesen behaupten; keine echte Vorleserprüfung.
+
+### Konkrete Eingriffs- und Prüfstellen
+
+- [apps/web/src/App.tsx:118](<C:/Projekte mit ChatGPT/commietools/apps/web/src/App.tsx:118>) — Anker: „Case mode“.
+- [apps/web/src/App.tsx:387](<C:/Projekte mit ChatGPT/commietools/apps/web/src/App.tsx:387>) — Anker: „Main navigation“.
+- [packages/i18n/src/common/en.ts:1](<C:/Projekte mit ChatGPT/commietools/packages/i18n/src/common/en.ts:1>) — Anker: „export“.
+- [packages/i18n/src/common/de.ts:1](<C:/Projekte mit ChatGPT/commietools/packages/i18n/src/common/de.ts:1>) — Anker: „export“.
+- [packages/i18n/src/common/es.ts:1](<C:/Projekte mit ChatGPT/commietools/packages/i18n/src/common/es.ts:1>) — Anker: „export“.
+
+### Dauerhafte Lösung
+
+Main-navigation-Name und Modusgruppenbezeichnung als stabile common-Schlüssel führen. Case-Modus als semantische Gruppe (fieldset/legend oder begründet role=group) beschriften; aria-label an generischem div allein ist kein sicherer Gruppierungsvertrag. Namen müssen bei Sprachwechsel ebenso aktualisieren wie sichtbare Texte. Gemeinsame Kontrolle sichtbarer JSX-Literale und ARIA-Attribute in den Werkzeug-Erstellungsregeln festhalten.
+
+### Abnahme
+
+de/en/es: zugänglicher Name der Navigation und Modusgruppe im Accessibilitybaum korrekt; echte Vorleseransage, Tastaturbedienung und aktive Moduskennzeichnung prüfen.
+
+### Nicht tun / Abgrenzung
+
+Keine Übersetzung mathematischer Symbole oder Eigennamen per blindem Such-Ersetzen; kein zusätzlicher versteckter redundanter Text ohne Nutzwert.
+
+### Verifizierte Grundlage
+
+[S27 · W3C: WCAG 2.2](<https://www.w3.org/TR/WCAG22/>) ([Prüfvermerk](02-quellen.md#s27)); [S26 · Playwright: Accessibility testing](<https://playwright.dev/docs/accessibility-testing>) ([Prüfvermerk](02-quellen.md#s26)).
+
+## M2-007 – Drei Schaltflächenregeln unterschreiten die verbindlichen 44 Pixel
+
+**Stand dieser Empfehlung:** Teilweise geändert; spezifische kleinere CSS-Regeln bestehen weiterhin.
+
+**Historischer M12-Vermerk (cd556d1, keine neue Messung):** Menü/PDF-Aktionen real zu klein nach Projektregel. Icon-Speichern 128×44 widerlegt dort den Verdacht; CSS-Minimum allein kein Messbeweis.
+
+### Konkrete Eingriffs- und Prüfstellen
+
+- [apps/web/src/styles.css:36](<C:/Projekte mit ChatGPT/commietools/apps/web/src/styles.css:36>) — Anker: „.tool-menu-sorts .button“.
+- [apps/web/src/styles.css:317](<C:/Projekte mit ChatGPT/commietools/apps/web/src/styles.css:317>) — Anker: „.pdf-page-actions .button“.
+- [apps/web/src/styles.css:7](<C:/Projekte mit ChatGPT/commietools/apps/web/src/styles.css:7>) — Anker: „.icon-result figcaption .button“.
+- [scripts/viewport-audit.mjs:96](<C:/Projekte mit ChatGPT/commietools/scripts/viewport-audit.mjs:96>) — Anker: „MIN_TARGET“.
+
+### Dauerhafte Lösung
+
+Neue globale Mindesthöhe nicht zurückbauen. Kleinere spezifische Varianten bereinigen und gemeinsame Größenvariante für kompakte, trotzdem 44×44 große Controls schaffen. Höhe UND Breite im realen Layout messen; mehrzeilige Inhalte und zugängliche Labelklickflächen beachten. Neu gepolsterte Summary-Ziele ebenfalls nachmessen. Historischer Icon-Speicherknopf war bereits 128×44: CSS-Text allein beweist keine tatsächliche Unterschreitung.
+
+### Abnahme
+
+Menüsortierung, PDF-Seitenaktionen, Icon-Ergebnisse und Details bei 320/390/1360 px, beiden Themes und längster Sprache. Ergebniszustände aktiv erzeugen, nicht nur leere Startformulare scannen.
+
+### Nicht tun / Abgrenzung
+
+44px bleibt Projektregel; nicht mit WCAG-AA-24px ersetzen. Keine unsichtbar überlappenden Klickflächen als Größenkosmetik.
+
+### Verifizierte Grundlage
+
+[S27 · W3C: WCAG 2.2](<https://www.w3.org/TR/WCAG22/>) ([Prüfvermerk](02-quellen.md#s27)); [S26 · Playwright: Accessibility testing](<https://playwright.dev/docs/accessibility-testing>) ([Prüfvermerk](02-quellen.md#s26)).
+
+## M2-008 – Oberflächenfarben umgehen teilweise das semantische Tokensystem
+
+**Stand dieser Empfehlung:** Semantische Oberflächenfarben weiter unvollständig.
+
+**Historischer M12-Vermerk (cd556d1, keine neue Messung):** UI-Tokenumgehung statisch; fachliches Dokumentweiß/-schwarz nicht pauschal beanstanden. Kein zusätzlicher Kontrastbefund ohne Messung.
+
+### Konkrete Eingriffs- und Prüfstellen
+
+- [apps/web/src/styles.css:312](<C:/Projekte mit ChatGPT/commietools/apps/web/src/styles.css:312>) — Anker: „.redaction-editor“.
+- [apps/web/src/tools/Plotter.tsx:114](<C:/Projekte mit ChatGPT/commietools/apps/web/src/tools/Plotter.tsx:114>) — Anker: „stroke“.
+- [packages/ui/src/tokens.css:6](<C:/Projekte mit ChatGPT/commietools/packages/ui/src/tokens.css:6>) — Anker: „--color-background“.
+
+### Dauerhafte Lösung
+
+Farben nach Verantwortung klassifizieren: Appoberfläche, Dokumentbühne, Datenkurve und exportierter Dokumentinhalt. Für UI-Bühne/Achsen/Raster/Text semantische Tokens pro Theme einführen und Plotter daraus speisen. Benutzerdefinierte Kurvenfarben und absichtlich weißes PDF-/QR-Papier dürfen explizite Dokumentfarben bleiben. Exportstyles benötigen aufgelöste Farben statt ungelöster CSS-Variablen. Token-/Kontrastprüfer kann Rohfarben melden, benötigt begründete, eng scoped Ausnahmen.
+
+### Abnahme
+
+Helles/dunkles Theme mit Kurven, Achsentext, Raster, Schwärzungsfläche und PDF-/QR-Export vergleichen. Daten-/Dokumentfarben bleiben fachlich identisch, UI-Texte lesbar.
+
+### Nicht tun / Abgrenzung
+
+Kein globales Ersetzen aller #fff durch Themefarbe: dadurch könnten erzeugte Dokumente/QR-Codes unbrauchbar werden.
+
+### Verifizierte Grundlage
+
+[S27 · W3C: WCAG 2.2](<https://www.w3.org/TR/WCAG22/>) ([Prüfvermerk](02-quellen.md#s27)).
+
+## M7-001 – Weiße Aktionsbeschriftungen haben im dunklen Theme zu wenig Kontrast
+
+**Stand dieser Empfehlung:** Bewusst akzeptierte Abweichung; dokumentierte Entscheidung so lassen.
+
+**Historischer M12-Vermerk (cd556d1, keine neue Messung):** Gemessener dunkler Aktionskontrast 3,279874:1; nicht alle Kontrastkandidaten sind eigenständige WCAG-Verstöße.
+
+### Konkrete Eingriffs- und Prüfstellen
+
+- [packages/ui/src/tokens.css:30](<C:/Projekte mit ChatGPT/commietools/packages/ui/src/tokens.css:30>) — Anker: „--color-brand: #ff4b59“.
+- [apps/web/src/styles.css:63](<C:/Projekte mit ChatGPT/commietools/apps/web/src/styles.css:63>) — Anker: „.button.primary“.
+- [scripts/viewport-audit.mjs:102](<C:/Projekte mit ChatGPT/commietools/scripts/viewport-audit.mjs:102>) — Anker: „AKZEPTIERTE_KONTRASTE“.
+- [uebergabe/01-stand/offene-punkte.md:142](<C:/Projekte mit ChatGPT/commietools/uebergabe/01-stand/offene-punkte.md:142>) — Anker: „Kontrast“.
+
+### Dauerhafte Lösung
+
+Betreiberentscheidung vom 06.10. respektieren: derzeit als offene/akzeptierte WCAG-Abweichung führen, nicht als behoben. Für spätere vollständige Beseitigung Entscheidungsvorlage mit getrennten Aktionsforeground/-background-Tokens erstellen: Markenrot kann erhalten bleiben, gefüllte Aktionsfläche oder Textfarbe wird kontrastfähig gewählt. Nach Freigabe zentrale Tokenänderung statt Einzelfall-Overrides; Hover/Fokus/Disabled separat behandeln. Ausnahme erhält enges Scope, Grund, Datum, Verantwortlichen und Reviewtermin.
+
+### Abnahme
+
+Gemessenen normalen Textkontrast auf Aktionsflächen >=4,5:1 bringen, sofern Beseitigung beauftragt; großes Textformat und deaktivierte Kontrollen getrennt bewerten. Bis dahin Bericht weist akzeptierte Treffer als nicht konform aus. Helles Theme darf nicht schlechter werden.
+
+### Nicht tun / Abgrenzung
+
+Kein stilles Überstimmen des Nutzers, kein Grünrechnen durch Scanner-Ausnahme, keine pauschale WCAG-AA-Freigabe.
+
+### Verifizierte Grundlage
+
+[S27 · W3C: WCAG 2.2](<https://www.w3.org/TR/WCAG22/>) ([Prüfvermerk](02-quellen.md#s27)).
+
+## M7-002 – Die Menü-Fokusbegrenzung berücksichtigt sichtbare Kategorien nicht korrekt
+
+**Stand dieser Empfehlung:** Fokusliste enthält weiterhin nur button/input und ignoriert summary.
+
+**Historischer M12-Vermerk (cd556d1, keine neue Messung):** Tastaturfolge und verdeckter Hintergrund maßgeblich; Kategorien wurden NICHT übersprungen. Cursor-Ausnahme nicht als weiterer WCAG-Befund zählen.
+
+### Konkrete Eingriffs- und Prüfstellen
+
+- [apps/web/src/ToolNavigation.tsx:75](<C:/Projekte mit ChatGPT/commietools/apps/web/src/ToolNavigation.tsx:75>) — Anker: „querySelectorAll“.
+- [apps/web/src/ToolNavigation.tsx:175](<C:/Projekte mit ChatGPT/commietools/apps/web/src/ToolNavigation.tsx:175>) — Anker: „tool-menu-layer“.
+- [apps/web/src/styles.css:27](<C:/Projekte mit ChatGPT/commietools/apps/web/src/styles.css:27>) — Anker: „.tool-menu-drawer“.
+
+### Dauerhafte Lösung
+
+Menümodell explizit entscheiden; für den bestehenden abschirmenden Drawer ist ein modaler Dialog konsistent. Bevorzugt natives dialog/showModal mit passendem Styling und Fokusmodell evaluieren; andernfalls bewährte, lizenzgeprüfte Dialogprimitive statt unvollständiger eigener Selektorliste. Hintergrund wirklich inert, sichtbare summary/Links/Selects einschließlich geschlossener Details korrekt behandeln. Mobil initial die Überschrift/Schließen fokussieren, nicht automatisch Suche/Tastatur öffnen. History-Zurück und Schließen dürfen nur einmal navigieren.
+
+### Abnahme
+
+Tab/Shift+Tab bei offenen/geschlossenen Kategorien, ohne Treffer, Favoriten/Sortierung; Escape, Back, Fokus-Rückkehr und Unmount. Hintergrund per Tastatur/AT nicht bedienbar, Searchkeyboard verdeckt nicht initial das Menü.
+
+### Nicht tun / Abgrenzung
+
+Nicht nur summary zum alten Selector hinzufügen: versteckte Nachfahren und Hintergrund bleiben sonst problematisch. aria-modal allein sperrt keinen Hintergrund.
+
+### Verifizierte Grundlage
+
+[S28 · W3C APG: modaler Dialog](<https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/>) ([Prüfvermerk](02-quellen.md#s28)).
+
+## M7-003 – PDF-Schwärzung hat keine Tastaturalternative zur Rechteckauswahl
+
+**Stand dieser Empfehlung:** Rechteckauswahl weiterhin pointergebunden.
+
+**Historischer M12-Vermerk (cd556d1, keine neue Messung):** Rechteckauswahl nur per Pointer; erfolgreiche Pointer-Gegenprobe nach korrigiertem Hit-Test erhalten.
+
+### Konkrete Eingriffs- und Prüfstellen
+
+- [apps/web/src/tools/PdfComplianceTools.tsx:30](<C:/Projekte mit ChatGPT/commietools/apps/web/src/tools/PdfComplianceTools.tsx:30>) — Anker: „onPointer“.
+- [packages/tools/src/pdf/m9.ts:12](<C:/Projekte mit ChatGPT/commietools/packages/tools/src/pdf/m9.ts:12>) — Anker: „redact“.
+- [apps/web/src/styles.css:312](<C:/Projekte mit ChatGPT/commietools/apps/web/src/styles.css:312>) — Anker: „.redaction-editor“.
+
+### Dauerhafte Lösung
+
+Gemeinsames Redaktionsrechteck-Modell pro Seite bereitstellen; Pointer und Tastaturformular bearbeiten dasselbe Modell. Eingaben für X/Y/Breite/Höhe mit Einheiten, Grenzen und Seitenbezug, Auswahl hinzufügen/löschen sowie optional Pfeiltasten zum Verschieben/Vergrößern. Previewkoordinaten korrekt in PDF-Koordinaten inklusive Rotation/Zoom übertragen. Ausgewählte Bereiche als benannte Liste mit Fehlermeldungen zugänglich machen; finalen Schwärzungsvorgang bewusst bestätigen.
+
+### Abnahme
+
+Nur Tastatur: Datei wählen, Seite wählen, Rechteck exakt setzen, ändern, entfernen, exportieren. Ergebnis unabhängig prüfen: betroffener Inhalt tatsächlich entfernt, nicht nur optisch übermalt. Rotation, Zoom, Seitenrand und Touch-Gegenprobe.
+
+### Nicht tun / Abgrenzung
+
+Ein ARIA-Label auf der Zeichenfläche macht Zeichnen nicht tastaturbedienbar. Zugänglichkeit darf Schwärzungssicherheit nicht ersetzen.
+
+### Verifizierte Grundlage
+
+[S27 · W3C: WCAG 2.2](<https://www.w3.org/TR/WCAG22/>) ([Prüfvermerk](02-quellen.md#s27)); [S26 · Playwright: Accessibility testing](<https://playwright.dev/docs/accessibility-testing>) ([Prüfvermerk](02-quellen.md#s26)).
+
+## M7-004 – Der PDF-Viewer stellt Dokumenttext nicht für assistive Technik bereit
+
+**Stand dieser Empfehlung:** Rasterdarstellung ohne zugänglichen Dokumenttext weiter vorhanden.
+
+**Historischer M12-Vermerk (cd556d1, keine neue Messung):** PDF-Text fehlt im AX-Baum, Suche funktioniert. AX-Prüfung ersetzt keinen NVDA-/TalkBack-Lauf.
+
+### Konkrete Eingriffs- und Prüfstellen
+
+- [apps/web/src/tools/PdfViewer.tsx:7](<C:/Projekte mit ChatGPT/commietools/apps/web/src/tools/PdfViewer.tsx:7>) — Anker: „export function“.
+- [apps/web/src/tools/pdfUi.tsx:103](<C:/Projekte mit ChatGPT/commietools/apps/web/src/tools/pdfUi.tsx:103>) — Anker: „export async function extractPdfText“.
+- [apps/web/package.json:22](<C:/Projekte mit ChatGPT/commietools/apps/web/package.json:22>) — Anker: „pdfjs-dist“.
+
+### Dauerhafte Lösung
+
+Vorhandenes PDF.js nutzen: eine synchronisierte Text-/Strukturebene zur gerenderten Seite integrieren, einschließlich AccessibilityManager/Strukturinformationen soweit im installierten Major verfügbar. Wenn dies den bewusst einfachen Viewer überlädt, explizite zugängliche seitenweise Textansicht aus bestehender Extraktion als erster dauerhafter Funktionsweg; Einschränkungen der Lesereihenfolge klar benennen. Aktive Seite semantisch kennzeichnen, Zoom-/Seitenwechsel fokuserhaltend. Reine Scans haben keinen nativen Text: auf optionalen lokalen OCR-Weg verweisen, nichts erfinden.
+
+### Abnahme
+
+Text-PDF mit Überschriften, mehrspaltige PDF, gedrehte Seite und Scan: zwei reale Vorleser-/Browserkombinationen nach Möglichkeit, mindestens eine dokumentierte. Text erreichbar, Reihenfolge nachvollziehbar, keine doppelte Lesung von Bild/Text; Speichercleanup.
+
+### Nicht tun / Abgrenzung
+
+Keine vollständige PDF/UA-/WCAG-Konformität aus flacher Textextraktion ableiten; nicht PDF.js-master-Interna blind in v6 kopieren.
+
+### Verifizierte Grundlage
+
+[S29 · Mozilla PDF.js: TextLayerBuilder](<https://raw.githubusercontent.com/mozilla/pdf.js/master/web/text_layer_builder.js>) ([Prüfvermerk](02-quellen.md#s29)); [S27 · W3C: WCAG 2.2](<https://www.w3.org/TR/WCAG22/>) ([Prüfvermerk](02-quellen.md#s27)); [S26 · Playwright: Accessibility testing](<https://playwright.dev/docs/accessibility-testing>) ([Prüfvermerk](02-quellen.md#s26)).
+
+## M7-005 – Schmale Layouts verdecken Beschriftungen und erzeugen Katalogüberlauf
+
+**Stand dieser Empfehlung:** Layout wurde parallel verändert; historische Rechtecke nicht heutige Messung.
+
+**Historischer M12-Vermerk (cd556d1, keine neue Messung):** 320px-/Textabstandsbelege; schmaler Desktop ist kein reales Android und kein echter Browserzoom.
+
+### Konkrete Eingriffs- und Prüfstellen
+
+- [apps/web/src/styles.css:12](<C:/Projekte mit ChatGPT/commietools/apps/web/src/styles.css:12>) — Anker: „.site-header“.
+- [apps/web/src/styles.css:80](<C:/Projekte mit ChatGPT/commietools/apps/web/src/styles.css:80>) — Anker: „.catalog-grid“.
+- [apps/web/src/styles.css:113](<C:/Projekte mit ChatGPT/commietools/apps/web/src/styles.css:113>) — Anker: „.detail-page“.
+- [scripts/viewport-audit.mjs:6](<C:/Projekte mit ChatGPT/commietools/scripts/viewport-audit.mjs:6>) — Anker: „320“.
+
+### Dauerhafte Lösung
+
+Auf aktuellen CSS-Regeln aufsetzen und intrinsische Breitenfehler beheben: minmax(0,1fr)/min-width:0 an flex/grid-Kindern, responsiver Header mit lesbarem Marken-/Sprach-/Menüzugang und umbrechenden Aktionsbeschriftungen. Nicht alle Elemente pauschal abschneiden. PiP-/Auskoppelsteuerung mit langen Texten und schmaler Ansicht prüfen. Größen- und Reflowzustände als wiederverwendbare Layoutverträge in ui-system dokumentieren.
+
+### Abnahme
+
+Startseite, Menü geöffnet, Rechner mit Ergebnis, lange Dateinamen, de/en/es bei 320px und 390px; native 200%-Zoom- und Textabstandsprobe separat. Keine verdeckte Funktion, kein horizontaler Ganzseitenüberlauf außer begründeten Datendarstellungen. Reales Mobilgerät separat.
+
+### Nicht tun / Abgrenzung
+
+Kein overflow:hidden als generische Reparatur; Desktop-Viewportemulation ist kein realer Mobiltest.
+
+### Verifizierte Grundlage
+
+[S27 · W3C: WCAG 2.2](<https://www.w3.org/TR/WCAG22/>) ([Prüfvermerk](02-quellen.md#s27)); [S26 · Playwright: Accessibility testing](<https://playwright.dev/docs/accessibility-testing>) ([Prüfvermerk](02-quellen.md#s26)).
+
+## M7-006 – Nicht definierte CSS-Tokens lassen Layout- und Farbregeln ausfallen
+
+**Stand dieser Empfehlung:** Unbekannte --space-5/--border/--surface/--muted weiterhin im Quelltext.
+
+**Historischer M12-Vermerk (cd556d1, keine neue Messung):** Ungültige Tokenreferenzen; --warning hat Fallback, Viewer-Border fällt auf currentColor, nicht unsichtbar.
+
+### Konkrete Eingriffs- und Prüfstellen
+
+- [apps/web/src/styles.css:29](<C:/Projekte mit ChatGPT/commietools/apps/web/src/styles.css:29>) — Anker: „var(--space-5)“.
+- [apps/web/src/styles.css:285](<C:/Projekte mit ChatGPT/commietools/apps/web/src/styles.css:285>) — Anker: „var(--border)“.
+- [packages/ui/src/tokens.css:21](<C:/Projekte mit ChatGPT/commietools/packages/ui/src/tokens.css:21>) — Anker: „--space-4“.
+
+### Dauerhafte Lösung
+
+Bestandsaufnahme der custom-property-Definitionen und Verwendungen samt Theme-/Scopezuordnung erstellen. Falsche Altnamen auf vorhandene semantische Tokens migrieren; --space-5 nur hinzufügen, wenn eine echte konsistente 1,25rem-Stufe gewollt ist, sonst vorhandene Abstände wählen. Staticcheck für ungelöste var()-Referenzen ohne Fallback; legitime Laufzeit-/Bibliothekstokens explizit erlauben. Stylesheet-Parser bevorzugen statt Regex, die Kommentare/Fallbackverschachtelung falsch versteht; vorhandene Buildparser nach Lizenz-/APIprüfung nutzen.
+
+### Abnahme
+
+Bekannter Tippfehler lässt Prüfung scheitern, Fallback/Theme-Override besteht. Computed styles von PDF-Liste, Menüabständen, Dokumentbühne in beiden Themes prüfen.
+
+### Nicht tun / Abgrenzung
+
+Nicht sämtliche Altbezeichner global als Alias definieren: das konserviert unklare Zuständigkeiten. Keine falschen Positivmeldungen zu dynamisch gesetzten Variablen.
+
+### Verifizierte Grundlage
+
+[S22 · ESLint: Konfigurationsdateien](<https://eslint.org/docs/latest/use/configure/configuration-files>) ([Prüfvermerk](02-quellen.md#s22)); [S27 · W3C: WCAG 2.2](<https://www.w3.org/TR/WCAG22/>) ([Prüfvermerk](02-quellen.md#s27)).

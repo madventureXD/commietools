@@ -26,6 +26,12 @@ type Engine = {
 
 let enginePromise: Promise<Engine> | undefined
 
+export const certificateInputLimits = { pdfBytes: 100 * 1024 * 1024, keystoreBytes: 16 * 1024 * 1024 } as const
+
+function boundedInput(bytes: Uint8Array, maximum: number, name: string): void {
+  if (bytes.byteLength > maximum) throw new RangeError(`${name} exceeds the ${maximum} byte input limit`)
+}
+
 async function loadEngine(): Promise<Engine> {
   enginePromise ??= import('./m7-wasm/engine.js').then(async (module) => {
     await module.default()
@@ -35,6 +41,8 @@ async function loadEngine(): Promise<Engine> {
 }
 
 export async function signPdfWithCertificate(pdf: Uint8Array, keystore: Uint8Array, password: string): Promise<Uint8Array> {
+  boundedInput(pdf, certificateInputLimits.pdfBytes, 'PDF')
+  boundedInput(keystore, certificateInputLimits.keystoreBytes, 'PKCS#12')
   const engine = await loadEngine()
   const now = new Date()
   const two = (value: number) => String(value).padStart(2, '0')
@@ -43,7 +51,7 @@ export async function signPdfWithCertificate(pdf: Uint8Array, keystore: Uint8Arr
 }
 
 export async function verifyPdfSignatures(pdf: Uint8Array): Promise<PdfSignatureVerification> {
+  boundedInput(pdf, certificateInputLimits.pdfBytes, 'PDF')
   const engine = await loadEngine()
   return engine.verify_pdf(pdf)
 }
-

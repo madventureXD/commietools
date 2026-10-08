@@ -1,0 +1,71 @@
+# R9 – Begrenzte Codekonsolidierung und Routingvertrag
+
+Priorität P2. Empfehlung, keine Umsetzung/Freigabe. Basis a041ee0efda6b07687b3586977bb0d90bf1c89a8.
+
+[Leseregeln und Reihenfolge](README.md) · [Architektur/Migration](01-architektur-und-migration.md) · [Abnahme](03-pruef-und-uebergabeplan.md)
+
+Zeilen beziehen sich auf die eingefrorene Basis. Vor Änderungen Hash/Anker gegen den aktuellen Stand vergleichen. Zielpfade sind bestehende Projektdateien; neu vorgeschlagene Dateien werden im Text ausdrücklich benannt. Quellbelege bestätigen Mechanismen/Standards, nicht bereits getestete Reparaturen.
+
+## M4-009 – Gemeinsame technische Verantwortlichkeiten sind mehrfach implementiert
+
+**Stand dieser Empfehlung:** Doppelte technische Zuständigkeiten weiterhin gezielt konsolidieren.
+
+**Historischer M12-Vermerk (cd556d1, keine neue Messung):** Nachgewiesene Doppelzuständigkeiten sind Wartungsrisiko, keine belastbare Aussage über AI-Autorschaft oder Absicht.
+
+### Konkrete Eingriffs- und Prüfstellen
+
+- [apps/web/src/CatalogSection.tsx:3](<C:/Projekte mit ChatGPT/commietools/apps/web/src/CatalogSection.tsx:3>) — Anker: „loadToolSearchIndex“.
+- [apps/web/src/ToolNavigation.tsx:4](<C:/Projekte mit ChatGPT/commietools/apps/web/src/ToolNavigation.tsx:4>) — Anker: „loadToolSearchIndex“.
+- [apps/web/src/tools/IconGenerator.tsx:33](<C:/Projekte mit ChatGPT/commietools/apps/web/src/tools/IconGenerator.tsx:33>) — Anker: „function formatBytes“.
+- [apps/web/src/tools/ImageResize.tsx:18](<C:/Projekte mit ChatGPT/commietools/apps/web/src/tools/ImageResize.tsx:18>) — Anker: „function formatBytes“.
+- [apps/web/src/tools/ImageWatermark.tsx:47](<C:/Projekte mit ChatGPT/commietools/apps/web/src/tools/ImageWatermark.tsx:47>) — Anker: „function formatBytes“.
+- [packages/tools/src/calculator/aufmass.ts:78](<C:/Projekte mit ChatGPT/commietools/packages/tools/src/calculator/aufmass.ts:78>) — Anker: „function“.
+- [packages/tools/src/calculator/commercial.ts:36](<C:/Projekte mit ChatGPT/commietools/packages/tools/src/calculator/commercial.ts:36>) — Anker: „function“.
+- [apps/web/src/tools/pdfUi.tsx:76](<C:/Projekte mit ChatGPT/commietools/apps/web/src/tools/pdfUi.tsx:76>) — Anker: „useDownload“.
+- [apps/web/src/tools/PdfInteractiveTools.tsx:25](<C:/Projekte mit ChatGPT/commietools/apps/web/src/tools/PdfInteractiveTools.tsx:25>) — Anker: „function usePdfDownload“.
+- [apps/web/src/tools/PdfPlacementTools.tsx:34](<C:/Projekte mit ChatGPT/commietools/apps/web/src/tools/PdfPlacementTools.tsx:34>) — Anker: „function“.
+
+### Dauerhafte Lösung
+
+Nur gleiche Verträge bündeln: UI-Suchladezustand, Ergebnis-URLs, Anzeigeformate, technische Blob-/Canvasgrenzen und fachlich identische Rundungsprimitive. Zuständigkeit: reine Fachberechnung in packages/tools, Texte/Locale in i18n, Browserlebensdauer in apps/web, generische UI in packages/ui. Je Extraktion zuerst bestehendes Verhalten charakterisieren, einen Helfer schaffen, Aufrufer schrittweise umstellen und veraltete Kopie entfernen. Benannte Parameter/Result-Union statt any und Kaskaden von Typcasts. Gemeinsame API klein halten.
+
+### Abnahme
+
+Verhaltensvergleich aller migrierten Aufrufer, Fehler-/Cleanupfälle aus R3 und Formatfälle aus R6. Importgraph bleibt azyklisch, keine neue eager Engine-/Allsprachen-Abhängigkeit.
+
+### Nicht tun / Abgrenzung
+
+Keine Universal-PDF-Factory, kein pauschales utils.ts, keine fachlich unterschiedlichen Rundungsregeln vereinen. Kein Nachweis von AI-Autorschaft allein aus Codegeruch.
+
+### Verifizierte Grundlage
+
+[S14 · React: useEffect](<https://react.dev/reference/react/useEffect>) ([Prüfvermerk](02-quellen.md#s14)); [S33 · TypeScript: Exhaustiveness checking](<https://www.typescriptlang.org/docs/handbook/2/narrowing.html#exhaustiveness-checking>) ([Prüfvermerk](02-quellen.md#s33)).
+
+## M4-010 – Routenzuordnung hat einen fachfremden Standardfall statt Vollständigkeitsprüfung
+
+**Stand dieser Empfehlung:** Fachfremder Default bleibt latentes Registry-/Erweiterungsrisiko.
+
+**Historischer M12-Vermerk (cd556d1, keine neue Messung):** Falsches Standardrouting bei künftig fehlendem Mapping; kein Nachweis einer aktuell falsch zugeordneten Katalogroute.
+
+### Konkrete Eingriffs- und Prüfstellen
+
+- [apps/web/src/App.tsx:42](<C:/Projekte mit ChatGPT/commietools/apps/web/src/App.tsx:42>) — Anker: „PdfRedact“.
+- [packages/tools/src/catalog/toolIndex.ts:6](<C:/Projekte mit ChatGPT/commietools/packages/tools/src/catalog/toolIndex.ts:6>) — Anker: „export“.
+- [packages/core/src/index.ts:58](<C:/Projekte mit ChatGPT/commietools/packages/core/src/index.ts:58>) — Anker: „ToolManifest“.
+- [scripts/catalog-generate.mjs:32](<C:/Projekte mit ChatGPT/commietools/scripts/catalog-generate.mjs:32>) — Anker: „function“.
+
+### Dauerhafte Lösung
+
+Explizite Renderer-/Lazyloaderzuordnung für jede Tool-ID einschließlich pdf-redact schaffen. ToolId aus kanonischem Register als Literalunion erzeugen und Zuordnung mit satisfies Record<ToolId,...> prüfen; wenn bestehende string-Typisierung Union verwischt, zusätzlich generatorseitiger Mengenvergleich. Unbekannte URL liefert Not-found, bekannte ID ohne Renderer klaren Konfigurationsfehler; nie fachfremdes Werkzeug. Lazy-Ladegrenzen erhalten. Lookup eigener Schlüssel/Map statt ungeprüfter Objektprototypen.
+
+### Abnahme
+
+Alle 62 Snapshot-IDs genau einmal gerendert; im künftigen Katalog dynamisch zählen. Entfernten Renderer/neue ID ohne Renderer erkennt Gate. /tools/nicht-vorhanden öffnet nicht pdf-redact.
+
+### Nicht tun / Abgrenzung
+
+Nicht lediglich default durch noch ein anderes Tool ersetzen. Keine komplette Routingbibliotheksmigration erforderlich.
+
+### Verifizierte Grundlage
+
+[S33 · TypeScript: Exhaustiveness checking](<https://www.typescriptlang.org/docs/handbook/2/narrowing.html#exhaustiveness-checking>) ([Prüfvermerk](02-quellen.md#s33)); [S15 · MDN: import()](<https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/import>) ([Prüfvermerk](02-quellen.md#s15)); [S18 · MDN: Object.hasOwn](<https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/hasOwn>) ([Prüfvermerk](02-quellen.md#s18)).

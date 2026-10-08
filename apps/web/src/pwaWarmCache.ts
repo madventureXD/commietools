@@ -44,39 +44,91 @@ function geladeneRessourcen(): string[] {
   return performance.getEntriesByType('resource').map((eintrag) => eintrag.name)
 }
 
-/** Wartet, bis der Service Worker die Seite kontrolliert — höchstens `timeoutMs`. */
-async function aufKontrolleWarten(timeoutMs = 8000): Promise<boolean> {
-  if (typeof navigator === 'undefined' || !('serviceWorker' in navigator)) return false
-  if (navigator.serviceWorker.controller) return true
-  return new Promise((fertig) => {
-    const frist = setTimeout(() => fertig(false), timeoutMs)
-    navigator.serviceWorker.addEventListener('controllerchange', () => {
-      clearTimeout(frist)
-      fertig(Boolean(navigator.serviceWorker.controller))
-    }, { once: true })
-  })
+
+declare const __APP_BUILD_ID__: string
+export const APP_BUILD_ID = typeof __APP_BUILD_ID__ === 'string' ? __APP_BUILD_ID__ : 'development'
+export const USED_ASSET_CACHE = `commietools-used-assets-${APP_BUILD_ID}`
+
+export type OfflineReadiness = { build: string; route: string; locale: string; status: 'unknown' | 'ready' | 'incomplete'; urls: string[] }
+export let offlineReadiness: OfflineReadiness = { build: APP_BUILD_ID, route: '', locale: '', status: 'unknown', urls: [] }
+
+/** Explicit cache.put acknowledgement; a fetch response alone does not mean durable storage. */
+export async function warmLanguagePackCache(): Promise<string[]> {
+  if (!('serviceWorker' in navigator) || !navigator.serviceWorker.controller) return []
+  const urls = new Set(geladeneRessourcen().filter((entry) => {
+    const url = new URL(entry, location.href)
+    return url.origin === location.origin && url.pathname.startsWith('/assets/')
+  }))
+  offlineReadiness = { build: APP_BUILD_ID, route: location.pathname, locale: document.documentElement.lang, status: 'unknown', urls: [] }
+  window.dispatchEvent(new CustomEvent('commietools-offline-readiness', { detail: offlineReadiness }))
+  try {
+    const response = await fetch('/asset-map.json')
+    if (!response.ok) return []
+    const graph = await response.json() as { buildId: string; assets: Record<string, string[]> }
+    if (graph.buildId !== APP_BUILD_ID) return []
+    const visit = (address: string): void => {
+      for (const dependency of graph.assets[new URL(address).pathname.slice(1)] ?? []) {
+        const url = new URL(dependency, location.origin + '/').href
+        if (!urls.has(url)) { urls.add(url); visit(url) }
+      }
+    }
+    for (const address of [...urls]) visit(address)
+  } catch { return [] }
+  const saved: string[] = []
+  for (const address of urls) {
+    try {
+      const cache = await caches.open(USED_ASSET_CACHE)
+      const response = await fetch(address, { cache: 'no-cache' })
+      if (!response.ok || response.type === 'opaque') continue
+      await cache.put(address, response.clone())
+      if (await cache.match(address, { ignoreVary: true })) saved.push(address)
+    } catch { /* Quota, eviction and network failure confer no readiness. */ }
+  }
+  offlineReadiness = { ...offlineReadiness, status: saved.length === urls.size && saved.length > 0 ? 'ready' : 'incomplete', urls: saved }
+  window.dispatchEvent(new CustomEvent('commietools-offline-readiness', { detail: offlineReadiness }))
+  return saved
 }
 
-/**
- * Fordert die Sprachpakete dieses Starts erneut an und prüft, ob sie im Laufzeitcache liegen.
- * Gibt die Namen der warm gehaltenen Pakete zurück (leer, wenn der Worker nicht kontrolliert).
- *
- * Fehler werden geschluckt: Der Warmlauf ist eine Verbesserung der Offline-Bereitschaft, kein
- * Grund, den Start scheitern zu lassen.
- */
-export async function warmLanguagePackCache(): Promise<string[]> {
-  if (!(await aufKontrolleWarten())) return []
-  const adressen = languagePackUrls(geladeneRessourcen())
-  if (!adressen.length) return []
-  try {
-    await Promise.all(adressen.map((adresse) => fetch(adresse, { cache: 'no-cache' }).then((antwort) => {
-      if (!antwort.ok) throw new Error(`${adresse}: ${antwort.status}`)
-    })))
-    // Vorhandensein prüfen, nicht annehmen.
-    const cache = await caches.open(LANGUAGE_PACK_CACHE)
-    const drin = await Promise.all(adressen.map(async (adresse) => ((await cache.match(adresse)) ? adresse : null)))
-    return drin.filter((eintrag): eintrag is string => eintrag !== null)
-  } catch {
-    return []
+/** Follow later resources and controller changes, including installation beyond the initial load. */
+export function observeUsedAssetCache(): () => void {
+  let timer: ReturnType<typeof setTimeout> | undefined
+  let running = false
+  let again = false
+  const run = async (): Promise<void> => {
+    if (running) { again = true; return }
+    running = true
+    try { await warmLanguagePackCache() } finally {
+      running = false
+      if (again) { again = false; schedule() }
+    }
+  }
+  const schedule = (): void => {
+    if (timer) clearTimeout(timer)
+    timer = setTimeout(() => { void run() }, 250)
+  }
+  // Re-fetching an address creates a resource entry too. Observe only genuinely new addresses.
+  const seen = new Set(geladeneRessourcen())
+  const observer = new PerformanceObserver((list) => {
+    let changed = false
+    for (const entry of list.getEntries()) {
+      if (!seen.has(entry.name)) { seen.add(entry.name); changed = true }
+    }
+    if (changed) schedule()
+  })
+  observer.observe({ type: 'resource', buffered: true })
+  navigator.serviceWorker?.addEventListener('controllerchange', schedule)
+  document.addEventListener('visibilitychange', schedule)
+  window.addEventListener('online', schedule)
+  window.addEventListener('offline', schedule)
+  window.addEventListener('pageshow', schedule)
+  schedule()
+  return () => {
+    observer.disconnect()
+    navigator.serviceWorker?.removeEventListener('controllerchange', schedule)
+    document.removeEventListener('visibilitychange', schedule)
+    window.removeEventListener('online', schedule)
+    window.removeEventListener('offline', schedule)
+    window.removeEventListener('pageshow', schedule)
+    if (timer) clearTimeout(timer)
   }
 }

@@ -5,5 +5,5 @@
     "noEmit": true,
     "types": ["vite/client", "vite-plugin-pwa/client"]
   },
-  "include": ["apps/web/src", "packages/core/src", "packages/i18n/src", "packages/tools/src", "packages/ui/src"]
+  "include": ["apps/web/src", "packages/core/src", "packages/i18n/src", "packages/tools/src", "packages/ui/src", "scripts/build-identity.d.mts"]
 }

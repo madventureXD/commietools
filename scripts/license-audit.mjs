@@ -3,6 +3,8 @@ import { execFileSync } from 'node:child_process'
 import { existsSync, mkdirSync, readFileSync, readdirSync, rmSync, statSync, writeFileSync } from 'node:fs'
 import { dirname, join, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
+import { approvedReview, unresolvedReviews } from './rust-review-policy.mjs'
+import { rustSourceId } from './rust-source-id.mjs'
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..')
 const mode = process.argv[2] ?? 'check'
@@ -301,6 +303,7 @@ function spdxAuswerten(ausdruck, erlaubt) {
     return { op, kinder: teile }
   }
   const baum = auswerten()
+  if (text.slice(stelle).trim()) throw new Error('unerwarteter Rest im Lizenzausdruck')
   const erfuellt = (knoten) => knoten.atom ? erlaubt.has(knoten.atom) : knoten.op === 'OR' ? knoten.kinder.some(erfuellt) : knoten.kinder.every(erfuellt)
   const fehlende = []
   const sammeln = (knoten) => { if (knoten.atom) { if (!erlaubt.has(knoten.atom)) fehlende.push(knoten.atom) } else knoten.kinder.forEach(sammeln) }
@@ -312,6 +315,7 @@ function spdxAuswerten(ausdruck, erlaubt) {
 function pruefeRustKomponenten() {
   if (!existsSync(rustComponentsPath)) fail('licenses/rust-components.json fehlt — node scripts/rust-components.mjs')
   const liste = readJson(rustComponentsPath)
+  for (const component of liste.komponenten ?? []) component.sourceId = rustSourceId(component, root)
   const erlaubt = new Set(readJson(policyPath).allowedExpressions)
   const entschieden = existsSync(rustReviewPath) ? (readJson(rustReviewPath).review ?? []) : []
   const offen = []
@@ -322,10 +326,14 @@ function pruefeRustKomponenten() {
     if (bewertet.ausgelegt) auslegungen.push(`${k.name} ${k.version}: "${k.license}" als ODER gelesen`)
     if (!bewertet.erfuellt) offen.push({ k, grund: `Lizenz ${k.license} (fehlend: ${bewertet.fehlende.join(', ')})` })
   }
-  const unentschieden = offen.filter((o) => !entschieden.some((e) => e.name === o.k.name && e.version === o.k.version))
+  const unentschieden = offen.filter((o) => !approvedReview(o.k, entschieden, 'license'))
   const ohneHinweisUnentschieden = (liste.komponenten ?? [])
     .filter((k) => k.noticeMissing)
-    .filter((k) => !entschieden.some((e) => e.name === k.name && e.version === k.version))
+    .filter((k) => !approvedReview(k, entschieden, 'notice'))
+  const ausstehend = unresolvedReviews(liste.komponenten ?? [], entschieden)
+  const reviewIds = entschieden.map((e) => `${e.name}@${e.version}`)
+  if (new Set(reviewIds).size !== reviewIds.length) fail('Doppelte Rust-Entscheidungen')
+  if (entschieden.some((e) => !['pending', 'approved', 'rejected', 'resolved'].includes(e.status))) fail('Unbekannter Rust-Entscheidungsstatus')
   // Die verzeichneten Originalhinweise müssen vorhanden und nicht leer sein — sonst ist die
   // Lizenzangabe im Register nur eine Behauptung. (Gegenprobe: eine entfernte Hinweisdatei
   // muss diese Prüfung scheitern lassen.)
@@ -337,9 +345,10 @@ function pruefeRustKomponenten() {
     }
   }
   for (const f of fehlendeHinweise) console.error(`  Originalhinweis fehlt oder ist leer: ${f}`)
+  for (const e of ausstehend) console.error(`  Entscheidung ${e.status ?? 'pending'}: ${e.name} ${e.version}`)
   for (const o of unentschieden) console.error(`  offen ohne Entscheidung: ${o.k.name} ${o.k.version} — ${o.grund}`)
   for (const k of ohneHinweisUnentschieden) console.error(`  Originalhinweis fehlt und ist nicht entschieden: ${k.name} ${k.version}`)
-  if (unentschieden.length || ohneHinweisUnentschieden.length || fehlendeHinweise.length) {
+  if (unentschieden.length || ohneHinweisUnentschieden.length || fehlendeHinweise.length || ausstehend.length) {
     fail('Rust-Komponenten: offene Lizenz-/Hinweisfragen ohne Eintrag in licenses/rust-review.json oder fehlende Originalhinweise')
   }
   console.log(
@@ -428,6 +437,8 @@ function baueRustTeil(pruefen) {
     komponenten,
   }
 }
+
+if (mode === 'rust-check') { pruefeRustKomponenten(); process.exit(0) }
 
 const registry = buildRegistry()
 ergaenzeQuellzugang(registry)

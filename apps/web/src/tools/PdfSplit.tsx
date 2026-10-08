@@ -13,6 +13,7 @@ export function PdfSplit({ t }: { t: Translate }) {
   const [selection, setSelection] = useState('1-3; 4-6')
   const [error, setError] = useState('')
   const [processing, setProcessing] = useState(false)
+  const [loading, setLoading] = useState(false)
   const [results, setResults] = useState<{ url: string; pages: number[]; name: string }[]>([])
   /**
    * Auftragsgeneration (Karte M4-005): Jeder Auftrag merkt sich seine Nummer und den
@@ -50,7 +51,8 @@ export function PdfSplit({ t }: { t: Translate }) {
   const thumbnails = usePdfThumbnails(file?.bytes ?? null)
 
   function clearResults() {
-    results.forEach((result) => URL.revokeObjectURL(result.url))
+    resultsRef.current.forEach((result) => URL.revokeObjectURL(result.url))
+    resultsRef.current = []
     setResults([])
   }
 
@@ -67,22 +69,30 @@ export function PdfSplit({ t }: { t: Translate }) {
      * der neue kam nie zum Zug (gemessen im Abnahmefall zu Karte M4-005 — B ließ sich nicht
      * starten, die Oberfläche war eine Sackgasse).
      */
-    generationRef.current += 1
+    const generation = (generationRef.current += 1)
+    event.target.value = ''
+    setLoading(true)
+    setFile(null)
     setProcessing(false)
     clearResults()
     setError('')
     try {
       const bytes = new Uint8Array(await selected.arrayBuffer())
-      setFile({ id: crypto.randomUUID(), name: selected.name, bytes, inspection: await inspectPdf(bytes) })
+      if (generation !== generationRef.current) return
+      const inspection = await inspectPdf(bytes)
+      if (generation !== generationRef.current) return
+      setFile({ id: crypto.randomUUID(), name: selected.name, bytes, inspection })
     } catch (caught) {
+      if (generation !== generationRef.current) return
       setFile(null)
       setError(pdfErrorKey(caught))
+    } finally {
+      if (generation === generationRef.current) setLoading(false)
     }
-    event.target.value = ''
   }
 
   async function process() {
-    if (!file) return
+    if (!file || loading || processing) return
     const generation = (generationRef.current += 1)
     // Unveränderlicher Eingabestand des Auftrags.
     const snapshot = { name: file.name, bytes: file.bytes, pageCount: file.inspection.pageCount, mode, selection }
@@ -103,6 +113,7 @@ export function PdfSplit({ t }: { t: Translate }) {
         return
       }
       setResults(erzeugt)
+      resultsRef.current = erzeugt
     } catch (caught) {
       if (generation === generationRef.current) setError(pdfErrorKey(caught))
     } finally {
@@ -114,6 +125,7 @@ export function PdfSplit({ t }: { t: Translate }) {
 
   return <div className="stack"><section className="settings-card stack">
     <h2>{t('tool.pdf.files')}</h2><label className="field"><span>{t('tool.pdf.choose')}</span><input type="file" accept={acceptAttributeFor('pdf-split')} onChange={selectFile} /></label><p className="privacy-note">{t('tool.pdf.local')}</p>
+    {loading && <p role="status">{t('tool.pdf.processing')}</p>}
     {file && <><div className="pdf-document-facts"><strong>{file.name}</strong><span>{file.inspection.pageCount} {t('tool.pdf.pages')}</span></div><PdfWarnings inspection={file.inspection} t={t} />
       <div className="pdf-thumbnail-grid">{thumbnails.images.map((image, index) => <figure className="pdf-page-card" key={index}><img src={image} alt={`${t('tool.pdf.page')} ${index + 1}`} /><figcaption>{index + 1}</figcaption></figure>)}</div>
       <h2>{t('tool.pdfSplit.mode')}</h2><div className="segmented"><Button className={mode === 'every' ? 'active' : ''} onClick={() => setMode('every')}>{t('tool.pdfSplit.every')}</Button><Button className={mode === 'groups' ? 'active' : ''} onClick={() => setMode('groups')}>{t('tool.pdfSplit.groups')}</Button></div>
@@ -124,4 +136,3 @@ export function PdfSplit({ t }: { t: Translate }) {
   {results.length > 0 && <section className="settings-card stack" aria-live="polite"><div className="preview-heading"><h2>{t('tool.pdfSplit.result')}</h2><LocalBadge>{t('status.local')}</LocalBadge></div><div className="pdf-result-list">{results.map((result, index) => <div className="settings-card stack" key={result.url}><strong>{t('tool.pdfSplit.download').replace('{number}', String(index + 1))} ({result.pages.join(', ')})</strong><SaveFileControl url={result.url} suggestedName={`${baseName(result.name)}-pages-${result.pages.join('-')}.pdf`} mimeType="application/pdf" t={t} /></div>)}</div></section>}
   </div>
 }
-

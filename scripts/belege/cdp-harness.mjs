@@ -10,6 +10,7 @@ import { spawn } from 'node:child_process'
 import fs from 'node:fs'
 import os from 'node:os'
 import path from 'node:path'
+import { createServer } from 'node:net'
 
 const EDGE = process.env.COMMIETOOLS_BROWSER ?? 'C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe'
 
@@ -18,8 +19,11 @@ export async function starte({ breite = 1360, hoehe = 1100, schema = 'light', pr
     console.error(`Browserprogramm nicht gefunden: ${EDGE}\nSetze COMMIETOOLS_BROWSER auf ein Chromium/Edge (z. B. msedge.exe).`)
     process.exit(2)
   }
-  const port = 9700 + Math.floor(Math.random() * 90)
-  const profile = path.join(os.tmpdir(), 'ct-beleg-' + Date.now())
+  const reservation = createServer()
+  await new Promise((done) => reservation.listen(0, '127.0.0.1', done))
+  const port = reservation.address().port
+  await new Promise((done) => reservation.close(done))
+  const profile = fs.mkdtempSync(path.join(os.tmpdir(), 'ct-beleg-'))
   const flags = ['--headless=new', '--disable-gpu', '--no-first-run', '--remote-allow-origins=*', '--hide-scrollbars',
     '--remote-debugging-port=' + port, '--user-data-dir=' + profile, '--window-size=' + breite + ',' + hoehe]
   if (praeziserSpeicher) flags.push('--enable-precise-memory-info')
@@ -34,7 +38,7 @@ export async function starte({ breite = 1360, hoehe = 1100, schema = 'light', pr
     } catch { /* Dienst antwortet noch nicht — weiter warten. */ }
     if (!ziel) await new Promise((r) => setTimeout(r, 300))
   }
-  if (!ziel) throw new Error('Edge-Debug-Ziel nicht gefunden')
+  if (!ziel) { prozess.kill(); throw new Error('Edge-Debug-Ziel nicht gefunden') }
 
   const socket = new WebSocket(ziel.webSocketDebuggerUrl)
   await new Promise((res, rej) => { socket.addEventListener('open', res); socket.addEventListener('error', rej) })
@@ -42,14 +46,27 @@ export async function starte({ breite = 1360, hoehe = 1100, schema = 'light', pr
   const offen = new Map()
   const anfragen = []
   const fehler = []
+  const consoleMessages = []
   socket.addEventListener('message', (ereignis) => {
     const nachricht = JSON.parse(ereignis.data)
     if (nachricht.method === 'Network.requestWillBeSent') anfragen.push(nachricht.params.request.url)
-    if (nachricht.method === 'Runtime.exceptionThrown') fehler.push(nachricht.params.exceptionDetails.text)
+    if (nachricht.method === 'Runtime.exceptionThrown') fehler.push(nachricht.params.exceptionDetails.exception?.description ?? nachricht.params.exceptionDetails.text)
+    if (nachricht.method === 'Runtime.consoleAPICalled') consoleMessages.push({ type: nachricht.params.type, text: nachricht.params.args.map((arg) => arg.value ?? arg.description ?? '').join(' ') })
     const eintrag = offen.get(nachricht.id)
-    if (eintrag) { offen.delete(nachricht.id); eintrag(nachricht.result) }
+    if (eintrag) {
+      offen.delete(nachricht.id); clearTimeout(eintrag.timer)
+      if (nachricht.error) eintrag.reject(new Error(nachricht.error.message)); else eintrag.resolve(nachricht.result)
+    }
   })
-  const send = (method, params = {}) => new Promise((resolve) => { offen.set(laufend, resolve); socket.send(JSON.stringify({ id: laufend++, method, params })) })
+  const send = (method, params = {}) => new Promise((resolve, reject) => {
+    const id = laufend++
+    const timer = setTimeout(() => { offen.delete(id); reject(new Error('CDP timeout: ' + method)) }, 180_000)
+    offen.set(id, { resolve, reject, timer }); socket.send(JSON.stringify({ id, method, params }))
+  })
+  socket.addEventListener('close', () => {
+    for (const entry of offen.values()) { clearTimeout(entry.timer); entry.reject(new Error('CDP connection closed')) }
+    offen.clear()
+  })
   const evaluate = async (ausdruck) => {
     const ergebnis = await send('Runtime.evaluate', { expression: ausdruck, returnByValue: true, awaitPromise: true })
     if (ergebnis.exceptionDetails) throw new Error('Seitenfehler: ' + (ergebnis.exceptionDetails.exception?.description ?? ergebnis.exceptionDetails.text))
@@ -92,8 +109,8 @@ export async function starte({ breite = 1360, hoehe = 1100, schema = 'light', pr
   if (download) { fs.mkdirSync(download, { recursive: true }); await send('Browser.setDownloadBehavior', { behavior: 'allow', downloadPath: download }) }
 
   return {
-    send, evaluate, klicke, schuss, warte, anfragen, fehler, profil: profile,
+    send, evaluate, klicke, schuss, warte, anfragen, fehler, consoleMessages, profil: profile,
     async oeffne(url) { await send('Page.navigate', { url }); await warte(4000) },
-    async ende() { socket.close(); prozess.kill(); await warte(300); try { fs.rmSync(profile, { recursive: true, force: true }) } catch { /* Profil schon fort — nicht schlimm. */ } }
+    async ende() { await send('Browser.close').catch(() => {}); socket.close(); prozess.kill(); await warte(300); try { fs.rmSync(profile, { recursive: true, force: true }) } catch { /* Profil schon fort — nicht schlimm. */ } }
   }
 }

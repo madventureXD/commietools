@@ -126,7 +126,7 @@ export function LicensePage({ t, navigate }: { t: Translate; navigate: (path: st
         <div className="license-heading"><div><p className="category">CommieTools</p><h2>{t('licenses.project')}</h2></div><strong>{registry.project.license}</strong></div>
         <p>{t('licenses.projectDescription')}</p>
         <div className="license-links">
-          {registry.project.repository && <a href={registry.project.repository} target="_blank" rel="noreferrer">{t('licenses.projectSource')} ↗</a>}
+          {registry.project.repository && <a className="button" href={registry.project.repository} target="_blank" rel="noreferrer">{t('licenses.projectSource')} ↗</a>}
           {registry.project.revision && <span className="license-revision">{t('licenses.projectRevision')}: <code>{registry.project.revision.slice(0, 12)}</code></span>}
         </div>
         <details><summary>{registry.licenses[registry.project.license]?.name ?? registry.project.license}</summary><pre className="license-text">{registry.licenses[registry.project.license]?.text}</pre></details>

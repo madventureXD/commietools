@@ -1,0 +1,16 @@
+# Nicht abgenommen / Grenzen
+
+Dies ist die **59-Karten-Nachprüfung**, kein vollständiges neues Funktionsaudit jedes neuen D/E-Werkzeugs und keine universelle Sicherheitszertifizierung.
+
+- **Rust-Lieferreproduzierbarkeit:** Kein eigener neuer Cargo-/wasm-bindgen-Bau, keine unabhängige Reproduktion der Binary-Prüfsumme, keine erneute tiefe Parser-Grenzkorpus-Ausführung. Die aktuelle fertige Engine lief über 13 öffentliche Korpusdateien; Version/Fixbereich und Lieferdokumente wurden geprüft.
+- **Releasebetrieb:** Kein GitHub-Lauf, kein Branch-/Statuscheckschutz oder Cloudflare-Deployment-Verhalten im Konto geprüft. Kein Push und keine Änderungen an diesen Systemen. CI-Syntaxbefund ist Dokument-/Quellabgleich, keine erfundene GitHub-Fehlermeldung.
+- **OCR/CSP:** Beschädigtes OCR-Modell, echte Offline-Wiederholung und zukünftige öffentliche neue CSP nicht abgenommen. Historischer Proxy-Erfolg ist kenntlich eingeordnet.
+- **PDF-Sicherheit:** Kein neuer eigener QPDF-Schutz-/Unlock-Browserlauf und kein unabhängiger aktueller Reader-/DSS-Komplettvergleich aller Signaturprofile. Keine Prüfung privater Nutzerzertifikate. Der reine Ausgabeskript-Erfolg wird nicht als erwartungsprüfender Sicherheitsgate ausgegeben.
+- **UI/Barrierefreiheit:** Kein echter NVDA-/Narratorlauf, Touchgerät, nativer Mobilbrowser, echter Browserzoom 200–400 %, vollständige Fokus-/Tastatur-/Reduced-Motion-Abnahme; nicht sämtliche Ergebnis-/Fehlerzustände. Die automatische Menübehauptung ist ausdrücklich widerlegt; 62 Grundzustandsrouten bleiben positive, begrenzte Belege. `/`, `/licenses`, Suiten-/Rechtsseiten nicht durch den automatischen Toolrouten-Gesamtlauf abgedeckt.
+- **Speichern:** Adapter-Bytes-/Fehlervertrag getestet, aber kein eigener neu abgefangener Browserdownload mit Platte-Inhaltsprüfung und kein nativer Zielgeräte-Dateidialog.
+- **Offline:** Erstbesuch mit verzögertem SW und tatsächlichem Netzverlust belegt; nicht systematisch jede Engine, Localewechsel, Quota, fehlendes Paket, SW-Versionswechsel und alle warmen Profile geprüft.
+- **Sprache:** Originalanforderungen/automatische Verträge/Glossar/Kandidatenprüfung, kein vollständiges muttersprachliches Spanisch-Lektorat. N8-Mutant prüft das reguläre Sprach-Testmodul, nicht sämtliche Root-Gates unter Mutation.
+- **Dokumentation/Portabilität:** Keine erneute Zweitrechner-/Fresh-Checkout-Abnahme; ältere Aktenlücken und Betreiberentscheidungen bleiben offene dokumentierte Restarbeit. Der historische 6-MB-Index wurde nicht vollständig manuell gelesen; aktuelle relevante Unterlagen und vollständige Kartenliste waren Grundlage.
+- **NEL:** Betreiberentscheidung und vorhandene Headerbelege geprüft, kein neuer eigener öffentlicher Header-/Altprofil-/Versandnachweis; keine personenbezogenen Projektinhalte an Dienste übertragen und kein Rechtsurteil.
+
+Die 16 R-Karten in `20-kartenmatrix.md` führen die jeweiligen Grenzen einzeln. **A2 und Veröffentlichungsfreigabe nicht als erledigt behandeln.**

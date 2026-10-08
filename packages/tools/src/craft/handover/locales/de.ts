@@ -26,7 +26,7 @@ export const handoverDe = {
   'tool.handover.clearSignature': 'Unterschrift löschen',
   'tool.handover.warranty': 'Gewährleistungsfristen',
   'tool.handover.warrantyBgb': 'BGB § 634a Abs. 1 Nr. 2 (Bauwerk), 5 Jahre',
-  'tool.handover.warrantyVob': 'VOB/B § 13 Abs. 4 Nr. 2 (wenn vereinbart), 4 Jahre',
+  'tool.handover.warrantyVob': 'VOB/B § 13 Abs. 4 Nr. 1 (wenn vereinbart), 4 Jahre',
   'tool.handover.warrantyHint': 'Gerechnet ab dem Abnahmedatum. Ob BGB oder VOB/B gilt, entscheidet der Vertrag — das Werkzeug kennt ihn nicht.',
   'tool.handover.disclaimer': 'Diese Fristen sind Rechtsanwendung, keine Rechtsberatung.',
   'tool.handover.action': 'PDF erzeugen',
@@ -53,6 +53,6 @@ export const handoverDe = {
   'tool.handover.error.tooManyPhotos': 'Zu viele Fotos (höchstens 12).',
 
   'tool.handover.assumptions': 'Annahmen: Das PDF wird aus den erfassten Angaben erzeugt, nichts wird ergänzt und nichts erfunden. Zeilen **ohne Beschreibung** fallen weg statt als leere Tabellenzeile zu erscheinen. Ein leeres Fristfeld ist zulässig (Frist noch offen) — steht eine Frist da, muss sie ein vorhandenes Datum sein. Fehlt eine Unterschrift, wird das gemeldet und die Unterschriftsseite bleibt leer. **Nicht enthalten:** Fristen nach anderen Vertragswerken, Nachträge, Fotos bearbeiten, Versand per Mail. Fotos werden wie übergeben eingebettet.',
-  'tool.handover.sources': 'Datum: die Datumslogik des Projekts (`calculator/dates`, Temporal) — dieselbe wie im Werkzeug „Frist berechnen". Fristen: BGB § 634a Abs. 1 Nr. 2 (fünf Jahre bei einem Bauwerk) und VOB/B § 13 Abs. 4 Nr. 2 (vier Jahre, wenn VOB/B vereinbart ist). PDF: die im Projekt vorhandene PDF-Engine. Keine Übertragung, keine Fremdbibliothek für das Formular.',
+  'tool.handover.sources': 'Datum: die Datumslogik des Projekts (`calculator/dates`, Temporal) — dieselbe wie im Werkzeug „Frist berechnen". Fristen: BGB § 634a Abs. 1 Nr. 2 (fünf Jahre bei einem Bauwerk) und VOB/B § 13 Abs. 4 Nr. 1 (vier Jahre, wenn VOB/B vereinbart ist). PDF: die im Projekt vorhandene PDF-Engine. Keine Übertragung, keine Fremdbibliothek für das Formular.',
   'tool.handover.formula': 'Annahmen und Quellen'
 } as const

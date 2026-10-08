@@ -1,5 +1,6 @@
 import createQpdfModule from '@neslinesli93/qpdf-wasm'
 import qpdfWasmUrl from '@neslinesli93/qpdf-wasm/dist/qpdf.wasm?url'
+import { PDFDocument } from 'pdf-lib'
 import { PdfToolError } from './core'
 
 export type PdfPrintPermission = 'none' | 'low' | 'full'
@@ -36,7 +37,7 @@ function cleanMessage(messages: readonly string[]): string {
   return messages.join('\n').replaceAll(/\/input-[^\s:]*/gu, 'input.pdf').replaceAll(/\/output-[^\s:]*/gu, 'output.pdf').trim()
 }
 
-async function runQpdf(bytes: Uint8Array, args: readonly string[]): Promise<Uint8Array> {
+async function runQpdf(bytes: Uint8Array, args: readonly string[], allowRecoveredWarnings = false): Promise<Uint8Array> {
   if (!bytes.length) throw new PdfToolError('empty', 'PDF file is empty')
   const messages: string[] = []
   const qpdf = await qpdfFactory({ locateFile: () => qpdfWasmUrl, noInitialRun: true, print: (message) => messages.push(message), printErr: (message) => messages.push(message) })
@@ -46,7 +47,8 @@ async function runQpdf(bytes: Uint8Array, args: readonly string[]): Promise<Uint
   qpdf.FS.writeFile(input, bytes)
   try {
     const exitCode = qpdf.callMain([input, ...args, output])
-    if (exitCode !== 0) {
+    // QPDF uses 3 for successful output with recovery warnings; accept it only for repair.
+    if (exitCode !== 0 && !(allowRecoveredWarnings && exitCode === 3)) {
       const detail = cleanMessage(messages)
       if (args.includes('--decrypt') || /invalid password|incorrect password|password supplied is incorrect/iu.test(detail)) throw new PdfToolError('password', 'The PDF password is incorrect')
       throw new PdfToolError('unsupported', detail || `QPDF stopped with code ${exitCode}`)
@@ -98,5 +100,16 @@ export async function compressPdf(bytes: Uint8Array, mode: PdfCompressionMode): 
 }
 
 export async function repairPdfWithQpdf(bytes: Uint8Array): Promise<Uint8Array> {
-  return runQpdf(bytes, ['--object-streams=generate', '--recompress-flate', '--remove-unreferenced-resources=auto'])
+  const args = ['--object-streams=generate', '--recompress-flate', '--remove-unreferenced-resources=auto']
+  try { return await runQpdf(bytes, args, true) }
+  catch (error) {
+    if (!(error instanceof PdfToolError) || error.code !== 'unsupported') throw error
+    // This shipped WASM rejects damaged xref entries before its recovery path can run.
+    // pdf-lib reads objects independently of xref offsets; normalize only if that parser
+    // accepts the complete document, then run the actual QPDF validation/rewrite again.
+    // Encryption is never ignored, and invalid objects must not be silently dropped.
+    const document = await PDFDocument.load(bytes, { updateMetadata: false, throwOnInvalidObject: true })
+    const normalized = await document.save({ updateFieldAppearances: false })
+    return runQpdf(normalized, args, true)
+  }
 }

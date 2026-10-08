@@ -2,6 +2,7 @@ import { Component, type ReactNode } from 'react'
 import { readLocal, writeLocal } from '@commietools/core/storage'
 import { Button } from '@commietools/ui'
 import { darfNeuLaden, istVeralteteFassung, NEULADEN_SCHLUESSEL } from './tool-load-recovery'
+import { APP_BUILD_ID } from './pwaWarmCache'
 
 type Translate = (key: string) => string
 
@@ -32,8 +33,19 @@ type Translate = (key: string) => string
  * erhalten (sie werden nicht gelöscht). Beides wird nicht automatisch ausgelöst — es ist immer
  * eine Entscheidung des Nutzers.
  */
-export class ToolErrorBoundary extends Component<{ t: Translate; children: ReactNode }, { nachricht: string | null }> {
-  override state: { nachricht: string | null } = { nachricht: null }
+export class ToolErrorBoundary extends Component<{ t: Translate; children: ReactNode }, { nachricht: string | null; buildChanged: boolean }> {
+  override state = { nachricht: null as string | null, buildChanged: false }
+  private mounted = true
+
+  override componentWillUnmount(): void { this.mounted = false }
+  override componentDidMount(): void { this.mounted = true }
+  override componentDidCatch(): void {
+    void fetch('/build.json', { cache: 'no-store' }).then(async (response) => {
+      if (!response.ok) return
+      const remote = await response.json() as { buildId?: string }
+      if (this.mounted && remote.buildId && remote.buildId !== APP_BUILD_ID) this.setState({ buildChanged: true })
+    }).catch(() => { /* Offline and unknown causes retain the neutral message. */ })
+  }
 
   static getDerivedStateFromError(fehler: unknown): { nachricht: string } {
     return { nachricht: fehler instanceof Error ? fehler.message : String(fehler) }
@@ -42,7 +54,7 @@ export class ToolErrorBoundary extends Component<{ t: Translate; children: React
   override render(): ReactNode {
     const nachricht = this.state.nachricht
     if (nachricht === null) return this.props.children
-    return <LoadFailureNotice t={this.props.t} messageKey={istVeralteteFassung(nachricht) ? 'tool.chunkStale' : 'tool.chunkFailed'} />
+    return <LoadFailureNotice t={this.props.t} messageKey={istVeralteteFassung(nachricht, this.state.buildChanged) ? 'tool.chunkStale' : 'tool.chunkFailed'} />
   }
 }
 

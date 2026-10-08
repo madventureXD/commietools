@@ -1,0 +1,180 @@
+# R3 – Asynchronität, Ressourcen und Offline-/Speicherfehler
+
+Priorität P1. Empfehlung, keine Umsetzung/Freigabe. Basis a041ee0efda6b07687b3586977bb0d90bf1c89a8.
+
+[Leseregeln und Reihenfolge](README.md) · [Architektur/Migration](01-architektur-und-migration.md) · [Abnahme](03-pruef-und-uebergabeplan.md)
+
+Zeilen beziehen sich auf die eingefrorene Basis. Vor Änderungen Hash/Anker gegen den aktuellen Stand vergleichen. Zielpfade sind bestehende Projektdateien; neu vorgeschlagene Dateien werden im Text ausdrücklich benannt. Quellbelege bestätigen Mechanismen/Standards, nicht bereits getestete Reparaturen.
+
+## M4-004 – Sprachladefehler bleiben gecacht; UI besitzt keinen Fehler-/Wiederholungszustand
+
+**Stand dieser Empfehlung:** Abgelehnte Promise-Caches und fehlende UI-Fehlerwege weiter vorhanden.
+
+**Historischer M12-Vermerk (cd556d1, keine neue Messung):** Loader umgebaut, verwirft abgelehnte Promises weiterhin nicht. M8 echte Offline-/Netzrückkehrprobe maßgeblich, nicht nur alter Mock.
+
+### Konkrete Eingriffs- und Prüfstellen
+
+- [packages/i18n/src/index.ts:13](<C:/Projekte mit ChatGPT/commietools/packages/i18n/src/index.ts:13>) — Anker: „Promise“.
+- [scripts/catalog-generate.mjs:294](<C:/Projekte mit ChatGPT/commietools/scripts/catalog-generate.mjs:294>) — Anker: „textCache“.
+- [packages/tools/src/catalog/generated/textLoaders.ts:205](<C:/Projekte mit ChatGPT/commietools/packages/tools/src/catalog/generated/textLoaders.ts:205>) — Anker: „const textCache“.
+- [packages/tools/src/catalog/generated/loaders.ts:13](<C:/Projekte mit ChatGPT/commietools/packages/tools/src/catalog/generated/loaders.ts:13>) — Anker: „Promise“.
+- [apps/web/src/App.tsx:3](<C:/Projekte mit ChatGPT/commietools/apps/web/src/App.tsx:3>) — Anker: „load“.
+- [apps/web/src/CatalogSection.tsx:3](<C:/Projekte mit ChatGPT/commietools/apps/web/src/CatalogSection.tsx:3>) — Anker: „loadToolSearchIndex“.
+- [apps/web/src/ToolNavigation.tsx:4](<C:/Projekte mit ChatGPT/commietools/apps/web/src/ToolNavigation.tsx:4>) — Anker: „loadToolSearchIndex“.
+
+### Dauerhafte Lösung
+
+Gemeinsamen LoadState idle/loading/ready/error mit requestKey für Locale/Tool einführen. Deduplizierte erfolgreiche bzw. laufende Imports cachen; beim Reject nur genau das noch aktuelle Promise entfernen. Fehler sichtbar und übersetzt darstellen, Rückfalltexte getrennt von vollständiger Bereitschaft führen. UI-Reihenfolgen mit Generation schützen. Netzfehler erlaubt gezielten Retry; Auswertungsfehler/Deployment-Chunks benötigen einen verständlichen kontrollierten Neustartpfad mit Schutz vor Reloadschleifen und Datenverlust. React-lazy-Fehlergrenze und dessen eigener Promise-Cache separat beachten. Generator ändern und neu erzeugen.
+
+### Abnahme
+
+Import bewusst ablehnen, Netz herstellen, Retry ohne Dokumentreload; Locale A langsam, B schnell; alter Reject darf neuen Erfolg nicht löschen. Evaluationsfehler und veralteten Deploymentchunk getrennt prüfen; keine unhandled rejection und kein endloses Laden.
+
+### Nicht tun / Abgrenzung
+
+Keine Handreparatur generierter Dateien, kein beliebiges ?timestamp-Import-Busting, kein ErrorBoundary-Reset als alleiniger Beweis erneuten Imports.
+
+### Verifizierte Grundlage
+
+[S14 · React: useEffect](<https://react.dev/reference/react/useEffect>) ([Prüfvermerk](02-quellen.md#s14)); [S15 · MDN: import()](<https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/import>) ([Prüfvermerk](02-quellen.md#s15)); [S16 · Vite 7: Produktionsbuild/Ladefehler](<https://v7.vite.dev/guide/build>) ([Prüfvermerk](02-quellen.md#s16)); [S36 · React: lazy](<https://react.dev/reference/react/lazy>) ([Prüfvermerk](02-quellen.md#s36)).
+
+## M4-005 – PDF-Ergebnisse können nach Dateiwechsel dem falschen Namen zugeordnet werden
+
+**Stand dieser Empfehlung:** Historischer deterministischer Komponentenbeleg; aktueller Browserfall nicht wiederholt.
+
+**Historischer M12-Vermerk (cd556d1, keine neue Messung):** Deterministischer Komponentenbeleg bleibt; echter M6-Dateiwechsel konnte Fehler NICHT reproduzieren. Kein behaupteter realer Datenverlust.
+
+### Konkrete Eingriffs- und Prüfstellen
+
+- [apps/web/src/tools/PdfSplit.tsx:39](<C:/Projekte mit ChatGPT/commietools/apps/web/src/tools/PdfSplit.tsx:39>) — Anker: „async function process“.
+- [apps/web/src/tools/pdfUi.tsx:7](<C:/Projekte mit ChatGPT/commietools/apps/web/src/tools/pdfUi.tsx:7>) — Anker: „export interface LoadedPdf“.
+
+### Dauerhafte Lösung
+
+Verarbeitung mit unveränderlichem Input-Snapshot {id,name,bytes,options,generation} starten. Dateiwechsel, neue Aktion und Unmount invalidieren alte Generation; nur aktueller Auftrag darf Ergebnis, Fehler, Fortschritt und processing setzen. Späte Ergebnisse verwerfen und bereits erzeugte Ressourcen sofort freigeben. Dateiname wird aus Auftragsinput statt aktuellem Formularzustand gebildet. Physisch abbrechbare Engines abbrechen; nicht abbrechbare Berechnung logisch entkoppeln. Muster danach gezielt auf weitere asynchrone Dateiwerkzeuge übertragen.
+
+### Abnahme
+
+Deferred A starten, B auswählen, B fertig, A zuletzt fertig/fehlerhaft: ausschließlich B bleibt sichtbar und speicherbar, A beendet B nicht. Unmount während Erfolg und Fehler; echte Browserprobe mit unterschiedlichen Dateinamen/Seiteninhalten.
+
+### Nicht tun / Abgrenzung
+
+Kein beliebiger Timeout, bloßes disabled des Aktionsbuttons oder Abfangen nur des Erfolgswegs. Fachlich verschiedene Engines nicht in Universalprozessor zwängen.
+
+### Verifizierte Grundlage
+
+[S14 · React: useEffect](<https://react.dev/reference/react/useEffect>) ([Prüfvermerk](02-quellen.md#s14)); [S33 · TypeScript: Exhaustiveness checking](<https://www.typescriptlang.org/docs/handbook/2/narrowing.html#exhaustiveness-checking>) ([Prüfvermerk](02-quellen.md#s33)).
+
+## M4-006 – PDF-Teiler gibt Ergebnis-URLs beim Verlassen nicht frei
+
+**Stand dieser Empfehlung:** Ergebnis-URL-Eigentum im PDF-Teiler weiter offen.
+
+**Historischer M12-Vermerk (cd556d1, keine neue Messung):** M6 bestätigt drei nicht widerrufene Ergebnis-URLs; kein gemessener Heapumfang oder Dauerlastnachweis.
+
+### Konkrete Eingriffs- und Prüfstellen
+
+- [apps/web/src/tools/PdfSplit.tsx:47](<C:/Projekte mit ChatGPT/commietools/apps/web/src/tools/PdfSplit.tsx:47>) — Anker: „URL.createObjectURL“.
+- [apps/web/src/tools/pdfUi.tsx:76](<C:/Projekte mit ChatGPT/commietools/apps/web/src/tools/pdfUi.tsx:76>) — Anker: „export function useDownload“.
+- [apps/web/src/tools/PdfToImages.tsx:22](<C:/Projekte mit ChatGPT/commietools/apps/web/src/tools/PdfToImages.tsx:22>) — Anker: „revokeObjectURL“.
+
+### Dauerhafte Lösung
+
+Ausgabe-Blobs und URL-Lebensdauer trennen. Ein Besitzer erzeugt pro Ergebnis die Vorschau-/Download-URLs und gibt sie bei Ersatz, Entfernung oder Unmount exakt einmal frei. Bestehendes useDownload-Muster auf Ergebnislisten erweitern bzw. gezielt gemeinsamen useObjectUrls-Hook vorschlagen. Auch Ressourcen verworfener Aufträge aus M4-005 entsorgen. Aktive Vorschau-URLs nicht unmittelbar nach Erzeugung freigeben; kurzlebiger Browserdownload bleibt eigener Verbraucher im Speicheradapter.
+
+### Abnahme
+
+URL-create/revoke-Zähler nach Ersetzen, Unmount und verspätetem A-Ergebnis ausgeglichen; StrictMode-Zyklus, Mehrfachspeichern und weiterhin sichtbare Vorschau funktionieren. Wiederholte echte Nutzung auf ansteigenden Ressourcenverbrauch prüfen.
+
+### Nicht tun / Abgrenzung
+
+Drei historische URLs sind kein RAM-Messwert; globales URL-Sammelarray oder vorsorgliches Revoken aller App-URLs ist keine Lösung.
+
+### Verifizierte Grundlage
+
+[S17 · MDN: revokeObjectURL](<https://developer.mozilla.org/en-US/docs/Web/API/URL/revokeObjectURL_static>) ([Prüfvermerk](02-quellen.md#s17)); [S14 · React: useEffect](<https://react.dev/reference/react/useEffect>) ([Prüfvermerk](02-quellen.md#s14)).
+
+## M4-007 – Sprach-Type-Guard akzeptiert geerbte Objektschlüssel
+
+**Stand dieser Empfehlung:** Aktuell erneut reproduziert: __proto__ wird als Locale akzeptiert.
+
+**Historischer M12-Vermerk (cd556d1, keine neue Messung):** isLocale(__proto__) weiterhin true; das ist Guardfehler, keine erfolgreiche Prototype-Pollution.
+
+### Konkrete Eingriffs- und Prüfstellen
+
+- [packages/i18n/src/registry.ts:38](<C:/Projekte mit ChatGPT/commietools/packages/i18n/src/registry.ts:38>) — Anker: „export function isLocale“.
+- [apps/web/src/App.tsx:83](<C:/Projekte mit ChatGPT/commietools/apps/web/src/App.tsx:83>) — Anker: „function preferredLocale“.
+
+### Dauerhafte Lösung
+
+Typeguard auf typeof value === string und Object.hasOwn(localeRegistry,value) stützen; wenn Signatur string bleiben soll, vorgeschaltete Strukturprüfung am Speichereingang durchführen. Erkennung von Browserpräferenzen validiert BCP-47-/Basisstrategie getrennt, Lookup akzeptiert nur registrierte Schlüssel. Persistierte Registrywerte und spätere Registryerweiterungen typisiert überprüfen.
+
+### Abnahme
+
+__proto__, constructor, toString, leere/unbekannte Werte und nichtstringförmiger Speicherinhalt werden abgewiesen; de/en/es und dokumentiertes Fallback von es-ES bleiben korrekt. Kein geerbter Wert erreicht einen Loader.
+
+### Nicht tun / Abgrenzung
+
+Keine Liste einzelner verbotener Namen; Object.hasOwn beweist nur Schlüsseleigentum, nicht den Inhalt beliebiger gespeicherter Objekte.
+
+### Verifizierte Grundlage
+
+[S18 · MDN: Object.hasOwn](<https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/hasOwn>) ([Prüfvermerk](02-quellen.md#s18)).
+
+## M8-002 – Erste Offline-Bereitschaft hängt an flüchtigem HTTP-Cache
+
+**Stand dieser Empfehlung:** Erstbesuchs-Ressourcensicherung weiterhin nicht explizit nachgewiesen.
+
+**Historischer M12-Vermerk (cd556d1, keine neue Messung):** Erstbesuch plus HTTP-Cache-Verlust scheitert; warmer Cache 48/48 erfolgreich. Kein genereller Offline-Totalausfall.
+
+### Konkrete Eingriffs- und Prüfstellen
+
+- [apps/web/vite.config.ts:76](<C:/Projekte mit ChatGPT/commietools/apps/web/vite.config.ts:76>) — Anker: „runtimeCaching“.
+- [apps/web/src/main.tsx:3](<C:/Projekte mit ChatGPT/commietools/apps/web/src/main.tsx:3>) — Anker: „register“.
+- [packages/tools/src/catalog/generated/loaders.ts:15](<C:/Projekte mit ChatGPT/commietools/packages/tools/src/catalog/generated/loaders.ts:15>) — Anker: „loadToolSearchIndex“.
+- [packages/tools/src/catalog/generated/textLoaders.ts:221](<C:/Projekte mit ChatGPT/commietools/packages/tools/src/catalog/generated/textLoaders.ts:221>) — Anker: „loadToolTexts“.
+- [docs/deployment-cloudflare-pages.md:54](<C:/Projekte mit ChatGPT/commietools/docs/deployment-cloudflare-pages.md:54>) — Anker: „offline“.
+
+### Dauerhafte Lösung
+
+Offlinebereitschaft pro Appversion, Sprache und tatsächlich geöffnetem Werkzeug bestimmen. Benötigte URLs inklusive dynamischer Abhängigkeiten aus Buildmanifest ableiten; nur aktive Sprache plus Englisch und verwendete Tool-/Enginepakete sichern. Nach SW-Kontrolle gezieltes Nachladen oder bestätigte Cache-Warm-Nachricht verwenden, Cacheabschluss abwarten und Vorhandensein prüfen. Bestehende versionierte Cachegruppen weiterverwenden. Custom-SW/injectManifest nur wählen, falls generateSW die erforderliche Bestätigung nicht sauber ermöglicht; Entscheidung dokumentieren. Quota/Abbruch zeigt eingeschränkte statt falscher vollständiger Bereitschaft.
+
+### Abnahme
+
+Frisches Profil: App/Tool laden, SW bereit, HTTP-Cache löschen aber CacheStorage behalten, Netz aus, direkter Reload/Route funktioniert. Warmbesuch, Localewechsel, fehlendes Paket und SW-Versionswechsel getrennt testen; dritte Sprache wird nicht geladen.
+
+### Nicht tun / Abgrenzung
+
+Nicht alle Sprachen/Engines precachen. navigator.onLine oder ein erfolgreicher RAM-Import ist kein Offlinebeleg. Keine zweite unkoordinierte Cachearchitektur.
+
+### Verifizierte Grundlage
+
+[S19 · Workbox: Warm strategy cache](<https://developer.chrome.com/docs/workbox/modules/workbox-recipes>) ([Prüfvermerk](02-quellen.md#s19)); [S15 · MDN: import()](<https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/import>) ([Prüfvermerk](02-quellen.md#s15)); [S16 · Vite 7: Produktionsbuild/Ladefehler](<https://v7.vite.dev/guide/build>) ([Prüfvermerk](02-quellen.md#s16)).
+
+## M8-003 – Nicht verfügbarer Browser-Speicher verhindert Nutzung statt Rückfall
+
+**Stand dieser Empfehlung:** Direkte Speicherzugriffe in Shell/Rahmen weiter vorhanden.
+
+**Historischer M12-Vermerk (cd556d1, keine neue Messung):** Gezielt injizierte SecurityErrors; weder alle Privatmodi noch reale Quota-Fälle getestet.
+
+### Konkrete Eingriffs- und Prüfstellen
+
+- [apps/web/src/App.tsx:77](<C:/Projekte mit ChatGPT/commietools/apps/web/src/App.tsx:77>) — Anker: „function preferredTheme“.
+- [apps/web/src/ToolNavigation.tsx:40](<C:/Projekte mit ChatGPT/commietools/apps/web/src/ToolNavigation.tsx:40>) — Anker: „const saved = localStorage“.
+- [apps/web/src/tools/calculator-frame.tsx:183](<C:/Projekte mit ChatGPT/commietools/apps/web/src/tools/calculator-frame.tsx:183>) — Anker: „Promise.all“.
+- [packages/tools/src/calculator/history.ts:80](<C:/Projekte mit ChatGPT/commietools/packages/tools/src/calculator/history.ts:80>) — Anker: „export function calculatorStore“.
+
+### Dauerhafte Lösung
+
+Kleine Speicheradapter mit expliziten Ergebnissen ok/unavailable/quota/invalid definieren. Zugriff auf window.localStorage selbst, Lesen, JSON-Validierung und Schreiben absichern. Optionalen Verlauf/Settings vom Engine-Laden entkoppeln: Enginefehler blockiert Rechnung, Speicherfehler aktiviert flüchtigen Sitzungsbetrieb mit wahrer Warnung. Falls persistente Projektdaten betroffen sind, nicht automatisch überschreiben oder löschen; exportierbaren Speicherzustand anbieten. Aufmaß-/Prüffristen-Stores nach demselben Fehlervertrag prüfen, ohne Fachmodelle zusammenzulegen.
+
+### Abnahme
+
+Lesen/Schreiben SecurityError, kaputtes JSON, IDB-open-Reject, QuotaExceeded beim Speichern, funktionierende Engine trotz Storagefehler. Kein Blank Screen, keine falsche Syntaxfehlermeldung, kein gespeicherterfolg bei flüchtiger Ablage.
+
+### Nicht tun / Abgrenzung
+
+Keine leeren catch-Blöcke, die verlorene Nutzerdaten verschweigen; kein Löschen fremder Profile oder sämtlicher Origin-Daten.
+
+### Verifizierte Grundlage
+
+[S20 · MDN: Speicherquoten](<https://developer.mozilla.org/en-US/docs/Web/API/Storage_API/Storage_quotas_and_eviction_criteria>) ([Prüfvermerk](02-quellen.md#s20)); [S33 · TypeScript: Exhaustiveness checking](<https://www.typescriptlang.org/docs/handbook/2/narrowing.html#exhaustiveness-checking>) ([Prüfvermerk](02-quellen.md#s33)).

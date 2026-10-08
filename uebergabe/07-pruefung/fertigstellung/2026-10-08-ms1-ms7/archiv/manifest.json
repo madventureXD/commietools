@@ -1,0 +1,33 @@
+{
+  "decision": "Archive variant implemented within authorized MS6 scope; no retroactive claim of individual approval in 2026-10-04/05",
+  "entries": [
+    {
+      "revision": "a8ee4b8924eda54d856d76a93329ae55d88ab8db",
+      "path": "uebergabe/05-uebergaben/2026-10-04-rechner-welle5.md",
+      "archive": "2026-10-04-rechner-welle5.md.txt",
+      "bytes": 6793,
+      "sha256": "cca758da1d8082007fe7db4891317b4f063c7ecafd69fb5cd8ce4f3ec7e3843a"
+    },
+    {
+      "revision": "a8ee4b8924eda54d856d76a93329ae55d88ab8db",
+      "path": "uebergabe/05-uebergaben/2026-10-03-rechner-welle4.md",
+      "archive": "2026-10-03-rechner-welle4.md.txt",
+      "bytes": 6388,
+      "sha256": "19fd8f98f9c4b585d80533f940a1fde02fd49c70320ddd1519b534fba67807a3"
+    },
+    {
+      "revision": "a8ee4b8924eda54d856d76a93329ae55d88ab8db",
+      "path": "uebergabe/05-uebergaben/2026-10-03-rechner-welle2-oberflaeche.md",
+      "archive": "2026-10-03-rechner-welle2-oberflaeche.md.txt",
+      "bytes": 4580,
+      "sha256": "ea03fa6e22de28fb3f2492b844de6afe4cb7e1289b8fb03e83bfefab4aa44293"
+    },
+    {
+      "revision": "cdc88542fd7349d7b302bc667a248b574e36e856",
+      "path": "uebergabe/05-uebergaben/2026-10-05-werkzeugtexte-je-werkzeug.md",
+      "archive": "2026-10-05-werkzeugtexte-je-werkzeug.md.txt",
+      "bytes": 4516,
+      "sha256": "bce686a898da4e92080805e384d56051899c5830b8b94e943981c45831cd88d4"
+    }
+  ]
+}

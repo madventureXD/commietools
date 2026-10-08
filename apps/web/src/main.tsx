@@ -4,7 +4,7 @@ import { registerSW } from 'virtual:pwa-register'
 import '@commietools/ui/tokens.css'
 import './styles.css'
 import { App } from './App'
-import { warmLanguagePackCache } from './pwaWarmCache'
+import { observeUsedAssetCache } from './pwaWarmCache'
 
 registerSW({ immediate: true })
 
@@ -19,17 +19,7 @@ registerSW({ immediate: true })
  * und wiederholt sich einmal, falls im ersten Anlauf noch keines gefunden wurde. Fehler bleiben
  * folgenlos — dies ist eine Verbesserung der Offline-Bereitschaft, kein Startkriterium.
  */
-function starteWarmlauf(): void {
-  const versuch = (rest: number): void => {
-    void warmLanguagePackCache().then((warm) => {
-      if (!warm.length && rest > 0) setTimeout(() => versuch(rest - 1), 1500)
-    })
-  }
-  versuch(2)
-}
-
-if (document.readyState === 'complete') starteWarmlauf()
-else window.addEventListener('load', starteWarmlauf, { once: true })
+observeUsedAssetCache()
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>

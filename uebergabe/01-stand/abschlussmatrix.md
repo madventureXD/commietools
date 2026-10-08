@@ -84,3 +84,36 @@ solche Entscheidung ist **nicht** getroffen; (1) bleibt als Abweichung stehen.
 *Pflege: neue Vorhaben kommen mit ihrem ersten prüfbaren Kriterium hierher; erreicht ein Vorhaben
 seinen Abschluss, wird die Zeile auf einen Status gesetzt. Das Zitat bleibt unverändert — wird das
 Kriterium geändert, entsteht eine neue Zeile mit datierter Entscheidung.*
+
+## Nachtrag 2026-10-07 — Fertigstellung nach der Nachprüfung (Codex)
+
+Das neue Konzept ist ein Entwurf für die weitere Sanierung. Seine Erstellung erfüllt noch keines
+seiner Produktabnahmekriterien; die ursprünglichen Matrixzeilen bleiben unverändert.
+
+| Vorhaben | Ursprüngliches Kriterium (Zitat) | Quelle | Istwert (gemessen) | Revision | Nachweis | Status |
+|---|---|---|---|---|---|---|
+| Fertigstellung nach Nachprüfung | „Alle neun F-Karten erfüllen ihren Vertrag; jede zugehörige Negativprobe scheitert im regulären Prüfweg.“ | `03-konzepte/2026-10-07-fertigstellung-nach-nachpruefung.md` | Konzept mit MS0–MS7 und Zuordnung aller 26 offenen Karten erstellt; Reparaturen und Abnahmen weiterhin offen | 2026-10-07 | `05-uebergaben/2026-10-07-fertigstellungskonzept-nachpruefung.md` | **offen** |
+
+### Nachtrag 2026-10-08 — MS0-Kriterienaufnahme
+
+Der vorstehende Fertigstellungseintrag bleibt **offen**: MS0 hat die Kriterien gesammelt,
+nicht die neun F-Karten repariert. Die Originalkriterien und Grenzen aller 59 Karten sind
+unter `07-pruefung/fertigstellung/2026-10-08-ms0/` mit Herkunft/Hash erfasst.
+
+Die ältere Zeile „Handwerk, Wellen A–D“ mit Status „ohne schriftliches Kriterium“ ist für
+**Welle D zu pauschal**: der vor dem Bau erstellte Plan
+`06-protokolle/2026-10-06-welle-d-plan.md` dokumentiert die Einzelabnahmen.
+Diese sind jetzt zusammen mit dem E-Plan übernommen; die alte Aussage bleibt als Verlauf stehen.
+Die ursprüngliche Funktionsabnahme ist nicht durch diese Quellenaufnahme erfüllt.
+Beleg: `07-pruefung/fertigstellung/2026-10-08-ms0/funktionsumfang.json`.
+
+### Nachtrag 2026-10-08 — Produktreparaturen MS1–MS7
+
+Die Aussage „nicht die neun F-Karten repariert“ gilt weiter für MS0 allein. Die anschließende
+vollständig freigegebene Umsetzung hat N1–N8 und zusätzlich gefundene Fehler lokal bearbeitet;
+Wirkungs-/Mutationsgates, eigene Rust/WASM-Bauten und frischer Clone sind vorhanden.
+[Belegpaket](../07-pruefung/fertigstellung/2026-10-08-ms1-ms7/README.md) und
+[Übergabe](../05-uebergaben/2026-10-08-ms1-ms7-fertigstellung.md) nennen ausgeführte Prüfungen
+und Grenzen. Das Fertigstellungskriterium bleibt **offen**: unabhängige A2, echte CI-/Betriebs-,
+Geräte-/Fach- und vollständige D/E-Originalabnahmen fehlen. Kein neuer Gesamtabschluss durch
+lokale Testzahlen oder bereits erteilte Arbeitsfreigabe.

@@ -1,14 +1,14 @@
-import { useRef, useState, type ChangeEvent } from 'react'
-import workerUrl from 'tesseract.js/dist/worker.min.js?url'
+import { useEffect, useRef, useState, type ChangeEvent } from 'react'
 import { acceptAttributeFor } from '@commietools/tools'
 import { inspectPdf, parsePageSelection } from '@commietools/tools/pdf/core'
 import { Button, LocalBadge } from '@commietools/ui'
 import { baseName, extractPdfText, PdfWarnings, pdfErrorKey, renderPdfPages, type LoadedPdf, type Translate } from './pdfUi'
 import { SaveFileControl } from './SaveFileControl'
+import { createOcrWorker } from './ocrWorker'
 
 type Mode = 'auto' | 'native' | 'ocr'
 type OcrLanguage = 'deu' | 'eng' | 'spa'
-type OcrWorker = Awaited<ReturnType<typeof import('tesseract.js')['createWorker']>>
+type OcrWorker = ReturnType<typeof createOcrWorker>
 
 const OCR_CORE = 'https://cdn.jsdelivr.net/npm/tesseract.js-core@7.0.0/'
 const OCR_LANGUAGES = 'https://tessdata.projectnaptha.com/4.0.0_fast'
@@ -24,75 +24,96 @@ export function PdfTextOcr({ t }: { t: Translate }) {
   const [processing, setProcessing] = useState(false)
   const [progress, setProgress] = useState(0)
   const workerRef = useRef<OcrWorker | null>(null)
-  const cancelledRef = useRef(false)
+  const generationRef = useRef(0)
+  useEffect(() => () => {
+    generationRef.current += 1
+    const worker = workerRef.current
+    workerRef.current = null
+    void worker?.terminate().catch(() => {})
+  }, [])
 
   async function selectFile(event: ChangeEvent<HTMLInputElement>) {
     const selected = event.target.files?.[0]; if (!selected) return
+    event.target.value = ''
+    const generation = (generationRef.current += 1)
+    const previous = workerRef.current
+    workerRef.current = null
+    void previous?.terminate().catch(() => {})
+    setFile(null); setProcessing(true)
     setText(''); setError(''); setProgress(0)
     try {
       const bytes = new Uint8Array(await selected.arrayBuffer())
+      if (generation !== generationRef.current) return
       const inspection = await inspectPdf(bytes)
+      if (generation !== generationRef.current) return
       setFile({ id: crypto.randomUUID(), name: selected.name, bytes, inspection })
       setSelection(`1-${inspection.pageCount}`)
-    } catch (caught) { setFile(null); setError(pdfErrorKey(caught)) }
-    event.target.value = ''
+    } catch (caught) {
+      if (generation === generationRef.current) { setFile(null); setError(pdfErrorKey(caught)) }
+    } finally { if (generation === generationRef.current) setProcessing(false) }
   }
 
   async function process() {
-    if (!file) return
-    cancelledRef.current = false
+    if (!file || processing) return
+    const generation = (generationRef.current += 1)
+    const current = () => generation === generationRef.current
+    const snapshot = { file, selection, mode, language, consent }
+    let worker: OcrWorker | null = null
     setError(''); setText(''); setProgress(0)
     setProcessing(true)
     try {
-      const pages = parsePageSelection(selection, file.inspection.pageCount)
-      const nativePages = await extractPdfText(file.bytes, pages)
-      const needsOcr = mode === 'ocr' || (mode === 'auto' && nativePages.some((item) => item.text.length < 10))
-      if (needsOcr && !consent) { setError('tool.pdfTextOcr.needConsent'); return }
-      let worker: OcrWorker | null = null
+      const pages = parsePageSelection(snapshot.selection, snapshot.file.inspection.pageCount)
+      const nativePages = await extractPdfText(snapshot.file.bytes, pages)
+      if (!current()) return
+      const needsOcr = snapshot.mode === 'ocr' || (snapshot.mode === 'auto' && nativePages.some((item) => item.text.length < 10))
+      if (needsOcr && !snapshot.consent) { setError('tool.pdfTextOcr.needConsent'); return }
       if (needsOcr) {
-        const { createWorker } = await import('tesseract.js')
-        worker = await createWorker(language, 1, {
-          workerPath: workerUrl,
+        if (!current()) return
+        worker = createOcrWorker({
           corePath: OCR_CORE,
           langPath: OCR_LANGUAGES,
-          logger: (message) => { if (message.status === 'recognizing text') setProgress(message.progress) }
+          logger: (message) => { if (current() && message.status === 'recognizing text') setProgress(message.progress) }
         })
         workerRef.current = worker
+        await worker.initialize(snapshot.language)
+        if (!current()) return
       }
       const output: string[] = []
       let completed = 0
       for (const item of nativePages) {
         let pageText = item.text
-        if (worker && (mode === 'ocr' || pageText.length < 10)) {
-          const rendered = (await renderPdfPages(file.bytes, [item.pageNumber - 1], { dpi: 180, format: 'png', quality: 1, background: '#ffffff' }))[0]
+        if (!current()) return
+        if (worker && (snapshot.mode === 'ocr' || pageText.length < 10)) {
+          const rendered = (await renderPdfPages(snapshot.file.bytes, [item.pageNumber - 1], { dpi: 180, format: 'png', quality: 1, background: '#ffffff' }))[0]
+          if (!current()) return
           if (!rendered) throw new Error('Page rendering failed')
           const result = await worker.recognize(rendered.blob)
+          if (!current()) return
           pageText = result.data.text.trim()
         }
         output.push(`--- ${t('tool.pdf.page')} ${item.pageNumber} ---\n${pageText}`)
         completed += 1
         setProgress(completed / nativePages.length)
       }
-      if (worker) await worker.terminate()
-      workerRef.current = null
+      if (!current()) return
       const combined = output.join('\n\n').trim()
       setText(combined)
       if (!combined.replace(/---.*---/gu, '').trim()) setError('tool.pdfTextOcr.empty')
     } catch (caught) {
-      setError(cancelledRef.current ? 'tool.pdfTextOcr.cancelled' : pdfErrorKey(caught))
+      if (current()) setError(pdfErrorKey(caught))
     } finally {
-      if (workerRef.current) await workerRef.current.terminate().catch(() => {})
-      workerRef.current = null
-      setProcessing(false)
+      if (worker) await worker.terminate().catch(() => {})
+      if (workerRef.current === worker) workerRef.current = null
+      if (current()) setProcessing(false)
     }
   }
 
   async function cancel() {
-    cancelledRef.current = true
+    const generation = (generationRef.current += 1)
     const worker = workerRef.current
     workerRef.current = null
     if (worker) await worker.terminate().catch(() => {})
-    setProcessing(false); setError('tool.pdfTextOcr.cancelled')
+    if (generation === generationRef.current) { setProcessing(false); setError('tool.pdfTextOcr.cancelled') }
   }
 
   const resultBlob = text ? new Blob([text], { type: 'text/plain;charset=utf-8' }) : undefined

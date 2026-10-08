@@ -1,0 +1,10 @@
+# Entscheidungen / Übergabe an die Umsetzung
+
+1. Die neun F-Karten wieder öffnen; Zuordnung und dauerhafte Lösung stehen in `10-befunde.md` und `20-kartenmatrix.md`. Keine Änderung durch den Prüfer vorgenommen.
+2. Sieben offene Rust-Review-Einträge entscheiden oder als Sperre führen. Ein „needsDecision“ ist keine Genehmigung.
+3. Releasejobs und erforderliche Checks durch den Betreiber abnehmen; ein Workflow-Häkchen allein schützt Cloudflare-Publikation nicht.
+4. Die 16 R-Karten und M8-001 mit Termin, Verantwortlichem und tatsächlichem Beleg abnehmen. Bewusst ausgelassene Kriterien bedürfen einer expliziten Entscheidung, nicht eines pauschalen Abschlusshäkchens.
+5. OP-062 (nachträgliche Strukturmigration) bleibt eine Betreiberentscheidung. Native Vorleser-/Geräte-/Speicherdialogprüfungen bleiben reale Handarbeit.
+6. **Kein Push/Freigabesignal aus diesem Bericht ableiten.** Nach Reparaturen gezielte Gegenprüfung der N-Befunde plus erneuter unveränderter Gesamt-Check/Build und geforderter Release-/Handabnahmen.
+
+Die Dateien liegen lokal im von Git ignorierten `QM/`. Ihre bewusste Archivierung/Übernahme in die versionierte Übergabe ist ein gesonderter Schritt; nichts still entignoriert, committet oder veröffentlicht.

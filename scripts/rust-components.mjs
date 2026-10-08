@@ -17,6 +17,7 @@ import { createHash } from 'node:crypto'
 import { existsSync, mkdirSync, readFileSync, readdirSync, rmSync, writeFileSync, statSync } from 'node:fs'
 import { join, resolve, dirname } from 'node:path'
 import { homedir } from 'node:os'
+import { rustSourceId } from './rust-source-id.mjs'
 
 const wurzel = resolve('.')
 const KARTE = join(wurzel, 'licenses', 'rust-components.json')
@@ -54,7 +55,7 @@ function quelleVerzeichnis(name, version, manifestPath) {
 function komponenten() {
   const roh = execFileSync(
     'cargo',
-    ['metadata', '--format-version', '1', '--filter-platform', ZIEL, '--manifest-path', MANIFEST],
+    ['metadata', '--locked', '--format-version', '1', '--filter-platform', ZIEL, '--manifest-path', MANIFEST],
     { encoding: 'utf8', maxBuffer: 64 * 1024 * 1024 }
   )
   const daten = JSON.parse(roh)
@@ -93,11 +94,30 @@ function sammeln(pruefen) {
   const fehlend = []
   const gesammelt = []
   for (const k of liste) {
+    k.sourceId = rustSourceId(k, wurzel)
     const quelle = quelleVerzeichnis(k.name, k.version, k.manifestPath)
     const quelleOrdner = typeof quelle === 'string' ? quelle : quelle?.ordner ?? null
     let hinweise = []
     if (quelleOrdner) hinweise = readdirSync(quelleOrdner).filter(istHinweis)
     if (hinweise.length === 0) {
+      const externe = existsSync(join(wurzel, 'licenses/upstream-notices.json'))
+        ? JSON.parse(readFileSync(join(wurzel, 'licenses/upstream-notices.json'), 'utf8')).sources.filter((source) => source.name === k.name && source.version === k.version) : []
+      if (externe.length) {
+        const kopiert = []
+        for (const source of externe) {
+          const bytes = readFileSync(join(wurzel, 'licenses', source.target))
+          if (createHash('sha256').update(bytes).digest('hex') !== source.sha256) throw new Error(`Upstream notice hash mismatch: ${source.target}`)
+          const file = source.file.split('/').at(-1)
+          const zielOrdner = join(HINWEISE, `${k.name}-${k.version}`)
+          if (!pruefen) {
+            mkdirSync(zielOrdner, { recursive: true })
+            writeFileSync(join(zielOrdner, file), bytes)
+          }
+          kopiert.push(`notices/rust/${k.name}-${k.version}/${file}`)
+        }
+        gesammelt.push({ ...k, noticeFiles: kopiert, noticeSource: 'upstream-notices.json (revision and SHA-256)' })
+        continue
+      }
       fehlend.push(`${k.name} ${k.version}`)
       gesammelt.push({ ...k, noticeFiles: [], noticeMissing: true, noticeSource: quelleOrdner ? 'Paket ohne Hinweisdatei' : 'Paketquelle nicht im Zwischenspeicher' })
       continue
@@ -145,6 +165,8 @@ if (modus === 'check') {
   const alt = JSON.parse(readFileSync(KARTE, 'utf8'))
   const { kopf } = sammeln(true)
   const abweichungen = []
+  const semantic = (components) => components.map(({ name, version, license, repository, sourceId, noticeFiles, noticeMissing }) => ({ name, version, license, repository, sourceId, noticeFiles, noticeMissing: Boolean(noticeMissing) }))
+  if (JSON.stringify(semantic(alt.komponenten ?? [])) !== JSON.stringify(semantic(kopf.komponenten))) abweichungen.push('Tatsächlicher Komponentengraph, Lizenz-/Quellbindung oder Hinweisbestand weicht ab')
   if (alt.anzahl !== kopf.anzahl) abweichungen.push(`Komponentenzahl ${alt.anzahl} → ${kopf.anzahl}`)
   for (const [schluessel, wert] of Object.entries(kopf.grundlage)) {
     if (schluessel === 'hinweis' || schluessel === 'werkzeuge') continue

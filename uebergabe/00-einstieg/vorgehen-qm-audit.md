@@ -490,3 +490,92 @@ Neue Dauerprüfer: `npm run akte:check` mit den Regelkreisen `listen`, `uebergab
 55/1/3 — nicht aus einer Summe abgeleitet). **Weiterhin nicht bewacht:** die Leitdatei selbst hat
 keinen Prüfer; sie kann nur durch eine solche Zählung nachgezogen werden. Der Abgleich
 Karte ↔ Protokoll ↔ Commit bleibt ein offener Gedanke (`01-stand/offene-punkte.md`).*
+
+## Nachtrag 2026-10-08 — MS0 nach unabhängiger Nachprüfung (Codex)
+
+**Beauftragung Thomas:** „Ms0 go“. Das Fertigstellungskonzept vom 2026-10-07 ist für MS0 die
+Arbeitsgrundlage. Dieser Nachtrag ist der **aktuelle fachliche Kartenstand**; die früheren
+Häkchen und Abschlusszahlen oben dokumentieren die erste Sanierungsrunde und bleiben erhalten.
+Grundlage ist die unabhängige Nachprüfung an `556159f58ac3beac3b6349851dae7326558b7fbb`, nicht
+eine neue Produktabnahme in MS0.
+
+**59 eindeutige Karten: 33 Befundkerne nachvollzogen (B), 16 Restabnahmen offen (R),
+9 erneut geöffnet (F), 1 bekannte Restforderung offen (O). Insgesamt 26 offene Karten.**
+„B“ ist kein vollständiges Geräte-/Releaseurteil. „58 erledigt“ beschreibt den administrativen
+Stand der ersten Runde und ist für die aktuelle fachliche Abnahme überholt.
+
+| Befund | Erneut geöffnete Karte(n) | Aktuelle Restarbeit | Milestone |
+|---|---|---|---|
+| N2 | M9-002 | tatsächliche Lizenzentscheidungen / Ausdruckbindung | MS1 |
+| N3 | M4-005 | Eingangsrennen bei Dateiauswahl | MS2 |
+| N5 | M4-009 | reiner Updater / URL-Eigentum und StrictMode-Cleanup | MS2 |
+| N4 | M2-009 | echten modalen Menüzustand messen | MS3 |
+| N8 | M3-009 | alle Textklassen / echte Root-Gegenproben | MS3 |
+| N6 | M4-004, M8-002 | Offlineabhängigkeiten und wahrheitsgemäße Ladefehler | MS4 |
+| N1 | M1-003 | Workflow-Syntax / reale Checks / Veröffentlichungsbindung | MS5 |
+| N7 | M5-003 | tatsächliche PDF-Wirkung als normal sperrende Pflichtjobs | MS5 |
+
+**Restabnahmen R:** M9-001, M9-003, M9-004, M5-002, M2-006, M2-007, M7-002, M7-003,
+M7-004, M7-005, M2-001, M2-004, M10-003, M10-004, M10-005, M8-005.
+**Bekannt offen O:** M8-001. Keine dieser Karten ist durch MS0 erledigt.
+
+Die [MS0-Basis](../07-pruefung/fertigstellung/2026-10-08-ms0/README.md) führt die exakten
+Originalabnahmen und Abgrenzungen aller 59 Karten, die Nachprüfungsgrenzen, acht D/E-Werkzeuge,
+23 Quellenhashes sowie geplante Rollen und Abnahmefenster. Ihre strukturierte Datei ist eine
+eingefrorene Ausgangsbasis, keine zweite laufende Fortschrittsübersicht.
+Prüfung: `node scripts/belege/fertigstellung-basis.mjs`; sie benötigt kein ursprüngliches `QM/`.
+Der ältere `beleg:kartenstand`-Aufruf zählt weiterhin die historischen R1–R10-Tabellen und
+ist **kein** Prüfer dieses aktuellen Nachprüfungsurteils.
+
+**MS0-Stand:** lokale Kriterien-/Zuordnungsarbeit ausgeführt. Die Reservierung konkreter
+Prüfer, Zielgeräte und Kontozugänge bleibt offen (OP-066); Rollen und vorgesehene Zeitpunkte
+sind geplant, aber nicht als tatsächliche Buchung bestätigt. MS0 ist daher organisatorisch
+noch nicht vollständig abgenommen. Fortsetzung der 26 Karten: OP-065.
+
+**Nächster lokaler Schritt:** MS1 starten, sobald beauftragt. Keine Produktreparatur in MS0,
+kein neuer Lizenz-/Risikoentscheid, kein Push oder Deployment. Die unabhängige Kontrolle vor
+Produktionspush und Thomas' ausdrückliche Pushbestätigung bleiben erforderlich.
+
+## Nachtrag 2026-10-08 — MS1–MS7 vollständig beauftragt, lokale Umsetzung
+
+Der vorstehende nächste Schritt ist überholt: Thomas hat „Ms1-ms7 komplett durchziehen“,
+„Alles ist grundsätzlich genehmigt worden“ und „Habe Vollzugriff erteilt“ erklärt.
+Die Arbeitsfreigabe gilt fort; keine erneuten routinemäßigen fachlichen Genehmigungen nötig.
+Die zwei engeren Lizenzantworten sind dokumentiert. Das [Belegpaket](../07-pruefung/fertigstellung/2026-10-08-ms1-ms7/README.md)
+und die [Übergabe](../05-uebergaben/2026-10-08-ms1-ms7-fertigstellung.md) ersetzen die frühere
+Aussage „keine Produktreparatur“ für den heutigen Stand.
+
+| Karten | Aktueller lokaler Beleg | Verbleibende Abnahme |
+|---|---|---|
+| M9-002 | Enge Status-/Lizenz-/Quellen-/Zweckbindung, pending/forbidden/expired werden rot | Unabhängige Kontrolle |
+| M4-005, M4-009 | Reales React StrictMode, Read-/Inspect-Erfolg/Fehler/Unmount, jedes URL-Objekt einmal geschlossen | Integrierte A2 |
+| M3-009 | Rohtexte aller Klassen, tatsächliche UI-Schlüssel-/Surrogatmutanten im Root-Test | A2 |
+| M2-009, M2-007 | Tatsächlich offener modaler Dialog/Kategorien, zwei negative Scannerproben, komplette 65-Routen-Grundmatrix | Weitere Ergebnis-/Fehlerzustände, reale Hilfstechnik |
+| M4-004, M8-002 | Buildgebundener Abhängigkeitscache; erster unkontrollierter PDF-Besuch, späte SW-Kontrolle, Quota/Eviction; neutraler Importfehler ohne belegten Buildwechsel | Locale-/Buildwechsel-/Altprofilmatrix |
+| M8-001 | Echter Tesseract-Kern, beschädigtes Modell, Downloadabbruch, Cache-Wiederholung; lokale CSP | de/es-Modelle und neue öffentliche Liefer-CSP |
+| M1-003, M5-003, M2-004 | Syntax/Action-SHAs, Releasepflicht-Aggregat, echte QPDF/P12-/DSS-Gates, Noop-/Always-valid-Gegenproben | Echte GitHub-Pflichtläufe, Kontoschutz, Auslieferungswirkung |
+| M9-001, M9-003, M9-004 | 174/176 Hinweise plus zwei genehmigte befristete Ausnahmen, eigene Builds/fresh Clone, aktueller Advisoryscan/patchbare native Treffer behoben | Sicherheit/Parserstress und öffentliche Quellen-/Artefaktbindung; Hinweise bis 2026-11-08 |
+| M5-002, M7-002 | Plattendownload gelesen/gehasht; Modalgrenzen ergänzt und echte Tastaturprüfung vorgesehen | Native Picker/Abbruch/Schreibfehler; Tastatur-PASS im Endbeleg und reale Zielgeräte |
+| M10-003 | Vier Fassung-vor-Migration-Archive im Baum, volle Revision/Hash; Archivvariante im beauftragten MS6 | Unabhängige Aktenkontrolle |
+| M10-004 | Frischer Clone ohne QM/work mit npm ci/check/build und bytegleichem Referenz-WASM | Zweitrechner/CI und ursprünglich weitere tragende Belege |
+| M10-005 | Sechs tatsächliche D/E-Browserfälle und bestehende Kerntests; acht Originalverträge eingefroren | Vollständige Foto-/Übergabe-/Fachabnahmen |
+| M2-006, M7-003, M7-004, M7-005 | Grundmatrix erneut gemessen; Rohtext-/Layoutvertragsprüfungen bestehen | NVDA/Narrator, Touch/Rotation, komplexe Leserreihenfolge, echter Zoom/Auskoppeln |
+| M2-001, M8-005 | Kandidaten-/Hashmanifest; bestehende öffentliche Header lesend erfasst | Unabhängige Gesamt-A2, neue öffentliche Header/Altprofile/NEL-Betriebswirkung |
+
+**Gesamtstand:** Die historische Basis bleibt 33 B / 16 R / 9 F / 1 O.
+Die lokale Umsetzung verändert dieses eingefrorene Urteil nicht rückwirkend. Noch keine neue
+unabhängige Schließung der 26 Restverträge behauptet. MS2 und wesentliche Teile MS1/MS3–MS5
+sind lokal umgesetzt; MS6/MS7 bleiben mit konkret benannten Geräte-/Fach-/Konto-/A2-Resten offen.
+Die fehlende unabhängige Kontrolle vor Push ist weiterhin eine tatsächliche Restbedingung.
+Auftragsfreigabe liegt bereits vor; kein neuer Push-/Deploy-Dialog als Ersatz für diese Kontrolle.
+
+### Abschließende lokale Prüfungen 2026-10-08
+
+Die vorstehend noch vorgesehene Tastaturprüfung wurde ausgeführt und besteht: sieben Gruppen,
+278 Tab-Ereignisse vorwärts/rückwärts, Enter/Space, Escape, Browser-Zurück und Fokus-Rückkehr.
+Native Picker und reale Zielgeräte bleiben offen. OP-062 wurde regelgerecht ins neue
+Erledigungsarchiv übernommen; nach der Korrektur bestehen vollständiger Root-Check und Build.
+Der portable [Endbeleg](../07-pruefung/fertigstellung/2026-10-08-ms1-ms7/proof-results.json)
+weist 18 erfolgreiche lokale Stufen, Zusatzbelege und die ersetzte fehlgeschlagene Aktenstufe aus.
+Der Browser-Pflichtjob enthält jetzt zusätzlich Tastatur, echten Download, Menü-/PDF-Mutanten
+und die sechs D/E-Fälle. Syntax lokal geprüft; noch kein tatsächlicher GitHub-Lauf.

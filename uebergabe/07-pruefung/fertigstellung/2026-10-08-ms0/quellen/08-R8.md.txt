@@ -1,0 +1,151 @@
+# R8 – Nachvollziehbare Akten und portierbare Prüfverfahren
+
+Priorität P2. Empfehlung, keine Umsetzung/Freigabe. Basis a041ee0efda6b07687b3586977bb0d90bf1c89a8.
+
+[Leseregeln und Reihenfolge](README.md) · [Architektur/Migration](01-architektur-und-migration.md) · [Abnahme](03-pruef-und-uebergabeplan.md)
+
+Zeilen beziehen sich auf die eingefrorene Basis. Vor Änderungen Hash/Anker gegen den aktuellen Stand vergleichen. Zielpfade sind bestehende Projektdateien; neu vorgeschlagene Dateien werden im Text ausdrücklich benannt. Quellbelege bestätigen Mechanismen/Standards, nicht bereits getestete Reparaturen.
+
+## M10-001 – Erledigte Aufgaben und historische Statusköpfe bleiben aktiv geführt
+
+**Stand dieser Empfehlung:** Aktive Listen wurden erweitert; alte Restpunkte einzeln neu bewerten.
+
+**Historischer M12-Vermerk (cd556d1, keine neue Messung):** Aktive Listen widersprüchlich; datierte historische Köpfe nicht pauschal falsch, echte Desktop-Restaufgaben erhalten.
+
+### Konkrete Eingriffs- und Prüfstellen
+
+- [uebergabe/01-stand/offene-punkte.md:1](<C:/Projekte mit ChatGPT/commietools/uebergabe/01-stand/offene-punkte.md:1>) — Anker: „#“.
+- [uebergabe/01-stand/aktueller-stand.md:1](<C:/Projekte mit ChatGPT/commietools/uebergabe/01-stand/aktueller-stand.md:1>) — Anker: „#“.
+- [uebergabe/DRINGEND-startlast-pdf-engines.md:1](<C:/Projekte mit ChatGPT/commietools/uebergabe/DRINGEND-startlast-pdf-engines.md:1>) — Anker: „#“.
+- [uebergabe/README.md:1](<C:/Projekte mit ChatGPT/commietools/uebergabe/README.md:1>) — Anker: „#“.
+
+### Dauerhafte Lösung
+
+Aktive Aufgaben als eindeutige IDs mit Status, Belegrevision, Restabnahme und Verantwortlichkeit führen. Erledigte Teilpunkte mit Abschlussverweis aus aktiver Liste herausnehmen; historische Notiz bleibt. Konzepte bekommen datierten aktuellen Statuskopf plus Verweis auf Nachträge, ursprünglichen Planstand behalten. Neue D/E-Tools, Spanisch- und UI-Arbeiten gegen ihre tatsächlichen Belege berücksichtigen. Dringlichkeitsakte als historischen Vorgang einordnen, echte Desktop-/Geräteabnahmen offen lassen.
+
+### Abnahme
+
+Jeder aktive Punkt benötigt aktuelle Restarbeit; als erledigt markierte Punkte haben Beleg statt bloßer Erfolgsmeldung. Stichprobe alter/neuer Status widerspruchsfrei und Links erreichbar.
+
+### Nicht tun / Abgrenzung
+
+Keine pauschale Löschung alter Warnungen, keine Umdeutung historischer Datumsstände als heutige Fehler.
+
+### Verifizierte Grundlage
+
+[S32 · MADR: Architekturentscheidungen](<https://adr.github.io/madr/>) ([Prüfvermerk](02-quellen.md#s32)).
+
+## M10-002 – Verbindliche Übergabevorlage und tatsächliche Aktenstruktur driften auseinander
+
+**Stand dieser Empfehlung:** Vorlagen-/Regelabgleich bleibt trotz neuer Übergaben erforderlich.
+
+**Historischer M12-Vermerk (cd556d1, keine neue Messung):** Abweichende Überschrift nicht gleich fehlender Inhalt; Kopffelder und Formvorlage selbst nicht ganz konsistent.
+
+### Konkrete Eingriffs- und Prüfstellen
+
+- [uebergabe/00-einstieg/arbeitsregeln.md:37](<C:/Projekte mit ChatGPT/commietools/uebergabe/00-einstieg/arbeitsregeln.md:37>) — Anker: „Übergabe“.
+- [uebergabe/vorlagen/uebergabe.md:1](<C:/Projekte mit ChatGPT/commietools/uebergabe/vorlagen/uebergabe.md:1>) — Anker: „#“.
+- [uebergabe/05-uebergaben/2026-10-04-rechner-tastenfeld-umgesetzt.md:1](<C:/Projekte mit ChatGPT/commietools/uebergabe/05-uebergaben/2026-10-04-rechner-tastenfeld-umgesetzt.md:1>) — Anker: „#“.
+- [uebergabe/05-uebergaben/2026-10-05-werkzeugtexte-je-werkzeug.md:1](<C:/Projekte mit ChatGPT/commietools/uebergabe/05-uebergaben/2026-10-05-werkzeugtexte-je-werkzeug.md:1>) — Anker: „#“.
+
+### Dauerhafte Lösung
+
+Eine verbindliche kleine Übergabespezifikation festlegen: Basisrevision, Umfang/Nichtumfang, Änderungen, tatsächlich ausgeführte Prüfungen samt Exit/Belegen, offene Risiken, Folgeschritte. Vorlagen und Arbeitsregel im gleichen Auftrag angleichen. Prüfer akzeptiert definierte Überschriftenvarianten und semantische Felder; unterscheidet fehlenden Inhalt von abweichender Überschrift. Neue Akten strikt prüfen, historische über datierten Ergänzungsblock migrieren. Kein vollwertiges Dokumentmanagementsystem nötig.
+
+### Abnahme
+
+Beispiel mit gleichwertiger anderer Überschrift besteht; fehlender Prüfnachweis/Revision scheitert. Pflichtfelder mit Platzhaltertext bestehen nicht. Manueller fachlicher Review bleibt erforderlich.
+
+### Nicht tun / Abgrenzung
+
+Nicht alle alten Dokumente neu schreiben oder alle 40 auf identischen Wortlaut zwingen; damalige Inventarzahlen sind historische Messungen.
+
+### Verifizierte Grundlage
+
+[S32 · MADR: Architekturentscheidungen](<https://adr.github.io/madr/>) ([Prüfvermerk](02-quellen.md#s32)).
+
+## M10-003 – Vorhandene Übergaben werden trotz Erhaltungsregel umgeschrieben
+
+**Stand dieser Empfehlung:** Historischer Änderungsnachweis bleibt gültig; nicht rückwirkend reparierbar.
+
+**Historischer M12-Vermerk (cd556d1, keine neue Messung):** Git-Diffs widerlegen unverändert; Historie nicht verloren, keine Täuschungsabsicht unterstellt.
+
+### Konkrete Eingriffs- und Prüfstellen
+
+- [uebergabe/00-einstieg/arbeitsregeln.md:24](<C:/Projekte mit ChatGPT/commietools/uebergabe/00-einstieg/arbeitsregeln.md:24>) — Anker: „ergänzen“.
+- [uebergabe/05-uebergaben/2026-10-05-werkzeugtexte-je-werkzeug.md:1](<C:/Projekte mit ChatGPT/commietools/uebergabe/05-uebergaben/2026-10-05-werkzeugtexte-je-werkzeug.md:1>) — Anker: „#“.
+- [uebergabe/05-uebergaben/2026-10-04-rechner-vier-werkzeuge.md:1](<C:/Projekte mit ChatGPT/commietools/uebergabe/05-uebergaben/2026-10-04-rechner-vier-werkzeuge.md:1>) — Anker: „#“.
+
+### Dauerhafte Lösung
+
+Aktenkorrekturverfahren explizit definieren: datierter Nachtrag nennt ersetzte Aussage, Grund, richtige Aussage und Beleg. Ursprüngliche freigegebene Fassung verlinkt erhalten. Strukturmigration nur mit beschlossener Ausnahme und unveränderlicher Archivfassung. Diffs historischer Akten im Review hervorheben; automatische Vollsperre wäre wegen erlaubter Metadaten-/Linkkorrekturen zu grob. Frühere inhaltliche Änderungen sachlich kennzeichnen, Gitgeschichte nicht umschreiben.
+
+### Abnahme
+
+Neue Korrektur lässt alte Aussage rekonstruierbar und aktuellen Status eindeutig; Absatzumbruch allein löst keinen Manipulationsbefund aus. Worte unverändert nur verwenden, wenn Vergleich das bestätigt.
+
+### Nicht tun / Abgrenzung
+
+Kein Revert historischer Commits, keine Schuld-/Absichtszuschreibung, keine Behauptung verlorener Gitgeschichte.
+
+### Verifizierte Grundlage
+
+[S32 · MADR: Architekturentscheidungen](<https://adr.github.io/madr/>) ([Prüfvermerk](02-quellen.md#s32)).
+
+## M10-004 – Wesentliche Prüfskripte fehlen im versionierten Übergabebestand
+
+**Stand dieser Empfehlung:** Versionierter a11y-Scanner hinzugekommen; 18 alte lokale Verweise separat kuratieren.
+
+**Historischer M12-Vermerk (cd556d1, keine neue Messung):** 18 genannte Prüfskripte lokal vorhanden, nicht versioniert; nicht als verschwundene Dateien darstellen.
+
+### Konkrete Eingriffs- und Prüfstellen
+
+- [.gitignore:12](<C:/Projekte mit ChatGPT/commietools/.gitignore:12>) — Anker: „work/“.
+- [uebergabe/05-uebergaben/2026-10-05-werkzeugtexte-je-werkzeug.md:64](<C:/Projekte mit ChatGPT/commietools/uebergabe/05-uebergaben/2026-10-05-werkzeugtexte-je-werkzeug.md:64>) — Anker: „work/“.
+- [uebergabe/05-uebergaben/2026-10-05-welle-c-handwerkerwerkzeuge.md:41](<C:/Projekte mit ChatGPT/commietools/uebergabe/05-uebergaben/2026-10-05-welle-c-handwerkerwerkzeuge.md:41>) — Anker: „work/“.
+- [scripts/viewport-audit.mjs:10](<C:/Projekte mit ChatGPT/commietools/scripts/viewport-audit.mjs:10>) — Anker: „COMMIETOOLS_AUDIT_URL“.
+
+### Dauerhafte Lösung
+
+Aus historischer exakter 18er-Liste in QM/20-messungen/M10/evidence.json nur weiterhin benötigte Prüfprogramme auswählen. Doppelungen durch vorhandenen viewport/a11y-Scanner ersetzen, fachliche Spezialproben bereinigt in scripts/qa/ (neu vorgeschlagen) übernehmen. Hardcodierte Rechnerpfade, feste Ports, Nutzerdateien, Tokens und Profilabhängigkeit entfernen; Parametrisierung, Fixtures mit Lizenz/Hash, Fehlerexit und Aufräumen eigener Prozesse ergänzen. Aktenverweise auf portable Aufrufe migrieren, veraltete Proben als ersetzt markieren.
+
+### Abnahme
+
+Frischer Checkout auf zweiter Umgebung ohne work/: notwendige Proben laufen mit dokumentierten Voraussetzungen. Fehlende Fixtures/Browser/Preview ergeben klaren Abbruch, nicht grünes Leerergebnis.
+
+### Nicht tun / Abgrenzung
+
+Nicht work/ pauschal entignorieren oder private Testdateien hochladen. Lokal vorhanden ist nicht verschwunden, aber noch nicht übergabefähig.
+
+### Verifizierte Grundlage
+
+[S07 · Reproducible Builds: Definition](<https://reproducible-builds.org/docs/definition/>) ([Prüfvermerk](02-quellen.md#s07)); [S26 · Playwright: Accessibility testing](<https://playwright.dev/docs/accessibility-testing>) ([Prüfvermerk](02-quellen.md#s26)).
+
+## M10-005 – Abschlussbewertung wird nicht durchgehend am dokumentierten Umfang geprüft
+
+**Stand dieser Empfehlung:** Früher fehlender D/E-Umfang inzwischen implementiert; Abschlusskriterien weiter systematisieren.
+
+**Historischer M12-Vermerk (cd556d1, keine neue Messung):** Handwerk A–C nicht ganze Klasse a. Startbudget-Kriterium mehrdeutig; keine bewiesene harte Lastverletzung und kein Auftrag D/E zu bauen.
+
+### Konkrete Eingriffs- und Prüfstellen
+
+- [uebergabe/01-stand/aktueller-stand.md:4](<C:/Projekte mit ChatGPT/commietools/uebergabe/01-stand/aktueller-stand.md:4>) — Anker: „Handwerk“.
+- [uebergabe/03-konzepte/2026-10-03-handwerkerwerkzeuge.md:69](<C:/Projekte mit ChatGPT/commietools/uebergabe/03-konzepte/2026-10-03-handwerkerwerkzeuge.md:69>) — Anker: „Welle“.
+- [uebergabe/03-konzepte/2026-10-04-rechner-aufteilen.md:146](<C:/Projekte mit ChatGPT/commietools/uebergabe/03-konzepte/2026-10-04-rechner-aufteilen.md:146>) — Anker: „Start“.
+- [scripts/bundle-size-baseline.json:1](<C:/Projekte mit ChatGPT/commietools/scripts/bundle-size-baseline.json:1>) — Anker: „{“.
+
+### Dauerhafte Lösung
+
+Aktuelle Abschlussmatrix für tatsächlich beauftragte Wellen erstellen, Originalkriterium unverändert zitieren und separat Istwert, Revision, Nachweis, Status/Entscheidung führen. Snapshot enthält inzwischen Welle D/E: keinen alten Auftrag zum Bau vermeintlich fehlender Tools erzeugen. Unscharfes Startbudget unverändert in messbare Bedeutung überführen: identischer Bytewert, kein neuer Engine-Startimport oder unter Warnschwelle sind verschiedene Anforderungen. Änderung nur als datierte neue Entscheidung, nicht rückwirkend zur Erfüllung erklären.
+
+### Abnahme
+
+Jedes ursprüngliche Kriterium hat belegt erfüllt/abweichend/ausdrücklich verschoben, nicht still entfernt. D/E-Funktionsabnahme und neue Routen gesondert prüfen; Audit der alten 54 Tools ersetzt das nicht.
+
+### Nicht tun / Abgrenzung
+
+Keine erneute Welle D/E bauen. Keine harte Budgetverletzung oder vorsätzliche Kriteriumsverschiebung ohne entsprechenden Beleg behaupten.
+
+### Verifizierte Grundlage
+
+[S32 · MADR: Architekturentscheidungen](<https://adr.github.io/madr/>) ([Prüfvermerk](02-quellen.md#s32)).

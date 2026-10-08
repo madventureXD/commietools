@@ -26,16 +26,9 @@ export const NEULADEN_ABSTAND_MS = 60_000
  * kennt. Bewusst eine Textprüfung: Der Browser liefert für diesen Fall keine eigene Kennung,
  * und ein Fehlurteil kostet hier nur die Wahl zwischen zwei Meldungen.
  */
-export function istVeralteteFassung(nachricht: string | null | undefined): boolean {
-  const text = String(nachricht ?? '').toLowerCase()
-  return [
-    'failed to fetch dynamically imported module',
-    'error loading dynamically imported module',
-    'importing a module script failed',
-    'dynamically imported module',
-    'chunkloaderror',
-    '404'
-  ].some((muster) => text.includes(muster))
+export function istVeralteteFassung(_nachricht: string | null | undefined, observedBuildChange = false): boolean {
+  // Import errors and even 404 responses do not prove that a deployment changed.
+  return observedBuildChange
 }
 
 /**

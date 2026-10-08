@@ -6,16 +6,28 @@
       "version": "0.2.4",
       "license": "BSD-3-Clause",
       "reason": "Neu im Graphen mit lopdf 0.45.0 (M9-004, 2026-10-06); zuvor nicht enthalten. Das Paket liefert keine Hinweisdatei mit (Registry-Ordner enthält nur Cargo.toml, README, src, tests), die Lizenz stammt aus den Metadaten. BSD-3-Clause ist permissiv, steht aber nicht in licenses/policy.json. Originaltext aus dem Repository nachzutragen — dieselbe offene Frage wie bei den übrigen Paketen ohne Hinweisdatei.",
-      "needsDecision": true,
-      "recorded": "2026-10-06"
+      "needsDecision": false,
+      "recorded": "2026-10-06",
+      "status": "resolved",
+      "repository": null,
+      "resolution": "2026-10-08: Nicht im aktuellen wasm32-Graphen/Lockstand enthalten. Keine Ausnahme oder allgemeine Lizenzgenehmigung erteilt; bei Wiederaufnahme neu prüfen."
     },
     {
       "name": "zlib-rs",
       "version": "0.6.8",
       "license": "Zlib",
-      "reason": "Die Richtlinie führt nur den zusammengesetzten Ausdruck (MIT AND Zlib), nicht die reine Zlib-Lizenz. Zlib ist permissiv; die Aufnahme in allowedExpressions wäre eine Richtlinienänderung und ist deshalb hier zur Entscheidung vermerkt, nicht stillschweigend vorgenommen.",
-      "needsDecision": true,
-      "recorded": "2026-10-06"
+      "reason": "Die Richtlinie führt nur den zusammengesetzten Ausdruck (MIT AND Zlib), nicht die reine Zlib-Lizenz. Zlib ist permissiv; die Aufnahme in allowedExpressions wäre eine Richtlinienänderung und ist deshalb hier zur Entscheidung vermerkt, nicht stillschweigend vorgenommen. Nachtrag 2026-10-08: Benutzer hat die konkret gebundene Ausnahme ausdrücklich genehmigt; keine allgemeine Richtlinienänderung.",
+      "needsDecision": false,
+      "recorded": "2026-10-06",
+      "status": "approved",
+      "repository": "https://github.com/trifectatechfoundation/zlib-rs",
+      "sourceId": "registry+https://github.com/rust-lang/crates.io-index#sha256:b268e58e7c693d7c271f93ffc4ba3b380412554231c85bf61ca7af91042a4112",
+      "decidedBy": "Benutzerfreigabe in dieser Sitzung",
+      "decidedAt": "2026-10-08",
+      "purposes": [
+        "license"
+      ],
+      "evidence": "uebergabe/07-pruefung/fertigstellung/2026-10-08-ms1-ms7/lizenzentscheidungen.md"
     },
     {
       "name": "pdf_signer",
@@ -23,47 +35,94 @@
       "license": "GPL-3.0-or-later",
       "reason": "Copyleft-Abhaengigkeit der Signatur-Engine. ENTSCHEIDUNG Thomas, 2026-10-06: enge Einzel-Ausnahme — GPL-3.0-or-later wird NUR fuer dieses Paket gefuehrt, nicht generell in allowedExpressions aufgenommen. Grund: Die Kombination GPL-3.0-or-later mit dem Projekt unter AGPL-3.0-only ist zulaessig (AGPL-3.0 Paragraph 13); das Gesamtwerk bleibt AGPL, das GPL-Teil behaelt seine Lizenz. Quellangebot: Das Register verlinkt Quelle und Build; Originalhinweis weiterhin aus dem Repository nachzutragen. NACHTRAG 2026-10-07 (Auflage A3 aus ADR 0014 erledigt): Der Upstream fuehrt am vendorten Commit 6cc0218100d9ffc038f8dccee3b707e5bd136100 KEINE Hinweisdatei — der Baum wurde geprueft (28 Eintraege, keine LICENSE/COPYING/NOTICE). Deshalb liegt der vollstaendige GPL-3.0-or-later-Text als Originalhinweis unter licenses/notices/rust/pdf_signer-0.3.2/LICENSE; scripts/rust-components.mjs findet ihn seit demselben Tag auch fuer Pfad-Abhaengigkeiten (vorher: 'Paketquelle nicht im Zwischenspeicher').",
       "needsDecision": false,
-      "recorded": "2026-10-06"
+      "recorded": "2026-10-06",
+      "status": "approved",
+      "repository": "https://github.com/StrategicProjects/pdf_signer",
+      "purposes": [
+        "license"
+      ],
+      "decidedBy": "Thomas",
+      "decidedAt": "2026-10-06",
+      "sourceId": "vendored-sha256:eaa5c68cb9484ebf6791bfaf9cdbb85647fc2c336b0d573d021cb3a19ac31975",
+      "previousSourceId": "vendored-sha256:371378be27eeb2f47dd365b8ff9f90668170844ec96bb5e5a4d91839e92e90a6",
+      "bindingUpdate": "2026-10-08, Codex im ausdrücklich vollständig freigegebenen MS1–MS7-Auftrag: ausschließlich nativer Cargo.lock aktualisiert (crossbeam-epoch 0.9.20, rustls 0.23.45, rustls-webpki 0.103.15). Rust-Quellcode, Paketversion, Herkunft und GPL-Ausdruck unverändert. Die vorhandene enge Ausnahme wird auf diesen überprüfbaren lokalen Baum gebunden; keine allgemeine Lizenzfreigabe."
     },
     {
       "name": "unicode-ident",
       "version": "1.0.26",
       "license": "(MIT OR Apache-2.0) AND Unicode-3.0",
-      "reason": "Der Ausdruck verlangt zusätzlich zur MIT-/Apache-Wahl die Unicode-3.0-Lizenz. Unicode-3.0 ist permissiv, steht aber nicht in licenses/policy.json.",
-      "needsDecision": true,
-      "recorded": "2026-10-06"
+      "reason": "Der Ausdruck verlangt zusätzlich zur MIT-/Apache-Wahl die Unicode-3.0-Lizenz. Unicode-3.0 ist permissiv, steht aber nicht in licenses/policy.json. Nachtrag 2026-10-08: Benutzer hat die konkret gebundene Ausnahme ausdrücklich genehmigt; keine allgemeine Richtlinienänderung.",
+      "needsDecision": false,
+      "recorded": "2026-10-06",
+      "status": "approved",
+      "repository": "https://github.com/dtolnay/unicode-ident",
+      "sourceId": "registry+https://github.com/rust-lang/crates.io-index#sha256:d245f478577f809a851594d02313b640fb437e0bb33866753cff937863096954",
+      "decidedBy": "Benutzerfreigabe in dieser Sitzung",
+      "decidedAt": "2026-10-08",
+      "purposes": [
+        "license"
+      ],
+      "evidence": "uebergabe/07-pruefung/fertigstellung/2026-10-08-ms1-ms7/lizenzentscheidungen.md"
     },
     {
       "name": "asn1-rs-impl",
       "version": "0.2.0",
-      "license": "MIT OR Apache-2.0",
+      "license": "MIT/Apache-2.0",
       "reason": "Paket liefert keine Hinweisdatei mit; Lizenzangabe aus den Metadaten. Originaltext aus dem Repository nachzutragen.",
-      "needsDecision": true,
-      "recorded": "2026-10-06"
+      "needsDecision": false,
+      "recorded": "2026-10-06",
+      "status": "resolved",
+      "repository": "https://github.com/rusticata/asn1-rs.git",
+      "resolution": "2026-10-08: Originalhinweise aus Paket-VCS-Revision übernommen; Lizenz von bestehender Richtlinie gedeckt. Keine Ausnahme.",
+      "sourceId": "registry+https://github.com/rust-lang/crates.io-index#sha256:7b18050c2cd6fe86c3a76584ef5e0baf286d038cda203eb6223df2cc413565f7"
     },
     {
       "name": "cms",
       "version": "0.2.3",
       "license": "Apache-2.0 OR MIT",
-      "reason": "Paket liefert keine Hinweisdatei mit; Lizenzangabe aus den Metadaten. Originaltext aus dem Repository nachzutragen.",
-      "needsDecision": true,
-      "recorded": "2026-10-06"
+      "reason": "Paket liefert keine Hinweisdatei mit; Lizenzangabe aus den Metadaten. Originaltext aus dem Repository nachzutragen. Nachtrag 2026-10-08: Benutzer hat die konkret gebundene Ausnahme ausdrücklich genehmigt; keine allgemeine Richtlinienänderung.",
+      "needsDecision": false,
+      "recorded": "2026-10-06",
+      "status": "approved",
+      "repository": "https://github.com/RustCrypto/formats/tree/master/cms",
+      "sourceId": "registry+https://github.com/rust-lang/crates.io-index#sha256:7b77c319abfd5219629c45c34c89ba945ed3c5e49fcde9d16b6c3885f118a730",
+      "decidedBy": "Benutzerfreigabe in dieser Sitzung",
+      "decidedAt": "2026-10-08",
+      "purposes": [
+        "notice"
+      ],
+      "evidence": "uebergabe/07-pruefung/fertigstellung/2026-10-08-ms1-ms7/lizenzentscheidungen.md",
+      "expiresAt": "2026-11-08"
     },
     {
       "name": "defmt-parser",
       "version": "1.0.0",
       "license": "MIT OR Apache-2.0",
       "reason": "Paket liefert keine Hinweisdatei mit; Lizenzangabe aus den Metadaten. Originaltext aus dem Repository nachzutragen.",
-      "needsDecision": true,
-      "recorded": "2026-10-06"
+      "needsDecision": false,
+      "recorded": "2026-10-06",
+      "status": "resolved",
+      "repository": "https://github.com/knurling-rs/defmt",
+      "resolution": "2026-10-08: Originalhinweise aus Paket-VCS-Revision übernommen; Lizenz von bestehender Richtlinie gedeckt. Keine Ausnahme.",
+      "sourceId": "registry+https://github.com/rust-lang/crates.io-index#sha256:10d60334b3b2e7c9d91ef8150abfb6fa4c1c39ebbcf4a81c2e346aad939fee3e"
     },
     {
       "name": "p12-keystore",
       "version": "0.1.5",
       "license": "MIT/Apache-2.0",
-      "reason": "Paket liefert keine Hinweisdatei mit; Schrägstrichschreibweise als ODER gelesen. Originaltext aus dem Repository nachzutragen.",
-      "needsDecision": true,
-      "recorded": "2026-10-06"
+      "reason": "Paket liefert keine Hinweisdatei mit; Schrägstrichschreibweise als ODER gelesen. Originaltext aus dem Repository nachzutragen. Nachtrag 2026-10-08: Benutzer hat die konkret gebundene Ausnahme ausdrücklich genehmigt; keine allgemeine Richtlinienänderung.",
+      "needsDecision": false,
+      "recorded": "2026-10-06",
+      "status": "approved",
+      "repository": "https://github.com/ancwrd1/p12-keystore",
+      "sourceId": "registry+https://github.com/rust-lang/crates.io-index#sha256:3cae83056e7cb770211494a0ecf66d9fa7eba7d00977e5bb91f0e925b40b937f",
+      "decidedBy": "Benutzerfreigabe in dieser Sitzung",
+      "decidedAt": "2026-10-08",
+      "purposes": [
+        "notice"
+      ],
+      "evidence": "uebergabe/07-pruefung/fertigstellung/2026-10-08-ms1-ms7/lizenzentscheidungen.md",
+      "expiresAt": "2026-11-08"
     }
   ]
 }

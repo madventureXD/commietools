@@ -1,0 +1,234 @@
+# R4 – Wirksame Prüf- und Freigabeschranken
+
+Priorität P1. Empfehlung, keine Umsetzung/Freigabe. Basis a041ee0efda6b07687b3586977bb0d90bf1c89a8.
+
+[Leseregeln und Reihenfolge](README.md) · [Architektur/Migration](01-architektur-und-migration.md) · [Abnahme](03-pruef-und-uebergabeplan.md)
+
+Zeilen beziehen sich auf die eingefrorene Basis. Vor Änderungen Hash/Anker gegen den aktuellen Stand vergleichen. Zielpfade sind bestehende Projektdateien; neu vorgeschlagene Dateien werden im Text ausdrücklich benannt. Quellbelege bestätigen Mechanismen/Standards, nicht bereits getestete Reparaturen.
+
+## M1-003 – Kein im Repository erkennbarer automatischer Freigabeschutz für `main`
+
+**Stand dieser Empfehlung:** Versionierter CI-Schutz nicht belegt; externe Einstellungen unbekannt.
+
+**Historischer M12-Vermerk (cd556d1, keine neue Messung):** Fehlender versionierter CI-Workflow belegt; externer Branchschutz und Hostinggate weiterhin unbekannt. Lint war Leerlauf.
+
+### Konkrete Eingriffs- und Prüfstellen
+
+- [package.json:23](<C:/Projekte mit ChatGPT/commietools/package.json:23>) — Anker: „"check"“.
+- [docs/deployment-cloudflare-pages.md:1](<C:/Projekte mit ChatGPT/commietools/docs/deployment-cloudflare-pages.md:1>) — Anker: „#“.
+- [scripts/viewport-audit.mjs:26](<C:/Projekte mit ChatGPT/commietools/scripts/viewport-audit.mjs:26>) — Anker: „const mode“.
+
+### Dauerhafte Lösung
+
+Versionierten Pflichtworkflow für PR und Release einführen (neuer vorgeschlagener Pfad .github/workflows/quality.yml). Festgelegtes Node/npm, Lockinstallation in isoliertem Runner, Katalog-/Lizenzprüfung, wirksames Lint, Typen, Unit-/Integrationstests und gebaute Browserproben. Rust-Artefaktbau als eigener reproduzierbarer Job mit gebundener Toolchain. Actions-SHAs prüfen/pinnen, minimale Rechte und keine Deploysecrets in fremden PR-Läufen. Release nur aus derselben geprüften Revision/Artefaktmenge erstellen. Betreiber muss erforderliche Checks/Branchschutz/Deploymentbindung gesondert konfigurieren und belegen.
+
+### Abnahme
+
+Absichtlich roter Test verhindert Merge/Release im vorgesehenen Weg; fehlender/übersprungener Job gilt nicht als grün. Buildrevision im Produkt gegen CI-Artefakt abgleichen. Externe Schutzkonfiguration mit Datum und Zuständigkeit protokollieren.
+
+### Nicht tun / Abgrenzung
+
+Kein Beweis fehlenden Kontoschutzes aus fehlender YAML ableiten; in diesem Auftrag weder Kontoeinstellungen noch Deployment ändern.
+
+### Verifizierte Grundlage
+
+[S21 · GitHub: sichere Actions](<https://docs.github.com/en/actions/reference/security/secure-use>) ([Prüfvermerk](02-quellen.md#s21)); [S37 · GitHub: erforderliche Statuschecks](<https://docs.github.com/en/pull-requests/how-tos/merge-and-close-pull-requests/troubleshooting-required-status-checks>) ([Prüfvermerk](02-quellen.md#s37)); [S07 · Reproducible Builds: Definition](<https://reproducible-builds.org/docs/definition/>) ([Prüfvermerk](02-quellen.md#s07)).
+
+## M4-008 – Erfolgreiches Lint-Kommando prüft keine einzige Workspace-Codebasis
+
+**Stand dieser Empfehlung:** Root delegiert weiterhin an Workspaces ohne eigenen Lintlauf.
+
+**Historischer M12-Vermerk (cd556d1, keine neue Messung):** Lint-Leerlauf bleibt; grüne Tests/Typprüfung sind deswegen nicht insgesamt ungültig.
+
+### Konkrete Eingriffs- und Prüfstellen
+
+- [package.json:26](<C:/Projekte mit ChatGPT/commietools/package.json:26>) — Anker: „"lint"“.
+- [apps/web/package.json:7](<C:/Projekte mit ChatGPT/commietools/apps/web/package.json:7>) — Anker: „"scripts"“.
+- [packages/tools/package.json:7](<C:/Projekte mit ChatGPT/commietools/packages/tools/package.json:7>) — Anker: „"exports"“.
+
+### Dauerhafte Lösung
+
+Eine zentrale Flat-Konfiguration vorschlagen (neuer Pfad eslint.config.mjs), mit expliziten TS/TSX-/JS-Dateimustern und enger Liste erzeugter Ausnahmen. Root ruft tatsächlichen Linter direkt oder explizit prüfpflichtige Workspaces auf, ohne stilles if-present für Pflichtprüfungen. Risikoregeln zuerst: Hooks, unbehandelte Promises, sinnlose Typbehauptungen, ungenutzte Namen, erschöpfende Fallunterscheidung. TS-typgestützte Regeln mit passendem projectService/tsconfig und kompatiblen Versionen. Neue Werkzeuge regulär lizenzieren; Formatierungsreform nicht mit funktionalen Reparaturen vermischen.
+
+### Abnahme
+
+Lintreport nennt konkrete Dateien/Anzahl. Bewusster Regelverstoß in isolierter Kopie scheitert; Positivkontrolle besteht. Fehlende Konfiguration/kein passendes Quelldateimuster darf keinen Qualitätsnachweis liefern.
+
+### Nicht tun / Abgrenzung
+
+Keine globale eslint-disable-Flut, kein Regelabsenken nur für Grün, kein Lint-Erfolg ohne bearbeitete Dateien.
+
+### Verifizierte Grundlage
+
+[S22 · ESLint: Konfigurationsdateien](<https://eslint.org/docs/latest/use/configure/configuration-files>) ([Prüfvermerk](02-quellen.md#s22)); [S23 · typescript-eslint: Typed Linting](<https://typescript-eslint.io/getting-started/typed-linting/>) ([Prüfvermerk](02-quellen.md#s23)).
+
+## M5-001 – PDF-Tests sichern zugesagte Seitenwahl und Nummerninhalte nicht ab
+
+**Stand dieser Empfehlung:** Historische Testschwäche; Reparaturprüfung muss Inhalte lesen.
+
+**Historischer M12-Vermerk (cd556d1, keine neue Messung):** 375er-Mutationsbeleg bleibt; nicht als heute auf 440 Tests wiederholten Mutationstest ausgeben. M6 positive PDF-Einzelfälle schließen Gate-Lücke nicht.
+
+### Konkrete Eingriffs- und Prüfstellen
+
+- [apps/web/src/pdf-tools.test.ts:90](<C:/Projekte mit ChatGPT/commietools/apps/web/src/pdf-tools.test.ts:90>) — Anker: „watermark“.
+- [packages/tools/src/pdf/m4.ts:4](<C:/Projekte mit ChatGPT/commietools/packages/tools/src/pdf/m4.ts:4>) — Anker: „export“.
+- [apps/web/src/tools/pdfUi.tsx:103](<C:/Projekte mit ChatGPT/commietools/apps/web/src/tools/pdfUi.tsx:103>) — Anker: „extractPdfText“.
+
+### Dauerhafte Lösung
+
+Unabhängige inhaltliche Orakel statt Byteanzahl/Seitenzahl ergänzen. Fixture mit unterscheidbarem Inhalt je Seite; Wasserzeichen nur auf gewählten Seiten, Nummerierung mit Startwert/Gesamtzahl und Position überprüfen. Text-/Objektinspektion möglichst über anderen Reader als Schreibpfad; für gerasterte Unicode-Layer zusätzlich Rendervergleich mit klarer Toleranz und semantischer Zuordnung. Testhilfen dürfen nicht dieselbe Seitenselektionsfunktion zur Berechnung des Solls benutzen. Strukturchecks behalten, aber nicht als Funktionsbeweis ausgeben.
+
+### Abnahme
+
+Bekannte Mutationen Wasserzeichen auf falschen Seiten und falsche Nummerninhalte müssen rot werden, normaler Export bleibt grün. Ziel-/Nichtzielseiten, leere/umgekehrte Auswahl, Randpositionen und Unicode separat.
+
+### Nicht tun / Abgrenzung
+
+Keine Snapshotfreigabe ohne Anschauen, keine neuen beliebigen PDF-Bytehashes als einziges Orakel bei variablen Metadaten.
+
+### Verifizierte Grundlage
+
+[S24 · Stryker: Mutantenstatus](<https://stryker-mutator.io/docs/mutation-testing-elements/mutant-states-and-metrics/>) ([Prüfvermerk](02-quellen.md#s24)); [S29 · Mozilla PDF.js: TextLayerBuilder](<https://raw.githubusercontent.com/mozilla/pdf.js/master/web/text_layer_builder.js>) ([Prüfvermerk](02-quellen.md#s29)).
+
+## M5-002 – Der zentrale Speichervorgang bleibt im automatischen Testlauf unbenutzt
+
+**Stand dieser Empfehlung:** Speicheradapter bislang nicht ausreichend durch Verhaltenstests abgesichert.
+
+**Historischer M12-Vermerk (cd556d1, keine neue Messung):** Save-noop-Mutante überstand 375 Tests, nicht behauptet 440. Gelungene M6-Downloads belegen Funktion, nicht automatischen Rückfallschutz.
+
+### Konkrete Eingriffs- und Prüfstellen
+
+- [apps/web/src/save-file.test.ts:2](<C:/Projekte mit ChatGPT/commietools/apps/web/src/save-file.test.ts:2>) — Anker: „normaliseFileName“.
+- [apps/web/src/tools/SaveFileControl.tsx:55](<C:/Projekte mit ChatGPT/commietools/apps/web/src/tools/SaveFileControl.tsx:55>) — Anker: „async function blobFrom“.
+- [apps/web/src/tools/SaveFileControl.tsx:62](<C:/Projekte mit ChatGPT/commietools/apps/web/src/tools/SaveFileControl.tsx:62>) — Anker: „function fallbackDownload“.
+
+### Dauerhafte Lösung
+
+Browserfähigkeiten hinter einem kleinen injizierbaren Speicheradapter isolieren; UI-Meldungen und Dateinamennormalisierung getrennt testen. Klick muss den Picker im Nutzeraktivierungsfenster anfordern, danach Blob erzeugen/schreiben und Stream schließen. AbortError ist Nutzerabbruch, Schreib-/Berechtigungsfehler sind Fehler; Abbruch löst nicht heimlich Fallbackdownload aus. Ohne Picker bleibt der vorhandene Downloadweg. Wahrheitsgemäßer Status: Download gestartet ist nicht nachweislich auf Platte gespeichert. Cleanup aus R3 und Unicode aus R6 verwenden.
+
+### Abnahme
+
+Pickerpfad bis createWritable/write/close mit exakt erwarteten Bytes/Name/MIME; Abbruch, Schreibfehler, fehlende API, asynchrone Blobproduktion, wiederholter Klick. Ein Browserdownload wird wirklich abgefangen und inhaltlich gelesen; native Dialogprobe am Zielgerät separat.
+
+### Nicht tun / Abgrenzung
+
+Keine Reparatur nur über Filename-Unit-Test; keine Berechtigungsabfrage außerhalb konkreter Nutzeraktion, keine sofortige Erfolgsmeldung ohne Schreibabschluss.
+
+### Verifizierte Grundlage
+
+[S25 · MDN: showSaveFilePicker](<https://developer.mozilla.org/en-US/docs/Web/API/Window/showSaveFilePicker>) ([Prüfvermerk](02-quellen.md#s25)); [S17 · MDN: revokeObjectURL](<https://developer.mozilla.org/en-US/docs/Web/API/URL/revokeObjectURL_static>) ([Prüfvermerk](02-quellen.md#s17)); [S24 · Stryker: Mutantenstatus](<https://stryker-mutator.io/docs/mutation-testing-elements/mutant-states-and-metrics/>) ([Prüfvermerk](02-quellen.md#s24)).
+
+## M5-003 – Kritische PDF-Engine-Pfade sind nicht Teil des normalen Testschutzes
+
+**Stand dieser Empfehlung:** Engineargumenttests ersetzen weiterhin keine Wirkungsprüfung.
+
+**Historischer M12-Vermerk (cd556d1, keine neue Messung):** Argumenttests ersetzen nicht Enginewirkung; kein aus fehlender Prüfung abgeleitetes falsches Kryptographieergebnis.
+
+### Konkrete Eingriffs- und Prüfstellen
+
+- [apps/web/src/pdf-tools.test.ts:5](<C:/Projekte mit ChatGPT/commietools/apps/web/src/pdf-tools.test.ts:5>) — Anker: „protectionArguments“.
+- [packages/tools/src/pdf/m5.ts:5](<C:/Projekte mit ChatGPT/commietools/packages/tools/src/pdf/m5.ts:5>) — Anker: „export“.
+- [scripts/m7-eu-dss-audit.mjs:50](<C:/Projekte mit ChatGPT/commietools/scripts/m7-eu-dss-audit.mjs:50>) — Anker: „process“.
+- [package.json:23](<C:/Projekte mit ChatGPT/commietools/package.json:23>) — Anker: „"check"“.
+
+### Dauerhafte Lösung
+
+Dreistufiges PDF-Prüfkorpus pflegen: schnelle reine Vertragstests, echte Engineintegration mit kleinen lizenzierten Fixtures, separater gebauten Browser-/Interoplauf. QPDF: tatsächlich geschützte Datei öffnen, korrektes Passwort entfernen, Ergebnis ohne Passwort lesen und unveränderten Inhalt prüfen; falsches Passwort ergibt echten Fehler. Signaturkorpus erhält erwartete Anzahl und explizite positive/negative/unsupported Urteile pro Datei samt Herkunft, Hash und Validatorversion. Kein pauschales Durchwinken aller Parserfehler. Normaler Releaseweg muss notwendige Enginejobs verlangen.
+
+### Abnahme
+
+Unlock-noop wird erkannt. Mindestens gültige, manipulierte, inkrementell ergänzte Signatur und verschlüsselte PDF durch echten WASM-Pfad; UI unter CSP mitprüfen. Fehlende Fixture oder nicht gebaute Engine markiert blockiert, nicht bestanden.
+
+### Nicht tun / Abgrenzung
+
+Keine Uploads privater PDFs an Onlinevalidatoren; öffentliche Referenzen lokal nutzen. Keine Zertifizierung aller PDF-/Signaturprofile durch kleines Korpus behaupten.
+
+### Verifizierte Grundlage
+
+[S08 · EU DSS: Validierungsdokumentation](<https://ec.europa.eu/digital-building-blocks/DSS/webapp-demo/doc/dss-documentation.html>) ([Prüfvermerk](02-quellen.md#s08)); [S01 · MDN: CSP script-src](<https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Content-Security-Policy/script-src>) ([Prüfvermerk](02-quellen.md#s01)); [S24 · Stryker: Mutantenstatus](<https://stryker-mutator.io/docs/mutation-testing-elements/mutant-states-and-metrics/>) ([Prüfvermerk](02-quellen.md#s24)).
+
+## M5-004 – Vorhandene Randfalltests erfassen wichtige Kombinationen nicht
+
+**Stand dieser Empfehlung:** Sechs gezielte aktuelle Fehler und eine inzwischen erfolgreiche Platzhalterprobe.
+
+**Historischer M12-Vermerk (cd556d1, keine neue Messung):** Sieben aktuelle Anforderungsabweichungen trotz 440 grüner Tests erneut bestätigt; keine sieben neuen Befunde.
+
+### Konkrete Eingriffs- und Prüfstellen
+
+- [apps/web/src/calculator-core.test.ts:2](<C:/Projekte mit ChatGPT/commietools/apps/web/src/calculator-core.test.ts:2>) — Anker: „evaluate“.
+- [apps/web/src/math-tools.test.ts:1](<C:/Projekte mit ChatGPT/commietools/apps/web/src/math-tools.test.ts:1>) — Anker: „describe“.
+- [apps/web/src/App.test.ts:1](<C:/Projekte mit ChatGPT/commietools/apps/web/src/App.test.ts:1>) — Anker: „describe“.
+- [apps/web/src/save-file.test.ts:2](<C:/Projekte mit ChatGPT/commietools/apps/web/src/save-file.test.ts:2>) — Anker: „normaliseFileName“.
+
+### Dauerhafte Lösung
+
+Die sieben dokumentierten Anforderungsfälle als reguläre, fachlich begründete Regressionen übernehmen, nicht das gesamte QM-Verzeichnis importieren. Erneut geprüfte Fälle stehen in QM/tools/recommendations-regressions.test.ts; dort sechs rot, spanische PDF-Platzhalter jetzt grün. Danach risikobasierte Matrix aus Zahlenmodell, Operatorfolge, Wertebereich und Eingabeformat plus positive Nachbarfälle. Sollwerte von unabhängiger Rechnung/Fixture herleiten; Property-/Metamorphietests ergänzen, nicht nur Ausgaben der Implementierung abschreiben.
+
+### Abnahme
+
+Jeder reparierte Fehler schlägt vor der Änderung fehl und danach an gleicher Anforderung an. Fehler wieder einsetzen → rot. Tests mit wenigstens einer fachlichen Assertion; Timeout/Setupabbruch/übersprungen getrennt ausweisen.
+
+### Nicht tun / Abgrenzung
+
+Keine Neudefinition des Solls nur für Grün; 440 historische Tests nicht als aktuelle Zählung weitergeben.
+
+### Verifizierte Grundlage
+
+[S24 · Stryker: Mutantenstatus](<https://stryker-mutator.io/docs/mutation-testing-elements/mutant-states-and-metrics/>) ([Prüfvermerk](02-quellen.md#s24)); [S10 · mathjs: BigNumbers](<https://mathjs.org/docs/datatypes/bignumbers.html>) ([Prüfvermerk](02-quellen.md#s10)).
+
+## M2-009 – Versprochene automatische Barrierefreiheitsprüfung fehlt
+
+**Stand dieser Empfehlung:** Teilweise überholt: a11y:check existiert jetzt; Abdeckung und Pflichtbindung bleiben.
+
+**Historischer M12-Vermerk (cd556d1, keine neue Messung):** Automatisches a11y-Gate fehlt. Auslöser erste gerenderte Komponententestsuite nicht belegt; deshalb Kontrolllücke, kein bewiesener bedingter Regelbruch.
+
+### Konkrete Eingriffs- und Prüfstellen
+
+- [package.json:22](<C:/Projekte mit ChatGPT/commietools/package.json:22>) — Anker: „"a11y:check"“.
+- [scripts/viewport-audit.mjs:26](<C:/Projekte mit ChatGPT/commietools/scripts/viewport-audit.mjs:26>) — Anker: „const mode“.
+- [docs/ui-system.md:37](<C:/Projekte mit ChatGPT/commietools/docs/ui-system.md:37>) — Anker: „44“.
+
+### Dauerhafte Lösung
+
+Vorhandenen versionierten Scanner weiterverwenden und seine Grenzen explizit machen. Bisherige Ziele-/Namens-/Kontrast-/Clippingchecks um reproduzierbare offene Menüs, Formfehler und Ergebniszustände erweitern; Routen aus Katalog statt fixer Anzahl. Optional Playwright plus axe als Ergänzung nach Lizenzprüfung, nicht als Ersatz des Projekt-44px-Checks. a11y-Aufruf mit laufendem gebauten Server, beiden Themes und Locale-Samples in CI verdrahten. Akzeptierte Abweichungen zählen gesondert und begründen keine WCAG-Konformität.
+
+### Abnahme
+
+Künstlicher unbeschrifteter Button und Kontrast-/Fokusfehler werden erkannt; leere Route scheitert. Echte Vorleserprüfung mindestens Viewer und Rechner/Menü, Tastaturdurchlauf sowie manuelle Zoomprobe bleiben Abnahmebestandteil.
+
+### Nicht tun / Abgrenzung
+
+Nicht behaupten, es gäbe keinen Scanner mehr. Ein grüner heuristischer DOM-Scan oder axe-Lauf ist kein vollständiges WCAG-Urteil.
+
+### Verifizierte Grundlage
+
+[S26 · Playwright: Accessibility testing](<https://playwright.dev/docs/accessibility-testing>) ([Prüfvermerk](02-quellen.md#s26)); [S27 · W3C: WCAG 2.2](<https://www.w3.org/TR/WCAG22/>) ([Prüfvermerk](02-quellen.md#s27)).
+
+## M3-009 – Vorgeschriebene Sprachprüfungen sind nicht vollständig automatisiert
+
+**Stand dieser Empfehlung:** Schlüsselparität vorhanden, Vertrags-/Qualitätsgate weiter zu vervollständigen.
+
+**Historischer M12-Vermerk (cd556d1, keine neue Messung):** Schlüsselparität ist nicht Platzhalter-/Sprachqualität. Aktuelle 440 grüne Tests plus rote Platzhaltergegenprobe bestätigen weiterhin die Lücke.
+
+### Konkrete Eingriffs- und Prüfstellen
+
+- [scripts/catalog-generate.mjs:32](<C:/Projekte mit ChatGPT/commietools/scripts/catalog-generate.mjs:32>) — Anker: „function“.
+- [apps/web/src/tool-search.test.ts:1](<C:/Projekte mit ChatGPT/commietools/apps/web/src/tool-search.test.ts:1>) — Anker: „describe“.
+- [packages/i18n/src/registry.ts:36](<C:/Projekte mit ChatGPT/commietools/packages/i18n/src/registry.ts:36>) — Anker: „supportedLocales“.
+- [uebergabe/02-architektur/sprachpakete.md:52](<C:/Projekte mit ChatGPT/commietools/uebergabe/02-architektur/sprachpakete.md:52>) — Anker: „Prüf“.
+
+### Dauerhafte Lösung
+
+Prüfung registrygesteuert über alle aktuellen Tools/Sprachen einschließlich common/suites aufbauen. Parität, leere Texte, Platzhalternamen/-häufigkeit, gültige Interpolationssyntax, NFC-/wohlgeformte Unicode-Eingaben, dynamische Schlüsselverwendungen und aktive UI-Rückmeldungen sichern. Übersetzbare Texte und Suchsynonyme getrennt prüfen; Fremdwort in Suchsynonymen ist nicht automatisch Fehler. Generator soll identische Ausgabe bei Wiederholung liefern. Terminologieliste als warnender Lektoratshelfer, nicht als pauschales Wortverbot.
+
+### Abnahme
+
+Ein umbenannter Parameter, fehlender dynamischer Schlüssel und absichtlich beschädigtes Unicode-Fixture scheitern; Akzente, Ñ/ñ, ¿/¡ und legitime technische Syntax bestehen. de+en bzw. es+en werden geladen, dritte Sprache nicht.
+
+### Nicht tun / Abgrenzung
+
+Platzhaltergleichheit ist kein fachliches Spanisch-Lektorat; keine Installation eines Übersetzungsdiensts oder automatischen externen Uploads.
+
+### Verifizierte Grundlage
+
+[S30 · MDN: Intl.Segmenter](<https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/Segmenter>) ([Prüfvermerk](02-quellen.md#s30)); [S31 · MDN: Intl.NumberFormat.formatToParts](<https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/NumberFormat/formatToParts>) ([Prüfvermerk](02-quellen.md#s31)).

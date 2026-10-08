@@ -1,0 +1,35 @@
+# R10 – Infrastruktur-Datenflussentscheidung
+
+Priorität P1. Empfehlung, keine Umsetzung/Freigabe. Basis a041ee0efda6b07687b3586977bb0d90bf1c89a8.
+
+[Leseregeln und Reihenfolge](README.md) · [Architektur/Migration](01-architektur-und-migration.md) · [Abnahme](03-pruef-und-uebergabeplan.md)
+
+Zeilen beziehen sich auf die eingefrorene Basis. Vor Änderungen Hash/Anker gegen den aktuellen Stand vergleichen. Zielpfade sind bestehende Projektdateien; neu vorgeschlagene Dateien werden im Text ausdrücklich benannt. Quellbelege bestätigen Mechanismen/Standards, nicht bereits getestete Reparaturen.
+
+## M8-005 – Infrastruktur-Fehlerberichte fehlen im dokumentierten Datenfluss
+
+**Stand dieser Empfehlung:** Historischer öffentlicher NEL-Header; kein aktueller Versandnachweis.
+
+**Historischer M12-Vermerk (cd556d1, keine neue Messung):** Öffentliche NEL-Richtlinie vom 05.10. belegt, kein versendeter Bericht oder Dokumentupload, kein festgestellter Rechtsverstoß.
+
+### Konkrete Eingriffs- und Prüfstellen
+
+- [docs/architecture.md:68](<C:/Projekte mit ChatGPT/commietools/docs/architecture.md:68>) — Anker: „privacy“.
+- [docs/deployment-cloudflare-pages.md:1](<C:/Projekte mit ChatGPT/commietools/docs/deployment-cloudflare-pages.md:1>) — Anker: „Cloudflare“.
+- [apps/web/public/_headers:1](<C:/Projekte mit ChatGPT/commietools/apps/web/public/_headers:1>) — Anker: „/“.
+
+### Dauerhafte Lösung
+
+Betreiberentscheidung vorbereiten: Infrastruktur-NEL bewusst behalten und Datenfluss transparent dokumentieren oder über Cloudflare-Zoneneinstellung deaktivieren. Empfehlung bei konsequent datenarmem Betrieb: unbenötigte Fehlertelemetrie abschalten, sofern kein betriebliches Erfordernis besteht. Umsetzung ist autorisierte Hostingaktion, nicht bloß _headers-Edit; Provider kann Header hinzufügen. Dokumentverarbeitung, Ressourcenabrufe und Infrastrukturberichte sauber unterscheiden. Bereits gecachte Richtlinien und deren max_age beim Übergang berücksichtigen. Datenschutzhinweise sachkundig mit realem Verhalten abgleichen.
+
+### Abnahme
+
+Öffentliche Antwortheader mit Zeit/Deploymentrevision frisch erfassen. Frisches und bereits benutztes Profil unterscheiden; autorisierte harmlose Fehlerprobe nur auf eigener Testumgebung, tatsächlichen Versand soweit prüfbar beobachten. Bei Beibehaltung dokumentierte Felder/Zweck/Empfänger prüfen.
+
+### Nicht tun / Abgrenzung
+
+Keine Kontoänderung durch diesen Bericht, keine PDF-Upload-/Rechtsverletzungsbehauptung aus NEL-Header allein. Anbieterbehauptung keine PII ist kein eigenes Rechtsgutachten.
+
+### Verifizierte Grundlage
+
+[S34 · Cloudflare: Network Error Logging](<https://developers.cloudflare.com/network-error-logging/>) ([Prüfvermerk](02-quellen.md#s34)); [S35 · MDN: Network Error Logging](<https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/Network_Error_Logging>) ([Prüfvermerk](02-quellen.md#s35)).

@@ -1,0 +1,185 @@
+# R1 – PDF-Engines, Signaturpfad und Liefernachweise
+
+Priorität P0. Empfehlung, keine Umsetzung/Freigabe. Basis a041ee0efda6b07687b3586977bb0d90bf1c89a8.
+
+[Leseregeln und Reihenfolge](README.md) · [Architektur/Migration](01-architektur-und-migration.md) · [Abnahme](03-pruef-und-uebergabeplan.md)
+
+Zeilen beziehen sich auf die eingefrorene Basis. Vor Änderungen Hash/Anker gegen den aktuellen Stand vergleichen. Zielpfade sind bestehende Projektdateien; neu vorgeschlagene Dateien werden im Text ausdrücklich benannt. Quellbelege bestätigen Mechanismen/Standards, nicht bereits getestete Reparaturen.
+
+## M8-001 – Auslieferungs-CSP blockiert benötigte Engines
+
+**Stand dieser Empfehlung:** Quellkonfiguration weiterhin betroffen; Produktionslauf nicht wiederholt.
+
+**Historischer M12-Vermerk (cd556d1, keine neue Messung):** CSP blockierte echte Signaturfunktion, minimale WASM-Gegenprobe erfolgreich; öffentlich nur damaliger Header, kein aktuell identischer Deploymentnachweis.
+
+### Konkrete Eingriffs- und Prüfstellen
+
+- [apps/web/public/_headers:6](<C:/Projekte mit ChatGPT/commietools/apps/web/public/_headers:6>) — Anker: „Content-Security-Policy“.
+- [apps/web/src/tools/PdfTextOcr.tsx:13](<C:/Projekte mit ChatGPT/commietools/apps/web/src/tools/PdfTextOcr.tsx:13>) — Anker: „const OCR_CORE“.
+- [apps/web/vite.config.ts:76](<C:/Projekte mit ChatGPT/commietools/apps/web/vite.config.ts:76>) — Anker: „runtimeCaching“.
+- [packages/tools/src/pdf/m7.ts:29](<C:/Projekte mit ChatGPT/commietools/packages/tools/src/pdf/m7.ts:29>) — Anker: „import“.
+- [licenses/artifacts.json:3](<C:/Projekte mit ChatGPT/commietools/licenses/artifacts.json:3>) — Anker: „artifacts“.
+
+### Dauerhafte Lösung
+
+CSP und Engine-Ressourcen als gemeinsamen Auslieferungsvertrag pflegen. In script-src gezielt wasm-unsafe-eval ergänzen, vorhandene übrige Schutzdirektiven erhalten; Workerbedarf separat in worker-src erlauben. OCR-Core 7 und benötigte Modelle vorzugsweise versions-/hashgebunden unter eigener Origin ausliefern, aber nur nach Werkzeugwahl/Zustimmung laden. Modell-/Corelizenzen und Herkunft ins Artefaktregister aufnehmen. Für CDN-Beibehaltung nur tatsächlich benötigte Origins und Workerpfade freigeben. Tesseract-Dokumentation zeigt v5-Beispiele: nicht blind kopieren. Auftrags-/Worker-Cleanup aus R3 mitführen.
+
+### Abnahme
+
+Echte Signaturprüfung und OCR einer bekannten Bildseite unter den gebauten Auslieferungsheadern: Erfolg, abgelehnte Zustimmung, Abbruch, beschädigtes Modell, Offlinewiederholung. Netzprotokoll belegt Ressourcenabrufe ohne Dateiübertragung. Bloßes WASM-Minimalmodul reicht nicht.
+
+### Nicht tun / Abgrenzung
+
+Kein unsafe-eval, CSP-Abschalten, globaler CDN-Wildcard oder Vorabladen aller OCR-Sprachen. CSP-Freigabe schließt M9-004 nicht.
+
+### Verifizierte Grundlage
+
+[S01 · MDN: CSP script-src](<https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Content-Security-Policy/script-src>) ([Prüfvermerk](02-quellen.md#s01)); [S02 · Tesseract.js: lokale Installation](<https://github.com/naptha/tesseract.js/blob/master/docs/local-installation.md>) ([Prüfvermerk](02-quellen.md#s02)); [S19 · Workbox: Warm strategy cache](<https://developer.chrome.com/docs/workbox/modules/workbox-recipes>) ([Prüfvermerk](02-quellen.md#s19)).
+
+## M9-001 – Rust-Komponenten und ihre Original-Lizenzhinweise fehlen im Register
+
+**Stand dieser Empfehlung:** Liefernachweis weiterhin unvollständig; kein neuer Rust-Build.
+
+**Historischer M12-Vermerk (cd556d1, keine neue Messung):** Rust-Originalhinweise fehlen; 199 Lockeinträge nicht gleich 199 einkompilierte Komponenten.
+
+### Konkrete Eingriffs- und Prüfstellen
+
+- [crates/pdf-signer-engine/Cargo.toml:39](<C:/Projekte mit ChatGPT/commietools/crates/pdf-signer-engine/Cargo.toml:39>) — Anker: „lopdf“.
+- [crates/pdf-signer-wasm/Cargo.lock:831](<C:/Projekte mit ChatGPT/commietools/crates/pdf-signer-wasm/Cargo.lock:831>) — Anker: „name = "lopdf"“.
+- [licenses/artifacts.json:3](<C:/Projekte mit ChatGPT/commietools/licenses/artifacts.json:3>) — Anker: „artifacts“.
+- [scripts/license-audit.mjs:10](<C:/Projekte mit ChatGPT/commietools/scripts/license-audit.mjs:10>) — Anker: „const artifacts“.
+- [crates/pdf-signer-wasm/README.md:1](<C:/Projekte mit ChatGPT/commietools/crates/pdf-signer-wasm/README.md:1>) — Anker: „#“.
+
+### Dauerhafte Lösung
+
+Je Ziel/Featureprofil eine Komponentenliste erzeugen: npm-Auslieferung, Rust-WASM samt transitiven Laufzeitabhängigkeiten, Buildwerkzeuge getrennt, eingebettete C/C++-/Schrift-/Modelldaten separat. cargo metadata mit format-version 1 und passendem Filter-Target plus tatsächlichen Build-/Featureinformationen verwenden. Originale LICENSE/NOTICE pro Version sammeln; generischer SPDX-Text ersetzt Copyright-Hinweise nicht. Artefakte an Quellrevision, Lockfilehash, Toolchain, Featureliste und Ausgabehash binden. Generator erzeugt Registry und Produktanzeige aus demselben überprüften Bestand.
+
+### Abnahme
+
+lopdf-Originalhinweise im Register UND auf /licenses auffindbar; Stichproben aus weiteren tatsächlich ausgelieferten Komponenten. Entfernte Hinweisdatei lässt Gate scheitern. Zwei unabhängige saubere Builds vergleichen; Abweichungen dokumentieren statt reproduzierbar behaupten.
+
+### Nicht tun / Abgrenzung
+
+199 historische Lockeinträge sind weder 199 Binärkomponenten noch ein Lizenzverbot. Keine pauschale Freigabe einer Bibliothek allein wegen SPDX-Kennung.
+
+### Verifizierte Grundlage
+
+[S04 · Cargo Book: cargo metadata](<https://doc.rust-lang.org/cargo/commands/cargo-metadata.html>) ([Prüfvermerk](02-quellen.md#s04)); [S05 · SPDX 2.3: Lizenzausdrücke](<https://spdx.github.io/spdx-spec/v2.3/SPDX-license-expressions/>) ([Prüfvermerk](02-quellen.md#s05)); [S07 · Reproducible Builds: Definition](<https://reproducible-builds.org/docs/definition/>) ([Prüfvermerk](02-quellen.md#s07)).
+
+## M9-002 – Lizenzgate prüft seine Eingangswege unterschiedlich streng
+
+**Stand dieser Empfehlung:** Kontrolllücke; synthetische Abweichungen nicht in realer Installation behauptet.
+
+**Historischer M12-Vermerk (cd556d1, keine neue Messung):** Vier synthetische Gate-Mutanten überleben, zwei Kontrollen erkannt; reale Installation enthält diese Abweichungen nicht.
+
+### Konkrete Eingriffs- und Prüfstellen
+
+- [scripts/license-audit.mjs:75](<C:/Projekte mit ChatGPT/commietools/scripts/license-audit.mjs:75>) — Anker: „function buildRegistry“.
+- [licenses/policy.json:3](<C:/Projekte mit ChatGPT/commietools/licenses/policy.json:3>) — Anker: „allowedExpressions“.
+- [licenses/artifacts.json:3](<C:/Projekte mit ChatGPT/commietools/licenses/artifacts.json:3>) — Anker: „artifacts“.
+- [licenses/overrides.json:4](<C:/Projekte mit ChatGPT/commietools/licenses/overrides.json:4>) — Anker: „overrides“.
+
+### Dauerhafte Lösung
+
+Alle Eingangspfade in ein einheitliches Komponentenmodell normalisieren, dann rekursiv dieselben Prüfer anwenden: Identität/Version, erlaubter Ausdruck, zugehörige Texte/Hinweise, Herkunft und Hash. SPDX-Ausdrücke strukturiert verstehen, insbesondere OR/AND/WITH; die bestehende genaue Allowlist nicht eigenmächtig erweitern. Installierte verpflichtende npm-Pakete gegen Lockversion und Lizenzangabe prüfen; plattformspezifische optionale Pakete nachvollziehbar getrennt behandeln. Overrides bleiben auf Name, Version und Dokumenthash begrenzt. Generieren darf ungültige Eingaben nicht in einen scheinbar legitimen Sollstand verwandeln.
+
+### Abnahme
+
+M9-Gegenproben auf Reparaturstand: installierte Version 999.0.0, installierte Lizenz UNLICENSED, unbekannte Komponentenlizenz, ungeprüfte Artefaktlizenz jeweils ablehnen; Lock-Lizenz- und Override-Hash-Kontrollen weiter ablehnen. Sauberer Bestand besteht.
+
+### Nicht tun / Abgrenzung
+
+Keine bloße Zählerprüfung, kein Weglassen optionaler eingebetteter Inhalte, kein manuelles Ändern der erzeugten Registry als Reparatur.
+
+### Verifizierte Grundlage
+
+[S05 · SPDX 2.3: Lizenzausdrücke](<https://spdx.github.io/spdx-spec/v2.3/SPDX-license-expressions/>) ([Prüfvermerk](02-quellen.md#s05)); [S24 · Stryker: Mutantenstatus](<https://stryker-mutator.io/docs/mutation-testing-elements/mutant-states-and-metrics/>) ([Prüfvermerk](02-quellen.md#s24)).
+
+## M9-003 – Eigener Quellcodezugang fehlt auf der Lizenzseite; Buildlink führt ins Leere
+
+**Stand dieser Empfehlung:** Produkt-/Buildlink und Source-Binary-Zuordnung weiter abzusichern.
+
+**Historischer M12-Vermerk (cd556d1, keine neue Messung):** Eigenes Repo existiert öffentlich; Produktlink und relativer Buildlink defekt. Source-Binary-Identität ungeklärt, kein abschließendes Rechtsurteil.
+
+### Konkrete Eingriffs- und Prüfstellen
+
+- [apps/web/src/LicensePage.tsx:59](<C:/Projekte mit ChatGPT/commietools/apps/web/src/LicensePage.tsx:59>) — Anker: „export“.
+- [licenses/artifacts.json:10](<C:/Projekte mit ChatGPT/commietools/licenses/artifacts.json:10>) — Anker: „build“.
+- [crates/pdf-signer-wasm/README.md:1](<C:/Projekte mit ChatGPT/commietools/crates/pdf-signer-wasm/README.md:1>) — Anker: „#“.
+- [scripts/license-audit.mjs:224](<C:/Projekte mit ChatGPT/commietools/scripts/license-audit.mjs:224>) — Anker: „function notices“.
+
+### Dauerhafte Lösung
+
+Ein Release-Metadatensatz verbindet ausgelieferte Apprevision, eigenen öffentlichen Quellcodezugang, AGPL-Text, vollständige Bauanleitung und Binärmanifest. Sichtbarer Projektlink auf /licenses, Buildlinks als absolute revisionsgebundene Repository-URLs oder tatsächlich mitgelieferte Dokumente. Onlinearchive passend zur ausgelieferten Revision erhalten; nötige Bauquellen/-skripte mitliefern. Offline mindestens Lizenztexte, Versionsdaten und Hinweise anzeigen, nicht Offlinezugang zum gesamten externen Git-Repository versprechen. Lizenzpflichten im Zweifelsfall fachkundig prüfen lassen.
+
+### Abnahme
+
+Jeden Produktlink aus gebauter App öffnen: richtige Ressource/Inhalt statt SPA-HTML mit Status 200. Revisionsvergleich und Hashzuordnung prüfen; unabhängiger sauberer Nachbau nach Anleitung.
+
+### Nicht tun / Abgrenzung
+
+Kein bloßer Link auf wechselndes main, keine Behauptung AGPL-konform nur aufgrund eines sichtbaren Links. Ein fehlender Produktlink bedeutet nicht, dass es kein öffentliches Repository gibt.
+
+### Verifizierte Grundlage
+
+[S06 · GNU: AGPLv3, §§1, 6, 13](<https://www.gnu.org/licenses/agpl-3.0.html>) ([Prüfvermerk](02-quellen.md#s06)); [S07 · Reproducible Builds: Definition](<https://reproducible-builds.org/docs/definition/>) ([Prüfvermerk](02-quellen.md#s07)).
+
+## M9-004 – Bekannte lopdf-Parser-Schwachstelle im dokumentierten Signaturpfad
+
+**Stand dieser Empfehlung:** Advisory am 06.10. erneut bestätigt; Binärbetroffenheit nicht experimentell bewiesen.
+
+**Historischer M12-Vermerk (cd556d1, keine neue Messung):** Öffentliche Advisory-Version und Quellpfad belegt; Binärwirkung nicht neu gebaut oder exploitiert. Abrufstand 05.10., keine frische Voll-CVE-Prüfung.
+
+### Konkrete Eingriffs- und Prüfstellen
+
+- [crates/pdf-signer-engine/Cargo.toml:39](<C:/Projekte mit ChatGPT/commietools/crates/pdf-signer-engine/Cargo.toml:39>) — Anker: „lopdf“.
+- [crates/pdf-signer-engine/Cargo.lock:889](<C:/Projekte mit ChatGPT/commietools/crates/pdf-signer-engine/Cargo.lock:889>) — Anker: „name = "lopdf"“.
+- [crates/pdf-signer-wasm/Cargo.lock:831](<C:/Projekte mit ChatGPT/commietools/crates/pdf-signer-wasm/Cargo.lock:831>) — Anker: „name = "lopdf"“.
+- [crates/pdf-signer-engine/src/sign.rs:289](<C:/Projekte mit ChatGPT/commietools/crates/pdf-signer-engine/src/sign.rs:289>) — Anker: „Document::load“.
+- [crates/pdf-signer-engine/src/verify.rs:227](<C:/Projekte mit ChatGPT/commietools/crates/pdf-signer-engine/src/verify.rs:227>) — Anker: „Document::load“.
+- [package.json:15](<C:/Projekte mit ChatGPT/commietools/package.json:15>) — Anker: „m7:build“.
+
+### Dauerhafte Lösung
+
+Bevorzugt kompatibles Update auf eine aktuell geprüfte lopdf-Version mit Fix mindestens 0.42.0; Änderungen seit 0.36 durch Compiler-, Parser-, Signatur- und Interoptests abarbeiten. Falls das nicht zeitnah tragfähig ist: klar begründeter Upstream-Fix-Backport mit Referenz, eigener Version und geplantem Ablösezeitpunkt. Beide Lock-/Manifestpfade konsistent halten. WASM mit festgelegtem Rust- und wasm-bindgen-Stand neu bauen; R1-Lizenz-/Herkunftsnachweise im selben Paket erneuern. Parserressourcen begrenzen, Job in kündbarem Worker isolieren.
+
+### Abnahme
+
+Harmloses Grenzkorpus für unterstützte Nesttiefe liefert Erfolg bzw. kontrollierten Fehler; gültige PDFs bleiben verarbeitbar. Signatur-/Entschlüsselungskorpus vor/nach Update vergleichen. Advisoryscan auf effektiven Ziel-/Featurestand und neu gebautes Artefakt beziehen.
+
+### Nicht tun / Abgrenzung
+
+Worker, Dateigrößenlimit oder catch_unwind sind kein Ersatz für Parserfix. Keine Absturz-PoC im Nutzerbrowser; kein Reparaturnachweis nur durch Editieren von Cargo.toml.
+
+### Verifizierte Grundlage
+
+[S03 · RustSec: RUSTSEC-2026-0187, Originaladvisory](<https://raw.githubusercontent.com/rustsec/advisory-db/main/crates/lopdf/RUSTSEC-2026-0187.md>) ([Prüfvermerk](02-quellen.md#s03)); [S04 · Cargo Book: cargo metadata](<https://doc.rust-lang.org/cargo/commands/cargo-metadata.html>) ([Prüfvermerk](02-quellen.md#s04)); [S07 · Reproducible Builds: Definition](<https://reproducible-builds.org/docs/definition/>) ([Prüfvermerk](02-quellen.md#s07)); [S08 · EU DSS: Validierungsdokumentation](<https://ec.europa.eu/digital-building-blocks/DSS/webapp-demo/doc/dss-documentation.html>) ([Prüfvermerk](02-quellen.md#s08)).
+
+## M6-003 – Signaturbericht nennt bei veränderter Datei zugleich „Änderung: Keine“
+
+**Stand dieser Empfehlung:** Klassifikation im aktuellen Rust-Wrapper unverändert.
+
+**Historischer M12-Vermerk (cd556d1, keine neue Messung):** Manipulierte Signatur korrekt ungültig, zusätzliche Änderungsklassifikation widersprüchlich; kein falscher Gültigkeitsentscheid belegt.
+
+### Konkrete Eingriffs- und Prüfstellen
+
+- [crates/pdf-signer-wasm/src/lib.rs:38](<C:/Projekte mit ChatGPT/commietools/crates/pdf-signer-wasm/src/lib.rs:38>) — Anker: „fn modification_kind“.
+- [packages/tools/src/pdf/m7.ts:1](<C:/Projekte mit ChatGPT/commietools/packages/tools/src/pdf/m7.ts:1>) — Anker: „PdfSignatureVerification“.
+- [apps/web/src/tools/PdfCertificateTools.tsx:79](<C:/Projekte mit ChatGPT/commietools/apps/web/src/tools/PdfCertificateTools.tsx:79>) — Anker: „report.modificationKind“.
+- [packages/tools/src/pdf/m7/locales/de.ts:2](<C:/Projekte mit ChatGPT/commietools/packages/tools/src/pdf/m7/locales/de.ts:2>) — Anker: „modification“.
+
+### Dauerhafte Lösung
+
+Bericht in unabhängige Dimensionen gliedern: kryptographische Integrität, Abdeckung der Revision, weitere Revisionen, Vertrauen, ermittelte Änderungsart. Ein intaktes ByteRange-Ende ist kein Beweis unveränderter signierter Bytes. Bei fehlgeschlagener Integrität darf modificationKind niemals eine sichere Unverändert-Aussage erzeugen; unbekannt/Integritätsverletzung darstellen. None nur für belegte Integrität ohne weitere Revision. Bestehende Byte-Substring-Heuristiken als Hinweise kennzeichnen, nicht als belastbare semantische PDF- oder PAdES-Klassifizierung. Rust-DTO, TS-Typ und de/en/es synchron ändern.
+
+### Abnahme
+
+Gültig/unverändert, manipulierte signierte Bytes ohne Zusatzrevision, zusätzliche Signatur, Annotation, DSS-Ergänzung, unbekannte Änderung und keine Signatur tabellarisch prüfen. Kombinierte UI-Aussagen und DTO-Invarianten testen; Referenzurteile lokal mit unabhängigem Validator vergleichen.
+
+### Nicht tun / Abgrenzung
+
+Nicht nur die deutsche Zeichenkette Keine umbenennen; kein Vertrauen-/Rechtsgültigkeitsversprechen aus mathematischem Erfolg.
+
+### Verifizierte Grundlage
+
+[S08 · EU DSS: Validierungsdokumentation](<https://ec.europa.eu/digital-building-blocks/DSS/webapp-demo/doc/dss-documentation.html>) ([Prüfvermerk](02-quellen.md#s08)); [S33 · TypeScript: Exhaustiveness checking](<https://www.typescriptlang.org/docs/handbook/2/narrowing.html#exhaustiveness-checking>) ([Prüfvermerk](02-quellen.md#s33)).

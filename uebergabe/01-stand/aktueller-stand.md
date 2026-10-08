@@ -597,3 +597,39 @@ Zahlen sind Momentaufnahmen. Nach Abhängigkeits-, Test- oder Tooländerungen m�
 - umfassende automatisierte Barrierefreiheitstests
 - **nicht belegt:** Firefox-Verhalten des Auskoppelns (geckodriver fehlt) und Überbreiten-Freiheit
   bei 1920/1366/1024/768 px — geprüft ist bisher nur 320 px durch `npm run viewport:check`
+
+## Nachtrag 2026-10-08 — MS0 / unabhängige Nachprüfung (Codex)
+
+Die bisherigen Sanierungshäkchen beschreiben die erste Runde. Der aktuelle fachliche Stand ist
+**33 B / 16 R / 9 F / 1 O** über 59 Karten, also **26 offen**; keine neue Veröffentlichung
+aus der Nachprüfung ableiten. Maßgebliche Fortschrittsübersicht bleibt der datierte Nachtrag in
+`00-einstieg/vorgehen-qm-audit.md`.
+
+Thomas hat mit „Ms0 go“ die lokale Umfangs-/Belegarbeit beauftragt. Unter
+`07-pruefung/fertigstellung/2026-10-08-ms0/` sind alle Originalabnahmen und Abgrenzungen,
+Nachprüfungsgrenzen und D/E-Kriterien gesammelt; 23 Textquellen sind mit Hash eingefroren.
+Die neun F-Karten sind wieder geöffnet. Keine Produktreparatur oder neue Freigabe in MS0.
+Prüfrollen und Milestone-Fenster sind geplant; tatsächliche Personen-/Geräte-/Zugangsbuchungen
+bleiben offen (OP-066). Fortsetzung MS1–MS7 ist als OP-065 geführt.
+
+Die frühere Aussage „Handwerk A–D ohne schriftliches Kriterium“ wird für D eingegrenzt:
+`06-protokolle/2026-10-06-welle-d-plan.md` enthält vor dem Bau festgelegte Kriterien.
+Die aktuellen Kennungen lauten `inspection`, `photo-caption`, `handover-report`; die fünf
+E-Werkzeuge sind `threads`, `lighting`, `heatload`, `pipes`, `cable`.
+
+Beleg: neue MS0-Sitzungsübergabe und `node scripts/belege/fertigstellung-basis.mjs`.
+MS0 ist wegen offener externer Reservierung organisatorisch noch nicht vollständig abgenommen.
+
+## Nachtrag 2026-10-08 — MS1–MS7 umgesetzt, Abnahmen getrennt geführt
+
+Die Fortsetzung ist ausdrücklich vollständig beauftragt, einschließlich Pauschalfreigabe und
+Vollzugriff. Lokale Lizenz-, Async-/URL-, Sprach-, Menü-, Offline-/OCR-, QPDF-/Signatur- und
+Workflow-Reparaturen sind ausgeführt. Root-Check/Bau, echte Browserwirkungen, Gegenproben,
+65-Routen-Grundmatrix und frischer Clone mit bytegleichem Signatur-WASM wurden geprüft.
+Details und konkrete Grenzen: [Belegpaket](../07-pruefung/fertigstellung/2026-10-08-ms1-ms7/README.md).
+
+Die bisherige Aussage „keine Produktreparatur“ beschreibt ausschließlich MS0. Heute besteht
+ein prüfbarer lokaler Kandidat. Keine unabhängige A2, Konto-/Geräte-/Fachabnahme oder neue
+Veröffentlichung behauptet. Öffentliche Header gehören noch zum vorherigen Stand; dessen CSP
+erlaubt das lokale WASM/OCR-Verhalten nicht. Fortschritt und alle 26 Restverträge stehen im
+datieren Leitfadennachtrag; er bleibt die einzige laufende Kartenübersicht.

@@ -1,0 +1,118 @@
+# Welle D — Werkzeuge 19 und 20 (Foto-Beschrifter, Abnahme- und Mängelprotokoll)
+
+**Datum:** 2026-10-06 · **Bearbeiter:** Faber · **Status:** abgeschlossen (Welle D damit vollständig)
+
+Grundlage: `2026-10-06-welle-d-plan.md` (Umfang und Abnahmekriterien **vor** der Umsetzung notiert).
+Werkzeug 23 (Prüffristen) siehe `2026-10-06-welle-d-01-prueffristen.md`.
+
+## 1. Werkzeug 19 — Baustellenfoto-Beschrifter (`photo-caption`)
+
+Fotos lokal mit Aufnahmezeit, Notiz und einem Pfeil auf die entscheidende Stelle beschriften; je Foto
+eine Datei und dazu ein Sammel-PDF. Alles im Gerät, kein Upload.
+
+**Wiederverwendet statt neu gebaut:** der eigene Exif-Leser des Projekts (`image/metadata`),
+`imagesToPdf()` aus `pdf/core` (dieselbe Engine wie „Bilder zu PDF"), `SaveFileControl`. **Keine neue
+Abhängigkeit.**
+
+### Abnahmekriterien — geprüft
+
+| Kriterium | Ergebnis | Beleg |
+|---|---|---|
+| 1. Zeitstempel aus den Exif-Daten eines **echten Fremdfotos** | erfüllt | `C:\Windows\Web\touchkeyboard\TouchKeyboardThemeDark003.jpg` (Windows-Systemdatei, nicht von uns geschrieben) → Werkzeug liest `2021-04-09 09:39` |
+| 2. PDF mit unabhängigem Betrachter zu öffnen, Reihenfolge stimmt | erfüllt | 3 Seiten, 3 eingebettete Bilder, A4 595×842, gelesen mit `pdf-lib`; Reihenfolge = Reihenfolge der Liste |
+| 3. Originalbild bleibt unverändert | erfüllt | Pixelvergleich Original ↔ Ergebnis: **0 abweichende Punkte oberhalb der Textleiste**; Prüfsummen der Quelldateien vor/nach dem Lauf gleich |
+| 4. Speichergrenze **gemessen** | erfüllt, siehe unten | `speicher.txt` |
+| 5. Kein Netzverkehr; Prüfläufe grün; drei Sprachen | erfüllt | 23 Anfragen, **0 an fremde Hosts**, 0 Seitenfehler; `lint`/`check`/`build`/`a11y:check` (hell **und** dunkel)/`viewport:check` grün |
+
+### Speichermessung (Edge kopflos, 1360×1100)
+
+Gemessen wurde die **Arbeitsmenge der Browserprozesse** (nicht der JS-Speicher: die dekodierten
+Bilddaten liegen außerhalb davon — die erste Messung über `performance.memory` war deshalb
+wertlos und ist als Irrweg notiert).
+
+| Fotos | Bildpunkte | Dauer | Zuwachs | Ergebnis |
+|---|---|---|---|---|
+| 12 × 12 MP | 144 MP | 6,7 s | +701 MB | fertig |
+| 24 × 12 MP | 288 MP | 9,5 s | +487 MB | fertig |
+| 60 × 12 MP | 720 MP | 15,5 s | +317 MB | fertig |
+| 24 × 48 MP | 1152 MP | 22,5 s | +540 MB | fertig |
+
+**Ehrlich dazu:** Eine **Bruchgrenze wurde nicht gefunden.** Auch der größte geprüfte Fall (24 Fotos
+mit 48 Megapixeln) lief ohne Fehler durch. Die Obergrenze von 60 Fotos im Werkzeug ist damit eine
+bewusste Schranke, **keine** gemessene Grenze — der Plan hatte eine solche Messung verlangt, sie
+liefert aber keinen Bruch. Die Bilder werden nacheinander verarbeitet, damit nie die ganze Serie
+gleichzeitig als Bildfläche im Speicher liegt.
+
+### Was die Prüfung an **eigenen** Fehlern gefunden hat
+
+1. **Zeitquelle falsch benannt.** Die Rückfallkette suchte `DateTime`, der eigene Leser vergibt aber
+   `ModifyDate` (Tag 0x0132). Aufgefallen ist das **erst am echten Foto** — das in Photoshop
+   bearbeitete Windows-Bild hat nur `ModifyDate`, mein selbstgebautes Testfoto hatte
+   `DateTimeOriginal`. Korrigiert; die Herkunft wird jetzt mitgegeben und benannt („Änderungsdatum
+   der Datei — nicht zwingend die Aufnahmezeit"), weil beides nicht dasselbe ist.
+2. **Falsche Annahme über den eigenen Leser.** Mein Test erwartete die rohe Exif-Schreibweise
+   (`2026:10:05 14:22:07`); der Leser liefert bereits ISO (`2026-10-05 14:22:07`). Der Test prüfte
+   meine Annahme, nicht die Wirklichkeit. Beide Formen werden jetzt angenommen, der Test nennt die
+   belegte Form.
+3. **Dateiendung fest auf `.jpg`.** Bei PNG-Ausgabe hieß die Datei `…-beschriftet.jpg`, enthielt aber
+   PNG-Daten. Nur durch einen Pixelvergleich aufgefallen.
+4. **Pfeil zu dünn** — nur im Belegbild zu sehen, nicht durch die Prüfläufe. Jetzt kräftiger und mit
+   weißer Unterlage, damit er auf dunklen Bildstellen sichtbar bleibt.
+5. **Eigener Belegfehler:** Der Speicher-Dialog ist im kopflosen Browser nicht bedienbar; der
+   Download-Ordner war zwischen zwei Läufen nicht geleert, wodurch „neue Dateien" leer blieb.
+
+## 2. Werkzeug 20 — Abnahme- und Mängelprotokoll (`handover-report`)
+
+Formular für Übergaben und Mängel, Unterschrift vor Ort, Fotos eingebettet, PDF-Ausgabe;
+Gewährleistungsfristen werden **gerechnet**, nicht behauptet.
+
+### Abnahmekriterien — geprüft
+
+| Kriterium | Ergebnis | Beleg |
+|---|---|---|
+| 1. **Ein** gemeinsamer Unterschriften-Baustein, zweite Fassung entfernt | erfüllt | `apps/web/src/tools/SignaturePad.tsx` neu; in `PdfPlacementTools.tsx` sind Typ, Komponente und `canvasPng` **entfernt** und werden von dort importiert (im Commit-Diff sichtbar) |
+| 2. Fristen stimmen gegen nachgerechnete Fälle | erfüllt | 5 Jahre → 2031-10-06, 4 Jahre → 2030-10-06 (Browser und Test gleich); Schalttag: 2028-02-29 + 4 Jahre = **2032-02-29**, + 5 Jahre = 2033-02-28; Jahreswechsel 2026-12-31 → 2031-12-31 / 2030-12-31 |
+| 3. PDF öffnet sich, enthält Zeilen, Fotos und Unterschriften | erfüllt | 3 Seiten, 3 eingebettete Bilder (1 Foto + 2 Unterschriften), A4, gelesen mit `pdf-lib` |
+| 4. Leere Pflichtfelder und fehlende Unterschrift werden **gemeldet**, nicht still erzeugt | erfüllt | Lauf **ohne** Unterschrift: Hinweis „Es ist keine Unterschrift erfasst …" erscheint, PDF wird trotzdem erzeugt, Unterschriftsseite leer. Blockierende Fehler (kein Objekt, keine Mängelzeile, ungültiges Datum) verhindern die Erzeugung |
+| 5. Prüfläufe grün, drei Sprachen | erfüllt | `lint`/`check`/`build`/`a11y:check` (hell+dunkel, im dunklen Schema 1 **akzeptierte** Markenfarbe-Ausnahme)/`viewport:check` (320 px) grün |
+
+### Unterschriften im Beleg
+
+Die Unterschriften wurden mit **echten Zeigereignissen** gezogen (CDP-Eingabe, nicht gefälschte
+`PointerEvent`s — die scheitern an `setPointerCapture` und zeichnen nichts). Danach wurde die Tinte
+auf der Zeichenfläche **gemessen**: 2546 bzw. 2587 gefärbte Punkte. Der erste Versuch zeichnete
+nichts, weil die Flächen außerhalb des sichtbaren Bereichs lagen (Zeigerkoordinaten sind
+Bildschirmkoordinaten) — behoben durch Scrollen ins Bild.
+
+### Rechtsgrenze
+
+Die Fristen sind im Werkzeug sichtbar als **Rechtsanwendung, nicht Rechtsberatung** gekennzeichnet,
+mit dem Hinweis, dass der Vertrag entscheidet, ob BGB oder VOB/B gilt. Angegeben sind BGB § 634a
+Abs. 1 Nr. 2 (fünf Jahre bei einem Bauwerk) und VOB/B § 13 Abs. 4 Nr. 2 (vier Jahre, wenn VOB/B
+vereinbart ist). **Hinweis zur Herkunft:** Diese beiden Fundstellen stammen aus dem Plan zum Werkzeug
+und wurden in dieser Sitzung **nicht** erneut gegen den Gesetzestext geprüft — die Zahlen sind
+geläufig, die Prüfung steht aber aus, wenn sie als Rechtsquelle zitiert werden sollen.
+
+## 3. Arbeitsteilung
+
+Der PDF-Erzeuger (`packages/tools/src/pdf/report.ts`, Kopf/Mängeltabelle/Fotos/Unterschriften/
+Fußzeile, mit Test `apps/web/src/handover-pdf.test.ts`) wurde an einen Unterauftragnehmer
+ausgelagert, weil er eine klar umrissene Schnittstelle hat. Die Oberfläche habe ich dagegen geprüft,
+indem ich **ihn durch das Werkzeug geschickt habe** (Browser-Beleg), nicht durch sein eigenes Urteil.
+
+## 4. Prüfstand am Ende
+
+- `npm run lint` grün · `npm run check` **497 Tests in 34 Dateien** grün
+- `npm run build` grün · Katalog **57 Werkzeuge**, 3 Sprachen, 57 Symbole, 100 Dateitypen
+- `a11y:check` und `viewport:check` für beide neuen Routen grün (320/390/1360 px)
+- Belege: `screenshots/2026-10-06-welle-d-fotobeschrifter/` und `screenshots/2026-10-06-welle-d-protokoll/`
+  (Aufnahme, Belegtext, Speichermessung, Beispiel-PDF, Beispielbild)
+
+## 5. Offen
+
+- **Nicht gepusht** (wie die ganze Reihe; Push ist eine eigene Entscheidung).
+- Werkzeug 20 bietet **keine** Speicherung des Entwurfs (kein `idb-keyval`) — anders als Prüffristen.
+  Bewusst: ein Protokoll wird erzeugt und abgelegt, nicht im Browser gesammelt. Falls ein Entwurf
+  über ein Neuladen erhalten bleiben soll, ist das eine eigene Entscheidung mit eigener Abnahme.
+- Werkzeug 19 gibt die Einzelbilder als JPEG **oder** PNG aus, das Sammel-PDF immer als JPEG
+  (kleinere Datei). Das ist in den Annahmen des Werkzeugs benannt.

@@ -26,7 +26,7 @@ export const handoverEs = {
   'tool.handover.clearSignature': 'Borrar la firma',
   'tool.handover.warranty': 'Plazos de garantía',
   'tool.handover.warrantyBgb': 'Código Civil alemán § 634a (1) n.º 2 (edificio), 5 años',
-  'tool.handover.warrantyVob': 'VOB/B § 13 (4) n.º 2 (si se ha pactado), 4 años',
+  'tool.handover.warrantyVob': 'VOB/B § 13 (4) n.º 1 (si se ha pactado), 4 años',
   'tool.handover.warrantyHint': 'Contados desde la fecha de recepción. Si se aplica el código civil o el VOB/B lo decide el contrato; esta herramienta no lo conoce.',
   'tool.handover.disclaimer': 'Estos plazos son aplicación del derecho, no asesoramiento jurídico.',
   'tool.handover.action': 'Generar el PDF',
@@ -53,6 +53,6 @@ export const handoverEs = {
   'tool.handover.error.tooManyPhotos': 'Demasiadas fotos (12 como máximo).',
 
   'tool.handover.assumptions': 'Supuestos: el PDF se construye con lo introducido; no se añade ni se inventa nada. Las líneas **sin descripción** se descartan en lugar de aparecer como fila vacía. Un plazo vacío es admisible (plazo aún abierto); si hay plazo, debe ser una fecha existente. Si falta una firma se avisa y la página de firmas queda vacía. **No incluido:** plazos según otros contratos, suplementos, editar fotos, envío por correo. Las fotos se incrustan tal como se entregan.',
-  'tool.handover.sources': 'Fechas: la lógica de fechas del proyecto (`calculator/dates`, Temporal), la misma que en «Calcular plazo». Plazos: Código Civil alemán § 634a (1) n.º 2 (cinco años para un edificio) y VOB/B § 13 (4) n.º 2 (cuatro años si se pacta el VOB/B). PDF: el motor PDF ya presente en el proyecto. Sin transmisión y sin biblioteca ajena para el formulario.',
+  'tool.handover.sources': 'Fechas: la lógica de fechas del proyecto (`calculator/dates`, Temporal), la misma que en «Calcular plazo». Plazos: Código Civil alemán § 634a (1) n.º 2 (cinco años para un edificio) y VOB/B § 13 (4) n.º 1 (cuatro años si se pacta el VOB/B). PDF: el motor PDF ya presente en el proyecto. Sin transmisión y sin biblioteca ajena para el formulario.',
   'tool.handover.formula': 'Supuestos y fuentes'
 } as const

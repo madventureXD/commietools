@@ -1,0 +1,60 @@
+{
+  "checkedAt": "2026-10-08T10:09:57.218Z",
+  "github": {
+    "credentialAvailable": true,
+    "repos/madventureXD/commietools": {
+      "status": 200,
+      "permissions": {
+        "admin": true,
+        "maintain": true,
+        "push": true,
+        "triage": true,
+        "pull": true
+      },
+      "defaultBranch": "main",
+      "private": false
+    },
+    "repos/madventureXD/commietools/actions/runs?per_page=3": {
+      "status": 200,
+      "runs": []
+    },
+    "repos/madventureXD/commietools/branches/main/protection": {
+      "status": 200,
+      "requiredChecks": [
+        "Releasepflicht"
+      ],
+      "enforceAdmins": true
+    },
+    "repos/madventureXD/commietools/rulesets": {
+      "status": 200,
+      "rulesets": []
+    },
+    "repos/madventureXD/commietools/actions/permissions": {
+      "status": 200,
+      "enabled": true,
+      "allowedActions": "all"
+    }
+  },
+  "cloudflare": {
+    "credentialAvailable": false,
+    "standardWranglerCredentialFiles": [
+      {
+        "standardLocation": "APPDATA/xdg.config/wrangler/config/default.toml",
+        "exists": false
+      },
+      {
+        "standardLocation": "USERPROFILE/.config/wrangler/config/default.toml",
+        "exists": false
+      },
+      {
+        "standardLocation": "USERPROFILE/.wrangler/config/default.toml",
+        "exists": false
+      }
+    ]
+  },
+  "nativeWindows": {
+    "attempt": "Computer Use sky.launch_app for installed Edge; subsequent fresh list_windows",
+    "result": "GetCursorPos failed: Zugriff verweigert (0x80070005); no Edge window returned",
+    "scope": "No native picker, actual zoom or screen-reader PASS can be derived from the headless browser tests"
+  }
+}

@@ -1,0 +1,167 @@
+{
+  "retrievedAt": "2026-10-08T08:24:41.770Z",
+  "source": "https://google.github.io/osv.dev/api/",
+  "scope": "All registry packages in both exact locks, including dev/optional packages; superset of reachable browser graph",
+  "packages": 296,
+  "locks": [
+    {
+      "path": "crates/pdf-signer-engine/Cargo.lock",
+      "sha256": "4d1ef7d5dd9fb56bdd35186add3c9f4b31ff55629a20365a79a72caf046afd34"
+    },
+    {
+      "path": "crates/pdf-signer-wasm/Cargo.lock",
+      "sha256": "a01a62b5c6835fcea10089a2ca121e2b2c7d38eae51753ce762e00987ac38f9c"
+    }
+  ],
+  "hits": [
+    {
+      "package": {
+        "name": "rsa",
+        "version": "0.9.10",
+        "locks": [
+          "crates/pdf-signer-engine/Cargo.lock",
+          "crates/pdf-signer-wasm/Cargo.lock"
+        ]
+      },
+      "id": "RUSTSEC-2023-0071",
+      "aliases": [
+        "CVE-2023-49092",
+        "GHSA-4grx-2x9w-596c",
+        "GHSA-c38w-74pg-36hr"
+      ],
+      "summary": "Marvin Attack: potential key recovery through timing sidechannels",
+      "modified": "2026-09-14T09:45:02.996132556Z",
+      "affected": [
+        {
+          "package": {
+            "name": "rsa",
+            "ecosystem": "crates.io",
+            "purl": "pkg:cargo/rsa"
+          },
+          "ranges": [
+            {
+              "type": "SEMVER",
+              "events": [
+                {
+                  "introduced": "0.0.0-0"
+                }
+              ]
+            }
+          ],
+          "ecosystem_specific": {
+            "affected_functions": null,
+            "affects": {
+              "functions": [],
+              "arch": [],
+              "os": []
+            }
+          },
+          "database_specific": {
+            "cvss": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:N/A:N",
+            "source": "https://github.com/rustsec/advisory-db/blob/osv/crates/RUSTSEC-2023-0071.json",
+            "informational": null,
+            "categories": [
+              "crypto-failure"
+            ]
+          }
+        }
+      ],
+      "references": [
+        {
+          "type": "PACKAGE",
+          "url": "https://crates.io/crates/rsa"
+        },
+        {
+          "type": "ADVISORY",
+          "url": "https://rustsec.org/advisories/RUSTSEC-2023-0071.html"
+        },
+        {
+          "type": "REPORT",
+          "url": "https://github.com/RustCrypto/RSA/issues/626"
+        },
+        {
+          "type": "REPORT",
+          "url": "https://github.com/RustCrypto/RSA/issues/19#issuecomment-1822995643"
+        },
+        {
+          "type": "WEB",
+          "url": "https://people.redhat.com/~hkario/marvin/"
+        },
+        {
+          "type": "WEB",
+          "url": "https://github.com/RustCrypto/RSA/pull/394"
+        },
+        {
+          "type": "WEB",
+          "url": "https://github.com/RustCrypto/RSA/pull/680"
+        },
+        {
+          "type": "WEB",
+          "url": "https://github.com/RustCrypto/RSA/pull/702"
+        }
+      ]
+    },
+    {
+      "package": {
+        "name": "ttf-parser",
+        "version": "0.25.1",
+        "locks": [
+          "crates/pdf-signer-engine/Cargo.lock",
+          "crates/pdf-signer-wasm/Cargo.lock"
+        ]
+      },
+      "id": "RUSTSEC-2026-0192",
+      "aliases": [],
+      "summary": "`ttf-parser` is unmaintained",
+      "modified": "2026-06-29T21:15:04.384453633Z",
+      "affected": [
+        {
+          "package": {
+            "name": "ttf-parser",
+            "ecosystem": "crates.io",
+            "purl": "pkg:cargo/ttf-parser"
+          },
+          "ranges": [
+            {
+              "type": "SEMVER",
+              "events": [
+                {
+                  "introduced": "0.0.0-0"
+                }
+              ]
+            }
+          ],
+          "ecosystem_specific": {
+            "affected_functions": null,
+            "affects": {
+              "os": [],
+              "functions": [],
+              "arch": []
+            }
+          },
+          "database_specific": {
+            "informational": "unmaintained",
+            "source": "https://github.com/rustsec/advisory-db/blob/osv/crates/RUSTSEC-2026-0192.json",
+            "categories": [],
+            "cvss": null
+          }
+        }
+      ],
+      "references": [
+        {
+          "type": "PACKAGE",
+          "url": "https://crates.io/crates/ttf-parser"
+        },
+        {
+          "type": "ADVISORY",
+          "url": "https://rustsec.org/advisories/RUSTSEC-2026-0192.html"
+        },
+        {
+          "type": "REPORT",
+          "url": "https://github.com/harfbuzz/ttf-parser/issues/217"
+        }
+      ]
+    }
+  ],
+  "securityApproval": "not conferred by scan completion"
+}

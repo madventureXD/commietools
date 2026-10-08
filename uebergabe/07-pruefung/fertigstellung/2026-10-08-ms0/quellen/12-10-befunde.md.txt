@@ -1,0 +1,128 @@
+# Befunde der unabhängigen Nachprüfung
+
+Basis aller Orte: Repository `C:/Projekte mit ChatGPT/commietools`, HEAD `556159f58ac3beac3b6349851dae7326558b7fbb`. Vertrauen: hoch, sofern unten nicht eingeschränkt. **Keine Reparaturen durchgeführt.**
+
+## N1 — CI-Ereignis auf falscher Ebene
+
+Karte: M1-003. Schwere: **ernst**, Freigabesicherung.
+
+**Beobachtung:** `.github/workflows/quality.yml:38` führt `workflow_dispatch:` als Wurzelschlüssel neben `permissions` und `jobs`, nicht unter `on`. Die Kommentarzusage „Läuft von Hand gestartet“ entspricht damit nicht der Workflow-Syntax. Die drei Jobs sind vorhanden; daraus folgt aber kein funktionierender Freigabeschutz.
+
+**Beleg:** Datei lesen: `Get-Content .github/workflows/quality.yml`. [GitHubs offizielle Syntax](https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-syntax#onworkflow_dispatch), abgerufen 2026-10-07, definiert `on.workflow_dispatch`, nicht einen eigenständigen Wurzelschlüssel. **Kein eigener GitHub-Lauf** und kein Kontozugriff: Die konkrete externe Fehlermeldung ist nicht erhoben.
+
+**Deutung:** Ein YAML-/Schemastrukturfehler wurde von `npm run check` nicht erkannt. Selbst nach dessen Korrektur bleiben echte CI-Ausführung, erforderliche Statuschecks und SHA-Pinning offene Abnahmeschritte, nicht lokale Erfolgsmeldungen.
+
+**Vorschlag:** Trigger unter `on` einordnen; versionierten Workflow-Validator in den lokalen Prüfweg aufnehmen. Tags durch verifizierte Commit-SHAs ersetzen. Jobs tatsächlich ausführen und erst danach den Freigabeschutz mit erforderlichen Checks prüfen. Cloudflare-Veröffentlichung ausdrücklich an erfolgreichen Prüfstand koppeln; ein nachgelagerter Push-Workflow allein beweist keinen Deployment-Schutz.
+
+## N2 — Offene oder abweichende Rust-Lizenzentscheidung gilt als genehmigt
+
+Karte: M9-002; berührt Lieferabnahme M9-001/M9-003. Schwere: **blockierend für die Lizenz-Freigabesicherung**, kein festgestellter Rechtsverstoß.
+
+**Beobachtung:** `scripts/license-audit.mjs:325` und `:328` akzeptieren jeden Review-Eintrag mit passendem Namen und Version. `needsDecision`, tatsächlicher Lizenzausdruck und Begründungs-/Entscheidungsstatus werden nicht berücksichtigt. `licenses/rust-review.json` enthält **sieben** Einträge mit `needsDecision: true`; der reguläre Check meldet trotzdem acht „explicitly reviewed“ und besteht.
+
+**Beleg:** `node QM/80-nachpruefung-2026-10-07/gate-probe.mjs`. `gate-probe.json` hält die unveränderten Originalfunktionen fest, die mit isolierten JSON-Kopien ausgeführt werden:
+
+- Originaldaten → PASS.
+- Alle Ausnahmen entfernen → FAIL (positive Empfindlichkeitskontrolle).
+- `pdf_signer` bei gleichem Namen/Version auf `LicenseRef-Proprietary-Forbidden` ändern → **PASS**.
+- Sämtliche Ausnahmen als `needsDecision:true` markieren → **PASS**.
+
+**Deutung:** Das Gate prüft Eintragung, nicht Entscheidung. Die Mutation betrifft keine tatsächlich verbotene installierte Komponente; sie beweist eine Kontrolllücke. Eine ausdrücklich genehmigte enge GPL-Ausnahme darf nicht jede spätere Lizenzangabe derselben Paketversion erlauben.
+
+**Vorschlag:** Explizites, validiertes Entscheidungsmodell (pending/approved/rejected), genehmigten SPDX-Ausdruck und Komponentenidentität fest binden. Offene/abgelehnte Entscheidungen müssen fehlschlagen, sofern keine gesonderte dokumentierte Ausnahme vorliegt. Originalhinweis-Ausnahmen separat führen. Genau die beiden grünen Mutanten als rot erwartete Regressionen übernehmen. Vor Freigabe sieben offene Einträge entscheiden oder als echte Sperren führen.
+
+## N3 — Verspätetes Lesen einer PDF überschreibt jüngere Dateiauswahl
+
+Karte: M4-005. Schwere: **ernst**, falsche Arbeitsgrundlage.
+
+**Beobachtung:** `apps/web/src/tools/PdfSplit.tsx:70` erhöht beim Dateiwechsel die Generation, aber `selectFile` prüft sie nach `arrayBuffer()` / `inspectPdf()` nicht, bevor `setFile` in `:76` schreibt. Die Ergebnisverarbeitung ist geschützt; die **Eingangsverarbeitung** nicht.
+
+**Beleg:** `node QM/80-nachpruefung-2026-10-07/browser-probe.mjs`, eigener gebauten Preview an Port 4187. Synthetische A-PDF hat eine Seite, B zwei. Nur A-Dateilesen wird deterministisch aufgeschoben; B wird ausgewählt und vollständig geladen, dann A freigegeben. `browser-probe.log`:
+
+```text
+B selected while A is pending: fast-B.pdf2 Seiten
+A released after B has finished: slow-A.pdf1 Seiten
+runtimeErrors: []
+```
+
+Aufnahme: `pdf-file-race.png`. **Kein Timing-Raten**, keine Benutzerdatei, keine Produktmutation.
+
+**Deutung:** Der Benutzer arbeitet nach Auswahl B wieder auf A. Der vorhandene Abnahmelauf „laufender Splitauftrag“ deckt dieses zweite Rennen nicht ab. Auch verspätete Fehler können jüngere Eingaben löschen (`setFile(null)`).
+
+**Vorschlag:** Einheitlicher Auftragstoken für Lesen, Prüfen und Ergebnisverarbeitung; Eingangs-Snapshot beim Start festhalten, nach jedem relevanten Await nur den aktuellen Auftrag schreiben lassen. Neue Auswahl sofort sichtbar als ladend kennzeichnen und alte Aktionen sperren. Erfolg **und** Fehler nach A/B-Umkehr, Unmount und erneutem Auftrag testen. Nahe Dateilesepfade separat inventarisieren, nicht ohne Prüfung als gleich repariert behandeln.
+
+## N4 — Automatischer Menütest öffnet nicht das Menü
+
+Karte: M2-009; Restabnahmen M2-007/M7-002/M7-005 betroffen. Schwere: **ernst**, falsch positiver Prüfbeleg.
+
+**Beobachtung:** `scripts/viewport-audit.mjs:303` verwendet `button.tool-menu-open`. Das sind in `apps/web/src/ToolNavigation.tsx:174` die **Werkzeugeinträge**. Der Öffner heißt in `:197` `button.tool-menu-trigger`. Der modale Dialog ist geschlossen, enthält aber 62 unsichtbare Werkzeugeinträge im DOM.
+
+**Beleg:** Derselbe Browser-Beleg wie N3: vor Klick Dialog geschlossen, 62 Treffer des Prüfselektors, ein echter Öffner. Der **exakte Klick des Scanners** führt von `/tools/pdf-split` nach `/tools/pdf-merge`; der Dialog bleibt geschlossen. Erst Klick auf `.tool-menu-trigger` öffnet ihn. `browser-probe.log`, `menu-open-390.png`.
+
+Der Originalprüfer besteht zugleich **62 × 2 Breiten in beiden Themes** (`a11y-*-escalated.log`). Seine Zahlen `Menue=…` zählen die inzwischen sichtbare normale Seite, nicht die geöffnete Schublade. Die Grundzustandsmessungen werden dadurch nicht pauschal wertlos, die Menü-Aussagen jedoch schon.
+
+**Deutung:** Grüne Prüfung ohne Prüfung des versprochenen Zustands. Genau diese Art falscher Sicherheit war Gegenstand des ursprünglichen Auftrags.
+
+**Vorschlag:** Echten Öffner wählen; `dialog.open` **und** modalen Zustand vor Messung assertieren, Messung auf den Dialog begrenzen. Routenkonstanz assertieren. Menü intern schließen und Fokus-Rückkehr prüfen. Negativprobe mit unerreichbarem Öffner darf niemals grün sein. Alle Menü-/Kategorien-/Such-/Ergebniszustände erneut messen.
+
+## N5 — Gemeinsamer URL-Hook hat Seiteneffekte im State-Updater
+
+Karte: M4-009. Schwere: **klein**; reproduziertes Entwicklungs-Speicherleck, kein nachgewiesenes Produktionsleck in diesem Fall.
+
+**Beobachtung:** `apps/web/src/tools/resultUrl.ts:25–27` erzeugt und widerruft Blob-Adressen innerhalb des funktionalen `setUrl`-Updaters. Der Effekt widerruft alte Adressen nochmals. React verlangt reine Updater; StrictMode kann sie mehrfach ausführen.
+
+**Beleg:** `node QM/80-nachpruefung-2026-10-07/url-probe.mjs` bündelt den **unveränderten** Hook und führt zwei Setzungen mit anschließendem Unmount isoliert aus. `url-probe.log`:
+
+- Production: 2 erzeugte Adressen, 3 Widerrufe, alle erzeugten Adressen freigegeben (ein doppelter Widerruf).
+- Development + StrictMode: 4 erzeugte Adressen, 4 Widerrufsaufrufe, aber **nur zwei unterschiedliche erzeugte Adressen widerrufen — zwei bleiben offen**.
+
+**Deutung:** Aufrufzahlen allein wären hier ein falsch positiver Cleanup-Beleg. Es müssen die **Identitäten** gezählt werden. Die Bündelung ist sinnvoll, aber der neue zentrale Vertrag ist nicht lebenszyklussicher belegt. Der ursprüngliche PDF-Teiler-Cleanup wird damit nicht automatisch widerlegt.
+
+**Vorschlag:** Erstellung/Widerruf außerhalb des reinen State-Updaters, eindeutiger Eigentümer/Ref und Cleanup-Vertrag. Verhaltenstests statt nur Regex-Kopienprüfung: Ersetzung, Reset, mehrfacher Aufruf, StrictMode, Unmount und spätes Async-Ergebnis; offene URL-Menge muss null sein.
+
+[React: reine Updater und StrictMode](https://react.dev/reference/react/useState), abgerufen 2026-10-07.
+
+## N6 — Erstbesuch sichert Sprachpakete, aber nicht benutzte PDF-Abhängigkeiten
+
+Karten: M8-002 und M4-004. Schwere: **ernst**, Offline-Funktion und falsche Fehlermeldung.
+
+**Beobachtung:** `apps/web/src/pwaWarmCache.ts:23,67` wärmt ausschließlich Sprachpakete. In `apps/web/vite.config.ts` sind PDF-Module/Engines vom Precache ausgenommen und auf RuntimeCaching angewiesen. Ressourcen, die beim ersten Besuch **vor** SW-Kontrolle geladen wurden, laufen am Worker vorbei.
+
+**Beleg:** `node QM/80-nachpruefung-2026-10-07/offline-probe.mjs`. Frisches Profil, eigene Preview Port 4188; SW-Registrierung künstlich um 4,5 s verzögert (erlaubter Zustand eines langsamen ersten Starts), PDF-Teiler geöffnet und B vollständig geladen, danach SW-Kontrolle abgewartet. `offline-probe.log`:
+
+```text
+Before SW control: controlled=false, fast-B.pdf2 Seiten
+Before offline: controlled=true
+missing: /assets/PdfSplit-CGDIsGx0.js, /assets/pdf-YYBQA8p7.js
+Actual server stopped: true
+```
+
+HTTP-Cache gelöscht, CacheStorage behalten, **eigener Server tatsächlich beendet**, normaler Reload. Shell bleibt sichtbar, Werkzeug fehlt. Text: „Diese Programmfassung ist veraltet: Die Seite wurde inzwischen aktualisiert …“. Der Build hat sich **nicht** geändert. Aufnahme `offline-first-pdf.png`.
+
+**Deutung:** Rechner-Sprachpaketprobe ist nicht Offline-Abnahme aller bereits genutzten Werkzeuge. Der Fehlerweg verhindert inzwischen eine leere Seite, behauptet aber fälschlich ein Deploymentproblem. Die Heuristik `apps/web/src/tool-load-recovery.ts:32` erkennt allgemeine Import-Netzfehler als „veraltet“.
+
+**Vorschlag:** Bereits verwendete Tool-/Engineabhängigkeiten zusammen mit Sprachen nach SW-Kontrolle gezielt sichern und Cacheabschluss bestätigen, ohne alle Engines/Sprachen vorzuladen. Offlinebereitschaft pro Build/Sprache/Tool messen. Fehlende Offline-Ressource und nachweislich veralteten Chunk unterscheiden; bei unklarer Ursache neutrale, wahrheitsgemäße Meldung. Erstbesuch mit langsamem SW, Warmbesuch, Locale-/SW-Wechsel, fehlendes Paket und Quota getrennt testen.
+
+## N7 — PDF-Wirkungsprüfung bleibt außerhalb des normalen Freigabewegs
+
+Karte: M5-003. Schwere: **ernst**, bekannte Restforderung statt Abschluss.
+
+**Beobachtung:** `package.json:29` (`check`) und `.github/workflows/quality.yml` rufen keinen verlangten echten Signatur-/QPDF-Wirkungs- und Interoplauf auf. `apps/web/src/pdf-tools.test.ts:232` prüft Sicherheitsargumente, nicht tatsächliches Entsperren. Native Rust-Tests sind eine zusätzliche Schicht, kein Browser-WASM-/CSP-Nachweis. `scripts/m7-eu-dss-audit.mjs` gibt Ergebnisse aus, vergleicht sie nicht mit Sollurteilen und hängt nicht im Freigabeweg.
+
+**Beleg:** `uebergabe/00-einstieg/vorgehen-qm-audit.md:153` nennt „✓ erledigt, ein Rest offen“. `uebergabe/06-protokolle/2026-10-06-r4-pruef-und-freigabeschranken.md:55` belegt QPDF einmalig mit `work/`-Skripten und nennt den nicht integrierten Signaturkorpus ausdrücklich offen. Eigener `node scripts/m7-eu-dss-audit.mjs` läuft erfolgreich über 13 öffentliche PDFs; Resultat `m7-eu-dss-current.json`. Das ist reale Engineausführung, **kein automatisch sperrendes Erwartungsgate**.
+
+**Deutung:** Der Rest ist Kern der ursprünglichen Karte („normaler Releaseweg muss notwendige Enginejobs verlangen“), nicht optionaler Zusatz. Keine Behauptung derzeit falscher Signaturen: Die eigenen Korpus-Ergebnisse liefern hierzu keinen neuen positiven Kryptographiefehler.
+
+**Vorschlag:** Versioniertes Korpus mit getrennten Erwartungen für CMS-Integrität, Dokumentabdeckung, Mehrfachsignaturen und unsupported-Fälle. Tatsächlich ausgeführte Browser-WASM-/CSP-Wirkung (QPDF schützen/entsperren, korrekt/falsch Passwort, unveränderter Inhalt) und Signaturpfade in verlangte Releasejobs aufnehmen. Noop-Unlock, falsches positives Signatururteil, fehlende Fixture und Engine-Setupfehler müssen rot werden. Temporäre `work/`-Belege ersetzen, nicht bloß nochmals laufen lassen.
+
+## N8 — Sprachgate übersieht beschädigte Schnittstellentexte
+
+Karte: M3-009. Schwere: **ernst**, unvollständiger behaupteter Sprachvertrag.
+
+**Beobachtung:** `apps/web/src/language-contract.test.ts:83–92` prüft Unicode/Interpolation für Werkzeugtexte. Der Schnittstellen-/Suitenabschnitt `:104–114` prüft dagegen nur nichtleere Texte. Damit gilt der Unicodevertrag nicht über alle versprochenen Paketklassen.
+
+**Beleg:** `node node_modules/vitest/vitest.mjs run --config QM/80-nachpruefung-2026-10-07/language-mutant.config.mjs`. Nur der Loader-Eingang der unveränderten regulären Sprachtests wird im Speicher ersetzt: `save.fileName` enthält ein unpaariges Surrogat `Broken\uD800`. Eigene Kontrollassertion bestätigt `isWellFormed() === false`. Trotzdem bestehen **alle sechs Original-Sprachtests**, zusammen mit der Kontrolle **7/7**, Exit 0 (`language-mutant.log`). Keine Übersetzungsdatei verändert. **Nicht behauptet:** dass dieser synthetische Text derzeit im Produkt vorkommt oder dass die Mutation das gesamte Root-Gate durchlief.
+
+**Deutung:** Der neu eingeführte Qualitätsvertrag ist über Werkzeugtexte stärker als über UI-/Suitenpakete. Ein einzelner grüner Vertragslauf rechtfertigt nicht die pauschale Aussage, sämtliche Textklassen seien auf Unicode und Parameter geprüft.
+
+**Vorschlag:** Ein gemeinsamer Vertragsprüfer für Werkzeug-, gemeinsame Werkzeug-, UI- und Suitenwörterbücher: Schlüsselparität in beiden Richtungen, Platzhalternamen/-häufigkeit, Interpolationssyntax, Unicode/NFC und leere Texte. Den UI-Mutanten zusätzlich als Negativtest des **gesamten** Prüfwegs integrieren; dynamische Schlüsselverwendungen ausdrücklich abdecken.

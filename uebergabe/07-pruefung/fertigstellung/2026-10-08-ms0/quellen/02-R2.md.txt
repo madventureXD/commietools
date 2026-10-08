@@ -1,0 +1,202 @@
+# R2 – Ergebnisrichtigkeit und Exportgrenzen
+
+Priorität P1. Empfehlung, keine Umsetzung/Freigabe. Basis a041ee0efda6b07687b3586977bb0d90bf1c89a8.
+
+[Leseregeln und Reihenfolge](README.md) · [Architektur/Migration](01-architektur-und-migration.md) · [Abnahme](03-pruef-und-uebergabeplan.md)
+
+Zeilen beziehen sich auf die eingefrorene Basis. Vor Änderungen Hash/Anker gegen den aktuellen Stand vergleichen. Zielpfade sind bestehende Projektdateien; neu vorgeschlagene Dateien werden im Text ausdrücklich benannt. Quellbelege bestätigen Mechanismen/Standards, nicht bereits getestete Reparaturen.
+
+## M3-002 – Statistik liest lokalisierte Zahlen entgegen der Eingabeerklärung
+
+**Stand dieser Empfehlung:** Aktuell erneut reproduziert: nur ein Wert statt zwei.
+
+**Historischer M12-Vermerk (cd556d1, keine neue Messung):** Negative Kommazahl weiterhin verworfen; Punkt-Gegenkontrolle grün. Vorhandenen Überspringhinweis nicht unterschlagen.
+
+### Konkrete Eingriffs- und Prüfstellen
+
+- [packages/tools/src/calculator/statistics.ts:34](<C:/Projekte mit ChatGPT/commietools/packages/tools/src/calculator/statistics.ts:34>) — Anker: „export function parseNumbers“.
+- [apps/web/src/tools/Statistics.tsx:3](<C:/Projekte mit ChatGPT/commietools/apps/web/src/tools/Statistics.tsx:3>) — Anker: „summarise“.
+- [packages/tools/src/calculator/statistics/locales/de.ts:11](<C:/Projekte mit ChatGPT/commietools/packages/tools/src/calculator/statistics/locales/de.ts:11>) — Anker: „tool.statistics.field.data“.
+
+### Dauerhafte Lösung
+
+Statistikeingabe bekommt eine explizite Grammatik, unabhängig vom Ausdrucksparser. Vorschlag: Punkt ODER Komma als Dezimalzeichen eines vollständigen vorzeichenbehafteten Zahlentokens; Leerraum, Zeilenumbruch und Semikolon als Listentrenner. Die mehrdeutige Kommaliste 1,2 nicht erraten; falls kompatibel weiter erforderlich, separater Importmodus mit sichtbarer Trennzeichenwahl. Vollständige Tokenprüfung inklusive Exponent; ungültige Tokens mit Position melden und kein stilles Teilresultat erzeugen. Hilfetexte und Beispiele in allen Sprachen entsprechend ändern.
+
+### Abnahme
+
+-1,5 2,5 → n=2, Mittel=0,5; ebenso Punktzahlen, +Vorzeichen, -0, Exponenten. Leere Tokens, gemischte Gruppierung, 1,2,3 und Müll dürfen nicht unbemerkt verschwinden. UI-Fehlermeldung sowie Ergebnis prüfen.
+
+### Nicht tun / Abgrenzung
+
+Kein globales Komma-Ersetzen im mathjs-Ausdruck; gcd(12,18) muss gültig bleiben. Änderung des dokumentierten Importvertrags ausdrücklich abnehmen.
+
+### Verifizierte Grundlage
+
+[S09 · mathjs: Ausdrücke und Scope](<https://mathjs.org/docs/expressions/parsing.html>) ([Prüfvermerk](02-quellen.md#s09)); [S31 · MDN: Intl.NumberFormat.formatToParts](<https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/NumberFormat/formatToParts>) ([Prüfvermerk](02-quellen.md#s31)).
+
+## M4-001 – RPN verbindet formatierte Brüche ohne Klammern zu falschen Ausdrücken
+
+**Stand dieser Empfehlung:** Aktuell erneut reproduziert; latenter Fraction-Kernpfad, kein aktueller UI-Bruchmodus.
+
+**Historischer M12-Vermerk (cd556d1, keine neue Messung):** Bruchfehler im Kern weiterhin 1/6 statt 3/2; aktueller RPN-Bildschirm bietet den Bruchmodus nicht mehr an.
+
+### Konkrete Eingriffs- und Prüfstellen
+
+- [packages/tools/src/calculator/core.ts:399](<C:/Projekte mit ChatGPT/commietools/packages/tools/src/calculator/core.ts:399>) — Anker: „export function evaluateRpn“.
+- [apps/web/src/calculator-core.test.ts:2](<C:/Projekte mit ChatGPT/commietools/apps/web/src/calculator-core.test.ts:2>) — Anker: „evaluateRpn“.
+- [uebergabe/04-entscheidungen/0006-voller-wert-und-genauigkeitsampel.md:15](<C:/Projekte mit ChatGPT/commietools/uebergabe/04-entscheidungen/0006-voller-wert-und-genauigkeitsampel.md:15>) — Anker: „raw“.
+
+### Dauerhafte Lösung
+
+RPN-Operanden nicht als ungeschützte Anzeigestrings zu Ausdrücken konkatenieren. Im Rechenkern typisierte Werte bzw. kontrollierte Scope-Bindungen verwenden; Binäroperatoren über eine explizite erlaubte Operatorliste dispatchen. Übergangsadapter darf jedes Operand vollständig klammern, ist aber nicht das endgültige Doppelmodell. Bestehenden 14-Stellen-Weiterrechenvertrag beachten: typisierter Speicher allein darf nicht still höhere Folgepräzision einführen; Quantisierung nur an der vereinbarten Weiterrechengrenze. Brüche im Fraction-Pfad bleiben Werte, nicht syntaktische Fragmente.
+
+### Abnahme
+
+['1','2','/','1','3','/','/'] im Fraction-Modell → 3/2; zusätzlich negative Brüche, Multiplikation, Potenzen, unäre Operationen, Underflow/Reststapel. Positive normale Rechnungen unverändert.
+
+### Nicht tun / Abgrenzung
+
+Keine Wiedereinführung des entfernten UI-Bruchmodus; keine Präzisionspolitikänderung unter dem Namen Fehlerbehebung.
+
+### Verifizierte Grundlage
+
+[S09 · mathjs: Ausdrücke und Scope](<https://mathjs.org/docs/expressions/parsing.html>) ([Prüfvermerk](02-quellen.md#s09)); [S10 · mathjs: BigNumbers](<https://mathjs.org/docs/datatypes/bignumbers.html>) ([Prüfvermerk](02-quellen.md#s10)).
+
+## M4-002 – Anzeige-Nullschwelle vernichtet auch Rohwert und Genauigkeitsvergleich
+
+**Stand dieser Empfehlung:** Aktuell erneut reproduziert: full von 1e-14 ist 0.
+
+**Historischer M12-Vermerk (cd556d1, keine neue Messung):** 1e-14 im Vollwert weiterhin 0; gewöhnliche Fraction-Rechnung als positive Kontrolle korrekt.
+
+### Konkrete Eingriffs- und Prüfstellen
+
+- [packages/tools/src/calculator/core.ts:194](<C:/Projekte mit ChatGPT/commietools/packages/tools/src/calculator/core.ts:194>) — Anker: „function formatValue“.
+- [apps/web/src/calculator-ui.ts:58](<C:/Projekte mit ChatGPT/commietools/apps/web/src/calculator-ui.ts:58>) — Anker: „full“.
+- [uebergabe/04-entscheidungen/0006-voller-wert-und-genauigkeitsampel.md:15](<C:/Projekte mit ChatGPT/commietools/uebergabe/04-entscheidungen/0006-voller-wert-und-genauigkeitsampel.md:15>) — Anker: „raw“.
+
+### Dauerhafte Lösung
+
+Wert, vollständige Vergleichsdarstellung, vereinbarte 14-Stellen-Weitergabe und sichtbare Anzeige als explizite getrennte Schritte modellieren. Absoluten Nullfilter aus der gemeinsamen Formatierung entfernen: er vernichtet echte kleine Werte. Echte Null im verwendeten Zahlenmodell prüfen, nicht durch verlustreiche Number-Konvertierung. Trigonometrische Restfehler gegebenenfalls nur als eng begründete Anzeigeapproximation mit Kennzeichnung behandeln; full bleibt unverändert. ADR-raw-Vertrag beibehalten, jede spätere Umstellung auf volle Folgepräzision separat entscheiden.
+
+### Abnahme
+
+±1e-14, 1e-300 und BigNumber 1e-500 bleiben im Vollwert ungleich null; exakte Null bleibt null; sin(pi), Brüche, große Zahlen, Precision-Ampel, Verlauf und ANS testen. Anzeige darf den Vergleichswert nicht zurücküberschreiben.
+
+### Nicht tun / Abgrenzung
+
+Schwelle nicht bloß von 1e-13 auf kleinere Konstante verschieben. Keine Konvertierung aller BigNumbers in JS Number.
+
+### Verifizierte Grundlage
+
+[S10 · mathjs: BigNumbers](<https://mathjs.org/docs/datatypes/bignumbers.html>) ([Prüfvermerk](02-quellen.md#s10)).
+
+## M4-003 – Plotter ersetzt das Zeichen x auch innerhalb von Funktionsnamen
+
+**Stand dieser Empfehlung:** Aktuell erneut reproduziert: exp(0) liefert keinen Wert.
+
+**Historischer M12-Vermerk (cd556d1, keine neue Messung):** exp(x) weiterhin null statt 1 bei x=0; x^2-Gegenkontrolle korrekt.
+
+### Konkrete Eingriffs- und Prüfstellen
+
+- [packages/tools/src/calculator/plotter.ts:81](<C:/Projekte mit ChatGPT/commietools/packages/tools/src/calculator/plotter.ts:81>) — Anker: „export function valueAt“.
+- [packages/tools/src/calculator/core.ts:217](<C:/Projekte mit ChatGPT/commietools/packages/tools/src/calculator/core.ts:217>) — Anker: „export function evaluate“.
+- [apps/web/src/math-tools.test.ts:4](<C:/Projekte mit ChatGPT/commietools/apps/web/src/math-tools.test.ts:4>) — Anker: „plot“.
+
+### Dauerhafte Lösung
+
+Ausdruck unverändert an evaluate übergeben, x mit dem bereits vorhandenen Scope und dem passenden Zahlenmodell binden. Geometrie erst an der dokumentierten Renderergrenze in endliche JS-Zahlen umwandeln; dafür kanonischen Wert/raw, niemals lokalisierten display-Text auslesen. Bei vielen Stützstellen optional einmal mit derselben kuratierten mathjs-Instanz kompilieren, nicht volle mathjs-Factory zusätzlich importieren. Fehlende/undefinierte Punkte behalten ihren getrennten Zustand und unterbrechen Linien.
+
+### Abnahme
+
+exp(x) bei 0 → 1; max(x,2), x^2, negatives x, Namen mit x, Polstelle 1/x und unbekannte Variable. Tabellenwerte, Nullstellen und SVG-Geometrie müssen denselben Auswerter benutzen.
+
+### Nicht tun / Abgrenzung
+
+Kein Regex-Wortgrenzen-Patch oder globale Zeichenersetzung als Parserersatz. Kein neuer eigener Ausdrucksparser.
+
+### Verifizierte Grundlage
+
+[S09 · mathjs: Ausdrücke und Scope](<https://mathjs.org/docs/expressions/parsing.html>) ([Prüfvermerk](02-quellen.md#s09)); [S10 · mathjs: BigNumbers](<https://mathjs.org/docs/datatypes/bignumbers.html>) ([Prüfvermerk](02-quellen.md#s10)).
+
+## M6-001 – JSON-Formatierung verändert Zahlenwerte ohne Hinweis
+
+**Stand dieser Empfehlung:** JSON.parse/stringify-Pfad unverändert.
+
+**Historischer M12-Vermerk (cd556d1, keine neue Messung):** Zahlenverlust im JSON-Formatierer unveränderter Implementierung; Originalbrowserbeleg erhalten, kein neuer M11-Browserlauf.
+
+### Konkrete Eingriffs- und Prüfstellen
+
+- [packages/tools/src/index.ts:179](<C:/Projekte mit ChatGPT/commietools/packages/tools/src/index.ts:179>) — Anker: „export function formatJson“.
+- [apps/web/src/App.tsx:121](<C:/Projekte mit ChatGPT/commietools/apps/web/src/App.tsx:121>) — Anker: „function JsonFormatterTool“.
+- [apps/web/src/App.test.ts:3](<C:/Projekte mit ChatGPT/commietools/apps/web/src/App.test.ts:3>) — Anker: „formatJson“.
+
+### Dauerhafte Lösung
+
+Formatierung als reine Layouttransformation definieren. Empfehlung nach Lizenzprüfung: Microsoft jsonc-parser für strikte Syntaxvalidierung und Textedits; disallowComments=true, allowTrailingComma=false, Fehlerliste zwingend auswerten. format/applyEdits auf Originaltext anwenden, niemals parse-Ergebnis oder AST-Zahlenwerte neu serialisieren. Falls die gewählte Version große Exponenten als ungültig bewertet, das ausdrücklich behandeln und gegebenenfalls nur ihre strukturelle Validierung anpassen/geeigneten verlustlosen Parser wählen; kein stilles null. Schlüsselreihenfolge, Duplikate und Zahllexeme bleiben erhalten, Duplikate höchstens separat warnen.
+
+### Abnahme
+
+Tokenfolge vor/nach ohne unbedeutenden Leerraum identisch: 9007199254740993, -9007199254740993, 1e309, -0, 1.2300, escaped Strings, doppelte Schlüssel. Kommentare/trailing comma ablehnen, Fehleroffset anzeigen. Zweites Formatieren ist idempotent.
+
+### Nicht tun / Abgrenzung
+
+Keine Umwandlung in BigInt mit anschließend nichtstandardkonformem JSON; kein fragiler Zeichenketten-Regex-Formatter. Bibliotheksvorschlag ist noch kein getesteter Patch.
+
+### Verifizierte Grundlage
+
+[S11 · Microsoft jsonc-parser: README/API](<https://raw.githubusercontent.com/microsoft/node-jsonc-parser/main/README.md>) ([Prüfvermerk](02-quellen.md#s11)); [S12 · Microsoft jsonc-parser: ParseOptions](<https://raw.githubusercontent.com/microsoft/node-jsonc-parser/main/src/main.ts>) ([Prüfvermerk](02-quellen.md#s12)).
+
+## M6-002 – RPN-Tastenfeld kann mehrstellige Zahlen und Dezimalzahlen nicht zusammensetzen
+
+**Stand dieser Empfehlung:** Ziffern werden weiterhin als einzelne RPN-Tokens angehängt.
+
+**Historischer M12-Vermerk (cd556d1, keine neue Messung):** RPN-Eingabeweg trennt Ziffern unverändert; direkte Texteingabe funktioniert. Nicht mit latentem Fraction-Kernbefund vermischen.
+
+### Konkrete Eingriffs- und Prüfstellen
+
+- [packages/tools/src/calculator/keypad.ts:133](<C:/Projekte mit ChatGPT/commietools/packages/tools/src/calculator/keypad.ts:133>) — Anker: „export function appendRpnToken“.
+- [packages/tools/src/calculator/keypads/rpn.ts:27](<C:/Projekte mit ChatGPT/commietools/packages/tools/src/calculator/keypads/rpn.ts:27>) — Anker: „export“.
+- [apps/web/src/tools/calculator-frame.tsx:362](<C:/Projekte mit ChatGPT/commietools/apps/web/src/tools/calculator-frame.tsx:362>) — Anker: „const appendToInput“.
+
+### Dauerhafte Lösung
+
+Eingabereducer mit getrenntem bearbeitetem Zahlentoken und abgeschlossenen RPN-Tokens einführen. Aktionen explizit: digit, decimal, sign, commit, operator, backspace, drop, swap, clear. Ziffern erweitern den Entwurf, Enter schließt ihn ab, Operator übernimmt zuerst gültigen Entwurf. Leerer Enter soll keine Zahl duplizieren, sofern nicht gesondert beschlossen. Texteingabe und Tastaturfeld müssen denselben Tokenvertrag verwenden; Cursor-/Pastenachbearbeitung mit definierter Neuvalidierung unterstützen. Fachliche RPN-Auswertung verbleibt im Kern.
+
+### Abnahme
+
+Echte Klick-/Tastenfolge 1→2→Enter→3→+ ergibt 15; 1→Dezimal→5→Enter→2→× ergibt 3. Minus, Löschen, doppeltes Dezimalzeichen, SWAP/DROP und eingefügter RPN-Text testen. Zusätzlich Reducer-Unit-Tests.
+
+### Nicht tun / Abgrenzung
+
+Nicht pauschal Leerzeichen entfernen; nicht nur appendRpnToken isoliert mit Einzeltasten prüfen.
+
+### Verifizierte Grundlage
+
+[S33 · TypeScript: Exhaustiveness checking](<https://www.typescriptlang.org/docs/handbook/2/narrowing.html#exhaustiveness-checking>) ([Prüfvermerk](02-quellen.md#s33)); [S09 · mathjs: Ausdrücke und Scope](<https://mathjs.org/docs/expressions/parsing.html>) ([Prüfvermerk](02-quellen.md#s09)).
+
+## M8-004 – CSV-Freitext wird als potenzielle Tabellenformel exportiert
+
+**Stand dieser Empfehlung:** Exportpfad weiterhin zu härten; bisher keine Importerausführung belegt.
+
+**Historischer M12-Vermerk (cd556d1, keine neue Messung):** CSV-Formelbytes bestätigt; keine Excel-/LibreOffice-Ausführung, RCE oder Exfiltration behaupten.
+
+### Konkrete Eingriffs- und Prüfstellen
+
+- [packages/tools/src/calculator/aufmass.ts:509](<C:/Projekte mit ChatGPT/commietools/packages/tools/src/calculator/aufmass.ts:509>) — Anker: „function csvField“.
+- [apps/web/src/tools/Aufmass.tsx:138](<C:/Projekte mit ChatGPT/commietools/apps/web/src/tools/Aufmass.tsx:138>) — Anker: „const csvBlob“.
+
+### Dauerhafte Lösung
+
+Exportzellen bereits fachlich als text/number typisieren. Zahlen aus validierten Rechenwerten serialisieren, sämtliche freien Textfelder einschließlich Dokumenttitel zentral durch einen Spreadsheet-CSV-Encoder führen. Unterstützte Importprogramme/-wege festlegen und deren Neutralisierung samt Separator-/Quote-Escaping testen; Originaldaten intern unverändert halten. Für verlässlich typisierte Tabellen ist ein Textzellen erzwingender XLSX-Export eine gesondert zu lizenzierende Alternative, kein Sofortzwang. Maschinen-CSV nicht als tabellensicher bewerben und ungeschützten Export nur ausdrücklich als solchen anbieten.
+
+### Abnahme
+
+Harmlos =1+1, +1+1, -1+1, @SUM(1), führende Tabs/Zeilenumbrüche, Quotes/Separatoren und Vollbreitenzeichen in jedem freien Feld. Excel/LibreOffice unterstützte Versionen: Direktöffnung, Import und erneutes Speichern/Öffnen. Validierte negative Zahlen bleiben numerisch.
+
+### Nicht tun / Abgrenzung
+
+Keine universelle Sicherheit durch bloße Anführungszeichen oder Apostroph behaupten; OWASP beschreibt importerabhängige Grenzen. Keine RCE/Exfiltration aus den alten Bytes ableiten.
+
+### Verifizierte Grundlage
+
+[S13 · OWASP: CSV Injection](<https://community.owasp.org/attacks/CSV_Injection>) ([Prüfvermerk](02-quellen.md#s13)).

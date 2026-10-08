@@ -1,0 +1,222 @@
+{
+  "schemaVersion": 1,
+  "fixtures": [
+    {
+      "name": "BadEncodedCMS.pdf",
+      "sha256": "08a33cdbf5b278673a014dfef524cd029fd13c2a286c1deeb91d9c4b60e5ade1",
+      "source": "https://github.com/esig/dss/blob/c8aea1f90958a851f651fe39f1575fcbd6d4a11d/dss-pades/src/test/resources/validation/BadEncodedCMS.pdf",
+      "license": "LGPL-2.1-or-later",
+      "expectationSource": "README.md#erwartung-und-commietools-ergebnis",
+      "expected": {
+        "signatures": 1,
+        "valid": [
+          false
+        ],
+        "allValid": false,
+        "documentIntact": false,
+        "timestampCount": 0
+      }
+    },
+    {
+      "name": "PAdES-LTA.pdf",
+      "sha256": "876e78f407e0c163f2e6d7dd23d0f3bbcd382027de18278fa8787eab80727cda",
+      "source": "https://github.com/esig/dss/blob/c8aea1f90958a851f651fe39f1575fcbd6d4a11d/dss-pades/src/test/resources/validation/PAdES-LTA.pdf",
+      "license": "LGPL-2.1-or-later",
+      "expectationSource": "README.md#erwartung-und-commietools-ergebnis",
+      "expected": {
+        "signatures": 2,
+        "valid": [
+          true,
+          true
+        ],
+        "allValid": true,
+        "documentIntact": true,
+        "timestampCount": 1
+      }
+    },
+    {
+      "name": "doc-firmado-LT.pdf",
+      "sha256": "130ff45493c0cff873b44662bf9bb609820fabe4a0e666604ae1ac2795059eaf",
+      "source": "https://github.com/esig/dss/blob/c8aea1f90958a851f651fe39f1575fcbd6d4a11d/dss-pades/src/test/resources/validation/doc-firmado-LT.pdf",
+      "license": "LGPL-2.1-or-later",
+      "expectationSource": "README.md#erwartung-und-commietools-ergebnis",
+      "expected": {
+        "signatures": 1,
+        "valid": [
+          true
+        ],
+        "allValid": true,
+        "documentIntact": true,
+        "timestampCount": 0
+      }
+    },
+    {
+      "name": "doc-firmado-T.pdf",
+      "sha256": "cdac360bb3f545ecd6dbc6f622511e3d06e5aca7e77ce2243d7806e18721ba35",
+      "source": "https://github.com/esig/dss/blob/c8aea1f90958a851f651fe39f1575fcbd6d4a11d/dss-pades/src/test/resources/validation/doc-firmado-T.pdf",
+      "license": "LGPL-2.1-or-later",
+      "expectationSource": "README.md#erwartung-und-commietools-ergebnis",
+      "expected": {
+        "signatures": 1,
+        "valid": [
+          true
+        ],
+        "allValid": true,
+        "documentIntact": true,
+        "timestampCount": 0
+      }
+    },
+    {
+      "name": "hello_signed_INCSAVE_signed.pdf",
+      "sha256": "af63353c955aaa66612d87e7340d19726b8127a138fd393dd67840c1dc905625",
+      "source": "https://github.com/esig/dss/blob/c8aea1f90958a851f651fe39f1575fcbd6d4a11d/dss-pades/src/test/resources/validation/hello_signed_INCSAVE_signed.pdf",
+      "license": "LGPL-2.1-or-later",
+      "expectationSource": "README.md#erwartung-und-commietools-ergebnis",
+      "expected": {
+        "signatures": 2,
+        "valid": [
+          true,
+          true
+        ],
+        "allValid": true,
+        "documentIntact": true,
+        "timestampCount": 0
+      }
+    },
+    {
+      "name": "hello_signed_INCSAVE_signed_EDITED.pdf",
+      "sha256": "cf1ab7b64dc49ee47d101133a57cc51e604eb23dbabb2075732d41804831aba9",
+      "source": "https://github.com/esig/dss/blob/c8aea1f90958a851f651fe39f1575fcbd6d4a11d/dss-pades/src/test/resources/validation/hello_signed_INCSAVE_signed_EDITED.pdf",
+      "license": "LGPL-2.1-or-later",
+      "expectationSource": "README.md#erwartung-und-commietools-ergebnis",
+      "expected": {
+        "signatures": 2,
+        "valid": [
+          true,
+          false
+        ],
+        "allValid": false,
+        "documentIntact": false,
+        "timestampCount": 0
+      }
+    },
+    {
+      "name": "pades-5-signatures-and-1-document-timestamp.pdf",
+      "sha256": "962dd61443f8c124aa029bef2d2150712ed2bc895b2646f38af5f0f9d7bedc8e",
+      "source": "https://github.com/esig/dss/blob/c8aea1f90958a851f651fe39f1575fcbd6d4a11d/dss-pades/src/test/resources/validation/pades-5-signatures-and-1-document-timestamp.pdf",
+      "license": "LGPL-2.1-or-later",
+      "expectationSource": "README.md#erwartung-und-commietools-ergebnis",
+      "expected": {
+        "signatures": 6,
+        "valid": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          true
+        ],
+        "allValid": false,
+        "documentIntact": true,
+        "timestampCount": 1
+      }
+    },
+    {
+      "name": "pades-signed-annot-added.pdf",
+      "sha256": "cd20365310578663d2f289713de914fb8d5021ed1a801e87ff80c7b7939a1c52",
+      "source": "https://github.com/esig/dss/blob/c8aea1f90958a851f651fe39f1575fcbd6d4a11d/dss-pades/src/test/resources/validation/pades-signed-annot-added.pdf",
+      "license": "LGPL-2.1-or-later",
+      "expectationSource": "README.md#erwartung-und-commietools-ergebnis",
+      "expected": {
+        "signatures": 1,
+        "valid": [
+          true
+        ],
+        "allValid": false,
+        "documentIntact": false,
+        "timestampCount": 0
+      }
+    },
+    {
+      "name": "pdf-byterange-overlap.pdf",
+      "sha256": "92212d423c94c8bb4431348b194590f6844c927638f7db835d180adb0a676451",
+      "source": "https://github.com/esig/dss/blob/c8aea1f90958a851f651fe39f1575fcbd6d4a11d/dss-pades/src/test/resources/validation/pdf-byterange-overlap.pdf",
+      "license": "LGPL-2.1-or-later",
+      "expectationSource": "README.md#erwartung-und-commietools-ergebnis",
+      "expected": {
+        "signatures": 2,
+        "valid": [
+          true,
+          false
+        ],
+        "allValid": false,
+        "documentIntact": false,
+        "timestampCount": 0
+      }
+    },
+    {
+      "name": "pdf-signed-added-page.pdf",
+      "sha256": "467573be2135cb83c17e450a1ea7992f087d79d4f18f5386509020901da7a2ec",
+      "source": "https://github.com/esig/dss/blob/c8aea1f90958a851f651fe39f1575fcbd6d4a11d/dss-pades/src/test/resources/validation/pdf-signed-added-page.pdf",
+      "license": "LGPL-2.1-or-later",
+      "expectationSource": "README.md#erwartung-und-commietools-ergebnis",
+      "expected": {
+        "signatures": 1,
+        "valid": [
+          true
+        ],
+        "allValid": false,
+        "documentIntact": false,
+        "timestampCount": 0
+      }
+    },
+    {
+      "name": "pdf-signed-corrupted.pdf",
+      "sha256": "8be92f00f5354f6b88f692872c4f40cb4eea21d81b474942ce545dde93aadd05",
+      "source": "https://github.com/esig/dss/blob/c8aea1f90958a851f651fe39f1575fcbd6d4a11d/dss-pades/src/test/resources/validation/pdf-signed-corrupted.pdf",
+      "license": "LGPL-2.1-or-later",
+      "expectationSource": "README.md#erwartung-und-commietools-ergebnis",
+      "expected": {
+        "signatures": 1,
+        "valid": [
+          false
+        ],
+        "allValid": false,
+        "documentIntact": false,
+        "timestampCount": 0
+      }
+    },
+    {
+      "name": "pdf-signed-original.pdf",
+      "sha256": "2f575aa24dcb5f15e5e81512d396d934a055830c5b8fe4b09868a6c9af19a330",
+      "source": "https://github.com/esig/dss/blob/c8aea1f90958a851f651fe39f1575fcbd6d4a11d/dss-pades/src/test/resources/validation/pdf-signed-original.pdf",
+      "license": "LGPL-2.1-or-later",
+      "expectationSource": "README.md#erwartung-und-commietools-ergebnis",
+      "expected": {
+        "signatures": 1,
+        "valid": [
+          true
+        ],
+        "allValid": true,
+        "documentIntact": true,
+        "timestampCount": 0
+      }
+    },
+    {
+      "name": "pdf-signed-out-of-byteRange.pdf",
+      "sha256": "bf3efb114dcd72cfcc6cbb77b33921ed8b8d445f0c5567b21deb791808b81829",
+      "source": "https://github.com/esig/dss/blob/c8aea1f90958a851f651fe39f1575fcbd6d4a11d/dss-pades/src/test/resources/validation/pdf-signed-out-of-byteRange.pdf",
+      "license": "LGPL-2.1-or-later",
+      "expectationSource": "README.md#erwartung-und-commietools-ergebnis",
+      "expected": {
+        "signatures": 1,
+        "valid": [
+          false
+        ],
+        "allValid": false,
+        "documentIntact": false,
+        "timestampCount": 0
+      }
+    }
+  ]
+}

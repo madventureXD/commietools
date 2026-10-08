@@ -5,7 +5,7 @@
     "license": "AGPL-3.0-only",
     "source": "LICENSE",
     "repository": "https://github.com/madventureXD/commietools",
-    "revision": "9f90794ec329ad59585765a7a7ab1cc3ed3f61c5"
+    "revision": "556159f58ac3beac3b6349851dae7326558b7fbb"
   },
   "lockfileSha256": "9b90a58babb633abfb48233929d04a103019381c11fd51101e90cdb8063ff259",
   "policy": {
@@ -133,13 +133,13 @@
       "name": "PDF Signer WebAssembly engine",
       "version": "0.3.2",
       "fileName": "engine_bg.wasm",
-      "size": 1557077,
-      "sha256": "4c051d96d47c42da62aac5c4ac636e512e325a71e9643db7e782cf3e27ae75a0",
+      "size": 1555509,
+      "sha256": "fbe9efd3a25010a40f7bec6858a79a38ad5ef8cc76ceedc0070e087969264697",
       "licenseIds": [
         "GPL-3.0-or-later"
       ],
       "source": "https://github.com/StrategicProjects/pdf_signer/tree/6cc0218100d9ffc038f8dccee3b707e5bd136100",
-      "build": "https://github.com/madventureXD/commietools/blob/9f90794ec329ad59585765a7a7ab1cc3ed3f61c5/crates/pdf-signer-wasm/README.md",
+      "build": "https://github.com/madventureXD/commietools/blob/556159f58ac3beac3b6349851dae7326558b7fbb/crates/pdf-signer-wasm/README.md",
       "components": [
         {
           "name": "pdf_signer",
@@ -12703,7 +12703,7 @@
   "rust": {
     "summary": {
       "components": 176,
-      "withNotices": 172,
+      "withNotices": 174,
       "reviewed": 8
     },
     "zielprofil": "wasm32-unknown-unknown",
@@ -12768,8 +12768,17 @@
         "version": "0.2.0",
         "license": "MIT/Apache-2.0",
         "repository": "https://github.com/rusticata/asn1-rs.git",
-        "noticeMissing": true,
-        "notices": []
+        "noticeMissing": false,
+        "notices": [
+          {
+            "name": "LICENSE-MIT",
+            "pfad": "/licenses/notices/rust/asn1-rs-impl-0.2.0/LICENSE-MIT"
+          },
+          {
+            "name": "LICENSE-APACHE",
+            "pfad": "/licenses/notices/rust/asn1-rs-impl-0.2.0/LICENSE-APACHE"
+          }
+        ]
       },
       {
         "name": "asn1-rs",
@@ -13180,8 +13189,17 @@
         "version": "1.0.0",
         "license": "MIT OR Apache-2.0",
         "repository": "https://github.com/knurling-rs/defmt",
-        "noticeMissing": true,
-        "notices": []
+        "noticeMissing": false,
+        "notices": [
+          {
+            "name": "LICENSE-MIT",
+            "pfad": "/licenses/notices/rust/defmt-parser-1.0.0/LICENSE-MIT"
+          },
+          {
+            "name": "LICENSE-APACHE",
+            "pfad": "/licenses/notices/rust/defmt-parser-1.0.0/LICENSE-APACHE"
+          }
+        ]
       },
       {
         "name": "defmt",

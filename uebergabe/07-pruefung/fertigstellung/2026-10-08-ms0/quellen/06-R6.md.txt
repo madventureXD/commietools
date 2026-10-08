@@ -1,0 +1,209 @@
+# R6 – Spanisch, Sonderzeichen und Formate
+
+Priorität P1. Empfehlung, keine Umsetzung/Freigabe. Basis a041ee0efda6b07687b3586977bb0d90bf1c89a8.
+
+[Leseregeln und Reihenfolge](README.md) · [Architektur/Migration](01-architektur-und-migration.md) · [Abnahme](03-pruef-und-uebergabeplan.md)
+
+Zeilen beziehen sich auf die eingefrorene Basis. Vor Änderungen Hash/Anker gegen den aktuellen Stand vergleichen. Zielpfade sind bestehende Projektdateien; neu vorgeschlagene Dateien werden im Text ausdrücklich benannt. Quellbelege bestätigen Mechanismen/Standards, nicht bereits getestete Reparaturen.
+
+## M3-001 – Spanische Übersetzung beschädigt drei technische Platzhalter
+
+**Stand dieser Empfehlung:** Drei benannte PDF-Platzhalter aktuell geprüft und korrigiert.
+
+**Historischer M12-Vermerk (cd556d1, keine neue Messung):** Aktueller per-tool-Loader enthält weiterhin {número} statt {number}; Anforderungen rot. Nicht jeder betroffene historische Text wird aktiv verwendet.
+
+### Konkrete Eingriffs- und Prüfstellen
+
+- [packages/tools/src/pdf/organize/locales/es.ts:9](<C:/Projekte mit ChatGPT/commietools/packages/tools/src/pdf/organize/locales/es.ts:9>) — Anker: „tool.pdfOrganize.original“.
+- [packages/tools/src/pdf/split/locales/es.ts:13](<C:/Projekte mit ChatGPT/commietools/packages/tools/src/pdf/split/locales/es.ts:13>) — Anker: „tool.pdfSplit.download“.
+- [packages/tools/src/pdf/pdf-to-images/locales/es.ts:15](<C:/Projekte mit ChatGPT/commietools/packages/tools/src/pdf/pdf-to-images/locales/es.ts:15>) — Anker: „tool.pdfToImages.download“.
+- [scripts/catalog-generate.mjs:32](<C:/Projekte mit ChatGPT/commietools/scripts/catalog-generate.mjs:32>) — Anker: „function“.
+
+### Dauerhafte Lösung
+
+Keine erneute Übersetzungsreparatur an diesen Stellen. Aktuelle Korrektur als Regression sichern und M3-009-Platzhalterprüfung über alle Kataloge einführen. Interpolation nur mit definierten Parametern; technische Namen bleiben unabhängig von übersetztem Satzbau. Bestehende einfachen Platzhalter nicht ohne Bedarf in vollständiges ICU-System migrieren. Bei späteren Pluralregeln zuvor Syntax und Freigabevertrag erweitern.
+
+### Abnahme
+
+Die drei Quellen enthalten number, Test prüft Existenz in en/es plus Parametermenge. Zusätzlich UI Organisieren/Teilen/Bilderexport mit echter Seitennummer: keine sichtbaren Restklammern. Parameter absichtlich in número ändern → Gate rot.
+
+### Nicht tun / Abgrenzung
+
+Nicht alte {número}-Texte wiederherstellen oder vorhandene Korrektur ignorieren. Suchbegriffe dürfen Sonderzeichen behalten.
+
+### Verifizierte Grundlage
+
+[S30 · MDN: Intl.Segmenter](<https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/Segmenter>) ([Prüfvermerk](02-quellen.md#s30)).
+
+## M3-003 – Spanische Kerntexte ändern die fachliche Bedeutung
+
+**Stand dieser Empfehlung:** Tooltexte überarbeitet; fachliche Fehler in common/es weiter vorhanden.
+
+**Historischer M12-Vermerk (cd556d1, keine neue Messung):** Bedeutungsabweichungen in spanischen Kerntexten bestehen; endgültige Wortwahl weiterhin menschlich abnehmen.
+
+### Konkrete Eingriffs- und Prüfstellen
+
+- [packages/i18n/src/common/es.ts:14](<C:/Projekte mit ChatGPT/commietools/packages/i18n/src/common/es.ts:14>) — Anker: „Revelador“.
+- [packages/i18n/src/common/es.ts:21](<C:/Projekte mit ChatGPT/commietools/packages/i18n/src/common/es.ts:21>) — Anker: „Ahorro“.
+- [packages/i18n/src/common/es.ts:32](<C:/Projekte mit ChatGPT/commietools/packages/i18n/src/common/es.ts:32>) — Anker: „software gratuito“.
+- [packages/tools/src/text/case-converter/locales/es.ts:2](<C:/Projekte mit ChatGPT/commietools/packages/tools/src/text/case-converter/locales/es.ts:2>) — Anker: „description“.
+
+### Dauerhafte Lösung
+
+Gezieltes Shell-Lektorat: category.developer als Desarrollo bzw. eindeutig Werkzeuge für Entwickler; save.saving Guardando…, save.cancelled Guardado cancelado.; freie Software als software libre, Kostenfreiheit getrennt benennen. Bereits korrigierte Case-Converter-Beschreibung überprüfen, nicht blind überschreiben. Fachglossar je Schlüsselkontext pflegen mit unerwünschtem Sinnwechsel, Quelle/Begründung und freigegebener Übersetzung. Technischer Audit liefert Kandidaten, spanischsprachige Endkontrolle bestätigt Nuancen.
+
+### Abnahme
+
+Speichern läuft/abgebrochen/fehlgeschlagen, Entwicklerkategorie und Lizenzseite auf Spanisch tatsächlich aufrufen. Glossarprüfung warnt bei Rückkehr der bekannten falschen Begriffe, lässt legitime Wortverwendungen außerhalb dieser Schlüssel zu.
+
+### Nicht tun / Abgrenzung
+
+Keine Behauptung muttersprachlich abgenommen durch einen reinen Regexlauf; Online-API-Übersetzung nicht ohne Auftrag/Datenfreigabe.
+
+### Verifizierte Grundlage
+
+[S06 · GNU: AGPLv3, §§1, 6, 13](<https://www.gnu.org/licenses/agpl-3.0.html>) ([Prüfvermerk](02-quellen.md#s06)); [S32 · MADR: Architekturentscheidungen](<https://adr.github.io/madr/>) ([Prüfvermerk](02-quellen.md#s32)).
+
+## M3-004 – Deutsche Richtungsbeschriftungen umgehen die Sprachpakete
+
+**Stand dieser Empfehlung:** Feste deutsche Richtungsbeschriftungen weiter gezielt prüfen.
+
+**Historischer M12-Vermerk (cd556d1, keine neue Messung):** Zoll-Richtungstexte bleiben fest im Quelltext, getrennt vom NAV-Namen; keine neue Browserabnahme.
+
+### Konkrete Eingriffs- und Prüfstellen
+
+- [apps/web/src/tools/Convert.tsx:209](<C:/Projekte mit ChatGPT/commietools/apps/web/src/tools/Convert.tsx:209>) — Anker: „Zoll“.
+- [packages/tools/src/calculator/convert/locales/en.ts:1](<C:/Projekte mit ChatGPT/commietools/packages/tools/src/calculator/convert/locales/en.ts:1>) — Anker: „export“.
+- [packages/tools/src/calculator/convert/locales/es.ts:1](<C:/Projekte mit ChatGPT/commietools/packages/tools/src/calculator/convert/locales/es.ts:1>) — Anker: „export“.
+
+### Dauerhafte Lösung
+
+Beide Richtungslabels über Tool-Sprachschlüssel führen, mit Parametern für Quelle/Ziel und sprachneutralen Einheitenzeichen in den eigentlichen Werten. Für fachlich eindeutiges in/mm oder lokalisierte Zoll-Bezeichnung entscheiden; Eingabe-/Ausgabeerklärung und ARIA-Name konsistent halten. Generator anschließend normal laufen lassen. Gemeinsame Prüfung sichtbarer Literale in JSX mit manuell gepflegten Ausnahmen für Symbole/Normbezeichnungen.
+
+### Abnahme
+
+de/en/es: beide Richtungen, Ergebnis und zugänglicher Name. Englische/spanische Oberfläche enthält dort kein unübersetztes Zoll. Einheitenumrechnung bleibt zahlenmäßig unverändert.
+
+### Nicht tun / Abgrenzung
+
+Nicht globale String-Ersetzung in allen Dateien; Quellkommentare, technische Namen und erlaubte Suchsynonyme nicht als UI-Fehler behandeln.
+
+### Verifizierte Grundlage
+
+[S31 · MDN: Intl.NumberFormat.formatToParts](<https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/NumberFormat/formatToParts>) ([Prüfvermerk](02-quellen.md#s31)); [S27 · W3C: WCAG 2.2](<https://www.w3.org/TR/WCAG22/>) ([Prüfvermerk](02-quellen.md#s27)).
+
+## M3-006 – Ton und Terminologie sind nicht durchgängig eingehalten
+
+**Stand dieser Empfehlung:** Neue Entscheidung unpersönlicher Infinitiv ersetzt frühere tú-Empfehlung.
+
+**Historischer M12-Vermerk (cd556d1, keine neue Messung):** Terminologie-/Anredestichprobe, keine vollständige muttersprachliche Endabnahme; Akzente sind kein Kodierungsfehler.
+
+### Konkrete Eingriffs- und Prüfstellen
+
+- [uebergabe/06-protokolle/2026-10-06-entscheidungen-umgesetzt.md:13](<C:/Projekte mit ChatGPT/commietools/uebergabe/06-protokolle/2026-10-06-entscheidungen-umgesetzt.md:13>) — Anker: „Spanische Anredeform“.
+- [uebergabe/03-konzepte/2026-10-03-sprachpaket-spanisch.md:21](<C:/Projekte mit ChatGPT/commietools/uebergabe/03-konzepte/2026-10-03-sprachpaket-spanisch.md:21>) — Anker: „Ansprache“.
+- [uebergabe/02-architektur/sprachpakete.md:18](<C:/Projekte mit ChatGPT/commietools/uebergabe/02-architektur/sprachpakete.md:18>) — Anker: „Anrede“.
+- [packages/i18n/src/common/de.ts:1](<C:/Projekte mit ChatGPT/commietools/packages/i18n/src/common/de.ts:1>) — Anker: „export“.
+- [packages/i18n/src/common/es.ts:1](<C:/Projekte mit ChatGPT/commietools/packages/i18n/src/common/es.ts:1>) — Anker: „export“.
+- [packages/tools/src/pdf/common/locales/es.ts:1](<C:/Projekte mit ChatGPT/commietools/packages/tools/src/pdf/common/locales/es.ts:1>) — Anker: „export“.
+
+### Dauerhafte Lösung
+
+Aktuelle Betreiberentscheidung vom 06.10. als datierten Stilnachtrag in Konzept/Regularium verankern; nicht wieder tú durchsetzen. Shell, Suites, PDF-common und Tools im selben Lektoratsscope erfassen. Imperativ/Infinitiv, Terminologie, Akzente und Großschreibung kontextbezogen prüfen; dritte Person ist nicht automatisch persönliche Anrede. Deutsche festgelegte Ansprache separat behalten. Suchsynonyme von Stilvorgaben für Bedientexte trennen.
+
+### Abnahme
+
+Stilcheck meldet Kandidaten, Mensch entscheidet mit Kontext. Überarbeitete 62-Tool-Texte gegen Shell/PDF-common querlesen; erlaubte dritte Person und Substantive als Positivkontrollen. Neue Regel widerspricht aktivem Konzept nicht mehr.
+
+### Nicht tun / Abgrenzung
+
+Keine pauschale Umformung jeder spanischen Verbform, kein Qualitätsurteil nur aus der Anzahl geänderter Schlüssel.
+
+### Verifizierte Grundlage
+
+[S32 · MADR: Architekturentscheidungen](<https://adr.github.io/madr/>) ([Prüfvermerk](02-quellen.md#s32)).
+
+## M3-007 – Lange Unicode-Dateinamen können beim Kürzen beschädigt werden
+
+**Stand dieser Empfehlung:** Aktuell erneut reproduziert: langes Emoji-Filename wird unwohlgeformt.
+
+**Historischer M12-Vermerk (cd556d1, keine neue Messung):** Dateinamenkürzung zertrennt Surrogatpaar; kurzer Emoji-Dateiname funktioniert. Kein realer Mobil-Dateidialogtest.
+
+### Konkrete Eingriffs- und Prüfstellen
+
+- [apps/web/src/tools/SaveFileControl.tsx:34](<C:/Projekte mit ChatGPT/commietools/apps/web/src/tools/SaveFileControl.tsx:34>) — Anker: „export function normaliseFileName“.
+- [apps/web/src/save-file.test.ts:2](<C:/Projekte mit ChatGPT/commietools/apps/web/src/save-file.test.ts:2>) — Anker: „normaliseFileName“.
+
+### Dauerhafte Lösung
+
+Normalisierung als reine, gemeinsame Exportgrenze behalten: unerlaubte Zeichen/Reservierungen behandeln, Endung bestimmen, dann Basename nur an Graphemgrenzen kürzen. Intl.Segmenter mit granularity=grapheme verwenden; innerhalb der bestehenden 180-UTF16-Einheiten-Grenze segmentweise zählen und Endung reservieren. Nicht einfach 180 Grapheme nehmen, das würde die Längengrenze ändern. Wohlgeformtheit/Normalisierungsregel für Eingaben festlegen; für ältere Browser geprüften Fallback oder klare Baseline wählen. Dateisystem-Bytegrenzen separat dokumentieren.
+
+### Abnahme
+
+a + 90 Emoji + .pdf reproduziert Fehler; ZWJ-Familie, Flags, Hauttöne, kombinierendes ñ, CJK, reservierte Namen, reine Endung und leerer Name. Ergebnis wohlgeformt, keine halben Grapheme, Endung richtig; reale mobile Download-/Desktop-Pickerpfade.
+
+### Nicht tun / Abgrenzung
+
+Array.from schützt nur Codepoints, nicht alle Grapheme. Keine ASCII-Transliteration aller Dateinamen.
+
+### Verifizierte Grundlage
+
+[S30 · MDN: Intl.Segmenter](<https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/Segmenter>) ([Prüfvermerk](02-quellen.md#s30)); [S25 · MDN: showSaveFilePicker](<https://developer.mozilla.org/en-US/docs/Web/API/Window/showSaveFilePicker>) ([Prüfvermerk](02-quellen.md#s25)).
+
+## M3-008 – Titelschreibung übersieht Wörter hinter spanischen Satzzeichen
+
+**Stand dieser Empfehlung:** Whitespace-basierter Title-Case-Pfad unverändert.
+
+**Historischer M12-Vermerk (cd556d1, keine neue Messung):** Wortanfangsregel behandelt führende spanische Satzzeichen nicht; kein Urteil über jede denkbare Title-Case-Konvention.
+
+### Konkrete Eingriffs- und Prüfstellen
+
+- [packages/tools/src/index.ts:171](<C:/Projekte mit ChatGPT/commietools/packages/tools/src/index.ts:171>) — Anker: „export function convertCase“.
+- [apps/web/src/App.tsx:113](<C:/Projekte mit ChatGPT/commietools/apps/web/src/App.tsx:113>) — Anker: „function CaseConverterTool“.
+- [packages/tools/src/text/case-converter/locales/es.ts:1](<C:/Projekte mit ChatGPT/commietools/packages/tools/src/text/case-converter/locales/es.ts:1>) — Anker: „export“.
+
+### Dauerhafte Lösung
+
+Produktvertrag für title klar benennen: erster Buchstabe jedes Wortes groß, keine umfassende sprachwissenschaftliche Überschriftenkorrektur. Locale-bewusste Wortsegmentierung mit Intl.Segmenter und isWordLike; erstes geeignetes Graphem pro Wort transformieren, Satzzeichen/Leerraum bewahren. Vorzeichen ¡/¿, Anführungszeichen und Klammern sind keine Wortbuchstaben. Apostroph-/Bindestrichregeln anhand gewünschter Beispiele ausdrücklich festlegen. Upper/lower bleiben eigene bewährte Locale-Operationen.
+
+### Abnahme
+
+¡hola! ¿qué tal? → ¡Hola! ¿Qué Tal? unter dem vorgeschlagenen Wortvertrag; Anführungen, (hola), Bindestriche, ñ, kombinierende Zeichen. Zusätzliche Sprachen erst nach definierten Erwartungen freigeben.
+
+### Nicht tun / Abgrenzung
+
+Nicht nur ¡/¿ in bestehende Regex ergänzen. Keine allgemeine linguistisch korrekte Titelschreibung für alle Sprachen versprechen.
+
+### Verifizierte Grundlage
+
+[S30 · MDN: Intl.Segmenter](<https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/Segmenter>) ([Prüfvermerk](02-quellen.md#s30)).
+
+## M3-010 – Zahlenformate folgen innerhalb derselben Oberfläche verschiedenen Regeln
+
+**Stand dieser Empfehlung:** Gemischte UI-/Browser-/Punktformatierung weiter vorhanden.
+
+**Historischer M12-Vermerk (cd556d1, keine neue Messung):** Gebietsschema uneinheitlich; ausdrücklich keine technische Austauschformat-Normierung nach UI-Sprache fordern.
+
+### Konkrete Eingriffs- und Prüfstellen
+
+- [apps/web/src/tools/ColorTools.tsx:39](<C:/Projekte mit ChatGPT/commietools/apps/web/src/tools/ColorTools.tsx:39>) — Anker: „function formatNumber“.
+- [apps/web/src/tools/Statistics.tsx:54](<C:/Projekte mit ChatGPT/commietools/apps/web/src/tools/Statistics.tsx:54>) — Anker: „const format“.
+- [apps/web/src/tools/PdfSecurityTools.tsx:38](<C:/Projekte mit ChatGPT/commietools/apps/web/src/tools/PdfSecurityTools.tsx:38>) — Anker: „function formatBytes“.
+- [apps/web/src/tools/PdfMaintenanceTools.tsx:18](<C:/Projekte mit ChatGPT/commietools/apps/web/src/tools/PdfMaintenanceTools.tsx:18>) — Anker: „toLocale“.
+- [uebergabe/02-architektur/sprachpakete.md:21](<C:/Projekte mit ChatGPT/commietools/uebergabe/02-architektur/sprachpakete.md:21>) — Anker: „Sprache und Region“.
+
+### Dauerhafte Lösung
+
+Vorhandene Regel Sprache/Region getrennt konkretisieren. Ein gemeinsamer Formatkontext liefert uiLocale, regionLocale und explizite Zahl-/Datumoptionen; falls keine Regionswahl angeboten wird, deterministischen Default dokumentieren statt still jeweils navigator zu benutzen. UI-Darstellung nutzt Formatter, Ausdrucks-/Statistikeingabe nutzt eigene Grammatik, CSV/JSON/CSS bleiben technische Austauschsyntax. Kuratierte Toolausnahmen (Messgenauigkeit, wissenschaftliche Darstellung) als Optionen, nicht neue Helferkopien. Datums-/Zeitzonenvertrag bei zeitabhängigen Ergebnissen sichtbar machen.
+
+### Abnahme
+
+Ausgewählte Sprache es bei Browser de-DE/en-US; große/negative Zahlen, Dezimal-/Gruppentrenner, Bytes und Datumswerte. UI konsistent, JSON/CSS gültig, Kopier-/Exportwerte nicht unbemerkt lokalisiert.
+
+### Nicht tun / Abgrenzung
+
+Intl.NumberFormat ist kein Eingabeparser. Nicht alle toFixed-Aufrufe pauschal lokalisieren: technische Ausgaben benötigen Punkte.
+
+### Verifizierte Grundlage
+
+[S31 · MDN: Intl.NumberFormat.formatToParts](<https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/NumberFormat/formatToParts>) ([Prüfvermerk](02-quellen.md#s31)).

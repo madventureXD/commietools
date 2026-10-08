@@ -26,7 +26,7 @@ export const handoverEn = {
   'tool.handover.clearSignature': 'Clear signature',
   'tool.handover.warranty': 'Warranty periods',
   'tool.handover.warrantyBgb': 'German Civil Code § 634a (1) no. 2 (building), 5 years',
-  'tool.handover.warrantyVob': 'VOB/B § 13 (4) no. 2 (if agreed), 4 years',
+  'tool.handover.warrantyVob': 'VOB/B § 13 (4) no. 1 (if agreed), 4 years',
   'tool.handover.warrantyHint': 'Counted from the acceptance date. Whether the civil code or VOB/B applies is decided by the contract — this tool does not know it.',
   'tool.handover.disclaimer': 'These periods are application of the law, not legal advice.',
   'tool.handover.action': 'Create PDF',
@@ -53,6 +53,6 @@ export const handoverEn = {
   'tool.handover.error.tooManyPhotos': 'Too many photos (12 at most).',
 
   'tool.handover.assumptions': 'Assumptions: the PDF is built from what was entered, nothing is added and nothing invented. Lines **without a description** are dropped instead of showing up as an empty table row. An empty deadline field is allowed (deadline still open) — if a deadline is filled in it must be an existing date. If a signature is missing this is reported and the signature page stays empty. **Not included:** periods under other contracts, amendments, editing photos, sending by mail. Photos are embedded as handed over.',
-  'tool.handover.sources': 'Dates: the project\u2019s date logic (`calculator/dates`, Temporal) — the same as in the "Calculate deadline" tool. Periods: German Civil Code § 634a (1) no. 2 (five years for a building) and VOB/B § 13 (4) no. 2 (four years when VOB/B is agreed). PDF: the PDF engine already in the project. No transfer, no third-party library for the form.',
+  'tool.handover.sources': 'Dates: the project\u2019s date logic (`calculator/dates`, Temporal) — the same as in the "Calculate deadline" tool. Periods: German Civil Code § 634a (1) no. 2 (five years for a building) and VOB/B § 13 (4) no. 1 (four years when VOB/B is agreed). PDF: the PDF engine already in the project. No transfer, no third-party library for the form.',
   'tool.handover.formula': 'Assumptions and sources'
 } as const

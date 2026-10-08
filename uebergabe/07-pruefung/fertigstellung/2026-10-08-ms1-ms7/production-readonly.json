@@ -1,0 +1,98 @@
+{
+  "observedAt": "2026-10-08T08:06:31.280Z",
+  "origin": "https://commietools.org",
+  "scope": "Read-only requests to the existing public deployment; no deployment of the current candidate; no old browser profile/NEL receiver inspection",
+  "responses": [
+    {
+      "path": "/",
+      "finalUrl": "https://commietools.org/",
+      "status": 200,
+      "headers": {
+        "cache-control": "public, max-age=0, must-revalidate",
+        "cf-ray": "a473a58bc86ff5d3-DUS",
+        "content-security-policy": "default-src 'self'; base-uri 'none'; object-src 'none'; frame-ancestors 'none'; form-action 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self'; worker-src 'self' blob:; manifest-src 'self'",
+        "content-type": "text/html; charset=utf-8",
+        "nel": "{\"report_to\":\"cf-nel\",\"success_fraction\":0.0,\"max_age\":604800}",
+        "permissions-policy": "camera=(), geolocation=(), microphone=(), payment=(), usb=()",
+        "referrer-policy": "no-referrer",
+        "report-to": "{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=gB44xq%2Fg3FtoO1GIApWLoay8QHZP8zZmiJU%2FjLcJvQQOi%2FqEZ5sIYqDA2oPT1uDyNHxr63cxPUVxLBn%2B6JLLgCw0K1QFJFuh912avjtNMKWHMGHNubDqt8hHeAM05iqPHA2gdgCFL6RpUl%2Bppfw%3D\"}]}",
+        "x-content-type-options": "nosniff"
+      },
+      "bytes": 798,
+      "sha256": "b2e7c5221c49ae07e0faea953fc694bc37cd46ed8c74001efae0fba4b296e15a"
+    },
+    {
+      "path": "/licenses",
+      "finalUrl": "https://commietools.org/licenses",
+      "status": 200,
+      "headers": {
+        "cache-control": "public, max-age=0, must-revalidate",
+        "cf-ray": "a473a58c39c6f5d3-DUS",
+        "content-security-policy": "default-src 'self'; base-uri 'none'; object-src 'none'; frame-ancestors 'none'; form-action 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self'; worker-src 'self' blob:; manifest-src 'self'",
+        "content-type": "text/html; charset=utf-8",
+        "nel": "{\"report_to\":\"cf-nel\",\"success_fraction\":0.0,\"max_age\":604800}",
+        "permissions-policy": "camera=(), geolocation=(), microphone=(), payment=(), usb=()",
+        "referrer-policy": "no-referrer",
+        "report-to": "{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=ytXywjpX9Qqf6gHDxi9TPvUg2lcGaJBQuESOP8d0HDM9oc208rXH6783iB6PacfbnjyvuaBX4bynhU5cfjUiAkBmqwn4IIiGpvDmCBC8mIuE0JV7wucR5tqnrWrNlpb7bu8pugXJny1CvU810r4%3D\"}]}",
+        "x-content-type-options": "nosniff"
+      },
+      "bytes": 798,
+      "sha256": "b2e7c5221c49ae07e0faea953fc694bc37cd46ed8c74001efae0fba4b296e15a"
+    },
+    {
+      "path": "/impressum",
+      "finalUrl": "https://commietools.org/impressum",
+      "status": 200,
+      "headers": {
+        "cache-control": "public, max-age=0, must-revalidate",
+        "cf-ray": "a473a58c7a7ef5d3-DUS",
+        "content-security-policy": "default-src 'self'; base-uri 'none'; object-src 'none'; frame-ancestors 'none'; form-action 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self'; worker-src 'self' blob:; manifest-src 'self'",
+        "content-type": "text/html; charset=utf-8",
+        "nel": "{\"report_to\":\"cf-nel\",\"success_fraction\":0.0,\"max_age\":604800}",
+        "permissions-policy": "camera=(), geolocation=(), microphone=(), payment=(), usb=()",
+        "referrer-policy": "no-referrer",
+        "report-to": "{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=kx8T23kvrqx%2FuVvVsTtPYHoVwuJCpouV4bFegnv7YOIgADov0akiTYgR2TF%2FHvsTLxeYphvKJ9YHNUuyi48Vb%2BNPMWIS%2FUeIXzQBRtgQ2udSONdWQZQmnpWlcZfJXxYLmjJhoIYGTDRBf35rBlw%3D\"}]}",
+        "x-content-type-options": "nosniff"
+      },
+      "bytes": 798,
+      "sha256": "b2e7c5221c49ae07e0faea953fc694bc37cd46ed8c74001efae0fba4b296e15a"
+    },
+    {
+      "path": "/build.json",
+      "finalUrl": "https://commietools.org/build.json",
+      "status": 200,
+      "headers": {
+        "cache-control": "public, max-age=0, must-revalidate",
+        "cf-ray": "a473a58ccb40f5d3-DUS",
+        "content-security-policy": "default-src 'self'; base-uri 'none'; object-src 'none'; frame-ancestors 'none'; form-action 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self'; worker-src 'self' blob:; manifest-src 'self'",
+        "content-type": "text/html; charset=utf-8",
+        "nel": "{\"report_to\":\"cf-nel\",\"success_fraction\":0.0,\"max_age\":604800}",
+        "permissions-policy": "camera=(), geolocation=(), microphone=(), payment=(), usb=()",
+        "referrer-policy": "no-referrer",
+        "report-to": "{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=zIzK%2FvUDcYup6WffmxSFP6tU%2FFeHe48ywQIze8ygLSYL5QIq4CL6AbuXM2JZTvOnqAwKLfcfbXS1U9GWrj4dBpp4JjSw9qMqfxUS5h0Z4%2B%2BJaVTq1hzDSR3t1CbtZbPZ0%2BTdh%2BhHL0yjdLW%2FKeE%3D\"}]}",
+        "x-content-type-options": "nosniff"
+      },
+      "bytes": 798,
+      "sha256": "b2e7c5221c49ae07e0faea953fc694bc37cd46ed8c74001efae0fba4b296e15a"
+    },
+    {
+      "path": "/licenses/registry.json",
+      "finalUrl": "https://commietools.org/licenses/registry.json",
+      "status": 200,
+      "headers": {
+        "cache-control": "public, max-age=3600, must-revalidate",
+        "cf-ray": "a473a58d0c0af5d3-DUS",
+        "content-security-policy": "default-src 'self'; base-uri 'none'; object-src 'none'; frame-ancestors 'none'; form-action 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self'; worker-src 'self' blob:; manifest-src 'self'",
+        "content-type": "application/json",
+        "etag": "W/\"3fdee127eea357e4f5f33df884e16d87\"",
+        "nel": "{\"report_to\":\"cf-nel\",\"success_fraction\":0.0,\"max_age\":604800}",
+        "permissions-policy": "camera=(), geolocation=(), microphone=(), payment=(), usb=()",
+        "referrer-policy": "no-referrer",
+        "report-to": "{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=bf2nWriq1%2FVap%2FWnThknv6tRfAx9ExZ4jTHX72%2FZZZWZTp4qOVJ1Dj0W1onDbsHcE2sIrCAhjJP3%2BZuJB95bOcT2yYhJO989dnXpGywzkWXOV03Fr2JJnCRC9IXkJWq4YqFyWW9pZZ8lluIs2Yo%3D\"}]}",
+        "x-content-type-options": "nosniff"
+      },
+      "bytes": 1095390,
+      "sha256": "81548028505ded0b2df218bff78bf8f5fb1a5f913c3066b1b57ed5ba96363015"
+    }
+  ]
+}

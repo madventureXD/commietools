@@ -339,17 +339,6 @@ Diese Liste enthält bestätigte, noch nicht abgeschlossene Arbeit. Details geh�
 
 ## R8 — Übergaben, Abschlusskriterien, Prüfverfahren (ab 2026-10-07)
 
-- [ ] OP-062 — **Nachträgliche Entscheidung zur Strukturmigration von vier Übergaben** *(2026-10-07,
-  Karte M10-003)*. Bei der Angleichung an die Vorlage wurden vier Übergaben **umgeschrieben** statt
-  ergänzt: `6e33dc3` (2026-10-04, drei Dateien, +179/−82) und `ed0ee4e` (2026-10-05, +94/−39). Die
-  vier Dateien tragen seit dem 2026-10-07 einen datierten **„Hinweis zur Fassung"** mit Umfang und
-  Abrufweg der Fassung davor (`git show <commit>^:<pfad>`); die Git-Geschichte ist unverändert.
-  **Offen ist allein die Entscheidung**, ob das nachträglich als *beschlossene Ausnahme* gilt oder ob
-  für künftige Strukturmigrationen eine Archivfassung im Baum geführt werden soll — das
-  Aktenkorrekturverfahren in `00-einstieg/arbeitsregeln.md` verlangt eine solche Ausnahme, eine
-  gibt es für diese vier Dateien nicht. **Keine Schuldzuweisung, keine Behauptung verlorener
-  Historie** (die Karte verbietet beides ausdrücklich). Protokoll:
-  `06-protokolle/2026-10-07-r8-m10-003-aktenkorrektur.md`.
 - [ ] OP-063 — **Nicht übernommene Belegskripte der Wellen A–E** *(2026-10-07, Karte M10-004)*.
   Aus der historischen 18er-Liste (`QM/20-messungen/M10/evidence.json`) sind die **tragenden**
   Belege portiert und versioniert (`scripts/belege/`, `npm run beleg:sprachpakete` /
@@ -361,3 +350,56 @@ Diese Liste enthält bestätigte, noch nicht abgeschlossene Arbeit. Details geh�
   sollen — der Aufwand je Skript ist das Umstellen auf Umgebungsvariablen, Voraussetzungsprüfung
   und Aufräumen. Entscheidung von Thomas vom 2026-10-06 (Punkt 6) war ausdrücklich **nur die
   tragenden** Skripte; dieser Punkt hält fest, was damit bewusst liegen bleibt.
+
+## Nachprüfung — Fertigstellung ab 2026-10-08 (MS0)
+
+- [ ] OP-065 — **26 offene Karten nach unabhängiger Nachprüfung bearbeiten.** Neun F-Karten
+  sind ausdrücklich erneut geöffnet, 16 R-Abnahmen und M8-001 (O) bleiben offen. Maßgeblicher
+  Stand: datierter Nachtrag im QM-Leitfaden; Kriterien-/Belegbasis:
+  [MS0](../07-pruefung/fertigstellung/2026-10-08-ms0/README.md).
+  **Verantwortlich:** Entwicklung bei Beauftragung MS1–MS7; Thomas für Betreiberentscheidungen.
+  **Restabnahme:** MS1–MS7 gemäß Konzept, tatsächliche Gegenproben und unabhängige A2;
+  keine automatische Erledigung durch administrative Häkchen. Die 33 B-Karten behalten ihre
+  begrenzte positive Bewertung. Bestehende zugehörige OPs werden erst mit Einzelbeleg geschlossen.
+- [ ] OP-066 — **Externe MS0-Abnahmen tatsächlich reservieren.** Geplante Rollen, notwendige
+  Geräte/Reader/Kontozugänge und relative Zeitpunkte stehen in
+  [Abnahmefenster](../07-pruefung/fertigstellung/2026-10-08-ms0/abnahmefenster.md).
+  **Verantwortlich:** Thomas als Betreiber/Koordinator; unabhängiger Prüfer und Geräte-/Fachprüfer
+  noch zu benennen. **Restabnahme:** bestätigte Personen und Verfügbarkeit vor dem jeweiligen
+  Milestone (Rust/Lieferung MS1, Release/Reader MS5, Geräte/Fachlichkeit MS6, A2 MS7).
+  MS0 darf eine vorgeschlagene Rolle oder relative Planung nicht als tatsächliche Buchung zählen.
+
+*Hinweis 2026-10-08:* OP-064 wurde bereits historisch verwendet und abgeschlossen; die neuen
+Nummern beginnen deshalb bei OP-065. Die 63 bisherigen aktiven Punkte bleiben unverändert,
+zusammen mit diesen beiden neuen Bündelpunkten sind es 65 aktive OPs. Die Bündelpunkte zählen
+keine neuen Auditkarten und ersetzen keine schon vorhandenen einzelnen Restaufgaben.
+
+## Nachtrag 2026-10-08 — MS1–MS7-Umsetzung und tatsächliche Restabnahme
+
+OP-065 ist beauftragt und lokal weitgehend umgesetzt; offen bleiben die im
+[Belegpaket](../07-pruefung/fertigstellung/2026-10-08-ms1-ms7/README.md) einzeln genannten
+Geräte-/Fach-/Konto-/A2-Verträge. Die Pauschalfreigabe des Benutzers gilt fort und ist keine
+fehlende Arbeitsgenehmigung. OP-066 bleibt mangels konkret bestätigter Ressourcen offen.
+
+OP-062 ist administrativ erledigt: Innerhalb des vollständig beauftragten MS6 wurde die
+Archivvariante umgesetzt. Vier unveränderte Fassungen vor Migration stehen mit vollständiger
+Revision und SHA-256 unter `07-pruefung/fertigstellung/2026-10-08-ms1-ms7/archiv/`.
+Die alte Aussage „Offen ist allein die Entscheidung“ gilt damit nicht mehr. Keine nachträgliche
+Einzelfreigabe am damaligen Datum erfunden; Gitgeschichte und heutige Übergaben erhalten.
+Unabhängige Prüfung dieser Umsetzung bleibt Bestandteil OP-065/A2.
+
+Die alten Rust-Entscheidungs-/Advisorytexte beschreiben frühere Stände. Heute sind die engen
+Lizenzentscheidungen gebunden, 174/176 Originalhinweise vorhanden und zwei fehlende Hinweise
+explizit befristet. Native crossbeam-/rustls-Treffer wurden gepatcht; verbleibende RSA- und
+ttf-parser-Hinweise stehen im aktuellen hashgebundenen Scan, keine pauschale Entwarnung.
+Details: `07-pruefung/fertigstellung/2026-10-08-ms1-ms7/rust-advisories.json`.
+
+- [ ] OP-067 — **Befristete CMS-/P12-Hinweisausnahmen nachverfolgen.** Genehmigt am 2026-10-08
+  für cms 0.2.3 und p12-keystore 0.1.5, ausschließlich fehlende Originalhinweise, gültig bis
+  einschließlich **2026-11-08**. Originalhinweise am belegten Paketstand nachliefern oder vor
+  Ablauf neu entscheiden. Die allgemeine Lizenzrichtlinie bleibt unverändert; das Lizenzgate
+  sperrt nach Fristablauf ohne gültige Entscheidung. Verantwortlich: Betreiber/Entwicklung.
+  Beleg: [Lizenzentscheidungen](../07-pruefung/fertigstellung/2026-10-08-ms1-ms7/lizenzentscheidungen.md).
+
+OP-062 geschlossen und OP-067 ergänzt: weiterhin 65 aktive OPs. Keine neue Auditkarte und
+kein unabhängiger Gesamtabschluss der 26 Nachprüfungsreste.

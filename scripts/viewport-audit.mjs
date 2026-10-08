@@ -40,7 +40,7 @@ const baseUrl = process.env.COMMIETOOLS_AUDIT_URL ?? 'http://127.0.0.1:5173'
 const edgePath = process.env.EDGE_PATH ?? 'C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe'
 const catalog = await readFile(new URL('../packages/tools/src/catalog/toolIndex.ts', import.meta.url), 'utf8')
 const allRoutes = [...catalog.matchAll(/"route": "([^"]+)"/gu)].map((match) => match[1])
-const routes = process.env.COMMIETOOLS_AUDIT_ROUTES?.split(',').filter(Boolean) ?? allRoutes
+const routes = process.env.COMMIETOOLS_AUDIT_ROUTES?.split(',').filter(Boolean) ?? [...allRoutes, '/', '/licenses', '/impressum']
 const widths = (process.env.COMMIETOOLS_AUDIT_WIDTHS?.split(',').filter(Boolean).map(Number)
   ?? (mode === 'a11y' ? [1360, 390] : [320]))
 const profile = await mkdtemp(join(tmpdir(), 'commietools-audit-'))
@@ -68,10 +68,10 @@ const evaluate = async (expression) => {
 }
 
 /** Wartet, bis die Route wirklich gerendert ist — sonst prüft der Lauf eine leere Seite. */
-async function waitForRoute() {
+async function waitForRoute(route) {
   for (let attempt = 0; attempt < 40; attempt += 1) {
-    const ready = await evaluate('(() => ({ tool: Boolean(document.querySelector(".tool-content")), h1: Boolean(document.querySelector("main h1")) }))()')
-    if (ready.tool) return { ready: true }
+    const ready = await evaluate('(() => ({ tool: Boolean(document.querySelector(".tool-content")), h1: Boolean(document.querySelector("main h1")), licenses: Boolean(document.querySelector(".license-layout .license-package")) }))()')
+    if (route === '/licenses' ? ready.licenses : ready.tool || (!route.startsWith('/tools/') && ready.h1)) return { ready: true }
     await delay(250)
   }
   const url = await evaluate('location.href').catch(() => null)
@@ -300,11 +300,19 @@ const A11Y_JS = `(async () => {
    * Flaeche ist.
    */
   findings.opened = { elements: 0, names: [], targets: [] };
-  const menueKnopf = document.querySelector('button.tool-menu-open');
+  const menueKnopf = document.querySelector('button.tool-menu-trigger');
+  const routeBefore = location.pathname;
+  if (!menueKnopf) throw new Error('Menu trigger missing');
   if (menueKnopf) {
     menueKnopf.click();
     await new Promise((fertig) => setTimeout(fertig, 300));
-    const imMenue = [...document.querySelectorAll(interactiveSelector)].filter(visible);
+    const dialog = document.querySelector('dialog#tool-navigation');
+    if (!dialog?.open || !dialog.matches(':modal')) throw new Error('Menu is not an open modal dialog');
+    if (location.pathname !== routeBefore) throw new Error('Opening menu changed route');
+    for (const details of dialog.querySelectorAll('details')) details.open = true;
+    await new Promise((fertig) => setTimeout(fertig, 100));
+    const imMenue = [...dialog.querySelectorAll(interactiveSelector)].filter(visible);
+    if (!imMenue.length) throw new Error('Open menu has no measurable controls');
     findings.opened.elements = imMenue.length;
     for (const element of imMenue) {
       if (!accessibleName(element)) findings.opened.names.push({ element: describe(element), html: element.outerHTML.slice(0, 120) });
@@ -317,8 +325,11 @@ const A11Y_JS = `(async () => {
     }
     findings.opened.names = findings.opened.names.slice(0, 20);
     findings.opened.targets = findings.opened.targets.slice(0, 20);
-    menueKnopf.click();
+    const close = dialog.querySelector('button.tool-menu-close');
+    if (!close) throw new Error('Menu close control missing');
+    close.click();
     await new Promise((fertig) => setTimeout(fertig, 150));
+    if (dialog.open || location.pathname !== routeBefore || document.activeElement !== menueKnopf) throw new Error('Menu close/focus/route failed');
   }
 
   return findings;
@@ -355,7 +366,7 @@ try {
     await command('Emulation.setDeviceMetricsOverride', { width, height: 900, deviceScaleFactor: 1, mobile: width < 768 })
     for (const route of routes) {
       await command('Page.navigate', { url: `${baseUrl}${route}` })
-      const state = await waitForRoute()
+      const state = await waitForRoute(route)
       if (!state.ready) {
         emptyRoutes += 1
         console.error(`Route ohne Inhalt: ${route} (${width} px) — Seite steht auf ${state.url}, Text: ${JSON.stringify(state.body)}`)
@@ -369,7 +380,13 @@ try {
         if (measurement.scrollWidth > measurement.viewport || measurement.offenders.length) failures.push({ route, width, ...measurement })
         else console.log(`ok ${route} ${width}px`)
       } else {
-        const findings = await evaluate(A11Y_JS)
+        // Explicit isolated negative probes; never enabled by the regular audit/CI.
+        const mutant = process.env.COMMIETOOLS_AUDIT_MUTANT
+        let scan = A11Y_JS
+        if (mutant === 'wrong-trigger') scan = scan.replace("document.querySelector('button.tool-menu-trigger')", "document.querySelector('button.tool-menu-open')")
+        if (mutant === 'small-menu-target') scan = scan.replace('const imMenue =', "const small = dialog.querySelector('button.tool-menu-favorite'); small.style.cssText = 'width:1px;min-width:0;height:1px;min-height:0;padding:0'; const imMenue =")
+        if (mutant && !['wrong-trigger', 'small-menu-target'].includes(mutant)) throw new Error('Unknown audit mutant')
+        const findings = await evaluate(scan)
         if (!findings) throw new Error(`No a11y measurement on ${route}`)
         if (findings.controls === 0) { emptyRoutes += 1; console.error(`Route ohne Bedienelemente: ${route} (${width} px)`); continue }
         const geoeffnet = findings.opened ?? { elements: 0, names: [], targets: [] }
