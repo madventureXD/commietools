@@ -1,0 +1,63 @@
+{
+  "checkedAt": "2026-10-08T11:00:23.619Z",
+  "sources": {
+    "deploymentRevision": "77d38e51979cd9eff2813fe0d67b1e94ed5ca34b",
+    "publishedSourceRevision": "6d1fcd994bfc969d5d4b39f4b3b94522eecf07a3",
+    "origin": "https://66e9076e.commietools.pages.dev",
+    "source": "https://github.com/madventureXD/commietools/tree/6d1fcd994bfc969d5d4b39f4b3b94522eecf07a3/crates/pdf-signer-engine",
+    "build": "https://github.com/madventureXD/commietools/blob/6d1fcd994bfc969d5d4b39f4b3b94522eecf07a3/crates/pdf-signer-wasm/README.md",
+    "wasmSha256": "fbe9efd3a25010a40f7bec6858a79a38ad5ef8cc76ceedc0070e087969264697",
+    "engineSourceFiles": 25,
+    "files": [
+      {
+        "path": "crates/pdf-signer-engine/Cargo.toml",
+        "gitBlob": "9ed3c39cd9a796c80af226c9d048ba778c451439",
+        "publicSha256": "dad777f5210c317496ed05092d4bcee5162d17cb64d90b243307b477a91404c0",
+        "currentSourceEqualIgnoringCheckoutLineEndings": true
+      },
+      {
+        "path": "crates/pdf-signer-engine/Cargo.lock",
+        "gitBlob": "5e4714870a337126fce7fa1462bf4881e83b930f",
+        "publicSha256": "4d1ef7d5dd9fb56bdd35186add3c9f4b31ff55629a20365a79a72caf046afd34",
+        "currentSourceEqualIgnoringCheckoutLineEndings": true
+      },
+      {
+        "path": "crates/pdf-signer-engine/src/lib.rs",
+        "gitBlob": "0f3ebbcb7f7f0fbf124364793ac922b451472891",
+        "publicSha256": "12712d2aeb2066acb64e9981ac92e679f54db0cc4fee2ab9b97e10dc765e675d",
+        "currentSourceEqualIgnoringCheckoutLineEndings": true
+      },
+      {
+        "path": "crates/pdf-signer-wasm/Cargo.toml",
+        "gitBlob": "2ed5a26ab233603f61ee35b57ce775c4479ea314",
+        "publicSha256": "4de106ed6cc75f69727c94f9265a932086f109597515563beac6f1cae332c553",
+        "currentSourceEqualIgnoringCheckoutLineEndings": true
+      },
+      {
+        "path": "crates/pdf-signer-wasm/Cargo.lock",
+        "gitBlob": "a767d8a82c5986f503c8b24b901fd18b19c76660",
+        "publicSha256": "a01a62b5c6835fcea10089a2ca121e2b2c7d38eae51753ce762e00987ac38f9c",
+        "currentSourceEqualIgnoringCheckoutLineEndings": true
+      },
+      {
+        "path": "crates/pdf-signer-wasm/src/lib.rs",
+        "gitBlob": "712fb0b9290c4776d4b3f76c6fdb514b81c07b10",
+        "publicSha256": "84bab7414bf6b5f1beefa21c815136e528d35d88988b112355da9ac0db9cc1ce",
+        "currentSourceEqualIgnoringCheckoutLineEndings": true
+      },
+      {
+        "path": "crates/pdf-signer-wasm/README.md",
+        "gitBlob": "171a64ebeec739bf4085ead69181c9f68634891d",
+        "publicSha256": "540a011dc1c3c8171b68e33fa10e5525adeb0f2dc627c4a8f609383b599f2afc",
+        "currentSourceEqualIgnoringCheckoutLineEndings": true
+      },
+      {
+        "path": "scripts/build-signer.mjs",
+        "gitBlob": "e0218758665ccead44af8da1eff899b119c58af9",
+        "publicSha256": "ce8dd666bc60130fc9d279f550d9d8693a72688e195838668813e179f9e0102a",
+        "currentSourceEqualIgnoringCheckoutLineEndings": true
+      }
+    ],
+    "scope": "Actual published registry links and immutable GitHub source/build instructions; no upstream-only link substituted for modified GPL sources."
+  }
+}

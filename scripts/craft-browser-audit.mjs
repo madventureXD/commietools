@@ -46,6 +46,8 @@ const workingSet = () => Number(execFileSync('powershell.exe', ['-NoProfile', '-
 try {
   await browser.send('Page.addScriptToEvaluateOnNewDocument', { source: `Object.defineProperty(window,'showSaveFilePicker',{value:undefined,configurable:true}); window.__auditBlobs=[]; URL.createObjectURL=((original)=>(blob)=>{window.__auditBlobs.push(blob);return original(blob)})(URL.createObjectURL.bind(URL));` })
   await browser.oeffne(service.origin + '/tools/photo-caption')
+  await set('.language-select', 'de')
+  await until('document.documentElement.lang==="de"')
   console.log('CRAFT stage: foreign EXIF and pixel comparison')
   await until('!!document.querySelector("main input[type=file]")')
   await choose([photoPath])

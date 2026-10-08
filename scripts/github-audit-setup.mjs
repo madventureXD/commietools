@@ -16,6 +16,31 @@ const api = async (path, method = 'GET', body) => {
   return json
 }
 const result = { checkedAt: new Date().toISOString() }
+if (process.argv.includes('sources')) {
+  const delivery = JSON.parse(readFileSync('uebergabe/07-pruefung/fertigstellung/2026-10-08-ms1-ms7/github-delivery.json'))
+  const check = delivery.delivery.checks.find((item) => item.name === 'Cloudflare Pages' && item.conclusion === 'success')
+  const origin = check?.output.summary.match(/https:\/\/[a-z0-9]+\.commietools\.pages\.dev/u)?.[0]
+  if (!origin) throw new Error('Successful own preview required')
+  const response = await fetch(origin + '/licenses/registry.json', { signal: AbortSignal.timeout(30000) })
+  if (!response.ok) throw new Error('Public registry unavailable')
+  const registry = await response.json()
+  const signer = registry.artifacts.find((item) => item.id === 'pdf-signer-wasm-0.3.2')
+  const revision = signer.source.match(/\/tree\/([a-f0-9]{40})\/crates\/pdf-signer-engine$/u)?.[1]
+  if (!revision || !signer.build.includes('/blob/' + revision + '/crates/pdf-signer-wasm/README.md')) throw new Error('Published modified source and build link must share immutable revision')
+  const tree = await api(`git/trees/${revision}?recursive=1`)
+  if (tree.truncated) throw new Error('Complete source tree required')
+  const paths = ['crates/pdf-signer-engine/Cargo.toml', 'crates/pdf-signer-engine/Cargo.lock', 'crates/pdf-signer-engine/src/lib.rs', 'crates/pdf-signer-wasm/Cargo.toml', 'crates/pdf-signer-wasm/Cargo.lock', 'crates/pdf-signer-wasm/src/lib.rs', 'crates/pdf-signer-wasm/README.md', 'scripts/build-signer.mjs']
+  const files = []
+  const normalize = (bytes) => bytes.toString('utf8').replaceAll('\r\n', '\n')
+  const hash = (bytes) => createHash('sha256').update(bytes).digest('hex')
+  for (const path of paths) {
+    const file = await api(`contents/${path}?ref=${revision}`)
+    const bytes = Buffer.from(file.content, 'base64')
+    if (normalize(bytes) !== normalize(readFileSync(path))) throw new Error('Published build/source differs: ' + path)
+    files.push({ path, gitBlob: file.sha, publicSha256: hash(bytes), currentSourceEqualIgnoringCheckoutLineEndings: true })
+  }
+  result.sources = { deploymentRevision: delivery.delivery.sha, publishedSourceRevision: revision, origin, source: signer.source, build: signer.build, wasmSha256: signer.sha256, engineSourceFiles: tree.tree.filter((item) => item.type === 'blob' && item.path.startsWith('crates/pdf-signer-engine/')).length, files, scope: 'Actual published registry links and immutable GitHub source/build instructions; no upstream-only link substituted for modified GPL sources.' }
+}
 if (process.argv.includes('artifact')) {
   const delivery = JSON.parse(readFileSync('uebergabe/07-pruefung/fertigstellung/2026-10-08-ms1-ms7/github-delivery.json'))
   const sha = delivery.delivery.sha
@@ -106,7 +131,7 @@ if (process.argv.includes('pr')) {
   const pr = existing[0] ?? await api('pulls', 'POST', { title: 'Audit-Sanierung: Reparaturen und überprüfbare Pflichtgates', head: 'audit-fertigstellung-2026-10-08', base: 'main', draft: true, body: 'Behebt Lizenzgate, Dateiauswahl-/URL-Lebenszyklus, Sprach-/Menüprüfung, Offlinecache, OCR-Worker und PDF-Wirkungsgates. Ergänzt SHA-gebundene Pflichtjobs, reproduzierbaren WASM-Bau und portable Gegenproben.\n\nLokale Prüfungen und konkrete noch nicht erfüllte Geräte-/Betriebskriterien stehen in uebergabe/07-pruefung/fertigstellung/2026-10-08-ms1-ms7/. Ein grüner lokaler Lauf ersetzt diese fehlenden Abnahmen nicht. Dieses PR ist der isolierte CI-Prüfweg; kein Merge oder Produktionspush.' })
   result.pullRequest = pr.html_url
 }
-const mode = ['protect', 'runs', 'pr', 'logs', 'delivery', 'artifact'].find((value) => process.argv.includes(value))
+const mode = ['protect', 'runs', 'pr', 'logs', 'delivery', 'artifact', 'sources'].find((value) => process.argv.includes(value))
 writeFileSync(`uebergabe/07-pruefung/fertigstellung/2026-10-08-ms1-ms7/github-${mode}.json`, JSON.stringify(result, null, 2) + '\n')
 console.log(JSON.stringify(result, null, 2))
 if (result.artifact?.differences.length) process.exitCode = 1

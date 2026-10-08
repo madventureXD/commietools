@@ -4,6 +4,13 @@ import { startDistServer } from './belege/dist-server.mjs'
 
 const service = await startDistServer()
 const browser = await starte({})
+const fixtureRegion = process.argv.find((value) => value.startsWith('--region='))?.slice(9)
+if (fixtureRegion) {
+  assert.ok(['de-DE', 'en-US'].includes(fixtureRegion))
+  const source = `Object.defineProperty(navigator,'languages',{get:()=>[${JSON.stringify(fixtureRegion)}]})`
+  await browser.send('Page.addScriptToEvaluateOnNewDocument', { source })
+  await browser.evaluate(source)
+}
 const passed = []
 const until = async (expression) => {
   for (let n = 0; n < 100; n += 1) { if (await browser.evaluate(expression)) return; await browser.warte(50) }
@@ -11,6 +18,12 @@ const until = async (expression) => {
 }
 const open = async (route, selector) => {
   await browser.oeffne(service.origin + '/tools/' + route)
+  // UI language and numeric region are separate: these source-label checks use German.
+  if (await browser.evaluate('document.documentElement.lang!=="de"')) {
+    await browser.evaluate(`(() => {const el=document.querySelector('.language-select');Object.getOwnPropertyDescriptor(HTMLSelectElement.prototype,'value').set.call(el,'de');el.dispatchEvent(new Event('change',{bubbles:true}));})()`)
+    await until('document.documentElement.lang==="de"')
+    await browser.warte(250)
+  }
   await until(`!!document.querySelector(${JSON.stringify(selector)})`)
 }
 const set = async (selector, value) => {
@@ -32,7 +45,8 @@ try {
   passed.push({ tool: 'lighting', case: '15m² × 200lx / 0.8 = 3750lm; /2000lm rounded to 2; source conflict 100–200lx; 14 sources' })
 
   await open('threads', '#threads-core-hole')
-  near(number(await browser.evaluate('document.querySelector("#threads-core-hole").value')), 8.5, 0.001)
+  // Editable text inputs accept dot/comma decimals and contain no grouping separators.
+  near(Number((await browser.evaluate('document.querySelector("#threads-core-hole").value')).replace(',', '.')), 8.5, 0.001)
   await set('#threads-wrench-series', 'din')
   const din = await browser.evaluate('document.querySelector("#threads-wrench").value')
   await set('#threads-wrench-series', 'iso')
@@ -45,7 +59,7 @@ try {
   await browser.evaluate('document.querySelector("main form button[type=submit]").click()')
   await until('document.querySelectorAll("main tbody tr").length > 0')
   const cable = await rows()
-  assert.ok(cable.some((row) => /genormter Querschnitt/iu.test(row) && Math.abs(number(row) - 2.5) < 0.001))
+  assert.ok(cable.some((row) => /genormter Querschnitt/iu.test(row) && Math.abs(number(row) - 2.5) < 0.001), JSON.stringify({ regional, cable }))
   assert.ok(cable.some((row) => /Auslastung/iu.test(row) && /80/u.test(row)))
   passed.push({ tool: 'cable', case: '230V single-phase, 16A, 30m Cu: A=960/(56×6.9)=2.484mm² → 2.5mm²; ampacity 16/20=80%' })
 
@@ -85,5 +99,5 @@ try {
 
   const external = browser.anfragen.filter((url) => !url.startsWith(service.origin) && !url.startsWith('data:') && !url.startsWith('blob:'))
   assert.deepEqual(external, []); assert.deepEqual(browser.fehler, [])
-  console.log(JSON.stringify({ passed, regional, externalRequests: 0, scope: 'Six actual D/E browser cases; photo/handover checked separately; unavailable original device criteria remain explicit' }, null, 2))
+  console.log(JSON.stringify({ passed, regional, fixtureRegion: fixtureRegion ?? null, externalRequests: 0, scope: 'Six actual D/E browser cases; optional explicit regional fixture exercises navigator.languages contract, not native OS settings; photo/handover checked separately; unavailable original device criteria remain explicit' }, null, 2))
 } finally { await browser.ende(); await service.close() }

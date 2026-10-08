@@ -10,6 +10,7 @@ async function until(expression, description, limit = 120) {
     if (await browser.evaluate(expression)) return
     await browser.warte(100)
   }
+  console.error(JSON.stringify({ description, readiness: await browser.evaluate('window.__offlineReady'), controller: await browser.evaluate('navigator.serviceWorker.controller?.scriptURL'), runtimeErrors: browser.fehler, requests: browser.anfragen.slice(-15) }, null, 2))
   throw new Error(`Timeout: ${description}`)
 }
 async function choose() {
@@ -26,6 +27,11 @@ try {
   await choose()
   assert.equal(await browser.evaluate('!!navigator.serviceWorker.controller'), false, 'Initial visit must precede delayed SW control')
   await until('window.__offlineReady?.status === "ready" && window.__offlineReady.urls.some(url => url.includes("PdfSplit")) && window.__offlineReady.urls.some(url => url.includes("pdf-"))', 'tool + language cache acknowledgement after late controller', 250)
+  // Returning to a warm locale has no new resource entry; readiness must still update.
+  for (const locale of ['en', 'de', 'en']) {
+    await browser.evaluate(`(() => {const el=document.querySelector('.language-select');Object.getOwnPropertyDescriptor(HTMLSelectElement.prototype,'value').set.call(el,${JSON.stringify(locale)});el.dispatchEvent(new Event('change',{bubbles:true}));})()`)
+    await until(`document.documentElement.lang===${JSON.stringify(locale)} && window.__offlineReady?.status==='ready' && window.__offlineReady.locale===${JSON.stringify(locale)}`, 'readiness follows warm locale ' + locale, 250)
+  }
   const readiness = await browser.evaluate('window.__offlineReady')
   await browser.evaluate(`window.__realCachePut = Cache.prototype.put; Cache.prototype.put = async () => { throw new DOMException('Quota test', 'QuotaExceededError') }; document.dispatchEvent(new Event('visibilitychange'))`)
   await until('window.__offlineReady?.status === "incomplete"', 'quota failure must revoke readiness', 250)
@@ -45,5 +51,5 @@ try {
   await browser.evaluate(`(async () => { for (const name of await caches.keys()) { const cache = await caches.open(name); for (const request of await cache.keys()) if (request.url.includes('PdfSplit')) await cache.delete(request) } document.dispatchEvent(new Event('visibilitychange')) })()`)
   await browser.send('Network.clearBrowserCache')
   await until('window.__offlineReady?.status === "incomplete"', 'evicted tool chunk must revoke readiness', 250)
-  console.log(JSON.stringify({ passed: 'First uncontrolled tool visit; SW delayed beyond old timeout; cache acknowledgements; quota failure revokes readiness and recovers; HTTP cache cleared; real server stopped; offline reload and actual PDF split; evicted tool chunk revokes readiness', readiness }, null, 2))
+  console.log(JSON.stringify({ passed: 'First uncontrolled tool visit; SW delayed beyond old timeout; cache acknowledgements; warm en/de/en switches update readiness; quota failure revokes readiness and recovers; HTTP cache cleared; real server stopped; offline reload and actual PDF split; evicted tool chunk revokes readiness', readiness }, null, 2))
 } finally { server.server.close(); await browser.ende() }

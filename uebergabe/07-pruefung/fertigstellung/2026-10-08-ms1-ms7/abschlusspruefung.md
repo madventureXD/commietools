@@ -153,3 +153,40 @@ Native Bedienung erneut nach Thomas' letzter Vollzugriffsfreigabe versucht: unve
 Damit bleibt ausschließlich die tatsächliche Geräte-/Betriebsabnahme offen, keine Prüferbenennung
 oder erneute technische Genehmigung. Der Bericht bestätigt alle ausführbaren Prüfungen mit Beleg;
 er bestätigt keine tatsächlich unerfüllten Originalkriterien.
+
+## Nachtrag 2026-10-08 — Buildwechsel und präziser NEL-Vertrag
+
+Der ursprüngliche M8-005-Vertrag verlangt Versandbeobachtung "soweit prüfbar", keinen Zugang
+zu internen Cloudflare-Empfängerablagen. Die weiter oben und in Stand `77d38e51979cd9eff2813fe0d67b1e94ed5ca34b`
+als Rest verlangte interne Empfängerbedingung war deshalb zu weit. [nel-preview.json](nel-preview.json)
+bindet aktuelle öffentliche Header an Zeit und unveränderliche Kandidatenrevision, unterscheidet
+frisches/benutztes Testprofil und führt eine harmlose eigene Offline-Fehlerprobe aus. Es waren
+keine Reporting-API-Ereignisse und kein Versand beobachtbar; kein Versand-PASS oder behauptetes
+Abschalten. Weg A, Empfänger/Zweck und unveränderte siebentägige Gültigkeit sind geprüft. Die
+Feldbeschreibung wird in `docs/architecture.md` anhand NEL-Spezifikation/Providerdokumentation
+präzisiert; ein persistenter Anwendungs-Client-Identifier wurde nicht gemessen. M8-005 ist damit
+im ursprünglichen begrenzten Beobachtungsvertrag geprüft, ohne erfundenen Empfangsbeleg.
+
+[github-sources.json](github-sources.json) prüft die tatsächlich veröffentlichten GPL-Quell-/Buildlinks
+auf eine gemeinsame vollständige Git-Revision. Acht tragende Quellen/Locks/Bauanweisungen sind
+öffentlich vorhanden und entsprechen dem Kandidaten abgesehen von Checkout-Zeilenenden; der
+vollständige vendorte Quellbaum ist über GitHub abrufbar. Die Engine ist dieselbe tatsächlich
+auf fremdem Windows bytegleich gebaute Datei, kein Link nur auf unmodifizierte Upstreamquellen.
+
+Die zusätzliche [Buildwechselprobe](sw-upgrade.json) ersetzt ein echtes älteres CI-Dist-Artefakt
+durch den echten neuen lokalen Build am selben eigenen HTTP-Ursprung, ohne Cache-/Datenlöschung
+und ohne synthetische SW-Antwort. Deutsch/Englisch werden warm benutzt, eine unbenutzte dritte
+Sprache wird nicht geladen, der reale Controllerwechsel wird beobachtet, Unicode-Prüffristdaten
+bleiben erhalten. Nach HTTP-Cachelöschung und tatsächlichem Serverende funktionieren beide
+Sprachen mit wirklicher PDF-Aufteilung. Die früheren drei-Sprachen-Offline-/Quota-/Eviction-
+Gegenproben ergänzen diese konkrete Matrix.
+
+Dabei gefunden: Bei Rückkehr zu einer bereits geladenen Sprache fehlte ein neuer Resource-Eintrag;
+der Offline-Status blieb auf der vorherigen Sprache. Der Warmcache beobachtet jetzt auch das
+HTML-Sprachattribut. Die reguläre Offline-Gegenprobe enthält en/de/en und verlangt nach jedem
+Wechsel den tatsächlich aktuellen Bereitschaftsstatus. Vorversuche mit konkurrierendem Reload
+und bereits ausgetauschtem DOM-Knoten bleiben als fehlgeschlagene Fixtureversuche erhalten;
+die dritte Gegenprobe vor Produktkorrektur zeigt den tatsächlichen veralteten Sprachstatus in
+[sw-upgrade-before-fix.json](sw-upgrade-before-fix.json). Eine weitere einmalige Bereitschafts-
+Timeoutprobe wird nicht als PASS behandelt. Der gemeinsame endgültige Wiederholungslauf wird
+separat ausgewiesen.

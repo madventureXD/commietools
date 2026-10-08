@@ -88,3 +88,19 @@ Fehlschläge berichtet werden — der Datenfluss steht dafür in `architecture.m
 ## Spätere Erweiterung
 
 Ein Hetzner-Cloud-Server wird erst ergänzt, wenn Konten, Synchronisierung, Datenbank oder andere serverseitige Funktionen tatsächlich benötigt werden. Große Modelle über dem Pages-Einzeldateilimit werden separat und versioniert gespeichert.
+
+## Nachtrag 2026-10-08 — wirklicher Prüfweg und NEL-Beobachtung
+
+Die vorhandene Git-Integration veröffentlicht Audit-Zweige als öffentliche Vorschau bereits
+vor Abschluss aller GitHub-Pflichtjobs. "Deploy successful" ist deshalb kein Freigabeurteil.
+`main` verlangt jetzt tatsächlich `Releasepflicht`, auch für Administratoren; ein roter oder
+übersprungener Pflichtjob hält dieses Aggregat rot. Vorschauen bleiben Testlieferungen.
+
+Für Weg A wurden auf eigener unveränderlicher Audit-Vorschau aktuelle Header mit Revision/Zeit
+erfasst, ein frisches und danach bereits benutztes Testprofil unterschieden und eine harmlose
+offline geschaltete `build.json`-Anfrage ausgeführt. Innerhalb der protokollierten Beobachtungszeit
+war kein Reporting-API-Ereignis/Versand sichtbar. Das ist weder ein Versandnachweis noch ein
+Beleg für deaktiviertes NEL. `max_age` bleibt 604800; keine Umstellung auf Weg B und damit kein
+erfundener Lösch-/Ablaufnachweis. Der ursprüngliche Vertrag fordert Beobachtung "soweit prüfbar",
+keinen Zugang zu internen Empfängerablagen. Belege: `nel-preview.json`, `github-delivery.json`
+und `github-artifact.json` im Abschluss-Belegpaket; Feldpräzisierung in `architecture.md`.

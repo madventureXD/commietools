@@ -1,0 +1,38 @@
+{
+  "checkedAt": "2026-10-08T11:03:34.406Z",
+  "sourceRevision": "77d38e51979cd9eff2813fe0d67b1e94ed5ca34b",
+  "origin": "https://66e9076e.commietools.pages.dev",
+  "nel": {
+    "report_to": "cf-nel",
+    "success_fraction": 0,
+    "max_age": 604800
+  },
+  "reportTo": {
+    "group": "cf-nel",
+    "max_age": 604800,
+    "endpoints": [
+      {
+        "url": "https://a.nel.cloudflare.com/report/v4?s=lx4wOKiOPk5KWt4NCOlCVoXk4JKe96Ye5MObDBu%2BxG7Lr%2FIBC9RDPjGxRBnuSww9Yg7IyPTqEqTaSGnFsyawBwAcg%2FNq0P7IhaijcMRcCsYflbYT0lLX3Sk0cRV8aNigbfB36cg0rPGXSUfjPpKUPBHOxuGWddYlezzKyyY%3D"
+      }
+    ]
+  },
+  "build": {
+    "buildId": "56a1a0485a9ecca63f95d243c9ba3e4b20df55283f4db5d7bb415c642f6f2182"
+  },
+  "phases": [
+    {
+      "profileState": "fresh",
+      "failedFetch": "TypeError: Failed to fetch",
+      "reportingEvents": []
+    },
+    {
+      "profileState": "already-used",
+      "failedFetch": "TypeError: Failed to fetch",
+      "reportingEvents": []
+    }
+  ],
+  "scope": "Own disposable fresh then used browser profile, own audit preview, harmless synthetic offline fetch only; no user document or provider-internal receipt claim.",
+  "protocol": "https://chromedevtools.github.io/devtools-protocol/tot/Network/#method-enableReportingApi",
+  "reportingRequests": [],
+  "dispatchObserved": false
+}

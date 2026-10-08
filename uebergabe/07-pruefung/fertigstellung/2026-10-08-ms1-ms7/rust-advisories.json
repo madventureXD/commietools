@@ -1,5 +1,5 @@
 {
-  "retrievedAt": "2026-10-08T10:16:22.783Z",
+  "retrievedAt": "2026-10-08T11:04:38.617Z",
   "source": "https://google.github.io/osv.dev/api/",
   "scope": "All registry packages in both exact locks, including dev/optional packages; superset of reachable browser graph",
   "packages": 296,
@@ -57,12 +57,12 @@
             }
           },
           "database_specific": {
-            "informational": null,
             "categories": [
               "crypto-failure"
             ],
             "cvss": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:N/A:N",
-            "source": "https://github.com/rustsec/advisory-db/blob/osv/crates/RUSTSEC-2023-0071.json"
+            "source": "https://github.com/rustsec/advisory-db/blob/osv/crates/RUSTSEC-2023-0071.json",
+            "informational": null
           }
         }
       ],
@@ -132,12 +132,12 @@
             }
           ],
           "ecosystem_specific": {
+            "affected_functions": null,
             "affects": {
-              "os": [],
               "functions": [],
-              "arch": []
-            },
-            "affected_functions": null
+              "arch": [],
+              "os": []
+            }
           },
           "database_specific": {
             "categories": [],

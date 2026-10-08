@@ -1,0 +1,71 @@
+{
+  "checkedAt": "2026-10-08T11:10:08.353Z",
+  "oldRevision": "8a084a0a8b06cd83b1ab0ebddb47e5e32feb896f",
+  "oldBuild": "080572ef618b2bcbfcb4eba2fd480b26c4338bdfac67193e084578e409840e23",
+  "newBuild": "339a777072bfb1e7ceb1a058a3224a63e5792a2475d5c6ba0f44eaa6d883de04",
+  "oldArtifactArchive": "b186434e87d27cecd52d3caf235c5d17550ee2ed0a75121dc4a23ba0509c1a3b",
+  "scope": "Real CI artifact A replaced by actual current dist B on same own origin, same disposable used browser profile; no synthetic SW/build response.",
+  "phases": [
+    {
+      "phase": "old build warm",
+      "build": "080572ef618b2bcbfcb4eba2fd480b26c4338bdfac67193e084578e409840e23",
+      "locales": [
+        "de",
+        "en"
+      ],
+      "thirdLanguageRequests": []
+    },
+    {
+      "phase": "actual SW update and reload",
+      "readiness": {
+        "build": "339a777072bfb1e7ceb1a058a3224a63e5792a2475d5c6ba0f44eaa6d883de04",
+        "route": "/tools/pdf-split",
+        "locale": "en",
+        "status": "ready",
+        "urls": [
+          "http://127.0.0.1:58883/assets/index-CcPcFNbx.js",
+          "http://127.0.0.1:58883/assets/ui-en-Bwau2XLX.js",
+          "http://127.0.0.1:58883/assets/index-CA7yTmtn.css",
+          "http://127.0.0.1:58883/assets/catalog-base-BPHs9pGK.js",
+          "http://127.0.0.1:58883/assets/workbox-window.prod.es5-BBnX5xw4.js",
+          "http://127.0.0.1:58883/assets/textLoaders-l6fd-6Uf.js",
+          "http://127.0.0.1:58883/assets/search-en-B19y3lpY.js",
+          "http://127.0.0.1:58883/assets/tools-en-common-BcpCY6_6.js",
+          "http://127.0.0.1:58883/assets/tools-en-pdf-split-Couf_OCv.js",
+          "http://127.0.0.1:58883/assets/core-DEqColze.js",
+          "http://127.0.0.1:58883/assets/PdfSplit-BhLw6qss.js",
+          "http://127.0.0.1:58883/assets/index-BurPnxYb.js",
+          "http://127.0.0.1:58883/assets/pdfUi-3_koSefd.js",
+          "http://127.0.0.1:58883/assets/search-de-gEeq6FeQ.js",
+          "http://127.0.0.1:58883/assets/ui-de-C1vJZFgg.js",
+          "http://127.0.0.1:58883/assets/tools-de-common-BuJqLqW_.js",
+          "http://127.0.0.1:58883/assets/tools-de-pdf-split-Dt5ONudA.js",
+          "http://127.0.0.1:58883/assets/pdf-YYBQA8p7.js",
+          "http://127.0.0.1:58883/assets/pdf.worker.min-Dswkl-cV.mjs"
+        ]
+      },
+      "cacheNames": [
+        "workbox-precache-v2-http://127.0.0.1:58883/",
+        "commietools-used-assets-080572ef618b2bcbfcb4eba2fd480b26c4338bdfac67193e084578e409840e23",
+        "commietools-used-assets-339a777072bfb1e7ceb1a058a3224a63e5792a2475d5c6ba0f44eaa6d883de04"
+      ]
+    },
+    {
+      "phase": "user data after update",
+      "storedName": "Audit Altprofil ä日本"
+    },
+    {
+      "phase": "new build offline split",
+      "locale": "de",
+      "httpCacheCleared": true,
+      "serverStopped": true
+    },
+    {
+      "phase": "new build offline split",
+      "locale": "en",
+      "httpCacheCleared": true,
+      "serverStopped": true
+    }
+  ],
+  "passed": true
+}

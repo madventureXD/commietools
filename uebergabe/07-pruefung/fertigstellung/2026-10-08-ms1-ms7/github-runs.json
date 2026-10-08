@@ -1,12 +1,57 @@
 {
-  "checkedAt": "2026-10-08T10:44:34.634Z",
+  "checkedAt": "2026-10-08T11:10:13.905Z",
   "runs": [
+    {
+      "id": 37766781687,
+      "url": "https://github.com/madventureXD/commietools/actions/runs/37766781687",
+      "sha": "77d38e51979cd9eff2813fe0d67b1e94ed5ca34b",
+      "status": "completed",
+      "conclusion": "failure",
+      "jobs": [
+        {
+          "id": 113276272211,
+          "name": "Rust-Prüfungen (nativ und wasm32)",
+          "status": "completed",
+          "conclusion": "success",
+          "activeSteps": [],
+          "failedSteps": []
+        },
+        {
+          "id": 113276272407,
+          "name": "Lizenz, Katalog, Lint, Typen, Tests, Bau",
+          "status": "completed",
+          "conclusion": "success",
+          "activeSteps": [],
+          "failedSteps": []
+        },
+        {
+          "id": 113276734280,
+          "name": "Barrierefreiheit und Überbreite (Windows, Edge)",
+          "status": "completed",
+          "conclusion": "failure",
+          "activeSteps": [],
+          "failedSteps": [
+            "Run node scripts/de-browser-audit.mjs"
+          ]
+        },
+        {
+          "id": 113280491572,
+          "name": "Releasepflicht",
+          "status": "completed",
+          "conclusion": "failure",
+          "activeSteps": [],
+          "failedSteps": [
+            "Alle Pflichtjobs müssen erfolgreich sein"
+          ]
+        }
+      ]
+    },
     {
       "id": 37764402679,
       "url": "https://github.com/madventureXD/commietools/actions/runs/37764402679",
       "sha": "6d1fcd994bfc969d5d4b39f4b3b94522eecf07a3",
-      "status": "in_progress",
-      "conclusion": null,
+      "status": "completed",
+      "conclusion": "failure",
       "jobs": [
         {
           "id": 113268373922,
@@ -27,12 +72,22 @@
         {
           "id": 113268865274,
           "name": "Barrierefreiheit und Überbreite (Windows, Edge)",
-          "status": "in_progress",
-          "conclusion": null,
-          "activeSteps": [
-            "Run node scripts/offline-browser-audit.mjs"
-          ],
-          "failedSteps": []
+          "status": "completed",
+          "conclusion": "failure",
+          "activeSteps": [],
+          "failedSteps": [
+            "Run node scripts/de-browser-audit.mjs"
+          ]
+        },
+        {
+          "id": 113272424913,
+          "name": "Releasepflicht",
+          "status": "completed",
+          "conclusion": "failure",
+          "activeSteps": [],
+          "failedSteps": [
+            "Alle Pflichtjobs müssen erfolgreich sein"
+          ]
         }
       ]
     },

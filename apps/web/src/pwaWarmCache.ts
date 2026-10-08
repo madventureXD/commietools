@@ -116,6 +116,10 @@ export function observeUsedAssetCache(): () => void {
     if (changed) schedule()
   })
   observer.observe({ type: 'resource', buffered: true })
+  // A previously loaded locale creates no new resource entry on a warm switch.
+  // Readiness must still describe the actual current UI language.
+  const languageObserver = new MutationObserver(schedule)
+  languageObserver.observe(document.documentElement, { attributes: true, attributeFilter: ['lang'] })
   navigator.serviceWorker?.addEventListener('controllerchange', schedule)
   document.addEventListener('visibilitychange', schedule)
   window.addEventListener('online', schedule)
@@ -124,6 +128,7 @@ export function observeUsedAssetCache(): () => void {
   schedule()
   return () => {
     observer.disconnect()
+    languageObserver.disconnect()
     navigator.serviceWorker?.removeEventListener('controllerchange', schedule)
     document.removeEventListener('visibilitychange', schedule)
     window.removeEventListener('online', schedule)

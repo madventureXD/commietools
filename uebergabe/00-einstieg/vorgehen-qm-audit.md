@@ -615,3 +615,26 @@ eingefroren. Echte Runs: [GitHub](../07-pruefung/fertigstellung/2026-10-08-ms1-m
 Entwurf: [PR #1](https://github.com/madventureXD/commietools/pull/1). Keine Veröffentlichung von main.
 Der Gesamtabschluss wird wegen tatsächlicher fehlender Messungen nicht fälschlich bestätigt;
 Arbeitsfreigabe, Prüferbenennung und technische Zuständigkeit sind vollständig geklärt.
+
+### Nachtrag 2026-10-08 — zusätzliche Verträge M8-002/M8-005
+
+Die im letzten Tabellenstand noch offene Locale-/Buildwechsel-/Altprofilmatrix für M4-004/M8-002
+wurde mit einem echten früheren CI-Artefakt und dem neuen Build am selben Testursprung geprüft:
+realer SW-Controllerwechsel, de/en, keine unbenutzte dritte Sprache, erhaltene Unicode-Prüffristdaten
+und echte PDF-Ausgabe beider Sprachen nach Serverende/HTTP-Cachelöschung. Beide Zusatzstufen
+bestehen gemeinsam. Die dabei tatsächlich gefundene veraltete Sprach-Bereitschaft ist repariert;
+der normale Browserpflichtjob prüft jetzt warme en/de/en-Rückwechsel. Vorversuche bleiben im
+[Belegpaket](../07-pruefung/fertigstellung/2026-10-08-ms1-ms7/sw-upgrade-before-fix.json),
+die erfolgreiche tatsächliche Matrix in [sw-upgrade.json](../07-pruefung/fertigstellung/2026-10-08-ms1-ms7/sw-upgrade.json).
+Damit kein weiterer technischer Rest dieser konkreten Offline-Matrix; keine Zusage für beliebige
+zukünftige Versionen oder alle Geräte.
+
+Die zuvor zusätzlich verlangte "NEL-Empfängerbedingung" ist kein Originalkriterium. M8-005 fordert
+Versandbeobachtung "soweit prüfbar". Aktuelle öffentliche Header mit Zeit/Revision, frisches und
+benutztes Profil, harmlose eigene Offline-Fehlerprobe und dokumentierte Felder/Zweck/Empfänger
+sind geprüft. Kein Versand beobachtbar, keine Behauptung eines Empfangs oder der Abschaltung.
+Weg A bleibt unverändert; der begrenzte Originalvertrag ist damit abgenommen. Beleg:
+[nel-preview.json](../07-pruefung/fertigstellung/2026-10-08-ms1-ms7/nel-preview.json),
+Feldpräzisierung mit Primärquellen in `docs/architecture.md`. Die Aussagen über diese beiden
+technischen Restbedingungen im Stand `77d38e51979cd9eff2813fe0d67b1e94ed5ca34b` sind überholt.
+Native/physische Originalkriterien und Gesamtproduktionsfreigabe bleiben davon getrennt offen.

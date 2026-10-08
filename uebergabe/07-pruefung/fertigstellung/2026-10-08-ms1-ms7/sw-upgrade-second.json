@@ -1,0 +1,56 @@
+{
+  "checkedAt": "2026-10-08T11:01:05.845Z",
+  "oldRevision": "8a084a0a8b06cd83b1ab0ebddb47e5e32feb896f",
+  "oldBuild": "080572ef618b2bcbfcb4eba2fd480b26c4338bdfac67193e084578e409840e23",
+  "newBuild": "56a1a0485a9ecca63f95d243c9ba3e4b20df55283f4db5d7bb415c642f6f2182",
+  "oldArtifactArchive": "b186434e87d27cecd52d3caf235c5d17550ee2ed0a75121dc4a23ba0509c1a3b",
+  "scope": "Real CI artifact A replaced by actual current dist B on same own origin, same disposable used browser profile; no synthetic SW/build response.",
+  "phases": [
+    {
+      "phase": "old build warm",
+      "build": "080572ef618b2bcbfcb4eba2fd480b26c4338bdfac67193e084578e409840e23",
+      "locales": [
+        "de",
+        "en"
+      ],
+      "thirdLanguageRequests": []
+    }
+  ],
+  "error": "Error: Could not find node with given id",
+  "diagnostics": {
+    "readiness": {
+      "build": "56a1a0485a9ecca63f95d243c9ba3e4b20df55283f4db5d7bb415c642f6f2182",
+      "route": "/tools/pdf-split",
+      "locale": "en",
+      "status": "ready",
+      "urls": [
+        "http://127.0.0.1:60282/assets/index-CsfZspkV.js",
+        "http://127.0.0.1:60282/assets/ui-en-Bwau2XLX.js",
+        "http://127.0.0.1:60282/assets/index-CA7yTmtn.css",
+        "http://127.0.0.1:60282/assets/catalog-base-BPHs9pGK.js",
+        "http://127.0.0.1:60282/assets/workbox-window.prod.es5-BBnX5xw4.js",
+        "http://127.0.0.1:60282/assets/textLoaders-CnG4ctuO.js",
+        "http://127.0.0.1:60282/assets/search-en-B19y3lpY.js",
+        "http://127.0.0.1:60282/assets/tools-en-common-BcpCY6_6.js",
+        "http://127.0.0.1:60282/assets/tools-en-pdf-split-Couf_OCv.js",
+        "http://127.0.0.1:60282/assets/PdfSplit-ByRHKlqX.js",
+        "http://127.0.0.1:60282/assets/core-BrsAKkEE.js",
+        "http://127.0.0.1:60282/assets/index-UzPujDRw.js",
+        "http://127.0.0.1:60282/assets/pdfUi-DtuUMkoR.js"
+      ]
+    },
+    "caches": [
+      "workbox-precache-v2-http://127.0.0.1:60282/",
+      "commietools-used-assets-080572ef618b2bcbfcb4eba2fd480b26c4338bdfac67193e084578e409840e23",
+      "commietools-used-assets-56a1a0485a9ecca63f95d243c9ba3e4b20df55283f4db5d7bb415c642f6f2182"
+    ],
+    "scripts": [
+      "http://127.0.0.1:60282/assets/index-CsfZspkV.js"
+    ],
+    "registration": {
+      "active": "activated"
+    }
+  },
+  "runtimeErrors": [],
+  "console": []
+}

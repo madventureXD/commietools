@@ -78,3 +78,19 @@ oder Prüferbenennung behauptet. Bericht: [Abschlussprüfung](../07-pruefung/fer
 - Absichtlich rote Probe: `056cc21a19d338044e5c60e6dd9bc23331534da8`, wiederhergestellt durch `6d1fcd994bfc969d5d4b39f4b3b94522eecf07a3`.
 - Zweig: `audit-fertigstellung-2026-10-08`, veröffentlicht; [Entwurf PR #1](https://github.com/madventureXD/commietools/pull/1) attached.
 - Arbeitsbaum: abschließende Produkt-/Prüfer-/Aktenänderungen werden separat gesichert; kein main-Push oder Merge.
+
+## Nachtrag 2026-10-08 — zusätzliche echte Betriebsmatrix
+
+Die früher noch offenen Buildwechsel-/NEL-Empfängerbedingungen aus Stand
+`77d38e51979cd9eff2813fe0d67b1e94ed5ca34b` sind eingegrenzt und geprüft: echtes CI-Artefakt A
+gegen tatsächliches neues Dist B am selben Ursprung, realer Controllerwechsel, de/en,
+erhaltene Prüffristdaten und beide PDF-Ausgaben nach wirklichem Serverende. Zwei gemeinsame
+Zusatzstufen Exit 0. Der dabei gefundene veraltete warme Sprach-Bereitschaftsstatus ist repariert
+und im regulären Offline-Browserpflichtjob abgesichert. Fixture-Fehlversuche sind ausdrücklich
+erhalten; der endgültige Wiederholungslauf besteht.
+
+NEL: frisches/benutztes Testprofil, aktuelle öffentliche Header mit Zeit/Revision und harmlose
+eigene Offline-Fehlerprobe ausgeführt. Kein Versand beobachtbar. Der ursprüngliche Vertrag verlangt
+Beobachtung "soweit prüfbar", keinen internen Empfängerzugang; kein künstlicher zusätzlicher
+Freigabeblocker. Veröffentlichte Engine-Quellen/Buildlinks tatsächlich gegen acht tragende Dateien
+und den vollständigen Git-Baum geprüft. Die native/physische Messgrenze bleibt unverändert.

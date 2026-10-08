@@ -420,3 +420,14 @@ CI sind vorhanden; Cloudflare-Auditvorschauen funktionieren automatisch und erla
 CSP/WASM/OCR- und byteweise Artefaktprüfung. Die frühere pauschale Konto-/A2-Sperraussage ist überholt.
 Maßgebliche Einzelkartenübersicht: datierter Nachtrag im QM-Leitfaden. OP-067 ist die bereits
 genehmigte spätere Hinweisnachverfolgung; bis einschließlich 2026-11-08 kein neuer Genehmigungsbedarf.
+
+### Nachtrag 2026-10-08 — OP-065/066 genauer eingegrenzt
+
+Die im Stand `77d38e51979cd9eff2813fe0d67b1e94ed5ca34b` noch offenen Altprofil-/Buildwechselreste
+M4-004/M8-002 wurden tatsächlich geprüft; der gefundene warme Sprachstatusfehler ist repariert.
+M8-005 verlangt keinen Zugang zu internen Empfängerablagen: aktuelle Header, frisches/benutztes
+Testprofil und eigene harmlose Fehlerprobe mit Beobachtung "soweit prüfbar" sind ausgeführt.
+Kein Versand beobachtbar; diese Grenze ist dokumentiert und wird nicht als zusätzlicher, im
+Originalvertrag nicht geforderter Kontozugang blockierend geführt. Belege im Abschlussbericht.
+Die Bündelpunkte bleiben wegen tatsächlich fehlender nativer/physischer Originalabnahmen und
+dadurch fehlender Gesamtproduktionsfreigabe offen; Prüferrolle/technische Zuständigkeit sind geklärt.

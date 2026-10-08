@@ -136,4 +136,23 @@ actually left. Measured on the delivered build of 2026-10-07, not planned.*
 `vite.config.ts` and exactly once in the generated `apps/web/dist/sw.js`; the Rust bridge is reached
 only through a dynamic `import()` and is not statically reachable from the start page.
 
+## Evidence clarification, 2026-10-08: NEL fields
+
+The earlier phrase "timestamp, client identifier" (revision
+`77d38e51979cd9eff2813fe0d67b1e94ed5ca34b`) was too broad as a description of a measured
+browser payload. No report body was observed in our controlled preview probe. The
+[NEL specification](https://www.w3.org/TR/network-error-logging/) describes request URL,
+method, referrer, protocol, server IP where available, status, phase, error type,
+elapsed time and sampling fraction; the reporting envelope contains report age.
+[Cloudflare's documentation](https://developers.cloudflare.com/network-error-logging/)
+describes deriving ASN/country/metro information from the transport client IP and says
+that it does not log that IP in its NEL pipeline. This is an operator statement, not
+our independent inspection of receiver storage and not a claim about a persistent
+application client identifier.
+
+The own immutable audit preview was tested with fresh and subsequently reused disposable
+browser profiles, unchanged seven-day policy, and a harmless offline request for
+`build.json`. No reporting event or dispatch was observable within the recorded window.
+The precise observation and revision are in
+`uebergabe/07-pruefung/fertigstellung/2026-10-08-ms1-ms7/nel-preview.json`.
 
