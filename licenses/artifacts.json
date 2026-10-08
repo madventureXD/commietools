@@ -21,7 +21,8 @@
       "name": "PDF Signer WebAssembly engine",
       "version": "0.3.2",
       "sourcePath": "packages/tools/src/pdf/m7-wasm/engine_bg.wasm",
-      "source": "https://github.com/StrategicProjects/pdf_signer/tree/6cc0218100d9ffc038f8dccee3b707e5bd136100",
+      "source": "crates/pdf-signer-engine",
+      "upstreamSource": "https://github.com/StrategicProjects/pdf_signer/tree/6cc0218100d9ffc038f8dccee3b707e5bd136100",
       "build": "crates/pdf-signer-wasm/README.md",
       "licenseIds": ["GPL-3.0-or-later"],
       "components": [

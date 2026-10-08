@@ -29,7 +29,7 @@ export const photoCaptionEn = {
   'tool.photoCaption.sources': 'Image data: the project\u2019s own EXIF reader (no third-party library, see the "Image metadata" tool). PDF: the PDF engine already in the project, the same one used by "Images to PDF". No standard references, no suggestions about file sizes.',
 
   'tool.photoCaption.error.none': 'Choose photos first.',
-  'tool.photoCaption.error.tooMany': 'Too many photos at once (60 at most). Please work in two runs.',
+  'tool.photoCaption.error.tooMany': 'At most 60 photos per batch. Save the results and remove the photos before starting another batch.',
   'tool.photoCaption.error.image': 'One image could not be read. It was skipped — please check the file.',
   'tool.photoCaption.error.note': 'One note is too long (160 characters at most).',
   'tool.photoCaption.error.timestamp': 'One capture time is unusable (expected YYYY-MM-DD HH:MM).',

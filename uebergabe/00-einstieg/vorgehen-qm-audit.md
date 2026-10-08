@@ -579,3 +579,39 @@ Der portable [Endbeleg](../07-pruefung/fertigstellung/2026-10-08-ms1-ms7/proof-r
 weist 18 erfolgreiche lokale Stufen, Zusatzbelege und die ersetzte fehlgeschlagene Aktenstufe aus.
 Der Browser-Pflichtjob enthält jetzt zusätzlich Tastatur, echten Download, Menü-/PDF-Mutanten
 und die sechs D/E-Fälle. Syntax lokal geprüft; noch kein tatsächlicher GitHub-Lauf.
+
+## Nachtrag 2026-10-08 — Abschlusskontrolle durch Codex und reale CI/Lieferung
+
+Die Aussagen „fehlende unabhängige Kontrolle“, „noch kein tatsächlicher GitHub-Lauf“ und die
+fehlenden de/es-OCR-/Foto-/Protokollproben im vorherigen Stand `8a084a0a8b06cd83b1ab0ebddb47e5e32feb896f`
+sind durch neue Ausführung überholt. Thomas benennt Codex ausdrücklich als Prüfer und beauftragt
+alle technischen Entscheidungen. Kein weiterer Prüfer oder technischer Betreiberentscheid wird
+verlangt. [Abschlussprüfung](../07-pruefung/fertigstellung/2026-10-08-ms1-ms7/abschlusspruefung.md)
+legt die eigene Reparaturbeteiligung offen; Gegenproben und unabhängige PDF-Leser tragen das Urteil.
+Die eingefrorene MS0-Bewertung bleibt historische Ausgangsmessung.
+
+| Karten | Heutiger zusätzlicher Nachweis | Tatsächlicher Rest |
+|---|---|---|
+| M9-002, M4-005, M4-009, M3-009 | Integrierte Abschlusskontrolle; drei Lizenz- und vier vollständige Sprach-Root-Mutanten; StrictMode/Identitätszählung | Kein weiterer lokaler Reparatur-/Prüferrest aus diesen Befundkernen |
+| M2-009, M2-007 | Reale fremde Windows-CI misst die Gesamtmatrix; zusätzlicher 39-px-Kopfknopf dort gefunden und auf 44 px korrigiert | Finale erfolgreiche Kandidaten-CI gesondert ausweisen; keine gesamte Geräte-WCAG-Zusage |
+| M4-004, M8-002 | De/en/es nach echtem Offline-Reload, Server aus/HTTP-Cache leer; Quota/Eviction und späte Kontrolle | Noch nicht gemessene Altprofil-/Buildwechselkombinationen nicht als PASS führen |
+| M8-001 | Modelle eng/deu/spa lokal und auf echter Cloudflare-Vorschau; WASM unter ausgelieferter neuer CSP | Produktivdomain trägt noch den alten Stand |
+| M1-003, M5-003, M2-004 | Tatsächliche GitHub-Läufe, administrativ bindender main-Schutz, absichtlich roter Hashstand; Browser übersprungen und Releasepflicht rot; QPDF/P12-/DSS-/Effektgates | Abschließender grüner Stand und Produktionsbindung nach tatsächlicher Gesamtfreigabe |
+| M9-001, M9-003, M9-004 | Rust-Neubau auf GitHub bytegleich; aktuelle Sicherheitsbewertung; öffentliche Vorschau mit 696 Dateien bytegleich zum tatsächlichen CI-Artefakt | Befristete Hinweisnachlieferung bis 2026-11-08 bleibt Nachverfolgung; endgültige Kandidaten-/Produktionsbindung noch aktualisieren |
+| M5-002, M7-002 | Plattenbytes/Unicode und 278 tatsächliche Tab-Ereignisse; Prüfer benannt | Native Picker und reale Hilfstechnik fehlen wegen Windows-Zugriffsfehler |
+| M10-003, M10-004 | Archivkontrolle und 21 integrierte lokale Stufen; frischer Clone ohne QM/work; echte Ubuntu-/Windows-Ausführung | Kein weiterer personeller Prüfer-/Buchungsrest; CI-Schlussergebnis separat festhalten |
+| M10-005 | Fremdfoto/EXIF/Pixel/PDF-Reihenfolge, zwei tatsächliche Zeigerunterschriften, sechs visuell kontrollierte PDF-Seiten, 60×12 MP und 24×48 MP bestanden | Keine geräteunabhängige Speicherobergrenze behauptet; verbleibende originale Gerätefälle bleiben offen |
+| M2-006, M7-003, M7-004, M7-005 | Tastatur-Schwärzung mit gelesener Exportwirkung; Viewer-Spalten/gedrehte/leertextige Seite, einfacher Accessibilitybaum und Fokus | Echte Vorleseransage, Browserzoom, physischer Touch und natives Auskoppeln nicht verfügbar |
+| M2-001, M8-005 | Benannte Abschlussreview und tatsächliche öffentliche CSP/NEL auf Audit-Vorschau | Gesamtabschluss umfasst weiterhin fehlende native/physische und Produktiv-/Altprofil-/Empfängerbedingungen |
+
+Neue Reparaturen: korrekte VOB/B-Fundstelle §13 Abs.4 Nr.1; Signatur-PNG vor Protokoll-Export
+abwarten; Fotoobergrenze zählt den gesamten Stapel; Quellidentität normalisiert Text-Zeilenenden
+zwischen Windows/Linux und bewahrt Binärbytes. Der auf GitHub gefundene D/E-Prüferfehler beruhte
+auf deutschen Zahlentrennern trotz US-Browserregion; die Messauswertung folgt jetzt den tatsächlichen
+regionalen Trennern. Keine Veränderung der Rechenformeln wegen dieses Prüferfehlers.
+
+Alle 21 lokalen Stufen sind im [Abschluss-Endbeleg](../07-pruefung/fertigstellung/2026-10-08-ms1-ms7/abschluss-proof-results.json)
+eingefroren. Echte Runs: [GitHub](../07-pruefung/fertigstellung/2026-10-08-ms1-ms7/github-runs.json).
+Entwurf: [PR #1](https://github.com/madventureXD/commietools/pull/1). Keine Veröffentlichung von main.
+Der Gesamtabschluss wird wegen tatsächlicher fehlender Messungen nicht fälschlich bestätigt;
+Arbeitsfreigabe, Prüferbenennung und technische Zuständigkeit sind vollständig geklärt.

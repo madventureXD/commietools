@@ -139,3 +139,26 @@ wörtlich: „**Push wird erst nach der unabhängigen Kontrolle erfolgen**." Dam
 - [`0004-m7-signatur-sicherheitsgate.md`](0004-m7-signatur-sicherheitsgate.md) — Vorgänger (Sperre, Wortlaut erhalten)
 - `uebergabe/07-pruefung/m7/` — Prüfauftrag und Nachweise
 - Protokoll der Aufnahme: `../06-protokolle/2026-10-07-r7-m2-001-m7-freigabekriterien.md`
+
+## Nachtrag 2026-10-08 — Abschlussprüfung durch den benannten Prüfer
+
+Die offene Prüferbenennung aus A2 ist durch Thomas' ausdrücklichen Auftrag an Codex ersetzt:
+„Alle Prüfungen sind durch dich durchzuführen, du bist der Unabhängige Prüfer.“ Codex beantwortet
+technische Fragen und führt die Abschlusskontrolle aus. Eigene Reparaturbeteiligung wird offengelegt;
+eine personelle Trennung wird nicht erfunden. Bericht: [Abschlussprüfung](../07-pruefung/fertigstellung/2026-10-08-ms1-ms7/abschlusspruefung.md).
+Der Gesamtabschluss verlangt weiterhin die tatsächlich genannten Messungen; nicht verfügbare
+native/physische Prüfungen bleiben sichtbar und sind keine fehlende Arbeitsfreigabe.
+
+A1: aktueller hashgebundener OSV-Scan über beide Locks, patchbare native Treffer repariert.
+RSA-0.9.10 bleibt mit CVSS 5.9 mittel und ohne Fix sichtbar; kein bekannter ungepatchter Treffer
+hoher/kritischer Schwere im geprüften vorgesehenen Browserpfad. Größenlimits PDF 100 MiB/P12
+16 MiB greifen vor Engine-Laden; Parser-Nestkorpus 5/64/128 tatsächlich am WASM geprüft.
+64 Signaturen sind ein nachgelagertes Ergebnislimit, kein CPU-/Zeitabbruch.
+A3: Original-GPL-Hinweis und Quellstand sind im Register enthalten. A4: 13 hashgebundene externe
+DSS-Erwartungen sind reguläre Root-Gates, P12-Rundlauf/Manipulation und drei Effektmutanten bestehen.
+Quell-/Lock-/WASM-/Distbindung steht im Kandidatenmanifest, echte GitHub-Rust-Bytegleichheit ist belegt.
+
+Der isolierte Audit-Zweig mit [Entwurf PR #1](https://github.com/madventureXD/commietools/pull/1)
+ermöglicht reale positive/negative CI und automatische Cloudflare-Vorschauen. `main` ist durch
+`Releasepflicht` auch für Administratoren geschützt; kein Produktionspush oder Merge erfolgt.
+Die frühere Aussage „kein tatsächlicher GitHub-Lauf“ gilt für diesen datierten Stand nicht mehr.

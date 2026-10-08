@@ -17,7 +17,8 @@ const set = async (selector, value) => {
   await browser.evaluate(`(() => { const el = document.querySelector(${JSON.stringify(selector)}); if (!el) throw Error('Missing field '+${JSON.stringify(selector)}); const type = el.tagName === 'SELECT' ? HTMLSelectElement : HTMLInputElement; Object.getOwnPropertyDescriptor(type.prototype, 'value').set.call(el, ${JSON.stringify(value)}); el.dispatchEvent(new Event(el.tagName === 'SELECT' ? 'change' : 'input', { bubbles: true })); })()`)
   await browser.warte(100)
 }
-const number = (text) => Number(text.replace(/\./gu, '').match(/-?\d+(?:,\d+)?/u)?.[0]?.replace(',', '.') ?? 'NaN')
+const regional = await browser.evaluate(`(() => { const locale=navigator.languages.find(value=>/^[a-z]{2,3}-[A-Z]{2}$/.test(value))??'de-DE';const parts=new Intl.NumberFormat(locale).formatToParts(1234.5);return {locale,group:parts.find(p=>p.type==='group')?.value??'',decimal:parts.find(p=>p.type==='decimal').value}; })()`)
+const number = (text) => Number((regional.group ? text.replaceAll(regional.group, '') : text).replace(regional.decimal, '.').match(/-?\d+(?:\.\d+)?/u)?.[0] ?? 'NaN')
 const near = (actual, expected, tolerance) => assert.ok(Math.abs(actual - expected) <= tolerance, `${actual} != ${expected} ± ${tolerance}`)
 const rows = () => browser.evaluate(`Array.from(document.querySelectorAll('main tbody tr')).map(row => row.innerText)`)
 try {
@@ -44,7 +45,7 @@ try {
   await browser.evaluate('document.querySelector("main form button[type=submit]").click()')
   await until('document.querySelectorAll("main tbody tr").length > 0')
   const cable = await rows()
-  assert.ok(cable.some((row) => /genormter Querschnitt/iu.test(row) && /2,5/u.test(row)))
+  assert.ok(cable.some((row) => /genormter Querschnitt/iu.test(row) && Math.abs(number(row) - 2.5) < 0.001))
   assert.ok(cable.some((row) => /Auslastung/iu.test(row) && /80/u.test(row)))
   passed.push({ tool: 'cable', case: '230V single-phase, 16A, 30m Cu: A=960/(56×6.9)=2.484mm² → 2.5mm²; ampacity 16/20=80%' })
 
@@ -73,15 +74,16 @@ try {
   await browser.evaluate('document.querySelector("main .tool-content .download-row button").click()')
   await until('!!document.querySelector("main tbody input")')
   for (const [column,value] of [[1,'MS6 Prüffrist'],[2,'1'],[3,'2026-01-31'],[4,'ä; 日本']]) await set(`main tbody tr:first-child td:nth-child(${column}) input`,value)
-  await until('document.querySelector("main tbody tr").innerText.includes("28.02.2026")')
+  const expectedDate = await browser.evaluate(`new Intl.DateTimeFormat('de',{dateStyle:'medium'}).format(new Date('2026-02-28T12:00:00Z'))`)
+  await until(`document.querySelector("main tbody tr").innerText.includes(${JSON.stringify(expectedDate)})`)
   await browser.warte(500)
   await browser.send('Page.reload')
   await until('document.querySelector("main tbody input")?.value === "MS6 Prüffrist"')
   assert.equal(await browser.evaluate('document.querySelector("main tbody tr td:nth-child(4) input").value'), 'ä; 日本')
-  assert.match(await browser.evaluate('document.querySelector("main tbody tr").innerText'), /28\.02\.2026/u)
+  assert.ok((await browser.evaluate('document.querySelector("main tbody tr").innerText')).includes(expectedDate))
   passed.push({ tool: 'inspection', case: 'Actual UI entry survives reload with Unicode note; 31 January +1 month clamps to 28 February' })
 
   const external = browser.anfragen.filter((url) => !url.startsWith(service.origin) && !url.startsWith('data:') && !url.startsWith('blob:'))
   assert.deepEqual(external, []); assert.deepEqual(browser.fehler, [])
-  console.log(JSON.stringify({ passed, externalRequests: 0, scope: 'Six actual D/E browser cases; remaining photo/handover and original specialist/device criteria remain explicitly open' }, null, 2))
+  console.log(JSON.stringify({ passed, regional, externalRequests: 0, scope: 'Six actual D/E browser cases; photo/handover checked separately; unavailable original device criteria remain explicit' }, null, 2))
 } finally { await browser.ende(); await service.close() }

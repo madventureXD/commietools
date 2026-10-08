@@ -25,7 +25,7 @@ export const messages: Readonly<Record<string, string>> = {
   "tool.photoCaption.assumptions": "Assumptions: the capture time comes from the image data (`DateTimeOriginal`, else `CreateDate`, else `ModifyDate`) and is **never invented** — if it is missing the field stays empty and the caption shows only the note. If it comes only from the file modification date, that is stated explicitly; it is not necessarily the capture time. The timestamp can be overwritten, because a camera clock can be wrong. The caption sits in a band at the bottom; the arrow runs straight down from the band to the marked spot. The layout is calculated as a share of the image area so preview and result look the same. **Not included:** resizing images (that is what \"Resize image\" is for), redaction, detecting people or places. Exif data is only read, never changed.",
   "tool.photoCaption.sources": "Image data: the project’s own EXIF reader (no third-party library, see the \"Image metadata\" tool). PDF: the PDF engine already in the project, the same one used by \"Images to PDF\". No standard references, no suggestions about file sizes.",
   "tool.photoCaption.error.none": "Choose photos first.",
-  "tool.photoCaption.error.tooMany": "Too many photos at once (60 at most). Please work in two runs.",
+  "tool.photoCaption.error.tooMany": "At most 60 photos per batch. Save the results and remove the photos before starting another batch.",
   "tool.photoCaption.error.image": "One image could not be read. It was skipped — please check the file.",
   "tool.photoCaption.error.note": "One note is too long (160 characters at most).",
   "tool.photoCaption.error.timestamp": "One capture time is unusable (expected YYYY-MM-DD HH:MM).",

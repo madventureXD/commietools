@@ -633,3 +633,33 @@ ein prüfbarer lokaler Kandidat. Keine unabhängige A2, Konto-/Geräte-/Fachabna
 Veröffentlichung behauptet. Öffentliche Header gehören noch zum vorherigen Stand; dessen CSP
 erlaubt das lokale WASM/OCR-Verhalten nicht. Fortschritt und alle 26 Restverträge stehen im
 datieren Leitfadennachtrag; er bleibt die einzige laufende Kartenübersicht.
+
+## Nachtrag 2026-10-08 — tatsächliche Abschlusskontrolle und Audit-Vorschau
+
+Die vorstehende Aussage „Keine unabhängige A2, Konto-/Geräte-/Fachabnahme oder neue
+Veröffentlichung behauptet“ beschreibt den Stand vor Thomas' ausdrücklicher Benennung von Codex
+als Prüfer. Die Abschlusskontrolle ist ausgeführt und dokumentiert, einschließlich eigener
+Reparaturbeteiligung, Sicherheitsbewertung, Gegenproben und unabhängiger PDF-Leser. Weitere
+technische Fragen beantwortet Codex selbst; die umfassende Auftragsfreigabe bleibt gültig.
+Beleg: [Abschlussprüfung](../07-pruefung/fertigstellung/2026-10-08-ms1-ms7/abschlusspruefung.md).
+
+GitHub-Adminzugang und main-Schutz durch Releasepflicht funktionieren; tatsächliche Ubuntu-/Windows-
+Pflichtläufe und eine absichtlich rote Hash-Gegenprobe wurden ausgeführt. Der Audit-Zweig hat
+automatische Cloudflare-Vorschauen: neue öffentliche CSP, Signatur-WASM und eng/deu/spa-OCR
+bestehen dort. 696 öffentliche Dist-Dateien der ersten Vorschau sind bytegleich zum tatsächlichen
+CI-Artefakt; Hosting-Steuerdateien werden separat erfasst. Kein main-Merge/Produktionspush.
+Entwurf: [PR #1](https://github.com/madventureXD/commietools/pull/1).
+
+Zusätzliche tatsächliche Prüfungen: alle drei Offline-UI-Sprachen, vier vollständige Sprach-Root-
+Mutanten, Schwärzungs-/Viewer-Tastatur, Fremdfoto-EXIF/Pixel/PDF-Reihenfolge, zwei Protokoll-
+Zeigerunterschriften, sechs visuell gerenderte PDF-Seiten und große Fotostapel 60×12 MP/24×48 MP.
+Repariert: Unterschrift-PNG-Rennen, falsche VOB/B-Fundstelle (jetzt §13 Abs.4 Nr.1), kumulative
+60-Foto-Grenze und 39-px-Navigationsknopf auf fremdem Windows. Quellidentität berücksichtigt
+plattformabhängige Text-Zeilenenden; Binärbytes bleiben exakt gebunden.
+
+21 erfolgreiche lokale Stufen stehen im neuen portablen Endbeleg. Letzter ergänzender Root-Lauf:
+730 Vitest-Tests/54 Dateien und vier Node-Tests, 113 Lint-Warnungen/0 Fehler, Build Exit 0 mit
+150300 B gzip Einstieg. Warnschwellen wurden nicht erhöht. Tatsächliche CI-Schlussergebnisse werden
+separat geführt. Native Dateidialoge, echte Vorleseransagen/Browserzoom/physischer Touch und noch
+unbestätigte originale Betriebsbedingungen bleiben offen. Windows-Bedienzugriff scheitert auch
+nach erneuter Vollzugriffsfreigabe mit 0x80070005; kein erfundenes Gesamt-PASS.

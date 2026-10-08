@@ -131,6 +131,12 @@ try {
     await until(`document.querySelectorAll("main .save-file-control").length===${count + 1}`, 2400)
   } finally { clearInterval(poll) }
   passed.push({ tool: 'photo-caption', measuredLoad: { count, width, height, totalPixels: count * width * height, elapsedMs: Date.now() - started, allEdgeWorkingSetBefore: before, allEdgeWorkingSetPeak: peak, processScope: 'all Edge processes; includes any existing unrelated Edge processes', result: 'passed; tested load, not maximum or crash boundary' } })
+  if (count === 60) {
+    await choose([samples[0]])
+    await until('Boolean(document.querySelector("main [role=alert]"))')
+    assert.equal(await browser.evaluate('document.querySelectorAll("main .caption-canvas").length'), 60)
+    passed.push({ tool: 'photo-caption', cumulative61stPhotoRejected: true, existing60PhotosRetained: true })
+  }
   }
   const external = browser.anfragen.filter((url) => !url.startsWith(service.origin) && !url.startsWith('data:') && !url.startsWith('blob:'))
   assert.deepEqual(external, []); assert.deepEqual(browser.fehler, [])

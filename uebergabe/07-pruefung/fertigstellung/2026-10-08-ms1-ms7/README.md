@@ -58,3 +58,40 @@ Im vollständig beauftragten MS6 wird die konservative Archivvariante umgesetzt:
 - CMS/P12-Hinweise spätestens am 2026-11-08 nachliefern oder vor Ablauf ausdrücklich neu entscheiden; der Gate-Ablauf sperrt danach automatisch.
 
 MS1–MS7 sind deshalb **beauftragt und lokal weitgehend umgesetzt, insgesamt noch nicht vollständig abgenommen**. Eine Pauschalfreigabe ersetzt die beschriebenen Messungen und unabhängige A2 nicht. Die Arbeitsfreigabe wird nicht nochmals abgefragt.
+
+## Nachtrag 2026-10-08 — benannte Abschlussprüfung und echte Ausführung
+
+Die Aussagen „bisher keiner benannt/bestätigt“, „Kontoanbindung und tatsächliche GitHub-Läufe
+sind in dieser Umgebung nicht verfügbar“ und die offenen de/es-Modelltests beschreiben den
+vorherigen Stand in Commit `8a084a0a8b06cd83b1ab0ebddb47e5e32feb896f`. Thomas hat Codex ausdrücklich
+als Prüfer benannt. [Abschlussprüfung](abschlusspruefung.md) dokumentiert diese Review einschließlich
+der eigenen Reparaturbeteiligung und tatsächlichen Gegenproben. Eine weitere Person ist keine
+Arbeitsvoraussetzung. [Abschluss-Endbeleg](abschluss-proof-results.json) friert alle 21 erfolgreichen
+integrierten lokalen Stufen mit Loghashes ein; der ältere 18-Stufen-Beleg bleibt historische Messung.
+
+OCR eng/deu/spa, alle drei zuvor benutzten Oberflächensprachen nach echtem Offline-Reload,
+Schwärzung über Tastatur mit unabhängig gelesener Exportwirkung, Viewer-Tastatur/Textbaum,
+Fremdfoto/EXIF/Pixelvergleich und Protokoll mit zwei tatsächlichen Zeigerunterschriften sind
+zusätzlich geprüft. Die VOB-Fundstelle und das Rennen zwischen Unterschrift-PNG und PDF-Export
+wurden dabei repariert. Sechs Foto-/Protokollseiten wurden mit Poppler visuell kontrolliert.
+
+GitHub-Zugang funktioniert; `main` ist tatsächlich auch für Administratoren durch `Releasepflicht`
+geschützt. [PR #1](https://github.com/madventureXD/commietools/pull/1) ist ein Entwurf auf dem isolierten
+Audit-Zweig. Der erste reale Lauf fand einen 39-px-Navigationsknopf auf dem fremden Windows-Rechner;
+Commit `c4a437d486bb98077a4eb3a91670ea1582b45a9d` setzt 44 px Mindestbreite. Rust-Neubau und Bytegleichheit
+bestanden bereits dort. Die absichtliche Hashverletzung `056cc21a19d338044e5c60e6dd9bc23331534da8`
+wurde ausschließlich als negative CI-Probe veröffentlicht und in `6d1fcd9` wiederhergestellt.
+Die tatsächlichen Läufe stehen in [github-runs.json](github-runs.json); laufend ist kein PASS.
+
+Cloudflare erzeugt automatisch Audit-Vorschauen. [preview-delivery.json](preview-delivery.json)
+belegt tatsächliche neue öffentliche CSP, WASM-Prüfung und OCR in allen drei Modellsprachen.
+Ein separater Cloudflare-Token ist dafür nicht erforderlich. Diese Vorschau ist keine Veröffentlichung
+auf der Produktivdomain und ersetzt keinen Nachweis bytegleicher kompletter CI-/Hostingartefakte.
+Headless-PDF-Rasterung benötigt eine aktive Prüftab-Seite; frühere Timeoutversuche werden nicht als
+OCR-PASS geführt. Die bestandene Wiederholung aktiviert die eigene Headless-Seite explizit.
+
+Offen bleiben tatsächlich nicht verfügbare native Dateidialoge, Vorleseransagen, echter Browserzoom,
+physischer Touch und originale noch nicht gemessene Liefer-/Altprofil-/NEL-Empfängerbedingungen.
+Windows verweigert auch nach erneuter Vollzugriffsfreigabe `GetCursorPos` mit `0x80070005`.
+Diese Messungen werden nicht durch Häkchen ersetzt. Keine neue technische Betreiberentscheidung
+und keine erneute Arbeitsfreigabe erforderlich.

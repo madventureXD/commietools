@@ -55,7 +55,7 @@ export function PhotoCaption({ t }: PhotoCaptionProps) {
     const dateien = Array.from(event.target.files ?? [])
     event.target.value = ''
     if (!dateien.length) return
-    if (dateien.length > captionLimits.photosMax) {
+    if (dateien.length > captionLimits.photosMax - photos.length) {
       setErrorKey('tool.photoCaption.error.tooMany')
       return
     }

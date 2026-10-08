@@ -1,0 +1,22 @@
+{
+  "checkedAt": "2026-10-08T10:40:05.999Z",
+  "artifact": {
+    "sha": "8a084a0a8b06cd83b1ab0ebddb47e5e32feb896f",
+    "run": 37762288848,
+    "origin": "https://d5ca16c1.commietools.pages.dev",
+    "archiveSha256": "b186434e87d27cecd52d3caf235c5d17550ee2ed0a75121dc4a23ba0509c1a3b",
+    "checkedFiles": 696,
+    "hostingControlFiles": [
+      {
+        "path": "_headers",
+        "sha256": "249468f5eeccfe099cad4eec260fb68745b5fcbde6083c3a284b0368d11e9cc8"
+      },
+      {
+        "path": "_redirects",
+        "sha256": "6036983e5fc00f0169c9e939b1816ed771eee00e27f2fcc517b819041460b9ef"
+      }
+    ],
+    "differences": [],
+    "scope": "Every public dist file compared against actual checked-dist CI archive; hosting control files consumed by provider are separately identified. Preview, not production."
+  }
+}

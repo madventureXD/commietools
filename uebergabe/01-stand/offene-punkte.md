@@ -403,3 +403,20 @@ Details: `07-pruefung/fertigstellung/2026-10-08-ms1-ms7/rust-advisories.json`.
 
 OP-062 geschlossen und OP-067 ergänzt: weiterhin 65 aktive OPs. Keine neue Auditkarte und
 kein unabhängiger Gesamtabschluss der 26 Nachprüfungsreste.
+
+## Nachtrag 2026-10-08 — Prüfer und technische Zuständigkeit geklärt
+
+Die Formulierungen „noch zu benennen“, „Thomas als Betreiber/Koordinator“ und „mangels konkret
+bestätigter Ressourcen“ in OP-065/OP-066 werden für die Prüfer-/Entscheidungsrolle durch Thomas'
+ausdrücklichen Auftrag ersetzt: Codex ist der benannte Prüfer, führt alle erreichbaren Prüfungen aus
+und entscheidet technische Fragen selbst. Eine weitere Person oder erneute Genehmigung ist dafür
+nicht erforderlich. Eigene Reparaturbeteiligung und tatsächliche Grenzen stehen im
+[Abschlussbericht](../07-pruefung/fertigstellung/2026-10-08-ms1-ms7/abschlusspruefung.md).
+
+OP-065/OP-066 bleiben ausschließlich wegen nicht erfüllter Originalmessungen offen: Windows
+verweigert native Bedienung mit 0x80070005; physischer Touch und konkrete noch nicht gemessene
+Produktiv-/Altprofil-/NEL-Empfängerbedingungen fehlen. GitHub-Zugang, Branchschutz und tatsächliche
+CI sind vorhanden; Cloudflare-Auditvorschauen funktionieren automatisch und erlauben neue öffentliche
+CSP/WASM/OCR- und byteweise Artefaktprüfung. Die frühere pauschale Konto-/A2-Sperraussage ist überholt.
+Maßgebliche Einzelkartenübersicht: datierter Nachtrag im QM-Leitfaden. OP-067 ist die bereits
+genehmigte spätere Hinweisnachverfolgung; bis einschließlich 2026-11-08 kein neuer Genehmigungsbedarf.

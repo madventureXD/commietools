@@ -113,3 +113,43 @@ und Prüferbenennung sind umgesetzt; eine nicht erfolgte Messung wird dadurch ke
 Der Gesamtabschluss bleibt bis zur Erfüllung der konkret genannten Liefer-/Gerätekriterien offen.
 Es sind keine erneuten technischen Entscheidungen oder routinemäßigen Genehmigungen von Thomas
 erforderlich.
+
+## Nachtrag 2026-10-08 — tatsächliche externe Ausführung
+
+Die Aussage „Deshalb sind kontrollierte Veröffentlichung eines identischen Artefakts, Prüfung
+neuer öffentlicher CSP ... noch nicht bestätigt“ war im Stand `8a084a0a8b06cd83b1ab0ebddb47e5e32feb896f`
+zu weit: Cloudflare veröffentlicht über die vorhandene GitHub-Integration automatisch Vorschauen.
+[preview-delivery.json](preview-delivery.json) belegt auf einer unveränderlichen Audit-Vorschau
+die neue öffentliche CSP, tatsächliche Signatur-WASM-Ausführung und eng/deu/spa-OCR.
+[github-artifact.json](github-artifact.json) vergleicht alle 696 öffentlich ausgelieferten Dist-Dateien
+mit dem tatsächlichen checked-dist-Archiv des passenden GitHub-Laufs: keine Abweichung.
+Zwei Hosting-Steuerdateien werden vom Provider verarbeitet und sind separat gehasht.
+Das ist kein Produktionspush und kein Zugriff auf interne NEL-Empfänger oder fremde Benutzerprofile.
+
+Der reale Erstlauf fand auf fremdem Windows einen 39-px-Navigationsknopf; eine 44-px-Mindestbreite
+behebt ihn. Der folgende Lauf bestand diese Gesamtmatrix, erreichte alle PDF-/OCR-/Offline-/Menü-
+Gegenproben, scheiterte dann an einem Prüferfehler: US-Gruppenkomma wurde als Dezimalkomma gelesen
+(3750 → 3.75). Der D/E-Prüfer liest jetzt die tatsächlichen regionalen Formatbestandteile.
+Die absichtliche Hashmutation `056cc21a19d338044e5c60e6dd9bc23331534da8` beweist tatsächlich:
+Root rot, Browser übersprungen, Rust erfolgreich und Releasepflicht trotzdem rot. Die Mutation
+wurde in `6d1fcd994bfc969d5d4b39f4b3b94522eecf07a3` wiederhergestellt. Kein grünes Urteil für
+vorherige fehlgeschlagene Läufe. [Tatsächliche Runs](github-runs.json).
+
+Die Quellidentität normalisiert CRLF/LF bei expliziten Texttypen; sämtliche Binärbytes bleiben
+unverändert gebunden. Zwei Node-Gegenproben schützen Gleichheit von Checkout-Zeilenenden,
+Empfindlichkeit für reale Quelländerungen und exakte WASM-Bytes. Exakte sourceDigest-/Dateihashes
+im Manifest bleiben zusätzlich erhalten. Der Engine-Quelllink zeigt jetzt auf den tatsächlich
+modifizierten vendorten Quellbaum und der Build-Link auf dessen Anleitung; die ursprüngliche
+Upstreamrevision bleibt im Artefaktregister dokumentiert.
+
+Erweiterte Fotolast tatsächlich bestanden: 60×4000×3000 (=720 MP) und 24×8000×6000 (=1152 MP).
+Die frühere 12-Foto-Probe ist nur die frühere kleine Lastmessung, keine Obergrenze. Ein kumulativer
+61. Fotozugang wird nun abgewiesen, die 60 vorhandenen Fotos bleiben erhalten; drei Sprachmeldungen
+erklären den nächsten Stapel. Die Hardware-/Arbeitsmengengrenze wird daraus nicht verallgemeinert.
+Der portable spätere Zusatzbeleg hält die letzte Wiederholung fest.
+
+Native Bedienung erneut nach Thomas' letzter Vollzugriffsfreigabe versucht: unverändert
+`GetCursorPos failed: Zugriff verweigert (0x80070005)`, nur ChatGPT/Task-Manager als Fenster.
+Damit bleibt ausschließlich die tatsächliche Geräte-/Betriebsabnahme offen, keine Prüferbenennung
+oder erneute technische Genehmigung. Der Bericht bestätigt alle ausführbaren Prüfungen mit Beleg;
+er bestätigt keine tatsächlich unerfüllten Originalkriterien.

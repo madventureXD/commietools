@@ -29,7 +29,7 @@ export const photoCaptionDe = {
   'tool.photoCaption.sources': 'Bilddaten: eigener EXIF-Leser des Projekts (keine Fremdbibliothek, siehe Werkzeug „Bild-Metadaten“). PDF: die im Projekt vorhandene PDF-Engine, dieselbe wie in „Bilder zu PDF“. Keine Normbezüge, keine Vorschläge zu Dateigrößen.',
 
   'tool.photoCaption.error.none': 'Zuerst Fotos wählen.',
-  'tool.photoCaption.error.tooMany': 'Zu viele Fotos auf einmal (höchstens 60). Bitte in zwei Durchgängen arbeiten.',
+  'tool.photoCaption.error.tooMany': 'Höchstens 60 Fotos pro Stapel. Vor einem weiteren Stapel die Ergebnisse speichern und die Fotos entfernen.',
   'tool.photoCaption.error.image': 'Ein Bild ließ sich nicht lesen. Es wurde übersprungen — bitte Datei prüfen.',
   'tool.photoCaption.error.note': 'Eine Notiz ist zu lang (höchstens 160 Zeichen).',
   'tool.photoCaption.error.timestamp': 'Eine Aufnahmezeit ist unbrauchbar (erwartet JJJJ-MM-TT HH:MM).',

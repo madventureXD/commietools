@@ -105,6 +105,9 @@ if (process.argv.includes('github-runs')) steps.splice(0, steps.length, ['github
 if (process.argv.includes('github-logs')) steps.splice(0, steps.length, ['github-logs', process.execPath, ['scripts/github-audit-setup.mjs', 'logs']])
 if (process.argv.includes('github-delivery')) steps.splice(0, steps.length, ['github-delivery', process.execPath, ['scripts/github-audit-setup.mjs', 'delivery']])
 if (process.argv.includes('preview')) steps.splice(0, steps.length, ['preview-delivery', process.execPath, ['scripts/preview-delivery-audit.mjs']])
+if (process.argv.includes('github-artifact')) steps.splice(0, steps.length, ['github-artifact', process.execPath, ['scripts/github-audit-setup.mjs', 'artifact']])
+if (process.argv.includes('licenses-refresh')) steps.splice(0, steps.length, ['rust-components', process.execPath, ['scripts/rust-components.mjs']], ['licenses', process.execPath, [npmCli, 'run', 'licenses:generate']])
+if (process.argv.includes('nel-preview')) steps.splice(0, steps.length, ['nel-preview', process.execPath, ['scripts/nel-preview-audit.mjs']])
 for (const [name, executable, args] of steps) {
   console.log(`START ${name}`)
   const fd = openSync(resolve(output, `${name}.log`), 'w')

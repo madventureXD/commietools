@@ -5,7 +5,7 @@
     "license": "AGPL-3.0-only",
     "source": "LICENSE",
     "repository": "https://github.com/madventureXD/commietools",
-    "revision": "556159f58ac3beac3b6349851dae7326558b7fbb"
+    "revision": "6d1fcd994bfc969d5d4b39f4b3b94522eecf07a3"
   },
   "lockfileSha256": "9b90a58babb633abfb48233929d04a103019381c11fd51101e90cdb8063ff259",
   "policy": {
@@ -138,8 +138,8 @@
       "licenseIds": [
         "GPL-3.0-or-later"
       ],
-      "source": "https://github.com/StrategicProjects/pdf_signer/tree/6cc0218100d9ffc038f8dccee3b707e5bd136100",
-      "build": "https://github.com/madventureXD/commietools/blob/556159f58ac3beac3b6349851dae7326558b7fbb/crates/pdf-signer-wasm/README.md",
+      "source": "https://github.com/madventureXD/commietools/tree/6d1fcd994bfc969d5d4b39f4b3b94522eecf07a3/crates/pdf-signer-engine",
+      "build": "https://github.com/madventureXD/commietools/blob/6d1fcd994bfc969d5d4b39f4b3b94522eecf07a3/crates/pdf-signer-wasm/README.md",
       "components": [
         {
           "name": "pdf_signer",

@@ -47,8 +47,10 @@ export async function starte({ breite = 1360, hoehe = 1100, schema = 'light', pr
   const anfragen = []
   const fehler = []
   const consoleMessages = []
+  const reportingEvents = []
   socket.addEventListener('message', (ereignis) => {
     const nachricht = JSON.parse(ereignis.data)
+    if (nachricht.method?.startsWith('Network.reportingApi')) reportingEvents.push({ method: nachricht.method, params: nachricht.params })
     if (nachricht.method === 'Network.requestWillBeSent') anfragen.push(nachricht.params.request.url)
     if (nachricht.method === 'Runtime.exceptionThrown') fehler.push(nachricht.params.exceptionDetails.exception?.description ?? nachricht.params.exceptionDetails.text)
     if (nachricht.method === 'Runtime.consoleAPICalled') consoleMessages.push({ type: nachricht.params.type, text: nachricht.params.args.map((arg) => arg.value ?? arg.description ?? '').join(' ') })
@@ -104,12 +106,16 @@ export async function starte({ breite = 1360, hoehe = 1100, schema = 'light', pr
   }
 
   await send('Runtime.enable'); await send('Page.enable'); await send('Network.enable')
+  // Foreground headless test page: PDF.js display rendering relies on animation frames.
+  // This is fixture calibration, not evidence of a native window or actual device focus.
+  await send('Emulation.setFocusEmulationEnabled', { enabled: true })
+  await send('Page.bringToFront')
   await send('Emulation.setEmulatedMedia', { features: [{ name: 'prefers-color-scheme', value: schema }] })
   await send('Emulation.setDeviceMetricsOverride', { width: breite, height: hoehe, deviceScaleFactor: 1, mobile: false })
   if (download) { fs.mkdirSync(download, { recursive: true }); await send('Browser.setDownloadBehavior', { behavior: 'allow', downloadPath: download }) }
 
   return {
-    send, evaluate, klicke, schuss, warte, anfragen, fehler, consoleMessages, profil: profile,
+    send, evaluate, klicke, schuss, warte, anfragen, fehler, consoleMessages, reportingEvents, profil: profile,
     async oeffne(url) { await send('Page.navigate', { url }); await warte(4000) },
     async ende() { await send('Browser.close').catch(() => {}); socket.close(); prozess.kill(); await warte(300); try { fs.rmSync(profile, { recursive: true, force: true }) } catch { /* Profil schon fort — nicht schlimm. */ } }
   }

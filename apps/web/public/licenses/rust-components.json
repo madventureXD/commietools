@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "erzeugt": "2026-10-08T08:20:36.091Z",
+  "erzeugt": "2026-10-08T10:46:14.265Z",
   "grundlage": {
     "zielprofil": "wasm32-unknown-unknown",
     "manifest": "crates/pdf-signer-wasm/Cargo.toml",

@@ -1,0 +1,64 @@
+{
+  "checkedAt": "2026-10-08T10:23:22.078Z",
+  "delivery": {
+    "sha": "8a084a0a8b06cd83b1ab0ebddb47e5e32feb896f",
+    "checks": [
+      {
+        "name": "Barrierefreiheit und Überbreite (Windows, Edge)",
+        "conclusion": "failure",
+        "details_url": "https://github.com/madventureXD/commietools/actions/runs/37762288848/job/113261950833",
+        "output": {
+          "title": null,
+          "summary": null,
+          "text": null,
+          "annotations_count": 2,
+          "annotations_url": "https://api.github.com/repos/madventureXD/commietools/check-runs/113261950833/annotations"
+        }
+      },
+      {
+        "name": "Cloudflare Pages",
+        "conclusion": "success",
+        "details_url": "https://dash.cloudflare.com/?to=/d5ebb6bc5a0df900080fa689a273d6c5/pages/view/commietools/d5ca16c1-216d-4f12-b97b-5ccd67226901",
+        "output": {
+          "title": "Deployed successfully",
+          "summary": "<table><tr><td><strong>Latest commit:</strong> </td><td>\n<code>8a084a0</code>\n</td></tr>\n<tr><td><strong>Status:</strong></td><td>&nbsp;✅&nbsp; Deploy successful!</td></tr>\n<tr><td><strong>Preview URL:</strong></td><td>\n<a href='https://d5ca16c1.commietools.pages.dev'>https://d5ca16c1.commietools.pages.dev</a>\n</td></tr>\n<tr><td><strong>Branch Preview URL:</strong></td><td>\n<a href='https://audit-fertigstellung-2026-10.commietools.pages.dev'>https://audit-fertigstellung-2026-10.commietools.pages.dev</a>\n</td></tr>\n</table>\n\n[View logs](https://dash.cloudflare.com/?to=/d5ebb6bc5a0df900080fa689a273d6c5/pages/view/commietools/d5ca16c1-216d-4f12-b97b-5ccd67226901)\n",
+          "text": null,
+          "annotations_count": 0,
+          "annotations_url": "https://api.github.com/repos/madventureXD/commietools/check-runs/113261640785/annotations"
+        }
+      },
+      {
+        "name": "Lizenz, Katalog, Lint, Typen, Tests, Bau",
+        "conclusion": "success",
+        "details_url": "https://github.com/madventureXD/commietools/actions/runs/37762288848/job/113261379430",
+        "output": {
+          "title": null,
+          "summary": null,
+          "text": null,
+          "annotations_count": 12,
+          "annotations_url": "https://api.github.com/repos/madventureXD/commietools/check-runs/113261379430/annotations"
+        }
+      },
+      {
+        "name": "Rust-Prüfungen (nativ und wasm32)",
+        "conclusion": null,
+        "details_url": "https://github.com/madventureXD/commietools/actions/runs/37762288848/job/113261379360",
+        "output": {
+          "title": null,
+          "summary": null,
+          "text": null,
+          "annotations_count": 0,
+          "annotations_url": "https://api.github.com/repos/madventureXD/commietools/check-runs/113261379360/annotations"
+        }
+      }
+    ],
+    "comments": [
+      {
+        "body": "## Deploying commietools with &nbsp;<a href=\"https://pages.dev\"><img alt=\"Cloudflare Pages\" src=\"https://user-images.githubusercontent.com/23264/106598434-9e719e00-654f-11eb-9e59-6167043cfa01.png\" width=\"16\"></a> &nbsp;Cloudflare Pages\n\n<table><tr><td><strong>Latest commit:</strong> </td><td>\n<code>8a084a0</code>\n</td></tr>\n<tr><td><strong>Status:</strong></td><td>&nbsp;✅&nbsp; Deploy successful!</td></tr>\n<tr><td><strong>Preview URL:</strong></td><td>\n<a href='https://d5ca16c1.commietools.pages.dev'>https://d5ca16c1.commietools.pages.dev</a>\n</td></tr>\n<tr><td><strong>Branch Preview URL:</strong></td><td>\n<a href='https://audit-fertigstellung-2026-10.commietools.pages.dev'>https://audit-fertigstellung-2026-10.commietools.pages.dev</a>\n</td></tr>\n</table>\n\n[View logs](https://dash.cloudflare.com/?to=/d5ebb6bc5a0df900080fa689a273d6c5/pages/view/commietools/d5ca16c1-216d-4f12-b97b-5ccd67226901)\n",
+        "html_url": "https://github.com/madventureXD/commietools/pull/1#issuecomment-6057679861"
+      }
+    ],
+    "statuses": [],
+    "deployments": []
+  }
+}

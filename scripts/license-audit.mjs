@@ -376,7 +376,7 @@ function ergaenzeQuellzugang(registry) {
     for (const feld of ['build', 'source']) {
       const wert = artefakt[feld]
       if (wert && !/^https?:/i.test(wert) && revision) {
-        artefakt[feld] = `https://github.com/madventureXD/commietools/blob/${revision}/${wert}`
+        artefakt[feld] = `https://github.com/madventureXD/commietools/${feld === 'source' ? 'tree' : 'blob'}/${revision}/${wert}`
         absolut.push(`${artefakt.id}.${feld}`)
       }
     }
@@ -462,7 +462,7 @@ function ohneRevision(text) {
   return text
     .replace(/"revision":\s*"[0-9a-f]{7,40}"/gu, `"revision": "${neutral}"`)
     .replace(/"revision":\s*null/gu, `"revision": "${neutral}"`)
-    .replace(/\/blob\/[0-9a-f]{7,40}\//gu, `/blob/${neutral}/`)
+    .replace(/(https:\/\/github\.com\/madventureXD\/commietools\/(?:blob|tree)\/)[0-9a-f]{7,40}\//gu, `$1${neutral}/`)
 }
 
 if (mode === 'generate') {

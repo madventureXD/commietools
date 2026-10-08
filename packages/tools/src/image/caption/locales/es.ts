@@ -29,7 +29,7 @@ export const photoCaptionEs = {
   'tool.photoCaption.sources': 'Datos de imagen: lector EXIF propio del proyecto (sin biblioteca ajena, véase la herramienta «Metadatos de imagen»). PDF: el motor PDF ya presente en el proyecto, el mismo que usa «Imágenes a PDF». Sin referencias a normas y sin sugerencias sobre tamaños de archivo.',
 
   'tool.photoCaption.error.none': 'Elegir primero las fotos.',
-  'tool.photoCaption.error.tooMany': 'Demasiadas fotos a la vez (60 como máximo). Conviene trabajar en dos tandas.',
+  'tool.photoCaption.error.tooMany': 'Como máximo 60 fotos por tanda. Guardar los resultados y eliminar las fotos antes de iniciar otra tanda.',
   'tool.photoCaption.error.image': 'Una imagen no se pudo leer. Se ha omitido; conviene revisar el archivo.',
   'tool.photoCaption.error.note': 'Una nota es demasiado larga (160 caracteres como máximo).',
   'tool.photoCaption.error.timestamp': 'Una hora de captura no es utilizable (se espera AAAA-MM-DD HH:MM).',

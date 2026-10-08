@@ -1,5 +1,7 @@
 import { execFileSync } from 'node:child_process'
-import { writeFileSync } from 'node:fs'
+import { writeFileSync, mkdirSync, readdirSync, readFileSync } from 'node:fs'
+import { resolve, join } from 'node:path'
+import { createHash } from 'node:crypto'
 
 let token = process.env.GH_TOKEN ?? process.env.GITHUB_TOKEN
 if (!token) {
@@ -14,6 +16,51 @@ const api = async (path, method = 'GET', body) => {
   return json
 }
 const result = { checkedAt: new Date().toISOString() }
+if (process.argv.includes('artifact')) {
+  const delivery = JSON.parse(readFileSync('uebergabe/07-pruefung/fertigstellung/2026-10-08-ms1-ms7/github-delivery.json'))
+  const sha = delivery.delivery.sha
+  const check = delivery.delivery.checks.find((check) => check.name === 'Cloudflare Pages' && check.conclusion === 'success')
+  const origin = check?.output.summary.match(/https:\/\/[a-z0-9]+\.commietools\.pages\.dev/u)?.[0]
+  if (!origin) throw new Error('Successful immutable preview required')
+  const list = await api('actions/runs?branch=audit-fertigstellung-2026-10-08&per_page=10')
+  const run = list.workflow_runs.find((run) => run.head_sha === sha)
+  if (!run) throw new Error('Matching actual CI run required')
+  const artifacts = await api(`actions/runs/${run.id}/artifacts`)
+  const artifact = artifacts.artifacts.find((artifact) => artifact.name === 'checked-dist' && !artifact.expired)
+  if (!artifact) throw new Error('Actual checked-dist artifact required')
+  const response = await fetch(artifact.archive_download_url, { headers: { Authorization: 'Bearer ' + token }, signal: AbortSignal.timeout(60000) })
+  if (!response.ok) throw new Error(`Artifact HTTP ${response.status}`)
+  const directory = resolve(`tmp/github-artifact-${run.id}`)
+  mkdirSync(directory, { recursive: true })
+  const zip = join(directory, 'artifact.zip')
+  const bytes = Buffer.from(await response.arrayBuffer())
+  writeFileSync(zip, bytes)
+  const dist = join(directory, 'dist'); mkdirSync(dist, { recursive: true })
+  execFileSync('tar.exe', ['-xf', zip, '-C', dist], { windowsHide: true, stdio: 'pipe' })
+  const hash = (bytes) => createHash('sha256').update(bytes).digest('hex')
+  const files = []
+  const walk = (relative = '') => {
+    for (const entry of readdirSync(join(dist, relative), { withFileTypes: true })) {
+      const path = relative ? relative + '/' + entry.name : entry.name
+      if (entry.isDirectory()) walk(path)
+      else files.push({ path, sha256: hash(readFileSync(join(dist, path))) })
+    }
+  }
+  walk()
+  const controls = ['_headers', '_redirects', '_routes.json']
+  const publicFiles = files.filter(({ path }) => !controls.includes(path))
+  let next = 0
+  const differences = []
+  await Promise.all(Array.from({ length: 6 }, async () => {
+    while (next < publicFiles.length) {
+      const file = publicFiles[next++]
+      const response = await fetch(origin + '/' + file.path, { signal: AbortSignal.timeout(30000) })
+      const bytes = Buffer.from(await response.arrayBuffer())
+      if (response.status !== 200 || hash(bytes) !== file.sha256) differences.push({ path: file.path, status: response.status, ciSha256: file.sha256, publicSha256: hash(bytes) })
+    }
+  }))
+  result.artifact = { sha, run: run.id, origin, archiveSha256: hash(bytes), checkedFiles: publicFiles.length, hostingControlFiles: files.filter(({ path }) => controls.includes(path)), differences, scope: 'Every public dist file compared against actual checked-dist CI archive; hosting control files consumed by provider are separately identified. Preview, not production.' }
+}
 if (process.argv.includes('logs')) {
   const list = await api('actions/runs?branch=audit-fertigstellung-2026-10-08&per_page=5')
   const failed = []
@@ -59,6 +106,7 @@ if (process.argv.includes('pr')) {
   const pr = existing[0] ?? await api('pulls', 'POST', { title: 'Audit-Sanierung: Reparaturen und überprüfbare Pflichtgates', head: 'audit-fertigstellung-2026-10-08', base: 'main', draft: true, body: 'Behebt Lizenzgate, Dateiauswahl-/URL-Lebenszyklus, Sprach-/Menüprüfung, Offlinecache, OCR-Worker und PDF-Wirkungsgates. Ergänzt SHA-gebundene Pflichtjobs, reproduzierbaren WASM-Bau und portable Gegenproben.\n\nLokale Prüfungen und konkrete noch nicht erfüllte Geräte-/Betriebskriterien stehen in uebergabe/07-pruefung/fertigstellung/2026-10-08-ms1-ms7/. Ein grüner lokaler Lauf ersetzt diese fehlenden Abnahmen nicht. Dieses PR ist der isolierte CI-Prüfweg; kein Merge oder Produktionspush.' })
   result.pullRequest = pr.html_url
 }
-const mode = ['protect', 'runs', 'pr', 'logs', 'delivery'].find((value) => process.argv.includes(value))
+const mode = ['protect', 'runs', 'pr', 'logs', 'delivery', 'artifact'].find((value) => process.argv.includes(value))
 writeFileSync(`uebergabe/07-pruefung/fertigstellung/2026-10-08-ms1-ms7/github-${mode}.json`, JSON.stringify(result, null, 2) + '\n')
 console.log(JSON.stringify(result, null, 2))
+if (result.artifact?.differences.length) process.exitCode = 1
