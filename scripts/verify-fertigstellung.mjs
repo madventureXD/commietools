@@ -112,6 +112,7 @@ if (process.argv.includes('sw-upgrade')) steps.splice(0, steps.length, ['offline
 if (process.argv.includes('github-sources')) steps.splice(0, steps.length, ['github-sources', process.execPath, ['scripts/github-audit-setup.mjs', 'sources']])
 if (process.argv.includes('de-regions')) steps.splice(0, steps.length, ['de-region-us', process.execPath, ['scripts/de-browser-audit.mjs', '--region=en-US']], ['de-region-de', process.execPath, ['scripts/de-browser-audit.mjs', '--region=de-DE']])
 if (process.argv.includes('result-states')) steps.splice(0, steps.length, ['result-states', process.execPath, ['scripts/result-states-audit.mjs']])
+if (process.argv.includes('text-spacing')) steps.splice(0, steps.length, ['text-spacing', process.execPath, ['scripts/text-spacing-audit.mjs']])
 for (const [name, executable, args] of steps) {
   console.log(`START ${name}`)
   const fd = openSync(resolve(output, `${name}.log`), 'w')
@@ -130,7 +131,7 @@ for (const [name, executable, args] of steps) {
   }
   results.push({ name, exit, log: `${name}.log` })
   console.log(`END ${name}: ${exit}`)
-  const suffix = ['extras', 'remaining', 'repro', 'advisories', 'rust-patches', 'public-read', 'de', 'final', 'root-final', 'completion', 'language', 'craft', 'offline-locales', 'pdf-ui', 'effects', 'access', 'github-protect', 'github-pr', 'github-runs', 'github-logs', 'github-delivery', 'github-artifact', 'github-sources', 'preview', 'licenses-refresh', 'nel-preview', 'sw-upgrade', 'de-regions', 'result-states'].find((mode) => process.argv.includes(mode))
+  const suffix = ['extras', 'remaining', 'repro', 'advisories', 'rust-patches', 'public-read', 'de', 'final', 'root-final', 'completion', 'language', 'craft', 'offline-locales', 'pdf-ui', 'effects', 'access', 'github-protect', 'github-pr', 'github-runs', 'github-logs', 'github-delivery', 'github-artifact', 'github-sources', 'preview', 'licenses-refresh', 'nel-preview', 'sw-upgrade', 'de-regions', 'result-states', 'text-spacing'].find((mode) => process.argv.includes(mode))
   writeFileSync(resolve(output, `verification${suffix ? '-' + suffix : ''}.json`), JSON.stringify({ results }, null, 2) + '\n')
 }
 if (results.some((result) => result.exit !== 0)) process.exitCode = 1

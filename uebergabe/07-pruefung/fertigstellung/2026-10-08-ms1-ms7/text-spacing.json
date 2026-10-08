@@ -1,0 +1,333 @@
+{
+  "checkedAt": "2026-10-08T11:52:34.492Z",
+  "build": "590f3b15fdf305249d7bb78ccd3c17fddb05c342e12abfde32005f5e425e0963",
+  "scannerSha256": "7075cc5081cf9326b0666588b432229d02291941dad09550059f752a7ae09de1",
+  "cases": [
+    {
+      "scheme": "light",
+      "locale": "de",
+      "route": "/",
+      "width": 320,
+      "controls": 76,
+      "menuControls": 137,
+      "problems": []
+    },
+    {
+      "scheme": "light",
+      "locale": "de",
+      "route": "/",
+      "width": 390,
+      "controls": 76,
+      "menuControls": 137,
+      "problems": []
+    },
+    {
+      "scheme": "light",
+      "locale": "de",
+      "route": "/tools/lighting",
+      "width": 320,
+      "controls": 18,
+      "menuControls": 137,
+      "problems": []
+    },
+    {
+      "scheme": "light",
+      "locale": "de",
+      "route": "/tools/lighting",
+      "width": 390,
+      "controls": 18,
+      "menuControls": 137,
+      "problems": []
+    },
+    {
+      "scheme": "light",
+      "locale": "de",
+      "route": "/tools/pdf-split",
+      "width": 320,
+      "controls": 12,
+      "menuControls": 137,
+      "problems": []
+    },
+    {
+      "scheme": "light",
+      "locale": "de",
+      "route": "/tools/pdf-split",
+      "width": 390,
+      "controls": 12,
+      "menuControls": 137,
+      "problems": []
+    },
+    {
+      "scheme": "light",
+      "locale": "en",
+      "route": "/",
+      "width": 320,
+      "controls": 76,
+      "menuControls": 137,
+      "problems": []
+    },
+    {
+      "scheme": "light",
+      "locale": "en",
+      "route": "/",
+      "width": 390,
+      "controls": 76,
+      "menuControls": 137,
+      "problems": []
+    },
+    {
+      "scheme": "light",
+      "locale": "en",
+      "route": "/tools/lighting",
+      "width": 320,
+      "controls": 18,
+      "menuControls": 137,
+      "problems": []
+    },
+    {
+      "scheme": "light",
+      "locale": "en",
+      "route": "/tools/lighting",
+      "width": 390,
+      "controls": 18,
+      "menuControls": 137,
+      "problems": []
+    },
+    {
+      "scheme": "light",
+      "locale": "en",
+      "route": "/tools/pdf-split",
+      "width": 320,
+      "controls": 12,
+      "menuControls": 137,
+      "problems": []
+    },
+    {
+      "scheme": "light",
+      "locale": "en",
+      "route": "/tools/pdf-split",
+      "width": 390,
+      "controls": 12,
+      "menuControls": 137,
+      "problems": []
+    },
+    {
+      "scheme": "light",
+      "locale": "es",
+      "route": "/",
+      "width": 320,
+      "controls": 76,
+      "menuControls": 137,
+      "problems": []
+    },
+    {
+      "scheme": "light",
+      "locale": "es",
+      "route": "/",
+      "width": 390,
+      "controls": 76,
+      "menuControls": 137,
+      "problems": []
+    },
+    {
+      "scheme": "light",
+      "locale": "es",
+      "route": "/tools/lighting",
+      "width": 320,
+      "controls": 18,
+      "menuControls": 137,
+      "problems": []
+    },
+    {
+      "scheme": "light",
+      "locale": "es",
+      "route": "/tools/lighting",
+      "width": 390,
+      "controls": 18,
+      "menuControls": 137,
+      "problems": []
+    },
+    {
+      "scheme": "light",
+      "locale": "es",
+      "route": "/tools/pdf-split",
+      "width": 320,
+      "controls": 12,
+      "menuControls": 137,
+      "problems": []
+    },
+    {
+      "scheme": "light",
+      "locale": "es",
+      "route": "/tools/pdf-split",
+      "width": 390,
+      "controls": 12,
+      "menuControls": 137,
+      "problems": []
+    },
+    {
+      "scheme": "dark",
+      "locale": "de",
+      "route": "/",
+      "width": 320,
+      "controls": 76,
+      "menuControls": 137,
+      "problems": []
+    },
+    {
+      "scheme": "dark",
+      "locale": "de",
+      "route": "/",
+      "width": 390,
+      "controls": 76,
+      "menuControls": 137,
+      "problems": []
+    },
+    {
+      "scheme": "dark",
+      "locale": "de",
+      "route": "/tools/lighting",
+      "width": 320,
+      "controls": 18,
+      "menuControls": 137,
+      "problems": []
+    },
+    {
+      "scheme": "dark",
+      "locale": "de",
+      "route": "/tools/lighting",
+      "width": 390,
+      "controls": 18,
+      "menuControls": 137,
+      "problems": []
+    },
+    {
+      "scheme": "dark",
+      "locale": "de",
+      "route": "/tools/pdf-split",
+      "width": 320,
+      "controls": 12,
+      "menuControls": 137,
+      "problems": []
+    },
+    {
+      "scheme": "dark",
+      "locale": "de",
+      "route": "/tools/pdf-split",
+      "width": 390,
+      "controls": 12,
+      "menuControls": 137,
+      "problems": []
+    },
+    {
+      "scheme": "dark",
+      "locale": "en",
+      "route": "/",
+      "width": 320,
+      "controls": 76,
+      "menuControls": 137,
+      "problems": []
+    },
+    {
+      "scheme": "dark",
+      "locale": "en",
+      "route": "/",
+      "width": 390,
+      "controls": 76,
+      "menuControls": 137,
+      "problems": []
+    },
+    {
+      "scheme": "dark",
+      "locale": "en",
+      "route": "/tools/lighting",
+      "width": 320,
+      "controls": 18,
+      "menuControls": 137,
+      "problems": []
+    },
+    {
+      "scheme": "dark",
+      "locale": "en",
+      "route": "/tools/lighting",
+      "width": 390,
+      "controls": 18,
+      "menuControls": 137,
+      "problems": []
+    },
+    {
+      "scheme": "dark",
+      "locale": "en",
+      "route": "/tools/pdf-split",
+      "width": 320,
+      "controls": 12,
+      "menuControls": 137,
+      "problems": []
+    },
+    {
+      "scheme": "dark",
+      "locale": "en",
+      "route": "/tools/pdf-split",
+      "width": 390,
+      "controls": 12,
+      "menuControls": 137,
+      "problems": []
+    },
+    {
+      "scheme": "dark",
+      "locale": "es",
+      "route": "/",
+      "width": 320,
+      "controls": 76,
+      "menuControls": 137,
+      "problems": []
+    },
+    {
+      "scheme": "dark",
+      "locale": "es",
+      "route": "/",
+      "width": 390,
+      "controls": 76,
+      "menuControls": 137,
+      "problems": []
+    },
+    {
+      "scheme": "dark",
+      "locale": "es",
+      "route": "/tools/lighting",
+      "width": 320,
+      "controls": 18,
+      "menuControls": 137,
+      "problems": []
+    },
+    {
+      "scheme": "dark",
+      "locale": "es",
+      "route": "/tools/lighting",
+      "width": 390,
+      "controls": 18,
+      "menuControls": 137,
+      "problems": []
+    },
+    {
+      "scheme": "dark",
+      "locale": "es",
+      "route": "/tools/pdf-split",
+      "width": 320,
+      "controls": 12,
+      "menuControls": 137,
+      "problems": []
+    },
+    {
+      "scheme": "dark",
+      "locale": "es",
+      "route": "/tools/pdf-split",
+      "width": 390,
+      "controls": 12,
+      "menuControls": 137,
+      "problems": []
+    }
+  ],
+  "scope": "Actual CSS text spacing: 1.5 line height, 2em paragraph spacing, .12em letter and .16em word spacing. Headless layout, no native zoom or mobile-device claim.",
+  "passed": true
+}

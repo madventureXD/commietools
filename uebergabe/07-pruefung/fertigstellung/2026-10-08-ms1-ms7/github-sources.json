@@ -1,11 +1,11 @@
 {
-  "checkedAt": "2026-10-08T11:19:17.932Z",
+  "checkedAt": "2026-10-08T11:44:31.074Z",
   "sources": {
-    "deploymentRevision": "524f0738f1c04a997735b82174b2c18b3adb0e44",
-    "publishedSourceRevision": "77d38e51979cd9eff2813fe0d67b1e94ed5ca34b",
-    "origin": "https://c8ff7b8c.commietools.pages.dev",
-    "source": "https://github.com/madventureXD/commietools/tree/77d38e51979cd9eff2813fe0d67b1e94ed5ca34b/crates/pdf-signer-engine",
-    "build": "https://github.com/madventureXD/commietools/blob/77d38e51979cd9eff2813fe0d67b1e94ed5ca34b/crates/pdf-signer-wasm/README.md",
+    "deploymentRevision": "5815c67be9e377446c68c2bc63b9083fa5bf0b2d",
+    "publishedSourceRevision": "524f0738f1c04a997735b82174b2c18b3adb0e44",
+    "origin": "https://d0cd5ce4.commietools.pages.dev",
+    "source": "https://github.com/madventureXD/commietools/tree/524f0738f1c04a997735b82174b2c18b3adb0e44/crates/pdf-signer-engine",
+    "build": "https://github.com/madventureXD/commietools/blob/524f0738f1c04a997735b82174b2c18b3adb0e44/crates/pdf-signer-wasm/README.md",
     "wasmSha256": "fbe9efd3a25010a40f7bec6858a79a38ad5ef8cc76ceedc0070e087969264697",
     "engineSourceFiles": 25,
     "files": [
@@ -63,8 +63,8 @@
         "url": "https://github.com/neslinesli93/qpdf-wasm/releases/tag/0.3.0",
         "status": 200,
         "expectedContent": "0.3.0",
-        "sha256": "8be63cce74969421a145153a44785b0bcd72d186abb1629475db36de65337d7b",
-        "bytes": 198867
+        "sha256": "bc403a6d552b224f439ef764f339c36bc9eba49f069f7a7e39882a195c64ac8e",
+        "bytes": 198828
       },
       {
         "url": "https://raw.githubusercontent.com/neslinesli93/qpdf-wasm/e661db2/Dockerfile",

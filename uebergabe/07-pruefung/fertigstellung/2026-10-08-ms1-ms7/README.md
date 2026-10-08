@@ -112,3 +112,14 @@ Die abschließende CSS-Korrektur und die ergänzte 54-Fälle-Ergebnismatrix werd
 geprüft; kein rückwirkendes Umetikettieren der 21 Stufen. Zusätzlich ausführbar:
 `npm run verify:finish result-states` und `npm run verify:finish de-regions`.
 Native Originalabnahmen bleiben wegen des erneut bestätigten Windows-Zugriffsfehlers offen.
+
+Die zusätzliche Original-Textabstandsprobe besteht 36/36 Fälle, separat ausführbar mit
+`npm run verify:finish text-spacing`; Bericht und genaue Grenzen in
+[abschlusspruefung.md](abschlusspruefung.md). Dieser spätere Zusatzprüfer verändert keinen
+Produktcode und wird nicht als Bestandteil eines früher gestarteten CI-Laufs behauptet.
+
+Der abschließende [Pflichtlauf 37771905865](https://github.com/madventureXD/commietools/actions/runs/37771905865)
+zum gepushten Produktstand `5815c67be9e377446c68c2bc63b9083fa5bf0b2d` ist mit vier
+erfolgreichen Jobs abgeschlossen. Auch die 54-Fälle-Matrix ist darin tatsächlich bestanden.
+Die Endbelege werden danach lokal separat gesichert. Das [Endurteil](abschlusspruefung.md)
+benennt die sieben nativen/physischen Restkarten; keine falsche Gesamtproduktionsfreigabe.

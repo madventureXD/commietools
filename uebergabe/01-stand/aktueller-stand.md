@@ -679,3 +679,23 @@ Icon-Ergebnisfelder). CSS-Korrektur und weiterer Browserpflichtschritt sind im A
 benannt. Der zugehörige spätere Kandidat erhält eigene Messungen; die 21-Stufen-Messung bleibt
 an ihren tatsächlich geprüften Stand gebunden. Native Bedienung erneut versucht, weiterhin
 Windows-Fehler 0x80070005. Technische Zuständigkeit und Arbeitsfreigabe sind vollständig geklärt.
+
+### Letzte Ergebnis-/Textabstandskontrolle
+
+Produktstand `5815c67be9e377446c68c2bc63b9083fa5bf0b2d` gepusht; Root-Check/Build/Workflow/
+Manifest lokal erfolgreich, Einstieg 150337 B gzip. Die zusätzlich aktiv erzeugten
+Ergebniszustände bestehen 54/54 Fälle. Die separate Textabstandsprobe besteht 36/36 Fälle:
+Startseite, Rechnerergebnis und geladener langer Unicode-PDF-Dateiname mit geöffnetem Menü,
+de/en/es, 320/390 px und beide Themes. Diese letzte Probe verändert keinen Produktcode.
+Die öffentliche unveränderliche Vorschau d0cd5ce4 besteht Signatur-WASM und drei OCR-Sprachen;
+696 öffentliche Dateien sind bytegleich zum tatsächlichen CI-Artefakt.
+Technische Kartenabgrenzung und konkrete native Reste bleiben im einzigen laufenden QM-Leitfaden.
+
+### CI-Schlussurteil
+
+Der letzte tatsächliche [Pflichtlauf 37771905865](https://github.com/madventureXD/commietools/actions/runs/37771905865)
+zu `5815c67be9e377446c68c2bc63b9083fa5bf0b2d` besteht alle vier Jobs einschließlich
+54 aktiver Ergebnisfälle und Releasepflicht. Die spätere Textabstandszusatzprüfung und
+die danach erstellten Endbelege werden lokal separat gesichert; kein Produktcode geändert.
+Sieben Originalkarten mit tatsächlichen nativen/physischen Restmessungen verhindern weiterhin
+ein uneingeschränktes Gesamturteil. Keine erneute technische Genehmigung erforderlich.

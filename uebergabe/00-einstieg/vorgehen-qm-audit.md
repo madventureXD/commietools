@@ -682,3 +682,25 @@ die sieben ausdrücklich genannten Original-Geräteverträge und daraus folgende
 teilweise. Windows verweigert den nativen Edge-Start auch nach Thomas' neuester Freigabe mit
 `GetCursorPos ... 0x80070005`; reale physische Zielgeräte sind nicht erreichbar. Kein fehlender
 Betreiberentscheid, keine neue Prüferbenennung und keine technische Frage an Thomas.
+
+### Zusätzlicher Originalvertrag M7-005: Textabstände
+
+Die separat geforderte Textabstandsprobe wurde tatsächlich ausgeführt: Startseite,
+Rechnerergebnis und geladener langer Unicode-PDF-Dateiname, geöffnetes Menü, de/en/es,
+320/390 px und beide Themes, 36/36 Kombinationen bestanden. Zeilenhöhe 1,5,
+Absatzabstand 2 em, Zeichenabstand 0,12 em und Wortabstand 0,16 em.
+Beleg: [text-spacing.json](../07-pruefung/fertigstellung/2026-10-08-ms1-ms7/text-spacing.json).
+M7-005 behält den echten nativen 200-%-Zoom und das reale Mobilgerät als Rest;
+die pauschale 400-%-Formulierung der letzten Tabellenzeile ist kein zusätzliches M7-005-Kriterium.
+Native Zoomanforderungen anderer Karten werden dadurch nicht entfernt.
+
+### Tatsächlicher abschließender Pflichtlauf
+
+[Run 37771905865](https://github.com/madventureXD/commietools/actions/runs/37771905865)
+zu Produktkandidat `5815c67be9e377446c68c2bc63b9083fa5bf0b2d` ist abgeschlossen und
+erfolgreich: alle vier Jobs, einschließlich 54 aktiver Ergebnisfälle und Releasepflicht.
+696 öffentliche Vorschau-Dateien sind bytegleich zu seinem CI-Artefakt; öffentliche
+CSP/WASM/eng-deu-spa-OCR geprüft. Die frühere offene Kandidaten-CI ist damit erledigt.
+Die obige 19/7-Disposition bleibt maßgeblich. Native/physische Originalrestfälle und
+daraus folgende Gesamtfreigabe bleiben offen, ohne neue Betreiberentscheidung.
+Endbelege und späterer Textabstandsprüfer werden lokal separat gesichert; kein main-Merge.

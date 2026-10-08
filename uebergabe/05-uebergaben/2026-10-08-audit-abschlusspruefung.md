@@ -113,3 +113,32 @@ belegt" ist für Buildwechsel und NEL durch die dokumentierten tatsächlichen Pr
 Offen bleiben die ausdrücklich benannten nativen/physikalischen Originalmessungen. Nach
 der jüngsten Vollzugriffsfreigabe scheitert die native Edge-Ausführung weiterhin mit 0x80070005.
 Status dieser Gesamtübergabe bleibt deshalb teilweise; keine neue Genehmigung ist erforderlich.
+
+### Tatsächlich geprüfter letzter Produktstand
+
+Commit `5815c67be9e377446c68c2bc63b9083fa5bf0b2d` ist auf dem Audit-Zweig gepusht.
+Lokaler Root-Check, Build, Workflow und Manifest bestehen; 730 Vitest-Tests, vier Node-Tests,
+113 Lint-Warnungen und 0 Fehler, Einstieg 150337 B gzip. Die aktive Ergebnismatrix besteht
+54/54 Fälle. Öffentliche Vorschau d0cd5ce4: Signatur-WASM und eng/deu/spa-OCR bestehen;
+696 Dateien sind bytegleich zum tatsächlichen CI-Archiv. NEL-Beobachtung am selben Kandidaten
+ausgeführt, kein Versand beobachtbar. Vorherige Messungen bleiben separat erhalten.
+
+Zusätzlich 36/36 Textabstandskombinationen bestanden, mit geöffnetem Menü, Startseite,
+Rechnerergebnis und langer geladener Unicode-PDF-Datei. Der erste Sandbox-Browserstart schlug
+fehl; die vollständige erlaubte Wiederholung besteht. Dieser spätere lokale Zusatzprüfer ist
+kein rückwirkender Bestandteil des laufenden GitHub-Jobs. Produktcode unverändert.
+Der Vorlagenvergleich bestätigt alle acht Pflichtabschnitte. Die genaue Einzelkartendisposition
+steht im QM-Leitfaden: 19 technisch geprüfte Restverträge, sieben Karten mit echten nativen/
+physischen Restmessungen. Gesamtstatus bleibt teilweise, bis diese Originalmessungen vorliegen.
+
+Die anschließenden Belege und der Zusatzprüfer werden lokal separat gesichert, ohne den
+bereits gepushten Produktkandidaten umzuschreiben oder einen main-Merge zu behaupten.
+
+### Abschließendes externes Prüfergebnis
+
+[Run 37771905865](https://github.com/madventureXD/commietools/actions/runs/37771905865)
+zu `5815c67be9e377446c68c2bc63b9083fa5bf0b2d` ist tatsächlich abgeschlossen und erfolgreich:
+alle vier Pflichtjobs, einschließlich der neuen 54-Fälle-Matrix und Releasepflicht.
+Endbelege und dieser Nachtrag werden lokal separat committet, nicht als früher bereits
+extern geprüfte Commitrevision bezeichnet. Root-Check/Build nach Aktennachträgen wird separat
+protokolliert. Gesamtstatus wegen der sieben nativen/physischen Restkarten weiterhin teilweise.

@@ -221,3 +221,58 @@ native Edge-Ausführung scheitert weiterhin mit `GetCursorPos failed: Zugriff ve
 (0x80070005)`. Keine weitere Betreiberentscheidung fehlt. Tatsächlich nicht gemessene native
 und physische Originalkriterien bleiben als Rest erhalten; die Produktionsfreigabe folgt daraus
 noch nicht. Die genaue Kartenabgrenzung steht ausschließlich im laufenden QM-Leitfaden.
+
+### Endgültige lokale Ergebnis- und Vorschauprüfung
+
+Produktkandidat `5815c67be9e377446c68c2bc63b9083fa5bf0b2d`, Quellidentität
+`590f3b15fdf305249d7bb78ccd3c17fddb05c342e12abfde32005f5e425e0963`:
+vier lokale Root-Stufen erfolgreich; 54/54 aktive Ergebnisfälle erfolgreich und ohne
+Browser-Laufzeitfehler. [Zusatzbelege](abschluss-zusatzbelege.json) frieren die tatsächlichen
+Logs ein. Sie unterscheiden die abschließende CSS-Messung von den früheren Regional-/SW-Proben
+und der unveränderten eingefrorenen 21-Stufen-Kette; keine behauptete Vollwiederholung auf CSS.
+
+Die unveränderliche Vorschau [d0cd5ce4](https://d0cd5ce4.commietools.pages.dev)
+liefert denselben Build. Signatur-WASM und OCR eng/deu/spa unter ihrer tatsächlichen CSP bestehen.
+Alle 696 öffentlichen Dateien stimmen bytegleich mit dem tatsächlichen CI-Archiv überein:
+Archiv-SHA-256 `b8696d4515c101b41c22f55772ff8e4b91eb43723612eb3a2f84413895086759`;
+zwei vom Provider verarbeitete Steuerdateien sind separat gebunden. Öffentlich veröffentlichte
+modifizierte Engine-Quellen und QPDF-Quell-/Buildressourcen sind geprüft. Die aktuelle
+NEL-Probe gehört zu dieser Revision; erneut kein Versand beobachtbar, kein Empfangs-PASS.
+Frühere NEL-Probe unverändert in `nel-preview-pre-final.json` erhalten.
+
+Die native Wiederholung steht in [native-access-last.json](native-access-last.json).
+Die Gesamtfreigabe bleibt wegen sieben Originalkarten mit nicht ausgeführten nativen/physischen
+Messungen offen. Thomas muss keine technische Entscheidung oder erneute Arbeitsgenehmigung liefern.
+
+### Zusätzliche Textabstandsprobe
+
+[text-spacing.json](text-spacing.json) bestätigt 36/36 tatsächliche Browserkombinationen:
+Startseite, Rechner mit sichtbarem Ergebnis und geladene PDF mit langem Unicode-Dateinamen,
+de/en/es, 320/390 px, beide Themes und tatsächlich geöffnetes Menü. Erzwungene Abstände:
+Zeilenhöhe 1,5, Absatzabstand 2 em, Zeichenabstand 0,12 em, Wortabstand 0,16 em.
+Keine gefundenen verdeckten Bedienelemente oder Ganzseitenüberbreite; unveränderte
+heuristische Scanner und keine Browser-Laufzeitfehler. Eigenes Skript versioniert,
+ausführbar mit `npm run verify:finish text-spacing`. Der erste Sandbox-Browserstart scheiterte;
+die vollständige erlaubte Wiederholung besteht. Kein Ersatz für nativen 200-%-Browserzoom
+oder ein reales Mobilgerät. Produktcode und Quellidentität bleiben beim Kandidaten `5815c67`.
+Dieser spätere lokale Zusatzprüfer wird nicht als Teil des zuvor gestarteten GitHub-Laufs bezeichnet.
+
+## Endurteil 2026-10-08
+
+Der tatsächliche letzte [CI-Lauf 37771905865](https://github.com/madventureXD/commietools/actions/runs/37771905865)
+zu `5815c67be9e377446c68c2bc63b9083fa5bf0b2d` ist abgeschlossen: Qualitätsjob,
+Rust-Prüfungen mit bytegleichem WASM-Neubau, Browserpflichtjob einschließlich 54 aktiver
+Ergebnisfälle und Releasepflicht jeweils **success**, kein übersprungener Pflichtjob.
+Die öffentliche Artefakt-/CSP-/WASM-/OCR-Prüfung gehört genau zu dieser Revision.
+`github-runs.json` und `github-delivery.json` halten die tatsächlichen externen Ergebnisse fest.
+
+Alle hier ausführbaren Reparaturen und Abnahmen sind ausgeführt und gesichert. Von den
+26 Nachprüfungsresten sind 19 im ursprünglichen begrenzten Vertrag technisch geprüft;
+sieben Karten behalten konkret benannte native/physische Originalmessungen. Die 33 vorherigen
+B-Bewertungen bleiben begrenzt. Damit kein falscher Gesamtabschluss und kein main-Merge.
+Es fehlen keine neuen Genehmigungen, Prüferbenennungen oder technischen Betreiberantworten.
+
+Produktkandidat und technische Reparaturen sind gepusht. Die anschließend erzeugten
+Endbelege, Textabstandszusatzprüfung und Aktennachträge werden als eigener lokaler Prüfabschluss
+gesichert. Dieser Commit verändert keinen Produktcode und wird nicht als eine zuvor auf
+GitHub getestete Revision bezeichnet. Der tatsächlich extern geprüfte Kandidat bleibt `5815c67`.

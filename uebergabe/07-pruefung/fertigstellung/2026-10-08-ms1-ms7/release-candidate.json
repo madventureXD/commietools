@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
-  "sourceRevision": "524f0738f1c04a997735b82174b2c18b3adb0e44",
+  "sourceRevision": "5815c67be9e377446c68c2bc63b9083fa5bf0b2d",
   "sourceId": "590f3b15fdf305249d7bb78ccd3c17fddb05c342e12abfde32005f5e425e0963",
   "workingTreeHasChanges": true,
-  "sourceDigest": "2621a25df07a85892c2d53aded68e33b37a7f0332c2d9100642f6815d5db00cb",
+  "sourceDigest": "a236bedc2437da9cfbd4535ca803d7d133eaf831bc95d9d678977db319ff0299",
   "sourceFiles": [
     {
       "path": ".editorconfig",
@@ -6170,6 +6170,10 @@
       "sha256": "bd6f5781b3d2a833d0d759f3b70899eae69632f3cd31104ffb5c768baf41d23a"
     },
     {
+      "path": "scripts/text-spacing-audit.mjs",
+      "sha256": "3e8d610bf53e279703be43e4219b325511207a2588014d24035469d692e9bb86"
+    },
+    {
       "path": "scripts/token-audit.mjs",
       "sha256": "d33cb33f44c433173c70901605bf55d523758d6f4827ccb5a33cd1319cd487fa"
     },
@@ -6179,7 +6183,7 @@
     },
     {
       "path": "scripts/verify-fertigstellung.mjs",
-      "sha256": "9bcaf8481d82c66311d784e6f652236aaa0190ad65b2c00a4124fbad9b17ad29"
+      "sha256": "b797edf2417ddabbdc7ddf055b25ab7e58704e1b4a2e41290ab9d96adbd9bd82"
     },
     {
       "path": "scripts/viewport-audit.mjs",
