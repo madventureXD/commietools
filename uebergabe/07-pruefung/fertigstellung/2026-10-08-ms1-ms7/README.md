@@ -123,3 +123,14 @@ zum gepushten Produktstand `5815c67be9e377446c68c2bc63b9083fa5bf0b2d` ist mit vi
 erfolgreichen Jobs abgeschlossen. Auch die 54-Fälle-Matrix ist darin tatsächlich bestanden.
 Die Endbelege werden danach lokal separat gesichert. Das [Endurteil](abschlusspruefung.md)
 benennt die sieben nativen/physischen Restkarten; keine falsche Gesamtproduktionsfreigabe.
+
+## Nachtrag 2026-10-08 — nach Rücksprache abgenommen
+
+Die Statusangabe „teilweise“ und die sieben offenen Restkarten aus `4cb2a47` beschreiben den
+Stand vor Thomas' ausdrücklicher Entscheidung „Gut. Hake die restlichen Karten als nach
+Rücksprache bestanden ab“. Diese sieben Karten sind jetzt **✓ nach Rücksprache bestanden**;
+der Sanierungsauftrag **MS0–MS7 ist formal abgeschlossen**. Die fehlenden nativen/physischen
+Messungen sind als bekannte Abnahmelücken akzeptiert, nicht als ausgeführte Tests dargestellt.
+Beleg: [Abnahmeprotokoll](../../../06-protokolle/2026-10-08-audit-restkarten-abnahme.md).
+OP-065/066 archiviert; OP-067 bleibt befristete Hinweisnachverfolgung. Bestehende Messbelege
+und eingefrorene Kandidaten werden nicht rückwirkend geändert.

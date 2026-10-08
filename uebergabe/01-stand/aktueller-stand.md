@@ -699,3 +699,15 @@ zu `5815c67be9e377446c68c2bc63b9083fa5bf0b2d` besteht alle vier Jobs einschließ
 die danach erstellten Endbelege werden lokal separat gesichert; kein Produktcode geändert.
 Sieben Originalkarten mit tatsächlichen nativen/physischen Restmessungen verhindern weiterhin
 ein uneingeschränktes Gesamturteil. Keine erneute technische Genehmigung erforderlich.
+
+## Nachtrag 2026-10-08 — Auditabnahme nach Rücksprache
+
+Die Aussage aus `4cb2a47`, sieben Originalkarten verhinderten den Abschluss, ist durch Thomas'
+ausdrückliche Entscheidung ersetzt: „Gut. Hake die restlichen Karten als nach Rücksprache
+bestanden ab“. M5-002, M2-009, M2-006 und M7-002 bis M7-005 sind **✓ nach Rücksprache bestanden**.
+Die bekannten nativen/physischen Messlücken sind für diesen Auditabschluss akzeptiert;
+es werden keine zusätzlichen erfolgreichen Gerätetests behauptet.
+**Audit-Sanierung MS0–MS7 formal abgeschlossen, 59 Karten abgeschlossen.**
+Beleg: [Abnahmeprotokoll](../06-protokolle/2026-10-08-audit-restkarten-abnahme.md).
+OP-065/066 sind archiviert, OP-067 bleibt befristete Hinweisnachverfolgung.
+Produktcode und tatsächliche CI-/Vorschaubelege unverändert; keine Veröffentlichung ausgelöst.

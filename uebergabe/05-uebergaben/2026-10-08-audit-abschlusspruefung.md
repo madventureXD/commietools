@@ -142,3 +142,12 @@ alle vier Pflichtjobs, einschließlich der neuen 54-Fälle-Matrix und Releasepfl
 Endbelege und dieser Nachtrag werden lokal separat committet, nicht als früher bereits
 extern geprüfte Commitrevision bezeichnet. Root-Check/Build nach Aktennachträgen wird separat
 protokolliert. Gesamtstatus wegen der sieben nativen/physischen Restkarten weiterhin teilweise.
+
+## Nachtrag 2026-10-08 — Abnahme nach Rücksprache
+
+Die letzte Aussage „Gesamtstatus ... weiterhin teilweise“ aus `4cb2a47` ist für die formale
+Abnahme durch Thomas' ausdrückliche Entscheidung ersetzt: Die sieben Restkarten sind
+**nach Rücksprache bestanden**. Bekannte native/physische Messlücken sind als Abnahmeausnahmen
+akzeptiert; tatsächliche Messberichte bleiben unverändert. Sanierungsauftrag MS0–MS7 formal
+abgeschlossen. Beleg: [Abnahmeprotokoll](../06-protokolle/2026-10-08-audit-restkarten-abnahme.md),
+[aktuelle Übergabe](2026-10-08-audit-abnahme-nach-ruecksprache.md).

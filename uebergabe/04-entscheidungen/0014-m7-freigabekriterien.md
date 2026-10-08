@@ -162,3 +162,13 @@ Der isolierte Audit-Zweig mit [Entwurf PR #1](https://github.com/madventureXD/co
 ermöglicht reale positive/negative CI und automatische Cloudflare-Vorschauen. `main` ist durch
 `Releasepflicht` auch für Administratoren geschützt; kein Produktionspush oder Merge erfolgt.
 Die frühere Aussage „kein tatsächlicher GitHub-Lauf“ gilt für diesen datierten Stand nicht mehr.
+
+## Nachtrag 2026-10-08 — formaler Auditabschluss nach Rücksprache
+
+Die im Nachtrag aus `4cb2a47` noch offene Gesamt-Abnahmebedingung der sieben nativen/physischen
+Restkarten ist durch Thomas ausdrücklich neu entschieden: „Gut. Hake die restlichen Karten als
+nach Rücksprache bestanden ab“. Die sieben Karten sind unter dokumentierter Akzeptanz der
+bekannten Messlücken abgenommen. [Entscheidung und Umfang](../06-protokolle/2026-10-08-audit-restkarten-abnahme.md).
+Die benannte Abschlusskontrolle ist damit formal abgenommen; keine neuen erfolgreichen
+Geräteprüfungen oder weitergehenden kryptografischen Zusagen behauptet. Die technischen
+A1/A3/A4-Nachweise und Lizenzfristen bleiben bestehen. Kein main-Merge oder Deployment ausgeführt.

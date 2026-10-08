@@ -353,21 +353,8 @@ Diese Liste enthält bestätigte, noch nicht abgeschlossene Arbeit. Details geh�
 
 ## Nachprüfung — Fertigstellung ab 2026-10-08 (MS0)
 
-- [ ] OP-065 — **26 offene Karten nach unabhängiger Nachprüfung bearbeiten.** Neun F-Karten
-  sind ausdrücklich erneut geöffnet, 16 R-Abnahmen und M8-001 (O) bleiben offen. Maßgeblicher
-  Stand: datierter Nachtrag im QM-Leitfaden; Kriterien-/Belegbasis:
-  [MS0](../07-pruefung/fertigstellung/2026-10-08-ms0/README.md).
-  **Verantwortlich:** Entwicklung bei Beauftragung MS1–MS7; Thomas für Betreiberentscheidungen.
-  **Restabnahme:** MS1–MS7 gemäß Konzept, tatsächliche Gegenproben und unabhängige A2;
-  keine automatische Erledigung durch administrative Häkchen. Die 33 B-Karten behalten ihre
-  begrenzte positive Bewertung. Bestehende zugehörige OPs werden erst mit Einzelbeleg geschlossen.
-- [ ] OP-066 — **Externe MS0-Abnahmen tatsächlich reservieren.** Geplante Rollen, notwendige
-  Geräte/Reader/Kontozugänge und relative Zeitpunkte stehen in
-  [Abnahmefenster](../07-pruefung/fertigstellung/2026-10-08-ms0/abnahmefenster.md).
-  **Verantwortlich:** Thomas als Betreiber/Koordinator; unabhängiger Prüfer und Geräte-/Fachprüfer
-  noch zu benennen. **Restabnahme:** bestätigte Personen und Verfügbarkeit vor dem jeweiligen
-  Milestone (Rust/Lieferung MS1, Release/Reader MS5, Geräte/Fachlichkeit MS6, A2 MS7).
-  MS0 darf eine vorgeschlagene Rolle oder relative Planung nicht als tatsächliche Buchung zählen.
+*Nachtrag 2026-10-08: OP-065/066 nach Rücksprache erledigt; Originaleinträge und Entscheidungsbeleg
+im [Erledigungsarchiv](../06-protokolle/2026-10-08-erledigte-punkte-ms1-ms7.md).*
 
 *Hinweis 2026-10-08:* OP-064 wurde bereits historisch verwendet und abgeschlossen; die neuen
 Nummern beginnen deshalb bei OP-065. Die 63 bisherigen aktiven Punkte bleiben unverändert,
@@ -442,3 +429,13 @@ Die neue aktive Ergebnismatrix M2-007 besteht 54/54 Fälle; die tatsächliche CI
 Edge-Start scheitert weiterhin mit 0x80070005. OP-065/066 bleiben ausschließlich für diese
 konkreten Originalmessungen und die daraus folgende Gesamtfreigabe offen; OP-067 bleibt die
 bereits genehmigte befristete Hinweisnachverfolgung. Kein weiterer Genehmigungs-/Prüferdialog.
+
+## Nachtrag 2026-10-08 — Audit-Sammelpunkte abgeschlossen
+
+Die Aussagen aus Basis `4cb2a47`, OP-065/066 blieben wegen sieben Original-Geräteabnahmen offen,
+sind durch Thomas' ausdrückliche Abnahme nach Rücksprache ersetzt. Die sieben Karten sind als
+**nach Rücksprache bestanden** geschlossen; bekannte Messlücken werden nicht als erfolgreiche
+Testläufe ausgegeben. OP-065/066 sind mit ihren Originaleinträgen im Erledigungsarchiv dokumentiert
+und aus der aktiven Liste übernommen. Heute **63 aktive Projekt-OPs** (65 minus diese zwei);
+OP-067 zur befristeten Hinweisnachverfolgung bleibt offen.
+Beleg: [Abnahmeprotokoll](../06-protokolle/2026-10-08-audit-restkarten-abnahme.md).

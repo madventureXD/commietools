@@ -276,3 +276,19 @@ Produktkandidat und technische Reparaturen sind gepusht. Die anschließend erzeu
 Endbelege, Textabstandszusatzprüfung und Aktennachträge werden als eigener lokaler Prüfabschluss
 gesichert. Dieser Commit verändert keinen Produktcode und wird nicht als eine zuvor auf
 GitHub getestete Revision bezeichnet. Der tatsächlich extern geprüfte Kandidat bleibt `5815c67`.
+
+## Nachtrag 2026-10-08 — formale Betreiberabnahme der Restkarten
+
+Thomas hat nach Erläuterung der sieben offenen Karten ausdrücklich angeordnet:
+„Gut. Hake die restlichen Karten als nach Rücksprache bestanden ab“.
+Damit ersetzt die Betreiberentscheidung das zuvor aus `4cb2a47` offene formale Schlussurteil:
+M5-002, M2-009, M2-006 und M7-002 bis M7-005 sind **✓ nach Rücksprache bestanden**.
+Die konkreten fehlenden Messungen werden als bekannte Abnahmelücken akzeptiert; kein
+gemessener PASS für native Picker, gesprochene Vorleseransagen, nativen Zoom oder physische Geräte.
+Die bisherigen technischen Belege bleiben unverändert.
+
+**Audit-Sanierung MS0–MS7 formal abgenommen; alle 59 Karten abgeschlossen**, davon sieben
+auf Grundlage dieser ausdrücklichen Rücksprache. Umfang und Entscheidung:
+[Abnahmeprotokoll](../../../06-protokolle/2026-10-08-audit-restkarten-abnahme.md).
+OP-065/066 erledigt; die bis 2026-11-08 befristete Lizenzhinweisnachverfolgung OP-067 bleibt offen.
+Diese Abnahme ist keine neue technische Zertifizierung und führt keinen Produktionspush aus.

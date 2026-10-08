@@ -704,3 +704,27 @@ CSP/WASM/eng-deu-spa-OCR geprüft. Die frühere offene Kandidaten-CI ist damit e
 Die obige 19/7-Disposition bleibt maßgeblich. Native/physische Originalrestfälle und
 daraus folgende Gesamtfreigabe bleiben offen, ohne neue Betreiberentscheidung.
 Endbelege und späterer Textabstandsprüfer werden lokal separat gesichert; kein main-Merge.
+
+## Nachtrag 2026-10-08 — sieben Restkarten nach Rücksprache bestanden
+
+Thomas hat nach Erläuterung der sieben Abnahmelücken ausdrücklich entschieden:
+„Gut. Hake die restlichen Karten als nach Rücksprache bestanden ab“.
+Die obige offene 19/7-Disposition aus `4cb2a47` wird damit für den formalen Abschluss ersetzt:
+
+| Karte | Aktueller Abschlussstatus |
+|---|---|
+| M5-002 | ✓ **nach Rücksprache bestanden** |
+| M2-009 | ✓ **nach Rücksprache bestanden** |
+| M2-006 | ✓ **nach Rücksprache bestanden** |
+| M7-002 | ✓ **nach Rücksprache bestanden** |
+| M7-003 | ✓ **nach Rücksprache bestanden** |
+| M7-004 | ✓ **nach Rücksprache bestanden** |
+| M7-005 | ✓ **nach Rücksprache bestanden** |
+
+Die nativen/physischen Originalproben sind ausdrücklich als Abnahmelücken akzeptiert, nicht
+nachträglich als ausgeführte Messungen bezeichnet. Beleg und Umfang:
+[Abnahmeprotokoll](../06-protokolle/2026-10-08-audit-restkarten-abnahme.md).
+**59 Karten abgeschlossen:** 33 vorherige begrenzte positive Bewertungen, 19 technisch geprüfte
+Restverträge und sieben nach Rücksprache bestandene Karten. **MS0–MS7 formal abgenommen.**
+Keine offene Auditkarte. OP-065/066 erledigt und archiviert; OP-067 bleibt eigene befristete
+Hinweisnachverfolgung. Technische Prüfergebnisse und historische Kartenbasis bleiben erhalten.
