@@ -102,6 +102,8 @@ if (process.argv.includes('access')) steps.splice(0, steps.length, ['platform-ac
 if (process.argv.includes('github-protect')) steps.splice(0, steps.length, ['github-protect', process.execPath, ['scripts/github-audit-setup.mjs', 'protect']])
 if (process.argv.includes('github-pr')) steps.splice(0, steps.length, ['github-pr', process.execPath, ['scripts/github-audit-setup.mjs', 'pr']])
 if (process.argv.includes('github-runs')) steps.splice(0, steps.length, ['github-runs', process.execPath, ['scripts/github-audit-setup.mjs', 'runs']])
+if (process.argv.includes('github-logs')) steps.splice(0, steps.length, ['github-logs', process.execPath, ['scripts/github-audit-setup.mjs', 'logs']])
+if (process.argv.includes('github-delivery')) steps.splice(0, steps.length, ['github-delivery', process.execPath, ['scripts/github-audit-setup.mjs', 'delivery']])
 for (const [name, executable, args] of steps) {
   console.log(`START ${name}`)
   const fd = openSync(resolve(output, `${name}.log`), 'w')
